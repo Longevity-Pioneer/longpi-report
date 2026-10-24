@@ -1,0 +1,1191 @@
+{
+ "version": "2026-10-24",
+ "bands": [
+  [
+   18,
+   29
+  ],
+  [
+   30,
+   39
+  ],
+  [
+   40,
+   49
+  ],
+  [
+   50,
+   59
+  ],
+  [
+   60,
+   69
+  ],
+  [
+   70,
+   79
+  ],
+  [
+   80,
+   110
+  ]
+ ],
+ "markers": {
+  "sbp": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 125.3,
+     "sd": 15.9
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 127.1,
+     "sd": 15.9
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 130.4,
+     "sd": 19.2
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 135.8,
+     "sd": 19.2
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 139.7,
+     "sd": 22.4
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 143.29999999999998,
+     "sd": 22.4
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 146.2,
+     "sd": 22.4
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 113.2,
+     "sd": 15.9
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 116.3,
+     "sd": 15.9
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 124.6,
+     "sd": 19.2
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 133.5,
+     "sd": 19.2
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 139.4,
+     "sd": 22.4
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 146.70000000000002,
+     "sd": 22.4
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 152.9,
+     "sd": 22.4
+    }
+   ],
+   "source": "CCDRFS 2018 (Zhang M, BMJ 2023;380:e071952, Suppl Table 11); SD CCDRFS 2013 (Wang L, JAMA 2017); >=70 derived with CHARLS 2015 increments"
+  },
+  "ldl": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 2.745,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 2.745,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 2.905,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 3.115,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 3.145,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 3.105,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 3.075,
+     "sd": 0.86
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 2.675,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 2.675,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 2.835,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 3.045,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 3.075,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 3.035,
+     "sd": 0.86
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 3.005,
+     "sd": 0.86
+    }
+   ],
+   "source": "CANCDS 2015 margins (Song PK 2019); sex x age and SD derived"
+  },
+  "glycemic": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "normal": 0.6512,
+      "prediabetes": 0.2952,
+      "diabetes": 0.0536
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "normal": 0.5605,
+      "prediabetes": 0.3698,
+      "diabetes": 0.0697
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "normal": 0.4452,
+      "prediabetes": 0.4358,
+      "diabetes": 0.1191
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "normal": 0.2977,
+      "prediabetes": 0.4953,
+      "diabetes": 0.207
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "normal": 0.2289,
+      "prediabetes": 0.5147,
+      "diabetes": 0.2563
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "normal": 0.1784,
+      "prediabetes": 0.5288,
+      "diabetes": 0.2928
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "normal": 0.1784,
+      "prediabetes": 0.5288,
+      "diabetes": 0.2928
+     }
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "normal": 0.7036,
+      "prediabetes": 0.2501,
+      "diabetes": 0.0464
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "normal": 0.6264,
+      "prediabetes": 0.3133,
+      "diabetes": 0.0603
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "normal": 0.5279,
+      "prediabetes": 0.3692,
+      "diabetes": 0.1029
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "normal": 0.4015,
+      "prediabetes": 0.4195,
+      "diabetes": 0.179
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "normal": 0.3423,
+      "prediabetes": 0.436,
+      "diabetes": 0.2217
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "normal": 0.2989,
+      "prediabetes": 0.4479,
+      "diabetes": 0.2532
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "normal": 0.2989,
+      "prediabetes": 0.4479,
+      "diabetes": 0.2532
+     }
+    }
+   ],
+   "source": "CCDRFS 2018 (Wang L, JAMA 2021;326:2498), ADA criteria; sex x age derived"
+  },
+  "bmi": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 24.1,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 24.1,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 24.7,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 24.7,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 23.8,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 23.8,
+     "sd": 3.65
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 22.9,
+     "sd": 3.65
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 23.1,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 23.1,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 24.7,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 24.7,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 24.2,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 24.2,
+     "sd": 3.79
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 23.0,
+     "sd": 3.79
+    }
+   ],
+   "source": "CNHS 2015-17 (Yu D 2024); SD CCDRFS 2013; >=80 derived (CHARLS 2015 decline)"
+  },
+  "waist": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 81.48,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 85.48,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 86.58,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 85.75,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 84.95,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 84.26,
+     "sd": 10.4
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 84.26,
+     "sd": 10.4
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 75.33,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 78.29,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 80.87,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 83.22,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 83.65,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 82.11,
+     "sd": 10.1
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 82.11,
+     "sd": 10.1
+    }
+   ],
+   "source": "CNHS 2015 (Nan J 2025); SD Wang Z 2026"
+  },
+  "rhr": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 78.3,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 78.4,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 78.2,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 77.8,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 77.0,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 76.0,
+     "sd": 12.0
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 76.2,
+     "sd": 12.0
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 79.2,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 78.2,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 77.4,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 76.8,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 76.6,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 77.1,
+     "sd": 11.0
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 78.6,
+     "sd": 11.0
+    }
+   ],
+   "source": "2014 国民体质监测公报 安静脉搏; >=70 derived (CHARLS medians + mean-median offset); SD CKB"
+  },
+  "grip": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 42.75,
+     "sd": 7.6
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 43.6,
+     "sd": 7.6
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 42.2,
+     "sd": 7.6
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 40.0,
+     "sd": 7.7
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 35.0,
+     "sd": 7.3
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 31.15,
+     "sd": 7.2
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 27.3,
+     "sd": 7.2
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 26.55,
+     "sd": 5.0
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 26.75,
+     "sd": 5.2
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 26.5,
+     "sd": 5.3
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 25.3,
+     "sd": 4.9
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 23.1,
+     "sd": 4.8
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 21.6,
+     "sd": 4.8
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 19.5,
+     "sd": 4.8
+    }
+   ],
+   "source": "第六次全国国民体质监测公报 (2025) 附表2-2/3-2; SD CNHS 2012-17 (He H 2023)"
+  },
+  "sleep": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 7.91,
+     "sd": 1.27
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 7.69,
+     "sd": 1.2
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 7.49,
+     "sd": 1.32
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 7.29,
+     "sd": 1.53
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 7.28,
+     "sd": 1.75
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 7.34,
+     "sd": 2.04
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 7.34,
+     "sd": 2.04
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 7.91,
+     "sd": 1.27
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 7.69,
+     "sd": 1.2
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 7.49,
+     "sd": 1.32
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 7.29,
+     "sd": 1.53
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 7.28,
+     "sd": 1.75
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 7.34,
+     "sd": 2.04
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 7.34,
+     "sd": 2.04
+    }
+   ],
+   "source": "CCDRFS 2018 (Chen Y 2026), self-reported total sleep"
+  },
+  "vo2max": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 42.6,
+     "sd": 8.0,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 41.2,
+     "sd": 7.6,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 38.7,
+     "sd": 7.3,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 35.9,
+     "sd": 7.0,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 31.5,
+     "sd": 6.6,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 27.7,
+     "sd": 6.2,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 24.5,
+     "sd": 6.0,
+     "mean_se": 2.5
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 37.1,
+     "sd": 7.2,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 34.7,
+     "sd": 6.8,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 32.0,
+     "sd": 6.3,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 30.3,
+     "sd": 5.9,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 26.9,
+     "sd": 5.4,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 25.2,
+     "sd": 5.0,
+     "mean_se": 2.5
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "mean": 23.0,
+     "sd": 5.0,
+     "mean_se": 2.5
+    }
+   ],
+   "source": "Chinese treadmill VO2peak (Huang J 2024) 20-59; 60+ and SDs derived from FRIEND 2015 (Kaminsky 2015)"
+  },
+  "smoking": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "never": 0.546,
+      "former": 0.029,
+      "current": 0.425
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "never": 0.44,
+      "former": 0.052,
+      "current": 0.508
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "never": 0.387,
+      "former": 0.078,
+      "current": 0.535
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "never": 0.313,
+      "former": 0.127,
+      "current": 0.56
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "never": 0.304,
+      "former": 0.195,
+      "current": 0.501
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "never": 0.344,
+      "former": 0.25,
+      "current": 0.406
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "never": 0.37,
+      "former": 0.28,
+      "current": 0.35
+     }
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "never": 0.973,
+      "former": 0.005,
+      "current": 0.022
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "never": 0.984,
+      "former": 0.003,
+      "current": 0.013
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "never": 0.977,
+      "former": 0.003,
+      "current": 0.02
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "never": 0.969,
+      "former": 0.005,
+      "current": 0.026
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "never": 0.958,
+      "former": 0.01,
+      "current": 0.032
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "never": 0.96,
+      "former": 0.015,
+      "current": 0.025
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "never": 0.96,
+      "former": 0.015,
+      "current": 0.025
+     }
+    }
+   ],
+   "source": "CCDRFS 2018 (Zhang M, PLoS Med 2022;19:e1004064); >=70 from 2024 CATS + derived"
+  },
+  "alcohol": {
+   "M": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.3675,
+      "moderate": 0.471,
+      "hazardous": 0.0625,
+      "harmful": 0.099
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    }
+   ],
+   "F": [
+    {
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.8115,
+      "moderate": 0.18,
+      "hazardous": 0.004,
+      "harmful": 0.0045
+     }
+    },
+    {
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "age_lo": 80,
+     "age_hi": 110,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    }
+   ],
+   "source": "CCDRFS 2018 (Song S, EClinicalMedicine 2023, Table S3), WHO g/day categories"
+  }
+ },
+ "note": "see evidence/literature/D_china_population_norms.md for tables and quotes"
+}

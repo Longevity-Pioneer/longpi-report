@@ -1,0 +1,20 @@
+{
+  "name": "longpi-report",
+  "version": "1.1.0",
+  "description": "LongPi personal longevity report skill: every number from a calibrated, externally validated mortality model; Claude writes the narrative.",
+  "author": {
+    "name": "Longevity Pioneer",
+    "url": "https://github.com/Longevity-Pioneer"
+  },
+  "license": "MIT",
+  "keywords": [
+    "longevity",
+    "biological-age",
+    "phenoage",
+    "mortality",
+    "wearables",
+    "health-report"
+  ],
+  "homepage": "https://github.com/Longevity-Pioneer/longpi-report",
+  "repository": "https://github.com/Longevity-Pioneer/longpi-report"
+}

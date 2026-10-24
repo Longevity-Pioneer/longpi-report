@@ -1,0 +1,44 @@
+{
+ "source": "EFLM Biological Variation Database (biologicalvariation.eu), global within-subject CVI, accessed 2026-10-24; CVA set to the desirable specification 0.5 x CVI",
+ "analytes": {
+  "albumin": {
+   "cvi": 2.47,
+   "cva": 1.24
+  },
+  "creatinine": {
+   "cvi": 4.39,
+   "cva": 2.2
+  },
+  "glucose": {
+   "cvi": 4.89,
+   "cva": 2.45
+  },
+  "crp": {
+   "cvi": 34.68,
+   "cva": 5.0,
+   "note": "EFLM advises against BV-based targets for CRP; CVA set to a typical hs-CRP assay 5%"
+  },
+  "lymph_pct": {
+   "cvi": 10.87,
+   "cva": 3.0,
+   "note": "no lymphocyte % entry; absolute lymphocyte CVI used (one included % dataset has CVI 10.8)"
+  },
+  "mcv": {
+   "cvi": 0.8,
+   "cva": 0.4
+  },
+  "rdw": {
+   "cvi": 2.7,
+   "cva": 1.0,
+   "note": "EFLM RDW entry mixes RDW-SD and two RDW-CV datasets (2.0, 3.7); midpoint 2.7 used"
+  },
+  "alp": {
+   "cvi": 5.25,
+   "cva": 2.6
+  },
+  "wbc": {
+   "cvi": 11.1,
+   "cva": 2.0
+  }
+ }
+}

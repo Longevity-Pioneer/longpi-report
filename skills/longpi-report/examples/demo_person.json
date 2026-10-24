@@ -1,0 +1,675 @@
+{
+ "schema": "longpi.person/1",
+ "synthetic": true,
+ "as_of": "2026-10-20",
+ "person": {
+  "code": "D01",
+  "label": "演示用户 D01",
+  "sex": "M",
+  "birth": "1988-10",
+  "region": {
+   "north": false,
+   "urban": true
+  }
+ },
+ "labs": [
+  {
+   "date": "2023-04-16",
+   "source": "年度体检",
+   "items": {
+    "albumin": [
+     46.8,
+     "g/L"
+    ],
+    "creatinine": [
+     82,
+     "umol/L"
+    ],
+    "glucose": [
+     5.1,
+     "mmol/L"
+    ],
+    "lymph_pct": [
+     31.5,
+     "%"
+    ],
+    "mcv": [
+     89.5,
+     "fL"
+    ],
+    "rdw": [
+     13.0,
+     "%"
+    ],
+    "alp": [
+     66,
+     "U/L"
+    ],
+    "wbc": [
+     6.1,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.21,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.18,
+     "mmol/L"
+    ],
+    "tc": [
+     5.02,
+     "mmol/L"
+    ],
+    "tg": [
+     1.34,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.3,
+     "%"
+    ],
+    "glucose_fasting": [
+     5.1,
+     "mmol/L"
+    ],
+    "alt": [
+     31,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     398,
+     "umol/L"
+    ],
+    "platelets": [
+     236,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2024-05-12",
+   "source": "年度体检",
+   "items": {
+    "albumin": [
+     45.9,
+     "g/L"
+    ],
+    "creatinine": [
+     85,
+     "umol/L"
+    ],
+    "glucose": [
+     5.3,
+     "mmol/L"
+    ],
+    "crp": [
+     2.8,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     30.2,
+     "%"
+    ],
+    "mcv": [
+     89.8,
+     "fL"
+    ],
+    "rdw": [
+     12.95,
+     "%"
+    ],
+    "alp": [
+     71,
+     "U/L"
+    ],
+    "wbc": [
+     6.6,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.58,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.12,
+     "mmol/L"
+    ],
+    "tc": [
+     5.41,
+     "mmol/L"
+    ],
+    "tg": [
+     1.62,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.5,
+     "%"
+    ],
+    "glucose_fasting": [
+     5.3,
+     "mmol/L"
+    ],
+    "alt": [
+     44,
+     "U/L"
+    ],
+    "ast": [
+     29,
+     "U/L"
+    ],
+    "uric_acid": [
+     421,
+     "umol/L"
+    ],
+    "vitd": [
+     21.4,
+     "ng/mL"
+    ],
+    "platelets": [
+     228,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2025-05-20",
+   "source": "年度体检",
+   "items": {
+    "albumin": [
+     46.4,
+     "g/L"
+    ],
+    "creatinine": [
+     84,
+     "umol/L"
+    ],
+    "glucose": [
+     5.2,
+     "mmol/L"
+    ],
+    "crp": [
+     1.4,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     31.8,
+     "%"
+    ],
+    "mcv": [
+     89.6,
+     "fL"
+    ],
+    "rdw": [
+     13.0,
+     "%"
+    ],
+    "alp": [
+     69,
+     "U/L"
+    ],
+    "wbc": [
+     6.1,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.92,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.15,
+     "mmol/L"
+    ],
+    "tc": [
+     5.76,
+     "mmol/L"
+    ],
+    "tg": [
+     1.48,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.6,
+     "%"
+    ],
+    "glucose_fasting": [
+     5.4,
+     "mmol/L"
+    ],
+    "alt": [
+     38,
+     "U/L"
+    ],
+    "ast": [
+     27,
+     "U/L"
+    ],
+    "uric_acid": [
+     409,
+     "umol/L"
+    ],
+    "vitd": [
+     27.9,
+     "ng/mL"
+    ],
+    "platelets": [
+     241,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2026-05-18",
+   "source": "年度体检",
+   "items": {
+    "albumin": [
+     47.0,
+     "g/L"
+    ],
+    "creatinine": [
+     83,
+     "umol/L"
+    ],
+    "glucose": [
+     5.0,
+     "mmol/L"
+    ],
+    "crp": [
+     0.6,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     33.4,
+     "%"
+    ],
+    "mcv": [
+     89.2,
+     "fL"
+    ],
+    "rdw": [
+     12.95,
+     "%"
+    ],
+    "alp": [
+     67,
+     "U/L"
+    ],
+    "wbc": [
+     5.7,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.64,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.21,
+     "mmol/L"
+    ],
+    "tc": [
+     5.51,
+     "mmol/L"
+    ],
+    "tg": [
+     1.29,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.5,
+     "%"
+    ],
+    "glucose_fasting": [
+     4.9,
+     "mmol/L"
+    ],
+    "alt": [
+     29,
+     "U/L"
+    ],
+    "ast": [
+     23,
+     "U/L"
+    ],
+    "uric_acid": [
+     392,
+     "umol/L"
+    ],
+    "vitd": [
+     34.2,
+     "ng/mL"
+    ],
+    "platelets": [
+     233,
+     "10^9/L"
+    ],
+    "lpa": [
+     18,
+     "nmol/L"
+    ]
+   }
+  }
+ ],
+ "vitals": [
+  {
+   "date": "2023-04-16",
+   "sbp": 124,
+   "dbp": 79,
+   "pulse": 72,
+   "setting": "office"
+  },
+  {
+   "date": "2024-05-12",
+   "sbp": 131,
+   "dbp": 83,
+   "pulse": 74,
+   "setting": "office"
+  },
+  {
+   "date": "2025-05-20",
+   "sbp": 136,
+   "dbp": 86,
+   "pulse": 73,
+   "setting": "office"
+  },
+  {
+   "date": "2026-05-18",
+   "sbp": 133,
+   "dbp": 84,
+   "pulse": 70,
+   "setting": "office"
+  }
+ ],
+ "anthropometrics": [
+  {
+   "date": "2024-05-12",
+   "height_cm": 175,
+   "weight_kg": 77.5,
+   "waist_cm": 93
+  },
+  {
+   "date": "2026-05-18",
+   "height_cm": 175,
+   "weight_kg": 76.0,
+   "waist_cm": 92
+  }
+ ],
+ "fitness": [],
+ "lifestyle": {
+  "smoking": {
+   "status": "never"
+  },
+  "alcohol": {
+   "grams_per_week": 50
+  },
+  "sleep_h": 7.0,
+  "activity_note": "2026-06 起每周有氧 ≥120 分钟",
+  "diet_note": "工作日外卖较多"
+ },
+ "conditions": [],
+ "medications": [],
+ "family_history": [
+  {
+   "relation": "father",
+   "condition": "高血压",
+   "age_at_dx": 52
+  }
+ ],
+ "imaging": [
+  {
+   "date": "2024-05-12",
+   "type": "腹部超声",
+   "finding": "轻度脂肪肝"
+  },
+  {
+   "date": "2026-05-18",
+   "type": "腹部超声",
+   "finding": "肝脏回声未见明显异常"
+  },
+  {
+   "date": "2026-05-18",
+   "type": "心电图",
+   "finding": "窦性心律，正常心电图"
+  }
+ ],
+ "other_tests": [
+  {
+   "date": "2026-05-18",
+   "name": "尿微量白蛋白/肌酐比",
+   "value": "8 mg/g",
+   "note": "正常"
+  }
+ ],
+ "genetics": {
+  "date": "2025-02-10",
+  "source": "消费级基因芯片（演示）",
+  "pgx": [
+   {
+    "gene": "CYP2C19",
+    "result": "*1/*2",
+    "phenotype": "中间代谢型"
+   },
+   {
+    "gene": "SLCO1B1",
+    "result": "rs4149056 TC",
+    "phenotype": "转运功能轻度降低"
+   },
+   {
+    "gene": "CYP2C9",
+    "result": "*1/*1",
+    "phenotype": "正常代谢型"
+   },
+   {
+    "gene": "VKORC1",
+    "result": "-1639 AG",
+    "phenotype": "华法林敏感性中等"
+   }
+  ],
+  "traits": [
+   {
+    "name": "咖啡因代谢",
+    "result": "CYP1A2 慢代谢型（演示）"
+   }
+  ]
+ },
+ "methylation": [
+  {
+   "date": "2026-05-18",
+   "vendor": "某厂商靶向甲基化（演示）",
+   "clock_type": "first_generation",
+   "bio_age": 36.2,
+   "chrono_age": 37.6,
+   "organs": {
+    "肾": 33.9,
+    "脑": 35.0,
+    "肺": 35.8,
+    "代谢": 36.4,
+    "免疫": 37.0,
+    "骨骼肌肉": 37.2,
+    "心脏": 38.1,
+    "肝": 39.6,
+    "血管": 40.3
+   }
+  }
+ ],
+ "wearables": {
+  "daily_csv": "demo/daily.csv",
+  "cgm_csv": "demo/cgm.csv",
+  "bp_csv": "demo/bp.csv",
+  "device": "Apple Watch（演示）"
+ },
+ "meals": [
+  {
+   "time": "2026-10-01 07:23",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-01 12:40",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-01 18:30",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-02 07:23",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-02 12:23",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-02 18:41",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-03 07:33",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-03 12:27",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-03 18:59",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-04 07:34",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-04 12:36",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-04 18:51",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-05 07:25",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-05 12:16",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-05 19:00",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-06 07:17",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-06 12:36",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-06 18:47",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-07 07:21",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-07 12:28",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-07 18:44",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-08 07:26",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-08 12:40",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-08 18:34",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-09 07:39",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-09 12:39",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-09 18:31",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-10 07:26",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-10 12:23",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-10 18:58",
+   "label": "晚餐（饭后散步）"
+  },
+  {
+   "time": "2026-10-11 07:42",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-11 12:18",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-11 18:21",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-12 07:38",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-12 12:29",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-12 18:57",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-13 07:41",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-13 12:29",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-13 18:54",
+   "label": "晚餐"
+  },
+  {
+   "time": "2026-10-14 07:23",
+   "label": "早餐"
+  },
+  {
+   "time": "2026-10-14 12:18",
+   "label": "午餐"
+  },
+  {
+   "time": "2026-10-14 18:38",
+   "label": "晚餐"
+  }
+ ]
+}

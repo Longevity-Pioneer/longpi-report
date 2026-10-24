@@ -1,0 +1,9 @@
+evidence/raw/
+evidence/derived/
+evidence/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.longpi-cache.json
+.claude/
+.pytest_cache/

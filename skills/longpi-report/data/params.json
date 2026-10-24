@@ -1,0 +1,1370 @@
+{
+ "version": "1.0",
+ "old_age": {
+  "fit_ages": [
+   60,
+   94
+  ],
+  "blend_ages": [
+   91,
+   96
+  ],
+  "plateau_hazard": {
+   "value": 0.7,
+   "sd": 0.06,
+   "sources": [
+    "Barbi E, et al. Science 2018;360:1459 (Italy, ages 105+: 0.645, SE 0.016)",
+    "Gampe J. Exceptional Lifespans 2021:29 (IDL, ages 110+: USA 0.724, Europe 0.795, Japan 0.589)",
+    "Pearce M, Raftery AE. Demogr Res 2021;44:1271 (pooled IDL 0.733)"
+   ],
+   "note": "no sex difference detected (Gampe 2010, 2021; Barbi 2018)"
+  }
+ },
+ "domains": [
+  {
+   "id": "crf",
+   "name_zh": "心肺适能",
+   "input": "vo2max",
+   "unit": "ml/kg/min",
+   "shape": "loglinear",
+   "clip": [
+    12,
+    65
+   ],
+   "norm": "vo2max",
+   "group": "fitness",
+   "rr": {
+    "value": 0.89,
+    "lo": 0.86,
+    "hi": 0.92,
+    "per": 3.5,
+    "source": "Laukkanen JA, et al. Mayo Clin Proc 2022;97:1054: per +1 MET RR 0.89 (0.86-0.92); Kodama 2009 JAMA 0.87 (0.84-0.90)",
+    "lit": "B1b"
+   }
+  },
+  {
+   "id": "muscle",
+   "name_zh": "肌肉力量",
+   "input": "grip_kg",
+   "unit": "kg",
+   "shape": "loglinear",
+   "clip": [
+    8,
+    75
+   ],
+   "norm": "grip",
+   "group": "fitness",
+   "rr": {
+    "value": 0.8621,
+    "lo": 0.8333,
+    "hi": 0.885,
+    "per": 5,
+    "source": "Leong DP, et al. Lancet 2015;386:266 (PURE, 17 countries incl. China): per 5 kg lower HR 1.16 (1.13-1.20)",
+    "lit": "B4a"
+   }
+  },
+  {
+   "id": "rhr",
+   "name_zh": "静息心率",
+   "input": "rhr_clinic",
+   "unit": "bpm",
+   "shape": "loglinear",
+   "clip": [
+    45,
+    110
+   ],
+   "norm": "rhr",
+   "group": "fitness",
+   "rr": {
+    "value": 1.09,
+    "lo": 1.07,
+    "hi": 1.12,
+    "per": 10,
+    "source": "Zhang D, et al. CMAJ 2016;188:E53: per +10 bpm RR 1.09 (1.07-1.12); Asian cohorts 1.13 (1.07-1.19)",
+    "lit": "B5a"
+   }
+  },
+  {
+   "id": "sleep",
+   "name_zh": "睡眠",
+   "input": "sleep_selfreport_h",
+   "unit": "h",
+   "shape": "hinge",
+   "knot_lo": 7.0,
+   "knot_hi": 8.0,
+   "clip": [
+    3,
+    12
+   ],
+   "norm": "sleep",
+   "group": "lifestyle",
+   "rr_below": {
+    "value": 1.06,
+    "lo": 1.04,
+    "hi": 1.07,
+    "per": 1,
+    "source": "Yin J, et al. JAHA 2017;6:e005947: per 1 h below 7 h RR 1.06 (1.04-1.07)",
+    "lit": "B6a"
+   },
+   "rr_above": {
+    "value": 1.13,
+    "lo": 1.11,
+    "hi": 1.15,
+    "per": 1,
+    "source": "Yin 2017: per 1 h above the nadir RR 1.13 (1.11-1.15); applied above 8 h (reference band 7-8 h, Cappuccio 2010)",
+    "lit": "B6a"
+   }
+  },
+  {
+   "id": "bp",
+   "name_zh": "血压",
+   "input": "sbp_office",
+   "unit": "mmHg",
+   "shape": "loglinear",
+   "clip": [
+    115,
+    185
+   ],
+   "norm": "sbp",
+   "group": "cardiometabolic",
+   "rr": {
+    "value": 1.0929,
+    "lo": 1.0,
+    "hi": 1.1905,
+    "per": 10,
+    "source": "RCT evidence pooled 50:50: Ettehad D, Lancet 2016 (per 10 mmHg lower SBP, all-cause RR 0.87, 0.84-0.91) and BPLTTC, Lancet 2021 (per 5 mmHg HR 0.98, 0.96-1.01)",
+    "lit": "C1a,C1c"
+   },
+   "causal": true
+  },
+  {
+   "id": "lipid",
+   "name_zh": "血脂",
+   "input": "ldl",
+   "unit": "mmol/L",
+   "shape": "loglinear",
+   "clip": [
+    1.4,
+    6.5
+   ],
+   "norm": "ldl",
+   "group": "cardiometabolic",
+   "rr": {
+    "value": 1.0989,
+    "lo": 1.0309,
+    "hi": 1.1765,
+    "per": 1,
+    "source": "CTT Collaboration, Lancet 2012 (people without vascular disease): per 1 mmol/L lower LDL-C all-cause RR 0.91 (0.85-0.97)",
+    "lit": "C3b"
+   },
+   "causal": true
+  },
+  {
+   "id": "glucose",
+   "name_zh": "血糖",
+   "input": "glycemic_status",
+   "unit": "category",
+   "shape": "categorical",
+   "norm": "glycemic",
+   "group": "cardiometabolic",
+   "levels": {
+    "normal": 1,
+    "prediabetes": {
+     "value": 1.07,
+     "lo": 1.03,
+     "hi": 1.12,
+     "per": 1,
+     "source": "Cai X, et al. BMJ 2020: IFG (ADA) all-cause RR 1.07 (1.03-1.12)",
+     "lit": "C4b"
+    },
+    "diabetes": {
+     "value": 2.0,
+     "lo": 1.93,
+     "hi": 2.08,
+     "per": 1,
+     "source": "Bragg F, et al. JAMA 2017 (CKB): diabetes all-cause RR 2.00 (1.93-2.08)",
+     "lit": "C4a"
+    }
+   }
+  },
+  {
+   "id": "adiposity",
+   "name_zh": "体重（BMI）",
+   "input": "bmi",
+   "unit": "kg/m2",
+   "shape": "hinge",
+   "knot_lo": 22.5,
+   "knot_hi": 25.0,
+   "clip": [
+    15,
+    45
+   ],
+   "norm": "bmi",
+   "group": "cardiometabolic",
+   "rr_below": {
+    "value": 1.1,
+    "lo": 1.05,
+    "hi": 1.15,
+    "per": 2.5,
+    "source": "derived from GBMC, Lancet 2016 (East Asia): BMI 15-18.5 HR 1.36 and 18.5-20 HR 1.13 vs 22.5-25",
+    "lit": "C5b,C5c"
+   },
+   "rr_above": {
+    "value": 1.39,
+    "lo": 1.34,
+    "hi": 1.44,
+    "per": 5,
+    "source": "Global BMI Mortality Collaboration, Lancet 2016: per 5 kg/m2 above 25, East Asia HR 1.39 (1.34-1.44)",
+    "lit": "C5b"
+   }
+  },
+  {
+   "id": "smoking",
+   "name_zh": "吸烟",
+   "input": "smoking_status",
+   "unit": "category",
+   "shape": "categorical",
+   "norm": "smoking",
+   "group": "lifestyle",
+   "causal": true,
+   "levels": {
+    "never": 1,
+    "former_ge5": 1,
+    "former_lt5": {
+     "value": 1.21,
+     "lo": 1.07,
+     "hi": 1.37,
+     "per": 1,
+     "source": "Chen Z, et al. Lancet 2015 (CKB): quit by choice <5 y RR 1.21 (1.07-1.37); 5-14 y 1.00",
+     "lit": "C7c"
+    },
+    "current": {
+     "value": 1.33,
+     "lo": 1.31,
+     "hi": 1.35,
+     "per": 1,
+     "source": "Chan KH, et al. Lancet Public Health 2022 (CKB men): current smoker HR 1.33 (1.31-1.35)",
+     "lit": "C7b"
+    }
+   },
+   "levels_by_region": {
+    "urban": {
+     "current": {
+      "value": 1.65,
+      "lo": 1.53,
+      "hi": 1.79,
+      "per": 1,
+      "source": "Chen Z, Lancet 2015: urban men current smokers RR 1.65 (1.53-1.79)",
+      "lit": "C7a"
+     }
+    },
+    "rural": {
+     "current": {
+      "value": 1.22,
+      "lo": 1.15,
+      "hi": 1.3,
+      "per": 1,
+      "source": "Chen Z, Lancet 2015: rural men RR 1.22",
+      "lit": "C7a"
+     }
+    }
+   },
+   "pop_levels": {
+    "never": 1,
+    "former": {
+     "value": 1.1,
+     "lo": 1.0,
+     "hi": 1.21,
+     "per": 1,
+     "source": "derived: mix of <5 y (1.21) and >=5 y (1.00) quitters",
+     "lit": "C7c"
+    },
+    "current": {
+     "value": 1.33,
+     "lo": 1.31,
+     "hi": 1.35,
+     "per": 1,
+     "source": "Chan 2022 (CKB men): 1.33",
+     "lit": "C7b"
+    }
+   }
+  },
+  {
+   "id": "alcohol",
+   "name_zh": "饮酒",
+   "input": "alcohol_g_week",
+   "unit": "g/week",
+   "shape": "loglinear",
+   "clip": [
+    0,
+    1500
+   ],
+   "norm": "alcohol",
+   "norm_kind": "categorical_mid",
+   "group": "lifestyle",
+   "causal": true,
+   "mids": {
+    "M": {
+     "none": 0,
+     "moderate": 140,
+     "hazardous": 350,
+     "harmful": 560
+    },
+    "F": {
+     "none": 0,
+     "moderate": 70,
+     "hazardous": 210,
+     "harmful": 385
+    }
+   },
+   "rr": {
+    "value": 1.07,
+    "lo": 1.05,
+    "hi": 1.1,
+    "per": 100,
+    "lit": "C8a",
+    "source": "Millwood IY, et al. Lancet Public Health 2023 (CKB men, genetic analysis): all-cause HR 1.07 (1.05-1.10) per 100 g/week; category mid-points from WHO g/day bands"
+   }
+  }
+ ],
+ "devices": {
+  "cpet_vo2max_sd": 1.5,
+  "watch_vo2max": {
+   "apple": {
+    "bias": 4.0,
+    "bias_sd": 3.0,
+    "sd": 4.5,
+    "source": "Lambe R, et al. PLoS One 2025 (watch reads 6.07 low, LoA -6.1 to 18.3) and Mayo Clin Proc Digit Health 2026 (-6.25); fit samples, so mean bias set to 4 with SD 3 (derived)"
+   },
+   "firstbeat": {
+    "bias": 0.0,
+    "bias_sd": 1.5,
+    "sd": 5.0,
+    "source": "Molina-Garcia P, et al. Sports Med 2022: pooled bias -0.09, LoA -9.9 to 9.7 (Garmin/Firstbeat, Fitbit)"
+   },
+   "huawei": {
+    "bias": 0.0,
+    "bias_sd": 1.5,
+    "sd": 2.5,
+    "source": "Ye X, et al. JMIR mHealth 2023: watch minus CYCLE CPET +1.11 (SD 1.73), Chinese adults; cycle VO2peak runs 5-20% below treadmill and the population norms here are on the treadmill scale, and the algorithm is Firstbeat-licensed (exercise-based pooled bias -0.09 vs treadmill, Molina-Garcia 2022), so no correction (0 +/- 1.5)"
+   },
+   "unknown": {
+    "bias": 2.0,
+    "bias_sd": 3.5,
+    "sd": 5.0,
+    "source": "derived envelope of the above"
+   }
+  },
+  "grip_sd": 2.0,
+  "watch_rhr": {
+   "to_clinic": 5.0,
+   "to_clinic_sd": 3.0,
+   "sd": 1.0,
+   "source": "no direct study; anchors: wrist daytime vs night +4 bpm, clinic sitting vs supine +4.1 bpm (B5d), derived"
+  },
+  "office_pulse_sd": 6.0,
+  "watch_sleep": {
+   "overreport_at_5h": 1.2,
+   "overreport_slope": -0.4,
+   "min_overreport": 0.0,
+   "to_selfreport_sd": 0.3,
+   "sd": 0.15,
+   "source": "Lauderdale DS, et al. Epidemiology 2008: self-report exceeds actigraphy by 0.8 h on average, 1.2 h at 5 h, 0.4 h at 7 h; watch TST ~ actigraphy (Schyvens 2025, Chinoy 2021)"
+  },
+  "selfreport_sleep_sd": 0.5,
+  "home_bp_sd": 2.5,
+  "office_sbp_sd": 10.0,
+  "ldl_cv": 0.0756,
+  "bmi_sd": 0.3,
+  "home_to_office_sbp": [
+   [
+    110,
+    110
+   ],
+   [
+    120,
+    120
+   ],
+   [
+    130,
+    130
+   ],
+   [
+    135,
+    140
+   ],
+   [
+    145,
+    160
+   ]
+  ],
+  "home_to_office_source": "中国高血压防治指南 2024 表10: office 130/80 = home 130/80; office 140/90 = home 135/85 (C2c); 145->160 continues the same slope (ESH/AHA corresponding values)"
+ },
+ "clock": {
+  "crp_impute_mg_l": 1.0,
+  "crp_impute_extra_var": 1.1,
+  "q_per_year": 0.8,
+  "crp_impute_note": "no hs-CRP: imputed at 1.0 mg/L with the population spread of ln CRP (SD ~1.0) added to the noise",
+  "analyte_pop_sd": {
+   "albumin": 3.37,
+   "creatinine": 33.0,
+   "glucose": 1.84,
+   "lymph_pct": 8.15,
+   "mcv": 5.41,
+   "rdw": 1.24,
+   "alp": 24.5,
+   "wbc": 2.49,
+   "source": "NHANES 1999-2018 adults 20-85, exam-weighted SD (n ~48,000); an analyte left out of a test is replaced by data_menu.typical_blood and adds (years per unit x SD)^2 to that test's noise variance"
+  },
+  "flags": {
+   "crp_acute_mg_l": 10.0,
+   "mcv_low": 82.0,
+   "mcv_high": 100.0,
+   "rdw_high": 15.5,
+   "source": "CRP >10 mg/L: CDC/AHA statement, Pearson TA, et al. Circulation 2003;107:499 (PMID 12551878) - repeat after the acute illness; MCV 82-100 fL: WS/T 405-2012 adult reference interval; RDW-CV >15.5%: common laboratory upper limit"
+  }
+ },
+ "calibration": {
+  "source": "NHANES 1999-2018 with mortality follow-up to 2019 (evidence/scripts/nhanes_calibration.py)",
+  "gap": {
+   "knots": [
+    -5.0,
+    5.0
+   ],
+   "slopes": [
+    0.01024,
+    0.07003,
+    0.0365
+   ],
+   "slopes_sd": [
+    0.00805,
+    0.00445,
+    0.00211
+   ]
+  },
+  "with_clock": {
+   "rhr": {
+    "value": 0.826,
+    "sd": 0.1243,
+    "rule": "overlap",
+    "basis": "NHANES joint estimate 0.83 (SE 0.12): overlap discount"
+   },
+   "glucose": {
+    "value": 0.0302,
+    "sd": 0.0497,
+    "rule": "overlap",
+    "basis": "NHANES joint estimate 0.03 (SE 0.05): overlap discount"
+   },
+   "adiposity": {
+    "value": 0.0267,
+    "sd": 0.0449,
+    "rule": "overlap",
+    "basis": "NHANES joint estimate 0.03 (SE 0.04): overlap discount"
+   },
+   "sleep": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "basis": "literature; NHANES 1.21 (SE 0.22) is at least as strong, not used to inflate"
+   },
+   "crf": {
+    "value": 0.8526,
+    "sd": 0.2376,
+    "rule": "discounted",
+    "basis": "NHANES 0.60 (SE 0.39) combined with literature prior 1 (SD 0.3)"
+   },
+   "muscle": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "basis": "literature (not estimable in NHANES)"
+   },
+   "bp": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "smoking": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "lipid": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "alcohol": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   }
+  },
+  "without_clock": {
+   "rhr": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "basis": "literature; NHANES 1.36 (SE 0.11) is at least as strong, not used to inflate"
+   },
+   "glucose": {
+    "value": 0.5932,
+    "sd": 0.0408,
+    "rule": "overlap",
+    "basis": "NHANES joint estimate 0.59 (SE 0.04): overlap discount"
+   },
+   "adiposity": {
+    "value": 0.2185,
+    "sd": 0.04,
+    "rule": "overlap",
+    "basis": "NHANES joint estimate 0.22 (SE 0.04): overlap discount"
+   },
+   "sleep": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "basis": "literature; NHANES 1.64 (SE 0.18) is at least as strong, not used to inflate"
+   },
+   "crf": {
+    "value": 0.8698,
+    "sd": 0.2359,
+    "rule": "discounted",
+    "basis": "NHANES 0.66 (SE 0.38) combined with literature prior 1 (SD 0.3)"
+   },
+   "muscle": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "basis": "literature; NHANES 1.85 (SE 0.18) is at least as strong, not used to inflate"
+   },
+   "bp": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "smoking": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "lipid": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "alcohol": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   }
+  }
+ },
+ "frailty": {
+  "s2": {
+   "value": 0.16,
+   "sd": 0.03,
+   "derivation": "gamma-Gompertz plateau = b/s2 (Vaupel & Missov 2014, eq. 40); individual b 0.09-0.14 with plateau 0.70 gives s2 0.13-0.20"
+  }
+ },
+ "scenarios": {
+  "central": "S2",
+  "weights": {
+   "S1": 0.1,
+   "S2": 0.7,
+   "S3": 0.2
+  },
+  "defs": {
+   "S1": {
+    "kind": "period",
+    "name_zh": "当前医学",
+    "desc_zh": "死亡率停在今天的水平"
+   },
+   "S2": {
+    "kind": "wpp",
+    "name_zh": "趋势延续",
+    "desc_zh": "死亡率按联合国 WPP 2024 中位预测继续下降（60–89 岁约每年 1.6–2%，与过去 50 年高收入国家的中位速度相当）"
+   },
+   "S3": {
+    "kind": "wpp_slowed",
+    "start_year": 2045,
+    "ramp_years": 20,
+    "slope_reduction": 0.2,
+    "pivot_age": 50,
+    "name_zh": "衰老干预突破",
+    "desc_zh": "2045 年起靶向衰老的疗法普及，衰老速度（死亡率随年龄上升的斜率）在 20 年内降低 20%（参照 Goldman 等 2013 年的“延缓衰老”情景，推测性）"
+   }
+  },
+  "weights_rationale": "1970-2019 年 28 个死亡登记完整国家/地区的 1,680 个 20 年窗口中，60-89 岁死亡率年改善 <0.5% 的占 2.7%，0.5-2.5% 的占 80.8%，>=2.5% 的占 16.5%（evidence/results/scenario_history.json）；S1 取 0.1 以反映 90 岁以上停滞更常见（37%），S3 取 0.2 包含推测性的突破"
+ },
+ "benefit_threshold_years": 0.1,
+ "pace": {
+  "min_n": 4,
+  "min_info_gain": 0.2,
+  "prior_slope_sd": 0.29,
+  "prior_level_sd": 8.0,
+  "obs_sd_years": 1.6,
+  "notes": "prior SD of pace = Pace of Aging SD 0.29 (Belsky 2022 eLife); per-snapshot noise 1.6 LongPi years (PhenoAge biological variation, single office BP, LDL). Reported once the posterior SD is at least 20% narrower than the prior (about 6 annual checkups; evidence/results/sensitivity.json pace_power)"
+ },
+ "interventions": [
+  {
+   "id": "aerobic",
+   "name_zh": "有氧：每周 150–180 分钟中等强度 + 每周 1 次 4×4 间歇",
+   "domain": "心肺适能",
+   "evidence": "B",
+   "core": true,
+   "evidence_note_zh": "训练提高 VO2max 为 RCT 荟萃证据（持续训练 +4.9、间歇训练 +5.5 ml/kg/min）；VO2max 与死亡为大型队列证据",
+   "verify_zh": "12 周手表 VO2max 趋势 + 一次实验室 CPET",
+   "verify_weeks": 12,
+   "adherence": 0.6,
+   "adherence_kind": "fraction",
+   "effects": [
+    {
+     "domain": "crf",
+     "mean": 4.5,
+     "sd": 1.0
+    }
+   ],
+   "sources": [
+    "Milanović Z, et al. Sports Med 2015 (F1a/F1b)",
+    "Huang G, et al. Prev Cardiol 2005 (≥60 岁 +3.78)",
+    "依从性：居家运动完全坚持 21%–80%（Simek 2012；Bullard 2019）"
+   ]
+  },
+  {
+   "id": "salt",
+   "name_zh": "减盐到每天 5 克以内 + 早晚家庭血压自测",
+   "domain": "血压",
+   "evidence": "A",
+   "core": true,
+   "evidence_note_zh": "限盐降压为 RCT 荟萃证据；降压减少死亡为 RCT 证据",
+   "verify_zh": "家庭血压 4 周均值",
+   "verify_weeks": 4,
+   "adherence": 0.45,
+   "adherence_kind": "fraction",
+   "when": {
+    "bp": {
+     "min": 120,
+     "max": 139.9
+    }
+   },
+   "effects": [
+    {
+     "domain": "bp",
+     "mean": -3.0,
+     "sd": 0.7,
+     "floor": 110
+    }
+   ],
+   "sources": [
+    "He FJ, et al. BMJ 2013：每少吃 4.4 克盐，血压正常者收缩压 −2.42（−3.56 至 −1.29）",
+    "中国人群实际减盐幅度常不足目标一半（TOHP II；CRHI-SRS）"
+   ]
+  },
+  {
+   "id": "salt_htn",
+   "name_zh": "减盐到每天 5 克以内 + 规律测压（血压已偏高）",
+   "domain": "血压",
+   "evidence": "A",
+   "core": true,
+   "evidence_note_zh": "高血压人群限盐降压为 RCT 荟萃证据",
+   "verify_zh": "家庭血压 4 周均值",
+   "verify_weeks": 4,
+   "adherence": 0.45,
+   "adherence_kind": "fraction",
+   "when": {
+    "bp": {
+     "min": 140
+    }
+   },
+   "effects": [
+    {
+     "domain": "bp",
+     "mean": -6.7,
+     "sd": 0.8,
+     "floor": 110
+    }
+   ],
+   "sources": [
+    "He FJ, et al. BMJ 2013：高血压者每少吃 4.4 克盐收缩压 −5.39（−6.62 至 −4.15）"
+   ]
+  },
+  {
+   "id": "salt_sub",
+   "name_zh": "改用低钠盐（含钾代盐）",
+   "domain": "血压",
+   "evidence": "A",
+   "medical": false,
+   "evidence_note_zh": "中国农村 2 万人 RCT（SSaSS）：收缩压 −3.3 mmHg，卒中 −14%，全因死亡 −12%",
+   "verify_zh": "家庭血压 4 周均值",
+   "verify_weeks": 4,
+   "safety_zh": "肾功能不全、高钾血症或服用保钾利尿剂、ACEI/ARB 者先问医生",
+   "adherence": 0.7,
+   "adherence_kind": "fraction",
+   "when": {
+    "bp": {
+     "min": 120
+    }
+   },
+   "effects": [
+    {
+     "domain": "bp",
+     "mean": -3.3,
+     "sd": 0.6,
+     "floor": 110
+    }
+   ],
+   "sources": [
+    "Neal B, et al. NEJM 2021 (SSaSS)；Huang L, et al. J Hum Hypertens 2024"
+   ]
+  },
+  {
+   "id": "ldl_diet",
+   "name_zh": "降脂饮食：饱和脂肪 <7% 能量、可溶性纤维 10 克/天",
+   "domain": "血脂",
+   "evidence": "A",
+   "core": true,
+   "evidence_note_zh": "饮食降 LDL 为 RCT 证据（饱和脂肪换成不饱和脂肪、可溶性纤维）；LDL 下降减少死亡为 RCT 证据（CTT）",
+   "verify_zh": "8–12 周后复查 LDL-C、ApoB",
+   "verify_weeks": 12,
+   "adherence": 0.5,
+   "adherence_kind": "fraction",
+   "when": {
+    "lipid": {
+     "min": 2.6
+    }
+   },
+   "effects": [
+    {
+     "domain": "lipid",
+     "mean": -0.45,
+     "sd": 0.15,
+     "floor": 1.4
+    }
+   ],
+   "sources": [
+    "Mensink 2016 WHO：每 1% 能量饱和脂肪换成多不饱和脂肪，LDL −0.055 mmol/L",
+    "Brown L, et al. AJCN 1999：可溶性纤维每克 LDL −0.057 mmol/L"
+   ]
+  },
+  {
+   "id": "strength",
+   "name_zh": "抗阻训练：每周 2 次、共 40–60 分钟",
+   "domain": "肌肉力量",
+   "evidence": "B",
+   "core": true,
+   "evidence_note_zh": "抗阻训练提高握力为 RCT 证据；握力与死亡为队列证据；每周 30–60 分钟力量训练与死亡风险最低相关（观察性）",
+   "verify_zh": "12 周后复测握力",
+   "verify_weeks": 12,
+   "adherence": 0.5,
+   "adherence_kind": "fraction",
+   "effects": [
+    {
+     "domain": "muscle",
+     "mean": 2.0,
+     "sd": 0.8
+    }
+   ],
+   "sources": [
+    "Shen Y, et al. JCSM 2023：握力 +2.69 kg（肌少症人群）；健康老年人 SMD 0.28",
+    "Momma H, et al. BJSM 2022"
+   ]
+  },
+  {
+   "id": "sleep",
+   "name_zh": "固定起床时间 + 睡前 1 小时停屏，目标睡足 7 小时",
+   "domain": "睡眠",
+   "evidence": "B",
+   "core": true,
+   "evidence_note_zh": "睡眠时长与死亡为队列证据；延长睡眠的行为干预为 RCT 证据（认知行为治疗本身几乎不延长睡眠）",
+   "verify_zh": "手表连续 4 周：睡着 ≥7 小时的晚数",
+   "verify_weeks": 4,
+   "adherence": 0.5,
+   "adherence_kind": "fraction",
+   "when": {
+    "sleep": {
+     "max": 6.99
+    }
+   },
+   "effects": [
+    {
+     "domain": "sleep",
+     "mean": 0.5,
+     "sd": 0.25,
+     "ceiling": 7.5
+    }
+   ],
+   "sources": [
+    "Tasali E, et al. JAMA Intern Med 2022：+1.2 小时/晚（2 周）；Al Khatib 2018：+21 分钟",
+    "Trauer JM, et al. 2015：CBT-I 只增加 7.6 分钟"
+   ]
+  },
+  {
+   "id": "statin",
+   "name_zh": "中等强度他汀（需医生评估后决定）",
+   "domain": "血脂",
+   "evidence": "A",
+   "medical": true,
+   "safety_zh": "处方药，须医生决定",
+   "evidence_note_zh": "他汀降 LDL 25%–50%；每降 1 mmol/L 全因死亡 −9%（无心血管病人群）",
+   "verify_zh": "4–12 周后复查血脂、肝酶",
+   "verify_weeks": 6,
+   "adherence": 0.7,
+   "adherence_kind": "bernoulli",
+   "when": {
+    "lipid": {
+     "min": 3.4
+    }
+   },
+   "effects": [
+    {
+     "domain": "lipid",
+     "mean": -0.38,
+     "sd": 0.06,
+     "relative": true
+    }
+   ],
+   "sources": [
+    "中国血脂管理指南 2023：中等强度降 25%–50%",
+    "Law MR, et al. BMJ 2003：阿托伐他汀 10 mg −40%",
+    "CTT 2012"
+   ]
+  },
+  {
+   "id": "quit",
+   "name_zh": "戒烟（可配合戒烟门诊、药物）",
+   "domain": "吸烟",
+   "evidence": "A",
+   "evidence_note_zh": "中国慢性病前瞻性研究：主动戒烟 5 年以上死亡风险接近从不吸烟者",
+   "verify_zh": "呼气 CO 或自报",
+   "verify_weeks": 12,
+   "adherence": 0.3,
+   "adherence_kind": "bernoulli",
+   "when": {
+    "smoking": {
+     "in": [
+      "current"
+     ]
+    }
+   },
+   "effects": [
+    {
+     "domain": "smoking",
+     "set": "former_lt5"
+    }
+   ],
+   "sources": [
+    "Chen Z, et al. Lancet 2015 (CKB)",
+    "Jha P, et al. NEJM 2013"
+   ]
+  },
+  {
+   "id": "alcohol_cut",
+   "name_zh": "饮酒减半",
+   "domain": "饮酒",
+   "evidence": "B",
+   "evidence_note_zh": "中国慢性病前瞻性研究的遗传分析：酒精对死亡没有保护作用，每周每少 100 克风险下降约 7%",
+   "verify_zh": "饮酒日记 8 周",
+   "verify_weeks": 8,
+   "adherence": 0.4,
+   "adherence_kind": "fraction",
+   "when": {
+    "alcohol": {
+     "min": 140
+    }
+   },
+   "effects": [
+    {
+     "domain": "alcohol",
+     "mean": -0.5,
+     "sd": 0.1,
+     "relative": true
+    }
+   ],
+   "sources": [
+    "Millwood IY, et al. Lancet Public Health 2023"
+   ]
+  },
+  {
+   "id": "weight",
+   "name_zh": "减重 5%（饮食 + 运动）",
+   "domain": "体重",
+   "evidence": "B",
+   "evidence_note_zh": "超重时减重主要通过血压、血糖、炎症等途径起作用，这些在复测中会体现",
+   "verify_zh": "12 周体重与腰围",
+   "verify_weeks": 12,
+   "adherence": 0.45,
+   "adherence_kind": "fraction",
+   "when": {
+    "adiposity": {
+     "min": 24,
+     "max": 27.99
+    }
+   },
+   "effects": [
+    {
+     "domain": "adiposity",
+     "mean": -1.3,
+     "sd": 0.5
+    }
+   ],
+   "sources": [
+    "GBMC, Lancet 2016"
+   ]
+  },
+  {
+   "id": "weight_ob",
+   "name_zh": "减重 5%–7%（饮食 + 运动，必要时就医）",
+   "domain": "体重",
+   "evidence": "A",
+   "evidence_note_zh": "有意减重的 RCT 荟萃：全因死亡 RR 0.85（0.73–1.00），平均减重 5.5 kg",
+   "verify_zh": "12 周体重与腰围",
+   "verify_weeks": 12,
+   "adherence": 0.45,
+   "adherence_kind": "fraction",
+   "when": {
+    "adiposity": {
+     "min": 28
+    }
+   },
+   "effects": [
+    {
+     "type": "direct",
+     "rr": {
+      "value": 0.85,
+      "lo": 0.73,
+      "hi": 1.0
+     }
+    }
+   ],
+   "sources": [
+    "Kritchevsky SB, et al. PLoS One 2015"
+   ]
+  },
+  {
+   "id": "nmn",
+   "name_zh": "NMN 补充剂（抗衰老目的）",
+   "domain": "代谢",
+   "evidence": "D",
+   "evidence_note_zh": "人体试验最长 24 周，只看到 NAD⁺ 水平等中间指标变化，没有死亡或经过验证的衰老终点",
+   "verify_zh": "没有可靠的个人验证终点",
+   "adherence": 1.0,
+   "effects": [],
+   "sources": [
+    "Yoshino 2021 Science；Igarashi 2022；Yi 2023"
+   ]
+  }
+ ],
+ "core_plan": {
+  "name_zh": "核心方案：有氧 + 力量 + 减盐 + 降脂饮食（+ 作息）",
+  "evidence": "B",
+  "evidence_note_zh": "各组分证据见单项；合并效应按同一模型计算，已计入领域间重叠",
+  "verify_zh": "3 个月后：VO2max、握力、家庭血压、血脂"
+ },
+ "clock_residual": {
+  "age_mid": [
+   29.5,
+   49.5,
+   67.0,
+   80.0
+  ],
+  "sd": [
+   0.2819,
+   0.3076,
+   0.3397,
+   0.3747
+  ],
+  "source": "NHANES 1999-2018 PhenoAge sample with core domains (n 35,086, 5,891 deaths): residual SD of the with-PhenoAge LongPi log HR given the no-blood-test log HR, age and sex (evidence/scripts/nhanes_methylation.py)",
+  "note": "drawn as N(-sd^2/2, sd^2) so the population average risk stays 1; added only when no blood clock is available"
+ },
+ "methylation": {
+  "counted": [
+   "GrimAge2",
+   "GrimAge"
+  ],
+  "default_unmeasured": "GrimAge2",
+  "max_age_years": 3,
+  "s_lab": 2.4,
+  "s_lab_source": "McEwen LM, et al. Clin Epigenetics 2018;10:123: the same samples on 450K vs EPIC across preprocessing methods differed by a median absolute 1.44-3.10 years (systematic offsets). As a normal SD of a difference that is 2.1-4.6 years, i.e. 1.5-3.3 years per pipeline; mid-point 2.4 (derived)",
+  "s_pop_source": "NHANES: mean residual of the 'Other race (incl. Asian)' group (n 74), used as the scale of a population offset",
+  "clocks": {
+   "GrimAge2": {
+    "ref": {
+     "M": [
+      24.221,
+      0.73591
+     ],
+     "F": [
+      25.0908,
+      0.68709
+     ]
+    },
+    "resid_on": {
+     "intercept": 1.4383,
+     "lp": 6.0945,
+     "age": -0.01368,
+     "male": 0.2778
+    },
+    "sd_resid": 4.5102,
+    "beta": 0.05308,
+    "beta_se": 0.00661,
+    "s_pop": 0.71,
+    "hr_per_sd_resid": 1.27,
+    "c_gain": 0.0067,
+    "hr_per_sd_alone": 1.55,
+    "r2_explained_by_lp": 0.2601,
+    "weighted_hr_per_sd_resid": 1.336
+   },
+   "GrimAge": {
+    "ref": {
+     "M": [
+      16.9275,
+      0.76661
+     ],
+     "F": [
+      16.4872,
+      0.72869
+     ]
+    },
+    "resid_on": {
+     "intercept": 1.1868,
+     "lp": 5.0287,
+     "age": -0.01129,
+     "male": 0.2292
+    },
+    "sd_resid": 4.201,
+    "beta": 0.0571,
+    "beta_se": 0.00696,
+    "s_pop": 0.85,
+    "hr_per_sd_resid": 1.271,
+    "c_gain": 0.0068,
+    "hr_per_sd_alone": 1.514,
+    "r2_explained_by_lp": 0.2162,
+    "weighted_hr_per_sd_resid": 1.327
+   }
+  },
+  "not_counted": {
+   "DNAm PhenoAge": {
+    "hr_per_sd_resid": 1.107,
+    "c_gain": 0.0016,
+    "p": 0.0002844321886961714
+   },
+   "DunedinPoAm": {
+    "hr_per_sd_resid": 1.151,
+    "c_gain": 0.0025,
+    "p": 1.3432747411060691e-06
+   },
+   "Horvath": {
+    "hr_per_sd_resid": 1.086,
+    "c_gain": 0.0011,
+    "p": 0.0029201868964499264
+   },
+   "Hannum": {
+    "hr_per_sd_resid": 1.084,
+    "c_gain": 0.0009,
+    "p": 0.003363128675612088
+   },
+   "Skin & blood": {
+    "hr_per_sd_resid": 1.012,
+    "c_gain": 0.0001,
+    "p": 0.6431175979351877
+   },
+   "Zhang": {
+    "hr_per_sd_resid": 1.049,
+    "c_gain": 0.0005,
+    "p": 0.07535609471193233
+   },
+   "Lin": {
+    "hr_per_sd_resid": 1.033,
+    "c_gain": 0.0003,
+    "p": 0.22610447802586267
+   },
+   "Weidner": {
+    "hr_per_sd_resid": 1.032,
+    "c_gain": 0.0001,
+    "p": 0.23202271090541987
+   },
+   "Vidal-Bralo": {
+    "hr_per_sd_resid": 1.056,
+    "c_gain": 0.0002,
+    "p": 0.04161921750701229
+   },
+   "DNAm telomere length": {
+    "hr_per_sd_resid": 0.844,
+    "c_gain": 0.0042,
+    "p": 1.5137660406809382e-09
+   }
+  },
+  "source": "NHANES 1999-2002 DNA methylation epigenetic biomarkers (dnmepi, released 2024-07-31) linked to mortality to 2019: 2,307 adults aged 50-85, 1,202 deaths, median follow-up 17.2 y; residual of each clock's age acceleration given the LongPi log HR, age and sex (evidence/scripts/nhanes_methylation.py)"
+ },
+ "data_menu": {
+  "note": "What each further test would do to the 80% interval of LongPi Age (engine.data_value). after_sd / after_cv: measurement error of the recommended method once done.",
+  "n_draws": 500,
+  "show_min_years": 0.1,
+  "typical_blood": {
+   "albumin": 45,
+   "creatinine": 80,
+   "glucose": 5.2,
+   "crp": 1.0,
+   "lymph_pct": 31,
+   "mcv": 90,
+   "rdw": 13.0,
+   "alp": 70,
+   "wbc": 6.2
+  },
+  "after_sd": {
+   "crf": 1.5,
+   "muscle": 2.0,
+   "rhr": 3.2,
+   "sleep": 0.35,
+   "bp": 2.5,
+   "adiposity": 0.3
+  },
+  "after_sd_source": "crf CPET 1.5; grip 2.0 kg; RHR watch 30-day median 1.0 plus conversion SD 3 (combined 3.2); sleep watch 0.15 plus conversion 0.3; home BP 4-week mean 2.5; BMI 0.3 (devices block)",
+  "after_cv": {
+   "lipid": 0.0756,
+   "alcohol": 0.15
+  },
+  "actions": {
+   "blood_panel": {
+    "label": "抽一次血，测血液年龄（PhenoAge）需要的 9 项",
+    "detail": "血常规里的淋巴细胞百分比、平均红细胞体积（MCV）、红细胞分布宽度（RDW）、白细胞，生化里的白蛋白、肌酐、空腹血糖、碱性磷酸酶，再加超敏 C 反应蛋白（hs-CRP）",
+    "effort": "空腹抽一次血",
+    "cost": "低：大多是常规体检项目，hs-CRP 有时要单独加",
+    "also": "同时用于肝肾功能、血糖等风险卡；以后每年 1 次，还能算出变老速度（LongPi Pace）"
+   },
+   "hs_crp": {
+    "label": "下次抽血加测超敏 C 反应蛋白（hs-CRP）",
+    "detail": "最近一次缺这一项，只能按人群中位数补入，血液年龄的误差因此变大",
+    "effort": "抽血时加一项",
+    "cost": "低",
+    "also": "hs-CRP 也是心血管风险的参考指标"
+   },
+   "blood_repeat": {
+    "label": "再做一次同样的抽血",
+    "detail": "单次血液年龄有约 ±1.8 岁的自然波动，两次合起来更稳",
+    "effort": "空腹抽一次血，隔几周到一年都可以",
+    "cost": "低",
+    "also": "每年复查还能让变老速度（LongPi Pace）早一步可以报告"
+   },
+   "methylation": {
+    "label": "做一次 DNA 甲基化检测，报告要写明 GrimAge2（或 GrimAge）的数值",
+    "detail": "美国国家健康调查的长期随访显示，GrimAge2 在血液、血压、吸烟等信息之外还能多分辨出一块死亡风险；第一代甲基化时钟和厂商的器官年龄多分辨得很少，所以不计入",
+    "effort": "抽血（有的产品用唾液或指尖血）后寄送，几周出结果",
+    "cost": "高：通常比常规体检贵得多",
+    "also": "报告里的器官年龄等指标仍会放在前沿分析页"
+   },
+   "dom:crf": {
+    "label_missing": "测心肺适能：戴有 VO2max 功能的手表，或去医院做心肺运动试验（CPET）",
+    "label_device": "做一次心肺运动试验（CPET），代替手表估算的 VO2max",
+    "detail": "手表估算的 VO2max 有几个单位的误差，不同品牌之间还有系统偏差",
+    "effort": "CPET 约 1 小时，要运动到力竭",
+    "cost": "中：医院运动医学科或心内科",
+    "also": "CPET 还会给出适合你的运动心率区间"
+   },
+   "dom:muscle": {
+    "label_missing": "测一次握力",
+    "detail": "两只手各测 2 次，取最大值",
+    "effort": "1 分钟",
+    "cost": "免费或很低：体检中心、健身房、部分药店有握力计",
+    "also": "握力也提示跌倒和衰弱风险"
+   },
+   "dom:rhr": {
+    "label_missing": "测静息心率：戴手表 30 天，或体检时安静坐 5 分钟后测脉搏",
+    "label_better": "戴手表 30 天测静息心率",
+    "detail": "体检时测的脉搏受紧张、走动影响，一两次的波动很大",
+    "effort": "日常佩戴",
+    "cost": "低（已有手表就免费）"
+   },
+   "dom:sleep": {
+    "label_missing": "记录睡眠时长：戴手表 90 天，或回答平时每晚睡几个小时",
+    "effort": "日常佩戴，或回答 1 个问题",
+    "cost": "免费"
+   },
+   "dom:bp": {
+    "label_missing": "测血压：体检时测 2 次，或在家连续测 4 周",
+    "label_better": "在家测 4 周血压：每天早晚各测 2 次",
+    "detail": "体检时一两次的血压波动大（约 ±10 mmHg），4 周家庭平均准得多",
+    "effort": "每天 5 分钟，连续 4 周",
+    "cost": "低：一台上臂式电子血压计",
+    "also": "还能看出白大衣高血压或隐匿性高血压"
+   },
+   "dom:lipid": {
+    "label_missing": "查血脂（低密度脂蛋白胆固醇 LDL-C）",
+    "effort": "抽血",
+    "cost": "低：常规体检项目",
+    "also": "血脂风险卡和他汀评估都要用"
+   },
+   "dom:glucose": {
+    "label_missing": "查糖化血红蛋白（HbA1c）或空腹血糖",
+    "effort": "抽血",
+    "cost": "低",
+    "also": "筛查糖尿病和糖尿病前期"
+   },
+   "dom:adiposity": {
+    "label_missing": "量一下身高和体重（算 BMI）",
+    "effort": "1 分钟",
+    "cost": "免费"
+   },
+   "dom:smoking": {
+    "label_missing": "回答吸烟情况：从不吸 / 已经戒了（哪一年戒的）/ 正在吸",
+    "effort": "回答 1 个问题",
+    "cost": "免费"
+   },
+   "dom:alcohol": {
+    "label_missing": "回答饮酒情况：平均每周喝什么、喝多少",
+    "effort": "回答 1 个问题",
+    "cost": "免费"
+   }
+  },
+  "other_uses": [
+   {
+    "key": "cgm",
+    "what": "连续血糖（CGM）",
+    "use": "看血糖波动和每餐后的反应，可以做饮食实验；不改变 LongPi Age（模型用的是 HbA1c 或空腹血糖）"
+   },
+   {
+    "key": "meals",
+    "what": "用餐时间记录",
+    "use": "配合 CGM 算每餐后的血糖峰值"
+   },
+   {
+    "key": "genetics",
+    "what": "基因检测（药物基因组）",
+    "use": "提示哪些药要调剂量或换药，就医时出示；不改变 LongPi Age"
+   },
+   {
+    "key": "imaging",
+    "what": "颈动脉超声、心电图、腹部超声等",
+    "use": "作为疾病风险卡的依据；不改变 LongPi Age"
+   }
+  ]
+ },
+ "asks": {
+  "title": "待补充资料：提升报告准确性与个性化程度",
+  "subtitle": "按完成时间排序。把照片、数字或截图直接发来即可，无需整理格式。",
+  "note": "照片只保存在你自己的设备和报告文件夹里；体型照片可以遮住面部。",
+  "items": {
+   "body_photo": {
+    "item": "体型照片（正面、侧面、背面）",
+    "when": "今天 · 5 分钟，之后每 4 周一次",
+    "why": "体重之外，照片能看出腰腹和体态的变化；开始力量训练后体重可能不降，照片更能反映真实进展。侧面照还能看头前伸和驼背。",
+    "how": [
+     "早上起床、排便后、早饭前拍",
+     "穿贴身短裤，背景是一面素色墙",
+     "手机放在腰部高度，离身体 2–3 米，用定时或请家人拍",
+     "正面、侧面、背面各一张：站直、双臂自然下垂、正常呼吸、不收腹",
+     "以后每次在同一位置、同一时间、同样的光线下拍"
+    ]
+   },
+   "face_photo": {
+    "item": "面部照片",
+    "when": "今天 · 2 分钟，之后每 3 个月一次",
+    "why": "用于面部年龄的 AI 预测和皮肤状态变化，作为又一个衰老指标看趋势。",
+    "how": [
+     "素颜，不戴眼镜，头发不遮额头",
+     "面对窗户用自然光，不开美颜和滤镜",
+     "手机举到眼睛高度，约一臂距离",
+     "正脸、左 45°、右 45° 各一张，表情放松"
+    ]
+   },
+   "waist": {
+    "item": "腰围与臀围",
+    "when": "今天 · 2 分钟",
+    "why": "腰围最能反映内脏脂肪，BMI 和体脂秤都替代不了；男性 ≥90 cm、女性 ≥85 cm 为中心型肥胖。",
+    "how": [
+     "早上空腹站直，双脚分开约 25 cm",
+     "软尺放在最低一根肋骨与髂骨上缘的中点，水平绕一圈",
+     "正常呼气末读数，不收腹、不勒紧",
+     "量 2 次取平均；臀围量臀部最突出处"
+    ]
+   },
+   "diet_photo": {
+    "item": "3 日饮食照片",
+    "when": "本周 · 2 个工作日 + 1 个休息日",
+    "why": "看到实际吃什么、几点吃，饮食建议才能具体到哪一餐、改什么。",
+    "how": [
+     "每顿正餐、零食、饮料吃之前拍一张，旁边放筷子或手机作大小参照",
+     "吃不完的拍一下剩余",
+     "注明时间和地点（家里、食堂、外卖）"
+    ]
+   },
+   "snoring": {
+    "item": "打鼾与白天嗜睡",
+    "when": "本周 · 一晚",
+    "why": "体重偏高时睡眠呼吸暂停常见，它会升高血压和心血管风险，决定是否需要做睡眠监测。",
+    "how": [
+     "问同住的人：睡觉是否打鼾、是否出现呼吸暂停后猛吸一口",
+     "或用手机鼾声录音软件录一整晚，发截图",
+     "白天开会或开车时是否犯困（0–10 分）"
+    ]
+   },
+   "dom:muscle": {
+    "item": "握力",
+    "when": "本周",
+    "how": [
+     "体检中心、社区体测点可测，或买一个电子握力计",
+     "站直，手臂自然下垂、离开身体，握把调到中指第二节成直角",
+     "用最大力握 3 秒，左右手各测 3 次，中间休息 1 分钟",
+     "发来两只手的最高值"
+    ]
+   },
+   "dom:bp": {
+    "item": "家庭血压（连续 7 天以上）",
+    "when": "本月",
+    "how": [
+     "用上臂式电子血压计（不用手腕式）",
+     "早上起床排尿后、早饭前测一次，晚上睡前测一次",
+     "每次先安静坐 5 分钟，背靠椅背、手臂放桌上与心脏同高；连测 2 遍，间隔 1 分钟",
+     "连续 7 天，记下每一遍的数字"
+    ]
+   },
+   "dom:crf": {
+    "item": "心肺运动试验（CPET）",
+    "when": "下次体检时（可选）",
+    "how": [
+     "医院运动医学科或心内科预约",
+     "前 3 小时不进食、不喝咖啡，穿运动鞋",
+     "带回报告里的 VO2peak（ml/kg/min）和无氧阈心率"
+    ]
+   },
+   "blood": {
+    "item": "空腹全项抽血",
+    "when": "本月（如近期生病，病好后满 4 周）",
+    "how": [
+     "前一天晚上 10 点后不进食，可以喝水；前一天不做剧烈运动",
+     "项目：血常规、生化全套（含白蛋白、肌酐、血糖、碱性磷酸酶、肝功能、血脂、尿酸）、超敏 C 反应蛋白、糖化血红蛋白；按需加铁蛋白、25-羟维生素 D",
+     "如果正在服用肌酸，告诉医生（会使肌酐轻度升高）",
+     "拿到报告拍照发来"
+    ]
+   },
+   "methylation": {
+    "item": "DNA 甲基化检测（可选）",
+    "when": "有预算时",
+    "how": [
+     "选择报告中明确给出 GrimAge2（或 GrimAge）数值的产品",
+     "第一代时钟、器官年龄不计入 LongPi Age",
+     "拿到报告后整份发来"
+    ]
+   },
+   "questionnaire": {
+    "item": "问卷补充",
+    "when": "有空时 · 3 分钟",
+    "why": "作息、久坐时间和压力会影响睡眠与运动安排。",
+    "how": [
+     "工作日和周末分别几点睡、几点起",
+     "每天大约坐多少小时",
+     "工作压力 0–10 分",
+     "最近两周是否经常情绪低落或提不起兴趣"
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,99 @@
+{
+ "n": 37192,
+ "deaths": 6527,
+ "person_years": 381399,
+ "cox": {
+  "age_sex": {
+   "age": {
+    "coef": 0.09272,
+    "se": 0.00104,
+    "hr": 1.0972
+   },
+   "male": {
+    "coef": 0.39325,
+    "se": 0.02499,
+    "hr": 1.4818
+   },
+   "c_index": 0.8451
+  },
+  "age_sex_gap": {
+   "age": {
+    "coef": 0.09736,
+    "se": 0.00108,
+    "hr": 1.1023
+   },
+   "male": {
+    "coef": 0.41191,
+    "se": 0.025,
+    "hr": 1.5097
+   },
+   "gap": {
+    "coef": 0.04806,
+    "se": 0.0011,
+    "hr": 1.0492
+   },
+   "c_index": 0.8626
+  },
+  "age_sex_phenoage": {
+   "phenoage": {
+    "coef": 0.06905,
+    "se": 0.00064,
+    "hr": 1.0715
+   },
+   "male": {
+    "coef": 0.18728,
+    "se": 0.02504,
+    "hr": 1.206
+   },
+   "c_index": 0.8623
+  }
+ },
+ "gap_years_to_mortality_years": 0.494,
+ "by_age_band": {
+  "20-39": {
+   "n": 11914,
+   "deaths": 214,
+   "hr_gap_per_year": 1.0595,
+   "hr_age_per_year": 1.0493
+  },
+  "40-59": {
+   "n": 12050,
+   "deaths": 990,
+   "hr_gap_per_year": 1.0566,
+   "hr_age_per_year": 1.0905
+  },
+  "60-85": {
+   "n": 13228,
+   "deaths": 5323,
+   "hr_gap_per_year": 1.0483,
+   "hr_age_per_year": 1.1199
+  }
+ },
+ "by_followup": {
+  "0-5y": {
+   "deaths": 2155,
+   "hr_gap_per_year": 1.0541,
+   "se": 0.0016,
+   "hr_age_per_year": 1.097
+  },
+  "5-10y": {
+   "deaths": 2240,
+   "hr_gap_per_year": 1.0472,
+   "se": 0.00193,
+   "hr_age_per_year": 1.1034
+  },
+  "10-21y": {
+   "deaths": 2125,
+   "hr_gap_per_year": 1.0422,
+   "se": 0.00243,
+   "hr_age_per_year": 1.1045
+  }
+ },
+ "gap_sd_overall": 8.179,
+ "corr_gap_crp": 0.419,
+ "asian_2015_2018": {
+  "n": 1250,
+  "mean_gap": 0.256,
+  "deaths": 11
+ }
+}

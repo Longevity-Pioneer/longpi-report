@@ -1,0 +1,753 @@
+{
+ "source": "Free Exercise DB (github.com/yuhonas/free-exercise-db), The Unlicense; Chinese text written for LongPi",
+ "credit_zh": "动作照片来自开源动作数据集 Free Exercise DB（github.com/yuhonas/free-exercise-db，公共领域授权）。照片里的器械可以用哑铃、弹力带代替，姿势相同。",
+ "exercises": [
+  {
+   "id": "goblet_squat",
+   "source": "Goblet_Squat",
+   "category": "下肢",
+   "equipment": "哑铃或壶铃",
+   "level": "基础",
+   "name": "高脚杯深蹲",
+   "alias": "双手捧一只哑铃或壶铃放在胸前做深蹲，像捧着一只高脚杯",
+   "target": "大腿前侧、臀部、核心",
+   "default_dose": "3 组 × 10–12 次",
+   "steps": [
+    "双脚略比肩宽，脚尖稍向外 15–30°",
+    "双手竖着托住哑铃一端，贴在胸口",
+    "吸气，屁股向后向下坐，像坐一张矮凳",
+    "蹲到大腿至少和地面平行，膝盖朝着脚尖方向",
+    "脚掌踩实，呼气，用全脚掌发力站起"
+   ],
+   "cues": [
+    "胸口挺起，哑铃始终贴着胸",
+    "下蹲时膝盖不要往里扣",
+    "整个脚掌着地，脚跟不离地"
+   ],
+   "mistakes": [
+    "弯腰低头",
+    "膝盖内扣",
+    "只蹲一半"
+   ],
+   "easier": "先徒手做，或身后放一把椅子，坐到碰椅面就起来",
+   "harder": "加重，或底部停 2 秒再起",
+   "images": [
+    "assets/exercises/Goblet_Squat_0.jpg",
+    "assets/exercises/Goblet_Squat_1.jpg"
+   ]
+  },
+  {
+   "id": "incline_pushup",
+   "source": "Incline_Push-Up",
+   "category": "上肢推",
+   "equipment": "桌边或台阶",
+   "level": "基础",
+   "name": "上斜俯卧撑",
+   "alias": "手撑在桌边、床沿或台阶上，身体越接近水平越难",
+   "target": "胸、肩前侧、手臂后侧、核心",
+   "default_dose": "3 组 × 8–12 次",
+   "steps": [
+    "双手撑在稳固的桌边或台阶上，略比肩宽",
+    "双脚并拢向后伸，身体从头到脚跟成一条直线",
+    "吸气，屈肘让胸口靠近台面，手肘和身体约成 45°",
+    "胸口快碰到台面时，呼气推回"
+   ],
+   "cues": [
+    "收紧腹部和臀部，不塌腰",
+    "下去慢（2 秒）、上来快"
+   ],
+   "mistakes": [
+    "塌腰或撅屁股",
+    "手肘向两侧张开成 90°",
+    "只做半程"
+   ],
+   "easier": "撑得更高（墙面或灶台）",
+   "harder": "降低台面，最后改成地面标准俯卧撑",
+   "images": [
+    "assets/exercises/Incline_Push-Up_0.jpg",
+    "assets/exercises/Incline_Push-Up_1.jpg"
+   ]
+  },
+  {
+   "id": "pushup",
+   "source": "Pushups",
+   "category": "上肢推",
+   "equipment": "无",
+   "level": "基础",
+   "name": "标准俯卧撑",
+   "alias": "比上斜俯卧撑难；能做 3 组 × 10 次上斜俯卧撑后再换",
+   "target": "胸、肩前侧、手臂后侧、核心",
+   "default_dose": "3 组 × 尽量多（留 2 次）",
+   "steps": [
+    "双手撑地略比肩宽，脚尖着地",
+    "身体成一条直线，屈肘下降到胸口离地约一拳",
+    "推起至手臂伸直"
+   ],
+   "cues": [
+    "和上斜版本完全相同，只是更难"
+   ],
+   "mistakes": [
+    "塌腰",
+    "头先往下掉"
+   ],
+   "easier": "回到上斜版本",
+   "harder": "下降用 3 秒",
+   "images": [
+    "assets/exercises/Pushups_0.jpg",
+    "assets/exercises/Pushups_1.jpg"
+   ]
+  },
+  {
+   "id": "db_row",
+   "source": "One-Arm_Dumbbell_Row",
+   "category": "上肢拉",
+   "equipment": "哑铃、凳子",
+   "level": "基础",
+   "name": "哑铃单臂划船",
+   "alias": "一手一膝撑在凳子上，另一只手把哑铃往腰侧拉",
+   "target": "背部（背阔肌、菱形肌）、手臂前侧",
+   "default_dose": "每侧 3 组 × 10–12 次",
+   "steps": [
+    "左手、左膝撑在凳子或床边，右脚踩地",
+    "背部放平，和地面接近平行",
+    "右手拿哑铃，手臂自然垂直向下",
+    "呼气，手肘贴着身体，把哑铃拉向腰侧（不是拉向胸口）",
+    "在顶部停 1 秒，感觉肩胛骨往中间夹，再慢慢放下",
+    "做完一侧换另一侧"
+   ],
+   "cues": [
+    "背始终平直，像能放一杯水",
+    "用背发力拉，手只是钩子"
+   ],
+   "mistakes": [
+    "身体扭转借力",
+    "耸肩",
+    "拉向胸口"
+   ],
+   "easier": "减重",
+   "harder": "加重，或顶部停 2 秒",
+   "images": [
+    "assets/exercises/One-Arm_Dumbbell_Row_0.jpg",
+    "assets/exercises/One-Arm_Dumbbell_Row_1.jpg"
+   ]
+  },
+  {
+   "id": "db_rdl",
+   "source": "Stiff-Legged_Dumbbell_Deadlift",
+   "category": "下肢",
+   "equipment": "哑铃",
+   "level": "基础",
+   "name": "哑铃罗马尼亚硬拉",
+   "alias": "双手拿哑铃，屁股往后推、身体前倾，再挺髋站直",
+   "target": "大腿后侧、臀部、下背",
+   "default_dose": "3 组 × 10–12 次",
+   "steps": [
+    "站直，双脚与髋同宽，双手各拿一只哑铃放在大腿前",
+    "膝盖微微弯曲并保持这个角度不变",
+    "吸气，屁股向后推，身体前倾，哑铃贴着大腿往下滑",
+    "下到大腿后侧明显有拉伸感（通常在膝盖下方一点）",
+    "呼气，臀部发力把髋往前推，回到站直"
+   ],
+   "cues": [
+    "动作是“屁股往后推”，不是“弯腰”",
+    "背始终平直，眼睛看前下方",
+    "哑铃贴着腿走"
+   ],
+   "mistakes": [
+    "弓背",
+    "膝盖蹲得太多变成深蹲",
+    "哑铃离身体太远"
+   ],
+   "easier": "减重，或先徒手对着墙练“屁股碰墙”",
+   "harder": "加重，或下降用 3 秒",
+   "images": [
+    "assets/exercises/Stiff-Legged_Dumbbell_Deadlift_0.jpg",
+    "assets/exercises/Stiff-Legged_Dumbbell_Deadlift_1.jpg"
+   ]
+  },
+  {
+   "id": "plank",
+   "source": "Plank",
+   "category": "核心",
+   "equipment": "垫子",
+   "level": "基础",
+   "name": "平板支撑",
+   "alias": "前臂和脚尖撑地，身体保持一条直线",
+   "target": "腹部、核心",
+   "default_dose": "3 组 × 30–45 秒",
+   "steps": [
+    "俯卧，前臂撑地，手肘在肩膀正下方",
+    "脚尖撑地把身体抬起",
+    "从头到脚跟成一条直线，正常呼吸",
+    "坚持到规定时间"
+   ],
+   "cues": [
+    "肚脐往里收，屁股轻轻夹紧",
+    "眼睛看地面，脖子放松"
+   ],
+   "mistakes": [
+    "塌腰",
+    "屁股翘太高",
+    "憋气"
+   ],
+   "easier": "膝盖着地做",
+   "harder": "每周加 5–10 秒，到 60 秒后改为抬起一只脚",
+   "images": [
+    "assets/exercises/Plank_0.jpg",
+    "assets/exercises/Plank_1.jpg"
+   ]
+  },
+  {
+   "id": "split_squat",
+   "source": "Split_Squat_with_Dumbbells",
+   "category": "下肢",
+   "equipment": "哑铃",
+   "level": "基础",
+   "name": "哑铃分腿蹲",
+   "alias": "前后弓步站好，原地上下蹲起（不往前迈步）",
+   "target": "大腿前侧、臀部，单腿平衡",
+   "default_dose": "每侧 3 组 × 8–10 次",
+   "steps": [
+    "双手拿哑铃垂在身体两侧",
+    "一脚向前一大步，后脚脚跟抬起、脚尖着地",
+    "上身直立，吸气，身体垂直往下沉",
+    "后腿膝盖接近地面（离地一拳），前腿大腿约与地面平行",
+    "前脚全脚掌发力，呼气站起；做完一侧换腿"
+   ],
+   "cues": [
+    "重心在两脚中间，身体直上直下",
+    "前膝朝着脚尖方向"
+   ],
+   "mistakes": [
+    "前膝内扣",
+    "身体前倾太多",
+    "两脚站在一条线上导致摇晃"
+   ],
+   "easier": "徒手，或一只手扶墙",
+   "harder": "加重，或后脚放在矮凳上（保加利亚分腿蹲）",
+   "images": [
+    "assets/exercises/Split_Squat_with_Dumbbells_0.jpg",
+    "assets/exercises/Split_Squat_with_Dumbbells_1.jpg"
+   ]
+  },
+  {
+   "id": "db_press",
+   "source": "Standing_Dumbbell_Press",
+   "category": "上肢推",
+   "equipment": "哑铃",
+   "level": "基础",
+   "name": "哑铃站姿推举",
+   "alias": "站着把哑铃从肩膀推过头顶",
+   "target": "肩部、手臂后侧、核心",
+   "default_dose": "3 组 × 8–12 次",
+   "steps": [
+    "双脚与肩同宽，双手拿哑铃举到肩膀两侧，掌心朝前",
+    "收紧腹部和臀部",
+    "呼气，把哑铃向上推到手臂接近伸直",
+    "吸气，慢慢放回肩膀高度"
+   ],
+   "cues": [
+    "推的时候不要后仰",
+    "手腕在手肘正上方"
+   ],
+   "mistakes": [
+    "腰往后弯借力",
+    "耸肩",
+    "哑铃往前推而不是往上推"
+   ],
+   "easier": "坐在有靠背的椅子上做，或减重",
+   "harder": "加重，或单手交替推",
+   "images": [
+    "assets/exercises/Standing_Dumbbell_Press_0.jpg",
+    "assets/exercises/Standing_Dumbbell_Press_1.jpg"
+   ]
+  },
+  {
+   "id": "lat_pulldown",
+   "source": "Full_Range-Of-Motion_Lat_Pulldown",
+   "category": "上肢拉",
+   "equipment": "健身房器械",
+   "level": "基础",
+   "name": "高位下拉",
+   "alias": "坐在器械上把横杆拉到锁骨前",
+   "target": "背阔肌、手臂前侧",
+   "default_dose": "3 组 × 10–12 次",
+   "steps": [
+    "调好膝垫压住大腿，双手比肩宽握住横杆",
+    "身体略后仰约 15°，挺胸",
+    "呼气，手肘往下往后拉，横杆拉到锁骨前",
+    "停 1 秒，慢慢放回到手臂伸直"
+   ],
+   "cues": [
+    "想着“手肘往口袋里塞”",
+    "肩膀下沉，不耸肩"
+   ],
+   "mistakes": [
+    "身体大幅后仰借力",
+    "拉到脖子后面"
+   ],
+   "easier": "减重",
+   "harder": "加重，或改做弹力带辅助引体向上",
+   "images": [
+    "assets/exercises/Full_Range-Of-Motion_Lat_Pulldown_0.jpg",
+    "assets/exercises/Full_Range-Of-Motion_Lat_Pulldown_1.jpg"
+   ]
+  },
+  {
+   "id": "band_row",
+   "source": "Seated_Cable_Rows",
+   "category": "上肢拉",
+   "equipment": "弹力带",
+   "level": "基础",
+   "name": "弹力带坐姿划船",
+   "alias": "没有器械时代替高位下拉；图里是器械版，姿势一样",
+   "target": "背部中部、手臂前侧",
+   "default_dose": "3 组 × 12–15 次",
+   "steps": [
+    "坐在垫子上，双腿伸直微屈，弹力带绕过脚底",
+    "双手握住两端，挺胸坐直",
+    "呼气，手肘贴着身体往后拉，拳头拉到肚脐两侧",
+    "肩胛骨往中间夹，停 1 秒，慢慢放回"
+   ],
+   "cues": [
+    "身体保持直立，只动手臂和肩胛",
+    "放回时也要控制住"
+   ],
+   "mistakes": [
+    "身体前后摇摆",
+    "耸肩"
+   ],
+   "easier": "手握得离脚更近（带子更松）",
+   "harder": "握得更远，或换阻力更大的带子",
+   "images": [
+    "assets/exercises/Seated_Cable_Rows_0.jpg",
+    "assets/exercises/Seated_Cable_Rows_1.jpg"
+   ]
+  },
+  {
+   "id": "glute_bridge",
+   "source": "Butt_Lift_Bridge",
+   "category": "下肢",
+   "equipment": "垫子",
+   "level": "基础",
+   "name": "臀桥",
+   "alias": "仰卧屈膝，把臀部抬起来",
+   "target": "臀部、大腿后侧",
+   "default_dose": "3 组 × 12–15 次",
+   "steps": [
+    "仰卧，屈膝，双脚踩地与髋同宽，脚跟离臀部约一个脚掌",
+    "双手放在身体两侧",
+    "呼气，脚跟踩地，臀部夹紧把髋抬起",
+    "抬到肩、髋、膝成一条直线，停 2 秒",
+    "慢慢放下，臀部轻触地面再起"
+   ],
+   "cues": [
+    "用臀部发力，不是用腰拱起来",
+    "顶部用力夹紧臀部"
+   ],
+   "mistakes": [
+    "腰部过度上拱",
+    "脚离身体太远（变成大腿后侧抽筋）"
+   ],
+   "easier": "减少次数",
+   "harder": "把哑铃放在髋部上，或单腿做",
+   "images": [
+    "assets/exercises/Butt_Lift_Bridge_0.jpg",
+    "assets/exercises/Butt_Lift_Bridge_1.jpg"
+   ]
+  },
+  {
+   "id": "side_plank",
+   "source": "Side_Bridge",
+   "category": "核心",
+   "equipment": "垫子",
+   "level": "基础",
+   "name": "侧平板",
+   "alias": "侧躺，用一侧前臂和脚撑起身体",
+   "target": "腹部两侧、髋部",
+   "default_dose": "每侧 3 组 × 20–30 秒",
+   "steps": [
+    "侧躺，手肘在肩膀正下方，双腿伸直叠放",
+    "臀部抬起，从头到脚成一条直线",
+    "保持规定时间，换另一侧"
+   ],
+   "cues": [
+    "髋不要往下掉，也不要往后坐"
+   ],
+   "mistakes": [
+    "身体前倾或后仰",
+    "憋气"
+   ],
+   "easier": "下面那条腿屈膝，用膝盖撑",
+   "harder": "上面那条腿抬起",
+   "images": [
+    "assets/exercises/Side_Bridge_0.jpg",
+    "assets/exercises/Side_Bridge_1.jpg"
+   ]
+  },
+  {
+   "id": "dead_bug",
+   "source": "Dead_Bug",
+   "category": "核心",
+   "equipment": "垫子",
+   "level": "基础",
+   "name": "死虫式",
+   "alias": "仰卧，手脚像翻过来的虫子，对侧手脚交替伸出",
+   "target": "深层腹肌，保护腰部",
+   "default_dose": "3 组 × 每侧 8 次",
+   "steps": [
+    "仰卧，双臂向天花板伸直，髋和膝都弯成 90°",
+    "下背轻轻压住地面",
+    "呼气，同时把右臂往头后放、左腿往前伸直，都不碰地",
+    "吸气收回，换左臂和右腿"
+   ],
+   "cues": [
+    "整个过程下背都贴着地面",
+    "动作慢，2 秒伸出 2 秒收回"
+   ],
+   "mistakes": [
+    "腰离开地面拱起",
+    "动作太快"
+   ],
+   "easier": "只动腿不动手",
+   "harder": "手里拿一只轻哑铃",
+   "images": [
+    "assets/exercises/Dead_Bug_0.jpg",
+    "assets/exercises/Dead_Bug_1.jpg"
+   ]
+  },
+  {
+   "id": "chin_tuck",
+   "source": null,
+   "category": "颈肩",
+   "equipment": "墙",
+   "level": "基础",
+   "name": "靠墙收颌",
+   "alias": "把头往后平移，做出“双下巴”，不是低头",
+   "target": "颈部深层肌肉，纠正头前伸",
+   "default_dose": "10 次 × 每次停 5 秒",
+   "steps": [
+    "背靠墙站，脚跟离墙一脚掌，后脑勺、肩胛骨、臀部贴墙",
+    "眼睛平视，下巴水平往后收，后脑勺轻压墙面",
+    "保持 5 秒，放松，重复"
+   ],
+   "cues": [
+    "动作很小，像要做双下巴",
+    "不要抬头或低头"
+   ],
+   "mistakes": [
+    "变成低头",
+    "耸肩"
+   ],
+   "easier": "坐着做，不靠墙",
+   "harder": "仰卧在床上做，后脑勺压床面",
+   "images": []
+  },
+  {
+   "id": "neck_isometric",
+   "source": "Isometric_Neck_Exercise_-_Front_And_Back",
+   "category": "颈肩",
+   "equipment": "无",
+   "level": "基础",
+   "name": "颈部等长收缩",
+   "alias": "手推头、头不动，让颈部肌肉用力",
+   "target": "颈部前后肌群",
+   "default_dose": "前、后各 5 次 × 每次 5–8 秒",
+   "steps": [
+    "站或坐直，双手交叉放在后脑勺（图示）",
+    "头向后用力顶手，手同时向前用力，头保持不动",
+    "5–8 秒后放松；再把手放到额头，往前顶"
+   ],
+   "cues": [
+    "用力约五六成就够，不要憋气"
+   ],
+   "mistakes": [
+    "头被推得前后晃动",
+    "用力太猛"
+   ],
+   "easier": "用力轻一些、时间短一些",
+   "harder": "每次延长到 10 秒",
+   "images": [
+    "assets/exercises/Isometric_Neck_Exercise_-_Front_And_Back_0.jpg",
+    "assets/exercises/Isometric_Neck_Exercise_-_Front_And_Back_1.jpg"
+   ]
+  },
+  {
+   "id": "band_pull_apart",
+   "source": "Band_Pull_Apart",
+   "category": "颈肩",
+   "equipment": "弹力带",
+   "level": "基础",
+   "name": "弹力带拉开",
+   "alias": "双手拉着弹力带向两侧打开到胸前",
+   "target": "上背部、肩后侧，对抗含胸驼背",
+   "default_dose": "2–3 组 × 15 次",
+   "steps": [
+    "双手与肩同宽握住弹力带，手臂向前伸直到胸口高度",
+    "肩膀下沉，呼气，双手向两侧拉开，直到弹力带碰到胸口",
+    "停 1 秒，感觉肩胛骨往中间夹，慢慢回位"
+   ],
+   "cues": [
+    "手臂保持伸直",
+    "全程肩膀下沉，不耸肩"
+   ],
+   "mistakes": [
+    "耸肩",
+    "身体后仰借力"
+   ],
+   "easier": "手握得更宽（带子更松）",
+   "harder": "握得更窄，或换更紧的带子",
+   "images": [
+    "assets/exercises/Band_Pull_Apart_0.jpg",
+    "assets/exercises/Band_Pull_Apart_1.jpg"
+   ]
+  },
+  {
+   "id": "reverse_fly",
+   "source": "Reverse_Flyes",
+   "category": "颈肩",
+   "equipment": "轻哑铃",
+   "level": "基础",
+   "name": "俯身哑铃飞鸟",
+   "alias": "上身前倾，双臂像鸟张开翅膀一样向两侧抬起",
+   "target": "肩后侧、上背部",
+   "default_dose": "2–3 组 × 12–15 次",
+   "steps": [
+    "双手各拿一只轻哑铃（2–4 kg），屈膝，上身前倾到接近水平，背部平直",
+    "手臂微屈，掌心相对，哑铃垂在胸下",
+    "呼气，双臂向两侧抬到与身体同高",
+    "停 1 秒，慢慢放下"
+   ],
+   "cues": [
+    "用后背发力，不是甩",
+    "重量一定要轻"
+   ],
+   "mistakes": [
+    "弓背",
+    "耸肩",
+    "用惯性甩起来"
+   ],
+   "easier": "趴在斜板或床边做",
+   "harder": "顶部停 2 秒",
+   "images": [
+    "assets/exercises/Reverse_Flyes_0.jpg",
+    "assets/exercises/Reverse_Flyes_1.jpg"
+   ]
+  },
+  {
+   "id": "side_neck_stretch",
+   "source": "Side_Neck_Stretch",
+   "category": "颈肩",
+   "equipment": "椅子",
+   "level": "基础",
+   "name": "侧颈拉伸",
+   "alias": "一只手把头轻轻拉向一侧肩膀",
+   "target": "颈部两侧、斜方肌上部",
+   "default_dose": "每侧 2 次 × 20–30 秒",
+   "steps": [
+    "坐直，右手抓住椅子边缘让右肩下沉",
+    "左手从头顶绕过放在右耳上方",
+    "把头轻轻拉向左肩，感到右侧颈部拉伸",
+    "保持 20–30 秒，换另一侧"
+   ],
+   "cues": [
+    "拉伸感是轻微的，不能疼",
+    "肩膀不要跟着抬起来"
+   ],
+   "mistakes": [
+    "用力猛拉",
+    "同时转头"
+   ],
+   "easier": "不用手，只靠头的重量",
+   "harder": "头稍向下低 15°，拉到后侧",
+   "images": [
+    "assets/exercises/Side_Neck_Stretch_0.jpg",
+    "assets/exercises/Side_Neck_Stretch_1.jpg"
+   ]
+  },
+  {
+   "id": "cat_stretch",
+   "source": "Cat_Stretch",
+   "category": "柔韧",
+   "equipment": "垫子",
+   "level": "基础",
+   "name": "猫式伸展",
+   "alias": "四点跪地，背部一会儿拱起、一会儿下塌",
+   "target": "整条脊柱的活动度",
+   "default_dose": "10 次，配合呼吸",
+   "steps": [
+    "双手在肩膀正下方、膝盖在髋正下方，跪在垫子上",
+    "呼气，低头，把背拱起来像生气的猫",
+    "吸气，抬头看前方，背部慢慢下塌",
+    "来回做 10 次"
+   ],
+   "cues": [
+    "动作慢，每个方向停 2 秒",
+    "整条脊柱一节一节地动"
+   ],
+   "mistakes": [
+    "只动腰不动上背",
+    "速度太快"
+   ],
+   "easier": "减小幅度",
+   "harder": "在拱背时用力把手往地上推",
+   "images": [
+    "assets/exercises/Cat_Stretch_0.jpg",
+    "assets/exercises/Cat_Stretch_1.jpg"
+   ]
+  },
+  {
+   "id": "chair_squat",
+   "source": "Chair_Squat",
+   "category": "下肢",
+   "equipment": "椅子",
+   "level": "入门",
+   "name": "椅子坐站",
+   "alias": "从椅子上站起再坐下，是深蹲的入门版，老年人也适用",
+   "target": "大腿前侧、臀部，起身能力",
+   "default_dose": "3 组 × 8–12 次",
+   "steps": [
+    "坐在稳固、不带轮子的椅子前半部分，双脚与肩同宽踩实",
+    "双臂交叉抱在胸前，身体稍前倾",
+    "呼气，脚掌发力站直，臀部夹紧",
+    "吸气，屁股向后慢慢坐回，轻碰椅面就再站起"
+   ],
+   "cues": [
+    "起身时不要用手撑膝盖或扶手",
+    "坐下要慢（3 秒），不要“砸”回椅子"
+   ],
+   "mistakes": [
+    "膝盖内扣",
+    "身体后仰坐下"
+   ],
+   "easier": "用手扶着椅子扶手起身，或在椅面加一个垫子坐高一些",
+   "harder": "不碰椅面（悬停 1 秒）再起，或手捧哑铃",
+   "images": [
+    "assets/exercises/Chair_Squat_0.jpg",
+    "assets/exercises/Chair_Squat_1.jpg"
+   ]
+  },
+  {
+   "id": "bodyweight_squat",
+   "source": "Bodyweight_Squat",
+   "category": "下肢",
+   "equipment": "无",
+   "level": "入门",
+   "name": "徒手深蹲",
+   "alias": "不拿重量的深蹲",
+   "target": "大腿前侧、臀部",
+   "default_dose": "3 组 × 12–15 次",
+   "steps": [
+    "双脚略比肩宽，脚尖稍向外",
+    "双臂向前平举保持平衡",
+    "吸气，屁股向后向下坐，蹲到大腿与地面平行或尽量低",
+    "呼气，全脚掌发力站起"
+   ],
+   "cues": [
+    "脚跟不离地",
+    "膝盖朝着脚尖方向"
+   ],
+   "mistakes": [
+    "弯腰低头",
+    "膝盖内扣"
+   ],
+   "easier": "改做椅子坐站",
+   "harder": "改做高脚杯深蹲",
+   "images": [
+    "assets/exercises/Bodyweight_Squat_0.jpg",
+    "assets/exercises/Bodyweight_Squat_1.jpg"
+   ]
+  },
+  {
+   "id": "step_up",
+   "source": "Dumbbell_Step_Ups",
+   "category": "下肢",
+   "equipment": "台阶或稳固的矮凳，可加哑铃",
+   "level": "入门",
+   "name": "上台阶",
+   "alias": "一只脚踩上台阶，把身体推上去，再慢慢下来",
+   "target": "大腿前侧、臀部、平衡",
+   "default_dose": "每侧 3 组 × 8–10 次",
+   "steps": [
+    "面对一级台阶或 20–40 cm 高的稳固矮凳站好",
+    "右脚整只脚踩上台阶",
+    "右脚发力把身体推上去，左脚跟上站稳",
+    "左脚先下，右脚再下；做完一侧换腿"
+   ],
+   "cues": [
+    "用上面那条腿发力，下面的脚不要蹬地借力",
+    "下来时慢慢放"
+   ],
+   "mistakes": [
+    "膝盖内扣",
+    "身体前倾太多"
+   ],
+   "easier": "台阶低一些，或一只手扶墙",
+   "harder": "双手拿哑铃，或台阶加高",
+   "images": [
+    "assets/exercises/Dumbbell_Step_Ups_0.jpg",
+    "assets/exercises/Dumbbell_Step_Ups_1.jpg"
+   ]
+  },
+  {
+   "id": "calf_raise",
+   "source": "Standing_Calf_Raises",
+   "category": "下肢",
+   "equipment": "墙或椅背（扶着）",
+   "level": "入门",
+   "name": "站姿提踵",
+   "alias": "踮起脚尖再慢慢放下",
+   "target": "小腿、踝关节稳定，减少跌倒",
+   "default_dose": "3 组 × 15–20 次",
+   "steps": [
+    "双脚与髋同宽站直，一只手轻扶墙或椅背",
+    "呼气，脚跟尽量抬高，用前脚掌站",
+    "停 1 秒，吸气，慢慢放下"
+   ],
+   "cues": [
+    "抬到最高",
+    "放下要慢（3 秒）"
+   ],
+   "mistakes": [
+    "身体前后晃",
+    "只做半程"
+   ],
+   "easier": "双手扶稳",
+   "harder": "单脚做，或站在台阶边缘让脚跟低于台阶",
+   "images": [
+    "assets/exercises/Standing_Calf_Raises_0.jpg",
+    "assets/exercises/Standing_Calf_Raises_1.jpg"
+   ]
+  },
+  {
+   "id": "farmers_walk",
+   "source": "Farmers_Walk",
+   "category": "全身",
+   "equipment": "一对哑铃或两袋重物",
+   "level": "入门",
+   "name": "农夫行走",
+   "alias": "两手各提一份重物，挺胸走路",
+   "target": "握力、肩背、核心",
+   "default_dose": "3 组 × 30–40 米（或 30 秒）",
+   "steps": [
+    "两手各提一只哑铃或一袋重物，垂在身体两侧",
+    "挺胸、肩膀下沉，收紧腹部",
+    "用正常步幅向前走，到距离后放下休息"
+   ],
+   "cues": [
+    "身体不左右歪",
+    "握紧，不让重物晃"
+   ],
+   "mistakes": [
+    "耸肩",
+    "弯腰驼背"
+   ],
+   "easier": "减重，或缩短距离",
+   "harder": "加重，或单手提（练核心抗侧弯）",
+   "images": [
+    "assets/exercises/Farmers_Walk_0.jpg",
+    "assets/exercises/Farmers_Walk_1.jpg"
+   ]
+  }
+ ]
+}

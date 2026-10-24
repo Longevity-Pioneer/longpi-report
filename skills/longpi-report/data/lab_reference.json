@@ -1,0 +1,16 @@
+{
+ "_note": "Chart bands only (reference interval or common target in Chinese practice). Not used by the mortality model.",
+ "ldl": {"ref_hi": 3.4, "ref_label": "低危目标 <3.4"},
+ "hba1c": {"ref_hi": 5.7, "ref_label": "<5.7"},
+ "crp": {"ref_hi": 1.0, "ref_label": "<1.0 低危"},
+ "tg": {"ref_hi": 1.7, "ref_label": "<1.7"},
+ "alt": {"ref_hi": 40, "ref_label": "≤40"},
+ "ast": {"ref_hi": 40, "ref_label": "≤40"},
+ "ggt": {"ref_hi": 50, "ref_label": "≤50"},
+ "vitd": {"ref_lo": 30, "ref_label": "≥30"},
+ "uric_acid": {"ref_hi": 420, "ref_label": "<420"},
+ "apob": {"ref_hi": 1.0, "ref_label": "<1.0"},
+ "glucose_fasting": {"ref_lo": 3.9, "ref_hi": 6.1, "ref_label": "3.9–6.1"},
+ "creatinine": {"ref_lo": 44, "ref_hi": 111, "ref_label": "44–111"},
+ "hdl": {"ref_lo": 1.0, "ref_label": "≥1.0"}
+}

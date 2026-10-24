@@ -1,0 +1,634 @@
+<body>
+<div class="wrap">
+<header>
+  <div class="brand"><b>LongPi · 一人健康实验室</b><span id="who"></span></div>
+  <div style="display:flex;gap:10px;align-items:center"><span class="meta" id="meta"></span><button class="themebtn" id="themebtn">切换深浅色</button></div>
+</header>
+<div class="note" id="banner" style="margin:0 0 14px;display:none"></div>
+<nav id="nav">
+  <button data-t="ov" class="on">总览</button><button data-t="data">数据</button><button data-t="risk">疾病风险</button><button data-t="fr">前沿生物分析</button><button data-t="iv">干预</button><button data-t="me">方法</button>
+</nav>
+
+<!-- 总览 -->
+<section class="tab on" id="ov">
+  <div class="note" id="summary" style="margin-bottom:16px;display:none"></div>
+  <div class="grid g3">
+    <div class="card">
+      <div class="kicker">LONGPI AGE · 死亡风险等效年龄</div>
+      <div class="hero" id="laVal"></div>
+      <div class="delta" id="laDelta"></div>
+      <div class="note" id="laAlt" style="margin-top:10px;display:none"></div>
+      <div id="laRange" style="margin-top:14px"></div>
+      <p class="tiny" style="margin:6px 0 0" id="laNote"></p>
+    </div>
+    <div class="card">
+      <div class="kicker" id="ixKicker">120 指数</div>
+      <div class="hero" id="ixVal"></div>
+      <div class="seg" id="scSeg"></div>
+      <div class="muted" style="font-size:13px" id="ixText"></div>
+      <div class="ms" id="ixMs"></div>
+      <p class="tiny" style="margin:8px 0 0">100 = 同龄人群平均；每 +10 分 = 活到 120 岁的可能性 ×10。上排是本人，括号内是人群。</p>
+    </div>
+    <div class="card">
+      <div class="kicker">本季度重点行动</div>
+      <ol class="todo" id="top3"></ol>
+      <div class="kicker" style="margin-top:14px">临床待办</div>
+      <ol class="todo" id="clin"></ol>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px" id="dvCard">
+    <div class="grid g2" style="gap:18px;align-items:start">
+      <div>
+        <div class="kicker">数据完整度</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px;flex-wrap:wrap"><span class="dvpct" id="dvPct"></span><span class="muted" style="font-size:13px" id="dvNow"></span></div>
+        <div class="dvtrack"><div class="dvfill" id="dvFill"></div></div>
+        <div class="dvlabels"><span id="dvL0"></span><span id="dvL1"></span></div>
+        <p style="font-size:13px;margin:10px 0 0" id="dvText"></p>
+      </div>
+      <div>
+        <div class="kicker">优先补测项目</div>
+        <ol class="todo" id="dvTop"></ol>
+        <p class="tiny" style="margin:6px 0 0">完整清单在"数据"页。</p>
+      </div>
+    </div>
+  </div>
+  <div id="asksWrap"></div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>LongPi Age 构成分解</h3>
+      <p class="sub" id="wfSub"></p>
+      <div id="wf"></div>
+    </div>
+    <div class="card">
+      <h3>生存曲线</h3>
+      <p class="sub" id="survSub"></p>
+      <div class="legend"><span><i style="background:var(--s1)"></i>本人（中位数，阴影为 80% 区间）</span><span><i style="background:var(--pop)"></i><span id="popLabel">同龄人群</span></span></div>
+      <div id="surv"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 数据 -->
+<section class="tab" id="data">
+  <div class="card" id="covCard">
+    <h3>数据资产时间轴</h3>
+    <p class="sub" id="covSub"></p>
+    <div id="cov"></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px" id="wearGrid">
+    <div class="card" id="cSleep"><h3>睡眠时长（智能手表）</h3><p class="sub" id="sleepSub"></p><div id="chSleep"></div></div>
+    <div class="card" id="cCgm"><h3>连续血糖（CGM）</h3><p class="sub" id="cgmSub"></p><div id="chCgm"></div></div>
+    <div class="card" id="cRhr"><h3>静息心率（智能手表）</h3><p class="sub" id="rhrSub"></p><div id="chRhr"></div></div>
+    <div class="card" id="cSteps"><h3>每日步数（月中位数）</h3><p class="sub" id="stepsSub"></p><div id="chSteps"></div></div>
+    <div class="card" id="cBd"><h3>夜间呼吸紊乱与血氧饱和度（智能手表）</h3><p class="sub" id="bdSub"></p><div id="chBd"></div></div>
+    <div class="card" id="cWk"><h3>运动记录：每月时长（分钟）</h3><p class="sub" id="wkSub"></p><div class="tablewrap" id="wk"></div></div>
+  </div>
+  <div class="card" style="margin-top:16px" id="labsCard">
+    <h3>化验趋势</h3>
+    <p class="sub">每个指标单独纵轴；绿色带为参考范围或目标。</p>
+    <div class="grid g3" id="labs"></div>
+  </div>
+  <div class="card" style="margin-top:16px" id="dvTableCard">
+    <h3>补测项目及其对结果精度的贡献</h3>
+    <p class="sub" id="dvTableSub"></p>
+    <div class="tablewrap"><table class="dvt"><thead><tr><th>做什么</th><th>现状</th><th>80% 区间</th><th>费用与难度</th><th>还有什么用</th></tr></thead><tbody id="gaps"></tbody></table></div>
+    <div class="kicker" style="margin-top:14px">不影响 LongPi Age 的其他有用数据</div>
+    <ul style="font-size:13px;padding-left:18px;margin:6px 0" id="otherUses"></ul>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>数据质量</h3>
+    <ul style="font-size:13px;padding-left:18px;margin:6px 0" id="issues"></ul>
+  </div>
+</section>
+
+<!-- 风险 -->
+<section class="tab" id="risk">
+  <div class="note" style="margin-bottom:16px">每张卡写清等级、驱动因素、保护因素、依据和下一步。没有经过中国人群校准的绝对概率不给出。等级用图标 + 文字表示：<span id="lvlLegend"></span></div>
+  <div class="grid g3" id="riskGrid"></div>
+  <div class="card" style="margin-top:16px" id="pgxCard"><h3>药物基因组卡（就医时出示）</h3><p class="sub" id="pgxSub"></p><ul id="pgx" style="font-size:13px;padding-left:18px;margin:0"></ul></div>
+</section>
+
+<!-- 前沿 -->
+<section class="tab" id="fr">
+  <div class="grid g2">
+    <div class="card" id="organCard"><h3>器官甲基化年龄</h3><p class="sub" id="organSub"></p><div id="organs"></div></div>
+    <div class="card" id="phenoCard"><h3>血液 PhenoAge：与同龄参考人的差值</h3><p class="sub" id="phenoSub"></p><div id="pheno"></div></div>
+  </div>
+  <div class="card" style="margin-top:16px" id="trajCard"><h3>LongPi Age 历年轨迹</h3><p class="sub" id="trajSub"></p><div id="traj"></div></div>
+  <div class="grid g3" style="margin-top:16px" id="frGrid"></div>
+</section>
+
+<!-- 干预 -->
+<section class="tab" id="iv">
+  <div class="card">
+    <h3>干预有效性预测：LongPi Age 变化</h3>
+    <p class="sub" id="forestSub"></p>
+    <div id="forest"></div>
+  </div>
+  <div class="grid g2" style="margin-top:16px" id="ivGrid"></div>
+  <div class="card" style="margin-top:16px" id="n1Card">
+    <h3 id="n1Title"></h3>
+    <p class="sub" id="n1Sub"></p>
+    <table><tbody id="n1"></tbody></table>
+  </div>
+  <div class="card" style="margin-top:16px" id="logCard">
+    <h3>个人试验记录表</h3>
+    <p class="sub">开始任何一项训练、饮食调整或补充剂之前，先记录 2 周基线，之后每周记一次。表格可用 Excel 或 WPS 打开，下次生成报告时一并发来。</p>
+    <button class="themebtn" id="logBtn">下载记录表（CSV）</button>
+  </div>
+  <div id="suppWrap" style="margin-top:16px"></div>
+  <div id="trainWrap" style="margin-top:16px"></div>
+</section>
+
+<!-- 方法 -->
+<section class="tab" id="me">
+  <div class="grid g2" id="meGrid"></div>
+</section>
+
+<footer>本页用于健康管理与研究，不构成诊断或治疗建议；处方药调整请咨询医生。<span id="foot"></span></footer>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const D = __LONGPI_DATA__;
+const R = D.res, N = D.narrative || {}, X = D.data || {}, MT = D.methods || {};
+const $ = s => document.querySelector(s);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const NS = 'http://www.w3.org/2000/svg';
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+function el(tag, attrs = {}, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, attrs = {}) { const t = el('text', {x, y, ...attrs}, parent); t.textContent = s; return t; }
+const fmt = (v, d = 1) => (v > 0 ? '+' : '') + v.toFixed(d);
+const tip = $('#tip');
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = 'block';
+  const w = tip.offsetWidth, h = tip.offsetHeight; let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + w > innerWidth - 8) x = e.clientX - w - 14; if (y + h > innerHeight - 8) y = e.clientY - h - 14;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px'; }
+function hideTip() { tip.style.display = 'none'; }
+function sup(n) { const m = {'-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}; return String(n).split('').map(c => m[c]).join(''); }
+function pexp(p) { if (p >= 0.01) return (p * 100).toFixed(p >= 0.1 ? 0 : 1) + '%'; if (p <= 0) return '0'; const e = Math.floor(Math.log10(p)); return (p / 10 ** e).toFixed(1) + '×10' + sup(e); }
+const dms = s => new Date(String(s).length <= 7 ? s + '-01T00:00' : String(s).replace(' ', 'T')).getTime();
+const show = (sel, on) => { const e = $(sel); if (e) e.style.display = on ? '' : 'none'; };
+
+function lineChart(host, o) {
+  host.innerHTML = '';
+  const W = o.w || 560, H = o.h || 220, m = {l: 40, r: 14, t: 10, b: 26};
+  const svg = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': o.aria || ''}, host);
+  const all = o.series.flatMap(s => s.pts.filter(p => p[1] != null));
+  if (!all.length) return;
+  const xs = all.map(p => p[0]);
+  const x0 = o.xDomain ? o.xDomain[0] : Math.min(...xs), x1 = o.xDomain ? o.xDomain[1] : Math.max(...xs);
+  const ys = all.map(p => p[1]).concat(o.series.flatMap(s => s.band ? s.band.flatMap(b => [b[1], b[2]]) : []));
+  let y0 = o.yDomain ? o.yDomain[0] : Math.min(...ys), y1 = o.yDomain ? o.yDomain[1] : Math.max(...ys);
+  if (!o.yDomain) { const pad = (y1 - y0) * 0.12 || 1; y0 -= pad; y1 += pad; }
+  const Xf = v => m.l + (v - x0) / (x1 - x0 || 1) * (W - m.l - m.r);
+  const Yf = v => H - m.b - (v - y0) / (y1 - y0 || 1) * (H - m.t - m.b);
+  const g = el('g', {class: 'axis'}, svg);
+  (o.yTicks || niceTicks(y0, y1, 4)).forEach(v => { el('line', {x1: m.l, x2: W - m.r, y1: Yf(v), y2: Yf(v), 'stroke-width': 1}, g);
+    txt(svg, m.l - 6, Yf(v) + 4, o.fmtY ? o.fmtY(v) : v, {'text-anchor': 'end'}); });
+  (o.xTicks || niceTicks(x0, x1, 5)).forEach(v => txt(svg, Xf(v), H - 8, o.fmtX ? o.fmtX(v) : v, {'text-anchor': 'middle'}));
+  if (o.refBand) { const [a, b] = o.refBand;
+    el('rect', {x: m.l, width: W - m.l - m.r, y: Yf(Math.min(b, y1)), height: Math.max(0, Yf(Math.max(a, y0)) - Yf(Math.min(b, y1))), fill: css('--refband')}, svg); }
+  if (o.refLine != null) el('line', {x1: m.l, x2: W - m.r, y1: Yf(o.refLine), y2: Yf(o.refLine), stroke: css('--text-3'), 'stroke-dasharray': '4 4'}, svg);
+  o.series.forEach(s => {
+    if (s.band) { const up = s.band.map(b => `${Xf(b[0])},${Yf(b[2])}`), dn = s.band.slice().reverse().map(b => `${Xf(b[0])},${Yf(b[1])}`);
+      el('polygon', {points: up.concat(dn).join(' '), fill: css('--band')}, svg); }
+    if (s.bars) { const bw = Math.max(1.5, (W - m.l - m.r) / s.pts.length - 1);
+      s.pts.forEach(p => { if (p[1] == null) return; const top = Yf(p[1]);
+        el('rect', {x: Xf(p[0]) - bw / 2, y: top, width: bw, height: Math.max(0, Yf(y0) - top), rx: Math.min(2, bw / 2), fill: s.color(p), opacity: .9}, svg); });
+      return; }
+    const segs = []; let cur = [];
+    s.pts.forEach(p => { if (p[1] == null) { if (cur.length) segs.push(cur); cur = []; } else cur.push(p); });
+    if (cur.length) segs.push(cur);
+    segs.forEach(sg => el('polyline', {points: sg.map(p => `${Xf(p[0])},${Yf(p[1])}`).join(' '), fill: 'none', stroke: s.color, 'stroke-width': s.width || 2, 'stroke-linejoin': 'round', 'stroke-dasharray': s.dash || ''}, svg));
+    if (s.markers) s.pts.forEach(p => p[1] != null && el('circle', {cx: Xf(p[0]), cy: Yf(p[1]), r: 4.5, fill: s.color, stroke: css('--surface'), 'stroke-width': 2}, svg));
+  });
+  const cross = el('line', {y1: m.t, y2: H - m.b, stroke: css('--text-3'), 'stroke-width': 1, visibility: 'hidden'}, svg);
+  const hit = el('rect', {x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: 'transparent'}, svg);
+  const base = o.series[0].pts;
+  hit.addEventListener('mousemove', e => {
+    const r = svg.getBoundingClientRect(); const vx = (e.clientX - r.left) / r.width * W;
+    const xv = x0 + (vx - m.l) / (W - m.l - m.r) * (x1 - x0);
+    let best = 0, bd = Infinity; base.forEach((p, i) => { const d = Math.abs(p[0] - xv); if (d < bd) { bd = d; best = i; } });
+    const xp = base[best][0]; cross.setAttribute('x1', Xf(xp)); cross.setAttribute('x2', Xf(xp)); cross.setAttribute('visibility', 'visible');
+    showTip(e, o.tip(best, xp)); });
+  hit.addEventListener('mouseleave', () => { cross.setAttribute('visibility', 'hidden'); hideTip(); });
+}
+function niceTicks(a, b, n) { const span = b - a; const step0 = span / n || 1; const mag = 10 ** Math.floor(Math.log10(step0));
+  const step = [1, 2, 2.5, 5, 10].map(k => k * mag).find(s => s >= step0) || mag * 10;
+  const out = []; for (let v = Math.ceil(a / step) * step; v <= b + 1e-9; v += step) out.push(+v.toFixed(10)); return out; }
+const monthTicks = (a, b) => { const out = []; const d = new Date(a); d.setDate(1); while (d.getTime() <= b) { out.push(d.getTime()); d.setMonth(d.getMonth() + 2); } return out; };
+
+/* ---------- 头部 ---------- */
+const SEX = R.person.sex === 'F' ? '女性' : '男性';
+$('#who').textContent = `${D.meta.person_label || ''}${D.meta.synthetic ? ' · 合成数据' : ''}`;
+$('#meta').textContent = `数据截至 ${R.as_of} · 引擎 v${R.engine_version} · 参数 ${R.params_version}`;
+$('#foot').textContent = D.meta.footer ? ' ' + D.meta.footer : '';
+if (D.meta.banner) { $('#banner').textContent = D.meta.banner; show('#banner', true); }
+if (N.summary) { $('#summary').textContent = N.summary; show('#summary', true); }
+$('#themebtn').onclick = () => { const r = document.documentElement; const cur = r.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  r.dataset.theme = cur === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('lp-theme', r.dataset.theme); } catch (e) {} renderAll(); };
+try { const t = localStorage.getItem('lp-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+document.querySelectorAll('#nav button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('#nav button').forEach(x => x.classList.toggle('on', x === b));
+  document.querySelectorAll('section.tab').forEach(s => s.classList.toggle('on', s.id === b.dataset.t));
+  try { localStorage.setItem('lp-tab', b.dataset.t); } catch (e) {} history.replaceState(null, '', '#tab-' + b.dataset.t); renderAll(); });
+
+/* ---------- 总览 ---------- */
+let SC = 'W';
+const scen = R.index120.scenarios, central = R.index120.central;
+function renderOverview() {
+  const la = R.longpi_age;
+  $('#laVal').innerHTML = `${la.value.median.toFixed(1)}<small>岁</small>`;
+  const d = la.value.median - la.chrono;
+  $('#laDelta').textContent = `日历年龄 ${la.chrono} 岁 · ${Math.abs(d) < 0.05 ? '与同龄人持平' : (d < 0 ? '年轻 ' : '年长 ') + Math.abs(d).toFixed(1) + ' 岁'}`;
+  const pace = la.pace || {};
+  const paceTxt = pace.status !== 'reported'
+    ? `LongPi Pace（每过 1 年风险年龄增加多少）需要多年数据：目前 ${pace.n} 次体检，按每年 1 次，约再 ${pace.more_annual_tests_needed} 次后可以报告。`
+    : (pace.pace_p10 < 1 && pace.pace_p90 > 1
+      ? `LongPi Pace ${pace.pace}（80% 区间 ${pace.pace_p10}–${pace.pace_p90}）：还看不出比同龄人老得更快或更慢，体检年数越多区间越窄。`
+      : `LongPi Pace ${pace.pace}（80% 区间 ${pace.pace_p10}–${pace.pace_p90}）：每过 1 年，风险等效年龄增加约 ${pace.pace} 岁，${pace.pace_p90 < 1 ? '比同龄人老得慢' : '比同龄人老得快'}。`);
+  $('#laNote').textContent = '条形为 80% 区间，竖线为日历年龄。' + paceTxt;
+  const alt = la.clock_alternative;
+  show('#laAlt', !!alt);
+  if (alt) {
+    const why = [...new Set(alt.changes.map(c => c.flag === 'acute_inflammation' ? '急性炎症期' : '红细胞指标异常'))].join('、');
+    const dates = [...new Set(alt.changes.map(c => c.date))].join('、');
+    $('#laAlt').textContent = `提示：${dates} 的血液检查处于${why}，会使血液年龄偏高。按该情况处理后，LongPi Age 约为 ${alt.value.median} 岁（80% 区间 ${alt.value.p10}–${alt.value.p90}），较上方结果 ${fmt(alt.shift_vs_main, 1)} 岁。待状态正常时复查一次血液即可确定。`;
+  }
+  const h = $('#laRange'); h.innerHTML = '';
+  const lo = Math.floor(Math.min(la.value.p10, la.chrono) - 2), hi = Math.ceil(Math.max(la.value.p90, la.chrono) + 2);
+  const W = 360, H = 46; const Xf = v => 10 + (v - lo) / (hi - lo) * (W - 20);
+  const s = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `80% 区间 ${la.value.p10} 到 ${la.value.p90}`}, h);
+  el('line', {x1: 10, x2: W - 10, y1: 16, y2: 16, stroke: css('--grid'), 'stroke-width': 6, 'stroke-linecap': 'round'}, s);
+  el('line', {x1: Xf(la.value.p10), x2: Xf(la.value.p90), y1: 16, y2: 16, stroke: css('--accent'), 'stroke-width': 6, 'stroke-linecap': 'round', opacity: .55}, s);
+  el('circle', {cx: Xf(la.value.median), cy: 16, r: 6, fill: css('--accent'), stroke: css('--surface'), 'stroke-width': 2}, s);
+  el('line', {x1: Xf(la.chrono), x2: Xf(la.chrono), y1: 8, y2: 26, stroke: css('--text'), 'stroke-width': 2}, s);
+  txt(s, Xf(la.value.p10), 40, la.value.p10.toFixed(1), {'text-anchor': 'end'});
+  txt(s, Xf(la.value.p90), 40, la.value.p90.toFixed(1), {'text-anchor': 'start'});
+  txt(s, Xf(la.chrono), 4, '日历 ' + la.chrono, {'text-anchor': 'middle'});
+  $('#ixKicker').textContent = `120 指数 · 相对同龄中国${SEX}`;
+  $('#popLabel').textContent = `同龄中国${SEX}`;
+  const seg = $('#scSeg'); seg.innerHTML = '';
+  [['W', '情景加权'], ...Object.keys(scen).map(k => [k, scen[k].name])].forEach(([k, n]) => {
+    const btn = document.createElement('button'); btn.textContent = n; btn.className = SC === k ? 'on' : '';
+    btn.onclick = () => { SC = k; renderOverview(); }; seg.appendChild(btn); });
+  const cur = SC === 'W' ? null : scen[SC];
+  const idx = SC === 'W' ? R.index120.weighted_index.median : cur.index.median;
+  $('#ixVal').innerHTML = `${idx.toFixed(1)}<small>分</small>`;
+  const ratio = 10 ** ((idx - 100) / 10);
+  const sx = cur || scen[central];
+  const wts = R.index120.weights; const wtxt = Object.keys(wts).map(k => `${scen[k].name} ${wts[k]}`).join(' / ');
+  $('#ixText').innerHTML = SC === 'W'
+    ? `三种情景加权（${esc(wtxt)}）。活到 120 岁的可能性约为同龄人的 <b>${ratio.toFixed(2)} 倍</b>。里程碑按"${esc(scen[central].name)}"显示。`
+    : `${esc(cur.desc)}。80% 区间 ${cur.index.p10}–${cur.index.p90} 分；P(活到 120) ≈ <b>${pexp(cur.p120.median)}</b>，约为同龄人的 <b>${ratio.toFixed(2)} 倍</b>；期望寿命 ${cur.life_exp.median} 岁（人群 ${cur.ref_life_exp}）。`;
+  $('#ixMs').innerHTML = ['80', '90', '100', '110', '120'].map(k => `<div><b>${pexp(sx.milestones[k].median)}</b><span>${k} 岁（${pexp(sx.ref_milestones[k])}）</span></div>`).join('');
+  const ivs = R.interventions.filter(i => !i.medical && i.id !== 'core' && i.quantified && !i.small_effect).sort((a, b) => a.d_longpi_age.median - b.d_longpi_age.median).slice(0, 3);
+  const core = R.interventions.find(i => i.id === 'core');
+  $('#top3').innerHTML = (N.top3 && N.top3.length ? N.top3.map(t => `<li>${esc(t)}</li>`).join('') :
+    ivs.map(i => `<li>${esc(i.name.split('：')[0].split('（')[0])} <span class="tiny">预计 ${fmt(i.d_longpi_age.median, 2)} 岁 · 证据 ${i.evidence}</span></li>`).join(''))
+    + (core ? `<li class="tiny" style="list-style:none;margin-left:-20px">合并为"核心方案"：预计 ${fmt(core.d_longpi_age.median, 2)} 岁，获益概率 ${(core.p_benefit * 100).toFixed(0)}%</li>` : '');
+  const clin = (N.clinical && N.clinical.length) ? N.clinical : (N.risks || []).filter(r => r.level === '关注').map(r => ({action: r.action, due: r.due}));
+  $('#clin').innerHTML = clin.length ? clin.map(r => `<li>${esc(r.action)} <span class="tiny">${esc(r.due || '')}</span></li>`).join('') : '<li class="tiny" style="list-style:none;margin-left:-20px">暂无</li>';
+  renderDataValue(); renderWaterfall(); renderSurv(); renderAsks();
+}
+
+/* ---------- 请用户补充的资料（可选） ---------- */
+function renderAsks() {
+  const A = N.asks || R.asks_default, host = $('#asksWrap');
+  if (!A || !(A.items || []).length) { host.innerHTML = ''; return; }
+  host.innerHTML = `<div class="card" style="margin-top:16px"><div class="kicker">${esc(A.kicker || '待补充资料')}</div>
+    <h3 style="margin-top:4px">${esc(A.title || '待补充资料')}</h3>${A.subtitle ? `<p class="sub">${esc(A.subtitle)}</p>` : ''}
+    <div class="grid g3" style="margin-top:4px">${A.items.map(x => `<div class="askitem">
+      <div class="row"><b>${esc(x.item)}</b>${x.when ? `<span class="pill">${esc(x.when)}</span>` : ''}</div>
+      ${x.why ? `<p class="tiny" style="margin:4px 0 0;color:var(--text-2)">${esc(x.why)}</p>` : ''}
+      ${(x.how || []).length ? `<ol class="todo exsteps">${x.how.map(h => `<li>${esc(h)}</li>`).join('')}</ol>` : ''}</div>`).join('')}</div>
+    ${A.note ? `<p class="tiny" style="margin:10px 0 0">${esc(A.note)}</p>` : ''}</div>`;
+}
+const hw = w => '±' + (w / 2).toFixed(1);
+const costShort = c => (c || '').split('：')[0];
+function providedText() {
+  const la = R.longpi_age; const parts = [];
+  const n = la.clock.phenoage_points.length; if (n) parts.push(`${n} 次血液检查`);
+  if (la.methylation.counted) parts.push(`${la.methylation.clock} 甲基化结果`);
+  const k = la.domains.filter(d => d.measured).length; if (k) parts.push(`${k} 项身体和生活方式指标`);
+  return parts.length ? parts.join('、') : '资料';
+}
+function renderDataValue() {
+  const dv = R.data_value; show('#dvCard', !!dv); if (!dv) return;
+  $('#dvPct').textContent = dv.completeness_pct + '%';
+  $('#dvNow').textContent = `LongPi Age 现在的 80% 区间是 ${hw(dv.width_now)} 岁`;
+  $('#dvFill').style.width = Math.max(2, dv.completeness_pct) + '%';
+  $('#dvL0').textContent = `只知道年龄和性别：${hw(dv.width_none)} 岁`;
+  $('#dvL1').textContent = `下面都做完：${hw(dv.width_all)} 岁`;
+  $('#dvText').textContent = N.data_value_note || `你提供的${providedText()}，已经把区间从 ${hw(dv.width_none)} 岁缩到了 ${hw(dv.width_now)} 岁。完整度按信息量算：每多做一项能让区间缩小多少，占全部能缩小的比例。`;
+  $('#dvTop').innerHTML = dv.items.slice(0, 3).map(i => `<li><b>${esc(i.label)}</b><br><span class="tiny">区间 ${hw(dv.width_now)} → ${hw(i.width_after)} 岁 · 费用${esc(costShort(i.cost))}${i.effort ? ' · ' + esc(i.effort) : ''}</span></li>`).join('')
+    || '<li class="tiny" style="list-style:none;margin-left:-20px">能补的都补齐了。</li>';
+}
+function renderWaterfall() {
+  const la = R.longpi_age; const host = $('#wf'); host.innerHTML = '';
+  $('#wfSub').textContent = `从日历年龄出发，蓝色让你更"年轻"，红色让你更"老"。灰色的项目没有测量，按同龄人的分布计入：不改变中间值，只让区间变宽。`;
+  const mt = la.methylation;
+  const steps = [{k: '血液年龄（PhenoAge）', v: la.clock_delta.median, measured: la.clock.measured,
+                  info: la.clock.measured ? `PhenoAge 差值 ${fmt(la.clock.gap_now_mean, 1)} 岁 × ${la.clock.years_per_gap_year_central}（NHANES 校准）` : `没有血液检测：这一块相当于 ±${la.clock.unmeasured_sd_years} 岁（1 个标准差）的不确定，只加宽区间`},
+                 {k: mt.counted ? `甲基化（${mt.clock}）` : '甲基化（GrimAge2）', v: la.methylation_delta.median, measured: mt.counted,
+                  info: mt.counted ? `${esc(mt.clock)} ${mt.value} 岁，比同龄参考 ${fmt(mt.accel, 1)} 岁，比按你其他指标的预期 ${fmt(mt.resid, 1)} 岁（已按实验室间差异打折）`
+                    : (mt.provided_not_counted ? '现有甲基化报告不是 GrimAge2 / GrimAge，不计入；只加宽区间' : '未测：只加宽区间')}]
+    .concat(la.domains.map(d => ({k: d.domain, v: d.years.median, measured: d.measured, info: d.measured ? `${esc(d.source)}；HR ${d.hr.median}（${d.hr.p10}–${d.hr.p90}）` : '未测：按同龄人群分布计入'})));
+  const rows = [{k: '日历年龄', v: la.chrono, total: true}, ...steps, {k: 'LongPi Age', v: la.value.median, total: true}];
+  let cur = la.chrono, mn = la.chrono, mx = la.chrono;
+  steps.forEach(s => { cur += s.v; mn = Math.min(mn, cur); mx = Math.max(mx, cur); });
+  const a = Math.floor(mn - 1.5), b = Math.ceil(mx + 1.5);
+  const W = 560, rh = 26, m = {l: 170, r: 50, t: 6}, H = m.t + rows.length * rh + 22;
+  const Xf = v => m.l + (v - a) / (b - a) * (W - m.l - m.r);
+  const s = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'LongPi Age 拆解'}, host);
+  niceTicks(a, b, 6).forEach(v => { el('line', {x1: Xf(v), x2: Xf(v), y1: m.t, y2: H - 20, stroke: css('--grid')}, s); txt(s, Xf(v), H - 6, v, {'text-anchor': 'middle'}); });
+  cur = la.chrono;
+  rows.forEach((r, i) => {
+    const y = m.t + i * rh;
+    txt(s, m.l - 8, y + rh / 2 + 4, r.k, {'text-anchor': 'end', style: r.total ? 'font-weight:600;fill:' + css('--text') : (r.measured === false ? 'fill:' + css('--text-3') : '')});
+    let x1, x2, col;
+    if (r.total) { x1 = Xf(a); x2 = Xf(r.v); col = css('--text-3'); }
+    else { const nx = cur + r.v; x1 = Xf(Math.min(cur, nx)); x2 = Xf(Math.max(cur, nx)); col = r.measured === false ? css('--pop') : (r.v < 0 ? css('--younger') : css('--older')); cur = nx; }
+    el('rect', {x: x1, y: y + 5, width: Math.max(2, x2 - x1), height: rh - 10, rx: 3, fill: col, opacity: r.total ? .35 : (r.measured === false ? .45 : 1)}, s);
+    txt(s, Math.max(x1, x2) + 6, y + rh / 2 + 4, r.total ? r.v.toFixed(1) : (r.measured === false ? '未测' : fmt(r.v, 2)), {style: 'font-variant-numeric:tabular-nums' + (r.measured === false ? ';fill:' + css('--text-3') : '')});
+    const hitr = el('rect', {x: 0, y, width: W, height: rh, fill: 'transparent'}, s);
+    hitr.addEventListener('mousemove', e => showTip(e, `<b>${esc(r.k)}</b><br>${r.total ? r.v.toFixed(1) + ' 岁' : (r.measured === false ? '未测（只加宽区间）' : fmt(r.v, 2) + ' 年')}${r.info ? '<br><span class="tiny">' + r.info + '</span>' : ''}`));
+    hitr.addEventListener('mouseleave', hideTip);
+  });
+}
+function renderSurv() {
+  const s = SC === 'W' ? scen[central] : scen[SC];
+  $('#survSub').textContent = `情景：${s.name}${SC === 'W' ? '（加权模式下显示' + scen[central].name + '）' : ''}。纵轴为从现在起活到该年龄的概率。`;
+  const c = s.curve; const keep = c.ages.map((a, i) => i).filter(i => c.ages[i] <= 120);
+  const pts = keep.map(i => [c.ages[i], c.median[i] * 100]);
+  lineChart($('#surv'), {h: 240, xDomain: [c.ages[0], 120], yDomain: [0, 100], yTicks: [0, 25, 50, 75, 100], xTicks: [20, 40, 60, 80, 100, 120].filter(v => v >= c.ages[0]), fmtY: v => v + '%',
+    series: [{pts, color: css('--s1'), band: keep.map(i => [c.ages[i], c.p10[i] * 100, c.p90[i] * 100])},
+             {pts: keep.map(i => [c.ages[i], c.ref[i] * 100]), color: css('--pop'), dash: '5 4'}],
+    tip: (i, a) => `<b>${Math.round(a)} 岁</b><br>本人：${pexp(c.median[i])}（${pexp(c.p10[i])}–${pexp(c.p90[i])}）<br>人群：${pexp(c.ref[i])}`, aria: '生存曲线'});
+}
+
+/* ---------- 数据 ---------- */
+function renderData() {
+  const cov = X.coverage || [];
+  show('#covCard', cov.length > 0);
+  if (cov.length) {
+    $('#covSub').textContent = (N.data_notes && N.data_notes.coverage) || '每一行是一个数据源。';
+    const host = $('#cov'); host.innerHTML = '';
+    const allD = cov.flatMap(r => r.spans.flat()).map(dms); const a0 = Math.min(...allD), b0 = Math.max(...allD);
+    const ya = new Date(a0).getFullYear(), yb = new Date(b0).getFullYear() + 1;
+    const W = 900, rh = 24, m = {l: 170, r: 10, t: 4}, H = m.t + cov.length * rh + 24;
+    const a = dms(ya + '-01'), b = dms(yb + '-01'); const Xf = v => m.l + (v - a) / (b - a) * (W - m.l - m.r);
+    const s = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': '数据覆盖时间轴'}, host);
+    const step = Math.max(1, Math.ceil((yb - ya) / 10));
+    for (let y = ya; y <= yb; y += step) { el('line', {x1: Xf(dms(y + '-01')), x2: Xf(dms(y + '-01')), y1: m.t, y2: H - 20, stroke: css('--grid')}, s); txt(s, Xf(dms(y + '-01')), H - 6, y, {'text-anchor': 'middle'}); }
+    cov.forEach((r, i) => { const y = m.t + i * rh; txt(s, m.l - 8, y + rh / 2 + 4, r.src, {'text-anchor': 'end'});
+      r.spans.forEach(sp => { const x1 = Xf(dms(sp[0])), x2 = Math.max(x1 + 5, Xf(dms(sp[1])) + 4);
+        const rc = el('rect', {x: x1, y: y + 6, width: x2 - x1, height: rh - 12, rx: 3, fill: css('--s1')}, s);
+        rc.addEventListener('mousemove', e => showTip(e, `<b>${esc(r.src)}</b><br>${sp[0]}${sp[0] !== sp[1] ? ' 至 ' + sp[1] : ''}`)); rc.addEventListener('mouseleave', hideTip); }); });
+  }
+  const rec = X.recent || [];
+  const has = k => rec.some(r => r[k] != null);
+  show('#cSleep', has('sleep')); show('#cRhr', has('rhr')); show('#cCgm', (X.cgm || []).length > 0); show('#cSteps', (X.steps_monthly || []).length > 0);
+  if (rec.length) {
+    const t0 = dms(rec[0].d), t1 = dms(rec[rec.length - 1].d);
+    if (has('sleep')) {
+      const st = X.sleep_stats || {};
+      $('#sleepSub').textContent = (N.data_notes && N.data_notes.sleep) || `最近 ${st.n} 晚，中位 ${st.median} 小时；${st.lt7_pct}% 的晚上不足 7 小时（橙色）。虚线为 7 小时。`;
+      lineChart($('#chSleep'), {yDomain: [0, 10], yTicks: [0, 2, 4, 6, 8, 10], refLine: 7, fmtY: v => v + 'h', xTicks: monthTicks(t0, t1), fmtX: v => new Date(v).getMonth() + 1 + '月',
+        series: [{bars: true, pts: rec.map(r => [dms(r.d), r.sleep]), color: p => p[1] < 7 ? css('--s2') : css('--s1')}],
+        tip: i => `<b>${rec[i].d}</b><br>睡着 ${rec[i].sleep != null ? rec[i].sleep.toFixed(1) + ' 小时' : '无数据'}`, aria: '每晚睡眠时长'});
+    }
+    if (has('rhr')) {
+      $('#rhrSub').textContent = (N.data_notes && N.data_notes.rhr) || '同一指标只和同一设备自己比较。';
+      lineChart($('#chRhr'), {xTicks: monthTicks(t0, t1), fmtX: v => new Date(v).getMonth() + 1 + '月', fmtY: v => v,
+        series: [{pts: rec.map(r => [dms(r.d), r.rhr]), color: css('--s1'), width: 1.6}], tip: i => `<b>${rec[i].d}</b><br>静息心率 ${rec[i].rhr ?? '无数据'}`, aria: '静息心率'});
+    }
+  }
+  const WS = X.wearables || {};
+  show('#cBd', has('bd') || has('spo2'));
+  if (has('bd') || has('spo2')) {
+    const t0 = dms(rec[0].d), t1 = dms(rec[rec.length - 1].d), b = WS.breathing_dist_90d;
+    $('#bdSub').textContent = (N.data_notes && N.data_notes.breathing) || ((b ? `近 90 晚呼吸紊乱中位 ${b.median} 次/小时（第 90 百分位 ${b.p90}）` : '') +
+      (WS.spo2_90d ? `${b ? '；' : ''}血氧饱和度中位 ${WS.spo2_90d}%` : '') + '。手表数据只作筛查线索，不能诊断睡眠呼吸暂停；数值长期偏高或伴打鼾、白天嗜睡时，建议做睡眠监测。');
+    const ser = has('bd') ? [{bars: true, pts: rec.map(r => [dms(r.d), r.bd]), color: css('--s1')}] : [{pts: rec.map(r => [dms(r.d), r.spo2]), color: css('--s1'), width: 1.4}];
+    lineChart($('#chBd'), {xTicks: monthTicks(t0, t1), fmtX: v => new Date(v).getMonth() + 1 + '月', fmtY: v => +(+v).toFixed(1),
+      series: ser, tip: i => `<b>${rec[i].d}</b><br>${rec[i].bd != null ? '呼吸紊乱 ' + rec[i].bd + ' 次/小时' : ''}${rec[i].spo2 != null ? '<br>血氧 ' + rec[i].spo2 + '%' : ''}`, aria: has('bd') ? '夜间呼吸紊乱' : '血氧饱和度'});
+  }
+  const wkm = X.workouts_monthly || [];
+  show('#cWk', wkm.length > 0);
+  if (wkm.length) {
+    const rows = wkm.slice(-6); const types = [...new Set(rows.flatMap(r => Object.keys(r.by)))];
+    const w9 = WS.workouts_90d;
+    $('#wkSub').textContent = (N.data_notes && N.data_notes.workouts) || (w9 ? `近 90 天 ${w9.sessions} 次、合计 ${w9.minutes} 分钟。` : '') + '只统计在手表或手机上开始记录的运动。';
+    $('#wk').innerHTML = `<table><thead><tr><th>月份</th>${types.map(t => `<th>${esc(t)}</th>`).join('')}<th>合计</th></tr></thead><tbody>${rows.map(r =>
+      `<tr><th>${esc(r.m)}</th>${types.map(t => `<td class="num">${r.by[t] || ''}</td>`).join('')}<td class="num">${Object.values(r.by).reduce((a, x) => a + x, 0)}</td></tr>`).join('')}</tbody></table>`;
+  }
+  if ((X.cgm || []).length) {
+    const cm = X.cgm_metrics || {};
+    $('#cgmSub').textContent = (N.data_notes && N.data_notes.cgm) || `${cm.days} 天，均值 ${cm.mean} mmol/L，CV ${cm.cv_pct}%，3.9–7.8 范围内 ${cm.titr_3_9_7_8_pct}%。绿色带为 3.9–7.8 mmol/L。`;
+    const cg = X.cgm.map(p => [dms(p[0]), p[1]]); const c0 = cg[0][0], c1 = cg[cg.length - 1][0];
+    const xt = []; for (let t = c0; t <= c1; t += 4 * 86400000) xt.push(t);
+    lineChart($('#chCgm'), {yDomain: [3, 11], yTicks: [3, 5, 7, 9, 11], refBand: [3.9, 7.8], xTicks: xt,
+      fmtX: v => { const d = new Date(v); return `${d.getMonth() + 1}/${d.getDate()}`; },
+      series: [{pts: cg, color: css('--s1'), width: 1.4}], tip: i => `<b>${X.cgm[i][0]}</b><br>${X.cgm[i][1]} mmol/L`, aria: '连续血糖'});
+  }
+  if ((X.steps_monthly || []).length) {
+    const sm = X.steps_monthly.map(r => [dms(r.m), r.steps]);
+    $('#stepsSub').textContent = (N.data_notes && N.data_notes.steps) || '';
+    const y0 = new Date(sm[0][0]).getFullYear(), y1 = new Date(sm[sm.length - 1][0]).getFullYear();
+    const yt = []; for (let y = y0; y <= y1; y += Math.max(1, Math.ceil((y1 - y0) / 5))) yt.push(dms(y + '-01'));
+    lineChart($('#chSteps'), {yDomain: [0, Math.max(14000, ...sm.map(p => p[1]))], fmtY: v => v / 1000 + 'k', xTicks: yt, fmtX: v => new Date(v).getFullYear(),
+      series: [{pts: sm, color: css('--s1')}], tip: i => `<b>${X.steps_monthly[i].m}</b><br>中位 ${Math.round(X.steps_monthly[i].steps).toLocaleString()} 步/天`, aria: '月度步数'});
+  }
+  const labs = X.labs || {}; const lh = $('#labs'); lh.innerHTML = '';
+  show('#labsCard', Object.keys(labs).length > 0);
+  Object.entries(labs).forEach(([k, v]) => {
+    const box = document.createElement('div'); box.innerHTML = `<div style="font-size:13px;font-weight:600">${esc(k)} <span class="tiny">${esc(v.unit)} · ${esc(v.ref_label || '')}</span></div><div></div>`; lh.appendChild(box);
+    const vals = v.pts.map(p => p[1]); const lo = Math.min(...vals, v.ref_lo ?? Infinity, v.ref_hi ?? Infinity), hi = Math.max(...vals, v.ref_hi ?? -Infinity, v.ref_lo ?? -Infinity);
+    const pad = (hi - lo) * .25 || 1; const ts = v.pts.map(p => dms(p[0])); const t0 = Math.min(...ts), t1 = Math.max(...ts); const tp = Math.max((t1 - t0) * 0.08, 86400000 * 60);
+    const yrs = []; for (let y = new Date(t0).getFullYear(); y <= new Date(t1).getFullYear(); y++) yrs.push(dms(y + '-07'));
+    lineChart(box.lastChild, {h: 150, xDomain: [t0 - tp, t1 + tp], yDomain: [lo - pad, hi + pad], xTicks: yrs, fmtX: v => new Date(v).getFullYear(), fmtY: x => +x.toFixed(1),
+      refBand: [v.ref_lo ?? lo - pad * 2, v.ref_hi ?? hi + pad * 2],
+      series: [{pts: v.pts.map(p => [dms(p[0]), p[1]]), color: css('--s1'), markers: true}],
+      tip: i => `<b>${esc(k)}</b> ${v.pts[i][0]}<br>${v.pts[i][1]} ${esc(v.unit)}`, aria: k});
+  });
+  $('#issues').innerHTML = (N.quality_issues || []).map(x => `<li>${esc(x)}</li>`).join('') || '<li>暂无</li>';
+  const dv = R.data_value; show('#dvTableCard', !!dv);
+  if (dv) {
+    $('#dvTableSub').textContent = `按能让 LongPi Age 的 80% 区间缩小多少排序。现在 ${hw(dv.width_now)} 岁，全部做完 ${hw(dv.width_all)} 岁；缩小不到 0.1 岁的不列出。`;
+    $('#gaps').innerHTML = dv.items.map(i => `<tr><td><b>${esc(i.label)}</b>${i.detail ? '<div class="tiny">' + esc(i.detail) + '</div>' : ''}</td><td class="muted">${esc(i.status)}</td>
+      <td class="num">${hw(dv.width_now)} → ${hw(i.width_after)}</td><td class="muted">${esc(i.cost)}${i.effort ? '<div class="tiny">' + esc(i.effort) + '</div>' : ''}</td><td class="muted">${esc(i.also || '')}</td></tr>`).join('')
+      || '<tr><td colspan="5" class="muted">能补的都补齐了。</td></tr>';
+    const extra = (N.gaps || []).map(r => ({what: r[0], use: r[1], have: false}));
+    $('#otherUses').innerHTML = dv.other_uses.concat(extra).map(o => `<li><b>${esc(o.what)}</b>${o.have ? '（已有）' : ''}：${esc(o.use)}</li>`).join('');
+  }
+}
+
+/* ---------- 风险 ---------- */
+const LV = {'关注': ['--serious', '▲'], '留意': ['--warning', '●'], '一般': ['--good', '✓']};
+function renderRisk() {
+  $('#lvlLegend').innerHTML = Object.entries(LV).map(([k, [c, ic]]) => ` <span class="lvl" style="color:var(--text)"><span style="color:var(${c})">${ic}</span>${k}</span>`).join(' ');
+  $('#riskGrid').innerHTML = (N.risks || []).map(r => { const [c, ic] = LV[r.level] || LV['一般'];
+    return `<div class="card risk"><div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><h4>${esc(r.name)}</h4><span class="lvl"><span style="color:var(${c})">${ic}</span>${esc(r.level)}${r.todo ? ' · 待办' : ''}</span></div>
+      <div class="lab">驱动因素</div><ul>${(r.drivers || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      ${(r.protect || []).length ? `<div class="lab">保护因素</div><ul>${r.protect.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      <div class="tiny">依据：${esc(r.evidence)}</div>
+      <div class="act"><span>${esc(r.action)}</span><span class="pill">${esc(r.due || '')}</span></div></div>`; }).join('') || '<div class="card">暂无风险卡。</div>';
+  const pg = N.pgx || [];
+  show('#pgxCard', pg.length > 0);
+  $('#pgxSub').textContent = N.pgx_note || '消费级检测结果在重要处方前应临床复核。';
+  $('#pgx').innerHTML = pg.map(x => `<li>${esc(x)}</li>`).join('');
+}
+
+/* ---------- 前沿 ---------- */
+function renderFrontier() {
+  const mth = X.methylation || null;
+  const org = (mth && mth.organs && Object.keys(mth.organs).length) ? {ages: mth.organs, chrono: mth.chrono,
+    note: (N.organs_note || `${mth.vendor || '厂商'}的器官年龄算法（探索级，没有死亡率随访验证，不计入 LongPi Age）。` +
+      (R.longpi_age.methylation.counted ? `同一类检测里的 ${R.longpi_age.methylation.clock} 已计入。` : '想让甲基化计入，需要报告给出 GrimAge2 或 GrimAge 的数值。') + `竖线为采样时日历年龄 ${mth.chrono} 岁。`)} : (N.organs || null);
+  show('#organCard', !!(org && org.ages && Object.keys(org.ages).length));
+  if (org && org.ages && Object.keys(org.ages).length) {
+    $('#organSub').textContent = org.note || `厂商算法（探索级）。竖线为采样时日历年龄 ${org.chrono} 岁。`;
+    const host = $('#organs'); host.innerHTML = '';
+    const entries = Object.entries(org.ages).sort((a, b) => a[1] - b[1]);
+    const vals = entries.map(e => e[1]).concat([org.chrono]); const a = Math.floor(Math.min(...vals) - 2), b = Math.ceil(Math.max(...vals) + 2);
+    const W = 560, rh = 24, m = {l: 70, r: 40, t: 4}, H = m.t + entries.length * rh + 22, chrono = org.chrono;
+    const Xf = v => m.l + (v - a) / (b - a) * (W - m.l - m.r);
+    const s = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': '器官甲基化年龄'}, host);
+    niceTicks(a, b, 5).forEach(v => { el('line', {x1: Xf(v), x2: Xf(v), y1: m.t, y2: H - 20, stroke: css('--grid')}, s); txt(s, Xf(v), H - 6, v, {'text-anchor': 'middle'}); });
+    entries.forEach(([k, v], i) => { const y = m.t + i * rh; txt(s, m.l - 8, y + rh / 2 + 4, k, {'text-anchor': 'end'});
+      const x1 = Xf(Math.min(v, chrono)), x2 = Xf(Math.max(v, chrono));
+      el('rect', {x: x1, y: y + 6, width: Math.max(2, x2 - x1), height: rh - 12, rx: 3, fill: v < chrono ? css('--younger') : css('--older')}, s);
+      txt(s, x1 - 6, y + rh / 2 + 4, v.toFixed(1), {'text-anchor': 'end', style: 'font-variant-numeric:tabular-nums'});
+      const hr = el('rect', {x: 0, y, width: W, height: rh, fill: 'transparent'}, s);
+      hr.addEventListener('mousemove', e => showTip(e, `<b>${esc(k)}</b><br>${v} 岁（比日历年龄 ${(v - chrono).toFixed(1)}）`)); hr.addEventListener('mouseleave', hideTip); });
+    el('line', {x1: Xf(chrono), x2: Xf(chrono), y1: m.t, y2: H - 20, stroke: css('--text'), 'stroke-width': 2}, s);
+  }
+  const pp = R.longpi_age.clock.phenoage_points;
+  show('#phenoCard', pp.length > 0);
+  if (pp.length) {
+    const noise = pp[pp.length - 1].noise_sd;
+    $('#phenoSub').textContent = (N.pheno_note ? N.pheno_note + ' ' : '') + `低于 0 表示比同龄参考人年轻。单次测量的波动约 ±${noise} 岁（个体内生物学变异），两次相差超过 ${(1.96 * Math.SQRT2 * noise).toFixed(1)} 岁才算确定的变化。`;
+    const ts = pp.map(p => dms(p.date)); const t0 = Math.min(...ts), t1 = Math.max(...ts); const tp = Math.max((t1 - t0) * 0.1, 86400000 * 90);
+    const ys = pp.map(p => p.gap); const yl = Math.floor(Math.min(-4, ...ys.map(y => y - noise)) - 1), yh = Math.ceil(Math.max(4, ...ys.map(y => y + noise)) + 1);
+    const yrs = []; for (let y = new Date(t0).getFullYear(); y <= new Date(t1).getFullYear(); y++) yrs.push(dms(y + '-07'));
+    lineChart($('#pheno'), {h: 200, xDomain: [t0 - tp, t1 + tp], yDomain: [yl, yh], refLine: 0, xTicks: yrs, fmtX: v => new Date(v).getFullYear(),
+      series: [{pts: pp.map(p => [dms(p.date), p.gap]), color: css('--s1'), markers: true, band: pp.map(p => [dms(p.date), p.gap - p.noise_sd, p.gap + p.noise_sd])}],
+      tip: i => `<b>${pp[i].date}</b><br>差值 ${fmt(pp[i].gap)} 岁（±${pp[i].noise_sd}）<br><span class="tiny">PhenoAge ${pp[i].phenoage}，同龄参考人 ${pp[i].ref_phenoage}${pp[i].crp_imputed ? '；CRP 缺失，按人群中位数补入' : ''}${(pp[i].left_out || []).length ? '；未计入 ' + pp[i].left_out.join('、').toUpperCase() : ''}${(pp[i].flags || []).length ? '；提示：' + pp[i].flags.map(f => f === 'acute_inflammation' ? '急性炎症期' : '红细胞指标异常').join('、') : ''}</span>`, aria: 'PhenoAge 差值'});
+  }
+  const tr = R.longpi_age.trajectory || [];
+  show('#trajCard', tr.length >= 2);
+  if (tr.length >= 2) {
+    const pc = R.longpi_age.pace;
+    $('#trajSub').textContent = `每次体检当天的 LongPi Age 与日历年龄之差（只用体检类数据：血液、血压、BMI 等）。阴影为单次测量的正常波动（±${tr[0].noise_sd} 岁）。` +
+      (pc.status === 'reported' ? `LongPi Pace ${pc.pace}（80% 区间 ${pc.pace_p10}–${pc.pace_p90}）。` : `单次波动比几年间的变化还大，按每年 1 次体检，约再 ${pc.more_annual_tests_needed} 次后能算出 LongPi Pace。`);
+    const ts = tr.map(p => dms(p.date)); const t0 = Math.min(...ts), t1 = Math.max(...ts); const tp = Math.max((t1 - t0) * 0.1, 86400000 * 90);
+    const ys = tr.flatMap(p => [p.delta - p.noise_sd, p.delta + p.noise_sd]); const yl = Math.floor(Math.min(-3, ...ys)), yh = Math.ceil(Math.max(3, ...ys));
+    const yrs = []; for (let y = new Date(t0).getFullYear(); y <= new Date(t1).getFullYear(); y++) yrs.push(dms(y + '-07'));
+    lineChart($('#traj'), {w: 1100, h: 230, xDomain: [t0 - tp, t1 + tp], yDomain: [yl, yh], refLine: 0, xTicks: yrs, fmtX: v => new Date(v).getFullYear(),
+      series: [{pts: tr.map(p => [dms(p.date), p.delta]), color: css('--s1'), markers: true, band: tr.map(p => [dms(p.date), p.delta - p.noise_sd, p.delta + p.noise_sd])}],
+      tip: i => `<b>${tr[i].date}</b><br>LongPi Age ${tr[i].longpi_age}（日历 ${tr[i].age}）<br>差值 ${fmt(tr[i].delta)} 岁`, aria: 'LongPi Age 轨迹'});
+  }
+  $('#frGrid').innerHTML = (N.frontier || []).map(f => `<div class="card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>${esc(f.title)}</h3><span class="pill">${esc(f.grade)}</span></div>
+    <p style="font-size:13px;margin:8px 0">${esc(f.body)}</p><div class="tiny">下一步：${esc(f.next)}</div></div>`).join('');
+}
+
+/* ---------- 干预 ---------- */
+function renderIv() {
+  const all = R.interventions.filter(i => !i.small_effect);
+  const ivs = all.filter(i => i.quantified).sort((a, b) => a.d_longpi_age.median - b.d_longpi_age.median);
+  const unq = all.filter(i => !i.quantified);
+  $('#forestSub').textContent = `点为预期效果（已按坚持程度打折），横线为 80% 区间。越靠左越好。右列为"${scen[central].name}"情景下 120 指数的变化和证据等级。D 级证据不给数值。`;
+  const host = $('#forest'); host.innerHTML = '';
+  const lo = Math.min(-0.5, ...ivs.map(i => i.d_longpi_age.p10)), hi = Math.max(0.3, ...ivs.map(i => i.d_longpi_age.p90));
+  const a = Math.floor(lo * 2) / 2, b = Math.ceil(hi * 2) / 2;
+  const rows = ivs.concat(unq);
+  const W = 760, rh = 30, m = {l: 230, r: 120, t: 18}, H = m.t + rows.length * rh + 24;
+  const Xf = v => m.l + (v - a) / (b - a) * (W - m.l - m.r);
+  const s = el('svg', {viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': '干预效果森林图'}, host);
+  niceTicks(a, b, 7).forEach(v => { el('line', {x1: Xf(v), x2: Xf(v), y1: m.t, y2: H - 20, stroke: v === 0 ? css('--text-3') : css('--grid')}, s); txt(s, Xf(v), H - 6, v === 0 ? '0' : v, {'text-anchor': 'middle'}); });
+  txt(s, W - m.r + 10, 12, 'Δ120 指数'); txt(s, m.l, 12, '← 更年轻（岁）');
+  rows.forEach((iv, i) => { const y = m.t + i * rh + rh / 2; const short = iv.name.split('：')[0].split('（')[0];
+    txt(s, m.l - 10, y + 4, (iv.medical ? '⚕ ' : '') + short.slice(0, 16), {'text-anchor': 'end', style: iv.id === 'core' ? 'font-weight:600;fill:' + css('--text') : ''});
+    if (!iv.quantified) { txt(s, Xf(a) + 8, y + 4, '证据不足，不估算', {style: 'fill:' + css('--text-3')}); txt(s, W - m.r + 10, y + 4, `—  ·  ${iv.evidence}`); return; }
+    const col = css('--s1');
+    el('line', {x1: Xf(Math.max(a, iv.d_longpi_age.p10)), x2: Xf(Math.min(b, iv.d_longpi_age.p90)), y1: y, y2: y, stroke: col, 'stroke-width': 2, 'stroke-linecap': 'round'}, s);
+    el(iv.id === 'core' ? 'rect' : 'circle', iv.id === 'core' ? {x: Xf(iv.d_longpi_age.median) - 6, y: y - 6, width: 12, height: 12, rx: 2, fill: col} : {cx: Xf(iv.d_longpi_age.median), cy: y, r: 5.5, fill: col, stroke: css('--surface'), 'stroke-width': 2}, s);
+    txt(s, W - m.r + 10, y + 4, `${fmt(iv.d_index_central.median)}  ·  ${iv.evidence}`, {style: 'font-variant-numeric:tabular-nums'});
+    const hr = el('rect', {x: 0, y: y - rh / 2, width: W, height: rh, fill: 'transparent'}, s);
+    hr.addEventListener('mousemove', e => showTip(e, `<b>${esc(short)}</b><br>ΔLongPi Age ${fmt(iv.d_longpi_age.median, 2)} 岁（${fmt(iv.d_longpi_age.p10, 2)} ～ ${fmt(iv.d_longpi_age.p90, 2)}）<br>获益概率 ${(iv.p_benefit * 100).toFixed(0)}% · 证据 ${iv.evidence}${iv.adherence != null ? ' · 依从性假设 ' + (iv.adherence * 100).toFixed(0) + '%' : ''}`));
+    hr.addEventListener('mouseleave', hideTip); });
+  $('#ivGrid').innerHTML = rows.map(iv => `<details class="card ivcard"${iv.id === 'core' ? ' open' : ''}><summary><div class="row"><div><h3>${iv.medical ? '⚕ ' : ''}${esc(iv.name)}</h3>
+      <div class="tiny">${esc(iv.domain)}${iv.medical ? ' · 需医生决定' : ''}</div></div><span class="ev">${iv.evidence}</span></div>
+      <div style="margin-top:8px;font-size:13px">${iv.quantified ? `ΔLongPi Age <b>${fmt(iv.d_longpi_age.median, 2)}</b> 岁 <span class="tiny">（${fmt(iv.d_longpi_age.p10, 2)} ～ ${fmt(iv.d_longpi_age.p90, 2)}）</span> · 120 指数 <b>${fmt(iv.d_index_central.median)}</b> · 获益概率 <b>${(iv.p_benefit * 100).toFixed(0)}%</b>` : '证据不足，不给数值估计'}</div></summary>
+      <dl><dt>证据</dt><dd>${esc(iv.evidence_note)}</dd>${(iv.modifiers || []).length ? `<dt>个人修正</dt><dd>${iv.modifiers.map(esc).join('；')}</dd>` : ''}<dt>验证</dt><dd>${esc(iv.verify)}${iv.verify_weeks ? `（${iv.verify_weeks} 周）` : ''}</dd>${iv.safety ? `<dt>安全</dt><dd>${esc(iv.safety)}</dd>` : ''}${(iv.sources || []).length ? `<dt>来源</dt><dd class="tiny">${iv.sources.map(esc).join('<br>')}</dd>` : ''}</dl></details>`).join('');
+  const n1 = N.n_of_1;
+  show('#n1Card', !!n1);
+  if (n1) { $('#n1Title').textContent = n1.title; $('#n1Sub').textContent = n1.subtitle || ''; $('#n1').innerHTML = (n1.rows || []).map(r => `<tr><th>${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join(''); }
+  renderTraining();
+  renderSupp();
+  $('#logBtn').onclick = () => {
+    const head = ['日期', '阶段（基线/干预）', '项目（训练/饮食/补充剂）', '具体内容与剂量', '是否完成（是/否）', '体重 kg', '腰围 cm', '静息心率', '睡眠小时', 'HRV ms', '训练重量或握力', '主观感受 0-10', '备注'];
+    const blob = new Blob(['\ufeff' + head.join(',') + '\n'], {type: 'text/csv;charset=utf-8'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'LongPi个人试验记录表.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+}
+
+/* ---------- 补充剂与需要先检查的项目（可选） ---------- */
+function renderSupp() {
+  const S = N.supplements, host = $('#suppWrap');
+  if (!S) { host.innerHTML = ''; return; }
+  const dl = (k, v) => v ? `<dt>${k}</dt><dd>${esc(v)}</dd>` : '';
+  const card = x => `<div class="card excard"><div class="row"><h3>${esc(x.name)}</h3>${x.tier ? `<span class="pill">${esc(x.tier)}</span>` : ''}</div>
+    ${x.why ? `<p style="font-size:13px;margin:6px 0 0">${esc(x.why)}</p>` : ''}
+    <dl>${dl('用法用量', x.dose)}${dl('上限', x.upper)}${dl('试用评估', x.trial)}${dl('禁忌与注意', x.avoid)}${dl('证据', x.evidence)}</dl></div>`;
+  host.innerHTML = `<div class="card"><h3>${esc(S.title || '补充剂')}</h3>${S.subtitle ? `<p class="sub" style="margin:0">${esc(S.subtitle)}</p>` : ''}</div>
+    ${(S.groups || []).map(g => `<h3 class="sesshead">${esc(g.name)}</h3>${g.sub ? `<p class="sub">${esc(g.sub)}</p>` : ''}<div class="grid g3">${(g.items || []).map(card).join('')}</div>`).join('')}
+    ${(S.skip || []).length ? `<div class="card" style="margin-top:16px"><h3>不推荐项目</h3><table><tbody>${S.skip.map(r => `<tr><th style="width:28%">${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table></div>` : ''}
+    ${S.note ? `<p class="tiny" style="margin-top:12px">${esc(S.note)}</p>` : ''}`;
+}
+
+/* ---------- 训练方案（可选） ---------- */
+function renderTraining() {
+  const T = N.training, host = $('#trainWrap');
+  if (!T) { host.innerHTML = ''; return; }
+  const tbl = b => `<table>${b.header ? `<thead><tr>${b.header.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>` : ''}<tbody>${b.table.map(r => `<tr>${r.map((c, i) => i === 0 ? `<th style="white-space:nowrap">${esc(c)}</th>` : `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+  const block = b => `<div class="card"><h3>${esc(b.title)}</h3>${b.sub ? `<p class="sub">${esc(b.sub)}</p>` : ''}
+    ${b.table ? tbl(b) : ''}${b.steps ? `<ol class="todo">${b.steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : ''}
+    ${b.list ? `<ul class="tlist">${b.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}${b.text ? `<p style="font-size:13px;margin:8px 0 0">${esc(b.text)}</p>` : ''}</div>`;
+  const pics = ex => (ex.images || []).length ? `<div class="expics">${ex.images.map((src, i) => `<figure><img src="${src}" alt="${esc(ex.name)}${i ? '结束姿势' : '起始姿势'}" loading="lazy"><figcaption>${(ex.captions || ['起始', '结束'])[i] || ''}</figcaption></figure>`).join('')}</div>` : '';
+  const dl = (k, v) => v ? `<dt>${k}</dt><dd>${Array.isArray(v) ? v.map(esc).join('；') : esc(v)}</dd>` : '';
+  const exCard = ex => `<div class="card excard">${pics(ex)}
+    <div class="row" style="margin-top:10px"><h3>${esc(ex.name)}</h3>${ex.dose ? `<span class="pill">${esc(ex.dose)}</span>` : ''}</div>
+    ${ex.alias ? `<div class="tiny">${esc(ex.alias)}</div>` : ''}${ex.target ? `<div class="tiny">练到：${esc(ex.target)}</div>` : ''}
+    ${(ex.steps || []).length ? `<ol class="todo exsteps">${ex.steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : ''}
+    <dl>${dl('动作要点', ex.cues)}${dl('常见错误', ex.mistakes)}${dl('降阶', ex.easier)}${dl('进阶', ex.harder)}</dl></div>`;
+  host.innerHTML = `<div class="card"><h3>${esc(T.title || '训练方案')}</h3>${T.subtitle ? `<p class="sub" style="margin:0">${esc(T.subtitle)}</p>` : ''}</div>
+    <div class="grid g2" style="margin-top:16px">${(T.blocks || []).map(block).join('')}</div>
+    ${(T.sessions || []).map(se => `<h3 class="sesshead">${esc(se.name)}</h3>${se.sub ? `<p class="sub">${esc(se.sub)}</p>` : ''}
+      <div class="grid g3">${(se.exercises || []).map(exCard).join('')}</div>`).join('')}
+    ${T.credit ? `<p class="tiny" style="margin-top:12px">${esc(T.credit)}</p>` : ''}`;
+}
+
+/* ---------- 方法 ---------- */
+function renderMethods() {
+  const cards = (MT.cards || []);
+  $('#meGrid').innerHTML = cards.map(c => `<div class="card"><h3>${esc(c.title)}</h3><p class="sub">${esc(c.sub || '')}</p>
+    ${(c.rows || []).length ? `<table><tbody>${c.rows.map(r => `<tr><th style="width:38%">${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table>` : ''}
+    ${c.body ? `<p style="font-size:13px;margin:8px 0 0">${esc(c.body)}</p>` : ''}</div>`).join('');
+}
+
+function renderAll() {
+  const on = document.querySelector('section.tab.on').id;
+  try { ({ov: renderOverview, data: renderData, risk: renderRisk, fr: renderFrontier, iv: renderIv, me: renderMethods})[on](); }
+  catch (e) { const bn = $('#banner'); bn.style.display = ''; bn.textContent = '本页部分内容未能显示（' + e.message + '）。请用最新版脚本重新计算并生成报告。'; console.error(e); }
+}
+(() => { let t = location.hash.replace(/^#(tab-)?/, '');
+  if (!document.querySelector(`#nav button[data-t="${t}"]`)) { try { t = localStorage.getItem('lp-tab'); } catch (e) { t = null; } }
+  const b = t && document.querySelector(`#nav button[data-t="${t}"]`); if (b) b.click(); })();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', renderAll);
+let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(renderAll, 150); });
+renderAll();
+</script>
+</body>
+</html>

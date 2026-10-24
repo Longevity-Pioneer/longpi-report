@@ -1,0 +1,257 @@
+{
+ "q1": {
+  "crf": {
+   "n": 3244,
+   "deaths": 115,
+   "slope": 0.6255592903072309,
+   "lo": -0.08187735838150922,
+   "hi": 1.3329959389959711,
+   "slope_adj_phenoage": 0.5681937724842379,
+   "lo_adj": -0.17653694254815255,
+   "hi_adj": 1.3129244875166282
+  },
+  "muscle": {
+   "n": 9866,
+   "deaths": 877,
+   "slope": 2.022368390715063,
+   "lo": 1.6963508198748385,
+   "hi": 2.348385961555288
+  },
+  "rhr": {
+   "n": 48743,
+   "deaths": 7896,
+   "slope": 1.761965862944363,
+   "lo": 1.5557962166038883,
+   "hi": 1.9681355092848378,
+   "slope_adj_phenoage": 0.867368953872228,
+   "lo_adj": 0.6332635894039198,
+   "hi_adj": 1.1014743183405362
+  },
+  "sleep": {
+   "n": 37263,
+   "deaths": 4178,
+   "slope": 2.117391027404038,
+   "lo": 1.798502015340093,
+   "hi": 2.436280039467983,
+   "slope_adj_phenoage": 1.2770738101944035,
+   "lo_adj": 0.8739232706400665,
+   "hi_adj": 1.6802243497487406
+  },
+  "bp": {
+   "n": 48485,
+   "deaths": 7778,
+   "slope": 0.4873635463840328,
+   "lo": 0.35259363384314757,
+   "hi": 0.622133458924918,
+   "slope_adj_phenoage": 0.5197127134273185,
+   "lo_adj": 0.3710074705031494,
+   "hi_adj": 0.6684179563514876
+  },
+  "lipid": {
+   "n": 22127,
+   "deaths": 3444,
+   "slope": -1.3763149785335205,
+   "lo": -1.7789639564351356,
+   "hi": -0.9736660006319053,
+   "slope_adj_phenoage": -0.4462989079914224,
+   "lo_adj": -0.8757135078500049,
+   "hi_adj": -0.016884308132839865
+  },
+  "glucose": {
+   "n": 48598,
+   "deaths": 7867,
+   "slope": 0.6996167716977528,
+   "lo": 0.6265777600304596,
+   "hi": 0.772655783365046,
+   "slope_adj_phenoage": -0.009110463381492013,
+   "lo_adj": -0.10016759588896923,
+   "hi_adj": 0.0819466691259852
+  },
+  "adiposity": {
+   "n": 49782,
+   "deaths": 7764,
+   "slope": 0.3046033021841487,
+   "lo": 0.23197808968839,
+   "hi": 0.3772285146799074,
+   "slope_adj_phenoage": -0.0661378460867836,
+   "lo_adj": -0.15092503705209048,
+   "hi_adj": 0.018649344878523308
+  },
+  "smoking": {
+   "n": 50768,
+   "deaths": 8264,
+   "slope": 3.032563236987884,
+   "lo": 2.815252007839692,
+   "hi": 3.249874466136076,
+   "slope_adj_phenoage": 2.688599507282979,
+   "lo_adj": 2.440185921780745,
+   "hi_adj": 2.937013092785213
+  }
+ },
+ "calibration": {
+  "gap": {
+   "knots": [
+    -5.0,
+    5.0
+   ],
+   "slopes": [
+    0.01024,
+    0.07003,
+    0.0365
+   ],
+   "slopes_sd": [
+    0.00805,
+    0.00445,
+    0.00211
+   ],
+   "b_age_nhanes": 0.09904
+  },
+  "with_clock": {
+   "rhr": {
+    "value": 0.826,
+    "sd": 0.1243,
+    "rule": "overlap",
+    "nhanes": 0.8259590559869331,
+    "basis": "NHANES joint estimate 0.83 (SE 0.12): overlap discount"
+   },
+   "glucose": {
+    "value": 0.0302,
+    "sd": 0.0497,
+    "rule": "overlap",
+    "nhanes": 0.030225276009934986,
+    "basis": "NHANES joint estimate 0.03 (SE 0.05): overlap discount"
+   },
+   "adiposity": {
+    "value": 0.0267,
+    "sd": 0.0449,
+    "rule": "overlap",
+    "nhanes": 0.02666070520551396,
+    "basis": "NHANES joint estimate 0.03 (SE 0.04): overlap discount"
+   },
+   "sleep": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "nhanes": 1.2104255811776383,
+    "basis": "literature; NHANES 1.21 (SE 0.22) is at least as strong, not used to inflate"
+   },
+   "crf": {
+    "value": 0.8526,
+    "sd": 0.2376,
+    "rule": "discounted",
+    "nhanes": 0.6043333573638928,
+    "basis": "NHANES 0.60 (SE 0.39) combined with literature prior 1 (SD 0.3)"
+   },
+   "muscle": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "nhanes": null,
+    "basis": "literature (not estimable in NHANES)"
+   },
+   "bp": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": 0.6319145628144158,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "smoking": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": 2.818555434625162,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "lipid": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": -0.7653221859734858,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "alcohol": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": null,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   }
+  },
+  "without_clock": {
+   "rhr": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "nhanes": 1.3563848979917252,
+    "basis": "literature; NHANES 1.36 (SE 0.11) is at least as strong, not used to inflate"
+   },
+   "glucose": {
+    "value": 0.5932,
+    "sd": 0.0408,
+    "rule": "overlap",
+    "nhanes": 0.5931606317595182,
+    "basis": "NHANES joint estimate 0.59 (SE 0.04): overlap discount"
+   },
+   "adiposity": {
+    "value": 0.2185,
+    "sd": 0.04,
+    "rule": "overlap",
+    "nhanes": 0.21845801957907748,
+    "basis": "NHANES joint estimate 0.22 (SE 0.04): overlap discount"
+   },
+   "sleep": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "nhanes": 1.63849700087008,
+    "basis": "literature; NHANES 1.64 (SE 0.18) is at least as strong, not used to inflate"
+   },
+   "crf": {
+    "value": 0.8698,
+    "sd": 0.2359,
+    "rule": "discounted",
+    "nhanes": 0.6586963654651129,
+    "basis": "NHANES 0.66 (SE 0.38) combined with literature prior 1 (SD 0.3)"
+   },
+   "muscle": {
+    "value": 1.0,
+    "sd": 0.3,
+    "rule": "literature",
+    "nhanes": 1.8486737855860786,
+    "basis": "literature; NHANES 1.85 (SE 0.18) is at least as strong, not used to inflate"
+   },
+   "bp": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": 0.6016737589027823,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "smoking": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": 3.136210117472008,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "lipid": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": null,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   },
+   "alcohol": {
+    "value": 1.0,
+    "sd": 0.1,
+    "rule": "causal",
+    "nhanes": null,
+    "basis": "causal effect size (trials or genetics), coefficient 1"
+   }
+  }
+ }
+}
+with_clock {'label': 'PhenoAge + domains', 'n': 15389, 'deaths': 1051, 'hr_per_longpi_year': 1.1139, 'hr_per_age_year': 1.1008, 'slope_ratio': 1.1228, 'slope_ratio_lo': 1.0217, 'slope_ratio_hi': 1.2238, 'c_age_sex': 0.8347, 'c_with_longpi': 0.8631, 'gap_sd': 5.0508}
+without_clock {'label': 'domains only (no PhenoAge)', 'n': 27306, 'deaths': 2211, 'hr_per_longpi_year': 1.1188, 'hr_per_age_year': 1.095, 'slope_ratio': 1.2369, 'slope_ratio_lo': 1.1132, 'slope_ratio_hi': 1.3605, 'c_age_sex': 0.8295, 'c_with_longpi': 0.8435, 'gap_sd': 3.2763}
+comparators {'demo': {'hr_per_year': 1.0456924635298477, 'slope_ratio': 0.4718968377105198, 'c': 0.8576157988544898}, 'pheno_only': {'hr_per_year': 1.0521520884724445, 'slope_ratio': 0.5382295453278221, 'c': 0.8587470301519866}}

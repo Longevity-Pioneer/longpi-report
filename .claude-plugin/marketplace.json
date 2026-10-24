@@ -1,0 +1,19 @@
+{
+  "name": "longpi-report",
+  "owner": {
+    "name": "Longevity Pioneer",
+    "url": "https://github.com/Longevity-Pioneer"
+  },
+  "metadata": {
+    "description": "LongPi personal longevity report: LongPi Age, the 120 Index, survival and interventions from a person's own data"
+  },
+  "plugins": [
+    {
+      "name": "longpi-report",
+      "source": "./",
+      "description": "Generate a LongPi report (LongPi Age, 120 Index, survival curves, risk cards, intervention predictions) from checkups, wearables, CGM, BP, genetics and methylation; calibrated on UN WPP 2024 and NHANES 1999-2018.",
+      "version": "1.1.0",
+      "category": "health"
+    }
+  ]
+}

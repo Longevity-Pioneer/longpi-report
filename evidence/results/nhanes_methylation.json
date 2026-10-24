@@ -1,0 +1,817 @@
+{
+ "source": "NHANES 1999-2018 with mortality follow-up to 2019; DNAm epigenetic biomarkers 1999-2002 (dnmepi, released 2024-07-31)",
+ "blood_clock_residual": {
+  "n": 35086,
+  "deaths": 5891,
+  "regression": {
+   "intercept": 0.027196264666879237,
+   "lp_without": 1.1734868687272246,
+   "age": 0.00038289358877281293,
+   "male": -0.00884348461441449
+  },
+  "sd_overall": 0.3099,
+  "by_age": [
+   {
+    "age_lo": 20,
+    "age_hi": 39,
+    "n": 11273,
+    "sd": 0.2819,
+    "sd_lp_with": 0.4411,
+    "sd_lp_without": 0.2769
+   },
+   {
+    "age_lo": 40,
+    "age_hi": 59,
+    "n": 11461,
+    "sd": 0.3076,
+    "sd_lp_with": 0.4826,
+    "sd_lp_without": 0.3103
+   },
+   {
+    "age_lo": 60,
+    "age_hi": 74,
+    "n": 8278,
+    "sd": 0.3397,
+    "sd_lp_with": 0.486,
+    "sd_lp_without": 0.3128
+   },
+   {
+    "age_lo": 75,
+    "age_hi": 85,
+    "n": 4074,
+    "sd": 0.3747,
+    "sd_lp_with": 0.4626,
+    "sd_lp_without": 0.2909
+   }
+  ],
+  "cox_resid_per_sd": {
+   "coef": 0.3225723172981342,
+   "se": 0.009555076038425125
+  },
+  "c_without": 0.8520811548385602,
+  "c_with_resid": 0.8645629094207905
+ },
+ "methylation": {
+  "n": 2307,
+  "deaths": 1202,
+  "median_follow_up_years": 17.25,
+  "age_range": [
+   50.0,
+   85.0
+  ],
+  "lp_coef_in_base": 0.9889636138026697,
+  "lp_se_in_base": 0.05813863545594197,
+  "c_base": 0.7681841338444823,
+  "clocks": {
+   "GrimAge2": {
+    "variable": "GrimAge2Mort",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      24.221,
+      0.73591
+     ],
+     "F": [
+      25.0908,
+      0.68709
+     ]
+    },
+    "sd_acceleration": 5.2434,
+    "resid_on": {
+     "intercept": 1.4383,
+     "lp": 6.0945,
+     "age": -0.01368,
+     "male": 0.2778
+    },
+    "r2_explained_by_lp": 0.2601,
+    "sd_resid": 4.5102,
+    "hr_per_sd_alone": 1.5501827076184587,
+    "se_alone": 0.03121500293759716,
+    "beta_per_sd_resid": 0.23939903847522404,
+    "se_per_sd_resid": 0.029817689333987117,
+    "hr_per_sd_resid": 1.2704854080065162,
+    "p_resid": 9.846364569044092e-16,
+    "beta_per_unit_resid": 0.05307894185336889,
+    "se_per_unit_resid": 0.00661110173391242,
+    "lp_coef_with_clock": 1.0960173541008604,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7749106215689427,
+    "lr_chi2": 62.850339116968826,
+    "weighted_beta_per_sd_resid": 0.2895528329930402,
+    "weighted_se": 0.04109748639419033,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.361
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.244
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.026
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": 0.047
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.71
+     }
+    },
+    "race_group_sd_years": 0.359
+   },
+   "GrimAge": {
+    "variable": "GrimAgeMort",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      16.9275,
+      0.76661
+     ],
+     "F": [
+      16.4872,
+      0.72869
+     ]
+    },
+    "sd_acceleration": 4.7452,
+    "resid_on": {
+     "intercept": 1.1868,
+     "lp": 5.0287,
+     "age": -0.01129,
+     "male": 0.2292
+    },
+    "r2_explained_by_lp": 0.2162,
+    "sd_resid": 4.201,
+    "hr_per_sd_alone": 1.5144596019522716,
+    "se_alone": 0.030450259425079854,
+    "beta_per_sd_resid": 0.2398890257763078,
+    "se_per_sd_resid": 0.02924643189180071,
+    "hr_per_sd_resid": 1.2711080822614325,
+    "p_resid": 2.3576262207300037e-16,
+    "beta_per_unit_resid": 0.05710320133474348,
+    "se_per_unit_resid": 0.00696182279800354,
+    "lp_coef_with_clock": 1.0923546634248897,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7749476903872038,
+    "lr_chi2": 64.53996071818256,
+    "weighted_beta_per_sd_resid": 0.2826734319245928,
+    "weighted_se": 0.040584389100807326,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": -0.164
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.8
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.118
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.185
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.846
+     }
+    },
+    "race_group_sd_years": 0.381
+   },
+   "DNAm PhenoAge": {
+    "variable": "PhenoAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      -1.0811,
+      0.86063
+     ],
+     "F": [
+      -0.318,
+      0.83991
+     ]
+    },
+    "sd_acceleration": 6.7761,
+    "resid_on": {
+     "intercept": 0.9093,
+     "lp": 3.8529,
+     "age": -0.00865,
+     "male": 0.1756
+    },
+    "r2_explained_by_lp": 0.0622,
+    "sd_resid": 6.5618,
+    "hr_per_sd_alone": 1.221146453170494,
+    "se_alone": 0.02869607261281857,
+    "beta_per_sd_resid": 0.10124293600680416,
+    "se_per_sd_resid": 0.027897680164114074,
+    "hr_per_sd_resid": 1.106545428840902,
+    "p_resid": 0.0002844321886961714,
+    "beta_per_unit_resid": 0.015429042015995806,
+    "se_per_unit_resid": 0.004251501352864766,
+    "lp_coef_with_clock": 0.997690950867837,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7698131581280647,
+    "lr_chi2": 13.3462179785638,
+    "weighted_beta_per_sd_resid": 0.13110825231642315,
+    "weighted_se": 0.0397558403418853,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 1.336
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.064
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.114
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -1.64
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.268
+     }
+    },
+    "race_group_sd_years": 0.952
+   },
+   "DunedinPoAm": {
+    "variable": "DunedinPoAm",
+    "unit": "years of ageing per year",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      1.0802,
+      0.00053
+     ],
+     "F": [
+      1.0488,
+      0.00067
+     ]
+    },
+    "sd_acceleration": 0.0949,
+    "resid_on": {
+     "intercept": 0.0213,
+     "lp": 0.0902,
+     "age": -0.0002,
+     "male": 0.0041
+    },
+    "r2_explained_by_lp": 0.1737,
+    "sd_resid": 0.0863,
+    "hr_per_sd_alone": 1.3507901896578018,
+    "se_alone": 0.03006151722494119,
+    "beta_per_sd_resid": 0.14045825955551836,
+    "se_per_sd_resid": 0.029060879984628363,
+    "hr_per_sd_resid": 1.1508010436152634,
+    "p_resid": 1.3432747411060691e-06,
+    "beta_per_unit_resid": 1.627590102307247,
+    "se_per_unit_resid": 0.3367491579135234,
+    "lp_coef_with_clock": 1.033347503622041,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7706887837269891,
+    "lr_chi2": 22.968275563926,
+    "weighted_beta_per_sd_resid": 0.17133796495259673,
+    "weighted_se": 0.03978195906790252,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.007
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.005
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": -0.0
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.001
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.006
+     }
+    },
+    "race_group_sd_years": 0.005
+   },
+   "Horvath": {
+    "variable": "HorvathAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      19.7633,
+      0.72401
+     ],
+     "F": [
+      16.9843,
+      0.74831
+     ]
+    },
+    "sd_acceleration": 5.3744,
+    "resid_on": {
+     "intercept": 0.2049,
+     "lp": 0.8684,
+     "age": -0.00195,
+     "male": 0.0396
+    },
+    "r2_explained_by_lp": 0.005,
+    "sd_resid": 5.3609,
+    "hr_per_sd_alone": 1.117086780329868,
+    "se_alone": 0.02851340315518577,
+    "beta_per_sd_resid": 0.08254494023264916,
+    "se_per_sd_resid": 0.02773671679040352,
+    "hr_per_sd_resid": 1.0860474795687687,
+    "p_resid": 0.0029201868964499264,
+    "beta_per_unit_resid": 0.015397589180129232,
+    "se_per_unit_resid": 0.005173891569132214,
+    "lp_coef_with_clock": 0.990779502945859,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7692816714229967,
+    "lr_chi2": 9.030950600721553,
+    "weighted_beta_per_sd_resid": 0.08192537508622823,
+    "weighted_se": 0.038418445783282046,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": -0.171
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.713
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.137
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.622
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.379
+     }
+    },
+    "race_group_sd_years": 0.308
+   },
+   "Hannum": {
+    "variable": "HannumAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      15.8543,
+      0.7868
+     ],
+     "F": [
+      11.3622,
+      0.82701
+     ]
+    },
+    "sd_acceleration": 5.416,
+    "resid_on": {
+     "intercept": 0.4547,
+     "lp": 1.9268,
+     "age": -0.00433,
+     "male": 0.0878
+    },
+    "r2_explained_by_lp": 0.0244,
+    "sd_resid": 5.3496,
+    "hr_per_sd_alone": 1.130804383386003,
+    "se_alone": 0.028288120335075162,
+    "beta_per_sd_resid": 0.08034655396259416,
+    "se_per_sd_resid": 0.027399240580767915,
+    "hr_per_sd_resid": 1.0836625501596018,
+    "p_resid": 0.003363128675612088,
+    "beta_per_unit_resid": 0.015019249812672953,
+    "se_per_unit_resid": 0.005121763394503062,
+    "lp_coef_with_clock": 1.0030879537886896,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7691223756904694,
+    "lr_chi2": 8.82857813827286,
+    "weighted_beta_per_sd_resid": 0.10944327051818334,
+    "weighted_se": 0.03577645516640989,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 1.601
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.445
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.109
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -2.237
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": 0.393
+     }
+    },
+    "race_group_sd_years": 1.258
+   },
+   "Skin & blood": {
+    "variable": "SkinBloodAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      9.3942,
+      0.83744
+     ],
+     "F": [
+      7.7614,
+      0.85082
+     ]
+    },
+    "sd_acceleration": 4.808,
+    "resid_on": {
+     "intercept": 0.1785,
+     "lp": 0.7563,
+     "age": -0.0017,
+     "male": 0.0345
+    },
+    "r2_explained_by_lp": 0.0048,
+    "sd_resid": 4.7965,
+    "hr_per_sd_alone": 1.034325318376352,
+    "se_alone": 0.0271815300774708,
+    "beta_per_sd_resid": 0.011851391963607336,
+    "se_per_sd_resid": 0.025577938484750942,
+    "hr_per_sd_resid": 1.011921897965467,
+    "p_resid": 0.6431175979351877,
+    "beta_per_unit_resid": 0.002470827489561573,
+    "se_per_unit_resid": 0.005332595000528618,
+    "lp_coef_with_clock": 0.9896825876737948,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.768259774270934,
+    "lr_chi2": 0.2175826989696361,
+    "weighted_beta_per_sd_resid": 0.02123326555026334,
+    "weighted_se": 0.034527963144659286,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.447
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.267
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.022
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.89
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": 0.711
+     }
+    },
+    "race_group_sd_years": 0.549
+   },
+   "Zhang": {
+    "variable": "ZhangAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      44.8149,
+      0.33454
+     ],
+     "F": [
+      44.2548,
+      0.34054
+     ]
+    },
+    "sd_acceleration": 1.7852,
+    "resid_on": {
+     "intercept": 0.0432,
+     "lp": 0.1832,
+     "age": -0.00041,
+     "male": 0.0084
+    },
+    "r2_explained_by_lp": 0.002,
+    "sd_resid": 1.7834,
+    "hr_per_sd_alone": 1.056172028722446,
+    "se_alone": 0.027914375603487192,
+    "beta_per_sd_resid": 0.04824721960585065,
+    "se_per_sd_resid": 0.027131230531128002,
+    "hr_per_sd_resid": 1.0494300629443534,
+    "p_resid": 0.07535609471193233,
+    "beta_per_unit_resid": 0.027053038000941988,
+    "se_per_unit_resid": 0.015212943182365636,
+    "lp_coef_with_clock": 0.9933039231964884,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7686900731207487,
+    "lr_chi2": 3.3335885219930788,
+    "weighted_beta_per_sd_resid": 0.07028850125338397,
+    "weighted_se": 0.03543993623994601,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.034
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.076
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.049
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.505
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.114
+     }
+    },
+    "race_group_sd_years": 0.217
+   },
+   "Lin": {
+    "variable": "LinAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      -3.8194,
+      0.93728
+     ],
+     "F": [
+      -6.6227,
+      0.96747
+     ]
+    },
+    "sd_acceleration": 7.9171,
+    "resid_on": {
+     "intercept": 0.3156,
+     "lp": 1.3374,
+     "age": -0.003,
+     "male": 0.061
+    },
+    "r2_explained_by_lp": 0.0055,
+    "sd_resid": 7.8953,
+    "hr_per_sd_alone": 1.0662901630033166,
+    "se_alone": 0.027410431859990668,
+    "beta_per_sd_resid": 0.03270163722347246,
+    "se_per_sd_resid": 0.027015995116359038,
+    "hr_per_sd_resid": 1.0332422122316745,
+    "p_resid": 0.22610447802586267,
+    "beta_per_unit_resid": 0.004141911685339115,
+    "se_per_unit_resid": 0.0034217817627551174,
+    "lp_coef_with_clock": 0.9891703663712894,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.768476676950759,
+    "lr_chi2": 1.4692100144020515,
+    "weighted_beta_per_sd_resid": 0.024720739563982606,
+    "weighted_se": 0.03628170347943144,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.03
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.246
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.18
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -1.134
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -1.158
+     }
+    },
+    "race_group_sd_years": 0.572
+   },
+   "Weidner": {
+    "variable": "WeidnerAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      15.6572,
+      0.58683
+     ],
+     "F": [
+      12.9137,
+      0.63384
+     ]
+    },
+    "sd_acceleration": 8.6951,
+    "resid_on": {
+     "intercept": 0.0244,
+     "lp": 0.1034,
+     "age": -0.00023,
+     "male": 0.0047
+    },
+    "r2_explained_by_lp": 0.0,
+    "sd_resid": 8.695,
+    "hr_per_sd_alone": 1.0384232158019657,
+    "se_alone": 0.026387238176855336,
+    "beta_per_sd_resid": 0.03174880158739182,
+    "se_per_sd_resid": 0.02656437492195325,
+    "hr_per_sd_resid": 1.0322581711203271,
+    "p_resid": 0.23202271090541987,
+    "beta_per_unit_resid": 0.003651381861673575,
+    "se_per_unit_resid": 0.0030551287578437637,
+    "lp_coef_with_clock": 0.987971942335559,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.768268791010511,
+    "lr_chi2": 1.4176731479783484,
+    "weighted_beta_per_sd_resid": 0.025003999269933182,
+    "weighted_se": 0.03443079478376135,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": 0.406
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.987
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.213
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -0.987
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -1.462
+     }
+    },
+    "race_group_sd_years": 0.736
+   },
+   "Vidal-Bralo": {
+    "variable": "VidalBraloAge",
+    "unit": "years",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      33.0725,
+      0.42898
+     ],
+     "F": [
+      31.0826,
+      0.44473
+     ]
+    },
+    "sd_acceleration": 5.2189,
+    "resid_on": {
+     "intercept": 0.3866,
+     "lp": 1.638,
+     "age": -0.00368,
+     "male": 0.0747
+    },
+    "r2_explained_by_lp": 0.019,
+    "sd_resid": 5.1692,
+    "hr_per_sd_alone": 1.1018304712098579,
+    "se_alone": 0.027754038085027313,
+    "beta_per_sd_resid": 0.05466288492922772,
+    "se_per_sd_resid": 0.026830942201784024,
+    "hr_per_sd_resid": 1.0561844989407674,
+    "p_resid": 0.04161921750701229,
+    "beta_per_unit_resid": 0.010574817183927967,
+    "se_per_unit_resid": 0.005190584233227962,
+    "lp_coef_with_clock": 0.9951086818071123,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7684110551238374,
+    "lr_chi2": 4.11501516259159,
+    "weighted_beta_per_sd_resid": 0.0660056620928627,
+    "weighted_se": 0.03268438530788743,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": -0.576
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": -0.936
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": 0.41
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": -2.29
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -2.042
+     }
+    },
+    "race_group_sd_years": 0.988
+   },
+   "DNAm telomere length": {
+    "variable": "HorvathTelo",
+    "unit": "kb",
+    "n": 2307,
+    "deaths": 1202,
+    "reference": {
+     "M": [
+      7.7878,
+      -0.01972
+     ],
+     "F": [
+      7.8201,
+      -0.01833
+     ]
+    },
+    "sd_acceleration": 0.238,
+    "resid_on": {
+     "intercept": -0.0199,
+     "lp": -0.0845,
+     "age": 0.00019,
+     "male": -0.0039
+    },
+    "r2_explained_by_lp": 0.0243,
+    "sd_resid": 0.2351,
+    "hr_per_sd_alone": 0.8279527809563341,
+    "se_alone": 0.02877396939831552,
+    "beta_per_sd_resid": -0.16925155898500355,
+    "se_per_sd_resid": 0.028008373699681018,
+    "hr_per_sd_resid": 0.8442964863023052,
+    "p_resid": 1.5137660406809382e-09,
+    "beta_per_unit_resid": -0.7198256358542803,
+    "se_per_unit_resid": 0.1191194073988031,
+    "lp_coef_with_clock": 1.0418774449832522,
+    "c_base": 0.7681841338444823,
+    "c_with_clock": 0.7723849326274228,
+    "lr_chi2": 36.33084154232711,
+    "weighted_beta_per_sd_resid": -0.20391428369334266,
+    "weighted_se": 0.038094589779305146,
+    "race_groups": {
+     "Mexican American": {
+      "n": 665,
+      "mean_m_years": -0.03
+     },
+     "Other Hispanic": {
+      "n": 145,
+      "mean_m_years": 0.005
+     },
+     "Non-Hispanic White": {
+      "n": 958,
+      "mean_m_years": -0.014
+     },
+     "Non-Hispanic Black": {
+      "n": 465,
+      "mean_m_years": 0.17
+     },
+     "Other (incl. Asian)": {
+      "n": 74,
+      "mean_m_years": -0.059
+     }
+    },
+    "race_group_sd_years": 0.081
+   }
+  },
+  "blood_clock_given_methylation": {
+   "sd_without_methylation": 0.3119,
+   "sd_with_grimage2": 0.2888,
+   "coef_grimage2_acc": 0.02422
+  }
+ }
+}
