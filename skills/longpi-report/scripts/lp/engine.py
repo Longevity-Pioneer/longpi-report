@@ -35,7 +35,7 @@ from typing import Callable, Dict, List, Optional, Sequence, Tuple
 from . import clinical, clock, domains as DM, mortality as M
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
-ENGINE_VERSION = "1.1"
+ENGINE_VERSION = "1.1.1"
 MILESTONES = (80, 90, 100, 110, 120)
 
 
@@ -591,6 +591,8 @@ def run(person: dict, derived: dict, n_draws: int = 2000, seed: int = 20261024) 
         alt["shift_vs_main"] = round(alt["value"]["median"] - res["longpi_age"]["value"]["median"], 1)
     res["longpi_age"]["clock_alternative"] = alt
     res["asks_default"] = default_asks(m, res)
+    from . import systems as SY   # engine 1.1.1: the same terms regrouped by body system; uses no random numbers
+    res["system_ages"] = SY.compute(m, draws)
     return res
 
 

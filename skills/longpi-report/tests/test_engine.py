@@ -341,5 +341,100 @@ class EndToEnd(unittest.TestCase):
         self.assertEqual(problems, [])
 
 
+
+class SystemAges(unittest.TestCase):
+    """Engine 1.1.1: system ages regroup the whole-body terms; they must not move the whole-body number."""
+
+    @classmethod
+    def setUpClass(cls):
+        from lp import derive as DV, systems as SY
+        cls.SY = SY
+        ex = SKILL / "examples"
+        cls.person = json.loads((ex / "demo_person.json").read_text(encoding="utf-8"))
+        cls.derived = DV.derive(json.loads(json.dumps(cls.person)), ex)
+        cls.full = EN.run(json.loads(json.dumps(cls.person)), cls.derived)
+        bare = json.loads(json.dumps(cls.person))
+        bare.pop("labs", None)
+        bare.pop("methylation", None)
+        cls.bare = EN.run(bare, DV.derive(json.loads(json.dumps(bare)), ex), n_draws=300)
+
+    def test_whole_body_unchanged_from_1_1(self):
+        # values printed by engine 1.1 (commit c11cc7f) for examples/demo_person.json with the default seed and draws
+        la = self.full["longpi_age"]
+        self.assertEqual(la["value"], {"median": 35.2, "p10": 29.4, "p90": 39.5})
+        self.assertEqual(la["delta"], {"median": -2.8, "p10": -8.6, "p90": 1.4})
+        self.assertEqual(self.full["index120"]["weighted_index"]["median"], 105.8)
+
+    def test_every_draw_adds_up_to_whole_body(self):
+        for res in (self.full, self.bare):
+            c = res["system_ages"]["consistency"]
+            self.assertLess(c["max_abs_log_hazard_error"], 1e-9)
+            self.assertEqual(c["domains_not_assigned"], [])
+
+    def test_each_domain_in_exactly_one_place(self):
+        sp = self.SY.spec()
+        placed = [d for s in sp["systems"] for d in s["domains"]] + sp["cross_system"]["domains"]
+        self.assertEqual(sorted(placed), sorted(d["id"] for d in DM.domain_specs()))
+        analytes = [k for s in sp["systems"] for k in s["analytes"]]
+        self.assertEqual(sorted(analytes), sorted(self.SY.ANALYTES))
+
+    def test_analyte_gaps_recombine_to_phenoage_gap(self):
+        rng = random.Random(3)
+        for _ in range(40):
+            age, sex = rng.uniform(22, 84), rng.choice("MF")
+            v = {"albumin": rng.uniform(36, 50), "creatinine": rng.uniform(45, 130), "glucose": rng.uniform(4, 9), "crp": rng.uniform(0.2, 12),
+                 "lymph_pct": rng.uniform(15, 45), "mcv": rng.uniform(80, 100), "rdw": rng.uniform(11.5, 16), "alp": rng.uniform(40, 130),
+                 "wbc": rng.uniform(3.5, 11)}
+            gap = clock.phenoage(v, age) - clock.reference_phenoage(age, sex)
+            self.assertAlmostEqual(sum(self.SY.analyte_gaps(v, age, sex).values()), gap, delta=0.01)
+
+    def test_demo_systems(self):
+        sa = self.full["system_ages"]
+        by = {s["id"]: s for s in sa["systems"]}
+        self.assertEqual(len(by), 9)
+        self.assertEqual(by["gut"]["status"], "insufficient")
+        self.assertEqual(by["musculoskeletal"]["status"], "insufficient")      # the demo person has no grip strength
+        self.assertEqual(by["kidney"]["status"], "estimated")
+        for s in sa["systems"]:
+            if s["status"] == "estimated":
+                self.assertLessEqual(s["age"]["p10"], s["age"]["median"])
+                self.assertLessEqual(s["age"]["median"], s["age"]["p90"])
+                self.assertTrue(all(c["evidence"] for c in s["contributions"]))
+            else:
+                self.assertIsNone(s["age"])
+                self.assertTrue(s["missing_zh"])
+        # the analyte shares add up to the filtered PhenoAge gap
+        shares = sum(c["phenoage_gap_share_years"] for s in sa["systems"] for c in s["contributions"] if c["kind"] == "analyte")
+        self.assertAlmostEqual(shares, self.full["longpi_age"]["clock"]["gap_now_mean"], delta=0.06)
+
+    def test_no_blood_test(self):
+        sa = self.bare["system_ages"]
+        by = {s["id"]: s for s in sa["systems"]}
+        self.assertFalse(sa["has_blood_clock"])
+        for sid in ("kidney", "liver", "immune"):
+            self.assertEqual(by[sid]["status"], "insufficient")
+            self.assertIn("九项血液检测", by[sid]["inputs_missing"])
+        self.assertEqual(by["cardiovascular"]["status"], "estimated")
+
+    def test_vendor_organ_age_is_a_separate_line(self):
+        sa = self.full["system_ages"]
+        rep = sa["methylation_rule"]["report"]
+        self.assertIsNotNone(rep)
+        mth = [r for r in self.person["methylation"] if r.get("organs")][-1]
+        for s in sa["systems"]:
+            for v in s["vendor_methylation"]:
+                self.assertFalse(v["counted"])
+                self.assertAlmostEqual(v["gap"], round(mth["organs"][v["label"]] - rep["chrono_at_sampling"], 1), places=6)
+        far = json.loads(json.dumps(self.person))
+        [r for r in far["methylation"] if r.get("organs")][-1]["organs"]["肾"] = 70.0
+        from lp import derive as DV
+        res = EN.run(far, DV.derive(json.loads(json.dumps(far)), SKILL / "examples"), n_draws=300)
+        kid = {s["id"]: s for s in res["system_ages"]["systems"]}["kidney"]
+        self.assertEqual(kid["vendor_agreement"], "inconsistent")
+        base = {s["id"]: s for s in sa["systems"]}["kidney"]
+        self.assertEqual(base["vendor_agreement"], "consistent")
+        self.assertAlmostEqual(kid["delta"]["median"], base["delta"]["median"], delta=0.05)   # the vendor number does not move the system age
+
+
 if __name__ == "__main__":
     unittest.main()
