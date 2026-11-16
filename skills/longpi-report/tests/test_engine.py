@@ -416,6 +416,23 @@ class SystemAges(unittest.TestCase):
             self.assertIn("九项血液检测", by[sid]["inputs_missing"])
         self.assertEqual(by["cardiovascular"]["status"], "estimated")
 
+    def test_unmeasured_analytes_are_not_inputs(self):
+        from lp import derive as DV
+        p = json.loads(json.dumps(self.person))
+        for l in p["labs"]:
+            l["items"].pop("crp", None)
+        p["labs"][-1]["clock_exclude"] = ["mcv", "rdw"]
+        res = EN.run(p, DV.derive(json.loads(json.dumps(p)), SKILL / "examples"), n_draws=300)
+        sa = res["system_ages"]
+        by = {s["id"]: s for s in sa["systems"]}
+        self.assertLess(sa["consistency"]["max_abs_log_hazard_error"], 1e-9)
+        self.assertEqual(by["immune"]["status"], "insufficient")           # CRP is required and was imputed
+        used = [c["id"] for c in by["immune"]["contributions"]]
+        for k in ("crp", "mcv", "rdw"):
+            self.assertNotIn(k, used)
+        self.assertEqual(by["kidney"]["status"], "estimated")
+        self.assertNotEqual(sa["unassigned"]["delta"]["median"], 0.0)       # their shares stay whole-body only
+
     def test_vendor_organ_age_is_a_separate_line(self):
         sa = self.full["system_ages"]
         rep = sa["methylation_rule"]["report"]

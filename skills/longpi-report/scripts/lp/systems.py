@@ -166,12 +166,17 @@ def compute(m, draws: List[dict]) -> dict:
     systems, total = [], [0.0] * n
     for s in sp["systems"]:
         doms = [d for d in s["domains"] if d in m.specs]
-        ans = [k for k in s["analytes"] if k in an_lh]
+        unmeasured_an = [k for k in s["analytes"] if k in an_lh and not an_info[k]["measured"]]
+        ans = [k for k in s["analytes"] if k in an_lh and an_info[k]["measured"]]   # an imputed or left-out analyte is not an input
+        for k in unmeasured_an:
+            for i in range(n):
+                unassigned[i] += an_lh[k][i]
         measured_dom = [d for d in doms if d in m.I.values]
-        measured_an = [k for k in ans if an_info[k]["measured"]]
+        measured_an = list(ans)
         ok = not s.get("never") and (
             (any(d in m.I.values for d in s["require_domains_any"]) or (s.get("clock_satisfies") and bool(measured_an)))
-            if s["require_domains_any"] else True) and (not s["require_clock"] or bool(measured_an))
+            if s["require_domains_any"] else True) and (not s["require_clock"] or bool(measured_an)) and all(
+            k in measured_an for k in s.get("require_analytes", []))
         if not doms and not ans:
             ok = False
         lh = [sum(dom_lh[d][i] for d in doms) + sum(an_lh[k][i] for k in ans) for i in range(n)]
@@ -190,9 +195,9 @@ def compute(m, draws: List[dict]) -> dict:
                             "input_source": f"血液检测 {an_info[k]['date']}", "phenoage_gap_share_years": an_info[k]["gap_years_share"],
                             "years": _years(an_lh[k], b), "evidence": sp["analyte_source"]})
         missing = [m.specs[d]["name_zh"] for d in doms if d not in m.I.values]
-        if s["analytes"] and not ans:
+        if s["analytes"] and not ans and not unmeasured_an:
             missing.append("九项血液检测")
-        missing += [sp["analyte_labels"][k] + "（未实测，按典型值计）" for k in ans if not an_info[k]["measured"]]
+        missing += [sp["analyte_labels"][k] + "（未实测，不计入）" for k in unmeasured_an]
         yrs = _years(lh, b, 1) if ok else None
         aliases = [a.lower() for a in s["methylation_aliases"]]
         vlines = []
@@ -215,11 +220,13 @@ def compute(m, draws: List[dict]) -> dict:
     left = [d for d in m.specs if d not in cross and not any(d in s["domains"] for s in sp["systems"])]
     return {
         "version": sp["version"], "chrono": round(m.age, 1), "gompertz_b": round(b, 4), "has_blood_clock": bool(clock_ok),
+        "blood_test_flags": (m.pheno[-1]["flags"] if clock_ok else []),   # acute inflammation / red-cell abnormality of the latest test
+        "not_counted_other": sp.get("not_counted_other", []),
         "systems": systems,
         "cross_system": {"name": sp["cross_system"]["name_zh"], "delta": _years(cross_lh, b),
                          "contributions": [{"id": d, "label": m.specs[d]["name_zh"], "measured": d in m.I.values,
                                             "years": _years(dom_lh[d], b), "evidence": _sources(m.specs[d])} for d in cross]},
-        "unassigned": {"delta": _years(unassigned, b), "what": "参考曲线取整的余项" if clock_ok else "没有血液检测：全身模型里“看不到的那一块”，不分到任何系统"},
+        "unassigned": {"delta": _years(unassigned, b), "what": "未实测的化验项（按典型值进入血液时钟，不归任何系统）与参考曲线取整的余项" if clock_ok else "没有血液检测：全身模型里“看不到的那一块”，不分到任何系统"},
         "methylation_rule": {"rule": sp["methylation_organ"]["rule"], "tolerance_years": round(tol, 1), "text": sp["methylation_organ"]["rule_zh"],
                              "report": None if not vend else {k: vend[k] for k in ("date", "vendor", "chrono_at_sampling")}},
         "consistency": {"identity": "systems + cross_system + unassigned + methylation == whole-body log R in every draw",

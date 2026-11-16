@@ -2507,6 +2507,21 @@
    "chrono": 38.0,
    "gompertz_b": 0.0985,
    "has_blood_clock": true,
+   "blood_test_flags": [],
+   "not_counted_other": [
+    {
+     "marker": "25-羟维生素 D、促甲状腺激素",
+     "reason": "模型里没有对应的项"
+    },
+    {
+     "marker": "端粒长度与端粒年龄、甲基化细胞比例、衰老加速因子、五维评分（免疫、炎症、脂蛋白、端粒）",
+     "reason": "厂商或研究性指标，没有可换算的效应量；GrimAge2 / GrimAge 仍按原规则只进入全身数值"
+    },
+    {
+     "marker": "基因检测、影像与病理的文字发现",
+     "reason": "不是数值输入"
+    }
+   ],
    "systems": [
     {
      "id": "cardiovascular",
@@ -2576,7 +2591,7 @@
      "note": null,
      "not_counted": [
       {
-       "marker": "ApoB、Lp(a)、LDL 颗粒数、心率变异性",
+       "marker": "舒张压、总胆固醇、ApoB、Lp(a)、LDL 颗粒数、小而密 LDL、心率变异性",
        "reason": "模型里没有对应的项；没有取到可直接换算的全因死亡荟萃效应量"
       }
      ],
@@ -2925,6 +2940,10 @@
       {
        "marker": "中性粒/淋巴比值、细胞因子、流式免疫分型",
        "reason": "比值与淋巴细胞百分比重复；其余没有可换算的效应量"
+      },
+      {
+       "marker": "血红蛋白、红细胞计数、血小板",
+       "reason": "不在 PhenoAge 的九项里，模型没有对应的项"
       }
      ],
      "vendor_methylation": [
@@ -2979,6 +2998,10 @@
       {
        "marker": "肺功能（FEV1、FVC）",
        "reason": "产品目前没有这项输入"
+      },
+      {
+       "marker": "步数、活动消耗",
+       "reason": "模型里没有对应的项；没有取到可按现有口径换算的荟萃效应量"
       }
      ],
      "vendor_methylation": [
@@ -3097,7 +3120,7 @@
      "note": null,
      "not_counted": [
       {
-       "marker": "肠道菌群评分",
+       "marker": "肠道菌群各项评分、五维评分中的肠道项",
        "reason": "厂商评分，没有公开算法，也没有与结局的效应量"
       }
      ],
@@ -3143,7 +3166,7 @@
      "p10": 0.0,
      "p90": 0.0
     },
-    "what": "参考曲线取整的余项"
+    "what": "未实测的化验项（按典型值进入血液时钟，不归任何系统）与参考曲线取整的余项"
    },
    "methylation_rule": {
     "rule": "separate_line",
