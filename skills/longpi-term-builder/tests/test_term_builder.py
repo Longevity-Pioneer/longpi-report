@@ -192,6 +192,26 @@ class Verify(unittest.TestCase):
         t["adjusted_for"].append("core.bp")
         self.assertIsNone(T.overlap_rule(t))               # full -> <= 1
 
+    def test_review_gates(self):
+        s = spec("good_steps.json")
+        del s["population"]["events"]
+        r = T.verify(s, self.reg)
+        self.assertTrue(any("豁免" in w for w in r["warn"]))                  # meta-analysis with n >= 10 000
+        s["population"]["n"] = 5000
+        self.assertTrue(any("未写结局事件数" in f for f in T.verify(s, self.reg)["fail"]))
+        s = spec("good_steps.json")
+        s["behavior"].pop("target")
+        self.assertTrue(any("behavior.target" in f for f in T.verify(s, self.reg)["fail"]))
+        s = spec("good_steps.json")
+        s["reference"].pop("estimated")
+        self.assertTrue(any("estimated" in f for f in T.verify(s, self.reg)["fail"]))
+        # disease outcome: only age/sex adjusted, overlapping counted term -> coef <= 0.3
+        t = {"effect": {"crc": {"hr": 1.8, "lo": 1.5, "hi": 2.1, "overlaps_with": ["ext.prs_crc"], "coef": 0.7}},
+             "adjusted_for": ["age", "sex"], "overlap": {"coef": 0.7, "rationale_zh": "x"}}
+        self.assertTrue(T.overlap_rule_by_outcome(t))
+        t["effect"]["crc"]["coef"] = 0.3
+        self.assertFalse(T.overlap_rule_by_outcome(t))
+
     def test_dedupe_by_code(self):
         s = spec("good_steps.json")
         other = copy.deepcopy(s)
