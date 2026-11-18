@@ -1,0 +1,15 @@
+{
+ "dataset": "examples/e2e synthetic P1/P2 inputs, all subcommands",
+ "date": "2026-11-18",
+ "files": {
+  "P1": {
+   "bytes": 17317,
+   "identical": true
+  },
+  "P2": {
+   "bytes": 25361,
+   "identical": true
+  }
+ },
+ "passed": true
+}

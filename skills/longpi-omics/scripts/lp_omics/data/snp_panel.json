@@ -1,0 +1,1361 @@
+{
+ "source": "Ensembl REST variation endpoint (release current on 2026-11-18), GRCh38 and GRCh37 servers; rsID lists: Kidd et al. 2014 FSI Genet 10:23 Table 1 (55 AISNPs), APOE, CPIC allele definitions",
+ "snps": [
+  {
+   "rsid": "rs3737576",
+   "group": "aisnp_kidd55",
+   "chrom": "1",
+   "pos_GRCh38": 101244007,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 101709563,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs7554936",
+   "group": "aisnp_kidd55",
+   "chrom": "1",
+   "pos_GRCh38": 151150013,
+   "alleles_GRCh38": [
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 151122489,
+   "alleles_GRCh37": [
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs2814778",
+   "group": "aisnp_kidd55",
+   "chrom": "1",
+   "pos_GRCh38": 159204893,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 159174683,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs798443",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 7828144,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 7968275,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1876482",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 17181301,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 17362568,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs1834619",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 17720218,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 17901485,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs3827760",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 108897145,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 109513601,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs260690",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 108963282,
+   "alleles_GRCh38": [
+    "C",
+    "A"
+   ],
+   "pos_GRCh37": 109579738,
+   "alleles_GRCh37": [
+    "C",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs6754311",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 135950412,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 136707982,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs10497191",
+   "group": "aisnp_kidd55",
+   "chrom": "2",
+   "pos_GRCh38": 157810705,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 158667217,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs12498138",
+   "group": "aisnp_kidd55",
+   "chrom": "3",
+   "pos_GRCh38": 121740742,
+   "alleles_GRCh38": [
+    "G",
+    "A"
+   ],
+   "pos_GRCh37": 121459589,
+   "alleles_GRCh37": [
+    "G",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs4833103",
+   "group": "aisnp_kidd55",
+   "chrom": "4",
+   "pos_GRCh38": 38813881,
+   "alleles_GRCh38": [
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 38815502,
+   "alleles_GRCh37": [
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs1229984",
+   "group": "aisnp_kidd55",
+   "chrom": "4",
+   "pos_GRCh38": 99318162,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 100239319,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs3811801",
+   "group": "aisnp_kidd55",
+   "chrom": "4",
+   "pos_GRCh38": 99323162,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 100244319,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs7657799",
+   "group": "aisnp_kidd55",
+   "chrom": "4",
+   "pos_GRCh38": 104454266,
+   "alleles_GRCh38": [
+    "T",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 105375423,
+   "alleles_GRCh37": [
+    "T",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs16891982",
+   "group": "aisnp_kidd55",
+   "chrom": "5",
+   "pos_GRCh38": 33951588,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "G"
+   ],
+   "pos_GRCh37": 33951693,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs7722456",
+   "group": "aisnp_kidd55",
+   "chrom": "5",
+   "pos_GRCh38": 170775980,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 170202984,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs870347",
+   "group": "aisnp_kidd55",
+   "chrom": "5",
+   "pos_GRCh38": 6844922,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 6845035,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs3823159",
+   "group": "aisnp_kidd55",
+   "chrom": "6",
+   "pos_GRCh38": 136161589,
+   "alleles_GRCh38": [
+    "A",
+    "G"
+   ],
+   "pos_GRCh37": 136482727,
+   "alleles_GRCh37": [
+    "A",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs192655",
+   "group": "aisnp_kidd55",
+   "chrom": "6",
+   "pos_GRCh38": 89808559,
+   "alleles_GRCh38": [
+    "G",
+    "A"
+   ],
+   "pos_GRCh37": 90518278,
+   "alleles_GRCh37": [
+    "G",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs917115",
+   "group": "aisnp_kidd55",
+   "chrom": "7",
+   "pos_GRCh38": 28132967,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 28172586,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs1462906",
+   "group": "aisnp_kidd55",
+   "chrom": "8",
+   "pos_GRCh38": 32039076,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 31896592,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs6990312",
+   "group": "aisnp_kidd55",
+   "chrom": "8",
+   "pos_GRCh38": 109590088,
+   "alleles_GRCh38": [
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 110602317,
+   "alleles_GRCh37": [
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs2196051",
+   "group": "aisnp_kidd55",
+   "chrom": "8",
+   "pos_GRCh38": 121112062,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 122124302,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1871534",
+   "group": "aisnp_kidd55",
+   "chrom": "8",
+   "pos_GRCh38": 144414297,
+   "alleles_GRCh38": [
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 145639681,
+   "alleles_GRCh37": [
+    "G",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs3814134",
+   "group": "aisnp_kidd55",
+   "chrom": "9",
+   "pos_GRCh38": 124505410,
+   "alleles_GRCh38": [
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 127267689,
+   "alleles_GRCh37": [
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs4918664",
+   "group": "aisnp_kidd55",
+   "chrom": "10",
+   "pos_GRCh38": 93161308,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 94921065,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs174570",
+   "group": "aisnp_kidd55",
+   "chrom": "11",
+   "pos_GRCh38": 61829740,
+   "alleles_GRCh38": [
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 61597212,
+   "alleles_GRCh37": [
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1079597",
+   "group": "aisnp_kidd55",
+   "chrom": "11",
+   "pos_GRCh38": 113425564,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 113296286,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs2238151",
+   "group": "aisnp_kidd55",
+   "chrom": "12",
+   "pos_GRCh38": 111774029,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 112211833,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs671",
+   "group": "aisnp_kidd55",
+   "chrom": "12",
+   "pos_GRCh38": 111803962,
+   "alleles_GRCh38": [
+    "G",
+    "A"
+   ],
+   "pos_GRCh37": 112241766,
+   "alleles_GRCh37": [
+    "G",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs7997709",
+   "group": "aisnp_kidd55",
+   "chrom": "13",
+   "pos_GRCh38": 34273600,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 34847737,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1572018",
+   "group": "aisnp_kidd55",
+   "chrom": "13",
+   "pos_GRCh38": 41141146,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 41715282,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs2166624",
+   "group": "aisnp_kidd55",
+   "chrom": "13",
+   "pos_GRCh38": 42005849,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 42579985,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs7326934",
+   "group": "aisnp_kidd55",
+   "chrom": "13",
+   "pos_GRCh38": 48496376,
+   "alleles_GRCh38": [
+    "G",
+    "C"
+   ],
+   "pos_GRCh37": 49070512,
+   "alleles_GRCh37": [
+    "G",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs9522149",
+   "group": "aisnp_kidd55",
+   "chrom": "13",
+   "pos_GRCh38": 111174820,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 111827167,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs200354",
+   "group": "aisnp_kidd55",
+   "chrom": "14",
+   "pos_GRCh38": 98908984,
+   "alleles_GRCh38": [
+    "G",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 99375321,
+   "alleles_GRCh37": [
+    "G",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1800414",
+   "group": "aisnp_kidd55",
+   "chrom": "15",
+   "pos_GRCh38": 27951891,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 28197037,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs12913832",
+   "group": "aisnp_kidd55",
+   "chrom": "15",
+   "pos_GRCh38": 28120472,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 28365618,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs12439433",
+   "group": "aisnp_kidd55",
+   "chrom": "15",
+   "pos_GRCh38": 35927834,
+   "alleles_GRCh38": [
+    "A",
+    "G"
+   ],
+   "pos_GRCh37": 36220035,
+   "alleles_GRCh37": [
+    "A",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs735480",
+   "group": "aisnp_kidd55",
+   "chrom": "15",
+   "pos_GRCh38": 44860173,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 45152371,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs1426654",
+   "group": "aisnp_kidd55",
+   "chrom": "15",
+   "pos_GRCh38": 48134287,
+   "alleles_GRCh38": [
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 48426484,
+   "alleles_GRCh37": [
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs459920",
+   "group": "aisnp_kidd55",
+   "chrom": "16",
+   "pos_GRCh38": 89664419,
+   "alleles_GRCh38": [
+    "T",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 89730827,
+   "alleles_GRCh37": [
+    "T",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs4411548",
+   "group": "aisnp_kidd55",
+   "chrom": "17",
+   "pos_GRCh38": 42506515,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 40658533,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs2593595",
+   "group": "aisnp_kidd55",
+   "chrom": "17",
+   "pos_GRCh38": 42904228,
+   "alleles_GRCh38": [
+    "A",
+    "G"
+   ],
+   "pos_GRCh37": 41056245,
+   "alleles_GRCh37": [
+    "A",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs17642714",
+   "group": "aisnp_kidd55",
+   "chrom": "17",
+   "pos_GRCh38": 50648771,
+   "alleles_GRCh38": [
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 48726132,
+   "alleles_GRCh37": [
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs4471745",
+   "group": "aisnp_kidd55",
+   "chrom": "17",
+   "pos_GRCh38": 55491523,
+   "alleles_GRCh38": [
+    "G",
+    "A"
+   ],
+   "pos_GRCh37": 53568884,
+   "alleles_GRCh37": [
+    "G",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs11652805",
+   "group": "aisnp_kidd55",
+   "chrom": "17",
+   "pos_GRCh38": 64991033,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 62987151,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs2042762",
+   "group": "aisnp_kidd55",
+   "chrom": "18",
+   "pos_GRCh38": 37697659,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 35277622,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs7226659",
+   "group": "aisnp_kidd55",
+   "chrom": "18",
+   "pos_GRCh38": 42908314,
+   "alleles_GRCh38": [
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 40488279,
+   "alleles_GRCh37": [
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs3916235",
+   "group": "aisnp_kidd55",
+   "chrom": "18",
+   "pos_GRCh38": 69911695,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 67578931,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs4891825",
+   "group": "aisnp_kidd55",
+   "chrom": "18",
+   "pos_GRCh38": 70200427,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 67867663,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs7251928",
+   "group": "aisnp_kidd55",
+   "chrom": "19",
+   "pos_GRCh38": 4077098,
+   "alleles_GRCh38": [
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 4077096,
+   "alleles_GRCh37": [
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs310644",
+   "group": "aisnp_kidd55",
+   "chrom": "20",
+   "pos_GRCh38": 63528151,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 62159504,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs2024566",
+   "group": "aisnp_kidd55",
+   "chrom": "22",
+   "pos_GRCh38": 41301334,
+   "alleles_GRCh38": [
+    "A",
+    "G"
+   ],
+   "pos_GRCh37": 41697338,
+   "alleles_GRCh37": [
+    "A",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs429358",
+   "group": "apoe",
+   "chrom": "19",
+   "pos_GRCh38": 44908684,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 45411941,
+   "alleles_GRCh37": [
+    "T",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs7412",
+   "group": "apoe",
+   "chrom": "19",
+   "pos_GRCh38": 44908822,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 45412079,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs4244285",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94781859,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 96541616,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs4986893",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94780653,
+   "alleles_GRCh38": [
+    "G",
+    "A"
+   ],
+   "pos_GRCh37": 96540410,
+   "alleles_GRCh37": [
+    "G",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs12248560",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94761900,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 96521657,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs28399504",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94762706,
+   "alleles_GRCh38": [
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 96522463,
+   "alleles_GRCh37": [
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1799853",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94942290,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 96702047,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1057910",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94981296,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 96741053,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs28371686",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94981301,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 96741058,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs9332131",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94949282,
+   "alleles_GRCh38": [
+    "AA",
+    "A",
+    "AAA"
+   ],
+   "pos_GRCh37": 96709039,
+   "alleles_GRCh37": [
+    "AA",
+    "A",
+    "AAA"
+   ]
+  },
+  {
+   "rsid": "rs7900194",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94942309,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 96702066,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs28371685",
+   "group": "pgx",
+   "chrom": "10",
+   "pos_GRCh38": 94981224,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 96740981,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs9923231",
+   "group": "pgx",
+   "chrom": "16",
+   "pos_GRCh38": 31096368,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 31107689,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs4149056",
+   "group": "pgx",
+   "chrom": "12",
+   "pos_GRCh38": 21178615,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C"
+   ],
+   "pos_GRCh37": 21331549,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C"
+   ]
+  },
+  {
+   "rsid": "rs2306283",
+   "group": "pgx",
+   "chrom": "12",
+   "pos_GRCh38": 21176804,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 21329738,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1800462",
+   "group": "pgx",
+   "chrom": "6",
+   "pos_GRCh38": 18143724,
+   "alleles_GRCh38": [
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 18143955,
+   "alleles_GRCh37": [
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs1800460",
+   "group": "pgx",
+   "chrom": "6",
+   "pos_GRCh38": 18138997,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "T"
+   ],
+   "pos_GRCh37": 18139228,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs1142345",
+   "group": "pgx",
+   "chrom": "6",
+   "pos_GRCh38": 18130687,
+   "alleles_GRCh38": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ],
+   "pos_GRCh37": 18130918,
+   "alleles_GRCh37": [
+    "T",
+    "A",
+    "C",
+    "G"
+   ]
+  },
+  {
+   "rsid": "rs116855232",
+   "group": "pgx",
+   "chrom": "13",
+   "pos_GRCh38": 48045719,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 48619855,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs3918290",
+   "group": "pgx",
+   "chrom": "1",
+   "pos_GRCh38": 97450058,
+   "alleles_GRCh38": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 97915614,
+   "alleles_GRCh37": [
+    "C",
+    "A",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs55886062",
+   "group": "pgx",
+   "chrom": "1",
+   "pos_GRCh38": 97515787,
+   "alleles_GRCh38": [
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 97981343,
+   "alleles_GRCh37": [
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs67376798",
+   "group": "pgx",
+   "chrom": "1",
+   "pos_GRCh38": 97082391,
+   "alleles_GRCh38": [
+    "T",
+    "A"
+   ],
+   "pos_GRCh37": 97547947,
+   "alleles_GRCh37": [
+    "T",
+    "A"
+   ]
+  },
+  {
+   "rsid": "rs75017182",
+   "group": "pgx",
+   "chrom": "1",
+   "pos_GRCh38": 97579893,
+   "alleles_GRCh38": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 98045449,
+   "alleles_GRCh37": [
+    "G",
+    "A",
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs56038477",
+   "group": "pgx",
+   "chrom": "1",
+   "pos_GRCh38": 97573863,
+   "alleles_GRCh38": [
+    "C",
+    "G",
+    "T"
+   ],
+   "pos_GRCh37": 98039419,
+   "alleles_GRCh37": [
+    "C",
+    "G",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs776746",
+   "group": "pgx",
+   "chrom": "7",
+   "pos_GRCh38": 99672916,
+   "alleles_GRCh38": [
+    "T",
+    "C"
+   ],
+   "pos_GRCh37": 99270539,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs10264272",
+   "group": "pgx",
+   "chrom": "7",
+   "pos_GRCh38": 99665212,
+   "alleles_GRCh38": [
+    "C",
+    "T"
+   ],
+   "pos_GRCh37": 99262835,
+   "alleles_GRCh37": [
+    "C",
+    "T"
+   ]
+  },
+  {
+   "rsid": "rs41303343",
+   "group": "pgx",
+   "chrom": "7",
+   "pos_GRCh38": 99652771,
+   "alleles_GRCh38": [
+    "A",
+    "AA"
+   ],
+   "pos_GRCh37": 99250394,
+   "alleles_GRCh37": [
+    "A",
+    "AA"
+   ]
+  }
+ ]
+}

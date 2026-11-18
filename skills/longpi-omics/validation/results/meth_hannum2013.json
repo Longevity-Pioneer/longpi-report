@@ -1,0 +1,17 @@
+{
+ "tool_id": "meth_hannum2013",
+ "version": "0.1.0",
+ "dataset": "50 seeded pseudo-samples on the clock CpGs (no real GEO data: bandwidth limit)",
+ "metric": "max |ours - biolearn 0.9.1| (years)",
+ "value": 3.552713678800501e-14,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "pearson_vs_reference": 1.0000000000000002,
+  "n": 50,
+  "reference_impl": "biolearn 0.9.1 LinearMethylationModel",
+  "tolerance": 1e-09,
+  "note": "identical coefficients, no intercept",
+  "age_correlation": "not measured: no real public beta data could be downloaded (193 MB GEO series at ~10 KB/s)"
+ }
+}

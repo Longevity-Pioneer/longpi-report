@@ -1,0 +1,6 @@
+{
+ "horvath": {"intercept": 0.0, "slope": 1.0,
+  "dataset": "convention: accel = DNAm age - chronological age (Horvath online calculator 'AgeAccelerationDiff'); no population regression fitted (public reference data not downloadable under the 2026-11-18 bandwidth limit)"},
+ "hannum": {"intercept": 0.0, "slope": 1.0,
+  "dataset": "convention: accel = DNAm age - chronological age; no population regression fitted (see horvath)"}
+}

@@ -1,0 +1,22 @@
+{
+ "dataset": "1000 Genomes NYGC 30x, 504 EAS",
+ "date": "2026-11-18",
+ "details": {
+  "alleles": {
+   "APOE e2": {
+    "observed_1000G_EAS": 0.0992,
+    "published_EAS": 0.08
+   },
+   "APOE e4": {
+    "observed_1000G_EAS": 0.0863,
+    "published_EAS": 0.09
+   }
+  },
+  "n": 504
+ },
+ "metric": "max |e2/e4 frequency - published EAS|",
+ "passed": true,
+ "tool_id": "apoe_genotype",
+ "value": 0.0192,
+ "version": "0.1.0"
+}

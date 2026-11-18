@@ -1,0 +1,423 @@
+{
+ "schema": "longpi.tool_registry/1",
+ "admission_rule": "reproduces a known answer on public data; two runs byte-identical; licence permits commercial use; no personal data sent over the network",
+ "tools": [
+  {
+   "id": "geno_qc",
+   "module": "scripts/lp_omics/genotype/core.py:qc",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "genetics.qc"
+   ],
+   "license": "MIT (this repository)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "examples/e2e synthetic P1/P2 inputs, all subcommands",
+    "metric": "two runs byte-identical (functional check only)",
+    "value": true,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "geno_build",
+   "module": "scripts/lp_omics/genotype/core.py:detect_build",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "genetics.build"
+   ],
+   "license": "MIT (this repository)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "1000G EAS sample: GRCh38 VCF vs UCSC-chain lift to GRCh37 (no contig header); 23andMe-style GRCh37 chip",
+    "metric": "correct build on 3 files and identical PRS/APOE/ClinVar/PGx/ancestry across builds",
+    "value": true,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "ancestry_aisnp",
+   "module": "scripts/lp_omics/genotype/core.py:ancestry",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "genetics.ancestry"
+   ],
+   "license": "MIT; Kidd 55 AISNP list (Kidd 2014, facts); 1000 Genomes frequencies (open, no restrictions)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "1000 Genomes 2504 unrelated (leave-one-out frequencies), Kidd 55 AISNPs",
+    "metric": "EAS samples assigned to EAS (argmax q)",
+    "value": 1.0,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "prs_score",
+   "module": "scripts/lp_omics/genotype/prs.py",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "PGS:*",
+    "genetics.prs"
+   ],
+   "license": "MIT; per-score licence checked from PGS Catalog, non-commercial scores refused",
+   "deps": [
+    "python>=3.9",
+    "bcftools>=1.15 (building the EAS reference only)"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "1000 Genomes NYGC 30x GRCh38, 504 EAS unrelated; scores PGS002262, PGS003353, PGS000050, PGS000070",
+    "metric": "min Pearson vs plink2 --score (sums, no-mean-imputation)",
+    "value": 1.0,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "apoe_genotype",
+   "module": "scripts/lp_omics/genotype/core.py:apoe",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "LP:apoe_e4_count",
+    "genetics.apoe"
+   ],
+   "license": "MIT (this repository)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "1000 Genomes NYGC 30x, 504 EAS",
+    "metric": "max |e2/e4 frequency - published EAS|",
+    "value": 0.0192,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "clinvar_acmg",
+   "module": "scripts/lp_omics/genotype/clinvar.py",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "LP:monogenic:<HGNC>",
+    "genetics.monogenic"
+   ],
+   "license": "MIT; ClinVar data are public domain (NCBI); ACMG SF v3.2 gene list (facts)",
+   "deps": [
+    "python>=3.9",
+    "bcftools>=1.15 (building the ClinVar subset only)"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "ClinVar VCF GRCh38 + GRCh37, ACMG SF v3.2 genes, heterozygous test calls",
+    "metric": "known P/LP correctly reported AND benign/VUS never reported (both builds)",
+    "value": "25/25 P/LP, 0/25 benign, 0/10 VUS",
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "pgx_cpic",
+   "module": "scripts/lp_omics/genotype/pgx.py",
+   "inputs": [
+    "vcf",
+    "chip_txt"
+   ],
+   "outputs": [
+    "genetics.pgx"
+   ],
+   "license": "MIT; CPIC allele definitions are CC0",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "1000 Genomes NYGC 30x, 504 EAS; CPIC/gnomAD East Asian allele frequencies",
+    "metric": "max |observed - published| allele frequency",
+    "value": 0.0225,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "impute_beagle",
+   "module": "scripts/lp_omics/genotype/impute.py",
+   "inputs": [
+    "vcf",
+    "chip_txt",
+    "reference_panel"
+   ],
+   "outputs": [
+    "(adds imputed calls to the genotype set)"
+   ],
+   "license": "MIT wrapper; Beagle 5.x is GPLv3 and is run as a separate program",
+   "deps": [
+    "python>=3.9",
+    "java>=11",
+    "beagle 5.x jar"
+   ],
+   "optional": true,
+   "version": "0.1.0",
+   "validation": null,
+   "deterministic": true,
+   "admitted": false
+  },
+  {
+   "id": "meth_horvath2013",
+   "module": "scripts/lp_omics/methylation.py",
+   "inputs": [
+    "beta_matrix"
+   ],
+   "outputs": [
+    "LP:clock.horvath",
+    "LP:clock.horvath_accel"
+   ],
+   "license": "MIT; coefficients Horvath 2013 Genome Biol Additional file 3 (open access)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "50 seeded pseudo-samples on the clock CpGs (no real GEO data: bandwidth limit)",
+    "metric": "max |ours - biolearn 0.9.1| (years)",
+    "value": 0.010347582000051148,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "meth_hannum2013",
+   "module": "scripts/lp_omics/methylation.py",
+   "inputs": [
+    "beta_matrix"
+   ],
+   "outputs": [
+    "LP:clock.hannum",
+    "LP:clock.hannum_accel"
+   ],
+   "license": "MIT; coefficients Hannum 2013 Mol Cell Table S3 (as transcribed in biolearn, BSD)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "50 seeded pseudo-samples on the clock CpGs (no real GEO data: bandwidth limit)",
+    "metric": "max |ours - biolearn 0.9.1| (years)",
+    "value": 3.552713678800501e-14,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "meth_vendor_passthrough",
+   "module": "scripts/lp_omics/methylation.py",
+   "inputs": [
+    "vendor_json"
+   ],
+   "outputs": [
+    "LP:clock.<name>",
+    "LP:clock.<name>_accel"
+   ],
+   "license": "MIT; values are the vendor's",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "examples/e2e synthetic P1/P2 inputs, all subcommands",
+    "metric": "two runs byte-identical (functional check only)",
+    "value": true,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "prot_organage2023",
+   "module": "scripts/lp_omics/proteomics.py",
+   "inputs": [
+    "somascan_rfu"
+   ],
+   "outputs": [
+    "LP:prot.organage_<organ>_gap"
+   ],
+   "license": "MIT (organage, Oh et al. 2023 Nature)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "organage example data (tests/df_prot.csv, 200 samples x SomaScan v4.1) and the notebook's printed outputs",
+    "metric": "max |age gap ours - organage package| over 13 models x 200 samples (years)",
+    "value": 6.536993168992922e-13,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "prot_passthrough",
+   "module": "scripts/lp_omics/proteomics.py",
+   "inputs": [
+    "somascan_rfu",
+    "olink_npx"
+   ],
+   "outputs": [
+    "UNIPROT:*"
+   ],
+   "license": "MIT (this repository)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "examples/e2e synthetic P1/P2 inputs, all subcommands",
+    "metric": "two runs byte-identical (functional check only)",
+    "value": true,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "metab_metabohealth2019",
+   "module": "scripts/lp_omics/metabolomics.py",
+   "inputs": [
+    "nightingale_nmr"
+   ],
+   "outputs": [
+    "LP:metab.metabohealth"
+   ],
+   "license": "MIT; betas Deelen 2019 Nat Commun (CC BY 4.0); reference mean/SD numbers from MiMIR",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "MiMIR 1.5 synthetic_metabolic_dataset (500 synthetic Nightingale profiles); reference = MiMIR comp.mort_score run in R",
+    "metric": "max |within-dataset MetaboHealth ours - MiMIR|",
+    "value": 4.218847493575595e-15,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "micro_gmhi2020",
+   "module": "scripts/lp_omics/metagenome.py",
+   "inputs": [
+    "metaphlan_species"
+   ],
+   "outputs": [
+    "LP:micro.gmhi"
+   ],
+   "license": "MIT; species lists Gupta 2020 Nat Commun (CC BY 4.0)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "Gupta 2020 example profile (25 MetaPhlAn2 samples) and the authors' GMHI_output.csv",
+    "metric": "max |GMHI ours - published|",
+    "value": 4.884981308350689e-15,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  },
+  {
+   "id": "micro_shannon",
+   "module": "scripts/lp_omics/metagenome.py",
+   "inputs": [
+    "metaphlan_species"
+   ],
+   "outputs": [
+    "LP:micro.shannon"
+   ],
+   "license": "MIT (this repository)",
+   "deps": [
+    "python>=3.9"
+   ],
+   "version": "0.1.0",
+   "validation": {
+    "dataset": "Gupta 2020 example profile (25 MetaPhlAn2 samples)",
+    "metric": "max |Shannon ours - scipy.stats.entropy| (nats)",
+    "value": 1.7763568394002505e-15,
+    "passed": true,
+    "date": "2026-11-18"
+   },
+   "deterministic": true,
+   "admitted": true
+  }
+ ],
+ "not_admitted": [
+  {
+   "id": "meth_phenoage2018",
+   "reason": "DNAm PhenoAge coefficients: commercial use requires a licence (UCLA TDG / Clock Foundation per biolearn usage metadata); vendor values only"
+  },
+  {
+   "id": "meth_grimage",
+   "reason": "GrimAge / GrimAge2 commercial licence; vendor values only"
+  },
+  {
+   "id": "meth_dunedinpace",
+   "reason": "DunedinPACE commercial licence; vendor values only"
+  },
+  {
+   "id": "prot_protage2024",
+   "reason": "Argentieri 2024 ProtAge (Olink): coefficient licence could not be verified"
+  }
+ ]
+}

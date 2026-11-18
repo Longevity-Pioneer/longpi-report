@@ -201,6 +201,7 @@
   "LP:apoe_e4_count": "APOE ε4 等位基因个数（0/1/2）",
   "LP:monogenic:<HGNC>": "该基因 ClinVar 致病/可能致病变异携带（0/1）",
   "LP:clock.<name>_accel": "时钟加速（时钟值 − 同龄参考，年；name 如 grimage2、horvath、hannum、dnam_phenoage、dunedinpace）",
+  "LP:clock.<name>": "甲基化时钟值（年；name 如 horvath、hannum 由组学层从 β 值计算；grimage2、dunedinpace、dnam_phenoage 等商业授权时钟只接收厂商结果，method 为 vendor）",
   "LP:prot.<clock>_gap": "蛋白组时钟年龄差（年；如 prot.organage_heart_gap、prot.protage_gap）",
   "LP:metab.<score>": "代谢组评分（如 metab.metabohealth）",
   "LP:micro.<index>": "宏基因组指标（如 micro.gmhi、micro.shannon）",

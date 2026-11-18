@@ -1,0 +1,37 @@
+{
+ "P1": {
+  "origin": "1000 Genomes EAS male (CHB), public open-consent; sample ID removed"
+ },
+ "P2": {
+  "origin": "1000 Genomes EAS female (CHS), public open-consent; sample ID removed"
+ },
+ "planted_P2": {
+  "gene": "LDLR",
+  "clinvar_id": "251812",
+  "clnsig": "Likely_pathogenic",
+  "review_status": "reviewed_by_expert_panel",
+  "GRCh38": "chr19:11113537 C>A",
+  "note": "synthetic heterozygous call added to a WGS-style VCF"
+ },
+ "pgs_ids": [
+  "PGS002262",
+  "PGS003353",
+  "PGS000050",
+  "PGS000070"
+ ],
+ "acmg_regions": [
+  "LDLR"
+ ],
+ "x_regions": [
+  [
+   "X",
+   20000000,
+   20040000
+  ],
+  [
+   "X",
+   30000000,
+   30080000
+  ]
+ ]
+}

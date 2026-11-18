@@ -1,0 +1,21 @@
+{
+ "horvath2013_coef.csv": {
+  "clock": "Horvath 2013 multi-tissue DNAm age (353 CpGs)",
+  "source": "Horvath S. DNA methylation age of human tissues and cell types. Genome Biol 2013;14:R115, Additional file 3 (13059_2013_3156_MOESM3_ESM.csv)",
+  "url": "https://static-content.springer.com/esm/art%3A10.1186%2Fgb-2013-14-10-r115/MediaObjects/13059_2013_3156_MOESM3_ESM.csv",
+  "columns": "CpGmarker, CoefficientTraining (row '(Intercept)' = 0.695507258), medianByCpG (author's gold-standard median, used to impute missing CpGs as in the author's R code)",
+  "licence": "Open-access article (BioMed Central, Creative Commons Attribution licence). biolearn 0.9.1 usage metadata records no commercial restriction for Horvathv1 (it does for PhenoAge, Horvathv2, GrimAge, DNAmTL).",
+  "commercial_use": true
+ },
+ "hannum2013_coef.csv": {
+  "clock": "Hannum 2013 blood DNAm age (71 CpGs, no intercept)",
+  "source": "Hannum G et al. Genome-wide methylation profiles reveal quantitative views of human aging rates. Mol Cell 2013;49:359-367, Table S3; transcribed as biolearn 0.9.1 data/Hannum.csv (New BSD licence)",
+  "columns": "CpGmarker, CoefficientTraining, median_sesame450k (missing-CpG imputation value from biolearn data/sesame_450k_median.csv; Hannum published no imputation reference)",
+  "licence": "Coefficients are published numerical results; redistributed under biolearn's New BSD licence. No commercial-use restriction recorded by biolearn.",
+  "commercial_use": true
+ },
+ "refused": {
+  "DNAm PhenoAge (Levine 2018)": "Article is CC BY 3.0, but biolearn records commercial usage as requiring a licence (UCLA TDG / Clock Foundation). LongPi is commercial, so the clock is not computed from raw beta values; vendor values pass through only.",
+  "GrimAge / GrimAge2 / DunedinPACE / Horvath skin&blood / DNAmTL": "Commercial licences (Clock Foundation / Duke / UCLA). Vendor values pass through only; never computed from raw data."
+ }
+}

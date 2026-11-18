@@ -1,0 +1,38 @@
+{
+ "dataset": "1000 Genomes 2504 unrelated (leave-one-out frequencies), Kidd 55 AISNPs",
+ "date": "2026-11-18",
+ "details": {
+  "confusion": {
+   "AFR": {
+    "AFR": 658,
+    "AMR": 3
+   },
+   "AMR": {
+    "AFR": 5,
+    "AMR": 218,
+    "EAS": 4,
+    "EUR": 105,
+    "SAS": 15
+   },
+   "EAS": {
+    "EAS": 504
+   },
+   "EUR": {
+    "EUR": 503
+   },
+   "SAS": {
+    "AMR": 2,
+    "EUR": 3,
+    "SAS": 484
+   }
+  },
+  "mean_q_EAS_in_EAS": 0.9673,
+  "note": "AMR and SAS are admixed / close to EUR at 55 SNPs; proportions are coarse, EAS vs non-EAS is reliable",
+  "overall_accuracy": 0.9453
+ },
+ "metric": "EAS samples assigned to EAS (argmax q)",
+ "passed": true,
+ "tool_id": "ancestry_aisnp",
+ "value": 1.0,
+ "version": "0.1.0"
+}

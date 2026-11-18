@@ -1,0 +1,995 @@
+{
+ "schema": "longpi.observations/1",
+ "person_code": "P2",
+ "observations": [
+  {
+   "obs_id": "o1",
+   "code": "PGS:PGS000050",
+   "value": -1.8767,
+   "unit": "z (1000G EAS)",
+   "datetime": null,
+   "method": "tool",
+   "platform": "chip",
+   "specimen": null,
+   "source_file": "P2_chip_23andme_GRCh37.txt",
+   "source_locator": "PGS000050 hmPOS GRCh37",
+   "sd": null,
+   "flags": [],
+   "tool": "prs_score",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  },
+  {
+   "obs_id": "o2",
+   "code": "PGS:PGS002262",
+   "value": 0.4932,
+   "unit": "z (1000G EAS)",
+   "datetime": null,
+   "method": "tool",
+   "platform": "chip",
+   "specimen": null,
+   "source_file": "P2_chip_23andme_GRCh37.txt",
+   "source_locator": "PGS002262 hmPOS GRCh37",
+   "sd": null,
+   "flags": [],
+   "tool": "prs_score",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  },
+  {
+   "obs_id": "o3",
+   "code": "PGS:PGS003353",
+   "value": 0.2419,
+   "unit": "z (1000G EAS)",
+   "datetime": null,
+   "method": "tool",
+   "platform": "chip",
+   "specimen": null,
+   "source_file": "P2_chip_23andme_GRCh37.txt",
+   "source_locator": "PGS003353 hmPOS GRCh37",
+   "sd": null,
+   "flags": [],
+   "tool": "prs_score",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  },
+  {
+   "obs_id": "o4",
+   "code": "LP:apoe_e4_count",
+   "value": 0,
+   "unit": "count",
+   "datetime": null,
+   "method": "tool",
+   "platform": "chip",
+   "specimen": null,
+   "source_file": "P2_chip_23andme_GRCh37.txt",
+   "source_locator": "rs429358, rs7412",
+   "sd": null,
+   "flags": [],
+   "tool": "apoe_genotype",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  },
+  {
+   "obs_id": "o5",
+   "code": "LP:monogenic:HGNC:6547",
+   "value": 1,
+   "unit": "carrier",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "wgs",
+   "specimen": null,
+   "source_file": "<sample>_wgs_LDLR_GRCh38.vcf",
+   "source_locator": "NC_000019.10:11113536:C:A",
+   "sd": null,
+   "flags": [],
+   "tool": "clinvar_acmg_supplement",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  },
+  {
+   "obs_id": "o6",
+   "code": "LP:prot.organage_adipose_gap",
+   "value": 8.943,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 78.908,
+   "agegap_z": 2.0541
+  },
+  {
+   "obs_id": "o7",
+   "code": "LP:prot.organage_artery_gap",
+   "value": 0.907,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 71.233,
+   "agegap_z": 0.2128
+  },
+  {
+   "obs_id": "o8",
+   "code": "LP:prot.organage_brain_gap",
+   "value": 6.111,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 74.053,
+   "agegap_z": 1.2523
+  },
+  {
+   "obs_id": "o9",
+   "code": "LP:prot.organage_conventional_gap",
+   "value": 3.538,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 66.906,
+   "agegap_z": 0.9949
+  },
+  {
+   "obs_id": "o10",
+   "code": "LP:prot.organage_heart_gap",
+   "value": -7.853,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 61.944,
+   "agegap_z": -1.825
+  },
+  {
+   "obs_id": "o11",
+   "code": "LP:prot.organage_immune_gap",
+   "value": 5.255,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 72.837,
+   "agegap_z": 1.0975
+  },
+  {
+   "obs_id": "o12",
+   "code": "LP:prot.organage_intestine_gap",
+   "value": 1.664,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 72.165,
+   "agegap_z": 0.4181
+  },
+  {
+   "obs_id": "o13",
+   "code": "LP:prot.organage_kidney_gap",
+   "value": 1.121,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 73.559,
+   "agegap_z": 0.4833
+  },
+  {
+   "obs_id": "o14",
+   "code": "LP:prot.organage_liver_gap",
+   "value": 5.848,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 73.294,
+   "agegap_z": 1.2076
+  },
+  {
+   "obs_id": "o15",
+   "code": "LP:prot.organage_lung_gap",
+   "value": 1.744,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 73.137,
+   "agegap_z": 0.5161
+  },
+  {
+   "obs_id": "o16",
+   "code": "LP:prot.organage_muscle_gap",
+   "value": 3.474,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 73.062,
+   "agegap_z": 0.8248
+  },
+  {
+   "obs_id": "o17",
+   "code": "LP:prot.organage_organismal_gap",
+   "value": 2.248,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 65.757,
+   "agegap_z": 0.6193
+  },
+  {
+   "obs_id": "o18",
+   "code": "LP:prot.organage_pancreas_gap",
+   "value": 0.854,
+   "unit": "years",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_organage2023",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "predicted_age": 71.278,
+   "agegap_z": 0.2132
+  },
+  {
+   "obs_id": "o19",
+   "code": "UNIPROT:P01034",
+   "value": 158000.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "2609-59",
+   "analyte_name": "Cystatin C"
+  },
+  {
+   "obs_id": "o20",
+   "code": "UNIPROT:P02741",
+   "value": 2300.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "4337-49",
+   "analyte_name": "CRP"
+  },
+  {
+   "obs_id": "o21",
+   "code": "UNIPROT:Q99988",
+   "value": 1650.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "4374-45",
+   "analyte_name": "GDF15"
+  },
+  {
+   "obs_id": "o22",
+   "code": "UNIPROT:P05231",
+   "value": 32.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "4673-13",
+   "analyte_name": "IL-6"
+  },
+  {
+   "obs_id": "o23",
+   "code": "UNIPROT:P16860",
+   "value": 420.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "7655-11",
+   "analyte_name": "NT-proBNP"
+  },
+  {
+   "obs_id": "o24",
+   "code": "UNIPROT:P41159",
+   "value": 9800.0,
+   "unit": "RFU",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "SomaScan v4",
+   "specimen": "plasma",
+   "source_file": "P2_somascan.csv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "prot_passthrough",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "platform_probe": "8484-24",
+   "analyte_name": "Leptin"
+  },
+  {
+   "obs_id": "o25",
+   "code": "LP:micro.gmhi",
+   "value": 0.7806,
+   "unit": "index",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "shotgun metagenome (MetaPhlAn species profile)",
+   "specimen": "stool",
+   "source_file": "P2_species_abundance.tsv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "micro_gmhi2020",
+   "vendor_derived": false,
+   "sustained_weeks": null,
+   "detail": {
+    "R_MH": 6,
+    "R_MN": 8
+   }
+  },
+  {
+   "obs_id": "o26",
+   "code": "LP:micro.shannon",
+   "value": 2.7684,
+   "unit": "nats",
+   "datetime": "2026-06-02",
+   "method": "tool",
+   "platform": "shotgun metagenome (MetaPhlAn species profile)",
+   "specimen": "stool",
+   "source_file": "P2_species_abundance.tsv",
+   "source_locator": null,
+   "sd": null,
+   "flags": [],
+   "tool": "micro_shannon",
+   "vendor_derived": false,
+   "sustained_weeks": null
+  }
+ ],
+ "provenance": [
+  {
+   "step": "build",
+   "tool": "geno_build",
+   "version": "0.1.0",
+   "params": {
+    "method": "marker positions in both builds",
+    "votes": {
+     "GRCh37": 80,
+     "GRCh38": 0
+    }
+   }
+  },
+  {
+   "step": "qc",
+   "tool": "geno_qc",
+   "version": "0.1.0",
+   "params": {
+    "pass_only": true
+   }
+  },
+  {
+   "step": "ancestry",
+   "tool": "ancestry_aisnp",
+   "version": "0.1.0",
+   "ref_data": {
+    "panel": "Kidd 55 AISNPs (Kidd et al. 2014 FSI Genet 10:23); frequencies 1000G NYGC 30x, 2504 unrelated",
+    "frequencies": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; superpopulation labels from integrated_call_samples_v3.20130502.ALL.panel"
+   }
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS000050",
+   "ref_data": {
+    "pgs_scoring_file": "PGS000050 hmPOS GRCh37 2022-07-28",
+    "scoring_file_sha256": "bdd30a32440a21d3798deeb01a53699e729383b4d2e08ddad978386d20b2d6b5",
+    "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
+   },
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS000070",
+   "ref_data": {
+    "pgs_scoring_file": "PGS000070 hmPOS GRCh37 2022-07-28",
+    "scoring_file_sha256": "50637e2bf32de529dba8efa530e9ac3e73ecffa6e54905090dcd4fc4b9e0ce70",
+    "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
+   },
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS002262",
+   "ref_data": {
+    "pgs_scoring_file": "PGS002262 hmPOS GRCh37 2022-07-28",
+    "scoring_file_sha256": "ac5e055361277d19bfa99e7f42ee534fe18235fa02a3d4f73d5417264bba00ac",
+    "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
+   },
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS003353",
+   "ref_data": {
+    "pgs_scoring_file": "PGS003353 hmPOS GRCh37 2023-10-10",
+    "scoring_file_sha256": "10b51527588dfe1350cc57c0e2695c430b1e820db980dce2ea78094bd86590fc",
+    "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
+   },
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "apoe",
+   "tool": "apoe_genotype",
+   "version": "0.1.0"
+  },
+  {
+   "step": "clinvar",
+   "tool": "clinvar_acmg",
+   "version": "0.1.0",
+   "ref_data": {
+    "clinvar_release": "2026-11-15",
+    "clinvar_source": "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh37/clinvar.vcf.gz",
+    "clinvar_sha256": "b42ec8b7ddc0de4af9de0494dd80324e3f7e523d1c85de3ed3ed64a59de994ee",
+    "clinvar_subset": "ACMG SF v3.2 gene regions +-5 kb (tabix range reads)",
+    "gene_list": "ACMG SF v3.2 (Miller et al. 2023 Genet Med 25:100866)"
+   }
+  },
+  {
+   "step": "pgx",
+   "tool": "pgx_cpic",
+   "version": "0.1.0",
+   "ref_data": {
+    "rules": "CPIC allele definition and allele functionality tables (cpicpgx.org), SNP-definable alleles only; variant alleles are given on the GRCh38/GRCh37 + strand"
+   }
+  },
+  {
+   "step": "clinvar_supplement",
+   "tool": "clinvar_acmg_supplement",
+   "version": "0.1.0",
+   "params": {
+    "build": "GRCh38",
+    "build_method": "VCF contig header (chr1 length)",
+    "source_type": "wgs"
+   },
+   "ref_data": {
+    "clinvar_release": "2026-11-15",
+    "clinvar_subset": "ACMG SF v3.2 gene regions +-5 kb (tabix range reads)",
+    "clinvar_sha256": "e477eee3ea82adb493c38006c092e01c2e67197f7140053de3497705e41b2bf8"
+   }
+  },
+  {
+   "step": "proteomics.organage",
+   "tool": "prot_organage2023",
+   "version": "0.1.0",
+   "ref_data": {
+    "coefficients": "organage (Oh HS-H, Rutledge J et al. Nature 2023;624:164-172), MIT licence, Copyright (c) 2023 Hamilton Oh",
+    "models": "Zprot_stableassayps_perf95 (organ-enriched proteins, KADRC healthy-control training; bootstrap Lasso x500 averaged)"
+   },
+   "qc": {
+    "layout": "analyte_rows",
+    "n_values": 5284,
+    "assay_version": "v4",
+    "version_source": "SeqId count"
+   },
+   "results": {
+    "Adipose": {
+     "computed": true,
+     "n_proteins": 5
+    },
+    "Artery": {
+     "computed": true,
+     "n_proteins": 14
+    },
+    "Brain": {
+     "computed": true,
+     "n_proteins": 202
+    },
+    "Conventional": {
+     "computed": true,
+     "n_proteins": 3123
+    },
+    "Heart": {
+     "computed": true,
+     "n_proteins": 9
+    },
+    "Immune": {
+     "computed": true,
+     "n_proteins": 172
+    },
+    "Intestine": {
+     "computed": true,
+     "n_proteins": 33
+    },
+    "Kidney": {
+     "computed": true,
+     "n_proteins": 12
+    },
+    "Liver": {
+     "computed": true,
+     "n_proteins": 112
+    },
+    "Lung": {
+     "computed": true,
+     "n_proteins": 9
+    },
+    "Muscle": {
+     "computed": true,
+     "n_proteins": 19
+    },
+    "Organismal": {
+     "computed": true,
+     "n_proteins": 2653
+    },
+    "Pancreas": {
+     "computed": true,
+     "n_proteins": 34
+    }
+   }
+  },
+  {
+   "step": "proteomics.passthrough",
+   "tool": "prot_passthrough",
+   "version": "0.1.0",
+   "ref_data": {
+    "proteins": [
+     "P01034",
+     "P02741",
+     "P05231",
+     "P16860",
+     "P41159",
+     "Q99988"
+    ]
+   },
+   "passed": [
+    "Cystatin C",
+    "CRP",
+    "GDF15",
+    "IL-6",
+    "NT-proBNP",
+    "Leptin"
+   ]
+  },
+  {
+   "step": "metagenome.gmhi",
+   "tool": "micro_gmhi2020",
+   "version": "0.1.0",
+   "ref_data": {
+    "species_lists": "Gupta VK et al. A predictive index for health status using species-level gut microbiome profiling. Nat Commun 2020;11:4635 (open access, CC BY 4.0). Species lists = the paper's 7 health-prevalent and 43 health-scarce species; formula re-implemented from the paper's Methods (equivalent to the authors' GMHI.R)."
+   },
+   "qc": {
+    "input_kind": {
+     "kind": "shotgun",
+     "reason": "MetaPhlAn lineage"
+    },
+    "n_species": 30,
+    "reads": null,
+    "abundance_sum": 100.0,
+    "depth_note": "read depth unknown (relative abundances only); depth check not possible"
+   },
+   "params": {
+    "abundance_floor": 1e-05,
+    "MH_prime": 7,
+    "MN_prime": 31
+   }
+  },
+  {
+   "step": "metagenome.shannon",
+   "tool": "micro_shannon",
+   "version": "0.1.0",
+   "params": {
+    "log": "natural",
+    "level": "species",
+    "excluded": "unclassified"
+   }
+  }
+ ],
+ "genetics": {
+  "build": "GRCh37",
+  "source_type": "chip",
+  "qc": {
+   "n_variants": 1183,
+   "n_called": 1183,
+   "call_rate": 1.0,
+   "het_rate": 0.409,
+   "het_rate_basis": "het / called autosomal records in file",
+   "x_het_rate": 0.1418,
+   "n_x_nonpar": 134,
+   "inferred_sex": "F",
+   "declared_sex": "F",
+   "sex_check": "ok",
+   "notes": []
+  },
+  "ancestry": {
+   "AFR": 0.0,
+   "AMR": 0.0,
+   "EAS": 1.0,
+   "EUR": 0.0,
+   "SAS": 0.0,
+   "n_snps": 55,
+   "method": "supervised admixture EM, fixed 1000G superpopulation frequencies",
+   "panel": "Kidd 55 AISNPs (Kidd et al. 2014 FSI Genet 10:23); frequencies 1000G NYGC 30x, 2504 unrelated"
+  },
+  "prs": [
+   {
+    "pgs_id": "PGS000050",
+    "trait": "Breast cancer",
+    "n_variants": 44,
+    "n_scored": 44,
+    "coverage": 1.0,
+    "min_coverage": 0.8,
+    "match_status": {
+     "ok": 44
+    },
+    "ref": "1000G EAS (n 504)",
+    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+    "scored": true,
+    "raw": 2.624,
+    "z": -1.8767,
+    "percentile": 3.27,
+    "ref_mean": 3.384276,
+    "ref_sd": 0.405116,
+    "ref_n_used": 504,
+    "disease_id": null,
+    "disease_ids": []
+   },
+   {
+    "pgs_id": "PGS000070",
+    "trait": "Lung cancer",
+    "n_variants": 19,
+    "n_scored": 14,
+    "coverage": 0.7368,
+    "min_coverage": 0.8,
+    "match_status": {
+     "absent": 5,
+     "ok": 14
+    },
+    "ref": "1000G EAS (n 504)",
+    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+    "scored": false,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "reason": "coverage 0.737 below required 0.8",
+    "disease_id": null,
+    "disease_ids": []
+   },
+   {
+    "pgs_id": "PGS002262",
+    "trait": "Coronary artery disease",
+    "n_variants": 540,
+    "n_scored": 540,
+    "coverage": 1.0,
+    "min_coverage": 0.8,
+    "match_status": {
+     "ok": 540
+    },
+    "ref": "1000G EAS (n 504)",
+    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+    "scored": true,
+    "raw": 0.403,
+    "z": 0.4932,
+    "percentile": 67.86,
+    "ref_mean": 0.149623,
+    "ref_sd": 0.513711,
+    "ref_n_used": 504,
+    "disease_id": null,
+    "disease_ids": []
+   },
+   {
+    "pgs_id": "PGS003353",
+    "trait": "Type 2 diabetes (T2D)",
+    "n_variants": 287,
+    "n_scored": 264,
+    "coverage": 0.9199,
+    "min_coverage": 0.8,
+    "match_status": {
+     "absent": 23,
+     "flipped": 1,
+     "ok": 263
+    },
+    "ref": "1000G EAS (n 504)",
+    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+    "scored": true,
+    "raw": 13.9902,
+    "z": 0.2419,
+    "percentile": 61.11,
+    "ref_mean": 13.833819,
+    "ref_sd": 0.64658,
+    "ref_n_used": 504,
+    "disease_id": null,
+    "disease_ids": []
+   }
+  ],
+  "apoe": {
+   "genotype": "e2/e3",
+   "e4_count": 0,
+   "rs429358": "T/T",
+   "rs7412": "C/T",
+   "phased": false,
+   "disclosure": "standard"
+  },
+  "monogenic": [
+   {
+    "gene": "LDLR",
+    "hgnc": "HGNC:6547",
+    "spdi": "NC_000019.10:11113536:C:A",
+    "clinvar_id": "251812",
+    "clnsig": "Likely_pathogenic",
+    "review_status": "reviewed_by_expert_panel",
+    "review_stars": 3,
+    "condition": "Hypercholesterolemia, familial, 1",
+    "zygosity": "het",
+    "disease_ids": [
+     "cad"
+    ],
+    "acmg_sf": true,
+    "acmg_sf_reportable": true,
+    "inheritance": "AD",
+    "source_type": "wgs",
+    "confirmed_clinical": false,
+    "counts_in_engine": true,
+    "clinvar_version": "2026-11-15",
+    "disclosure": "counsel",
+    "supplement": true,
+    "build": "GRCh38",
+    "source_file": "<sample>_wgs_LDLR_GRCh38.vcf"
+   }
+  ],
+  "pgx": [
+   {
+    "gene": "CYP2C19",
+    "rule": "CPIC",
+    "snps": {
+     "rs4244285": 1,
+     "rs4986893": 0,
+     "rs28399504": 0,
+     "rs12248560": 0
+    },
+    "unphased": true,
+    "diplotype": "*1/*2",
+    "called": true,
+    "phenotype": "中间代谢型"
+   },
+   {
+    "gene": "CYP2C9",
+    "rule": "CPIC",
+    "snps": {
+     "rs1799853": 0,
+     "rs1057910": 0,
+     "rs28371686": 0,
+     "rs7900194": 0,
+     "rs28371685": 0
+    },
+    "unphased": true,
+    "diplotype": "*1/*1",
+    "called": true,
+    "phenotype": "正常代谢型（活性评分 2）"
+   },
+   {
+    "gene": "VKORC1",
+    "rule": "CPIC",
+    "snps": {
+     "rs9923231": 2
+    },
+    "unphased": true,
+    "diplotype": "-1639A/-1639A",
+    "phenotype": "-1639AA：华法林敏感性明显增加",
+    "called": true
+   },
+   {
+    "gene": "SLCO1B1",
+    "rule": "CPIC",
+    "snps": {
+     "rs4149056": 0
+    },
+    "unphased": true,
+    "diplotype": "c.521T/c.521T",
+    "phenotype": "c.521TT：转运功能正常",
+    "called": true
+   },
+   {
+    "gene": "TPMT",
+    "rule": "CPIC",
+    "snps": {
+     "rs1800462": 0,
+     "rs1800460": 0,
+     "rs1142345": 0
+    },
+    "unphased": true,
+    "diplotype": "*1/*1",
+    "called": true,
+    "phenotype": "正常代谢型"
+   },
+   {
+    "gene": "NUDT15",
+    "rule": "CPIC",
+    "snps": {
+     "rs116855232": 0
+    },
+    "unphased": true,
+    "diplotype": "*1/*1",
+    "called": true,
+    "phenotype": "正常代谢型"
+   },
+   {
+    "gene": "DPYD",
+    "rule": "CPIC",
+    "snps": {
+     "rs3918290": 0,
+     "rs55886062": 0,
+     "rs67376798": 0,
+     "rs75017182": 0
+    },
+    "unphased": true,
+    "diplotype": "*1/*1",
+    "called": true,
+    "phenotype": "正常代谢型（活性评分 2）"
+   },
+   {
+    "gene": "CYP3A5",
+    "rule": "CPIC",
+    "snps": {
+     "rs776746": 2,
+     "rs10264272": 0,
+     "rs41303343": null
+    },
+    "unphased": true,
+    "diplotype": "*3/*3",
+    "called": true,
+    "phenotype": "慢代谢型（非表达者）",
+    "notes": [
+     "not genotyped: *7"
+    ]
+   }
+  ],
+  "pgx_caveat_zh": "芯片与短读长数据未分相：两个不同变异默认位于不同染色体（反式）；未检测的稀有等位基因按 *1 处理，结果可能高估功能。仅作用药前参考，临床用药以有资质实验室的药物基因组检测为准。"
+ }
+}

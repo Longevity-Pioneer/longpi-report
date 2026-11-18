@@ -1,0 +1,17 @@
+{
+ "tool_id": "meth_horvath2013",
+ "version": "0.1.0",
+ "dataset": "50 seeded pseudo-samples on the clock CpGs (no real GEO data: bandwidth limit)",
+ "metric": "max |ours - biolearn 0.9.1| (years)",
+ "value": 0.010347582000051148,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "pearson_vs_reference": 0.9999999998746777,
+  "n": 50,
+  "reference_impl": "biolearn 0.9.1 LinearMethylationModel",
+  "tolerance": 0.0105,
+  "note": "biolearn rounds the Horvath intercept to 0.696 (author: 0.695507258); expected constant offset 0.01035 y for adult ages",
+  "age_correlation": "not measured: no real public beta data could be downloaded (193 MB GEO series at ~10 KB/s)"
+ }
+}

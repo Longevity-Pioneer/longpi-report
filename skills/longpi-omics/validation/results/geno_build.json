@@ -1,0 +1,41 @@
+{
+ "dataset": "1000G EAS sample: GRCh38 VCF vs UCSC-chain lift to GRCh37 (no contig header); 23andMe-style GRCh37 chip",
+ "date": "2026-11-18",
+ "details": {
+  "ancestry_identical": true,
+  "apoe_identical": true,
+  "build_P1_lifted_markers": "GRCh37",
+  "build_P1_vcf_header": "GRCh38",
+  "build_P2_chip_markers": "GRCh37",
+  "clinvar_identical": true,
+  "pgx_identical": true,
+  "prs_GRCh38": [
+   [
+    "PGS000050",
+    1.5026,
+    1.0
+   ],
+   [
+    "PGS000070",
+    null,
+    0.7895
+   ],
+   [
+    "PGS002262",
+    0.6842,
+    1.0
+   ],
+   [
+    "PGS003353",
+    0.6044,
+    0.9233
+   ]
+  ],
+  "prs_identical": true
+ },
+ "metric": "correct build on 3 files and identical PRS/APOE/ClinVar/PGx/ancestry across builds",
+ "passed": true,
+ "tool_id": "geno_build",
+ "value": true,
+ "version": "0.1.0"
+}
