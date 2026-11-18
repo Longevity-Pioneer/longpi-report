@@ -216,6 +216,18 @@
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
+   "pgs_id": "PGS002259",
+   "ref_data": {
+    "pgs_scoring_file": "PGS002259 hmPOS GRCh38 2022-08-01",
+    "scoring_file_sha256": "ff38337329ebe8c71e597d8d551c23cefab003c5a9747e181534472461b6eb8b",
+    "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
+   },
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
    "pgs_id": "PGS002262",
    "ref_data": {
     "pgs_scoring_file": "PGS002262 hmPOS GRCh38 2022-08-01",
@@ -235,6 +247,48 @@
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS002241",
+   "skipped": "scoring file not available"
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS002308",
+   "skipped": "scoring file not available"
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS005161",
+   "skipped": "scoring file not available"
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS005162",
+   "skipped": "scoring file not available"
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS005163",
+   "skipped": "scoring file not available"
+  },
+  {
+   "step": "prs",
+   "tool": "prs_score",
+   "version": "0.1.0",
+   "pgs_id": "PGS005164",
+   "skipped": "scoring file not available"
   },
   {
    "step": "apoe",
@@ -372,7 +426,14 @@
    "inferred_sex": "M",
    "declared_sex": "M",
    "sex_check": "ok",
-   "notes": []
+   "notes": [
+    "PGS002241: Catalog metadata unavailable (PrivacyError)",
+    "PGS002308: Catalog metadata unavailable (PrivacyError)",
+    "PGS005161: Catalog metadata unavailable (PrivacyError)",
+    "PGS005162: Catalog metadata unavailable (PrivacyError)",
+    "PGS005163: Catalog metadata unavailable (PrivacyError)",
+    "PGS005164: Catalog metadata unavailable (PrivacyError)"
+   ]
   },
   "ancestry": {
    "AFR": 0.0,
@@ -429,6 +490,21 @@
     "disease_ids": []
    },
    {
+    "pgs_id": "PGS002259",
+    "scored": false,
+    "reason": "RuntimeError: EAS reference not cached",
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+    "disease_id": "stroke",
+    "disease_ids": [
+     "stroke"
+    ]
+   },
+   {
     "pgs_id": "PGS002262",
     "trait": "Coronary artery disease",
     "n_variants": 540,
@@ -447,8 +523,10 @@
     "ref_mean": 0.149623,
     "ref_sd": 0.513711,
     "ref_n_used": 504,
-    "disease_id": null,
-    "disease_ids": []
+    "disease_id": "chd",
+    "disease_ids": [
+     "chd"
+    ]
    },
    {
     "pgs_id": "PGS003353",
@@ -472,6 +550,78 @@
     "ref_n_used": 504,
     "disease_id": null,
     "disease_ids": []
+   },
+   {
+    "pgs_id": "PGS002241",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS002241/ScoringFiles/Harmonized/PGS002241_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "prostate_ca"
+   },
+   {
+    "pgs_id": "PGS002308",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS002308/ScoringFiles/Harmonized/PGS002308_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "t2d"
+   },
+   {
+    "pgs_id": "PGS005161",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS005161/ScoringFiles/Harmonized/PGS005161_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "gastric_ca"
+   },
+   {
+    "pgs_id": "PGS005162",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS005162/ScoringFiles/Harmonized/PGS005162_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "crc"
+   },
+   {
+    "pgs_id": "PGS005163",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS005163/ScoringFiles/Harmonized/PGS005163_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "lung_ca"
+   },
+   {
+    "pgs_id": "PGS005164",
+    "scored": false,
+    "reason": "scoring file not available (PrivacyError: offline mode: https://ftp.ebi.ac.uk/pub/databases/spot/pgs/scores/PGS005164/ScoringFiles/Harmonized/PGS005164_hmPOS_GRCh)",
+    "license": null,
+    "raw": null,
+    "z": null,
+    "percentile": null,
+    "coverage": null,
+    "min_coverage": 0.8,
+    "disease_id": "breast_ca"
    }
   ],
   "apoe": {

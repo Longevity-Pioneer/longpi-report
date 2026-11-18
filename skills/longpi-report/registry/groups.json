@@ -82,6 +82,13 @@
    "cap": 1.6,
    "rule": "cap_only",
    "note_zh": "同一疾病的家族史、多基因评分与致病变异部分重叠但各有独立信息：不按排名剔除，只把组内系数合计压到上限以内"
+  },
+  "muscle_strengthening": {
+   "name_zh": "肌肉力量训练",
+   "cap": 1.5,
+   "members_core": [
+    "core.muscle"
+   ]
   }
  },
  "guardrails": {

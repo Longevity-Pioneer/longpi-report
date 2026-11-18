@@ -96,6 +96,7 @@
 
 字段规则：
 
+- 平台核对：`input.platform` 与观测的 `platform` 都写了且不一致时不计；`PGS:` 项不核对平台（评分编号本身确定了评分，观测的 platform 是基因分型来源 chip/wgs）。
 - `kind`：`state` 身体状态 · `exposure` 暴露（吸烟、饮酒、空气污染） · `behavior` 行为（只进 120 指数） · `genetic` 先天（只进疾病风险）。
 - `effect` 的键是结局：`all_cause`，或 `registry/outcomes/` 里的疾病 id。**只有含 `all_cause` 的 state/exposure 项进入 LongPi Age**；
   只为疾病建的项（例如 LDL→冠心病）只写疾病键，不写 `all_cause`，否则会与 1.1.1 原有领域重复。

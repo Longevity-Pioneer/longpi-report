@@ -17,7 +17,7 @@
  "id": "ext.resistance",
  "name_zh": "每周抗阻训练次数",
  "system": "musculoskeletal",
- "group": "physical_activity",
+ "group": "muscle_strengthening",
  "input": {
   "code": "LP:resistance_sessions_week",
   "unit": "sessions/week",
@@ -150,5 +150,8 @@
  },
  "note_zh": "原文为任何肌力练习对无（two-group）RR 0.85。输入为每周整数次数，折线拐点取 1、跨度 1，相当于 0 次时风险乘 1/0.85、≥1 次不再变化，与原文的二分类对比一致；不对更多次数追加获益，也不惩罚高剂量（原文 J 形关系高剂量段不确定）。指南目标为每周 ≥2 次。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "notes_zh": [
+  "2026-11-18 主线：原文为\"独立于有氧活动\"的关联（已校正有氧活动），机制为肌肉力量而非有氧量，单列为肌肉力量训练组，不与步数、中高强度运动按排名互斥；与握力的重叠由中介规则处理"
+ ]
 }

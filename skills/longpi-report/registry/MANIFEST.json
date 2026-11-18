@@ -1,12 +1,12 @@
 {
- "digest": "a95ed110c217cf936341ceb26c08522787aa08c6c9a07aee2b6956e0dc396ffe",
+ "digest": "f556e9978b4b6146ef2592a530deee642eac437e575b4886cb4a802d0719b3dc",
  "files": {
   "../data/observation_codes.json": "bdb1b01c18a2f12adca06e58aaeb1700062367bdad21f4d4b7c5bb405d048df9",
   "../data/params.json": "cbbe6e43b77ff65632d3521046c4df8246bba4a09f010eb5f8df0fdf2b678023",
   "../data/population_norms_china.json": "e8157db4904252b3c824bd7703180b18a0c0a51842255287dac74cca63bb3791",
   "../data/systems.json": "f84cbe8a7f4226c6ae7c3df95f3c5944d6292382a26df1882fb567b834cc8038",
-  "VERSION": "cad787292b62a07847b139346bfa1b8ff0a533b04cc585782da77b13cdc99b0c",
-  "groups.json": "04fc16916d5a4a75d5b4bb9819d4ac5be6ac4960a72f791f2a89519cb0c2279e",
+  "VERSION": "22497b51a70fca07d939828a12601829c3bd81c85d62e8602db07d1dd62fc266",
+  "groups.json": "3e9edb84137cb624203fc42babad6874b9fecb4785b41a4fd2c15d3ded89ca0d",
   "outcomes/ad.json": "7511b978cf527023a9d7b5b6a66f2cc258cf52bdb912b20bdb015437f3bb4a39",
   "outcomes/breast_ca.json": "360a5cd6f7bdeb6b126b1d7529202daee75e04016299d82e457ed422831dd120",
   "outcomes/chd.json": "eb36774de10257b5b51c4c42d6ea778d21e63ebdaca9105e7f517aa6471db7c8",
@@ -229,7 +229,7 @@
   "terms/ext.prs_prostate_ca.json": "b072a9ef8bba660d941e766daa312c9c0eff28079c95f8d95d6dcf43092b02f1",
   "terms/ext.prs_stroke.json": "9adae0d25259b50b7a23371d6fa6b16b1927fa561111b6390091615c27e3dc44",
   "terms/ext.prs_t2d.json": "b308f6649e314257fa102d72de3c76369f891c4f3656e2284e1db7f388ed9fe1",
-  "terms/ext.resistance.json": "6f40a30057825748156d7df69007210cca948cf55691530aa794d4510fd8bd53",
+  "terms/ext.resistance.json": "cc5382bfb2d22aa6bc6d17a368f589a105766a20b92d5db8bc12570c8ffdfd6d",
   "terms/ext.sbp.json": "a7af180738fc830292d529a7db15d7a152351c796e23e2c2256bd575f65b61f8",
   "terms/ext.screen_crc_fit.json": "49b42a4611f61efb2593d740d437b19d79de9d4b2dc06c03a050b2d8ca278967",
   "terms/ext.screen_lung_ldct.json": "04fe7c6f8fcf6a1601c2918315de851a5dfa0d19231118a4fdcaee167a0cb978",
@@ -239,5 +239,5 @@
   "terms/ext.uacr.json": "b0d1ccd2a8b97d7fe8a5bac8906b4705b6389f50b1e843b640e1d884f3c0221d",
   "terms/ext.waist.json": "5f3fd3cc5560c60aaf99b665dc6465e8bb1d5be48bac1b7eb3f4c707695ab2d1"
  },
- "version": "2026.11.18-12"
+ "version": "2026.11.18-13"
 }

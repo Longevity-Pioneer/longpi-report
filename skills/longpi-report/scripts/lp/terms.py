@@ -260,10 +260,18 @@ def _meas_sd(t: dict, o: dict, ref_sd: float) -> float:
     return 0.05 * abs(float(o["value"])) or 0.05 * ref_sd
 
 
+_UNIT_ALIAS = {"z": "sd", "zscore": "sd", "z-score": "sd", "persd": "sd", "0/1": "indicator", "": ""}
+
+
+def _unit_key(u: str) -> str:
+    import re as _re
+    u = _re.sub(r"\(.*?\)", "", (u or "")).replace(" ", "").lower()   # "z (1000G EAS)" -> "z"
+    return _UNIT_ALIAS.get(u, u)
+
+
 def _units_ok(t: dict, o: dict) -> bool:
-    want = (t["input"].get("unit") or "").replace(" ", "").lower()
-    have = (o.get("unit") or "").replace(" ", "").lower()
-    return not want or not have or want == have
+    want, have = _unit_key(t["input"].get("unit")), _unit_key(o.get("unit"))
+    return not want or not have or want == have or "indicator" in (want, have)
 
 
 def _mediator_measured(key: str, model) -> bool:
@@ -317,10 +325,16 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
             continue
         if not rows:
             continue
-        if spec["input"].get("platform"):
-            ok = [o for o in rows if (o.get("platform") or "") in spec["input"]["platform"]]
+        plat = spec["input"].get("platform")
+        plats = [plat] if isinstance(plat, str) else list(plat or [])
+        if code.startswith("PGS:"):
+            plats = []      # a PGS id fixes the score itself; the observation's platform is the genotyping source (chip/wgs)
+        if plats and any(o.get("platform") for o in rows):
+            # only an observation that states a different platform is rejected; one without platform info is kept
+            ok = [o for o in rows if not o.get("platform") or any(str(o["platform"]).lower() in x.lower() or x.lower() in str(o["platform"]).lower()
+                                                                for x in plats)]
             if not ok:
-                T.status, T.reasons = "not_counted", ["检测平台与研究不一致（研究：" + "、".join(spec["input"]["platform"]) + "）"]
+                T.status, T.reasons = "not_counted", ["检测平台与研究不一致（研究：" + "、".join(plats) + "）"]
                 out.append(T)
                 continue
             rows = ok

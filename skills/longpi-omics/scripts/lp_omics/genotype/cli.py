@@ -111,7 +111,7 @@ def run(args):
         return _monogenic_only(args, path, src, build, bmeta)
 
     # ---- scores and licences
-    refused = []
+    refused, unavailable = [], []
     for pid in pgs_ids:
         meta_lic = None
         try:
@@ -121,7 +121,12 @@ def run(args):
         if meta_lic and not prs.license_allowed(meta_lic):
             refused.append({"pgs_id": pid, "license": meta_lic})
             continue
-        sf = prs.fetch_score(pid, build)
+        try:
+            sf = prs.fetch_score(pid, build)
+        except (common.PrivacyError, OSError) as e:
+            # not cached in offline mode, or the download failed: this score is skipped and said so, the rest continues
+            unavailable.append({"pgs_id": pid, "why": f"{type(e).__name__}: {str(e)[:120]}"})
+            continue
         if not meta_lic and not sf.header.get("license"):
             # licence cannot be established (metadata unreachable, header silent): do not score
             refused.append({"pgs_id": pid, "license": None})
@@ -204,6 +209,13 @@ def run(args):
                         "min_coverage": args.min_coverage, "disease_id": (reg.get(r_["pgs_id"]) or [None])[0]})
         provenance.append({"step": "prs", "tool": "prs_score", "version": TOOLS["prs_score"],
                            "pgs_id": r_["pgs_id"], "refused": "licence", "license": r_["license"]})
+
+    for u_ in unavailable:
+        prs_out.append({"pgs_id": u_["pgs_id"], "scored": False, "reason": "scoring file not available (" + u_["why"] + ")",
+                        "license": None, "raw": None, "z": None, "percentile": None, "coverage": None,
+                        "min_coverage": args.min_coverage, "disease_id": (reg.get(u_["pgs_id"]) or [None])[0]})
+        provenance.append({"step": "prs", "tool": "prs_score", "version": TOOLS["prs_score"],
+                           "pgs_id": u_["pgs_id"], "skipped": "scoring file not available"})
 
     # ---- APOE
     ap = core.apoe(g, build, panel)
