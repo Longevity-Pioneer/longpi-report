@@ -1061,7 +1061,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
                 fail.append(f"reference.quote 不是 {rkey} 原文的子串")
             else:
                 info.append(f"参考分布原句已核对（{rkey}）")
-        elif not rf.get("from_norms") and rf.get("kind") not in ("residualized",):
+        elif not (rf.get("from_norms") or rf.get("norms_marker")) and rf.get("kind") not in ("residualized",):
             if rf.get("estimated") and rf.get("estimated_reason_zh"):
                 warn.append("参考分布为估计值（reference.estimated），报告中会标明")
             else:
@@ -1099,6 +1099,7 @@ def expand_reference(spec: dict) -> dict:
                         row[k] = r[k]
                 rows.append(row)
         ref = {k: v for k, v in ref.items() if k != "from_norms"}
+        ref["norms_marker"] = m
         ref["by_sex_age"] = rows
         ref.setdefault("kind", "categorical" if "p" in rows[0] else "normal")
         ref["source"] = (ref.get("source", "") + "；" if ref.get("source") else "") + \
