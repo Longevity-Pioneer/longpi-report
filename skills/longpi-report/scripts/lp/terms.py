@@ -208,6 +208,8 @@ def _clip_scale(tf: dict):
 def _log_tf(tf: dict) -> dict:
     """The transform on the ln-x scale: clip and knots are written in original units and are converted too."""
     out = dict(tf, log_x=False, clip=_clip_scale(tf))
+    if not tf.get("log_x"):
+        return out
     for k in ("knot", "knot_lo", "knot_hi"):
         if tf.get(k) is not None:
             out[k] = math.log(max(float(tf[k]), 1e-9))

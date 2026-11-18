@@ -69,11 +69,13 @@ class Math(unittest.TestCase):
                     self.assertAlmostEqual(sum(vals) / len(vals), 1.0, delta=0.05, msg=(t["id"], oc, sex))
 
     def test_screening_is_counted(self):
-        p = person_p1(screenings=[{"test": "gastroscopy", "date": "2026-03", "report": True}])
+        p = person_p1(screenings=[{"test": "crc_fit", "date": "2026-03", "report": True}])
+        p["person"] = dict(p["person"], birth="1970-06")          # 56: inside the 50-75 screening age
         r = run(p)
-        ids = [b["id"] for b in r["index120"]["behavior"]["behaviors"]]
-        self.assertTrue(any("screen" in i for i in ids), ids)
-        self.assertFalse(any("screen_gastroscopy" == g["id"].split(".")[-1] for g in r["index120"]["behavior"]["how_to_gain"]))
+        rows = {b["id"]: b for b in r["index120"]["behavior"]["behaviors"]}
+        self.assertIn("ext.screen_crc_fit", rows, list(rows))
+        self.assertGreater(rows["ext.screen_crc_fit"]["points"], 0)
+        self.assertNotIn("ext.screen_crc_fit", [g["id"] for g in r["index120"]["behavior"]["how_to_gain"]])
 
     def test_icd10_prefix_matches_terms(self):
         a = run(person_p1(conditions=[{"name": "2 型糖尿病", "icd10": "E11"}]))
