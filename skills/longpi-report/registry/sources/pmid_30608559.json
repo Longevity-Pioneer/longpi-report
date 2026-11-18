@@ -1,0 +1,33 @@
+{
+ "key": "pmid:30608559",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/30608559/",
+ "fetched_at": "2026-11-18T03:51:20Z",
+ "sha256": "888833adeddcb861e7ad17903df7ec1f6fc7799c0879e0adb749cc44ed515c04",
+ "citation": "European heart journal 2019",
+ "text": "High lipoprotein(a) and high risk of mortality.\nAIMS: Several lipoprotein(a)-lowering therapies are currently being developed with the long-term goal of reducing cardiovascular disease and mortality; however, the relationship between lipoprotein(a) and mortality is unclear. We tested the hypothesis that lipoprotein(a) levels are associated with risk of mortality.\nMETHODS AND RESULTS: We studied individuals from two prospective studies of the Danish general population, of which 69 764 had information on lipoprotein(a) concentrations, 98 810 on LPA kringle-IV type 2 (KIV-2) number of repeats, and 119 094 on LPA rs10455872 genotype. Observationally, lipoprotein(a) >93 mg/dL (199 nmol/L; 96th-100th percentiles) vs. <10 mg/dL (18 nmol/L; 1st-50th percentiles) were associated with a hazard ratio of 1.50 (95% confidence interval 1.28-1.76) for cardiovascular mortality and of 1.20 (1.10-1.30) for all-cause mortality. The median survival for individuals with lipoprotein(a) >93 mg/dL (199 nmol/L; 96th-100th percentiles) and ≤93 mg/dL (199 nmol/L; 1st-95th percentiles) were 83.9 and 85.1 years (log rank P = 0.005). For cardiovascular mortality, a 50 mg/dL (105 nmol/L) increase in lipoprotein(a) levels was associated observationally with a hazard ratio of 1.16 (1.09-1.23), and genetically with risk ratios of 1.23 (1.08-1.41) based on LPA KIV2 and of 0.98 (0.88-1.09) based on LPA rs10455872. For all-cause mortality, corresponding values were 1.05 (1.01-1.09), 1.10 (1.04-1.18), and 0.97 (0.92-1.02), respectively. Finally, for a similar cholesterol content increase, lipoprotein(a) was more strongly associated with cardiovascular and all-cause mortality than low-density lipoprotein, implying that the mortality effect of high lipoprotein(a) is above that explained by its cholesterol content.\nCONCLUSION: High levels of lipoprotein(a), through corresponding low LPA KIV-2 number of repeats rather than through high cholesterol content were associated with high risk of mortality. These findings are novel.",
+ "doi": "10.1093/eurheartj/ehy902",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.lpa",
+   "number": "all_cause.hr",
+   "value": 1.05,
+   "found": true,
+   "context": "0455872. For all-cause mortality, corresponding values were 1.05 (1.01-1.09), 1.10 (1.04-1.18), and 0.97 (0.92-1.02), respec"
+  },
+  {
+   "term": "ext.lpa",
+   "number": "all_cause.lo",
+   "value": 1.01,
+   "found": true,
+   "context": "2. For all-cause mortality, corresponding values were 1.05 (1.01-1.09), 1.10 (1.04-1.18), and 0.97 (0.92-1.02), respectively"
+  },
+  {
+   "term": "ext.lpa",
+   "number": "all_cause.hi",
+   "value": 1.09,
+   "found": true,
+   "context": "was associated observationally with a hazard ratio of 1.16 (1.09-1.23), and genetically with risk ratios of 1.23 (1.08-1.41)"
+  }
+ ]
+}

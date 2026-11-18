@@ -29,6 +29,27 @@
    "value": 33.27,
    "found": true,
    "context": "isk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.hr",
+   "value": 20.48,
+   "found": true,
+   "context": "riers had an increased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.lo",
+   "value": 11.71,
+   "found": true,
+   "context": "creased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.hi",
+   "value": 33.27,
+   "found": true,
+   "context": "isk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
   }
  ]
 }

@@ -1,0 +1,12 @@
+{
+ "key": "pmid:27284415",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/27284415/",
+ "fetched_at": "2026-11-18T03:53:36Z",
+ "sha256": "d736cd4895848a206c39ed059787cdb7d774346ec80fcc63ba4bc5fb59abe1c4",
+ "citation": "Biomedical reports 2016",
+ "text": "Association between glycated hemoglobin A1c levels with age and gender in Chinese adults with no prior diagnosis of diabetes mellitus.\nThe present cross-sectional study consisted of 18,265 Chinese patients not previously diagnosed with diabetes mellitus, and who underwent physical examination at the Third People's Hospital of Shenzhen between June 2014 and May 2015 (mean patient age, 51.312±15.252 years). The study was composed of 11,770 males and 6,495 females. The aim was to investigate the association between glycated hemoglobin A1c (HbA1c) levels, gender and age. HbA1c values were measured using a Bio-Rad VARIANT™ II HbA1c Reorder Pack. All data was collected for analysis of the HbA1c levels in different gender and age groups, in order to investigate the association between HbA1c levels and age. Analysis of the 18,265 total cases and 16,734 cases with HbA1c levels <6.5%, demonstrated a positive correlation between levels of HbA1c and patient age. Linear regression for patient age and HbA1c levels demonstrated that HbA1c (%) = 0.020 × age (years) + 4.523 (r=0.369, P<0.0001) and HbA1c (%) = 0.014 × age (years) + 4.659 (r=0.485, P<0.0001), respectively. HbA1c levels of the male group were significantly higher than those of the female group (P<0.0001). Furthermore, in different gender groups, HbA1c levels gradually rose with increasing age. Therefore, HbA1c levels are associated with age and gender in Chinese populations, and this should be considered when selecting HbA1c as a criterion for future diabetes screening.",
+ "pmcid": "PMC4887772",
+ "doi": "10.3892/br.2016.643",
+ "open_access": "N",
+ "checks": []
+}

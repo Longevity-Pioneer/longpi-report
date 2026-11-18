@@ -50,11 +50,13 @@ description: LongPi 建项层。观测里出现项目库没有的指标（或平
    - `invalid`：编码查不到、重复、许可不允许——不能入库，先修正。
    核对失败时回到原文改 `quote` 或数字；**不得为了通过而改动原文数字**。
 5. **入库。** `python3 scripts/term_builder.py add spec.json [...]`（定性：`add --qualitative --why "原因"`）。`add` 会：再核对一遍、写入 `registry/terms/` 或 `registry/qualitative/`、把核对记录写进 `registry/sources/`、按 `YYYY.MM.DD-N` 升版本、做人群中性检查（不通过不冻结）、冻结 `MANIFEST.json`。
-6. **自查。** `python3 scripts/term_builder.py check-population`；`show <id>` 看入库结果；在 `BUILD_LOG.md` 记一行（编码、结局、HR（CI）、PMID、等级、结论、系数、理由）。
+6. **自查。** `python3 scripts/term_builder.py check-population`；`show <id>` 看入库结果；`build-log` 重新生成 `BUILD_LOG.md` 的逐项明细（编码、结局、HR（CI）、来源、等级、结论、系数、理由），汇总与决定部分手写。
+
+联网失败（字典或原文抓取超时）时 `add` 拒绝写入并提示重试，不会把项悄悄降为定性。
 
 ## 入库标准（方案 A，代码检查）
 
-人体前瞻队列 / 荟萃 / 孟德尔随机化（遗传项另允许大型病例对照）；事件 ≥100（写了就查）；HR 与 95% CI 逐字出现在原句；`quote` 是原文子串（空白归一化后）；等级 ≥B；方向与 HR 一致；参考分布覆盖所有性别 × 年龄段；许可允许商业使用；重叠系数不超过规则上限；非东亚人群已收缩。
+人体前瞻队列 / 荟萃 / 孟德尔随机化（遗传项另允许大型病例对照）；事件 ≥100（写了就查）；HR 与 95% CI 逐字、成组出现在原句；主估计的 95% CI 不含 1；`quote` 是原文子串（空白归一化后）；等级 ≥B；方向与 HR 一致；参考分布覆盖所有性别 × 年龄段；许可允许商业使用；重叠系数不超过规则上限；非东亚人群已收缩。
 
 ## 命令
 
@@ -64,6 +66,8 @@ python3 scripts/term_builder.py add     spec.json [...] [--qualitative --why "..
 python3 scripts/term_builder.py check-population [--n 20000]
 python3 scripts/term_builder.py list [--qualitative]
 python3 scripts/term_builder.py show <id>
+python3 scripts/term_builder.py build-log [--out BUILD_LOG.md]
+python3 tests/blind/score_blind.py --all <产出目录>   # 建项能力盲测：11 个核心项（由另一模型执行）
 python3 -m unittest discover -s tests     # 离线，用录制的响应
 ```
 

@@ -1,0 +1,35 @@
+{
+ "key": "pmid:39859953",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/39859953/",
+ "fetched_at": "2026-11-18T03:54:00Z",
+ "sha256": "2c69a1f9d8d8c65e153acfc6a05023c0cc2785879032afd23f6799d76199b659",
+ "citation": "Life (Basel, Switzerland) 2024",
+ "text": "Associations of Serum Cystatin C, DNAm Cystatin C, Renal Function, and Mortality in U.S. Adults.\nSerum cystatin C is a well-established marker of renal function and a valuable predictor of health risks and mortality. DNA methylation-predicted cystatin C (DNAmCystatinC), an advanced epigenetic biomarker, serves as a proxy for serum cystatin C levels. However, the relationships between serum cystatin C, DNAmCystatinC, renal function, and mortality outcomes have not been previously examined. This study aimed to examine the associations between serum cystatin C, DNAmCystatinC, renal function, and their joint and independent relationships with mortality in U.S. adults. We analyzed data from 1642 participants aged 50 and older from the National Health and Nutrition Examination Survey (NHANES) 1999-2002, linked to mortality information from the National Center for Health Statistics (NCHS), with follow-up through 2019. Our analysis demonstrated a positive association between ln-DNAmCystatinC and ln-serum cystatin C (Adjusted β (SE) = 0.773 (0.267), p = 0.007), while ln-DNAmCystatinC was negatively correlated with ln-Estimated glomerular filtration rate, calculated using both creatinine and cystatin C (eGFRcr-cys) (Adjusted β (SE) = -1.123 (0.449), p = 0.018). In a weighted Cox regression model, a one-unit increase in ln-serum cystatin C was linked to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality and 3.04 (95% CI: 1.34-6.88, p = 0.010) for cardiovascular mortality. Additionally, a one-unit increase in ln-DNAmCystatinC was associated with an HR of 135.86 (95% CI: 5.51-3349.69, p = 0.004) for all-cause mortality. This association was particularly pronounced in participants without chronic kidney disease (CKD), with a p-value for the interaction between DNAmCystatinC and CKD on all-cause mortality of 0.002. Furthermore, individuals with serum cystatin C and DNAmCystatinC levels above the 50th percentile showed the highest all-cause mortality risk when compared to other subgroups. In conclusion, our findings demonstrate that DNAmCystatinC is a stronger predictor of all-cause mortality than serum cystatin C, with potential additive effects when both biomarkers are considered together. These results suggest their utility as valuable clinical indicators for risk stratification and early intervention. Future research should validate these findings and further explore the clinical and public health implications of epigenetic biomarkers.",
+ "pmcid": "PMC11767232",
+ "doi": "10.3390/life15010013",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.hr",
+   "value": 2.87,
+   "found": true,
+   "context": " cystatin C was linked to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality"
+  },
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.lo",
+   "value": 1.938,
+   "found": true,
+   "context": "s linked to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality"
+  },
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.hi",
+   "value": 4.26,
+   "found": true,
+   "context": "ed to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality"
+  }
+ ]
+}

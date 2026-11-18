@@ -1,0 +1,128 @@
+{
+ "kind": "state",
+ "status": "active",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "disclosure": "standard",
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "persistence": {
+  "half_life_years": 5
+ },
+ "id": "ext.apob",
+ "name_zh": "载脂蛋白 B",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:1884-6",
+  "unit": "g/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.3,
+   2.5
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.8,
+    "sd": 0.24
+   }
+  ],
+  "pmid": "41079004",
+  "quote": "Figure 1 shows that the distributions of plasma levels of all LDL-related biomarkers were about 1 SD lower in Chinese than in Europeans",
+  "source": "CKB 与 UKB 对比（PMID 41079004）：中国人群 LDL 相关指标分布约低 1 SD；UKB ApoB 均值 103.4 mg/dL、SD 23.8 mg/dL（PMID 38241044 表 1）。据此推算均值 1.034−0.238≈0.80 g/L、SD 0.24 g/L，为推算值，未按年龄性别分层"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.11,
+   "lo": 1.06,
+   "hi": 1.16,
+   "per": 0.238,
+   "per_unit": "g/L（遗传预测 ApoB 每 1 SD，约 23.8 mg/dL）",
+   "direction": "higher_worse"
+  },
+  "chd": {
+   "hr": 1.65,
+   "lo": 1.57,
+   "hi": 1.73,
+   "per": 0.238,
+   "per_unit": "g/L（每 1 SD；原文为冠心病 OR）",
+   "direction": "higher_worse",
+   "population": {
+    "events": 23818
+   },
+   "coef": 0.3
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.2,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "孟德尔随机化估计未校正 LDL-C；原文指出 ApoB 与 LDL-C 相关 r²=0.96、结果与 LDL-C 相似，而 core.lipid 已按因果效应计入，ApoB 仅补充两者不一致部分的信息，故全因死亡取 0.2、冠心病取 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "UK Biobank（单样本孟德尔随机化）",
+  "n": 347797,
+  "events": 23848,
+  "ancestry": "European (UK Biobank)",
+  "age_range": [
+   40,
+   70
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.04,
+  "source": "免疫比浊法分析变异系数约 3–5%（一般实验室质量数据，未经文献核对）"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "饮食调整、他汀及其他降脂药物可降低 ApoB"
+ },
+ "test": {
+  "label_zh": "抽血查载脂蛋白 B",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "mendelian-randomization",
+  "pmid": "38241044",
+  "quote": "Genetically predicted apoB was positively associated with risk of CAD (odds ratio [OR], 1.65 per SD increase; 95% CI 1.57-1.73), all-cause mortality (hazard ratio [HR], 1.11; 95% CI, 1.06-1.16), and cardiovascular mortality (HR, 1.36; 95% CI, 1.24-1.50)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/38241044/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-4"
+}
