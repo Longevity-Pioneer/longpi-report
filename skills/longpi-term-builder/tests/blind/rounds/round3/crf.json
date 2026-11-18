@@ -1,0 +1,87 @@
+{
+ "id": "ext.vo2max_meta",
+ "name_zh": "最大摄氧量 VO2max",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LP:vo2max",
+  "unit": "ml/kg/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "tool",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   10,
+   70
+  ]
+ },
+ "reference": {
+  "from_norms": "vo2max"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.89,
+   "lo": 0.86,
+   "hi": 0.92,
+   "per": 3.5,
+   "per_unit": "ml/kg/min (=1 MET)",
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.crf"
+  ],
+  "rationale_zh": "与核心心肺适能领域为同一指标；荟萃的每 MET 估计未说明按核心项校正，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "mixed (mostly Western cohorts)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "37 cohorts meta-analysis",
+  "n": 2258029,
+  "events": 108613,
+  "ancestry": "mixed (mostly Western cohorts)",
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "quote": "For every 1-MET increase in CRF, the RR for all-cause mortality was 0.89 (95% CI, 0.86 to 0.92).",
+  "pmid": "35562197",
+  "estimand_zh": "客观测定心肺适能每增加 1 MET（=3.5 ml/kg/min，原文以 MET 为单位）的全因死亡相对风险；观测性，可能含残余混杂与反向因果",
+  "alternatives_considered": [
+   {
+    "pmid": "19454641",
+    "estimate": "Kodama JAMA 2009 每 MET RR 0.87 (0.84-0.90)，6910 例死亡",
+    "why_not": "死亡数少于所选（108613）"
+   },
+   {
+    "pmid": "35022163",
+    "estimate": "Han BJSM 2022 34 队列每 MET RR 0.88 (0.83-0.93)",
+    "why_not": "死亡数未在摘要给出且 CI 更宽；所选更新、事件更多"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

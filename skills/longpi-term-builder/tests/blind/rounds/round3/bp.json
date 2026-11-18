@@ -1,0 +1,93 @@
+{
+ "id": "ext.sbp_rct",
+ "name_zh": "收缩压（降压随机试验荟萃估计）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "blood_pressure",
+ "input": {
+  "code": "LOINC:8480-6",
+  "unit": "mmHg",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   90,
+   220
+  ]
+ },
+ "reference": {
+  "from_norms": "sbp"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.149,
+   "lo": 1.099,
+   "hi": 1.19,
+   "per": 10,
+   "per_unit": "mmHg",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.87,
+     "lo": 0.84,
+     "hi": 0.91
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.bp"
+  ],
+  "rationale_zh": "与核心血压领域为同一指标；随机试验估计无需校正混杂，但与核心项同一指标，保守取不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (mostly Western trials)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "123 RCTs of BP-lowering",
+  "n": 613815,
+  "ancestry": "multinational (mostly Western trials)",
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "quote": "which, in the populations studied, led to a significant 13% reduction in all-cause mortality (0·87, 0·84-0·91)",
+  "pmid": "26724178",
+  "estimand_zh": "药物降低收缩压每降低 10 mmHg 的全因死亡相对风险（随机试验因果估计，RR 0.87）；按原文'每降低'取 pow −1 得每升高 10 mmHg 的 HR。试验人群为已治疗或高危者，外推到全人群为假设",
+  "alternatives_considered": [
+   {
+    "pmid": "31288541",
+    "estimate": "中国三项前瞻队列合并，ACC/AHA 2017 血压分类与死亡",
+    "why_not": "分类比较、观测性，不能折成每单位斜率"
+   },
+   {
+    "pmid": "29871897",
+    "estimate": "中国高龄老人 BMJ 2018",
+    "why_not": "仅高龄、观测性、反向因果"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

@@ -1,0 +1,77 @@
+{
+ "id": "ext.smoking_status",
+ "name_zh": "吸烟状态",
+ "kind": "exposure",
+ "system": "respiratory",
+ "group": null,
+ "input": {
+  "code": "LP:smoking_status",
+  "unit": null,
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "categorical"
+ },
+ "reference": {
+  "from_norms": "smoking",
+  "kind": "categorical"
+ },
+ "effect": {
+  "all_cause": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former_ge5": {
+     "hr": 1.25,
+     "lo": 1.13,
+     "hi": 1.37
+    }
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.smoking"
+  ],
+  "rationale_zh": "与 1.1.1 吸烟核心项同一指标；系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Asia Cohort Consortium 16 cohorts (China, Japan, Korea/Singapore, India/Bangladesh), men",
+  "n": 709151,
+  "events": 108287,
+  "ancestry": "East Asian (China, Japan, Korea, Singapore) plus South Asian",
+  "age_range": [
+   35,
+   99
+  ],
+  "sex": "M"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "pooled-cohort",
+  "pmid": "34999862",
+  "quote": "Compared with never smokers, however, all-cause and CVD mortality among former smokers remained elevated 10-14 years after quitting [multivariable-adjusted HR (95% confidence interval (CI) = 1.25 (1.13-1.37) and 1.20 (1.02-1.41), respectively]",
+  "estimand_zh": "INCOMPLETE DRAFT: only the 10-14-years-since-quitting level (men, 16 Asian cohorts) is quotable from an accessible text; the 'current' and 'former <5 y' levels could not be sourced from one open-access paragraph. Not a valid four-level term."
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

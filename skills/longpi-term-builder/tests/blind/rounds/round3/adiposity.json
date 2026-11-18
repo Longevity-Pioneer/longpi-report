@@ -1,0 +1,99 @@
+{
+ "id": "ext.bmi_mr",
+ "name_zh": "体重指数（遗传预测，孟德尔随机化）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "adiposity",
+ "input": {
+  "code": "LOINC:39156-5",
+  "unit": "kg/m2",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_hi": 20,
+  "clip": [
+   14,
+   45
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "from_norms": "bmi"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_above": {
+    "hr": 1.72,
+    "lo": 1.55,
+    "hi": 1.89,
+    "per": 5
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.adiposity"
+  ],
+  "rationale_zh": "与核心体脂领域为同一指标；MR 估计未按核心项校正，只按年龄、性别与地区，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank genotyped subset (MR)",
+  "n": 76000,
+  "events": 6784,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "mendelian-randomization",
+  "quote": "In MR analyses, however, there were strong positive, log-linear associations with non-CVD (n = 4355) and all-cause (n = 6784) mortality at BMIs of ≥20 kg/m2 (Supplementary Figure S2, available as Supplementary data at IJE online), with each 5-kg/m2 increment associated with HRs of 1.59 (1.37–1.81) and 1.72 (1.55–1.89), respectively.",
+  "pmid": "39385593",
+  "estimand_zh": "遗传预测的 BMI 每增加 5 kg/m2（BMI≥20 范围）的全因死亡风险（因果估计）；BMI<20 的常规分析偏低端风险多半是反向因果，MR 不支持，故只写拐点以上一侧，不写 hr_below",
+  "alternatives_considered": [
+   {
+    "pmid": "21345101",
+    "estimate": "ACC 19队列 110万人 12万死亡，BMI 分组 U 形，摘要仅给'最高 1.5 倍、2.8 倍'无 HR+CI 成组",
+    "why_not": "观测性，低端受反向因果；摘要无可逐字核对的 HR/CI"
+   },
+   {
+    "pmid": "27423262",
+    "estimate": "GBMC 239 队列，每 5 BMI HR（25–<50）",
+    "why_not": "人群以欧美为主且观测性；排序低于东亚 MR"
+   },
+   {
+    "pmid": "39385593",
+    "estimate": "CKB 常规分析 U 形，最低风险 25–29.9",
+    "why_not": "同文常规分析受反向因果，改取同文 MR"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "id": "ext.ldlc_ctt",
+ "name_zh": "低密度脂蛋白胆固醇（LDL-C）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:13457-7",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   1.0,
+   6.0
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "ldl",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1111,
+   "lo": 1.0753,
+   "hi": 1.1494,
+   "per": 1.0,
+   "per_unit": "mmol/L",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.9,
+     "lo": 0.87,
+     "hi": 0.93
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "与 1.1.1 血脂核心项为同一指标；试验为随机分组，未对其他项做校正，系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "international (mostly Europe, North America, Australasia statin trials)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "26 randomised statin trials, individual participant data",
+  "n": 169138,
+  "ancestry": "international (multinational trials)",
+  "age_range": [
+   40,
+   80
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "pmid": "21067804",
+  "quote": "Across all 26 trials, all-cause mortality was reduced by 10% per 1·0 mmol/L LDL reduction (RR 0·90, 95% CI 0·87-0·93; p<0·0001)",
+  "estimand_zh": "随机对照试验个体数据荟萃的因果估计：他汀使 LDL-C 每降低 1.0 mmol/L 的全因死亡 RR 0.90，按原文'每降低'取倒数（pow -1）为每升高 1 mmol/L 的 HR；是药物降 LDL 的效应，不是自然分布 LDL 的观察性 HR。自然分布 LDL 与全因死亡受反向因果影响（高龄、病重者 LDL 偏低），故不选观察性估计"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "id": "ext.glycemic_status",
+ "name_zh": "血糖状态（正常、糖尿病前期、糖尿病）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LP:glycemic_status",
+  "unit": null,
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "categorical"
+ },
+ "reference": {
+  "from_norms": "glycemic",
+  "kind": "categorical"
+ },
+ "effect": {
+  "all_cause": {
+   "levels": {
+    "normal": {
+     "hr": 1
+    },
+    "prediabetes": {
+     "hr": 1.08,
+     "lo": 1.01,
+     "hi": 1.15
+    },
+    "diabetes": {
+     "hr": 1.61,
+     "lo": 1.49,
+     "hi": 1.73
+    }
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "与 1.1.1 血糖核心项为同一指标；摘要只说'调整后'，只能确认年龄、性别，系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China national cohort (n=135,405 adults, 2013 baseline, median 6 y follow-up)",
+  "n": 135405,
+  "events": 5517,
+  "ancestry": "Chinese",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "39255435",
+  "quote": "During a median follow-up of 6 years, 5517 deaths were recorded, including 1428 and 2300 deaths among people with diabetes and prediabetes, respectively. Diabetes and prediabetes were significantly associated with increased risk of all-cause (diabetes: RR, 1.61 [95% CI 1.49, 1.73]; prediabetes: RR, 1.08 [95% CI 1.01, 1.15])",
+  "estimand_zh": "观察性 HR（摘要称 adjusted mortality rate ratio，Cox）：中国全国队列，糖尿病/糖尿病前期对比血糖正常；摘要未写明前期的诊断标准（是否为 ADA 无法在摘要核对）；日本 JECOH 研究（PMID 33441421）仅 229 例死亡，不选"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

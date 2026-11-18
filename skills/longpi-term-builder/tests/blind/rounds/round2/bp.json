@@ -1,0 +1,82 @@
+{
+ "id": "ext.sbp_office",
+ "name_zh": "诊室收缩压",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "blood_pressure",
+ "input": {
+  "code": "LOINC:8480-6",
+  "unit": "mmHg",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   90,
+   200
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "sbp",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1494,
+   "lo": 1.0989,
+   "hi": 1.1905,
+   "per": 10,
+   "per_unit": "mmHg",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.87,
+     "lo": 0.84,
+     "hi": 0.91
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.bp"
+  ],
+  "rationale_zh": "与 1.1.1 血压核心项为同一指标；试验为随机分组，未对其他项做校正，按规则系数压到 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "international (mostly Europe, North America, Asia trials)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "123 randomised trials of blood pressure lowering",
+  "n": 613815,
+  "ancestry": "international (multinational trials)",
+  "age_range": [
+   40,
+   80
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "pmid": "26724178",
+  "quote": "Every 10 mm Hg reduction in systolic blood pressure significantly reduced the risk of major cardiovascular disease events (relative risk [RR] 0·80, 95% CI 0·77-0·83), coronary heart disease (0·83, 0·78-0·88), stroke (0·73, 0·68-0·77), and heart failure (0·72, 0·67-0·78), which, in the populations studied, led to a significant 13% reduction in all-cause mortality (0·87, 0·84-0·91).",
+  "estimand_zh": "随机对照试验荟萃的因果估计：降压治疗使收缩压每降低 10 mmHg 的全因死亡相对危险 0.87，按原文'每降低'取倒数（pow -1）得每升高 10 mmHg 的 HR；是治疗性降压的效应，不是自然分布暴露的观察性 HR。东亚队列研究（PMID 29304766 等）只给分类 HR，不能折成斜率，故未选"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

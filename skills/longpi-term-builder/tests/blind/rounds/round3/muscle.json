@@ -1,0 +1,93 @@
+{
+ "id": "ext.grip_meta",
+ "name_zh": "握力（优势手最好成绩）",
+ "kind": "state",
+ "system": "musculoskeletal",
+ "group": "fitness",
+ "input": {
+  "code": "LP:grip_kg",
+  "unit": "kg",
+  "platform": null,
+  "methods": [
+   "device",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   5,
+   70
+  ]
+ },
+ "reference": {
+  "from_norms": "grip"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.862,
+   "lo": 0.833,
+   "hi": 0.893,
+   "per": 5,
+   "per_unit": "kg",
+   "direction": "higher_better",
+   "derived": {
+    "from": {
+     "hr": 1.16,
+     "lo": 1.12,
+     "hi": 1.2
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.muscle"
+  ],
+  "rationale_zh": "与核心肌肉领域为同一指标；荟萃取各研究最大校正 HR，但未确认含核心项，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "mixed (cohorts from Europe, US, Asia)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "42 prospective cohort studies, meta-analysis",
+  "n": 3002203,
+  "ancestry": "mixed (cohorts from Europe, US, Asia)",
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "quote": "The HRs (95% CIs) with per-5-kg decrease in grip strength was 1.16 (1.12-1.20) for all-cause mortality, 1.21 (1.14-1.29) for cardiovascular diseases",
+  "pmid": "28549705",
+  "estimand_zh": "握力每降低 5 kg 的全因死亡 HR（观测性荟萃，取各研究最大校正）；按原文'每降低'取 pow −1 得每升高 5 kg 的 HR",
+  "alternatives_considered": [
+   {
+    "pmid": "25982160",
+    "estimate": "PURE 17 国 13.97 万人 3379 例死亡，每降低 5 kg HR 1.16 (1.13-1.20)",
+    "why_not": "单一队列（排序第 3 位），所选为荟萃（第 2 位）；两者数值一致"
+   },
+   {
+    "pmid": "29739772",
+    "estimate": "UK Biobank 握力与死亡",
+    "why_not": "单一欧洲队列，未读摘要，按排序低于荟萃"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

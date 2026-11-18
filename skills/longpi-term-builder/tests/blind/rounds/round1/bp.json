@@ -1,0 +1,92 @@
+{
+ "id": "ext.sbp_office",
+ "name_zh": "诊室收缩压",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "blood_pressure",
+ "input": {
+  "code": "LOINC:8480-6",
+  "unit": "mmHg",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   80,
+   220
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "sbp",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.09,
+   "lo": 1.05,
+   "hi": 1.13,
+   "per": 10.0,
+   "per_unit": "mmHg (age 80-89 stratum; 40-49 men HR 1.37 not used)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "core.adiposity",
+  "core.smoking",
+  "core.alcohol"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.bp"
+  ],
+  "rationale_zh": "与核心血压领域同一量；研究校正 BMI、吸烟、饮酒与队列，部分校正，系数 ≤0.6；仅取最老年龄层较保守估计",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "13 Japanese cohorts pooled",
+  "n": 176389,
+  "ancestry": "Japanese",
+  "age_range": [
+   80,
+   89
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "降压"
+ },
+ "test": {
+  "label_zh": "测血压",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "18443234",
+  "quote": "(hazard ratio: aged 80 to 89 years: systolic blood pressure 1.09 [range: 1.05 to 1.13]"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

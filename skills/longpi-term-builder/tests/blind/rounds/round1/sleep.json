@@ -1,0 +1,96 @@
+{
+ "id": "ext.sleep_h",
+ "name_zh": "自述睡眠时长",
+ "kind": "behavior",
+ "system": "sleep",
+ "group": "sleep",
+ "input": {
+  "code": "LP:sleep_selfreport_h",
+  "unit": "h",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 7.0,
+  "knot_hi": 7.0,
+  "clip": [
+   3,
+   12
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "sleep",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.06,
+    "lo": 1.04,
+    "hi": 1.07,
+    "per": 1.0,
+    "per_unit": "h below 7 h"
+   },
+   "hr_above": {
+    "hr": 1.13,
+    "lo": 1.11,
+    "hi": 1.15,
+    "per": 1.0,
+    "per_unit": "h above 7 h"
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.sleep"
+  ],
+  "rationale_zh": "与核心睡眠项同一量；荟萃分析校正不一，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "dose-response meta-analysis, 57 reports",
+  "ancestry": "multinational",
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "睡眠卫生"
+ },
+ "test": {
+  "label_zh": "自述",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "28889101",
+  "quote": "For all-cause mortality, when sleep duration was <7 hours per day, the pooled relative risk (RR) was 1.06 (95% CI, 1.04-1.07) per 1-hour reduction; when sleep duration was >7 hours per day, the pooled RR was 1.13 (95% CI, 1.11-1.15) per 1-hour increment"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ }
+}

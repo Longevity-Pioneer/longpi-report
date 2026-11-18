@@ -1,0 +1,83 @@
+{
+ "id": "ext.bmi_hinge",
+ "name_zh": "体重指数（BMI）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "adiposity",
+ "input": {
+  "code": "LOINC:39156-5",
+  "unit": "kg/m2",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_hi": 25,
+  "clip": [
+   15,
+   50
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "bmi",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_above": {
+    "hr": 1.39,
+    "lo": 1.34,
+    "hi": 1.44,
+    "per": 5
+   },
+   "per_unit": "kg/m2 above 25",
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.adiposity"
+  ],
+  "rationale_zh": "与 1.1.1 体脂核心项为同一指标；研究只校正年龄、性别和研究，系数压到 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Global BMI Mortality Collaboration, east Asia stratum (never-smokers without chronic disease, first 5 years excluded)",
+  "n": 3951455,
+  "events": 385879,
+  "ancestry": "East Asian (east Asia stratum of 189-study analysis)",
+  "age_range": [
+   35,
+   89
+  ],
+  "sex": "both",
+  "events_source_zh": "摘要给出全部 189 项研究的 never-smoker 死亡数 385 879；东亚层单独死亡数在全文表格"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "pooled-cohort",
+  "pmid": "27423262",
+  "quote": "For BMI 25 kg/m2 or more, the association of BMI with all-cause mortality was approximately log-linear, and of similar strength in each region (except perhaps south Asia, where numbers of deaths were small), with HR per 5 kg/m2 units higher BMI 1·31 (95% CI 1·29–1·33) overall, 1·39 (1·34–1·44) in east Asia",
+  "estimand_zh": "观察性 HR：东亚队列，从不吸烟、基线无慢性病、排除前 5 年随访，BMI>25 部分每升高 5 kg/m2；偏瘦一侧原文仅给分类 HR，不折成斜率，故不录入 hr_below"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

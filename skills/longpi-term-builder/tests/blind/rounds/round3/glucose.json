@@ -1,0 +1,99 @@
+{
+ "id": "ext.glycemic_status",
+ "name_zh": "血糖状态（正常/糖尿病前期/糖尿病）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LP:glycemic_status",
+  "unit": null,
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "categorical"
+ },
+ "reference": {
+  "from_norms": "glycemic"
+ },
+ "effect": {
+  "all_cause": {
+   "levels": {
+    "normal": {
+     "hr": 1
+    },
+    "prediabetes": {
+     "hr": 1.08,
+     "lo": 1.01,
+     "hi": 1.15
+    },
+    "diabetes": {
+     "hr": 1.61,
+     "lo": 1.49,
+     "hi": 1.73
+    }
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "与核心血糖领域为同一指标；原文校正项未核对到与核心项的对应，保守不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China national cohort (135,405 adults, 2013 baseline)",
+  "n": 135405,
+  "events": 5517,
+  "ancestry": "Chinese",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "quote": "Diabetes and prediabetes were significantly associated with increased risk of all-cause (diabetes: RR, 1.61 [95% CI 1.49, 1.73]; prediabetes: RR, 1.08 [95% CI 1.01, 1.15]), and cardiovascular disease (diabetes: RR, 1.59 [95% CI 1.41, 1.78]; prediabetes: RR, 1.10 [95% CI 1.00, 1.21]) mortality.",
+  "pmid": "39255435",
+  "estimand_zh": "糖尿病、糖尿病前期相对血糖正常者的全因死亡率比（观测性 Cox 校正 RR）",
+  "alternatives_considered": [
+   {
+    "pmid": "36419741",
+    "estimate": "香港糖尿病登记，糖尿病前期年龄分层",
+    "why_not": "人群为就诊登记，非全人群，且无三水平全因 HR"
+   },
+   {
+    "pmid": "27311686",
+    "estimate": "华东 10 年队列 IFG/糖尿病",
+    "why_not": "队列小（死亡远少于 5517）"
+   },
+   {
+    "pmid": "28400430",
+    "estimate": "BMI 与死亡按血糖分层",
+    "why_not": "估计目标不同"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

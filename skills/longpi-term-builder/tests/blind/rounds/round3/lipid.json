@@ -1,0 +1,92 @@
+{
+ "id": "ext.ldl_ctt",
+ "name_zh": "低密度脂蛋白胆固醇（降脂试验估计）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:13457-7",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.8,
+   6.0
+  ]
+ },
+ "reference": {
+  "from_norms": "ldl"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.111,
+   "lo": 1.075,
+   "hi": 1.149,
+   "per": 1.0,
+   "per_unit": "mmol/L",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.9,
+     "lo": 0.87,
+     "hi": 0.93
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "与核心血脂领域为同一指标；随机试验估计，保守取不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (mostly Western trials)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "26 randomised statin trials (CTT IPD)",
+  "n": 170000,
+  "ancestry": "multinational (mostly Western trials)",
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "quote": "Across all 26 trials, all-cause mortality was reduced by 10% per 1·0 mmol/L LDL reduction (RR 0·90, 95% CI 0·87-0·93; p<0·0001)",
+  "pmid": "21067804",
+  "estimand_zh": "他汀使 LDL-C 每降低 1.0 mmol/L 的全因死亡率比（随机试验个体数据荟萃，因果估计，含他汀非 LDL 途径）；按原文'每降低'取 pow −1 得每升高 1 mmol/L 的 HR。观测性 LDL-死亡关系在高龄者受反向因果影响，故不取",
+  "alternatives_considered": [
+   {
+    "pmid": "38029611",
+    "estimate": "LDL-C 与 CKD/ASCVD 非线性关联，观测性",
+    "why_not": "结局非全因死亡，观测性"
+   },
+   {
+    "pmid": "30762200",
+    "estimate": "PCSK9 抑制剂荟萃（仅见标题，未读摘要）",
+    "why_not": "仅一类药物、试验规模小于 CTT 26 项；未核对数值"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

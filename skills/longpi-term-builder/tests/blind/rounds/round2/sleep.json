@@ -1,0 +1,29 @@
+{
+ "id": "ext.sleep_selfreport_hinge",
+ "name_zh": "自述睡眠时长",
+ "kind": "state",
+ "system": "sleep",
+ "group": "sleep",
+ "input": {"code": "LP:sleep_selfreport_h", "unit": "h", "platform": null, "methods": ["self_report"]},
+ "transform": {"shape": "hinge", "knot_lo": 7, "knot_hi": 7, "clip": [3, 12], "log_x": false},
+ "reference": {"from_norms": "sleep", "kind": "normal"},
+ "effect": {
+  "all_cause": {
+   "hr_below": {"hr": 1.06, "lo": 1.04, "hi": 1.07, "per": 1},
+   "hr_above": {"hr": 1.13, "lo": 1.11, "hi": 1.15, "per": 1},
+   "per_unit": "h (below / above 7 h)",
+   "direction": null
+  }
+ },
+ "adjusted_for": ["age", "sex"],
+ "overlap": {"coef": 0.3, "coef_sd": 0.1, "overlaps_with": ["core.sleep"],
+  "rationale_zh": "与 1.1.1 睡眠核心项为同一指标；荟萃分析各研究校正不一，只确定校正年龄、性别，系数压到 0.3", "mediated_by": {}},
+ "transport": {"ancestry": "international (Europe, US, Asia, Australia)", "shrink": 0.8, "sd_inflate": 1.25},
+ "population": {"cohort": "dose-response meta-analysis of 67 prospective cohort articles", "n": 3582016, "events": 241107,
+  "ancestry": "international (Europe 22, US 16, Asia 27, Australia 2 articles)", "age_range": [18, 99], "sex": "both",
+  "events_source_zh": "全文 Results 第一段：total of 3 582 016 participants, including 241 107 cases of all-cause mortality"},
+ "evidence": {"grade": "B", "design": "meta-analysis", "pmid": "28889101",
+  "quote": "For all-cause mortality, when sleep duration was <7 hours per day, the pooled relative risk (RR) was 1.06 (95% CI, 1.04-1.07) per 1-hour reduction; when sleep duration was >7 hours per day, the pooled RR was 1.13 (95% CI, 1.11-1.15) per 1-hour increment.",
+  "estimand_zh": "观察性前瞻队列的剂量-反应荟萃 RR（非因果）：自述睡眠时长在 7 小时以下每减少 1 小时、7 小时以上每增加 1 小时的全因死亡相对危险。东亚合并队列（PMID 34477853）只给分类 HR，不能折成斜率，故不选；非东亚为主，已收缩"},
+ "license": {"commercial_use": true, "note": "效应量为文献数据"}
+}

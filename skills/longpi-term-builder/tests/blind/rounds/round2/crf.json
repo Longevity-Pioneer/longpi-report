@@ -1,0 +1,79 @@
+{
+ "id": "ext.vo2max_cpet",
+ "name_zh": "心肺适能（最大摄氧量）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LP:vo2max",
+  "unit": "ml/kg/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "tool",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   10,
+   70
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "vo2max",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.89,
+   "lo": 0.86,
+   "hi": 0.92,
+   "per": 3.5,
+   "per_unit": "mL/kg/min (1 MET)",
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.crf"
+  ],
+  "rationale_zh": "与 1.1.1 心肺适能核心项为同一指标；荟萃各研究校正不一，只能确认年龄、性别，系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "international (mostly US and European cohorts)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "37 cohort studies, objectively assessed CRF",
+  "n": 2258029,
+  "events": 108613,
+  "ancestry": "international (multi-country cohorts)",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "35562197",
+  "quote": "For every 1-MET increase in CRF, the RR for all-cause mortality was 0.89 (95% CI, 0.86 to 0.92).",
+  "estimand_zh": "观察性队列荟萃（多变量校正）RR：客观测得心肺适能每增加 1 MET（3.5 mL/kg/min，原文以 MET 为单位）的全因死亡；非因果"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

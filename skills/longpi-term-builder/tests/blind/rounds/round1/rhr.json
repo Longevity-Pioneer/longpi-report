@@ -1,0 +1,84 @@
+{
+ "id": "ext.rhr_office",
+ "name_zh": "静息心率",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LOINC:8867-4",
+  "unit": "/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   40,
+   140
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "rhr",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.09,
+   "lo": 1.07,
+   "hi": 1.12,
+   "per": 10.0,
+   "per_unit": "beats/min",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.rhr"
+  ],
+  "rationale_zh": "与核心静息心率同一量；摘要称校正传统危险因素后结论不变但未列项，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "46 studies meta-analysis",
+  "n": 1246203,
+  "events": 78349,
+  "ancestry": "multinational",
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "有氧训练"
+ },
+ "test": {
+  "label_zh": "测脉搏",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "26598376",
+  "quote": "The relative risk with 10 beats/min increment of resting heart rate was 1.09 (95% CI 1.07-1.12) for all-cause mortality"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

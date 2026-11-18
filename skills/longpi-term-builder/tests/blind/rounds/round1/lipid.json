@@ -1,0 +1,90 @@
+{
+ "id": "ext.ldl_c",
+ "name_zh": "低密度脂蛋白胆固醇 LDL-C",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:13457-7",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.5,
+   8.0
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "ldl",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1111,
+   "lo": 1.0753,
+   "hi": 1.1494,
+   "per": 1.0,
+   "derived": {
+    "from": {
+     "hr": 0.9,
+     "lo": 0.87,
+     "hi": 0.93
+    },
+    "pow": -1.0
+   },
+   "per_unit": "mmol/L higher LDL-C (inverted from RR per 1 mmol/L reduction)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "他汀随机试验的 LDL 降低效应，作为 LDL 暴露效应的代理；与核心血脂同一量，未列校正项，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "26 randomised statin trials",
+  "n": 169138,
+  "ancestry": "multinational",
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "降脂"
+ },
+ "test": {
+  "label_zh": "血脂检测",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis-rct",
+  "pmid": "21067804",
+  "quote": "all-cause mortality was reduced by 10% per 1·0 mmol/L LDL reduction (RR 0·90, 95% CI 0·87-0·93"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

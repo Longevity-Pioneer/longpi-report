@@ -1,0 +1,267 @@
+{
+ "id": "ext.alcohol_mr",
+ "name_zh": "饮酒量（遗传预测，孟德尔随机化）",
+ "kind": "exposure",
+ "system": "lifestyle",
+ "group": null,
+ "input": {
+  "code": "LP:alcohol_g_week",
+  "unit": "g/week",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0,
+   1500
+  ]
+ },
+ "reference": {
+  "kind": "categorical_mid",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "none": 0.3675,
+     "moderate": 0.471,
+     "hazardous": 0.0625,
+     "harmful": 0.099
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "none": 0.7925,
+     "moderate": 0.2025,
+     "hazardous": 0.0035,
+     "harmful": 0.0015
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "none": 0.7925,
+     "moderate": 0.2025,
+     "hazardous": 0.0035,
+     "harmful": 0.0015
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "none": 0.7925,
+     "moderate": 0.2025,
+     "hazardous": 0.0035,
+     "harmful": 0.0015
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "none": 0.8115,
+     "moderate": 0.18,
+     "hazardous": 0.004,
+     "harmful": 0.0045
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "none": 0.8674,
+     "moderate": 0.1216,
+     "hazardous": 0.005,
+     "harmful": 0.006
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "none": 0.8674,
+     "moderate": 0.1216,
+     "hazardous": 0.005,
+     "harmful": 0.006
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "none": 0.8674,
+     "moderate": 0.1216,
+     "hazardous": 0.005,
+     "harmful": 0.006
+    }
+   }
+  ],
+  "mids": {
+   "M": {
+    "none": 0,
+    "moderate": 140,
+    "hazardous": 350,
+    "harmful": 560
+   },
+   "F": {
+    "none": 0,
+    "moderate": 70,
+    "hazardous": 210,
+    "harmful": 350
+   }
+  },
+  "estimated": true,
+  "estimated_reason_zh": "中国人群只有 WHO 分档的构成比（CCDRFS 2018），各档代表值（克/周）为估计，非文献给出",
+  "source": "p 取自 data/population_norms_china.json markers.alcohol（CCDRFS 2018, Song S 2023）；档的代表值为估计"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.27,
+   "lo": 1.16,
+   "hi": 1.39,
+   "per": 56,
+   "per_unit": "g/week",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.alcohol"
+  ],
+  "rationale_zh": "与核心饮酒领域为同一指标；MR 估计只校正年龄、性别、中心、出生地、基因主成分，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (white British)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "UK Biobank white British, 94-variant MR",
+  "n": 278093,
+  "events": 20834,
+  "ancestry": "European (white British)",
+  "age_range": [
+   37,
+   73
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "mendelian-randomization",
+  "quote": "The results support a positive relationship between alcohol consumption and all-cause mortality (OR by 8 grams higher daily alcohol intake 1·27, 95% CI 1·16–1·39), CVD mortality (1·30, 1·10–1·53), cancer mortality (1·20, 1·08–1·33), and digestive mortality (2·06, 1·36–3·12)",
+  "pmid": "38508868",
+  "estimand_zh": "遗传预测的长期平均饮酒量每增加 8 g/天（=56 g/周，原文单位为 8 g/天，换算为周）的全因死亡比值比（因果估计，非现饮酒者对比从不饮酒者的观察性 HR；注意原文报告 OR 而非 HR）",
+  "alternatives_considered": [
+   {
+    "pmid": "35687413",
+    "estimate": "中国男性 40386 人 MR，3195 例死亡，每标准杯遗传预测饮酒量全因死亡 +20%",
+    "why_not": "东亚且更优先，但摘要无 CI、非 OA 全文，无法逐字核对 HR+CI；退而取 UKB MR"
+   },
+   {
+    "pmid": "37291211",
+    "estimate": "CKB 男性 200+ 疾病，ALDH2/ADH1B MR",
+    "why_not": "摘要无全因死亡估计"
+   },
+   {
+    "pmid": "29676281",
+    "estimate": "Lancet 2018 60 万现饮酒者 83 队列，4 万死亡，全因死亡曲线型",
+    "why_not": "观测性、仅现饮酒者、高收入国家，曲线形无单一每单位 HR"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

@@ -1,0 +1,256 @@
+{
+ "id": "ext.smoking_status",
+ "name_zh": "吸烟状态",
+ "kind": "exposure",
+ "system": "respiratory",
+ "group": null,
+ "input": {
+  "code": "LP:smoking_status",
+  "unit": null,
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "categorical",
+  "log_x": false
+ },
+ "reference": {
+  "kind": "categorical",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "never": 0.546,
+     "former_lt5": 0.0145,
+     "former_ge5": 0.0145,
+     "current": 0.425
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "never": 0.44,
+     "former_lt5": 0.026,
+     "former_ge5": 0.026,
+     "current": 0.508
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "never": 0.387,
+     "former_lt5": 0.039,
+     "former_ge5": 0.039,
+     "current": 0.535
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "never": 0.313,
+     "former_lt5": 0.0635,
+     "former_ge5": 0.0635,
+     "current": 0.56
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "never": 0.304,
+     "former_lt5": 0.0975,
+     "former_ge5": 0.0975,
+     "current": 0.501
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "never": 0.344,
+     "former_lt5": 0.125,
+     "former_ge5": 0.125,
+     "current": 0.406
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "never": 0.37,
+     "former_lt5": 0.14,
+     "former_ge5": 0.14,
+     "current": 0.35
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "never": 0.973,
+     "former_lt5": 0.0025,
+     "former_ge5": 0.0025,
+     "current": 0.022
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "never": 0.984,
+     "former_lt5": 0.0015,
+     "former_ge5": 0.0015,
+     "current": 0.013
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "never": 0.977,
+     "former_lt5": 0.0015,
+     "former_ge5": 0.0015,
+     "current": 0.02
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "never": 0.969,
+     "former_lt5": 0.0025,
+     "former_ge5": 0.0025,
+     "current": 0.026
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "never": 0.958,
+     "former_lt5": 0.005,
+     "former_ge5": 0.005,
+     "current": 0.032
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "never": 0.96,
+     "former_lt5": 0.0075,
+     "former_ge5": 0.0075,
+     "current": 0.025
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "never": 0.96,
+     "former_lt5": 0.0075,
+     "former_ge5": 0.0075,
+     "current": 0.025
+    }
+   }
+  ],
+  "source": "p from data/population_norms_china.json markers.smoking; 'former' split 50:50 into former_lt5/former_ge5 by ASSUMPTION (no source)"
+ },
+ "effect": {
+  "all_cause": {
+   "levels": {
+    "never": {
+     "hr": 1.0
+    },
+    "former_lt5": {
+     "hr": 1.8,
+     "lo": 1.0,
+     "hi": 3.25
+    },
+    "former_ge5": {
+     "hr": 1.02,
+     "lo": 0.57,
+     "hi": 1.82
+    },
+    "current": {
+     "hr": 1.49,
+     "lo": 1.1,
+     "hi": 2.01
+    }
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.smoking"
+  ],
+  "rationale_zh": "与核心吸烟领域同一量；摘要称多变量校正但未列项，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "JECOH, Japanese workers",
+  "n": 79114,
+  "events": 252,
+  "ancestry": "Japanese",
+  "age_range": [
+   20,
+   85
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "戒烟"
+ },
+ "test": {
+  "label_zh": "自述",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "30210138",
+  "quote": "were 1.49 (1.10-2.01), 1.79 (0.99-3.24), and 1.80 (1.02-3.19), respectively, in current vs. never smokers. Among current smokers, the risks of total, tobacco-related cancer, and CVD mortality increased with increasing cigarette consumption (Ptrend<0.05 for all). Compared with never smokers, former smokers who quit <5 and ≥5 years before baseline had HRs (95% CIs) for total mortality of 1.80 (1.00-3.25) and 1.02 (0.57-1.82), respectively"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

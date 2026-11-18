@@ -1,0 +1,91 @@
+{
+ "id": "ext.rhr_meta",
+ "name_zh": "静息心率（诊室）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LOINC:8867-4",
+  "unit": "/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   40,
+   130
+  ]
+ },
+ "reference": {
+  "from_norms": "rhr"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.09,
+   "lo": 1.07,
+   "hi": 1.12,
+   "per": 10,
+   "per_unit": "beats/min",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.rhr"
+  ],
+  "rationale_zh": "与核心静息心率领域为同一指标；荟萃的校正不一致，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "mixed (cohorts from Europe, US, Asia)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "46 prospective studies, meta-analysis",
+  "n": 1246203,
+  "events": 78349,
+  "ancestry": "mixed (cohorts from Europe, US, Asia)",
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "quote": "The relative risk with 10 beats/min increment of resting heart rate was 1.09 (95% CI 1.07-1.12) for all-cause mortality and 1.08 (95% CI 1.06-1.10) for cardiovascular mortality.",
+  "pmid": "26598376",
+  "estimand_zh": "静息心率每增加 10 次/分的全因死亡 RR（观测性荟萃，可能含反向因果；摘要报告存在显著异质性和发表偏倚）",
+  "alternatives_considered": [
+   {
+    "pmid": "28552551",
+    "estimate": "Aune 2017 87 项研究，每 10 次/分全因死亡 RR 1.17 (1.14-1.19)，n=48 项，I2 94%",
+    "why_not": "摘要未给死亡例数，无法按'事件最多'比较；所选明确 78349 例死亡"
+   },
+   {
+    "pmid": "40174737",
+    "estimate": "近 11 万中国成人 6267 例非意外死亡，高 vs 低 RHR HR 1.58 (1.47-1.70)",
+    "why_not": "高/低二分类、结局为非意外死亡，无每单位估计；折算须自设间距"
+   },
+   {
+    "pmid": "35649571",
+    "estimate": "CKB 静息心率与心衰",
+    "why_not": "结局不是全因死亡"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

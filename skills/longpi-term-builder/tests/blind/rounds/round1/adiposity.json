@@ -1,0 +1,111 @@
+{
+ "id": "ext.bmi",
+ "name_zh": "体重指数（BMI）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "adiposity",
+ "input": {
+  "code": "LOINC:39156-5",
+  "unit": "kg/m2",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 20.0,
+  "knot_hi": 25.0,
+  "clip": [
+   14,
+   50
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "bmi",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.8852,
+    "lo": 1.7337,
+    "hi": 2.041,
+    "per": 5.0,
+    "derived": {
+     "from": {
+      "hr": 1.51,
+      "lo": 1.43,
+      "hi": 1.59
+     },
+     "pow": 1.5384615384615385
+    },
+    "per_unit": "kg/m2 below 20 (derived from BMI 15.0-<18.5 category, midpoint 16.75, 3.25 below knot 20)"
+   },
+   "hr_above": {
+    "hr": 1.39,
+    "lo": 1.34,
+    "hi": 1.44,
+    "per": 5.0,
+    "per_unit": "kg/m2 above 25 (east Asia slope)"
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.adiposity"
+  ],
+  "rationale_zh": "与核心体脂领域测的是同一量；研究只校正了研究、年龄、性别（并限定不吸烟、排除既往病与前 5 年死亡），故系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (global IPD; above-25 slope is the East Asian stratum)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "239 prospective studies (Asia, Australia/NZ, Europe, North America)",
+  "n": 3951455,
+  "events": 385879,
+  "ancestry": "multinational (Asia, Europe, North America, Australia/NZ)",
+  "age_range": [
+   35,
+   89
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "体重管理"
+ },
+ "test": {
+  "label_zh": "测身高体重",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "27423262",
+  "quote": "and increased significantly both just below this range (1·13, 1·09-1·17 for BMI 18·5-<20·0 kg/m(2); 1·51, 1·43-1·59 for BMI 15·0-<18·5) and throughout the overweight range (1·07, 1·07-1·08 for BMI 25·0-<27·5 kg/m(2); 1·20, 1·18-1·22 for BMI 27·5-<30·0 kg/m(2)). The HR for obesity grade 1 (BMI 30·0-<35·0 kg/m(2)) was 1·45, 95% CI 1·41-1·48; the HR for obesity grade 2 (35·0-<40·0 kg/m(2)) was 1·94, 1·87-2·01; and the HR for obesity grade 3 (40·0-<60·0 kg/m(2)) was 2·76, 2·60-2·92. For BMI over 25·0 kg/m(2), mortality increased approximately log-linearly with BMI; the HR per 5 kg/m(2) units higher BMI was 1·39 (1·34-1·43) in Europe, 1·29 (1·26-1·32) in North America, 1·39 (1·34-1·44) in east Asia"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

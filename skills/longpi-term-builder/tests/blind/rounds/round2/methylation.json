@@ -1,0 +1,83 @@
+{
+ "id": "ext.grimage2_accel",
+ "name_zh": "DNA 甲基化 GrimAge2 加速",
+ "kind": "state",
+ "system": "aging",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:clock.grimage2_accel",
+  "unit": "year",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -15,
+   15
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "mean": 0.0,
+  "sd": 4.97,
+  "source": "NHANES 1999-2002 年龄≥50 岁样本 Table 1：GrimAge2 加速中位数 -0.65，四分位 (-3.62, 3.08)；SD 按 IQR/1.349 估算；均值按加速的定义取 0（对同龄同性别参考）",
+  "estimated": true,
+  "estimated_reason_zh": "SD 由美国 NHANES 表中的四分位距按正态近似换算，非中国人群、非原文直给的 SD"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.07,
+   "lo": 1.05,
+   "hi": 1.09,
+   "per": 1,
+   "per_unit": "year",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.methylation"
+  ],
+  "rationale_zh": "与 1.1.1 甲基化核心项为同一指标；原文校正混杂因素（含吸烟、慢性病）但未列与核心项逐项对应，保守取 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "US NHANES (mixed US adults)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NHANES 1999-2002, adults aged >=50, linked to National Death Index",
+  "n": 1942,
+  "events": 997,
+  "ancestry": "US NHANES (mixed US adults)",
+  "age_range": [
+   50,
+   99
+  ],
+  "sex": "both",
+  "events_source_zh": "全文 Results：997 participants (51.34%) died"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "retrospective-cohort",
+  "pmid": "40658048",
+  "quote": "Similarly, GrimAge2 AA showed consistent associations with all-cause mortality (HR, 1.07; 95% CI, 1.05–1.09; p < .01)",
+  "estimand_zh": "观察性 HR：NHANES 单一队列（作者称回顾性队列，死亡 997 例），GrimAge2 加速每增加 1 单位（年）的全因死亡；GrimAge2 原始论文（PMID 36516495）的跨队列荟萃只给森林图与 P 值、正文无合并 HR，无法核对数字，故不选"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

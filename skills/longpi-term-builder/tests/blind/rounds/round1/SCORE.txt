@@ -1,0 +1,27 @@
+adiposity    未通过 
+    {"effect": "hr_below", "core": [1.1, 1.05, 1.15], "per": 2.5, "produced_rescaled": 1.373, "inside_ci": false, "same_direction": true, "pass": false}
+    {"effect": "hr_above", "core": [1.39, 1.34, 1.44], "per": 5, "produced_rescaled": 1.39, "inside_ci": true, "same_direction": true, "pass": true}
+alcohol      未通过 
+    {"effect": "slope", "core": [1.07, 1.05, 1.1], "per": 100, "produced_rescaled": 1.18, "inside_ci": false, "same_direction": true, "pass": false}
+bp           通过 
+    {"effect": "slope", "core": [1.0929, 1.0, 1.1905], "per": 10, "produced_rescaled": 1.09, "inside_ci": true, "same_direction": true, "pass": true}
+crf          通过 
+    {"effect": "slope", "core": [0.89, 0.86, 0.92], "per": 3.5, "produced_rescaled": 0.88, "inside_ci": true, "same_direction": true, "pass": true}
+glucose      未通过 
+    {"effect": "prediabetes", "core": [1.07, 1.03, 1.12], "per": null, "produced_rescaled": 1.08, "inside_ci": true, "same_direction": true, "pass": true}
+    {"effect": "diabetes", "core": [2.0, 1.93, 2.08], "per": null, "produced_rescaled": 1.61, "inside_ci": false, "same_direction": true, "pass": false}
+lipid        通过 
+    {"effect": "slope", "core": [1.0989, 1.0309, 1.1765], "per": 1, "produced_rescaled": 1.1111, "inside_ci": true, "same_direction": true, "pass": true}
+methylation  未通过 
+    {"effect": "per_year", "core": [1.0545140028652302, 1.040940506808666, 1.0682644925097975], "per": 1.0, "produced_rescaled": 1.07, "inside_ci": false, "same_direction": true, "pass": false}
+muscle       通过 
+    {"effect": "slope", "core": [0.8621, 0.8333, 0.885], "per": 5, "produced_rescaled": 0.8621, "inside_ci": true, "same_direction": true, "pass": true}
+rhr          通过 
+    {"effect": "slope", "core": [1.09, 1.07, 1.12], "per": 10, "produced_rescaled": 1.09, "inside_ci": true, "same_direction": true, "pass": true}
+sleep        通过 
+    {"effect": "hr_below", "core": [1.06, 1.04, 1.07], "per": 1, "produced_rescaled": 1.06, "inside_ci": true, "same_direction": true, "pass": true}
+    {"effect": "hr_above", "core": [1.13, 1.11, 1.15], "per": 1, "produced_rescaled": 1.13, "inside_ci": true, "same_direction": true, "pass": true}
+smoking      未通过 
+    {"effect": "former_lt5", "core": [1.21, 1.07, 1.37], "per": null, "produced_rescaled": 1.8, "inside_ci": false, "same_direction": true, "pass": false}
+    {"effect": "current", "core": [1.33, 1.31, 1.35], "per": null, "produced_rescaled": 1.49, "inside_ci": false, "same_direction": true, "pass": false}
+合计：6/11 通过

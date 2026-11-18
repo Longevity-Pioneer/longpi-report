@@ -1,0 +1,83 @@
+{
+ "id": "ext.vo2max_cpet",
+ "name_zh": "最大摄氧量 VO2max",
+ "kind": "state",
+ "system": "fitness",
+ "group": "fitness",
+ "input": {
+  "code": "LP:vo2max",
+  "unit": "ml/kg/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "tool",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   8,
+   80
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "vo2max",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.88,
+   "lo": 0.83,
+   "hi": 0.93,
+   "per": 3.5,
+   "per_unit": "mL/kg/min (= 1 MET by convention; paper states per 1 MET)",
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.crf"
+  ],
+  "rationale_zh": "与核心心肺适能同一量；荟萃分析各研究校正不一，未列校正项，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "34 cohorts meta-analysis",
+  "ancestry": "multinational",
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "有氧训练"
+ },
+ "test": {
+  "label_zh": "运动心肺试验",
+  "cost_level": 2
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "35022163",
+  "quote": "The pooled relative risks (RRs) for all-cause, CVD and cancer mortality per one-metabolic equivalent increase in CRF were 0.88 (95% CI 0.83 to 0.93)"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

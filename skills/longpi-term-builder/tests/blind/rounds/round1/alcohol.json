@@ -1,0 +1,108 @@
+{
+ "id": "ext.alcohol_gwk",
+ "name_zh": "饮酒量（纯酒精 g/周）",
+ "kind": "exposure",
+ "system": "general",
+ "group": null,
+ "input": {
+  "code": "LP:alcohol_g_week",
+  "unit": "g/week",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0,
+   1000
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "alcohol",
+  "kind": "categorical_mid",
+  "mids": {
+   "M": {
+    "none": 0.0,
+    "moderate": 143.5,
+    "hazardous": 353.5,
+    "harmful": 525.0
+   },
+   "F": {
+    "none": 0.0,
+    "moderate": 73.5,
+    "hazardous": 213.5,
+    "harmful": 350.0
+   }
+  },
+  "pmid": "37662518",
+  "quote": "alcohol use was divided into moderate (male: 1-40 g, female: 1-20 g), hazardous (male: 41-60 g, female: 21-40 g) and harmful (male: 61 + g, female: 41 + g)",
+  "note": "mids = category midpoints x7 g/week from the WHO g/day bands in the quote; open-ended top band assumed 75 g/day (M) and 50 g/day (F)"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.18,
+   "lo": 1.15,
+   "hi": 1.2,
+   "per": 100.0,
+   "per_unit": "g/week (current drinkers)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "core.smoking"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.alcohol"
+  ],
+  "rationale_zh": "与核心饮酒领域测同一量；研究分层于年龄与地区并校正教育、收入、吸烟、体力活动、水果摄入，部分校正已计入项，系数 ≤0.6",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank",
+  "n": 512724,
+  "events": 56550,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "M (women <2% drinkers)",
+  "sex_scope": "M"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减少饮酒"
+ },
+ "test": {
+  "label_zh": "自述饮酒量",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "38000378",
+  "quote": "Among current drinkers, each 100 g/week higher alcohol intake was associated with higher mortality risks from cancers (HR 1·18 [95% CI 1·14-1·22]), cardiovascular disease (CVD; HR 1·19 [1·15-1·24]), liver diseases (HR 1·51 [1·27-1·78]), non-medical causes (HR 1·15 [1·08-1·23]), and all causes (HR 1·18 [1·15-1·20])"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

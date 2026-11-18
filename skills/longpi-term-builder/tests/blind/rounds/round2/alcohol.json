@@ -1,0 +1,166 @@
+{
+ "id": "ext.alcohol_g_week",
+ "name_zh": "饮酒量（纯酒精克/周）",
+ "kind": "exposure",
+ "system": "lifestyle",
+ "group": null,
+ "input": {
+  "code": "LP:alcohol_g_week",
+  "unit": "g/week",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0,
+   1000
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "categorical_mid",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "none": 0.3797,
+     "moderate": 0.5483,
+     "hazardous": 0.029,
+     "harmful": 0.043
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "none": 0.3675,
+     "moderate": 0.471,
+     "hazardous": 0.0625,
+     "harmful": 0.099
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "none": 0.5,
+     "moderate": 0.3585,
+     "hazardous": 0.053,
+     "harmful": 0.0885
+    }
+   }
+  ],
+  "mids": {
+   "none": 0,
+   "moderate": 100,
+   "hazardous": 400,
+   "harmful": 700
+  },
+  "source": "人群分档比例取自 data/population_norms_china.json markers.alcohol（CCDRFS 2018, Song S 2023）；各档代表饮酒量(g/周)为建项者估计",
+  "estimated": true,
+  "estimated_reason_zh": "档位比例来自中国人群调查，但原表未给各档的 g/周 界值，代表值 0/100/400/700 g/周为估计，未找到可核对原句"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.07,
+   "lo": 1.05,
+   "hi": 1.1,
+   "per": 100,
+   "per_unit": "g/week",
+   "direction": "higher_worse",
+   "applies_sex": "M"
+  }
+ },
+ "adjusted_for": [
+  "age"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.alcohol"
+  ],
+  "rationale_zh": "与 1.1.1 饮酒核心项为同一指标；遗传分析只调整年龄、地区与基因组主成分，系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank, genotyped men (ALDH2-rs671, ADH1B-rs1229984)",
+  "n": 168050,
+  "events": 12939,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "M",
+  "sex_scope": "M",
+  "events_source_zh": "摘要：all causes (n=12 939) 为男性基因分型者的全因死亡数"
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "mendelian-randomization",
+  "pmid": "38000378",
+  "quote": "mortality risks increased linearly across the range of genotype-predicted mean alcohol intake for CVD (HR per 100 g/week 1.15, 95% CI 1.10−1.19), liver diseases (1.31, 1.02−1.69), and all-causes (1.07, 1.05−1.10)",
+  "estimand_zh": "孟德尔随机化（ALDH2-rs671、ADH1B-rs1229984）估计：遗传预测的终身平均饮酒量每增加 100 g/周的全因死亡 HR，仅男性（女性饮酒者约 2%，不适用，applies_sex=M）。观察性 HR 1.18/100 g/周（仅现饮酒者）受反向因果与戒酒者混杂，不选；UK Biobank MR（PMID 38508868）给的是每标准单位 OR 1.27 且为欧洲人群，不选"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

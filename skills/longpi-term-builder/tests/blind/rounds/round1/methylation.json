@@ -1,0 +1,97 @@
+{
+ "id": "ext.grimage2_accel",
+ "name_zh": "GrimAge2 加速",
+ "kind": "state",
+ "system": "aging",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:clock.grimage2_accel",
+  "unit": "year",
+  "platform": null,
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 4.97
+   }
+  ],
+  "source": "sd = IQR (-3.62, 3.08) / 1.349 from Table 1 of PMID 40658048 (NHANES 1999-2002 age>=50); mean 0 by construction of age-relative residual"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.07,
+   "lo": 1.05,
+   "hi": 1.09,
+   "per": 1.0,
+   "per_unit": "year of GrimAge2 acceleration (paper: 1-unit)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.methylation"
+  ],
+  "rationale_zh": "与核心甲基化项同一量；研究校正年龄、性别、吸烟、饮酒、BMI、慢病，部分校正，系数 ≤0.6",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NHANES 1999-2002",
+  "n": 1942,
+  "ancestry": "US multiethnic",
+  "age_range": [
+   50,
+   85
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "行为干预可部分逆转"
+ },
+ "test": {
+  "label_zh": "血液甲基化芯片",
+  "cost_level": 3
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "40658048",
+  "quote": "GrimAge2 AA showed consistent associations with all-cause mortality (HR, 1.07; 95% CI, 1.05-1.09; p < .01)"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

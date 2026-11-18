@@ -1,0 +1,94 @@
+{
+ "id": "ext.glycemic_status",
+ "name_zh": "血糖状态（ADA 分类）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LP:glycemic_status",
+  "unit": null,
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "categorical",
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "glycemic"
+ },
+ "effect": {
+  "all_cause": {
+   "levels": {
+    "normal": {
+     "hr": 1.0
+    },
+    "prediabetes": {
+     "hr": 1.08,
+     "lo": 1.01,
+     "hi": 1.15
+    },
+    "diabetes": {
+     "hr": 1.61,
+     "lo": 1.49,
+     "hi": 1.73
+    }
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "与核心血糖领域同一量；摘要未列全部校正项，按仅年龄性别处理，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China national cohort (2013 baseline)",
+  "n": 135405,
+  "events": 5517,
+  "ancestry": "Chinese",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "控糖"
+ },
+ "test": {
+  "label_zh": "空腹血糖/糖化血红蛋白",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "39255435",
+  "quote": "(diabetes: RR, 1.61 [95% CI 1.49, 1.73]; prediabetes: RR, 1.08 [95% CI 1.01, 1.15])"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

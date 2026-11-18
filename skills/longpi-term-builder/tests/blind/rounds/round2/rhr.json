@@ -1,0 +1,78 @@
+{
+ "id": "ext.rhr_office",
+ "name_zh": "静息心率",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LOINC:8867-4",
+  "unit": "/min",
+  "platform": null,
+  "methods": [
+   "lab",
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   40,
+   120
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "rhr",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.09,
+   "lo": 1.07,
+   "hi": 1.12,
+   "per": 10,
+   "per_unit": "beats/min",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.rhr"
+  ],
+  "rationale_zh": "与 1.1.1 静息心率核心项为同一指标；荟萃各研究校正不一，只能确认年龄、性别，系数 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "international (Europe, US, Asia general-population cohorts)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "46 prospective cohort studies",
+  "n": 1246203,
+  "events": 78349,
+  "ancestry": "international (multi-country cohorts)",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "26598376",
+  "quote": "The relative risk with 10 beats/min increment of resting heart rate was 1.09 (95% CI 1.07-1.12) for all-cause mortality",
+  "estimand_zh": "观察性前瞻队列荟萃 RR（非因果），每增 10 次/分，全因死亡；存在异质性与发表偏倚"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "id": "ext.grip_kg",
+ "name_zh": "握力",
+ "kind": "state",
+ "system": "musculoskeletal",
+ "group": "fitness",
+ "input": {
+  "code": "LP:grip_kg",
+  "unit": "kg",
+  "platform": null,
+  "methods": [
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   5,
+   80
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "from_norms": "grip",
+  "kind": "normal"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.8621,
+   "lo": 0.8333,
+   "hi": 0.885,
+   "per": 5.0,
+   "derived": {
+    "from": {
+     "hr": 1.16,
+     "lo": 1.13,
+     "hi": 1.2
+    },
+    "pow": -1.0
+   },
+   "per_unit": "kg higher grip (inverted from HR per 5 kg reduction)",
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.muscle"
+  ],
+  "rationale_zh": "与核心肌肉力量同一量；摘要仅写“校正后”，校正项未列，系数 ≤0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "PURE, 17 countries",
+  "n": 139691,
+  "events": 3379,
+  "ancestry": "multinational",
+  "age_range": [
+   35,
+   70
+  ],
+  "sex": "both"
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "抗阻训练"
+ },
+ "test": {
+  "label_zh": "握力计",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "25982160",
+  "quote": "hazard ratio per 5 kg reduction in grip strength 1.16, 95% CI 1.13-1.20"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}
