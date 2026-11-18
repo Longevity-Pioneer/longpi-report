@@ -1,0 +1,165 @@
+{
+ "id": "chd",
+ "name_zh": "冠心病（测试）",
+ "icd10": [],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 80.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 123.1
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 189.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 291.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 448.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 689.8
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 1061.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 1633.1
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 2512.8
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 3866.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 5948.6
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 9152.7
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 80.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 123.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 189.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 291.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 448.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 689.8
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 1061.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 1633.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 2512.8
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 3866.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 5948.6
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 9152.7
+   }
+  ],
+  "source": "测试用虚构",
+  "year": 2020
+ },
+ "diagnosed_codes": [
+  "ICD10:I25"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ }
+}

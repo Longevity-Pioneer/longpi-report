@@ -1,0 +1,241 @@
+{
+ "id": "crc",
+ "name_zh": "结直肠癌（测试）",
+ "icd10": [],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 8.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 12.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 18.9
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 29.1
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 44.8
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 69.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 106.1
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 163.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 251.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 386.6
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 594.9
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 915.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 8.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 12.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 18.9
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 29.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 44.8
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 69.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 106.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 163.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 251.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 386.6
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 594.9
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 915.3
+   }
+  ],
+  "source": "测试用虚构",
+  "year": 2020
+ },
+ "diagnosed_codes": [
+  "ICD10:C18"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "mortality_share": {
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "share": 0.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "share": 0.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "share": 0.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "share": 0.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "share": 0.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 89,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "share": 0.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 89,
+    "share": 0.03
+   }
+  ]
+ }
+}

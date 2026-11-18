@@ -1,0 +1,90 @@
+{
+ "note_zh": "重叠组：同一机制的项。组内按信息量排序，排在后面的新项只有研究同时校正了前面已计入的新项才继续计入；组内打折系数合计（含已测的核心项）不超过 cap：衰老时钟 2.5（血液时钟与甲基化各约 1），其余 1.5。",
+ "groups": {
+  "aging_clock": {
+   "name_zh": "衰老时钟",
+   "cap": 2.5,
+   "members_core": [
+    "core.phenoage_clock",
+    "core.methylation"
+   ]
+  },
+  "lipids": {
+   "name_zh": "致动脉粥样硬化脂蛋白",
+   "cap": 1.5,
+   "members_core": [
+    "core.lipid"
+   ]
+  },
+  "glycemia": {
+   "name_zh": "血糖",
+   "cap": 1.5,
+   "members_core": [
+    "core.glucose"
+   ]
+  },
+  "adiposity": {
+   "name_zh": "体脂",
+   "cap": 1.5,
+   "members_core": [
+    "core.adiposity"
+   ]
+  },
+  "fitness": {
+   "name_zh": "体能",
+   "cap": 1.5,
+   "members_core": [
+    "core.crf",
+    "core.muscle",
+    "core.rhr"
+   ]
+  },
+  "blood_pressure": {
+   "name_zh": "血压",
+   "cap": 1.5,
+   "members_core": [
+    "core.bp"
+   ]
+  },
+  "sleep": {
+   "name_zh": "睡眠",
+   "cap": 1.5,
+   "members_core": [
+    "core.sleep"
+   ]
+  },
+  "inflammation": {
+   "name_zh": "炎症",
+   "cap": 1.5,
+   "members_core": [
+    "core.phenoage_clock"
+   ]
+  },
+  "kidney": {
+   "name_zh": "肾功能",
+   "cap": 1.5,
+   "members_core": [
+    "core.phenoage_clock"
+   ]
+  },
+  "physical_activity": {
+   "name_zh": "身体活动行为",
+   "cap": 1.5,
+   "members_core": []
+  },
+  "screening": {
+   "name_zh": "癌症筛查",
+   "cap": 10.0,
+   "members_core": []
+  }
+ },
+ "guardrails": {
+  "ext_total_abs_log_hr": 0.3,
+  "ext_single_abs_log_hr": 0.15,
+  "population_neutral_tol": 0.02,
+  "note_zh": "LongPi Age：新增项单项 ±0.15、合计 ±0.30（约 ±3 岁）；120 指数行为部分：单项 ±0.35、合计 ±0.50；疾病风险：除携带致病变异类（indicator）外单项 ±1.1（HR 约 3）；发布前人群平均风险偏差须 <2%",
+  "behavior_single_abs_log_hr": 0.35,
+  "behavior_total_abs_log_hr": 0.5,
+  "disease_single_abs_log_hr": 1.1
+ }
+}

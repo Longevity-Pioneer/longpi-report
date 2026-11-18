@@ -48,10 +48,23 @@ def wearable_daily(person: dict, base: Path) -> Optional[WR.Daily]:
     return daily
 
 
+def sustained_weeks(series: Dict[date, float], as_of: date, level: float, frac: float = 0.8, min_days: int = 4) -> int:
+    """Consecutive weeks, counting back from as_of, whose mean is at least `frac` of the current level
+    (weeks with fewer than `min_days` recorded days end the run). Used to decide whether a behaviour is sustained."""
+    n, end = 0, as_of
+    while n < 520:
+        days = [series[end - timedelta(days=i)] for i in range(7) if (end - timedelta(days=i)) in series]
+        if len(days) < min_days or statistics.fmean(days) < frac * level:
+            break
+        n += 1
+        end -= timedelta(days=7)
+    return n
+
+
 def derive(person: dict, base: Path) -> dict:
     as_of = parse_date(person["as_of"])
     normalise_labs(person)
-    out: Dict = {"wearables": {}, "data": {}}
+    out: Dict = {"wearables": {}, "data": {}, "base": str(base)}
     dw, dd = out["wearables"], out["data"]
     daily = wearable_daily(person, base)
     coverage: List[dict] = []
@@ -69,6 +82,10 @@ def derive(person: dict, base: Path) -> dict:
         st = WR.recent_window(series["steps"], as_of, 90)
         if len(st) >= 20:
             dw["steps_90d"] = round(statistics.median(st))
+            dw["steps_90d_sustained_weeks"] = sustained_weeks(series["steps"], as_of, dw["steps_90d"])
+        hv = WR.recent_window(series["hrv"], as_of, 30)
+        if len(hv) >= 10:
+            dw["hrv_30d"] = round(statistics.median(hv), 1)
         # charts: last 200 days of daily values
         start = as_of - timedelta(days=200)
         days = sorted({d for s in series.values() for d in s if start < d <= as_of})

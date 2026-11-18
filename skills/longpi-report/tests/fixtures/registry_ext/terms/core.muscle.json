@@ -1,0 +1,45 @@
+{
+ "id": "core.muscle",
+ "core": true,
+ "engine": "domain",
+ "order": 1,
+ "name_zh": "肌肉力量",
+ "kind": "state",
+ "system": "musculoskeletal",
+ "spec": {
+  "id": "muscle",
+  "name_zh": "肌肉力量",
+  "input": "grip_kg",
+  "unit": "kg",
+  "shape": "loglinear",
+  "clip": [
+   8,
+   75
+  ],
+  "norm": "grip",
+  "group": "fitness",
+  "rr": {
+   "value": 0.8621,
+   "lo": 0.8333,
+   "hi": 0.885,
+   "per": 5,
+   "source": "Leong DP, et al. Lancet 2015;386:266 (PURE, 17 countries incl. China): per 5 kg lower HR 1.16 (1.13-1.20)",
+   "lit": "B4a"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.3,
+   "rule": "literature",
+   "basis": "literature (not estimable in NHANES)"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.3,
+   "rule": "literature",
+   "basis": "literature; NHANES 1.85 (SE 0.18) is at least as strong, not used to inflate"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

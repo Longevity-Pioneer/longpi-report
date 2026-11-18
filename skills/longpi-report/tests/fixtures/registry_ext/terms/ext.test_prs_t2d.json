@@ -1,0 +1,69 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_prs_t2d",
+ "name_zh": "2 型糖尿病多基因评分（测试）",
+ "kind": "genetic",
+ "group": null,
+ "input": {
+  "code": "PGS:PGS999999",
+  "unit": "SD",
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "residualized"
+ },
+ "reference": {
+  "kind": "residualized",
+  "mean": 0.0,
+  "sd": 1.0
+ },
+ "effect": {
+  "t2d": {
+   "hr": 1.5,
+   "lo": 1.4,
+   "hi": 1.6,
+   "per": 1.0,
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.0,
+  "rationale_zh": "测试",
+  "mediated_by": {
+   "LOINC:1558-6": 0.5
+  }
+ },
+ "measurement": {
+  "sd_abs": 0.05
+ }
+}

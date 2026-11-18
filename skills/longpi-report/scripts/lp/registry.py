@@ -86,7 +86,7 @@ def verify_manifest(root: Path = REG_DIR) -> dict:
 @lru_cache(maxsize=4)
 def load(root: Optional[str] = None) -> dict:
     """The frozen registry as one dict: {version, digest, terms, qualitative, groups, outcomes}."""
-    r = Path(root) if root else REG_DIR
+    r = Path(root) if root else Path(REG_DIR)
     man = verify_manifest(r)
     terms = {}
     for p in sorted((r / "terms").glob("*.json")):
@@ -99,6 +99,15 @@ def load(root: Optional[str] = None) -> dict:
     groups = _read(r / "groups.json") if (r / "groups.json").exists() else {"groups": {}}
     return {"version": man["version"], "digest": man["digest"], "terms": terms, "qualitative": qual,
             "groups": groups, "outcomes": outcomes, "root": str(r)}
+
+
+def use(root) -> None:
+    """Point the process at another registry directory (tests, staging); clears every cache that read the old one."""
+    global REG_DIR
+    REG_DIR = Path(root)
+    load.cache_clear()
+    from . import params as PR
+    PR.load.cache_clear()
 
 
 def source(key: str, root: Optional[str] = None) -> Optional[dict]:

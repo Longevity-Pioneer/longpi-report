@@ -1,0 +1,165 @@
+{
+ "id": "t2d",
+ "name_zh": "2 型糖尿病（测试）",
+ "icd10": [],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 300.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 461.6
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 710.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 1092.7
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 1681.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 2586.9
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 3980.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 6124.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 9422.8
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 14498.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 22307.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 34322.5
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 300.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 461.6
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 710.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 1092.7
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 1681.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 2586.9
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 3980.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 6124.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 9422.8
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 14498.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 22307.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 34322.5
+   }
+  ],
+  "source": "测试用虚构",
+  "year": 2020
+ },
+ "diagnosed_codes": [
+  "ICD10:E11"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ }
+}

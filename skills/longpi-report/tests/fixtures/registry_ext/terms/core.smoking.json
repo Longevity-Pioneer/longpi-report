@@ -1,0 +1,95 @@
+{
+ "id": "core.smoking",
+ "core": true,
+ "engine": "domain",
+ "order": 8,
+ "name_zh": "吸烟",
+ "kind": "exposure",
+ "system": null,
+ "spec": {
+  "id": "smoking",
+  "name_zh": "吸烟",
+  "input": "smoking_status",
+  "unit": "category",
+  "shape": "categorical",
+  "norm": "smoking",
+  "group": "lifestyle",
+  "causal": true,
+  "levels": {
+   "never": 1,
+   "former_ge5": 1,
+   "former_lt5": {
+    "value": 1.21,
+    "lo": 1.07,
+    "hi": 1.37,
+    "per": 1,
+    "source": "Chen Z, et al. Lancet 2015 (CKB): quit by choice <5 y RR 1.21 (1.07-1.37); 5-14 y 1.00",
+    "lit": "C7c"
+   },
+   "current": {
+    "value": 1.33,
+    "lo": 1.31,
+    "hi": 1.35,
+    "per": 1,
+    "source": "Chan KH, et al. Lancet Public Health 2022 (CKB men): current smoker HR 1.33 (1.31-1.35)",
+    "lit": "C7b"
+   }
+  },
+  "levels_by_region": {
+   "urban": {
+    "current": {
+     "value": 1.65,
+     "lo": 1.53,
+     "hi": 1.79,
+     "per": 1,
+     "source": "Chen Z, Lancet 2015: urban men current smokers RR 1.65 (1.53-1.79)",
+     "lit": "C7a"
+    }
+   },
+   "rural": {
+    "current": {
+     "value": 1.22,
+     "lo": 1.15,
+     "hi": 1.3,
+     "per": 1,
+     "source": "Chen Z, Lancet 2015: rural men RR 1.22",
+     "lit": "C7a"
+    }
+   }
+  },
+  "pop_levels": {
+   "never": 1,
+   "former": {
+    "value": 1.1,
+    "lo": 1.0,
+    "hi": 1.21,
+    "per": 1,
+    "source": "derived: mix of <5 y (1.21) and >=5 y (1.00) quitters",
+    "lit": "C7c"
+   },
+   "current": {
+    "value": 1.33,
+    "lo": 1.31,
+    "hi": 1.35,
+    "per": 1,
+    "source": "Chan 2022 (CKB men): 1.33",
+    "lit": "C7b"
+   }
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

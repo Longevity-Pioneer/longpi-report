@@ -1,0 +1,107 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_steps",
+ "name_zh": "日均步数（测试）",
+ "kind": "behavior",
+ "group": "physical_activity",
+ "input": {
+  "code": "LP:steps_daily_mean",
+  "unit": "steps/day",
+  "methods": [
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 9000,
+  "knot_hi": 30000,
+  "clip": [
+   1000,
+   20000
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 6500,
+    "sd": 2500
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 6000,
+    "sd": 2400
+   }
+  ]
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.15,
+    "lo": 1.1,
+    "hi": 1.2,
+    "per": 1000
+   },
+   "hr_above": {
+    "hr": 1.0,
+    "lo": 0.999,
+    "hi": 1.001,
+    "per": 1000
+   },
+   "hr": 1.15,
+   "lo": 1.1,
+   "hi": 1.2,
+   "per": 1000,
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.1,
+  "rationale_zh": "测试",
+  "mediated_by": {
+   "core.crf": 0.3
+  }
+ },
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5,
+  "target": 9000
+ },
+ "measurement": {
+  "cv": 0.1
+ }
+}

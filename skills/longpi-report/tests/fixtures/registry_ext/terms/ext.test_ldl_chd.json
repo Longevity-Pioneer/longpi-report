@@ -1,0 +1,88 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_ldl_chd",
+ "name_zh": "LDL→冠心病（测试）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "LOINC:13457-7",
+  "unit": "mmol/L",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.5,
+   9
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 2.9,
+    "sd": 0.8
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 2.8,
+    "sd": 0.8
+   }
+  ]
+ },
+ "effect": {
+  "chd": {
+   "hr": 1.6,
+   "lo": 1.4,
+   "hi": 1.8,
+   "per": 1.0,
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.0,
+  "rationale_zh": "测试"
+ },
+ "measurement": {
+  "cv": 0.04
+ },
+ "persistence": {
+  "half_life_years": 10
+ }
+}

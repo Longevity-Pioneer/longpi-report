@@ -1,0 +1,70 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_screen_crc",
+ "name_zh": "结直肠癌粪便免疫化学检测（测试）",
+ "kind": "behavior",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.crc_fit",
+  "unit": "years_since",
+  "methods": [
+   "lab",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear"
+ },
+ "reference": {
+  "kind": "normal",
+  "mean": 0,
+  "sd": 1
+ },
+ "effect": {},
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.0,
+  "rationale_zh": "测试"
+ },
+ "screening": {
+  "disease_id": "crc",
+  "mortality_rr": {
+   "hr": 0.78,
+   "lo": 0.7,
+   "hi": 0.87
+  },
+  "eligible": {
+   "age": [
+    40,
+    75
+   ],
+   "sex": "both",
+   "requires": []
+  },
+  "interval_years": 1
+ }
+}

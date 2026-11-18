@@ -32,10 +32,10 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
-from . import clinical, clock, domains as DM, mortality as M, params as PR
+from . import clinical, clock, domains as DM, mortality as M, observations as OB, params as PR, registry as RG, terms as TM
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
-ENGINE_VERSION = "1.1.1"
+ENGINE_VERSION = "1.1.2"
 MILESTONES = (80, 90, 100, 110, 120)
 
 
@@ -397,6 +397,11 @@ class Model:
         self.meth = methylation_input(person, self.at, self.sex, self.birth_offset, snapshot)
         self.meth_spec = mp["clocks"][self.meth["clock"] if self.meth else mp["default_unmeasured"]]
         self.meth_mobs: Optional[float] = None   # residual of the measured acceleration given the LongPi point
+        # engine 1.1.2: registry terms beyond the 1.1.1 model; own random stream so 1.1.1 draws are unchanged
+        base = derived.get("base") if isinstance(derived, dict) else None
+        self.obs = OB.Observations(person, {} if snapshot else derived, Path(base) if base else None)
+        self.ext = TM.ExtModel(self)
+        self.ext_rng = random.Random(seed * 7919 + 13)
         self.scen = self.pp["scenarios"]
         self.s_ref: Dict[str, List[float]] = {}
         for k, sc in self.scen["defs"].items():
@@ -466,6 +471,7 @@ class Model:
         th["beta_m"] = rng.gauss(self.meth_spec["beta"], self.meth_spec["beta_se"])
         for did in self.specs:
             th["zx"][did] = rng.gauss(0.0, 1.0)   # measurement noise of a hypothetical new test (data_value)
+        th["ext"] = self.ext.draw(self.ext_rng) if self.ext.counted else {}
         return th
 
     def log_r(self, th: dict, override: Optional[Dict[str, Callable]] = None, direct: float = 0.0, parts: bool = False,
@@ -484,6 +490,10 @@ class Model:
             out[did] = c * DM.log_hr(sp, th["dom"][did], x, self.sex, self.age, shift=th["shift"][did])
         if meth:
             out["methylation"] = self.meth_term(th)
+        if th.get("ext") and self.ext.life_terms():
+            ext_parts, _ = self.ext.life_parts(th["ext"])
+            for k, v in ext_parts.items():
+                out["ext:" + k] = v
         tot = sum(out.values()) + direct
         return (tot, out) if parts else tot
 
@@ -593,6 +603,9 @@ def run(person: dict, derived: dict, n_draws: int = 2000, seed: int = 20261024) 
     res["asks_default"] = default_asks(m, res)
     from . import systems as SY   # engine 1.1.1: the same terms regrouped by body system; uses no random numbers
     res["system_ages"] = SY.compute(m, draws)
+    from . import disease as DS, index120 as IX   # engine 1.1.2
+    res["diseases"] = DS.compute(m, draws)
+    res["index120"]["behavior"] = IX.compute(m, draws, res)
     return res
 
 
@@ -702,6 +715,9 @@ def summarise(m: Model, draws: List[dict], ivs: List[dict], core: List[dict], sc
     clock_pt = math.log(statistics.fmean(math.exp(d["parts"]["clock"]) for d in draws)) / m.b
     meth_yrs = [d["parts"]["methylation"] / m.b for d in draws]
     meth_pt = math.log(statistics.fmean(math.exp(d["parts"]["methylation"]) for d in draws)) / m.b
+    ext_lh = [sum(v for k, v in d["parts"].items() if k.startswith("ext:")) for d in draws]
+    ext_yrs = [x / m.b for x in ext_lh]
+    ext_pt = math.log(statistics.fmean(math.exp(x) for x in ext_lh)) / m.b
     # scenarios: point from E[R]; intervals from draws (subsample for speed)
     sub = draws[:: max(1, len(draws) // 600)]
     scen = {}
@@ -762,7 +778,7 @@ def summarise(m: Model, draws: List[dict], ivs: List[dict], core: List[dict], sc
              for p in m.pheno]
     traj = trajectory(m)
     gc = pp["calibration"]["gap"]
-    return {
+    res = {
         "engine_version": ENGINE_VERSION, "params_version": pp["version"], "as_of": m.as_of.isoformat(),
         "person": {"code": m.person["person"].get("code", ""), "sex": m.sex, "chrono_age": round(m.age, 1)},
         "gompertz_b": round(m.b, 4),
@@ -770,7 +786,8 @@ def summarise(m: Model, draws: List[dict], ivs: List[dict], core: List[dict], sc
             "value": summ(la_vals, 1, m.age + gap_point), "delta": summ(gaps, 1, gap_point), "chrono": round(m.age, 1),
             "clock_delta": summ(clock_yrs, 2, clock_pt),
             "methylation_delta": summ(meth_yrs, 2, meth_pt),
-            "function_delta": summ([g - c - x for g, c, x in zip(gaps, clock_yrs, meth_yrs)], 2, gap_point - clock_pt - meth_pt),
+            "function_delta": summ([g - c - x - e for g, c, x, e in zip(gaps, clock_yrs, meth_yrs, ext_yrs)], 2,
+                                   gap_point - clock_pt - meth_pt - ext_pt),
             "coef_set": m.coef_set, "domains": domains,
             "clock": {"measured": m.has_clock, "phenoage_points": pheno, "excluded_tests": excluded_blood_tests(m.person, m.at), "gap_now_mean": round(m.gap_mean, 2), "gap_now_sd": round(m.gap_sd, 2),
                       "years_per_gap_year_central": round(gc["slopes"][1] / m.b, 3),
@@ -785,6 +802,86 @@ def summarise(m: Model, draws: List[dict], ivs: List[dict], core: List[dict], sc
         "missing_domains": [m.specs[d]["name_zh"] for d in m.specs if d not in m.I.values],
         "data_value": data_value(m),
     }
+    res["longpi_age"]["extension_delta"] = summ(ext_yrs, 2, ext_pt)
+    res["extension"] = ext_summary(m, draws)
+    return res
+
+
+def _evidence_brief(spec: dict) -> dict:
+    ev = spec.get("evidence") or {}
+    return {"grade": ev.get("grade"), "quote": ev.get("quote"), "pmid": ev.get("pmid"), "doi": ev.get("doi"), "url": ev.get("url"),
+            "design": ev.get("design")}
+
+
+def ext_summary(m: Model, draws: List[dict]) -> dict:
+    """New (registry) terms as they apply to this person: counted terms with years, and why the others are not counted."""
+    reg = m.ext.reg
+    rows = []
+    bound = 0
+    for d in draws:
+        if d["th"].get("ext") and m.ext.life_terms():
+            bound += m.ext.life_parts(d["th"]["ext"])[1]
+    life_ids = {T.id for T in m.ext.life_terms()}
+    for T in m.ext.terms:
+        if T.status == "hidden":
+            continue
+        sp = T.spec
+        row = {"id": T.id, "name": sp["name_zh"], "kind": T.kind, "system": sp.get("system"), "group": sp.get("group"),
+               "status": T.status, "reasons": T.reasons, "notes": T.notes, "input_code": sp["input"]["code"],
+               "level": None if T.level is None else round(T.level, 3), "level_sd": None if T.level_sd is None else round(T.level_sd, 3),
+               "value": T.value, "unit": sp["input"].get("unit"),
+               "slope_per_year": None if T.slope is None else round(T.slope, 4),
+               "slope_sd": None if T.slope_sd is None else round(T.slope_sd, 4),
+               "observations": T.obs_used[-5:], "n_observations": len(T.obs_used),
+               "coef": {oc: round(c[0], 3) for oc, c in T.coef.items()}, "outcomes": list(T.coef),
+               "evidence": _evidence_brief(sp), "interventions": sp.get("interventions"), "disclosure": sp.get("disclosure", "standard"),
+               "new_term": True, "screening": T.screening}
+        if T.id in life_ids:
+            lh = [d["parts"]["ext:" + T.id] for d in draws]
+            pt = math.log(statistics.fmean(math.exp(x) for x in lh)) / m.b
+            row["years"] = summ([x / m.b for x in lh], 2, pt)
+            if T.slope is not None and T.level is not None:   # change of this term's contribution per year
+                e = T.spec["effect"]["all_cause"]
+                shape = T.spec["transform"]["shape"]
+                if shape in ("loglinear", "residualized"):
+                    beta = math.log(e["hr"]) * float((T.spec.get("transport") or {}).get("shrink", 1.0)) / e["per"]
+                    row["years_per_year"] = round(T.coef["all_cause"][0] * beta * T.slope / m.b, 3)
+        rows.append(row)
+    observed = set(m.obs.by_code)
+    qual = []
+    prefs = m.ext.prefs
+    for q in reg["qualitative"].values():
+        qc = q.get("input", {}).get("code", "")
+        if qc.startswith("LP:monogenic:") and not prefs["secondary_findings"]:
+            continue
+        if q.get("disclosure") == "opt_in" and not prefs["show_opt_in"]:
+            continue
+        if qc in observed:
+            qual.append({"id": q["id"], "name": q.get("name_zh"), "why": q.get("why_qualitative_zh"), "evidence": _evidence_brief(q)})
+    unmeasured = []
+    for sp in RG.ext_terms(reg):
+        if sp["input"]["code"] in observed or sp["kind"] not in ("state", "exposure"):
+            continue
+        sy = TM.spread_years(sp, m.sex, m.age, m.b)
+        if sy and sy >= 0.1:
+            unmeasured.append({"id": sp["id"], "name": sp["name_zh"], "spread_years": sy, "test": sp.get("test")})
+    unmeasured.sort(key=lambda r: (((r.get("test") or {}).get("cost_level", 9)), -r["spread_years"]))
+    conflicts = []
+    for code in observed:
+        rows_c = m.obs.by_code[code]
+        nums = [o["value"] for o in rows_c if isinstance(o.get("value"), (int, float))]
+        if len(nums) >= 2:
+            c = m.obs.conflicts(code, m.at, statistics.pstdev(nums) / 2 if len(nums) > 2 else 0.0)
+            if c:
+                conflicts.append(c)
+    return {"registry": {"version": reg["version"], "digest": reg["digest"]},
+            "hidden_count": sum(1 for T in m.ext.terms if T.status == "hidden"),
+            "terms": rows, "qualitative": qual, "could_move": unmeasured[:10],
+            "guardrail": {"single_cap_log_hr": m.ext.cap_single, "total_cap_log_hr": m.ext.cap_total,
+                          "draws_bound_share": round(bound / max(1, len(draws)), 3)},
+            "conflicts": conflicts,
+            "genetics": {k: v for k, v in (m.obs.genetics or {}).items() if k in ("build", "source_type", "qc", "ancestry")},
+            "provenance": m.obs.provenance}
 
 
 def trajectory(m: Model) -> dict:
@@ -935,8 +1032,9 @@ def _actions(m: Model) -> List[_Action]:
 
 def _width(m: Model, acts: List[_Action], n: int) -> float:
     """80% interval width of LongPi Age if `acts` were done; the same random draws for every call."""
-    saved = (m.rng, m.has_clock, m.coef_set, m.gap_mean, m.gap_sd, m.meth_spec, m.meth_mobs)
+    saved = (m.rng, m.has_clock, m.coef_set, m.gap_mean, m.gap_sd, m.meth_spec, m.meth_mobs, m.ext_rng)
     m.rng = random.Random(7)
+    m.ext_rng = random.Random(8)
     try:
         for a in acts:
             if a.patch:
@@ -949,7 +1047,7 @@ def _width(m: Model, acts: List[_Action], n: int) -> float:
                     a.mod(m, th)
             vals.append(m.log_r(th) / m.b)
     finally:
-        m.rng, m.has_clock, m.coef_set, m.gap_mean, m.gap_sd, m.meth_spec, m.meth_mobs = saved
+        m.rng, m.has_clock, m.coef_set, m.gap_mean, m.gap_sd, m.meth_spec, m.meth_mobs, m.ext_rng = saved
     return q(vals, 0.9) - q(vals, 0.1)
 
 

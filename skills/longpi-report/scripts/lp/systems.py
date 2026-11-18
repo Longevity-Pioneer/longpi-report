@@ -161,6 +161,15 @@ def compute(m, draws: List[dict]) -> dict:
         unassigned = [s0 * resid] * n
     else:
         unassigned = [d["parts"]["clock"] for d in draws]   # no blood clock: the residual draw stays whole-body only
+    # engine 1.1.2: counted registry terms join the system named in their spec; without a system they stay unassigned
+    ext_ids = [k[4:] for k in (draws[0]["parts"] if draws else {}) if k.startswith("ext:")]
+    ext_sys = {T.id: T.spec.get("system") for T in m.ext.terms}
+    ext_lh = {tid: [d["parts"]["ext:" + tid] for d in draws] for tid in ext_ids}
+    sys_ids = {s["id"] for s in sp["systems"]}
+    for tid in ext_ids:
+        if ext_sys.get(tid) not in sys_ids:
+            for i in range(n):
+                unassigned[i] += ext_lh[tid][i]
     vend = _vendor_organs(m)
     tol = sp["methylation_organ"]["tolerance_s_lab_multiple"] * m.pp["methylation"]["s_lab"]
     systems, total = [], [0.0] * n
@@ -177,9 +186,12 @@ def compute(m, draws: List[dict]) -> dict:
             (any(d in m.I.values for d in s["require_domains_any"]) or (s.get("clock_satisfies") and bool(measured_an)))
             if s["require_domains_any"] else True) and (not s["require_clock"] or bool(measured_an)) and all(
             k in measured_an for k in s.get("require_analytes", []))
-        if not doms and not ans:
+        exts = [tid for tid in ext_ids if ext_sys.get(tid) == s["id"]]
+        if exts and not ok and not s.get("never"):
+            ok = True
+        if not doms and not ans and not exts:
             ok = False
-        lh = [sum(dom_lh[d][i] for d in doms) + sum(an_lh[k][i] for k in ans) for i in range(n)]
+        lh = [sum(dom_lh[d][i] for d in doms) + sum(an_lh[k][i] for k in ans) + sum(ext_lh[t][i] for t in exts) for i in range(n)]
         for i in range(n):
             total[i] += lh[i]
         contrib = []
@@ -194,6 +206,12 @@ def compute(m, draws: List[dict]) -> dict:
                             "input": an_info[k]["value"], "reference_same_age_sex": an_info[k]["reference"],
                             "input_source": f"血液检测 {an_info[k]['date']}", "phenoage_gap_share_years": an_info[k]["gap_years_share"],
                             "years": _years(an_lh[k], b), "evidence": sp["analyte_source"]})
+        for tid in exts:
+            T = next(x for x in m.ext.terms if x.id == tid)
+            contrib.append({"id": tid, "kind": "registry_term", "label": T.spec["name_zh"], "measured": True,
+                            "input": None if T.level is None else round(T.level, 3), "input_source": "；".join(
+                                sorted({str(o.get("source_file") or "") for o in T.obs_used})), "years": _years(ext_lh[tid], b),
+                            "evidence": (T.spec.get("evidence") or {}).get("quote", ""), "new_term": True})
         missing = [m.specs[d]["name_zh"] for d in doms if d not in m.I.values]
         if s["analytes"] and not ans and not unmeasured_an:
             missing.append("九项血液检测")
@@ -226,7 +244,7 @@ def compute(m, draws: List[dict]) -> dict:
         "cross_system": {"name": sp["cross_system"]["name_zh"], "delta": _years(cross_lh, b),
                          "contributions": [{"id": d, "label": m.specs[d]["name_zh"], "measured": d in m.I.values,
                                             "years": _years(dom_lh[d], b), "evidence": _sources(m.specs[d])} for d in cross]},
-        "unassigned": {"delta": _years(unassigned, b), "what": "未实测的化验项（按典型值进入血液时钟，不归任何系统）与参考曲线取整的余项" if clock_ok else "没有血液检测：全身模型里“看不到的那一块”，不分到任何系统"},
+        "unassigned": {"delta": _years(unassigned, b), "registry_terms": [t for t in ext_ids if ext_sys.get(t) not in sys_ids], "what": "未实测的化验项（按典型值进入血液时钟，不归任何系统）与参考曲线取整的余项" if clock_ok else "没有血液检测：全身模型里“看不到的那一块”，不分到任何系统"},
         "methylation_rule": {"rule": sp["methylation_organ"]["rule"], "tolerance_years": round(tol, 1), "text": sp["methylation_organ"]["rule_zh"],
                              "report": None if not vend else {k: vend[k] for k in ("date", "vendor", "chrono_at_sampling")}},
         "consistency": {"identity": "systems + cross_system + unassigned + methylation == whole-body log R in every draw",

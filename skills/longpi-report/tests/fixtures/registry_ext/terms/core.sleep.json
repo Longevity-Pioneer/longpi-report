@@ -1,0 +1,55 @@
+{
+ "id": "core.sleep",
+ "core": true,
+ "engine": "domain",
+ "order": 3,
+ "name_zh": "睡眠",
+ "kind": "state",
+ "system": "brain_sleep",
+ "spec": {
+  "id": "sleep",
+  "name_zh": "睡眠",
+  "input": "sleep_selfreport_h",
+  "unit": "h",
+  "shape": "hinge",
+  "knot_lo": 7.0,
+  "knot_hi": 8.0,
+  "clip": [
+   3,
+   12
+  ],
+  "norm": "sleep",
+  "group": "lifestyle",
+  "rr_below": {
+   "value": 1.06,
+   "lo": 1.04,
+   "hi": 1.07,
+   "per": 1,
+   "source": "Yin J, et al. JAHA 2017;6:e005947: per 1 h below 7 h RR 1.06 (1.04-1.07)",
+   "lit": "B6a"
+  },
+  "rr_above": {
+   "value": 1.13,
+   "lo": 1.11,
+   "hi": 1.15,
+   "per": 1,
+   "source": "Yin 2017: per 1 h above the nadir RR 1.13 (1.11-1.15); applied above 8 h (reference band 7-8 h, Cappuccio 2010)",
+   "lit": "B6a"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.3,
+   "rule": "literature",
+   "basis": "literature; NHANES 1.21 (SE 0.22) is at least as strong, not used to inflate"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.3,
+   "rule": "literature",
+   "basis": "literature; NHANES 1.64 (SE 0.18) is at least as strong, not used to inflate"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

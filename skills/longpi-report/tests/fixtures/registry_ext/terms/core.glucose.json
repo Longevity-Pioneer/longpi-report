@@ -1,0 +1,52 @@
+{
+ "id": "core.glucose",
+ "core": true,
+ "engine": "domain",
+ "order": 6,
+ "name_zh": "血糖",
+ "kind": "state",
+ "system": "metabolic",
+ "spec": {
+  "id": "glucose",
+  "name_zh": "血糖",
+  "input": "glycemic_status",
+  "unit": "category",
+  "shape": "categorical",
+  "norm": "glycemic",
+  "group": "cardiometabolic",
+  "levels": {
+   "normal": 1,
+   "prediabetes": {
+    "value": 1.07,
+    "lo": 1.03,
+    "hi": 1.12,
+    "per": 1,
+    "source": "Cai X, et al. BMJ 2020: IFG (ADA) all-cause RR 1.07 (1.03-1.12)",
+    "lit": "C4b"
+   },
+   "diabetes": {
+    "value": 2.0,
+    "lo": 1.93,
+    "hi": 2.08,
+    "per": 1,
+    "source": "Bragg F, et al. JAMA 2017 (CKB): diabetes all-cause RR 2.00 (1.93-2.08)",
+    "lit": "C4a"
+   }
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 0.0302,
+   "sd": 0.0497,
+   "rule": "overlap",
+   "basis": "NHANES joint estimate 0.03 (SE 0.05): overlap discount"
+  },
+  "without_clock": {
+   "value": 0.5932,
+   "sd": 0.0408,
+   "rule": "overlap",
+   "basis": "NHANES joint estimate 0.59 (SE 0.04): overlap discount"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

@@ -1,0 +1,96 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_apob",
+ "name_zh": "载脂蛋白 B（测试）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:1884-6",
+  "unit": "g/L",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.3,
+   2.5
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.95,
+    "sd": 0.25
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.9,
+    "sd": 0.24
+   }
+  ]
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1,
+   "lo": 1.04,
+   "hi": 1.16,
+   "per": 0.25,
+   "direction": "higher_worse"
+  },
+  "chd": {
+   "hr": 1.35,
+   "lo": 1.2,
+   "hi": 1.5,
+   "per": 0.25,
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.1,
+  "rationale_zh": "测试",
+  "mediated_by": {}
+ },
+ "measurement": {
+  "cv": 0.05
+ },
+ "persistence": {
+  "half_life_years": 10
+ }
+}

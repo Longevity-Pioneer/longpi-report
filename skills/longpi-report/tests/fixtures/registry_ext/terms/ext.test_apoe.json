@@ -1,0 +1,74 @@
+{
+ "license": {
+  "commercial_use": true,
+  "note": "测试用"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "test",
+  "quote": "测试用虚构数值，不代表任何研究",
+  "pmid": null,
+  "numbers_verified": true
+ },
+ "status": "active",
+ "added_by": "test",
+ "transport": {
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "age_range": [
+   30,
+   80
+  ],
+  "sex": "both"
+ },
+ "id": "ext.test_apoe",
+ "name_zh": "APOE ε4（测试）",
+ "kind": "genetic",
+ "system": null,
+ "group": null,
+ "input": {
+  "code": "LP:apoe_e4_count",
+  "unit": "",
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0,
+   2
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "mean": 0.17,
+  "sd": 0.4
+ },
+ "effect": {
+  "t2d": {
+   "hr": 1.01,
+   "lo": 1.0,
+   "hi": 1.02,
+   "per": 1
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.0,
+  "rationale_zh": "测试"
+ },
+ "measurement": {
+  "cv": 0.04
+ },
+ "persistence": {
+  "half_life_years": 10
+ },
+ "disclosure": "opt_in"
+}
