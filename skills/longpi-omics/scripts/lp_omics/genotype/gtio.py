@@ -136,9 +136,10 @@ def _new_counters():
     return {"records": 0, "called": 0, "auto_called": 0, "auto_het": 0, "filtered": 0, "multisample": 0}
 
 
-def _note_x(xcalls, chrom, pos, alleles):
+def _note_x(xcalls, chrom, pos, alleles, ref=None):
     if chrom == "X" and alleles is not None:
-        xcalls.append((pos, len(set(alleles)) > 1, len(alleles)))
+        nonref = True if ref is None else any(a != ref for a in alleles)
+        xcalls.append((pos, len(set(alleles)) > 1, len(alleles), nonref))
 
 
 def _read_vcf(path, interest, source_type, sample, pass_only):
@@ -211,7 +212,7 @@ def _read_vcf(path, interest, source_type, sample, pass_only):
                         ctr["auto_het"] += 1
                 if chrom == "Y" and any(a != ref for a in alleles):
                     n_y += 1
-            _note_x(xcalls, chrom, pos, alleles)
+            _note_x(xcalls, chrom, pos, alleles, ref)
             rsid = f[2] if f[2].startswith("rs") else None
             if interest.wants(chrom, pos, rsid):
                 calls.setdefault((chrom, pos), []).append(Call(chrom, pos, ref, alts, alleles, rsid))

@@ -60,16 +60,21 @@ def qc(g: gtio.Genotypes, build: str, declared_sex: str | None) -> dict:
     call_rate = c["called"] / c["records"] if c["records"] else 0.0
     het = c["auto_het"] / c["auto_called"] if c["auto_called"] else 0.0
     par = gtio.PAR[build]
-    xs = [(h, pl) for p, h, pl in g.xcalls if not any(a <= p <= b for a, b in par)]
+    xs = [(h, pl, nr) for p, h, pl, nr in g.xcalls if not any(a <= p <= b for a, b in par)]
     notes = list(g.notes)
-    if len(xs) >= 50:
-        xhet = sum(h for h, _ in xs) / len(xs)
-        haploid = sum(pl == 1 for _, pl in xs) / len(xs)
-        if g.fmt == "vcf":
-            # variant-only VCF: compare het fraction among non-reference X calls
+    if g.fmt == "vcf":
+        # heterozygosity among non-reference chrX calls: ~0 in males (haploid / hemizygous), ~0.5+ in females
+        nr = [(h, pl) for h, pl, n in xs if n]
+        if len(nr) >= 30:
+            xhet = sum(h for h, _ in nr) / len(nr)
+            haploid = sum(pl == 1 for _, pl in nr) / len(nr)
             inferred = "M" if (haploid > 0.5 or xhet < 0.05) else ("F" if xhet > 0.2 else "unknown")
         else:
-            inferred = "M" if xhet < 0.01 else ("F" if xhet > 0.03 else "unknown")
+            xhet, inferred = None, "unknown"
+            notes.append(f"only {len(nr)} non-reference non-PAR chrX calls; sex check not possible")
+    elif len(xs) >= 50:
+        xhet = sum(h for h, _, _ in xs) / len(xs)
+        inferred = "M" if xhet < 0.01 else ("F" if xhet > 0.03 else "unknown")
     else:
         xhet, inferred = None, "unknown"
         notes.append(f"only {len(xs)} non-PAR chrX calls; sex check not possible")

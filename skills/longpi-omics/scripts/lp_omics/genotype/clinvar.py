@@ -134,6 +134,7 @@ def subset_vcf(build: str, *, pad: int = 5000, workers: int = 4) -> Path:
                     seen.add(k)
                     fh.write(line)
     tmp.replace(dest)
+    shutil.rmtree(gdir, ignore_errors=True)
     return dest
 
 

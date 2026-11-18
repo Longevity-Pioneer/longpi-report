@@ -22,8 +22,9 @@ from lp_omics.genotype import clinvar, core, kg, liftover, prs  # noqa: E402
 
 OUT = HERE.parents[1] / "longpi-report" / "examples" / "e2e"
 PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
-GENES = ["BRCA1", "BRCA2", "LDLR", "MLH1", "PCSK9", "TP53"]
-XREGION = ("X", 20_000_000, 20_150_000)
+GENES = ["LDLR"]
+XREGION = ("X", 20_000_000, 20_040_000)
+X_MIN_AF = 0.05
 GRCH38_LEN = {"1": 248956422, "2": 242193529, "3": 198295559, "4": 190214555, "5": 181538259, "6": 170805979,
               "7": 159345973, "8": 145138636, "9": 138394717, "10": 133797422, "11": 135086622, "12": 133275309,
               "13": 114364328, "14": 107043718, "15": 101991189, "16": 90338345, "17": 83257441, "18": 80373285,
@@ -67,7 +68,19 @@ def main():
                 sites.add((c, p))
     cv38 = clinvar.load_cache("GRCh38")
     regions = gene_regions(cv38) + [XREGION]
-    recs = kg.query_sites(sorted(sites), [s1, s2], regions=regions)
+    allsamp = kg.unrelated_samples()
+    i1, i2 = allsamp.index(s1), allsamp.index(s2)
+    full = kg.query_sites(sorted(sites), allsamp, regions=regions)
+    common_x = set()
+    for (c, p), lst in full.items():
+        if c == "X":
+            for ref, alt, gts in lst:
+                n = sum(g.replace("|", "/").count("1") for g in gts)
+                an = sum(len(g.replace("|", "/").split("/")) for g in gts)
+                if an and X_MIN_AF <= n / an <= 1 - X_MIN_AF and len(ref) == 1 and len(alt) == 1:
+                    common_x.add((c, p))
+    sites |= common_x  # common chrX SNPs are kept with hom-ref calls, as on a genotyping array
+    recs = {k: [(r, a, [g[i1], g[i2]]) for r, a, g in v] for k, v in full.items()}
     chain = liftover.Chain(common.ref_dir("liftover") / "hg38ToHg19.over.chain.gz")
     OUT.mkdir(parents=True, exist_ok=True)
 
