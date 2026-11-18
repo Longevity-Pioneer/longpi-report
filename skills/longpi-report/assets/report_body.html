@@ -486,7 +486,7 @@ function pct(x) { return x == null ? '—' : (x < 0.001 ? '<0.1%' : (100 * x).to
 function renderDiseases() {
   const D = R.diseases; show('#dzCard', !!(D && D.diseases && D.diseases.length));
   if (!D || !D.diseases) return;
-  $('#dzSub').textContent = '基线为中国人群分年龄、性别的发病率；10 年风险主要反映当前的指标，终身风险（到 ' + (D.diseases.find(d => d.horizon_lifetime_age) || {}).horizon_lifetime_age + ' 岁）还包含先天因素，并已扣除因其他原因先去世的概率。括号内是同龄同性别人群。';
+  $('#dzSub').textContent = '基线为中国人群分年龄、性别的发病率；10 年风险主要反映当前的指标，终身风险（到 ' + (D.diseases.find(d => d.horizon_lifetime_age) || {}).horizon_lifetime_age + ' 岁）还包含先天因素，并已扣除因其他原因先去世的概率；预期寿命更长的人，有更多年份可能发病，所以终身风险可能略高于人群。括号内是同龄同性别人群。';
   const ST = {diagnosed: '已确诊，不再预测', not_applicable: '不适用', no_baseline: '暂无可用的基线数据'};
   $('#dzGrid').innerHTML = D.diseases.filter(d => d.status !== 'not_applicable').map(d => {
     if (d.status !== 'estimated') return `<div class="card risk"><h4>${esc(d.name)}</h4><p class="tiny">${esc(ST[d.status] || d.status)}${(d.notes || []).length ? '：' + esc(d.notes.join('；')) : ''}</p></div>`;
@@ -494,10 +494,11 @@ function renderDiseases() {
     const miss = (d.missing_inputs || []).slice(0, 3).map(x => esc(x.name)).join('、');
     return `<div class="card risk"><h4>${esc(d.name)}</h4>
       <div class="lab">10 年</div><div><b>${pct(d.risk10.median)}</b> <span class="tiny">（${pct(d.risk10.p10)}–${pct(d.risk10.p90)}；人群 ${pct(d.peer10)}）</span></div>
-      <div class="lab">终身</div><div><b>${pct(d.lifetime.median)}</b> <span class="tiny">（${pct(d.lifetime.p10)}–${pct(d.lifetime.p90)}；人群 ${pct(d.peer_lifetime)}）</span></div>
+      ${d.lifetime ? `<div class="lab">终身</div><div><b>${pct(d.lifetime.median)}</b> <span class="tiny">（${pct(d.lifetime.p10)}–${pct(d.lifetime.p90)}；人群 ${pct(d.peer_lifetime)}）</span></div>` : ''}
       ${dr ? `<div class="lab">主要因素</div><ul>${dr}</ul>` : '<p class="tiny">没有可计入的个人因素，按人群水平估计。</p>'}
       ${miss ? `<div class="tiny">补充 ${miss} 后估计会更准</div>` : ''}
-      ${(d.notes || []).length ? `<div class="tiny">${esc(d.notes.join('；'))}</div>` : ''}</div>`; }).join('');
+      ${(d.notes || []).length ? `<div class="tiny">${esc(d.notes.join('；'))}</div>` : ''}
+      ${d.baseline && d.baseline.quality ? `<details class="tiny"><summary>基线数据说明</summary>${esc(d.baseline.quality)}</details>` : ''}</div>`; }).join('');
 }
 function renderRisk() {
   renderDiseases();

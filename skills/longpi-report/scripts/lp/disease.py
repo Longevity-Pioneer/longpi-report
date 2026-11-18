@@ -90,7 +90,8 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
             row["notes"].append("基线发病率来源不允许商业使用，暂不计算")
             out.append(row)
             continue
-        dx = [c for c in oc.get("diagnosed_codes", []) if m.obs.has(c)]
+        dx = sorted({c for c in oc.get("diagnosed_codes", []) for have in m.obs.by_code
+                     if have == c or (c.startswith("ICD10:") and have.startswith(c + "."))})
         if dx:
             row["status"] = "diagnosed"
             row["diagnosed_codes"] = dx
@@ -118,9 +119,12 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
         zero = lambda t: 0.0
         row["risk10"] = _summ(r10, statistics.fmean(r10))
         row["lifetime"] = _summ(rl, statistics.fmean(rl))
+        if oc.get("report_lifetime") is False:
+            row["lifetime"] = None
+            row["notes"].append(oc.get("report_lifetime_why_zh", "只报告 10 年风险"))
         row["horizon_lifetime_age"] = oc.get("horizon_lifetime_age", 90)
         row["peer10"] = round(_risk(oc, m.sex, m.age, m.ages, surv_ref, zero, 10.0), 4)
-        row["peer_lifetime"] = round(_risk(oc, m.sex, m.age, m.ages, surv_ref, zero, horizon_life), 4)
+        row["peer_lifetime"] = None if oc.get("report_lifetime") is False else round(_risk(oc, m.sex, m.age, m.ages, surv_ref, zero, horizon_life), 4)
         row["rr_now"] = _summ(rr_now, statistics.fmean(rr_now), 2)
         drivers = []
         for T in terms:

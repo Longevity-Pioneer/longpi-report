@@ -96,5 +96,7 @@
   "verified_at": "2026-11-18",
   "verifier": "evidence/scripts/build_outcomes.py",
   "numbers_verified": true
- }
+ },
+ "report_lifetime": false,
+ "report_lifetime_why_zh": "脂肪肝可以逆转，逐年累加的终身发病风险会高估，只报告 10 年风险"
 }

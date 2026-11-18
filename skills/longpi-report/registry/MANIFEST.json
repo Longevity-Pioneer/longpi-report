@@ -1,7 +1,7 @@
 {
- "digest": "19b27ab447ddec0ed98ddb97d1395d28ad642aa8320d9edd9ca8527fc62e6664",
+ "digest": "8478823e7a379ca70e0ce3e0ca9c30ea64b33f3ea961eb87aee12c1a553791fb",
  "files": {
-  "VERSION": "03f2be0b15eb28927b57416e55365d1a784124345ae64660f63d3064df021e5c",
+  "VERSION": "c2c46af8c5c992f78d27f97839ff4109a1fda1667de8953c2d345a8e9b38a2ae",
   "groups.json": "fca2a0065c845e12df9b0f3f6802fc2f1059ba7d4d1a5df5e38764b7a871b94a",
   "outcomes/ad.json": "0f0eed316625bcd7f574a9485459e5b8e99cab45619815ef66eb7099ea007613",
   "outcomes/breast_ca.json": "60d7666a9cd22b59831f2cd16e3bc70799b3ab924d9db7a419482ca396d4b6bb",
@@ -12,7 +12,7 @@
   "outcomes/htn.json": "02d6e4a117ee3345eab4bf218600d8c4e0a21bb389e8c2de4eaba837bcf01a4a",
   "outcomes/liver_ca.json": "884327882d5e3a3f190e569f7d6ea48e1fa51d35afd53e98da321b2fb9780843",
   "outcomes/lung_ca.json": "661cc1c64846b4f9ba0a1e13715e54737f8e9372a391cab1791bfbf10f794fe7",
-  "outcomes/masld.json": "7e72378aaf37fa1cf7c7f3ad09d3c39aafed6859e5aba277e2b0dae4490cf393",
+  "outcomes/masld.json": "ebadcea577d223e1c92ab06006c9d31706e0027c4cca0630f36450546e20ca14",
   "outcomes/prostate_ca.json": "b237c0c813cca929118394b3afda28a9aad81ef91c0c6b161a25c3d27abc94c7",
   "outcomes/stroke.json": "1ca42d9e7ae41af81642d1cd8cbe13ba3bb3698b49708d44bd10e1b78e2c4d2a",
   "outcomes/t2d.json": "a439109a4ea2484aa8cb70ed066266b50cc7df242d9fcfc13ff87604ae3eb896",
@@ -43,5 +43,5 @@
   "terms/core.sleep.json": "c30c29a7183b53eddd5384777cac6345ff05984d2b7164389ef3a85aae16a3e7",
   "terms/core.smoking.json": "9647298fe31f4773d35cdbe55c214459fa1221790c0bf0861f9073d44b77c906"
  },
- "version": "2026.11.18-2"
+ "version": "2026.11.18-3"
 }
