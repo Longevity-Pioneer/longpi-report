@@ -65,7 +65,13 @@ class TestGenotypeE2E(unittest.TestCase):
 
     def test_prs_scored_with_reference(self):
         prs_ = {r["pgs_id"]: r for r in self.doc1["genetics"]["prs"]}
-        for p in PGS:
+        # PGS000070: 4 of 19 variants are indels/sites absent from the 1000G panel -> coverage 0.79 < 0.8
+        r70 = prs_["PGS000070"]
+        self.assertFalse(r70["scored"])
+        self.assertIsNone(r70["z"])
+        self.assertIn("coverage", r70["reason"])
+        self.assertNotIn("PGS:PGS000070", {o["code"] for o in self.doc1["observations"]})
+        for p in ["PGS002262", "PGS003353", "PGS000050"]:
             r = prs_[p]
             self.assertTrue(r["scored"], r)
             self.assertGreaterEqual(r["coverage"], 0.8)

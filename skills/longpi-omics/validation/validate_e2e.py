@@ -43,9 +43,9 @@ def main():
             same = a.read_bytes() == b.read_bytes()
             res["files"][who] = {"bytes": a.stat().st_size, "identical": same}
             ok &= same
-            exp = E2E / "expected"
-            exp.mkdir(exist_ok=True)
-            (exp / f"{who}_observations.json").write_bytes(a.read_bytes())
+            exp = E2E / "people" / who
+            exp.mkdir(parents=True, exist_ok=True)
+            (exp / "observations.json").write_bytes(a.read_bytes())
         # build detection and GRCh37/38 consistency
         b38, b37 = td / "b38.json", td / "b37.json"
         pg = sum((["--pgs", p] for p in PGS), [])
@@ -53,7 +53,7 @@ def main():
         run(["genotype", str(FIXG / "P1_genotypes_GRCh37_lifted.vcf"), "--out", str(b37), *pg])
         g38 = json.loads(b38.read_text())["genetics"]
         g37 = json.loads(b37.read_text())["genetics"]
-        chip = json.loads((E2E / "expected" / "P2_observations.json").read_text())["genetics"]
+        chip = json.loads((E2E / "people" / "P2" / "observations.json").read_text())["genetics"]
         cmp = {
             "build_P1_vcf_header": g38["build"], "build_P1_lifted_markers": g37["build"], "build_P2_chip_markers": chip["build"],
             "prs_identical": [(x["pgs_id"], x["raw"], x["z"]) for x in g37["prs"]] == [(x["pgs_id"], x["raw"], x["z"]) for x in g38["prs"]],

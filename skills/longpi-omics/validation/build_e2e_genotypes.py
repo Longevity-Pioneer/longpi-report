@@ -72,6 +72,14 @@ def main():
     allsamp = kg.unrelated_samples()
     i1, i2 = allsamp.index(s1), allsamp.index(s2)
     full = kg.query_sites(sorted(sites), allsamp, regions=regions)
+    # P2: the CHS female with the most heterozygous calls in the chrX segments, so the short segment is
+    # informative for the sex check (many females carry few hets in 120 kb)
+    pops = {a: (b, d) for a, b, _, d in kg.sample_panel()}
+    xrec = [g for (c, _), v in full.items() if c == "X" for _, _, g in v]
+    cands = [k for k, n in enumerate(allsamp) if pops[n] == ("CHS", "female")]
+    s2 = allsamp[max(cands, key=lambda k: (sum(g[k] in ("0|1", "1|0") for g in xrec), -k))]
+    i2 = allsamp.index(s2)
+    print("P2 re-selected for chrX informativeness:", s2)
     common_x = set()
     for (c, p), lst in full.items():
         if c == "X":
@@ -114,10 +122,17 @@ def main():
 
     p1 = rows_for(0, True)
     write_vcf(OUT / "P1_genotypes_GRCh38.vcf", p1, "GRCh38", True)
-    # GRCh37 lift of the same calls (validation fixture): positions via chain; REF/ALT kept on + strand
+    # GRCh37 lift of the same calls (validation fixture): positions from the paired GRCh37/GRCh38
+    # coordinates of the panel and the PGS harmonized files where known, UCSC chain otherwise
+    known = {(s["chrom"], s["pos_GRCh38"]): s["pos_GRCh37"] for s in panel.values()}
+    for pid in PGS:
+        v38 = {i: (c, p) for i, c, p, *_ in prs.fetch_score(pid, "GRCh38").variants() if c}
+        for i, c, p, *_ in prs.fetch_score(pid, "GRCh37").variants():
+            if c and i in v38 and v38[i][0] == c:
+                known[v38[i]] = p
     lifted, dropped = [], 0
     for c, p, ref, alt, gt in p1:
-        r = chain.convert(c, p)
+        r = (c, known[(c, p)], "+") if (c, p) in known else chain.convert(c, p)
         if r is None or r[0] != c or r[2] != "+":
             dropped += 1
             continue
@@ -135,7 +150,7 @@ def main():
     for c, p, ref, alt, gt in p2:
         if len(ref) != 1 or len(alt) != 1:
             continue
-        r = chain.convert(c, p)
+        r = (c, known[(c, p)], "+") if (c, p) in known else chain.convert(c, p)
         if r is None or r[0] != c or r[2] != "+":
             continue
         a = gt.replace("|", "/").split("/")
