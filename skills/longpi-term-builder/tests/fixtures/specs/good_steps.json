@@ -32,7 +32,9 @@
     "sd": 2800
    }
   ],
-  "source": "fixture: illustrative distribution for tests"
+  "source": "fixture: illustrative distribution for tests",
+  "estimated": true,
+  "estimated_reason_zh": "测试用"
  },
  "effect": {
   "all_cause": {
@@ -79,7 +81,9 @@
  },
  "behavior": {
   "min_weeks": 8,
-  "self_report_discount": 0.5
+  "self_report_discount": 0.5,
+  "target": 8000,
+  "target_source": "fixture"
  },
  "evidence": {
   "grade": "B",

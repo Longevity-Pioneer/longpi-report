@@ -10,7 +10,9 @@
  "status": "active",
  "behavior": {
   "min_weeks": 8,
-  "self_report_discount": 0.5
+  "self_report_discount": 0.5,
+  "target": 2,
+  "target_source": "WHO 身体活动和久坐行为指南（2020）与中国人群身体活动指南（2021）：成人每周至少 2 天进行涉及主要肌群的肌肉力量练习"
  },
  "id": "ext.resistance",
  "name_zh": "每周抗阻训练次数",
@@ -27,7 +29,7 @@
  },
  "transform": {
   "shape": "hinge",
-  "knot_lo": 2,
+  "knot_lo": 1,
   "clip": [
    0,
    7
@@ -42,9 +44,9 @@
     "age_lo": 18,
     "age_hi": 99,
     "p": {
-     "none": 0.8,
-     "one": 0.08,
-     "two_plus": 0.12
+     "none": 0.615,
+     "one": 0.1,
+     "two_plus": 0.285
     }
    }
   ],
@@ -53,9 +55,11 @@
    "one": 1,
    "two_plus": 2.5
   },
-  "pmid": "39040428",
-  "quote": "Overall, 22.8 % (95%CI: 18.18 % ─ 27.77 %) of adults adhered to the MSE guidelines",
-  "source": "全球系统综述显示 22.8% 成人达到肌力训练指南（每周 ≥2 次）；中国成人比例更低，取 12% 为估计值，未找到可核对的中国按性别年龄数据"
+  "pmid": "32230937",
+  "quote": "The prevalence of MS activities among participants was 28.5%.",
+  "source": "湖北 13 个城市 3073 名成人自报调查（Lin 2020），按 WHO 标准（每周 ≥2 天）达标率 28.5%，取 two_plus 0.285；全球系统综述合并达标率 22.8%（PMID 39040428），量级一致。每周 1 次者比例无原文数据，取 0.10 为估计值；城市方便样本可能高估全国水平。原 12% 为无来源估计，已弃用。",
+  "estimated": true,
+  "estimated_reason_zh": "每周 ≥2 次的比例来自湖北城市样本（非全国代表性，可能偏高），每周 1 次的比例无可核对数据，未分性别年龄；未找到全国代表性的中国成人肌力练习分布"
  },
  "effect": {
   "all_cause": {
@@ -71,8 +75,8 @@
      },
      "pow": -1
     },
-    "per": 2,
-    "per_unit": "sessions/week（0 次对比指南推荐的 2 次）"
+    "per": 1,
+    "per_unit": "sessions/week（输入为整数次数：0 次对 ≥1 次，即原文“有对无”的二分类对比）"
    },
    "direction": "higher_better"
   }
@@ -80,7 +84,9 @@
  "adjusted_for": [
   "age",
   "sex",
-  "ext.mvpa"
+  "core.adiposity",
+  "core.alcohol",
+  "core.smoking"
  ],
  "overlap": {
   "coef": 0.5,
@@ -88,7 +94,7 @@
   "overlaps_with": [
    "core.muscle"
   ],
-  "rationale_zh": "荟萃分析目标是独立于有氧活动的关联，纳入研究多校正了有氧活动及常见混杂，但未校正握力；抗阻训练主要通过肌肉力量起作用，属部分校正，系数取 0.5。测得握力时再按中介比例 0.3（默认值）扣减。J 形关系中高剂量（>130–140 分钟/周）的风险变化不确定，不计入拐点以上的增减。",
+  "rationale_zh": "全文说明纳入研究多数校正了年龄、体重指数、饮酒和吸烟，部分校正性别、种族、饮食、病史与社会经济状况，均考虑了有氧活动，但未校正握力；抗阻训练主要通过肌肉力量起作用，属部分校正，系数取 0.5。测得握力时再按中介比例 0.3（默认值）扣减。",
   "mediated_by": {
    "core.muscle": 0.3
   }
@@ -134,9 +140,15 @@
   "quote": "Muscle-strengthening activities were associated with a 15% lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2).",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "35228201",
+    "why_not_zh": "同一文献的剂量反应分析（J 形，30–60 分钟/周风险最低）未给每单位估计；原先把有对无的 RR 0.85 摊到 0→2 次的跨度上属推算，已改为 0 次对 ≥1 次的阶跃"
+   }
+  ]
  },
- "note_zh": "原文为任何对比无（two-group），并报告 J 形关系最大获益在 30–60 分钟/周。以每周 2 次（约 60 分钟）为拐点，0 次相对 ≥2 次风险乘 1/0.85；拐点以上不计入（不惩罚高剂量，也不追加获益）。",
+ "note_zh": "原文为任何肌力练习对无（two-group）RR 0.85。输入为每周整数次数，折线拐点取 1、跨度 1，相当于 0 次时风险乘 1/0.85、≥1 次不再变化，与原文的二分类对比一致；不对更多次数追加获益，也不惩罚高剂量（原文 J 形关系高剂量段不确定）。指南目标为每周 ≥2 次。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

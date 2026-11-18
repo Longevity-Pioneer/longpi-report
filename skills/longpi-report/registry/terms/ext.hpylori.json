@@ -35,20 +35,25 @@
    "hr": 5.94,
    "lo": 3.25,
    "hi": 10.86,
-   "coef": 0.7
+   "coef": 0.6,
+   "overlaps_with": [
+    "ext.fh_gastric_ca"
+   ]
   }
  },
  "adjusted_for": [
   "age",
-  "sex"
+  "sex",
+  "region",
+  "education"
  ],
  "overlap": {
-  "coef": 0.7,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [
    "ext.fh_gastric_ca"
   ],
-  "rationale_zh": "本项只计疾病结局。HR 取非贲门胃癌（5.94），而 gastric_ca 包含贲门胃癌（同研究 HR 3.06，95% CI 1.54–6.10），直接套用会高估全胃癌风险；原文只校正年龄、性别、地区和教育，未校正吸烟、饮酒、高盐饮食和胃癌家族史。综合两点系数取 0.7（相当于全胃癌 HR 约 3.5）。",
+  "rationale_zh": "本项只计疾病结局。HR 取非贲门胃癌（5.94），而 gastric_ca 包含贲门胃癌（同研究 HR 3.06，95% CI 1.54–6.10）；原文只校正年龄、性别、地区和教育，未校正吸烟、饮酒、高盐饮食和胃癌家族史（幽门螺杆菌感染有家庭聚集，与胃癌家族史项共享信息），属部分校正，规则上限 0.6，系数取 0.6（相当于全胃癌 HR 约 2.9，与贲门胃癌估计接近）。",
   "mediated_by": {}
  },
  "transport": {
@@ -92,7 +97,7 @@
   "grade": "B",
   "design": "prospective-cohort",
   "pmid": "34838195",
-  "quote": "H pylori infection was associated with adjusted HRs of 5·94 (95% CI 3·25-10·86) for NCGC and 3·06 (1·54-6·10) for CGC.",
+  "quote": "H pylori infection was associated with adjusted HRs of 5·94 (95% CI 3·25-10·86) for NCGC and 3·06 (1·54-6·10) for CGC. Among the seven individual infection biomarkers, cytotoxin-associated antigen had the highest HRs for both NCGC (HR 4·41, 95% CI 2·60-7·50) and CGC (2·94, 1·53-5·68). In this population, 78·5% of NCGC and 62·1% of CGC cases could be attributable to H pylori infection. H pylori infection accounted for an estimated 339 955 cases of gastric cancer in China in 2018.",
   "url": "https://pubmed.ncbi.nlm.nih.gov/34838195/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
@@ -104,5 +109,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

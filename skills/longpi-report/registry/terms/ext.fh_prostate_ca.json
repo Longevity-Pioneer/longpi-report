@@ -3,7 +3,7 @@
  "name_zh": "一级亲属前列腺癌家族史",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:prostate_ca",
   "unit": "0/1",
@@ -34,17 +34,24 @@
    "hr": 2.48,
    "lo": 2.25,
    "hi": 2.74,
-   "coef": 0.8
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.prs_prostate_ca",
+    "ext.mono_brca2"
+   ],
+   "adjusted_for": [
+    "age"
+   ]
   }
  },
  "adjusted_for": [
   "age"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.3,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。前列腺癌已知可改变的危险因素少，家族史效应受混杂影响小，但荟萃分析各研究校正程度不一，且家族史阳性者更常接受 PSA 筛查，存在检出偏倚，系数取 0.8；研究人群以欧美为主，另按非东亚人群收缩。",
+  "rationale_zh": "本项只计疾病结局。荟萃分析只纳入按年龄校正或年龄匹配的研究，未校正多基因评分与 BRCA2 致病变异；家族史阳性者更常接受 PSA 筛查，存在检出偏倚。按规则（仅校正年龄）系数上限 0.3，取 0.3；研究人群以欧美为主，另按非东亚人群收缩。",
   "mediated_by": {}
  },
  "transport": {
@@ -56,7 +63,9 @@
   "cohort": "33 independent studies in unselected populations (meta-analysis)",
   "ancestry": "multinational (mainly European and North American)",
   "sex": "M",
-  "sex_scope": "M"
+  "sex_scope": "M",
+  "events": 11572,
+  "events_source_zh": "原文未汇总合并病例数；全文表 1 所列纳入研究之一（Kerber，美国犹他人群数据库巢式病例对照）即含 11572 例前列腺癌，合并分析病例数不少于此数"
  },
  "measurement": {
   "sd_abs": null,
@@ -81,7 +90,7 @@
   "grade": "B",
   "design": "meta-analysis",
   "pmid": "22073129",
-  "quote": "The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74).",
+  "quote": "We performed a meta-analysis on familial clustering of prostate cancer. Out of 74 studies reporting data on familial aggregation of prostate cancer in unselected populations retrieved by a Pubmed search and browsing references, 33 independent studies meeting the inclusion criteria were used in the analysis performed with the random effects model. The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74).",
   "url": "https://pubmed.ncbi.nlm.nih.gov/22073129/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
@@ -93,5 +102,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

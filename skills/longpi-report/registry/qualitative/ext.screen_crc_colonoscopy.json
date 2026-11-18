@@ -75,7 +75,9 @@
     "prevalence": 0.06
    }
   ],
-  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/crc.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+  "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+  "estimated": true,
+  "estimated_reason_zh": "未找到可核对的中国全国按性别年龄结肠镜筛查率；按年龄分组数值为估计"
  },
  "effect": {},
  "screening": {
@@ -116,7 +118,9 @@
    55,
    64
   ],
-  "sex": "both"
+  "sex": "both",
+  "events": 342,
+  "events_source_zh": "摘要：筛查组结直肠癌死亡 106 例、对照组 236 例，合计 342 例"
  },
  "measurement": {
   "sd_abs": null,
@@ -147,8 +151,8 @@
  "note_zh": "取 NordICC 13 年随访意向筛查 RR 0.88（0.68–1.08），置信区间跨 1，死亡获益未达统计学显著；受邀组仅约 42% 实际接受结肠镜，意向筛查估计对实际做过结肠镜者偏保守。按方案分析 RR 0.70（0.26–1.25）同样不显著且受自选择影响，不采用。10 年随访（NEJM 2022，PMID 36214590）意向筛查 RR 0.90（0.64–1.16）。",
  "why_qualitative_zh": "唯一的随机对照试验（NordICC）13 年意向筛查分析中结直肠癌死亡 RR 为 0.88（0.68–1.08），置信区间含 1，未证明降低死亡；受邀者实际接受肠镜者仅约四成，按方案分析亦不显著。本版只作定性佐证，不计入指数。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
-  "screening: 95% CI 0.68–1.08 含 1（无统计学意义）"
+  "screening: 95% CI 0.68–1.08 含 1（无统计学意义；分类水平须改为 hr 1 或整项不入库）"
  ]
 }

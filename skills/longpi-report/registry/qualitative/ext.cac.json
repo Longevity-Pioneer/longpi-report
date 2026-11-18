@@ -270,8 +270,9 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
-  "all_cause: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')"
+  "all_cause: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')",
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例"
  ]
 }

@@ -15,21 +15,21 @@
    "number": "all_cause.hr",
    "value": 1.67,
    "found": true,
-   "context": " significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+   "context": " significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00]) and CVD mortality"
   },
   {
    "term": "ext.nt_probnp",
    "number": "all_cause.lo",
    "value": 1.39,
    "found": true,
-   "context": " higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+   "context": " higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00]) and CVD mortality"
   },
   {
    "term": "ext.nt_probnp",
    "number": "all_cause.hi",
    "value": 2.0,
    "found": true,
-   "context": "er risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+   "context": "er risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00]) and CVD mortality"
   }
  ]
 }

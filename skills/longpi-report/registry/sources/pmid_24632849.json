@@ -1,0 +1,56 @@
+{
+ "key": "pmid:24632849",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/24632849/",
+ "fetched_at": "2026-11-18T06:00:14Z",
+ "sha256": "207c976af8e8a23865ffd1d2fec51930a0a5f45abd5e69982de43006408ba38f",
+ "citation": "Scientific reports 2014",
+ "text": "Apolipoprotein E gene polymorphism and Alzheimer's disease in Chinese population: a meta-analysis.\nThe relationship between Apolipoprotein E (ApoE) genotype and the risk of Alzheimer's disease (AD) is relatively well established in Caucasians, but less established in other ethnicities. To examine the association between ApoE polymorphism and the onset of AD in Chinese population, we searched the commonly used electronic databases between January 2000 and November 2013 for relevant studies. Total 20 studies, including 1576 cases and 1741 controls, were retrieved. The results showed statistically significant positive association between risk factor ε4 allele carriers and AD in Chinese population (OR = 3.93, 95% CI = 3.37-4.58, P < 0.00001). Genotype ApoE ε4/ε4 and ε4/ε3 have statistically significant association with AD as well (ε4/ε4: OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.00001). Furthermore, the frequency of the ApoE ε3 is lower in AD than that in the health controls, and the difference of ε3 allele is also statistically significant (OR = 0.42, 95% CI = 0.37-0.47, P < 0.00001). No significant heterogeneity was observed among all studies. This meta-analysis suggests that the subject with at least one ApoE ε4 allele has higher risk suffering from AD than controls in Chinese population. The results also provide a support for the protection effect of ApoE ε3 allele in developing AD.",
+ "pmcid": "PMC3955907",
+ "doi": "10.1038/srep04383",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.1.hr",
+   "value": 3.08,
+   "found": true,
+   "context": ": OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.00001)"
+  },
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.1.lo",
+   "value": 2.57,
+   "found": true,
+   "context": "5% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.00001)"
+  },
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.1.hi",
+   "value": 3.69,
+   "found": true,
+   "context": " = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.00001)"
+  },
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.2.hr",
+   "value": 11.76,
+   "found": true,
+   "context": "ically significant association with AD as well (ε4/ε4: OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI"
+  },
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.2.lo",
+   "value": 6.38,
+   "found": true,
+   "context": "nt association with AD as well (ε4/ε4: OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P"
+  },
+  {
+   "term": "ext.apoe_e4",
+   "number": "ad.2.hi",
+   "value": 21.47,
+   "found": true,
+   "context": "sociation with AD as well (ε4/ε4: OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.0"
+  }
+ ]
+}

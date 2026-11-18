@@ -10,27 +10,6 @@
  "open_access": "N",
  "checks": [
   {
-   "term": "ext.egfr",
-   "number": "all_cause.hr_below.hr",
-   "value": 1.57,
-   "found": true,
-   "context": " were 1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) f"
-  },
-  {
-   "term": "ext.egfr",
-   "number": "all_cause.hr_below.lo",
-   "value": 1.39,
-   "found": true,
-   "context": "1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 "
-  },
-  {
-   "term": "ext.egfr",
-   "number": "all_cause.hr_below.hi",
-   "value": 1.78,
-   "found": true,
-   "context": "(95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 mL/mi"
-  },
-  {
    "term": "ext.uacr",
    "number": "all_cause.hr",
    "value": 1.63,
@@ -50,6 +29,27 @@
    "value": 1.77,
    "found": true,
    "context": "ality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol"
+  },
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.hr",
+   "value": 1.57,
+   "found": true,
+   "context": " were 1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) f"
+  },
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.lo",
+   "value": 1.39,
+   "found": true,
+   "context": "1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 "
+  },
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.hi",
+   "value": 1.78,
+   "found": true,
+   "context": "(95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 mL/mi"
   }
  ]
 }

@@ -110,7 +110,7 @@ def _fixture_name(url: str) -> str:
     return hashlib.sha256(url.encode("utf-8")).hexdigest()[:24] + ".txt"
 
 
-def http_get(url: str, accept: str = "application/json", timeout: int = 40) -> str:
+def http_get(url: str, accept: str = "application/json", timeout: int = 20) -> str:
     """The only network function. Host allow-list + every query value must be a fixed keyword or an identifier."""
     u = urllib.parse.urlparse(url)
     if u.scheme != "https" or u.hostname not in ALLOWED_HOSTS:
@@ -154,6 +154,8 @@ def http_get(url: str, accept: str = "application/json", timeout: int = 40) -> s
             raise
         except (urllib.error.URLError, TimeoutError) as e:
             last = e
+            if attempt >= 2:   # connection-level failure (proxy, SSL EOF): give up fast so a fallback host can answer
+                break
             time.sleep(1.5 * (attempt + 1))
     if body is None:
         raise last
@@ -279,7 +281,7 @@ def _epmc_record(query: str) -> dict:
 
 
 def _epmc_fulltext_paragraphs(pmcid: str) -> List[str]:
-    body = http_get(f"https://www.ebi.ac.uk/europepmc/webservices/rest/{_q(pmcid)}/fullTextXML", accept="application/xml")
+    body = http_get(f"https://www.ebi.ac.uk/europepmc/webservices/rest/{_q(pmcid)}/fullTextXML", accept="application/xml", timeout=90)
     root = ET.fromstring(body)
     out = []
     for tag in ("p", "tr", "caption", "title"):
@@ -339,10 +341,17 @@ def fetch_source(key: str, root: Path, need: Iterable[str] = (), refresh: bool =
         extra = {"pgs_id": (r.get("associated_pgs_id") or "")}
     else:
         if kind == "pmid":
-            abst, meta = _pubmed_abstract(val)
-            texts.append(abst)
             url = f"https://pubmed.ncbi.nlm.nih.gov/{val}/"
             rec_e = _epmc_record(f"EXT_ID:{val} AND SRC:MED")
+            try:
+                abst, meta = _pubmed_abstract(val)
+            except (urllib.error.URLError, TimeoutError, OSError, LookupError, ET.ParseError):
+                # NCBI unreachable (e.g. a proxy breaking TLS): the same PubMed abstract via Europe PMC
+                if not rec_e.get("abstractText"):
+                    raise
+                abst = (rec_e.get("title") or "") + "\n" + re.sub(r"<[^>]+>", " ", rec_e["abstractText"])
+                meta = f"{rec_e.get('journalTitle', '')} {rec_e.get('pubYear', '')} (abstract via Europe PMC)"
+            texts.append(abst)
         elif kind == "doi":
             rec_e = _epmc_record(f'DOI:"{val}"')
             if rec_e.get("pmid"):
@@ -450,6 +459,36 @@ def _num_positions(x, t: str) -> List[Tuple[int, int]]:
     for v in number_variants(x):
         out += [(m.start(), m.end()) for m in re.finditer(r"(?<![\d.])" + re.escape(v) + r"(?![\d]|\.\d)", t)]
     return sorted(out)
+
+
+OUTCOME_WORDS = {
+    "all_cause": r"mortalit|death|died|dying|surviv|死亡",
+    "t2d": r"diabet|T2D|glyc",
+    "chd": r"coronary|ischa?emic heart|\bCHD\b|\bIHD\b|\bCAD\b|myocardial|heart disease|\bMI\b|cardiovascular",
+    "stroke": r"stroke|cerebrovascular|cerebral",
+    "htn": r"hypertension|blood pressure",
+    "ckd": r"kidney|renal|\bCKD\b|\bESKD\b|\bESRD\b",
+    "masld": r"fatty liver|NAFLD|MAFLD|MASLD|steato",
+    "crc": r"colorectal|colon|rect|\bCRC\b|bowel",
+    "lung_ca": r"lung",
+    "liver_ca": r"liver|hepatocellular|\bHCC\b|hepatic",
+    "gastric_ca": r"gastric|stomach",
+    "breast_ca": r"breast",
+    "prostate_ca": r"prostat",
+    "ad": r"alzheimer|dementia|\bAD\b",
+    "cervical_ca": r"cervical|cervix",
+}
+
+
+def outcome_words_ok(oc: str, text: str, screening: bool = False) -> bool:
+    """The quote must name the outcome its numbers belong to (multi-outcome sentences otherwise bind wrong numbers)."""
+    rx = OUTCOME_WORDS.get(oc)
+    if not rx:
+        return True
+    ok = re.search(rx, text, re.I) is not None
+    if screening:   # a screening RR must be a mortality RR of that disease
+        ok = ok and re.search(OUTCOME_WORDS["all_cause"], text, re.I) is not None
+    return ok
 
 
 def find_triplet(hr, lo, hi, text: str, window: int = 90) -> bool:
@@ -652,9 +691,22 @@ def _engine_normaliser() -> Optional[Callable]:
     mod, _, fn = spec.partition(":")
     try:
         m = __import__(mod, fromlist=[fn])
-        return getattr(m, fn, None)
+        f = getattr(m, fn, None)
     except Exception:
         return None
+    if f is None:
+        return None
+    draw = getattr(m, "draw_effect", None)
+    if draw is None:
+        return f
+
+    def eng(t: dict, oc: str, sex: str, age: float) -> float:
+        # engine signature (t, p, sex, age): p = point effect; compare without transport shrink (applied in the engine)
+        t0 = copy.deepcopy(t)
+        t0["transport"] = {}
+        t0["effect"][oc].pop("transport", None)
+        return f(t0, draw(t0, oc, None), sex, age)
+    return eng
 
 
 def stored_or_computed_norm(term: dict, oc: str, sex: str, age: float) -> float:
@@ -668,8 +720,22 @@ def stored_or_computed_norm(term: dict, oc: str, sex: str, age: float) -> float:
 
 
 def _sexes(term: dict, oc: str) -> List[str]:
-    s = SEX_SPECIFIC.get(oc) or (term.get("population") or {}).get("sex_scope")
+    e = (term.get("effect") or {}).get(oc) or {}
+    s = e.get("applies_sex") or SEX_SPECIFIC.get(oc) or (term.get("population") or {}).get("sex_scope")
     return [s] if s in ("M", "F") else ["M", "F"]
+
+
+def _bands(term: dict, oc: str) -> List[Tuple[int, int]]:
+    """Age bands where the outcome applies (effect.<oc>.applies_age is a hard gate in the engine)."""
+    aa = ((term.get("effect") or {}).get(oc) or {}).get("applies_age")
+    if not aa:
+        return AGE_BANDS
+    return [(lo, hi) for lo, hi in AGE_BANDS if hi >= aa[0] and lo <= aa[1]]
+
+
+def _counted_terms(root: Path) -> List[dict]:
+    d = root / "terms"
+    return [json.loads(p.read_text(encoding="utf-8")) for p in sorted(d.glob("ext.*.json"))] if d.is_dir() else []
 
 
 def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed: int = 20261118) -> dict:
@@ -678,6 +744,7 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
     all-cause ext contribution (with overlap coefficients) must also average 1 within tol."""
     rng = random.Random(seed)
     eng = _engine_normaliser()
+    eng_checked, eng_errors = 0, []
     rows, fails = [], []
     combined = {}
     for t in terms:
@@ -687,7 +754,7 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
             for prob in direction_problems(t, oc, e):
                 fails.append(f"{t['id']} {oc}: {prob}")
             for sex in _sexes(t, oc):
-                for lo, hi in AGE_BANDS:
+                for lo, hi in _bands(t, oc):
                     age = (lo + hi) / 2
                     try:
                         L = stored_or_computed_norm(t, oc, sex, age)
@@ -697,10 +764,12 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
                     if eng is not None:
                         try:
                             Le = eng(t, oc, sex, age)
-                            if abs(Le - log_mean_exp_ref(t, oc, sex, age)) > 1e-6:
-                                fails.append(f"{t['id']} {oc} {sex} {lo}-{hi}: 引擎归一化 {Le:.6f} 与建项层不一致")
-                        except Exception:
-                            pass
+                            Lb = log_mean_exp_ref(t, oc, sex, age)
+                            eng_checked += 1
+                            if abs(Le - Lb) > 2e-3:   # two independent quadratures; 0.2% in risk
+                                fails.append(f"{t['id']} {oc} {sex} {lo}-{hi}: 引擎归一化 {Le:.5f} 与建项层 {Lb:.5f} 不一致")
+                        except Exception as ex:
+                            eng_errors.append(f"{t['id']} {oc}: {type(ex).__name__}: {ex}")
                     kind = ref_kind(t)
                     if kind in ("categorical", "categorical_mid", "prevalence"):
                         # discrete reference: exact expectation (sampling rare levels such as APOE e4/e4 is noise)
@@ -759,7 +828,7 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
         if not ok:
             fails.append(f"合计（{part} {sex} {lo}-{hi}，{len(lst)} 项）：人群平均风险倍数 {m:.4f}")
     return {"ok": not fails, "fails": fails, "rows": rows, "combined": comb_rows, "n": n, "tol": tol,
-            "engine_normaliser": bool(eng)}
+            "engine_normaliser": bool(eng), "engine_checked": eng_checked, "engine_errors": eng_errors}
 
 
 def coef(t: dict, oc: str = "all_cause") -> float:
@@ -809,27 +878,38 @@ def overlap_rule(t: dict) -> Optional[str]:
         return "overlap.coef 缺失"
     if not 0 <= c <= 1:
         return "overlap.coef 须在 0–1"
-    if "all_cause" not in (t.get("effect") or {}) or t.get("kind") == "genetic":
-        return None
-    ow = list(ov.get("overlaps_with") or [])
-    adj = _adjusted_set(t)
-    if not ow:
-        if not ov.get("rationale_zh"):
-            return "overlap.overlaps_with 为空时须写 rationale_zh 说明为何与已计入项无重叠"
-        return None
-    covered = [o for o in ow if o in adj]
-    non_demo = adj - {"age", "sex"}
-    if len(covered) == len(ow):
-        lim = 1.0
-    elif covered or non_demo:
-        lim = 0.6
-    else:
-        lim = 0.3
-    if c > lim + 1e-9:
-        return f"overlap.coef={c} 超过规则上限 {lim}（重叠项 {ow}，研究已校正 {covered}）"
     if not ov.get("rationale_zh"):
         return "overlap.rationale_zh 缺失"
-    return None
+    probs = overlap_rule_by_outcome(t)
+    return "；".join(probs) if probs else None
+
+
+def overlap_rule_by_outcome(t: dict) -> List[str]:
+    """The same caps for every outcome. all_cause uses overlap.overlaps_with (core terms); a disease outcome uses
+    effect.<oc>.overlaps_with (other counted terms for that disease) and effect.<oc>.adjusted_for when the source
+    differs from the top level. coef per outcome = effect.<oc>.coef, else overlap.coef."""
+    ov = t.get("overlap") or {}
+    out = []
+    for oc, e in (t.get("effect") or {}).items():
+        if oc == "all_cause":
+            ow = list(ov.get("overlaps_with") or [])
+        else:
+            ow = list(e.get("overlaps_with") or [])
+        adj = set(e.get("adjusted_for") or t.get("adjusted_for") or [])
+        c = float(e.get("coef", ov.get("coef", 0.0)))
+        if not ow:
+            continue
+        covered = [o for o in ow if o in adj]
+        non_demo = adj - {"age", "sex"}
+        if len(covered) == len(ow):
+            lim = 1.0
+        elif covered or non_demo:
+            lim = 0.6
+        else:
+            lim = 0.3
+        if c > lim + 1e-9:
+            out.append(f"{oc}: 系数 {c} 超过规则上限 {lim}（重叠项 {ow}，研究已校正 {covered or '仅年龄性别' if not non_demo else covered}）")
+    return out
 
 
 def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: bool = False) -> dict:
@@ -909,6 +989,14 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
     if not spec["effect"] and not scr:
         fail.append("effect 为空且不是筛查项")
     for oc, e, ev in blocks:
+        if oc == "all_cause":
+            # all-cause terms: a pooled analysis (meta-analysis, pooled cohorts, MR, RCT meta-analysis) or >= 1000 deaths
+            popa = dict(spec.get("population") or {})
+            popa.update(e.get("population") or {})
+            pooled = (ev.get("design") or "").lower() in ("meta-analysis", "pooled-cohort", "mendelian-randomization",
+                                                         "meta-analysis-rct")
+            if not pooled and int(popa.get("events") or 0) < 1000:
+                fail.append("all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例")
         key = source_key(ev)
         quote = norm_text(ev.get("quote") or "")
         if not key:
@@ -918,7 +1006,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             fail.append(f"{oc}: 缺 quote")
             continue
         try:
-            src = fetch_source(key, root, need=[quote], refresh=refresh, offline=offline)
+            src = fetch_source(key, root, need=[quote] + ([norm_text(ev["table_caption"])] if ev.get("table_caption") else []), refresh=refresh, offline=offline)
             used.add(key)
         except PrivacyError:
             raise
@@ -930,6 +1018,15 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         if quote.lower() not in text.lower():
             fail.append(f"{oc}: quote 不是 {key} 原文的子串（空白归一化后）")
             continue
+        words_in = text if key.startswith("pgs_perf:") else quote   # PGS records: the trait line names the outcome
+        cap = norm_text(ev.get("table_caption") or "")
+        if cap and cap.lower() in text.lower():   # a table row quote: its caption (also in the source text) names the outcome
+            words_in = words_in + " " + cap
+        elif cap:
+            fail.append(f"{oc}: evidence.table_caption 不是 {key} 原文的子串")
+        if not outcome_words_ok(scr["disease_id"] if oc == "screening" else oc, words_in, screening=(oc == "screening")):
+            fail.append(f"{oc}: quote 未出现该结局的用词（{OUTCOME_WORDS.get(scr['disease_id'] if oc == 'screening' else oc, '')}），"
+                        "数值可能属于另一结局")
         nums = [(f"screening.{k}", e[k]) for k in ("hr", "lo", "hi")] if e.get("_screening") else _effect_numbers(spec, oc, e)
         for label, x in nums:
             ctx = find_number(x, quote)
@@ -945,19 +1042,26 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             if all(k in g for k in ("hr", "lo", "hi")) and not find_triplet(g["hr"], g["lo"], g["hi"], quote):
                 fail.append(f"{pre}: HR {g['hr']} 与 CI {g['lo']}–{g['hi']} 未在 quote 中成组出现（数值与原文结论未绑定）")
             if all(k in g for k in ("hr", "lo", "hi")) and g["lo"] <= 1.0 <= g["hi"]:
-                msg = f"{pre}: 95% CI {g['lo']}–{g['hi']} 含 1（无统计学意义）"
-                # a non-significant level inside a categorical term is acceptable; a main estimate is not
-                (warn if spec["transform"]["shape"] == "categorical" and not e.get("_screening") else fail).append(msg)
+                # also for a categorical level: a non-significant level must be set to hr 1 (no lo/hi) or the term rejected
+                fail.append(f"{pre}: 95% CI {g['lo']}–{g['hi']} 含 1（无统计学意义；分类水平须改为 hr 1 或整项不入库）")
         pop = dict(spec.get("population") or {})
         pop.update(e.get("population") or {})
-        if pop.get("events") is not None and oc != "screening":
+        if oc == "screening":
+            pop.update(scr.get("population") or {})
+        if pop.get("events") is not None:
             ev_n = int(pop["events"])
             if ev_n < 100:
                 fail.append(f"{oc}: 结局事件 {ev_n} < 100")
             elif not any(re.search(r"(?<![\d,.])" + re.escape(v) + r"(?![\d])", text) for v in _int_variants(ev_n)):
-                warn.append(f"{oc}: 事件数 {ev_n} 未在来源文本中找到（可能在全文表格）")
-        elif oc not in ("screening",):
-            warn.append(f"{oc}: 未写结局事件数")
+                warn.append(f"{oc}: 事件数 {ev_n} 未在来源文本中找到（可能在全文表格；须在 population.events_source_zh 写明出处）")
+                if not pop.get("events_source_zh"):
+                    fail.append(f"{oc}: 事件数 {ev_n} 无法核对且未写 events_source_zh")
+        else:
+            # one rule for every term: the event count must be known. Only a large pooled analysis (n >= 10 000 stated)
+            # may omit it, because its event count cannot plausibly be below 100.
+            big_pool = (ev.get("design") or "").lower() in ("meta-analysis", "meta-analysis-rct", "pooled-cohort",
+                                                           "pgs-catalog-evaluation") and int(pop.get("n") or 0) >= 10000
+            (warn if big_pool else fail).append(f"{oc}: 未写结局事件数" + ("（大型合并分析，豁免）" if big_pool else ""))
         anc = pop.get("ancestry") or ""
         tp = dict(spec.get("transport") or {})
         tp.update(e.get("transport") or {})
@@ -977,11 +1081,27 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             fail.append(f"group {grp} 不在 groups.json")
     if spec["kind"] == "behavior" and not spec.get("behavior"):
         fail.append("行为项缺 behavior 块")
+    if spec["kind"] == "behavior" and not spec.get("screening"):
+        b = spec.get("behavior") or {}
+        if b.get("target") is None or not b.get("target_source"):
+            fail.append("行为项须写 behavior.target（指南推荐值）与 behavior.target_source")
+    if spec["kind"] == "genetic" and spec.get("group") != "genetic":
+        fail.append("遗传项（家族史、多基因评分、致病变异）须归入 group: genetic")
+    for oc, e in spec["effect"].items():
+        aa, asx = e.get("applies_age"), e.get("applies_sex")
+        if aa is not None and not (isinstance(aa, list) and len(aa) == 2 and aa[0] < aa[1]):
+            invalid.append(f"{oc}: applies_age 须为 [lo, hi]")
+        if asx is not None and asx not in ("M", "F"):
+            invalid.append(f"{oc}: applies_sex 须为 M 或 F")
+        if oc != "all_cause" and not e.get("overlaps_with") and e.get("overlaps_with") != []:
+            others = [o["id"] for o in _counted_terms(root) if o["id"] != tid and oc in (o.get("effect") or {})]
+            if others:
+                warn.append(f"{oc}: 未写 effect.{oc}.overlaps_with（同病种已计入 {', '.join(others[:6])}…）；无重叠时写 []")
     try:
         expanded = expand_reference(spec)
         for oc in spec["effect"]:
             for sex in _sexes(expanded, oc):
-                for lo, hi in AGE_BANDS:
+                for lo, hi in _bands(expanded, oc):
                     log_mean_exp_ref(expanded, oc, sex, (lo + hi) / 2)
         rf = expanded.get("reference") or {}
         if not rf.get("source"):
@@ -996,8 +1116,11 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
                 fail.append(f"reference.quote 不是 {rkey} 原文的子串")
             else:
                 info.append(f"参考分布原句已核对（{rkey}）")
-        elif not rf.get("from_norms") and rf.get("kind") not in ("residualized",):
-            warn.append("参考分布未给 pmid+quote，数值未经原文核对")
+        elif not (rf.get("from_norms") or rf.get("norms_marker")) and rf.get("kind") not in ("residualized",):
+            if rf.get("estimated") and rf.get("estimated_reason_zh"):
+                warn.append("参考分布为估计值（reference.estimated），报告中会标明")
+            else:
+                fail.append("参考分布未给 pmid+quote：找不到可核对来源时须写 reference.estimated: true 与 estimated_reason_zh")
     except Exception as ex:
         fail.append(f"参考分布不可用：{ex}")
     for k in list(_adjusted_set(spec)) + list(((spec.get("overlap") or {}).get("mediated_by") or {}).keys()):
@@ -1031,6 +1154,7 @@ def expand_reference(spec: dict) -> dict:
                         row[k] = r[k]
                 rows.append(row)
         ref = {k: v for k, v in ref.items() if k != "from_norms"}
+        ref["norms_marker"] = m
         ref["by_sex_age"] = rows
         ref.setdefault("kind", "categorical" if "p" in rows[0] else "normal")
         ref["source"] = (ref.get("source", "") + "；" if ref.get("source") else "") + \
@@ -1255,7 +1379,7 @@ def main(argv=None) -> int:
             print(json.dumps(res, ensure_ascii=False, indent=1))
         else:
             print(f"人群中性检查：{'通过' if res['ok'] else '未通过'}（n={res['n']}，容差 {res['tol']}，"
-                  f"引擎归一化对照：{'有' if res['engine_normaliser'] else '无（引擎未提供 lp.terms.log_mean_exp_ref）'}）")
+                  f"引擎归一化对照：{res['engine_checked']} 段一致，{len(res['engine_errors'])} 段无法对照）")
             worst = sorted(res["rows"], key=lambda r: -abs(r["mean_exp"] - 1))[:5]
             for r in worst:
                 print(f"  偏差最大：{r['term']} {r['outcome']} {r['sex']} {r['band']} 平均 {r['mean_exp']}")

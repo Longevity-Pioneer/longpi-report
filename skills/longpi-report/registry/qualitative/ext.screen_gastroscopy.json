@@ -75,7 +75,9 @@
     "prevalence": 0.08
    }
   ],
-  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文（东亚系统综述合并胃镜筛查参与率约 38%，PMID 42591170，为受邀者参与率而非人群覆盖率）；筛查效应经 outcomes/gastric_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+  "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+  "estimated": true,
+  "estimated_reason_zh": "未找到可核对的中国全国按性别年龄胃镜筛查率；东亚系统综述合并胃镜筛查参与率约 38%（PMID 42591170）为受邀者参与率而非人群覆盖率；按年龄分组数值为估计"
  },
  "effect": {},
  "screening": {
@@ -112,7 +114,8 @@
   "cohort": "Zhang 2018 meta-analysis: 6 cohort + 4 nested case-control studies, all from Asia (China, Korea, Japan)",
   "n": 342013,
   "ancestry": "East Asian (China, Korea, Japan)",
-  "sex": "both"
+  "sex": "both",
+  "events_source_zh": "摘要与可获取文本未给胃癌死亡例数；全文非开放获取"
  },
  "measurement": {
   "sd_abs": null,
@@ -138,9 +141,12 @@
   "quote": "The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was associated with a 40% RR reduction in gastric cancer mortality.",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "design_note_zh": "观察性研究荟萃分析（6 项队列 + 4 项巢式病例对照），非随机对照试验"
  },
  "note_zh": "证据来自观察性研究（队列与巢式病例对照），无随机试验；另一荟萃分析（PMID 37424675）按方案 RR 0.52、意向筛查 RR 0.94（不显著），提示项目层面获益可能更小。中国高发区与非高发区获益差别较大，eligible 未区分地区。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "按筛查项统一规则，须有随机对照试验（或其荟萃分析）的意向筛查疾病死亡 RR、置信区间不含 1 且疾病死亡 ≥100 例。胃镜筛查目前没有报告胃癌死亡结局的随机对照试验；现有荟萃分析（PMID 29723507）全部为观察性研究，合并 RR 0.60（0.49–0.73），但同一摘要中与预期死亡数比较的亚组 RR 0.67（0.38–1.16）不显著，且观察性筛查研究易受健康筛查者偏倚影响；另一荟萃分析（PMID 37424675）意向筛查 RR 0.94 不显著。本版只作定性佐证，不计入指数。",
+ "verifier_reasons": []
 }

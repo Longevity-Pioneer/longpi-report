@@ -75,7 +75,9 @@
     "prevalence": 0.05
    }
   ],
-  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/crc.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+  "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+  "estimated": true,
+  "estimated_reason_zh": "未找到可核对的中国个人层面粪便潜血或 FIT 筛查率；系统综述（PMID 40696392）报告中国 2020 年结直肠癌筛查项目覆盖率仅 1.0%，为有组织项目覆盖率，不含机会性筛查，不能直接作为个人筛查率；按年龄分组数值为估计"
  },
  "effect": {},
  "screening": {
@@ -111,7 +113,10 @@
  "population": {
   "cohort": "Cochrane review (Holme 2013), FOBT randomised trials, intention-to-screen",
   "ancestry": "US and Europe",
-  "sex": "both"
+  "sex": "both",
+  "n": 329642,
+  "n_source_zh": "全文结果部分：FOBT 对无筛查四项试验，N = 329,642（PMC9365065）",
+  "events_source_zh": "全文未以文字列出结直肠癌死亡例数（仅见森林图 Analysis 1.1）；全文结果给出对照组结直肠癌死亡风险 8/1000、四项试验共 329 642 人，死亡例数远超 100 例；按大型 RCT 荟萃分析豁免"
  },
  "measurement": {
   "sd_abs": null,
@@ -134,12 +139,12 @@
   "design": "meta-analysis-rct",
   "pmid": "24085634",
   "url": "https://pubmed.ncbi.nlm.nih.gov/24085634/",
-  "quote": "FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)",
+  "quote": "When compared with no screening, colorectal cancer mortality was lower with flexible sigmoidoscopy (relative risk 0.72; 95% CI 0.65 to 0.79, high quality evidence) and FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence).",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
  },
  "note_zh": "RR 0.86 为愈创木脂法潜血（gFOBT）随机试验的意向筛查合并估计；FIT 灵敏度高于 gFOBT，按此估计偏保守。中国嘉善、海宁等社区试验方向一致，未纳入数值。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

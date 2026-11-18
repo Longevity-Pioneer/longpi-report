@@ -1,0 +1,13 @@
+{
+ "key": "pmid:29312456",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29312456/",
+ "fetched_at": "2026-11-18T06:13:24Z",
+ "sha256": "3ae8639eee4ccd96174dfaf6dd3c546af3a5dc6ac388c08588f12ea40924b575",
+ "citation": "Nutrition & metabolism 2018",
+ "text": "Association of sleep duration with apolipoproteins and the apolipoprotein B/A1 ratio: the China health and nutrition survey.\nBACKGROUND: Short sleep duration has been related to established cardiovascular risk factors, likely obesity, diabetes, hypertension and dyslipidaemia. However, to the best of our knowledge, the associations between sleep duration and apolipoprotein concentrations and their ratios have not been investigated to date. This study aimed to explore the independent relationship of sleep duration with apolipoprotein (apo) A1, apoB and the apoB/apoA1 ratio in a Chinese adult population.\nMETHODS: Data from 7381 participants, aged 18 to 75 years, from the National Health and Nutrition Survey 2009 were analysed in this cross-sectional study. Participants were divided into 3 categories according to sleep duration: ≤6, 7-8, and ≥9 h. Logistic regression analysis with odds ratios was employed to assess the association between sleep duration and apo profile.\nRESULTS: Using 7-8 h of sleep as a reference, short sleep duration was associated with significantly increased odds of elevated apoB (OR =1.75, 95% CI 1.12-2.72), whereas long sleep duration was correlated with a decreased (but not statistically significant) risk for elevated apoB (OR =0.86, 95% CI 0.54-1.38) among females after controlling for covariates. Among males, long sleep duration was only marginally related to decreased odds ratios for elevated apoB/apoA1 ratio after adjustment for covariates (OR =0.78, 95% CI 0.6-0.99).\nCONCLUSIONS: These results indicate that short sleep duration is strongly associated with an increased risk of elevated apoB levels in women and that long sleep duration is correlated with decreased apoB/apoA1 levels in men. Sleep hygiene management could serve to treat and prevent cardiovascular diseases by altering unfavourable apo profile.\n[full text, Europe PMC PMC5755033]\nHbA1c (%) | 5.5(5.2–5.8) | 5.5(5.2–5.8) | 0.232\nApoB (mg/dl) | 0.88(0.72–1.07) | 0.88(0.71–1.07) | 0.563\nTriglycerides (mg/dl) | 116(77.9–189.5) | 108.1(74.4–162.1) | 0.0001\nHDL-C (mg/dl) | 50.7(42.5–60.7) | 55.3(47.1–64.6) | 0.0001\nFPG (mg/dl) | 92.3(84.9–102.1) | 91.4(84.6–99.9) | 0.001",
+ "pmcid": "PMC5755033",
+ "doi": "10.1186/s12986-017-0237-8",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

@@ -10,7 +10,9 @@
  "status": "active",
  "behavior": {
   "min_weeks": 8,
-  "self_report_discount": 0.5
+  "self_report_discount": 0.5,
+  "target": 71.6,
+  "target_source": "睡眠规律指数（SRI）尚无指南推荐值。取 UK Biobank 研究（PMID 37738616）中风险升高的分界，即 SRI 第 20 百分位 71.6；该值以上各五分位组风险差别较小，本项不再计入获益"
  },
  "id": "ext.sleep_regularity",
  "name_zh": "睡眠规律指数",
@@ -125,9 +127,19 @@
   "quote": "SRI (20%–40%)296 (0.63)0.83 [0.71 to 0.96]*",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "37738616",
+    "why_not_zh": "第 2 对第 1 五分位 HR 0.83（0.71–0.96）为组间对比，第 1 五分位中位数未报告，无法得到每分斜率"
+   }
+  ]
  },
  "note_zh": "风险主要集中在最低五分位组（SRI<71.6）：完全校正且含睡眠时长的模型（原文表 4）中，第 2 至第 5 五分位组 HR 为 0.83、0.78、0.75、0.74。故以 71.6 为拐点，只对拐点以下计入风险；取第 2 对第 1 五分位的 HR 0.83（0.71–0.96），组中心间距约 10 分为推算值（原文未给出第 1 五分位中位数）。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "唯一可用证据为 UK Biobank 单一队列（死亡 1859 例），只给出五分位组对比，摘要未给置信区间，全文表格行未写明结局；原文没有每单位或趋势估计，原先把第 2 对第 1 五分位的 HR 摊到 10 分跨度上属推算，不符合入库规则。睡眠规律指数暂无指南推荐值，本版只作定性提示。",
+ "verifier_reasons": [
+  "all_cause: quote 未出现该结局的用词（mortalit|death|died|dying|surviv|死亡），数值可能属于另一结局"
+ ]
 }

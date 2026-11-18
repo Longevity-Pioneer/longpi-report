@@ -14,21 +14,21 @@
    "number": "breast_ca.hr",
    "value": 7.62,
    "found": true,
-   "context": "ated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+   "context": "ated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95%"
   },
   {
    "term": "ext.mono_brca1",
    "number": "breast_ca.lo",
    "value": 5.33,
    "found": true,
-   "context": "er, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+   "context": "er, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively"
   },
   {
    "term": "ext.mono_brca1",
    "number": "breast_ca.hi",
    "value": 11.27,
    "found": true,
-   "context": " odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+   "context": " odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively"
   },
   {
    "term": "ext.mono_brca2",

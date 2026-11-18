@@ -105,14 +105,36 @@
   ],
   "pmid": "36631148",
   "quote": "Despite modest improvements in the awareness, treatment, and control of hypertension since 2004, rates remained low in 2018, at 38.3% (36.3% to 40.4%), 34.6% (32.6% to 36.7%), and 12.0% (10.6% to 13.4%).",
-  "source": "派生值：已确诊患病率 = P(收缩压 ≥140 mmHg)（按 data/population_norms_china.json markers.sbp 的分性别年龄正态分布计算）× 全国知晓率 38.3%（Zhang M, BMJ 2023, PMID 36631148）。未计入单纯舒张压升高和血压已控制的服药者，青年组可能偏高、老年组可能偏低；假定各年龄段知晓率相同。"
+  "source": "派生值：已确诊患病率 = P(收缩压 ≥140 mmHg)（按 data/population_norms_china.json markers.sbp 的分性别年龄正态分布计算）× 全国知晓率 38.3%（Zhang M, BMJ 2023, PMID 36631148）。未计入单纯舒张压升高和血压已控制的服药者，青年组可能偏高、老年组可能偏低；假定各年龄段知晓率相同。",
+  "norms_marker": "sbp"
  },
  "effect": {
   "ad": {
    "hr": 1.18,
    "lo": 1.02,
    "hi": 1.35,
-   "coef": 0.5
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.diabetes"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex"
+   ],
+   "evidence": {
+    "alternatives_considered": [
+     {
+      "pmid": "41341656",
+      "estimate": "中国慢性病前瞻性研究：既往高血压与阿尔茨海默病 HR 1.07（0.83–1.38）；与全因痴呆 1.21（1.05–1.39）",
+      "why_not": "阿尔茨海默病估计无统计学意义"
+     },
+     {
+      "pmid": "32450739",
+      "estimate": "中年期高血压与认知障碍 1.19–1.55 倍（209 项研究）",
+      "why_not": "摘要未给阿尔茨海默病单独的 HR 与区间"
+     }
+    ]
+   }
   }
  },
  "adjusted_for": [
@@ -126,7 +148,7 @@
    "core.bp",
    "ext.sbp"
   ],
-  "rationale_zh": "本项只计阿尔茨海默病，不含全因死亡，与 core.bp 不重复计数。证据为中年期收缩期高血压（>140 mmHg）与阿尔茨海默病的荟萃分析（7 项长期随访研究，以欧美人群为主），暴露为中年期血压而非确诊本身，各研究校正项不一；中国慢性病前瞻性研究中高血压与全因痴呆相关（HR 1.21，1.05–1.39），但与阿尔茨海默病关联不明确（1.07，0.83–1.38）。证据在东亚人群不一致，且与收缩压项共享信息（同一人同时有收缩压读数时，引擎应按 blood_pressure 组规则只计其一或打折），系数取 0.5。慢性肾病未找到合格的东亚发病研究摘要，暂不计。",
+  "rationale_zh": "本项只计阿尔茨海默病，不含全因死亡，与 core.bp 不重复计数。证据为中年期收缩期高血压（>140 mmHg）与阿尔茨海默病的荟萃分析（7 项长期随访研究，以欧美人群为主），暴露为中年期血压而非确诊本身，各研究校正项不一；中国慢性病前瞻性研究中高血压与全因痴呆相关（HR 1.21，1.05–1.39），但与阿尔茨海默病关联不明确（1.07，0.83–1.38）。证据在东亚人群不一致，且与收缩压项共享信息（同一人同时有收缩压读数时，引擎应按 blood_pressure 组规则只计其一或打折），系数取 0.5。慢性肾病未找到合格的东亚发病研究摘要，暂不计。。修订：按仅校正年龄性别处理，阿尔茨海默病结局与糖尿病项共享代谢血管信息且未互相校正，系数降至 0.3，并整体转为定性。",
   "mediated_by": {}
  },
  "transport": {
@@ -165,7 +187,7 @@
   "design": "meta-analysis",
   "pmid": "31381518",
   "url": "https://pubmed.ncbi.nlm.nih.gov/31381518/",
-  "quote": "for systolic hypertension > 140 mm Hg, there was a smaller but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021)",
+  "quote": "There was a significant association between systolic hypertension (>160 mm Hg) and AD (HR 1.25, 95CI 1.06 - 1.47, p = 0.0065). Similarly, for systolic hypertension > 140 mm Hg, there was a smaller but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021)",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
@@ -176,5 +198,9 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "所用荟萃分析（PMID 31381518，7 项长期随访研究）只给中年期收缩期高血压（>140 mmHg）与阿尔茨海默病的合并 HR 1.18（1.02–1.35），未报告人数与事件数，各研究校正项不一，按仅校正年龄、性别处理，系数上限 0.3；暴露为中年期血压读数而非确诊本身。中国慢性病前瞻性研究（PMID 41341656，344 例阿尔茨海默病）中既往高血压与阿尔茨海默病无显著关联（HR 1.07，0.83–1.38），仅与全因痴呆相关（1.21，1.05–1.39），东亚证据不支持。事件数无法核对、东亚人群结果不一致，故只作定性佐证。",
+ "verifier_reasons": [
+  "ad: 未写结局事件数"
+ ]
 }

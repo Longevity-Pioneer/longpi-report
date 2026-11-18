@@ -30,7 +30,9 @@
     "sd": 0.25
    }
   ],
-  "source": "fixture"
+  "source": "fixture",
+  "estimated": true,
+  "estimated_reason_zh": "测试用"
  },
  "effect": {
   "all_cause": {

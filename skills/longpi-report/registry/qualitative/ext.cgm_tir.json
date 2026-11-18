@@ -121,9 +121,10 @@
  "evidence_notes_zh": "摘要写作'每降低 10% 风险增加 4%（95% CI 1.01–1.06）'，HR 1.04（1.01–1.06）见全文表 2 模型 4（校正 HbA1c），摘要原句中没有 1.04 字样。同组早期研究（PMID 33097560，6,225 例、838 例死亡）以 3.9–10.0 mmol/L 定义 TIR，≤50% 对 >85% 的全因死亡 HR 1.83（1.48–2.28），范围定义与本输入不同",
  "why_qualitative_zh": "现有死亡证据只来自糖尿病患者（单中心或退伍军人医疗系统人群），而本平台使用者多为非糖尿病人群，其 CGM 指标分布（平均血糖约 5–6 mmol/L、3.9–7.8 mmol/L 时间占比多在 85% 以上）远离研究人群的取值范围，不能外推；非糖尿病人群中 CGM 指标与全因死亡、事件 ≥100 的前瞻研究未检索到。此外该指标与已计入的血糖领域（空腹血糖、糖化血红蛋白）信息高度重叠。故列为定性佐证，不计入 LongPi Age",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
   "all_cause: all_cause.derived.from.hr=1.04 未在 quote 中逐字出现",
-  "all_cause.derived.from: HR 1.04 与 CI 1.01–1.06 未在 quote 中成组出现（数值与原文结论未绑定）"
+  "all_cause.derived.from: HR 1.04 与 CI 1.01–1.06 未在 quote 中成组出现（数值与原文结论未绑定）",
+  "参考分布未给 pmid+quote：找不到可核对来源时须写 reference.estimated: true 与 estimated_reason_zh"
  ]
 }

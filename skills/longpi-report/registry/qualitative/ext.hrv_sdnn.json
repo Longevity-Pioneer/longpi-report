@@ -154,6 +154,9 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
- "verifier_reasons": []
+ "registry_version_added": "2026.11.18-10",
+ "verifier_reasons": [
+  "all_cause: quote 未出现该结局的用词（mortalit|death|died|dying|surviv|死亡），数值可能属于另一结局",
+  "参考分布未给 pmid+quote：找不到可核对来源时须写 reference.estimated: true 与 estimated_reason_zh"
+ ]
 }

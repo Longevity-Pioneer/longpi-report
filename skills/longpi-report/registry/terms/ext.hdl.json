@@ -24,16 +24,107 @@
   "kind": "normal",
   "by_sex_age": [
    {
-    "sex": "both",
+    "sex": "M",
     "age_lo": 18,
+    "age_hi": 29,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
     "age_hi": 99,
-    "mean": 1.38,
-    "sd": 0.31
+    "mean": 1.311,
+    "sd": 0.349
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 1.43,
+    "sd": 0.335
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 1.43,
+    "sd": 0.335
    }
   ],
-  "source": "研究人群分布：中国 11 城市体检人群（平均年龄 42.1 岁，HDL-C 1.38 ± 0.31 mmol/L，男女合并）；女性 HDL-C 高于男性，合并分布会使男性风险略被低估",
-  "pmid": "40171237",
-  "quote": "HDL-C(mmol/l)1.38 ± 0.31"
+  "pmid": "29312456",
+  "quote": "HDL-C (mg/dl) | 50.7(42.5–60.7) | 55.3(47.1–64.6) | 0.0001",
+  "source": "中国健康与营养调查 2009 年血样（全国 9 省多阶段随机整群抽样，18–75 岁 7381 人，男 3463、女 3918；PMID 29312456 表 1，按性别给中位数与四分位距）：HDL-C 男 50.7（42.5–60.7）、女 55.3（47.1–64.6）mg/dL，按 38.67 换算为 mmol/L，中位数作均值、四分位距/1.349 作标准差；未按年龄分层。"
  },
  "effect": {
   "chd": {
@@ -42,7 +133,12 @@
    "hi": 0.82,
    "per": 0.388,
    "per_unit": "mmol/L (1 SD = 15 mg/dL)",
-   "direction": "higher_better"
+   "direction": "higher_better",
+   "overlaps_with": [
+    "ext.ldl",
+    "ext.apob",
+    "ext.lpa"
+   ]
   }
  },
  "adjusted_for": [
@@ -53,7 +149,8 @@
   "core.glucose",
   "core.adiposity",
   "core.lipid",
-  "LOINC:2571-8"
+  "non_hdl_c",
+  "ext.tg"
  ],
  "overlap": {
   "coef": 0.5,
@@ -61,7 +158,7 @@
   "overlaps_with": [
    "core.lipid"
   ],
-  "rationale_zh": "仅为冠心病建项，不写全因死亡。ERFC 的 HR 已校正非 HDL 胆固醇、甘油三酯及常规危险因素，属于互相校正的估计；但孟德尔随机化与升 HDL 药物试验均不支持 HDL-C 的因果作用，HDL-C 更可能是代谢状态的标志，故系数取 0.5。",
+  "rationale_zh": "仅为冠心病建项，不写全因死亡。ERFC 的 HR 已校正非 HDL 胆固醇、甘油三酯及常规危险因素，属于互相校正的估计；但孟德尔随机化与升 HDL 药物试验均不支持 HDL-C 的因果作用，HDL-C 更可能是代谢状态的标志，故系数取 0.5。与 LDL-C、ApoB、Lp(a) 同属脂蛋白信息：ERFC 已校正非 HDL 胆固醇（涵盖 LDL-C 与 ApoB 的大部分信息），但未直接校正这些项，按部分校正上限 0.6 以内取 0.5。",
   "mediated_by": {}
  },
  "transport": {
@@ -73,7 +170,8 @@
   "cohort": "Emerging Risk Factors Collaboration, 68 prospective studies",
   "n": 302430,
   "events": 12785,
-  "ancestry": "mostly European and North American"
+  "ancestry": "mostly European and North American",
+  "events_source_zh": "摘要：非致死性心肌梗死 8857 例 + 冠心病死亡 3928 例，合计 12785 例冠心病事件"
  },
  "measurement": {
   "sd_abs": null,
@@ -113,5 +211,5 @@
  "status": "active",
  "disclosure": "standard",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

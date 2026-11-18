@@ -138,7 +138,8 @@
     "sd": 10.1
    }
   ],
-  "kind": "normal"
+  "kind": "normal",
+  "norms_marker": "waist"
  },
  "effect": {
   "all_cause": {
@@ -147,7 +148,13 @@
    "hi": 1.13,
    "per": 10,
    "per_unit": "cm",
-   "direction": "higher_worse"
+   "direction": "higher_worse",
+   "evidence": {
+    "pmid": "32967840",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "The pooled analysis indicated that each 10 cm (3.94 inch) increment in waist circumference was associated with an 11% higher risk of all cause mortality: hazard ratio 1.11 (95% confidence interval 1.08 to 1.13)"
+   }
   },
   "t2d": {
    "hr": 1.91,
@@ -156,10 +163,10 @@
    "per": 9.5,
    "per_unit": "cm（女性每 1 SD；CKB 女性腰围 SD 9.5 cm 见 PMID 30665257；男性 HR 2.13 更大，统一取女性值以保守）",
    "direction": "higher_worse",
-   "coef": 0.5,
+   "coef": 0.3,
    "evidence": {
     "pmid": "29298802",
-    "quote": "For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustment attenuated these associations, especially those of BMI.",
+    "quote": "Throughout the range examined (19-32 kg/m2), BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81) (P for heterogeneity <0.001). For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women",
     "grade": "B",
     "design": "prospective-cohort"
    },
@@ -173,7 +180,24 @@
     "ancestry": "Chinese",
     "shrink": 1.0,
     "sd_inflate": 1.0
-   }
+   },
+   "overlaps_with": [
+    "ext.fpg",
+    "ext.hba1c",
+    "ext.tg",
+    "ext.bmi",
+    "ext.fh_t2d",
+    "ext.prs_t2d"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "education",
+    "core.smoking",
+    "core.alcohol",
+    "LP:mvpa_min_week"
+   ]
   }
  },
  "adjusted_for": [
@@ -186,7 +210,7 @@
   "overlaps_with": [
    "core.adiposity"
   ],
-  "rationale_zh": "合并估计中 50 项研究仅 15 项校正体重指数，腰围与体重指数高度相关，按未校正处理取上限 0.3；糖尿病结局的 CKB 估计未与体重指数互相校正（原文称互相校正后减弱），单列系数 0.5",
+  "rationale_zh": "全因死亡：合并估计中 50 项研究仅 15 项校正体重指数（校正后 HR 1.17，1.13–1.22，提示与 BMI 有独立信息），但主估计按未互相校正处理，取上限 0.3。2 型糖尿病：CKB 估计校正年龄、性别、地区、教育、吸烟、饮酒与体力活动，未与 BMI 互相校正（原文称互相校正后减弱）；腰围与 BMI 高度相关且 ext.bmi 已计入糖尿病，为避免重复，系数取 0.3（规则上限 0.6）。",
   "mediated_by": {}
  },
  "transport": {
@@ -199,7 +223,8 @@
   "n": 2056428,
   "events": 128842,
   "ancestry": "multinational (Europe, North America, Asia)",
-  "sex": "both"
+  "sex": "both",
+  "events_source_zh": "全文结果：50 项研究、128 842 例全因死亡、2 056 428 名参与者"
  },
  "measurement": {
   "sd_abs": 2.0,
@@ -218,12 +243,12 @@
   "grade": "B",
   "design": "meta-analysis",
   "pmid": "32967840",
-  "quote": "waist circumference (10 cm, 3.94 inch increase): 1.11 (95% confidence interval 1.08 to 1.13, I2=88%, n=50)",
+  "quote": "The pooled analysis indicated that each 10 cm (3.94 inch) increment in waist circumference was associated with an 11% higher risk of all cause mortality: hazard ratio 1.11 (95% confidence interval 1.08 to 1.13)",
   "url": "https://pubmed.ncbi.nlm.nih.gov/32967840/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

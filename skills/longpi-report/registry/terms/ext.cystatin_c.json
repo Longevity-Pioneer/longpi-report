@@ -30,9 +30,9 @@
   "shape": "loglinear",
   "clip": [
    0.4,
-   5.0
+   3.0
   ],
-  "log_x": true
+  "log_x": false
  },
  "reference": {
   "kind": "lognormal",
@@ -54,27 +54,37 @@
   ],
   "pmid": "22467317",
   "quote": "0.59-1.07 mg/L for subjects aged 19-59 years; 0.74-1.14 mg/L for the older aged ≥60 years",
-  "source": "中国健康人群 95% 参考区间（PMID 22467317），按对数正态 2.5/97.5 百分位反推 meanlog 与 sdlog；参考人群为健康体检者，离散度低于一般人群"
+  "source": "中国健康人群 95% 参考区间（PMID 22467317），按对数正态 2.5/97.5 百分位反推 meanlog 与 sdlog；参考人群为健康体检者，离散度低于一般人群。参考人群为健康体检者，离散度低于一般人群；本项按 mg/L 线性计算，对数正态分布仅用于归一化"
  },
  "effect": {
   "all_cause": {
-   "hr": 2.87,
-   "lo": 1.938,
-   "hi": 4.26,
+   "hr": 1.51,
+   "lo": 1.44,
+   "hi": 1.58,
    "per": 1.0,
-   "per_unit": "ln(mg/L)（每增加 1 个自然对数单位，约合每翻倍 HR 2.07）",
+   "per_unit": "mg/L（原文每增加 1 mg/L）",
    "direction": "higher_worse"
   }
  },
  "adjusted_for": [
   "age",
   "sex",
+  "race",
+  "education",
+  "income",
   "core.smoking",
   "core.alcohol",
+  "physical_activity",
   "core.adiposity",
-  "core.bp",
   "core.lipid",
-  "core.glucose"
+  "LOINC:30522-7",
+  "core.glucose",
+  "core.bp",
+  "cvd_history",
+  "cancer_history",
+  "diabetes",
+  "depression",
+  "adl_limitation"
  ],
  "overlap": {
   "coef": 0.4,
@@ -82,22 +92,22 @@
   "overlaps_with": [
    "core.phenoage_clock"
   ],
-  "rationale_zh": "胱抑素 C 与 PhenoAge 中的肌酐同反映肾小球滤过，但受肌肉量影响小、另含炎症等信息；研究模型 3 校正了吸烟、饮酒、体重指数、高血压、高胆固醇、糖尿病及慢性肾病，未校正 PhenoAge，按部分校正取 0.4",
+  "rationale_zh": "胱抑素 C 与 PhenoAge 中的肌酐同反映肾小球滤过，但受肌肉量影响小。原文模型 2 校正了年龄、性别、种族、教育、收入、吸烟、饮酒、运动、体重指数、总胆固醇、高密度脂蛋白胆固醇、超敏 C 反应蛋白、糖化血红蛋白及高血压、心脏病、卒中、癌症、糖尿病等病史，覆盖 PhenoAge 中的 CRP 与血糖信息，但未校正肌酐或 PhenoAge 本身，属部分校正，取 0.4。",
   "mediated_by": {}
  },
  "transport": {
-  "ancestry": "US (NHANES, multi-ethnic)",
+  "ancestry": "US (HRS, multi-ethnic)",
   "shrink": 0.8,
   "sd_inflate": 1.25
  },
  "population": {
-  "cohort": "NHANES 1999–2002（≥50 岁），随访至 2019",
-  "n": 1642,
-  "events": 981,
-  "ancestry": "US (NHANES, multi-ethnic)",
+  "cohort": "Health and Retirement Study（美国，≥50 岁，2006/2008 干血斑检测，换算为 NHANES 等效值）",
+  "n": 13913,
+  "events": 1893,
+  "ancestry": "US (HRS, multi-ethnic)",
   "age_range": [
    50,
-   85
+   99
   ],
   "sex": "both"
  },
@@ -117,13 +127,33 @@
  "evidence": {
   "grade": "B",
   "design": "prospective-cohort",
-  "pmid": "39859953",
-  "quote": "In a weighted Cox regression model, a one-unit increase in ln-serum cystatin C was linked to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/39859953/",
+  "pmid": "36564420",
+  "pmcid": "PMC9789032",
+  "quote": "Additionally, evaluating the risks of all-cause, cardiovascular, and cancer mortality associated with each 1 mg/L increase in cystatin C concentrations revealed multivariable-adjusted HRs (95% CIs) of 1.51 (1.44–1.58), 1.49 (1.39–1.61), and 1.24 (1.05–1.47), respectively",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36564420/",
+  "estimand_zh": "胱抑素 C 每增加 1 mg/L 的全因死亡 HR（原文连续变量模型 2，线性尺度）",
+  "events_note_zh": "同段原文：1893 例全因死亡",
+  "alternatives_considered": [
+   {
+    "pmid": "39859953",
+    "estimate": "ln 胱抑素 C 每增加 1 单位 HR 2.87（1.938–4.26）",
+    "why_not": "甲基化研究中的次要结果，NHANES 子样本 1642 人、死亡 981 例（<1000，且事件数不在摘要）"
+   },
+   {
+    "pmid": "26192218",
+    "estimate": "每 1 SD HR 1.32（1.12–1.55），9 项研究 38 854 人",
+    "why_not": "每 SD 估计，各研究 SD 不同且未报告，换算为 mg/L 需自行假设 SD"
+   },
+   {
+    "pmid": "34847805",
+    "estimate": "最高对最低组 HR 2.01（1.60–2.53）",
+    "why_not": "分组比较，无法换算为连续斜率"
+   }
+  ],
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-4"
+ "registry_version_added": "2026.11.18-9"
 }

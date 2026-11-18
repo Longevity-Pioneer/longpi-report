@@ -189,7 +189,7 @@ def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float, scale: float = 1.0)
     if _is_lognormal(t, sex, age) and not tf.get("log_x"):
         # reference given as ln x ~ N(meanlog, sdlog) but the curve takes x itself: integrate over x = exp(z)
         return math.log(_expect(lambda z: math.exp(scale * f_raw(t, p, math.exp(z))), mu, sd))
-    tt = dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf)))   # mean/sd are of ln x when log_x
+    tt = dict(t, transform=_log_tf(tf))   # mean/sd are of ln x when log_x
     if shape in ("loglinear", "residualized"):
         lo, hi = (tt["transform"].get("clip") or [None, None])
         if (lo is None or mu - 6 * sd > lo) and (hi is None or mu + 6 * sd < hi):
@@ -205,6 +205,15 @@ def _clip_scale(tf: dict):
     return [math.log(max(c[0], 1e-9)) if c[0] is not None else None, math.log(max(c[1], 1e-9)) if c[1] is not None else None]
 
 
+def _log_tf(tf: dict) -> dict:
+    """The transform on the ln-x scale: clip and knots are written in original units and are converted too."""
+    out = dict(tf, log_x=False, clip=_clip_scale(tf))
+    for k in ("knot", "knot_lo", "knot_hi"):
+        if tf.get(k) is not None:
+            out[k] = math.log(max(float(tf[k]), 1e-9))
+    return out
+
+
 def normalised(t: dict, p: dict, x, sex: str, age: float, scale: float = 1.0) -> float:
     """scale * f(x) - ln E_ref[exp(scale * f(X))]: coefficient applied before normalising, so peers average R = 1."""
     if t["reference"].get("kind") == "categorical_mid":
@@ -212,7 +221,7 @@ def normalised(t: dict, p: dict, x, sex: str, age: float, scale: float = 1.0) ->
     if t["transform"].get("log_x") and t["transform"]["shape"] not in ("categorical", "indicator"):
         xx = math.log(max(float(x), 1e-9))
         tf = t["transform"]
-        tt = dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf)))
+        tt = dict(t, transform=_log_tf(tf))
         return scale * f_raw(tt, p, xx) - log_mean_exp_ref(t, p, sex, age, scale)
     return scale * f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age, scale)
 

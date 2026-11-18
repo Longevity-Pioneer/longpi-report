@@ -50,14 +50,6 @@
   "source": "CKB 对照组 Lp(a) 分布（PMID 40297899）：≥100 nmol/L 占 8%、≥150 nmol/L 占 4%，据此拟合对数正态（中位数约 19.2 nmol/L）；按 Copenhagen 研究原文 50 mg/dL≈105 nmol/L 换算为质量单位（中位数约 92 mg/L）。检测方法与 apo(a) 异构体会使换算存在误差"
  },
  "effect": {
-  "all_cause": {
-   "hr": 1.05,
-   "lo": 1.01,
-   "hi": 1.09,
-   "per": 500,
-   "per_unit": "mg/L（50 mg/dL，原文约合 105 nmol/L）",
-   "direction": "higher_worse"
-  },
   "chd": {
    "hr": 1.2821,
    "lo": 1.1905,
@@ -73,22 +65,7 @@
     },
     "pow": -1
    },
-   "evidence": {
-    "pmid": "40297899",
-    "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
-    "grade": "A",
-    "design": "mendelian-randomization"
-   },
-   "population": {
-    "cohort": "东亚两样本孟德尔随机化（CKB、BioBank Japan 等）",
-    "ancestry": "East Asian (CKB, BioBank Japan)"
-   },
-   "transport": {
-    "ancestry": "East Asian",
-    "shrink": 1.0,
-    "sd_inflate": 1.0
-   },
-   "coef": 0.8
+   "overlaps_with": []
   }
  },
  "adjusted_for": [
@@ -96,24 +73,24 @@
   "sex"
  ],
  "overlap": {
-  "coef": 0.3,
+  "coef": 0.8,
   "coef_sd": 0.15,
-  "overlaps_with": [
-   "core.lipid"
-  ],
-  "rationale_zh": "Lp(a) 主要由遗传决定，与 LDL-C 的机制重叠有限，但常规 LDL-C 测定包含 Lp(a) 胆固醇；摘要未说明全因死亡模型是否校正 LDL-C，按仅校正年龄性别处理取上限 0.3。冠心病结局为孟德尔随机化估计，单列系数 0.8",
-  "mediated_by": {}
+  "overlaps_with": [],
+  "mediated_by": {},
+  "rationale_zh": "只为冠心病建项，不再写全因死亡（见 evidence.alternatives_considered：全因死亡的单一研究死亡人数无法核对，荟萃分析未给连续估计）。冠心病为东亚孟德尔随机化估计，工具变量位于 LPA 基因座，效应与 LDL-C、ApoB 的人群变异基本独立；Lp(a) 与 LDL-C 人群相关很弱，常规 LDL-C 测定所含 Lp(a) 胆固醇的重叠量小，故 overlaps_with 写空，系数取 0.8。原文结局为心肌梗死，作为冠心病的近似。"
  },
  "transport": {
-  "ancestry": "European",
-  "shrink": 0.8,
-  "sd_inflate": 1.25
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
  },
  "population": {
-  "cohort": "Copenhagen City Heart Study + Copenhagen General Population Study",
-  "n": 69764,
-  "ancestry": "Danish (European)",
-  "sex": "both"
+  "cohort": "东亚两样本孟德尔随机化（CKB 嵌套病例对照 18174 人的 GWAS 工具变量；结局数据来自 CKB 与 BioBank Japan 等）",
+  "n": 18174,
+  "events": 17091,
+  "ancestry": "East Asian (CKB, BioBank Japan)",
+  "sex": "both",
+  "events_source_zh": "摘要：心肌梗死 n=17 091"
  },
  "measurement": {
   "sd_abs": null,
@@ -129,15 +106,28 @@
   "cost_level": 1
  },
  "evidence": {
-  "grade": "B",
-  "design": "prospective-cohort",
-  "pmid": "30608559",
-  "quote": "For cardiovascular mortality, a 50 mg/dL (105 nmol/L) increase in lipoprotein(a) levels was associated observationally with a hazard ratio of 1.16 (1.09-1.23), and genetically with risk ratios of 1.23 (1.08-1.41) based on LPA KIV2 and of 0.98 (0.88-1.09) based on LPA rs10455872. For all-cause mortality, corresponding values were 1.05 (1.01-1.09), 1.10 (1.04-1.18), and 0.97 (0.92-1.02), respectively.",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/30608559/",
+  "pmid": "40297899",
+  "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
+  "grade": "A",
+  "design": "mendelian-randomization",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/40297899/",
+  "pmcid": "PMC12165552",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "30608559",
+    "estimate": "全因死亡每 50 mg/dL HR 1.05（1.01–1.09），哥本哈根两队列",
+    "why_not": "单一丹麦研究，死亡人数不在摘要且全文非开放获取，无法核对 ≥1000 例死亡；遗传估计 rs10455872 为 0.97（0.92–1.02）不一致"
+   },
+   {
+    "pmid": "36708412",
+    "estimate": "全因死亡最高 vs 最低三分位 HR 1.09（1.01–1.18），一般人群 19 项研究",
+    "why_not": "只有三分位比较；线性剂量反应只对心血管死亡报告（每 50 mg/dL 增 31%），未给全因死亡的连续估计"
+   }
+  ]
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-4"
+ "registry_version_added": "2026.11.18-9"
 }

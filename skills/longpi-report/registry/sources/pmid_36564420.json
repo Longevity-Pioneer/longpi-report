@@ -1,0 +1,35 @@
+{
+ "key": "pmid:36564420",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36564420/",
+ "fetched_at": "2026-11-18T06:12:42Z",
+ "sha256": "13b7988a05518a97f9da565138ad340d376e3cb9b586cb5cac63c335a08bdecf",
+ "citation": "Scientific reports 2022",
+ "text": "Association of plasma cystatin C with all-cause and cause-specific mortality among middle-aged and elderly individuals: a prospective community-based cohort study.\nWe investigated the associations of plasma cystatin C with all-cause and cause-specific mortality risk and identified potential modifying factors affecting these associations in middle-aged and elderly people (≥ 50 years). This community-based prospective cohort study included 13,913 individuals aged ≥ 50 years from the Health and Retirement Study. Cox proportional hazard models were used to estimate the associations between cystatin C concentrations and the risk of all-cause and cardiovascular and cancer mortality after adjustment for sociodemographic characteristics, lifestyle factors, self-reported medical history, and other potential confounding factors. During a total of 71,988 person-years of follow-up (median: 5.8 years; interquartile range 3.3-7.6 years), 1893 all-cause deaths were documented, including 714 cardiovascular-related and 406 cancer-related deaths. The comparisons of the groups with the highest (quartile 4) and lowest (quartile 1) cystatin C concentrations revealed that the adjusted hazard ratios and 95% confidence intervals were 1.92 (1.62-2.28) for all-cause mortality, 1.98 (1.48-2.65) for cardiovascular mortality, and 1.62 (1.13-2.32) for cancer mortality. The associations of cystatin C concentrations with all-cause, cardiovascular and cancer mortality did not differ substantially when participants were stratified by sex, age, BMI, current smoking status, current alcohol consumption, and regular exercise (all P for interactions > 0.05). Our study indicates that an elevated plasma cystatin C concentration is associated with an increased risk of all-cause, cardiovascular and cancer mortality both men and women among the middle-aged and elderly individuals.\n[full text, Europe PMC PMC9789032]\nDuring a total of 71,988 person-years of follow-up (median follow-up: 5.8 years, interquartile range 3.3–7.6 years), 1893 deaths were documented, including 714 from cardiovascular diseases and 406 from cancer. Rates of all-cause, cardiovascular and cancer mortality increased in association with increases in cystatin C concentrations assessed as quartiles (Fig. 1). The multivariable-adjusted HRs (Model 2) of all-cause, cardiovascular and cancer mortality with the lowest quartile (Q1) of cystatin C concentrations as the reference were 1.92 (1.62–2.28), 1.98 (1.48–2.65), and 1.62 (1.13–2.32), respectively, for the highest quartile (Q4) (all P for trends < 0.05) (Table 2). Additionally, evaluating the risks of all-cause, cardiovascular, and cancer mortality associated with each 1 mg/L increase in cystatin C concentrations revealed multivariable-adjusted HRs (95% CIs) of 1.51 (1.44–1.58), 1.49 (1.39–1.61), and 1.24 (1.05–1.47), respectively (Fig. 2).Figure 1Kaplan–Meier curves for all-cause, cardiovascular and cancer mortality stratified by baseline cystatin C concentration quartiles. (A) Kaplan–Meier curves of all-cause mortality; (B) Kaplan–Meier curves of cardiovascular mortality; (C) Kaplan–Meier curves of cancer mortality. quartile 1 (Q1, < 0.84 mg/L), quartile 2 (Q2, 0.84–0.97 mg/L), quartile 3 (Q3, 0.98–1.20 mg/L), and quartile 4 (Q4, > 1.20 mg/L).Table 2HRs (95% CIs) for all-cause, cardiovascular and cancer mortality according to cystatin C concentration quartiles.Cystatin C quartilesAll-cause mortalityCardiovascular mortalityCancer mortalityModel 1†Model 2‡Model 1Model 2Model 1Model 2No. of participants13,91313,91313,913Person-years at risk71,98871,98871,988No. of events1892714406Q11.00 (reference)1.00 (reference)1.00 (reference)1.00 (reference)1.00 (reference)1.00 (reference)Q21.12 (0.93–1.35)1.11 (0.92–1.33)1.11 (0.80–1.53)1.06 (0.77–1.46)1.47 (1.03–2.09)*1.45 (1.02–2.08)*Q31.35 (1.13–1.60) ***1.21 (1.01–1.44) **1.35 (1.00–1.83)*1.15 (0.84–1.56)1.54 (1.08–2.19)*1.40 (0.98–1.99)Q42.44 (2.07–2.88)***1.92 (1.62–2.28)***2.89 (2.18–3.84)***1.98 (1.48–2.65)***1.93 (1.36–2.72)***1.62 (1.13–2.32)***P for trend < 0.001 < 0.001 < 0.001 < 0.001 < 0.0010.078HR: hazard ratio; CI: confidence interval.†Model 1: adjusted for age and sex.‡Model 2: adjusted for age, sex, race, educational level, current smoking status, alcohol consumption, regular exercise, body mass index, household income, total cholesterol concentration, high-sensitivity C-reactive protein concentration, high-density lipoprotein-cholesterol concentration, hemoglobin A1c, CES-D 8 score, hypertension, heart disease, stroke, cancer, diabetes, pulmonary disorders, psychiatric problems, and limitations in activities of daily living (ADLs).*P < 0.05; **P < 0.01; ***P < 0.001.Figure 2Subgroup analyses for the hazard ratio of all-cause (A), cardiovascular (B) and cancer mortality (C) for each 1 mg/L increase in cystatin C concentrations. Adjusted for age, sex, race, educational level, current smoking status, alcohol consumption, regular exercise, body mass index (BMI), household income, total cholesterol (TC) concentration, high-sensitivity C-reactive protein concentration, high density lipoprotein cholesterol (HDL-C) concentration, hemoglobin A1c (HbA1c) concentration, CES-D 8 score, hypertension, heart disease, stroke, cancer, diabetes, pulmonary disorders, psychiatric problems, and limitations in activities of daily living (ADLs).",
+ "pmcid": "PMC9789032",
+ "doi": "10.1038/s41598-022-24722-4",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.hr",
+   "value": 1.51,
+   "found": true,
+   "context": "entrations revealed multivariable-adjusted HRs (95% CIs) of 1.51 (1.44-1.58), 1.49 (1.39-1.61), and 1.24 (1.05-1.47), respec"
+  },
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.lo",
+   "value": 1.44,
+   "found": true,
+   "context": "ions revealed multivariable-adjusted HRs (95% CIs) of 1.51 (1.44-1.58), 1.49 (1.39-1.61), and 1.24 (1.05-1.47), respectively"
+  },
+  {
+   "term": "ext.cystatin_c",
+   "number": "all_cause.hi",
+   "value": 1.58,
+   "found": true,
+   "context": "revealed multivariable-adjusted HRs (95% CIs) of 1.51 (1.44-1.58), 1.49 (1.39-1.61), and 1.24 (1.05-1.47), respectively"
+  }
+ ]
+}

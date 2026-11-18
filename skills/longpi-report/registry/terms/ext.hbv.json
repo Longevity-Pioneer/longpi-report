@@ -22,40 +22,74 @@
    {
     "sex": "both",
     "age_lo": 18,
+    "age_hi": 59,
+    "prevalence": 0.047
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
     "age_hi": 99,
-    "prevalence": 0.031
+    "prevalence": 0.056
    }
   ],
-  "pmid": "31199446",
-  "quote": "The prevalence of HBsAg positivity was 3.1% (n = 15 355).",
-  "source": "中国慢性病前瞻性研究基线现场快速试纸检测 HBsAg 阳性率 3.1%（30–79 岁，496 732 人）；与效应量出自同一检测方法，故用于归一化。快速试纸灵敏度偏低，全国人群 HBsAg 流行率可能更高；未分性别年龄，所有性别年龄段共用一行"
+  "pmid": "37798085",
+  "pmcid": "PMC10715530",
+  "quote": "An estimated 43.3 million (95% uncertainty interval 30.7-55.9) persons remained infected with HBV in China in 2021 (3.0%)",
+  "source": "全国 HBsAg 血清流行率系统综述与荟萃分析（Liu Z 等，Gut 2023，3740 项研究、2.31 亿人），2021 年估计：19–59 岁 4.7%、≥60 岁 5.6%（同一摘要句）；未分性别（男性高于女性）。效应量来自中国慢性病前瞻性研究现场快速试纸检测（阳性率 3.1%，灵敏度偏低），与血清实验室检测口径不完全一致",
+  "previous_source_zh": "原用中国慢性病前瞻性研究基线快速试纸阳性率 3.1%（PMID 31199446），为单一队列试纸口径，已替换"
  },
  "effect": {
   "liver_ca": {
    "hr": 15.77,
    "lo": 14.15,
    "hi": 17.57,
-   "coef": 1.0
+   "coef": 0.8,
+   "overlaps_with": [
+    "ext.fh_liver_ca",
+    "ext.alcohol",
+    "ext.smoking"
+   ],
+   "population": {
+    "events": 1775,
+    "events_source_zh": "全文表 1：肝细胞癌 1775 例（HBsAg 阳性 514、阴性 1261）"
+   }
   },
   "gastric_ca": {
    "hr": 1.41,
    "lo": 1.11,
    "hi": 1.8,
-   "coef": 0.6
+   "coef": 0.6,
+   "overlaps_with": [
+    "ext.hpylori",
+    "ext.smoking"
+   ],
+   "population": {
+    "events": 2157,
+    "events_source_zh": "全文表 1：胃癌 2157 例（HBsAg 阳性 78、阴性 2079）"
+   }
   }
  },
  "adjusted_for": [
   "age",
   "sex",
+  "region",
+  "education",
+  "income",
+  "marital_status",
   "core.smoking",
+  "ext.smoking",
   "core.alcohol",
-  "core.adiposity"
+  "ext.alcohol",
+  "family_cancer_history",
+  "ext.fh_liver_ca",
+  "core.adiposity",
+  "ext.bmi"
  ],
  "overlap": {
   "coef": 1.0,
   "coef_sd": 0.1,
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。原文 Cox 模型校正了年龄、性别、地区、教育、家庭收入、婚姻、吸烟、饮酒、癌症家族史和体重指数，已覆盖肝癌的主要并存危险因素（丙肝病毒未校正，但在中国人群中流行率低），肝癌系数取 1.0。胃癌关联较弱（HR 1.41），仅在小样本队列中重复，且未校正幽门螺杆菌感染，系数取 0.6。肝癌家族史与乙肝感染的重叠在 ext.fh_liver_ca 一侧打折。",
+  "rationale_zh": "本项只计疾病结局。原文 Cox 模型校正了年龄、性别、地区、教育、家庭收入、婚姻、吸烟、饮酒、癌症家族史和体重指数，与肝癌的已计入重叠项（肝癌家族史、饮酒、吸烟）均已互相校正，按规则取 0.8（丙肝病毒未校正，但在中国人群中流行率低；结局为肝细胞癌，约占原发性肝癌的八至九成）。胃癌关联较弱（HR 1.41，暴露组仅 78 例），未校正幽门螺杆菌感染，属部分校正，系数取 0.6。",
   "mediated_by": {}
  },
  "transport": {
@@ -108,5 +142,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

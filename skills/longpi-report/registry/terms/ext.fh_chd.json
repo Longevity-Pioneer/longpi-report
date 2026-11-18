@@ -3,7 +3,7 @@
  "name_zh": "冠心病家族史",
  "kind": "genetic",
  "system": "cardiovascular",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:chd",
   "unit": "0/1",
@@ -22,30 +22,44 @@
     "sex": "both",
     "age_lo": 18,
     "age_hi": 99,
-    "prevalence": 0.05
+    "prevalence": 0.046
    }
   ],
-  "source": "估计值，未经原文核对：CKB 分析冠心病家族史的论文摘要未给出家族史比例，此处按一级亲属心肌梗死史约 5% 设定；患病率只影响归一化中心，对个体相对风险影响很小"
+  "pmid": "31576770",
+  "pmcid": "PMC6818036",
+  "quote": "Family history of heart attack, % | 4.8 | 4.2 | 4.8 | 4.3",
+  "source": "中国嘉道理生物库 104,170 名在职参与者基线表 1：一级亲属心脏病发作家族史按通勤方式四组分别为 4.8%、4.2%、4.8%、4.3%（经年龄、性别、地区调整），按各组人数加权约 4.6%；该子样本为在职人群，年龄偏轻，未分性别年龄，所有性别年龄段共用一行"
  },
  "effect": {
   "chd": {
    "hr": 1.25,
    "lo": 1.18,
-   "hi": 1.33
+   "hi": 1.33,
+   "overlaps_with": [
+    "ext.prs_chd",
+    "ext.ldl",
+    "ext.sbp",
+    "ext.diabetes",
+    "ext.smoking"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "multivariable_unspecified"
+   ],
+   "coef": 0.6
   }
  },
  "adjusted_for": [
   "age",
   "sex",
-  "core.smoking",
-  "core.alcohol",
-  "core.adiposity"
+  "multivariable_unspecified"
  ],
  "overlap": {
-  "coef": 0.7,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "仅为冠心病建项，属先天项。取缺血性心脏病（24537 例）的多因素校正 HR，而非例数较少的急性冠脉事件（HR 1.41）。原文为多因素校正，但摘要未写明是否校正血压、血脂、血糖；家族史部分经这些可测危险因素起作用，与 ext.ldl 等同时计入可能部分重复，系数取 0.7。",
+  "rationale_zh": "仅为冠心病建项，属先天项。取缺血性心脏病（24537 例）的多因素校正 HR，而非例数较少的急性冠脉事件（HR 1.41）。摘要只写“多因素校正”，未列协变量，全文为中文期刊且无法取得，不能确认是否校正吸烟、血压、血脂与血糖，故不把任何已计入项记为已校正，按部分校正处理；家族史与冠心病多基因评分、LDL-C、血压、糖尿病、吸烟共享信息，系数上限 0.6，取 0.6。家族性高胆固醇血症单基因项目前为定性项，未列入重叠。",
   "mediated_by": {}
  },
  "transport": {
@@ -99,5 +113,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

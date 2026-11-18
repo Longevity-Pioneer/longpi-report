@@ -1,0 +1,13 @@
+{
+ "key": "pmid:37798085",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37798085/",
+ "fetched_at": "2026-11-18T06:12:56Z",
+ "sha256": "4d8e993a0d9a10ee1e70c553840f387394482271ec0803cf6c6bf549653a71cf",
+ "citation": "Gut 2023",
+ "text": "Changing prevalence of chronic hepatitis B virus infection in China between 1973 and 2021: a systematic literature review and meta-analysis of 3740 studies and 231 million people.\nOBJECTIVE: China concentrates a large part of the global burden of HBV infection, playing a pivotal role in achieving the WHO 2030 global hepatitis elimination target.\nMETHODS: We searched for studies reporting HBV surface antigen (HBsAg) seroprevalence in five databases until January 2023. Eligible data were pooled using a generalised linear mixed model with random effects to obtain summary HBsAg seroprevalence. Linear regression was used to estimate annual percentage change (APC) and HBsAg prevalence in 2021.\nRESULTS: 3740 studies, including 231 million subjects, were meta-analysed. HBsAg seroprevalence for the general population decreased from 9.6% (95% CI 8.4 to 10.9%) in 1973-1984 to 3.0% (95% CI 2.1 to 3.9%) in 2021 (APC=-3.77; p<0.0001). Decreases were more pronounced in children <5 years (APC=-7.72; p<0.0001) and 5-18 years (-7.58; p<0.0001), than in people aged 19-59 years (-2.44; p<0.0001), whereas HBsAg seroprevalence increased in persons ≥60 years (2.84; p=0.0007). Significant decreases were observed in all six major Chinese regions, in both men (APC=-3.90; p<0.0001) and women (-1.82; p<0.0001) and in high-risk populations. An estimated 43.3 million (95% uncertainty interval 30.7-55.9) persons remained infected with HBV in China in 2021 (3.0%), with notable heterogeneity by region (<1.5% in North China to>6% in Taiwan and Hong Kong) and age (0.3%, 1.0%, 4.7% and 5.6% for <5 years, 5-18 years, 19-59 years and ≥60 years, respectively).\nCONCLUSIONS: China has experienced remarkable decreases in HBV infection over the last four decades, but variations in HBsAg prevalence persist in subpopulations. Ongoing prevention of HBV transmission is needed to meet HBV elimination targets by 2030.\nTRIAL REGISTRATION NUMBER: PROSPERO (CRD42021284217).",
+ "pmcid": "PMC10715530",
+ "doi": "10.1136/gutjnl-2023-330691",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

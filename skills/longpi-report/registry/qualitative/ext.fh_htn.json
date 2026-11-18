@@ -3,7 +3,7 @@
  "name_zh": "高血压家族史",
  "kind": "genetic",
  "system": "cardiovascular",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:htn",
   "unit": "0/1",
@@ -25,29 +25,49 @@
     "prevalence": 0.3
    }
   ],
-  "source": "估计值，未经原文核对：未找到可逐句核对的中国成人高血压家族史比例，按约 30% 设定；患病率只影响归一化中心"
+  "source": "估计值，未经原文核对：未找到可逐句核对的中国成人高血压家族史比例，按约 30% 设定；患病率只影响归一化中心",
+  "estimated": true,
+  "estimated_reason_zh": "未找到摘要或正文可逐句核对的中国成人高血压家族史比例，按约 30% 设定；本项为定性项，不参与计算。"
  },
  "effect": {
   "htn": {
    "hr": 1.14,
    "lo": 1.03,
-   "hi": 1.27
+   "hi": 1.27,
+   "overlaps_with": [
+    "ext.bmi"
+   ],
+   "adjusted_for": [
+    "age",
+    "ext.alcohol",
+    "ext.smoking",
+    "ext.bmi",
+    "LP:mvpa_min_week",
+    "salt_intake",
+    "income",
+    "ethnicity",
+    "prehypertension"
+   ],
+   "coef": 1.0,
+   "applies_sex": "M"
   }
  },
  "adjusted_for": [
   "age",
-  "core.alcohol",
-  "core.smoking",
-  "core.adiposity",
-  "core.bp",
+  "ext.alcohol",
+  "ext.smoking",
+  "ext.bmi",
   "LP:mvpa_min_week",
-  "salt_intake"
+  "salt_intake",
+  "income",
+  "ethnicity",
+  "prehypertension"
  ],
  "overlap": {
   "coef": 1.0,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "仅为高血压建项，属先天项。原文 Cox 模型同时校正年龄、民族、收入、体力活动、吸烟、饮酒、超重肥胖、食盐摄入与基线血压状态（正常/高血压前期），属于互相校正的估计，系数取 1.0。采用摘要中男性的估计（1.14），女性表中估计更高（1.39），取男性值偏保守。研究人群为辽宁农村 35 岁以上成人，随访约 28 个月。",
+  "rationale_zh": "仅为高血压建项，属先天项。原文 Cox 模型同时校正年龄、民族、收入、饮酒、超重肥胖、食盐摄入与基线血压状态（正常/高血压前期），已覆盖同病种已计入的 ext.bmi。采用摘要中男性的估计（1.14），女性估计只在表中。",
   "mediated_by": {}
  },
  "transport": {
@@ -63,7 +83,7 @@
    35,
    99
   ],
-  "sex": "both"
+  "sex": "M"
  },
  "measurement": {
   "sd_abs": null,
@@ -100,5 +120,9 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "唯一可核对的估计来自辽宁农村队列男性（HR 1.14，1.03–1.27），摘要未给男性人数与新发高血压例数，全文无法由核对程序取得，事件数无法核对；随访仅约 28 个月，结局按两次随访血压定义；女性估计只在表中且明显更高（约 1.39），单一性别、短随访的估计不宜推广到全人群。参考患病率亦无可核对的中国人群来源。暂作定性提示，待找到含两性、事件数明确的中国前瞻队列后再计入。",
+ "verifier_reasons": [
+  "htn: 未写结局事件数"
+ ]
 }

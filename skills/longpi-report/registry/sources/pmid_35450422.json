@@ -1,0 +1,13 @@
+{
+ "key": "pmid:35450422",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35450422/",
+ "fetched_at": "2026-11-18T06:10:34Z",
+ "sha256": "da6bcff3e05f815e4717d458132a1e752beabe2a9dadb97ecfca888793121bd6",
+ "citation": "Frontiers in endocrinology 2022",
+ "text": "Gender Differences Between the Phenotype of Short Stature and the Risk of Diabetes Mellitus in Chinese Adults: A Population-Based Cohort Study.\nOBJECTIVE: Previous studies have shown that there are significant regional and gender differences in the association between the phenotype of short stature and diabetes mellitus (DM). The purpose of this study was to investigate the gender difference between the phenotype of short stature and the risk of DM in the Chinese population.\nMETHODS: The sample included 116,661 adults from 32 locations of 11 cities in China, of which the average height of men and women was 171.65 and 160.06 cm, respectively. Investigators retrospectively reviewed annual physical examination results for follow-up observations and set confirmed DM events as the outcome of interest. Multivariate Cox regression, restricted cubic spline, and piecewise regression models were used to check the association between height and DM risk.\nRESULTS: During an average observation period of 3.1 years, there were 2,681 of 116,661 participants who developed new-onset DM, with a male to female ratio of 2.4 to 1. After full adjustment for confounders, we confirmed that there was a significant negative correlation between height and DM risk in Chinese women (HR per 10 cm increase: 0.85, 95% CI: 0.74-0.98), but not in men (HR per 10 cm increase: 1.16, 95% CI: 0.98-1.14). Additionally, through restricted cubic spline and piecewise regression analysis, we determined that the height of 157-158 cm may be the critical point for short stature used to assess the risk of DM in Chinese women.\nCONCLUSIONS: In the Chinese population, female short stature phenotype is related to increased DM risk, among which 157-158 cm may be the saturation effect point of female short stature for predicting DM risk.\n[full text, Europe PMC PMC9016201]\nALT, U/L | 23.00 (16.70–34.00) | 28.10 (19.65–43.00) | <0.001 | 0.37 | 14.00 (11.00–19.00) | 19.50 (15.00–29.00) | <0.001 | 0.74",
+ "pmcid": "PMC9016201",
+ "doi": "10.3389/fendo.2022.869225",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

@@ -3,7 +3,7 @@
  "name_zh": "一级亲属结直肠癌家族史",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:crc",
   "unit": "0/1",
@@ -34,7 +34,19 @@
    "hr": 1.76,
    "lo": 1.57,
    "hi": 1.97,
-   "coef": 0.7
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.prs_crc",
+    "ext.mono_mlh1",
+    "ext.mono_msh2",
+    "ext.mono_msh6",
+    "ext.mono_pms2",
+    "ext.bmi"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex"
+   ]
   }
  },
  "adjusted_for": [
@@ -42,10 +54,10 @@
   "sex"
  ],
  "overlap": {
-  "coef": 0.7,
+  "coef": 0.3,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。荟萃分析合并了病例对照与队列研究，各研究校正程度不一，多数未与生活方式危险因素互相校正，系数取 0.7；研究人群以欧美为主，另按非东亚人群收缩。",
+  "rationale_zh": "本项只计疾病结局。荟萃分析合并 63 项病例对照与队列研究的 RR，各研究校正程度不一，按仅校正年龄、性别处理；未校正多基因评分、错配修复基因致病变异与 BMI。家族史部分由这些已计入项解释，按规则系数上限 0.3，取 0.3；研究人群以欧美为主，另按非东亚人群收缩。",
   "mediated_by": {}
  },
  "transport": {
@@ -94,5 +106,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

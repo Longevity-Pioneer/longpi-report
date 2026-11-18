@@ -75,15 +75,17 @@
     "prevalence": 0.02
    }
   ],
-  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/lung_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+  "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+  "estimated": true,
+  "estimated_reason_zh": "未找到可核对的中国全国按性别年龄低剂量 CT 筛查率；按年龄分组数值为估计"
  },
  "effect": {},
  "screening": {
   "disease_id": "lung_ca",
   "mortality_rr": {
-   "hr": 0.76,
-   "lo": 0.61,
-   "hi": 0.94
+   "hr": 0.79,
+   "lo": 0.72,
+   "hi": 0.87
   },
   "eligible": {
    "age": [
@@ -107,19 +109,20 @@
   "mediated_by": {}
  },
  "transport": {
-  "ancestry": "Netherlands and Belgium",
+  "ancestry": "Europe and USA",
   "shrink": 0.8,
   "sd_inflate": 1.25
  },
  "population": {
-  "cohort": "NELSON trial, men (primary analysis)",
-  "n": 13195,
-  "ancestry": "Netherlands and Belgium",
+  "cohort": "Cochrane review (Bonney 2022), 8 LDCT RCTs reporting lung cancer mortality, control = no screening or chest X-ray",
+  "n": 91122,
+  "ancestry": "Europe and USA",
   "age_range": [
-   50,
-   74
+   40,
+   80
   ],
-  "sex": "M"
+  "sex": "both",
+  "events_source_zh": "摘要未给肺癌死亡例数；8 项试验共 91 122 人，按大型 RCT 荟萃分析豁免"
  },
  "measurement": {
   "sd_abs": null,
@@ -139,17 +142,25 @@
  },
  "evidence": {
   "grade": "A",
-  "design": "rct",
-  "pmid": "31995683",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/31995683/",
-  "quote": "The cumulative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the control group",
+  "design": "meta-analysis-rct",
+  "pmid": "35921047",
+  "pmcid": "PMC9347663",
+  "doi": "10.1002/14651858.CD013829.pub2",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/35921047/",
+  "quote": "In the meta-analysis of trials assessing lung cancer-related mortality, we included eight trials (91,122 participants), and there was a reduction in mortality of 21% with LDCT screening compared to control groups of no screening or CXR screening (RR 0.79, 95% CI 0.72 to 0.87; 8 trials, 91,122 participants; moderate-certainty evidence).",
+  "alternatives_considered": [
+   {
+    "pmid": "31995683",
+    "why_not_zh": "NELSON 主分析仅男性（RR 0.76，0.61–0.94），摘要只给死亡率不给死亡例数，全文非开放获取；女性亚组 RR 0.67（0.38–1.14）不显著。改用两性合并的随机试验荟萃分析"
+   }
+  ],
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
  },
- "note_zh": "eligible.requires 的 LP:smoking_status 须为现吸或已戒烟（戒烟不足 15 年），且吸烟量达到筛查指南的重度吸烟阈值；从不吸烟者不适用本项（非吸烟者 LDCT 筛查的死亡获益缺乏随机试验证据）。NELSON 主分析为男性；女性亚组 RR 0.67（0.38–1.14）。NLST（PMID 21714641）肺癌死亡相对下降 20.0%，方向一致。",
+ "note_zh": "RR 0.79 为 8 项随机试验意向筛查合并估计，对照组为不筛查或胸片（胸片筛查本身未降低肺癌死亡，故近似不筛查）；亚组分析未见性别差异。eligible.requires 的 LP:smoking_status 须为现吸或已戒烟（戒烟不足 15 年），且吸烟量达到筛查指南的重度吸烟阈值；从不吸烟者不适用本项。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2",
+ "registry_version_added": "2026.11.18-9",
  "notes_zh": [
   "2026-11-18 主线：适用条件由“有吸烟状态记录”改为“目前吸烟或已戒烟”；包年数暂未进入数据，报告中提示按指南核对"
  ]

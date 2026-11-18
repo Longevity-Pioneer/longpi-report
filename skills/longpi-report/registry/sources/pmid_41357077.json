@@ -15,21 +15,21 @@
    "number": "htn.hr",
    "value": 1.1,
    "found": true,
-   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+   "context": "there was a 10% increment in the risk of hypertension (aHR, 1.10; 95% CI, 1.07-1.12)."
   },
   {
    "term": "ext.bmi",
    "number": "htn.lo",
    "value": 1.07,
    "found": true,
-   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+   "context": "% increment in the risk of hypertension (aHR, 1.10; 95% CI, 1.07-1.12)."
   },
   {
    "term": "ext.bmi",
    "number": "htn.hi",
    "value": 1.12,
    "found": true,
-   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+   "context": "rement in the risk of hypertension (aHR, 1.10; 95% CI, 1.07-1.12)."
   }
  ]
 }

@@ -123,7 +123,8 @@
     "sd": 3.79
    }
   ],
-  "kind": "normal"
+  "kind": "normal",
+  "norms_marker": "bmi"
  },
  "effect": {
   "t2d": {
@@ -145,7 +146,24 @@
     "n": 482589,
     "events": 13416,
     "ancestry": "Chinese"
-   }
+   },
+   "overlaps_with": [
+    "ext.fpg",
+    "ext.hba1c",
+    "ext.tg",
+    "ext.waist",
+    "ext.fh_t2d",
+    "ext.prs_t2d"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "education",
+    "core.smoking",
+    "core.alcohol",
+    "LP:mvpa_min_week"
+   ]
   },
   "htn": {
    "hr": 1.1,
@@ -154,19 +172,36 @@
    "per": 1,
    "per_unit": "kg/m2",
    "direction": "higher_worse",
-   "coef": 0.8,
+   "coef": 0.6,
    "evidence": {
     "pmid": "41357077",
     "grade": "B",
     "design": "prospective-cohort",
-    "quote": "aHR, 1.10; 95% CI, 1.07-1.12"
+    "quote": "As a continuous variable, for per 1.0 kg/m2 increment in BMI, there was a 10% increment in the risk of hypertension (aHR, 1.10; 95% CI, 1.07-1.12).",
+    "alternatives_considered": [
+     {
+      "pmid": "27155441",
+      "estimate": "CHNS 全 BMI 范围：BMI ≥28 vs <22 RR 3.13（2.84–3.45），5208 例",
+      "why_not": "只有分类比较，不能换算为连续斜率；仅用作外推方向的佐证（全范围梯度不弱于正常范围内斜率）"
+     }
+    ]
    },
    "population": {
     "cohort": "China Health and Nutrition Survey (baseline normal BMI 18.5–23.9)",
     "n": 9583,
     "events": 3025,
     "ancestry": "Chinese"
-   }
+   },
+   "overlaps_with": [],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "core.bp",
+    "core.adiposity",
+    "core.smoking",
+    "core.alcohol",
+    "ext.diabetes"
+   ]
   },
   "masld": {
    "hr": 2.81,
@@ -175,7 +210,7 @@
    "per": 5,
    "per_unit": "kg/m2",
    "direction": "higher_worse",
-   "coef": 0.8,
+   "coef": 0.6,
    "evidence": {
     "pmid": "30692555",
     "grade": "B",
@@ -187,7 +222,19 @@
     "n": 503991,
     "events": 1298,
     "ancestry": "Chinese"
-   }
+   },
+   "overlaps_with": [
+    "ext.alt"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "education",
+    "core.smoking",
+    "core.alcohol",
+    "LP:mvpa_min_week"
+   ]
   },
   "crc": {
    "hr": 1.17,
@@ -206,8 +253,20 @@
    "population": {
     "cohort": "China Kadoorie Biobank",
     "n": 512891,
-    "ancestry": "Chinese"
-   }
+    "ancestry": "Chinese",
+    "events": 2204,
+    "events_source_zh": "作者稿 PMC7614994 表 2：结直肠癌（C18–C20）各 BMI 组病例数 88+501+725+761+129 = 2204"
+   },
+   "overlaps_with": [],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "education",
+    "core.smoking",
+    "core.alcohol",
+    "LP:mvpa_min_week"
+   ]
   },
   "breast_ca": {
    "hr": 1.29,
@@ -226,13 +285,33 @@
    "population": {
     "cohort": "China Kadoorie Biobank (postmenopausal women)",
     "ancestry": "Chinese",
-    "sex": "F"
-   }
+    "sex": "F",
+    "events": 1202,
+    "n": 512891,
+    "events_source_zh": "作者稿 PMC7614994 表 2：绝经后乳腺癌（C50）各 BMI 组病例数 29+211+399+452+111 = 1202；原文以随访中年龄 ≥50 岁定义绝经后"
+   },
+   "applies_sex": "F",
+   "applies_age": [
+    50,
+    120
+   ],
+   "overlaps_with": [],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "education",
+    "core.smoking",
+    "core.alcohol",
+    "LP:mvpa_min_week"
+   ]
   }
  },
  "adjusted_for": [
   "age",
   "sex",
+  "region",
+  "education",
   "core.smoking",
   "core.alcohol",
   "LP:mvpa_min_week"
@@ -243,7 +322,7 @@
   "overlaps_with": [
    "core.adiposity"
   ],
-  "rationale_zh": "仅为疾病建项，不写全因死亡，避免与 core.adiposity 在 LongPi Age 中重复计入。CKB 各结局模型校正了年龄、性别、地区、教育、吸烟、饮酒与体力活动，未校正血糖、血压等中介；体重是上游暴露，不应以中介校正，故结直肠癌、乳腺癌、脂肪肝取 0.8。2 型糖尿病单独取 0.5：ext.fpg 的效应已校正 BMI，而 BMI 的总效应有相当部分经空腹血糖中介，同时计入两项时须打折，以免重复。高血压证据来自 CHNS，模型已校正基线收缩压、舒张压、腰臀比、吸烟、饮酒与糖尿病，但研究对象基线 BMI 限于正常范围，外推到超重人群时取 0.8。乳腺癌效应来自绝经后女性，引擎没有绝经状态，以年龄 ≥50 岁近似；CKB 同队列绝经前女性亦呈正相关，用于全部女性不会改变方向。BMI 与肝癌在 CKB 中呈反向关联且排除前 5 年后消失，未纳入。",
+  "rationale_zh": "仅为疾病建项，不写全因死亡，避免与 core.adiposity 在 LongPi Age 中重复计入。CKB 各结局模型校正年龄、性别、地区、教育、吸烟、饮酒与体力活动，未校正血糖、血压等中介；体重是上游暴露，不以中介校正，结直肠癌、乳腺癌取 0.8。2 型糖尿病取 0.5：与 ext.fpg、ext.hba1c、ext.tg、ext.waist 及遗传项共享信息，CKB 未与它们互相校正（规则上限 0.6）。脂肪肝取 0.6：CKB 的结局为住院或医保记录的非酒精性脂肪肝（ICD 编码），而 outcomes/masld.json 的基线为社区超声诊断的 MASLD，定义口径不同，且未校正 ALT。高血压证据来自 CHNS，研究对象基线 BMI 限于正常范围（18.5–23.9），模型校正基线血压、腰臀比、吸烟、饮酒与糖尿病；对超重肥胖者属外推，同一队列全范围分类比较（≥28 vs <22 RR 3.13）提示外推方向保守，系数取 0.6。乳腺癌效应只来自绝经后女性，CKB 以随访中年龄 ≥50 岁定义绝经后，故该结局只适用于 50 岁及以上女性；绝经前乳腺癌未纳入。BMI 与肝癌在 CKB 中呈反向关联且排除前 5 年后消失，未纳入。",
   "mediated_by": {}
  },
  "transport": {
@@ -298,5 +377,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

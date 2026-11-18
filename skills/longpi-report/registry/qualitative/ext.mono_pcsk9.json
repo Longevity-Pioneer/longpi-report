@@ -1,0 +1,135 @@
+{
+ "id": "ext.mono_pcsk9",
+ "name_zh": "PCSK9 家族性高胆固醇血症致病变异携带",
+ "kind": "genetic",
+ "system": "cardiovascular",
+ "group": "genetic",
+ "input": {
+  "code": "LP:monogenic:HGNC:20001",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0002667
+   }
+  ],
+  "pmid": "32049305",
+  "quote": "Overall, monogenic FH-associated variants were found in LDLR for 257 individuals (92.9%), PCSK9 for 13 (4.7%), and APOB for 7 individuals (2.5%).",
+  "source": "英国生物库 48741 名有芯片与外显子数据者中 PCSK9 家族性高胆固醇血症相关变异携带 PCSK9 13 人（Trinder 2020 JAMA Cardiol 全文），携带率 13/48741 = 0.0002667；该研究对未注释的 LDLR 截短与有害错义变异也计入，口径略宽于 ClinVar 致病/可能致病。欧洲人群，中国人群分基因携带率暂缺。"
+ },
+ "effect": {
+  "chd": {
+   "hr": 3.8,
+   "lo": 2.5,
+   "hi": 5.8,
+   "direction": "higher_worse",
+   "note": "LDLR、APOB、PCSK9 三基因合并携带者对非携带者（横断面设计，年龄为时间轴，含既往诊断），非本基因单独估计",
+   "overlaps_with": [
+    "ext.ldl",
+    "ext.apob",
+    "ext.fh_chd",
+    "ext.prs_chd"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "core.smoking",
+    "core.adiposity",
+    "ext.smoking",
+    "ext.bmi",
+    "lifestyle_score",
+    "genetic_pcs"
+   ],
+   "coef": 0.5
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.adiposity",
+  "ext.smoking",
+  "ext.bmi",
+  "lifestyle_score",
+  "genetic_pcs"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "家族性高胆固醇血症变异的冠心病风险主要经终身 LDL-C 升高起作用，与 ext.ldl、ext.apob 信息重叠；携带状态也部分解释家族史（ext.fh_chd），并可能与多基因评分（ext.prs_chd）叠加。来源模型以年龄为时间轴，校正性别、生活方式评分（饮食、运动、吸烟、肥胖）与前 4 个遗传主成分，未校正 LDL-C、家族史或多基因评分，按规则系数上限 0.6，取 0.5；中介比例无文献给出，按约定默认 0.5（LDL-C），已测 LDL-C 时再折减。效应为三基因合并估计，不能代表本基因。",
+  "mediated_by": {
+   "LOINC:13457-7": 0.5
+  }
+ },
+ "transport": {
+  "ancestry": "United Kingdom (European)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "UK Biobank sequenced subsample (JAMA Netw Open 2022, PMID 35294538), cross-sectional analysis",
+  "n": 39920,
+  "events": 2854,
+  "events_source_zh": "全文结果段：携带者 108 人中 22 例、非携带者 39812 人中 2832 例发生冠心病，合计 2854 例；三基因合并，非本基因",
+  "ancestry": "United Kingdom (European)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "携带者应接受遗传咨询，尽早强化降 LDL-C 治疗，并做一级亲属级联筛查。"
+ },
+ "test": {
+  "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+  "cost_level": 4
+ },
+ "disclosure": "counsel",
+ "evidence": {
+  "grade": "C",
+  "design": "cross-sectional",
+  "pmid": "35294538",
+  "quote": "a variant was identified in 108 individuals (0.3%) in the cohort study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/35294538/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true,
+  "design_note_zh": "原文自述为横断面研究（This cross-sectional study）；队列部分以年龄为时间轴，纳入入组前诊断与随访新发冠心病，不是前瞻发病分析。"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "gene": "PCSK9",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "本项按遗传项统一门槛（单基因须有该基因自身的 RR/HR/OR 及 95% 置信区间，分析中结局事件 ≥100，来自前瞻队列或大型病例对照）复核后未能通过。现用来源 PMID 35294538 原文自述为横断面研究：所谓队列分析以年龄为时间轴，纳入入组前已诊断与随访新发的全部冠心病，并非前瞻发病分析；HR 3.8（2.5–5.8）为 LDLR、APOB、PCSK9 三基因合并携带者对非携带者的估计，携带者仅 108 人、其中冠心病 22 例，不能拆分到单个基因。检索到的其他研究（Khera 2016 JACC、Khera 2019 Circulation、Trinder 2020 JAMA Cardiol、冰岛 2021 ATVB、英国生物库 2023 JACC Adv、eMERGE 2023）同样只报告三基因合并估计；Do 2015 Nature 给出了 LDLR 单基因的病例对照 OR（4.2），但正文与表格均未给出置信区间。PCSK9 另有两点：其一，致冠心病的是少见的功能获得型变异，未找到该类变异携带者冠心病事件 ≥100 的单基因估计（Humphries 2006 的 PCSK9 D374Y 仅 7 名携带者，且对照为无突变的家族性高胆固醇血症患者）；其二，功能缺失型变异降低 LDL-C 与冠心病风险（Dron 2023 JAMA Cardiol，HR 0.51），输入编码 LP:monogenic:HGNC:20001 不区分功能方向，只有 ClinVar 针对家族性高胆固醇血症判定的功能获得型变异才提示风险升高。故只作定性提示。",
+ "verifier_reasons": [
+  "chd: 证据等级 C 低于 B",
+  "chd: 研究设计 cross-sectional 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation', 'case-control')"
+ ]
+}

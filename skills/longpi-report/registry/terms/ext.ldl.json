@@ -122,7 +122,8 @@
     "sd": 0.86
    }
   ],
-  "kind": "normal"
+  "kind": "normal",
+  "norms_marker": "ldl"
  },
  "effect": {
   "chd": {
@@ -139,7 +140,8 @@
      "hi": 0.8
     },
     "pow": -1
-   }
+   },
+   "overlaps_with": []
   }
  },
  "adjusted_for": [
@@ -151,7 +153,7 @@
   "overlaps_with": [
    "core.lipid"
   ],
-  "rationale_zh": "仅为冠心病建项，不写全因死亡，避免与 core.lipid 重复。效应来自他汀随机对照试验的个体数据荟萃分析（每降低 1 mmol/L 的率比取倒数），随机化排除了混杂，属于因果效应，系数取 1.0。终点为主要血管事件（冠心病死亡、非致死性心肌梗死、冠脉血运重建与缺血性卒中），以冠脉事件为主，用作冠心病的近似；试验期约 5 年，终生暴露的效应应更大，此处偏保守。卒中未纳入：CKB 显示 LDL-C 与缺血性卒中正相关、与脑出血负相关，摘要未给可核对的数值。",
+  "rationale_zh": "仅为冠心病建项，不写全因死亡，避免与 core.lipid 重复。效应来自他汀随机对照试验的个体数据荟萃分析（每降低 1 mmol/L 的率比取倒数），随机化排除了混杂，属于因果效应，系数取 1.0。终点为主要血管事件（冠心病死亡、非致死性心肌梗死、冠脉血运重建与缺血性卒中），以冠脉事件为主，用作冠心病的近似；试验期约 5 年，终生暴露的效应应更大，此处偏保守。卒中未纳入：CKB 显示 LDL-C 与缺血性卒中正相关、与脑出血负相关，摘要未给可核对的数值。冠心病 overlaps_with 写空：LDL-C 的随机对照试验估计是脂蛋白组内因果性最强、排名首位的项；ApoB、HDL-C、多基因评分、致病变异与 LDL-C 的信息重叠由这些后加项各自的 overlaps_with 打折以及 lipids 重叠组的排名规则处理，不在本项重复打折。引文同时列出主要血管事件的组成（冠心病死亡或非致死性心肌梗死、冠脉血运重建、缺血性卒中），所用数值 0.78（0.76–0.80）属于主要血管事件合计，不是单独的冠脉事件；全文单列的主要冠脉事件每 1 mmol/L 降低 24%（22%–27%）只以百分比给出，与此相近。",
   "mediated_by": {}
  },
  "transport": {
@@ -190,7 +192,7 @@
   "design": "meta-analysis-rct",
   "pmid": "21067804",
   "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
-  "quote": "When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
+  "quote": "consisting of separately significant reductions in coronary death or non-fatal myocardial infarction of 13% (95% CI 7-19; p<0·0001), in coronary revascularisation of 19% (95% CI 15-24; p<0·0001), and in ischaemic stroke of 16% (95% CI 5-26; p=0·005). Per 1·0 mmol/L reduction in LDL cholesterol, these further reductions in risk were similar to the proportional reductions in the trials of statin versus control. When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
@@ -202,5 +204,5 @@
  "status": "active",
  "disclosure": "standard",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

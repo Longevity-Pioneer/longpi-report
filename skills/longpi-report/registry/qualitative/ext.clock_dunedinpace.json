@@ -102,7 +102,7 @@
   "sex": "both"
  },
  "evidence": {
-  "grade": "B",
+  "grade": "C",
   "design": "prospective-cohort",
   "pmid": "35029144",
   "pmcid": "PMC8853656",
@@ -113,8 +113,12 @@
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
  },
- "why_qualitative_zh": "Framingham 每 SD 死亡 HR 1.65（95% CI 1.51–1.79）经逐字核对，但只校正年龄与性别，约 23% 死亡（正文未给确切例数）。DunedinPACE 与已计入的 GrimAge2 中度相关，原文校正 GrimAge 后关联减弱，并与血液 PhenoAge 共享多系统生理信息。本仓库 NHANES 分析中前代 DunedinPoAm 在 LongPi 模型基础上 C 指数增益仅 0.0025（NHANES 未提供 DunedinPACE 本身），故只作定性佐证。",
+ "why_qualitative_zh": "按统一规则（规则 3：B 级须为大型前瞻队列、荟萃或孟德尔随机化的主分析，事件 ≥100；全因死亡项另须合并分析或单一队列死亡 ≥1000 例），Framingham 每 SD 死亡 HR 1.65（95% CI 1.51–1.79）经逐字核对，但只校正年龄与性别，约 23% 死亡（正文未给确切例数）。DunedinPACE 与已计入的 GrimAge2 中度相关，原文校正 GrimAge 后关联减弱，并与血液 PhenoAge 共享多系统生理信息。本仓库 NHANES 分析中前代 DunedinPoAm 在 LongPi 模型基础上 C 指数增益仅 0.0025（NHANES 未提供 DunedinPACE 本身），故只作定性佐证。 与 MetaboHealth 采用同一规则。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
- "verifier_reasons": []
+ "registry_version_added": "2026.11.18-10",
+ "verifier_reasons": [
+  "all_cause: 证据等级 C 低于 B",
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例",
+  "all_cause: 未写结局事件数"
+ ]
 }

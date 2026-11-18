@@ -29,27 +29,6 @@
    "value": 2.19,
    "found": true,
    "context": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic"
-  },
-  {
-   "term": "ext.diabetes",
-   "number": "stroke.hr",
-   "value": 2.27,
-   "found": true,
-   "context": "s were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
-  },
-  {
-   "term": "ext.diabetes",
-   "number": "stroke.lo",
-   "value": 1.95,
-   "found": true,
-   "context": ": 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
-  },
-  {
-   "term": "ext.diabetes",
-   "number": "stroke.hi",
-   "value": 2.65,
-   "found": true,
-   "context": "0 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
   }
  ]
 }

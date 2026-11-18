@@ -1,0 +1,35 @@
+{
+ "key": "pmid:35199334",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35199334/",
+ "fetched_at": "2026-11-18T06:11:31Z",
+ "sha256": "f09a05cb13900e3ebf479d377896e67351f9a503f12b83f740286ee2e8fce452",
+ "citation": "International journal of cancer 2022",
+ "text": "Tobacco smoking and solid fuels for cooking and risk of liver cancer: A prospective cohort study of 0.5 million Chinese adults.\nPrevious research found tobacco smoking and solid fuel use for cooking to increase the risk of chronic liver disease mortality, but previous cohort studies have not investigated their independent and joint associations with liver cancer incidence in contemporary China. The China Kadoorie Biobank (CKB) study recruited 0.5 million adults aged 30 to 79 years from 10 areas across China during 2004 to 2008. Participants reported detailed smoking and fuel use information at baseline. After an 11.1-year median follow-up via electronic record linkage, we recorded 2997 liver cancer cases. Overall, 29.4% participants were current smokers. Among those who cooked at least once per month, 48.8% always used solid fuels (ie, coal or wood) for cooking. Tobacco smoking and solid fuel use for cooking were independently associated with increased risks of liver cancer, with hazard ratios (95% confidence intervals [CIs]) of 1.28 (1.15-1.42) and 1.25 (1.03-1.52), respectively. The more cigarettes consumed each day, the earlier the age of starting smoking or the longer duration of solid fuels exposure, the higher the risk (Ptrend < .001, =.001, =.018, respectively). Compared with never smokers who had always used clean fuels (ie, gas or electricity), ever-smokers who had always used solid fuels for cooking had a 67% (95% CIs: 1.29-2.17) higher risk. Among Chinese adults, tobacco smoking and solid fuel use for cooking were independently associated with higher risk of liver cancer incidence. Stronger association was observed with higher number of daily cigarette consumption, the earlier age of starting smoking and longer duration of solid fuel use.",
+ "pmcid": "PMC7612779",
+ "doi": "10.1002/ijc.33977",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.hr",
+   "value": 1.28,
+   "found": true,
+   "context": "cer, with hazard ratios (95% confidence intervals [CIs]) of 1.28 (1.15-1.42) and 1.25 (1.03-1.52), respectively."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.lo",
+   "value": 1.15,
+   "found": true,
+   "context": "ith hazard ratios (95% confidence intervals [CIs]) of 1.28 (1.15-1.42) and 1.25 (1.03-1.52), respectively."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.hi",
+   "value": 1.42,
+   "found": true,
+   "context": "azard ratios (95% confidence intervals [CIs]) of 1.28 (1.15-1.42) and 1.25 (1.03-1.52), respectively."
+  }
+ ]
+}

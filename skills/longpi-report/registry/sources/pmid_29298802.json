@@ -10,27 +10,6 @@
  "open_access": "N",
  "checks": [
   {
-   "term": "ext.waist",
-   "number": "t2d.hr",
-   "value": 1.91,
-   "found": true,
-   "context": "For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual a"
-  },
-  {
-   "term": "ext.waist",
-   "number": "t2d.lo",
-   "value": 1.87,
-   "found": true,
-   "context": "C, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustm"
-  },
-  {
-   "term": "ext.waist",
-   "number": "t2d.hi",
-   "value": 1.95,
-   "found": true,
-   "context": "s per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustment a"
-  },
-  {
    "term": "ext.bmi",
    "number": "t2d.hr",
    "value": 1.77,
@@ -50,6 +29,27 @@
    "value": 1.81,
    "found": true,
    "context": "r in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)"
+  },
+  {
+   "term": "ext.waist",
+   "number": "t2d.hr",
+   "value": 1.91,
+   "found": true,
+   "context": " For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women"
+  },
+  {
+   "term": "ext.waist",
+   "number": "t2d.lo",
+   "value": 1.87,
+   "found": true,
+   "context": "C, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women"
+  },
+  {
+   "term": "ext.waist",
+   "number": "t2d.hi",
+   "value": 1.95,
+   "found": true,
+   "context": "s per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women"
   }
  ]
 }

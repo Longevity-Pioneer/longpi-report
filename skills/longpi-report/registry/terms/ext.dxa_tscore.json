@@ -126,7 +126,9 @@
   "pmid": "31067339",
   "quote": "The age-standardized prevalence of osteoporosis at the spine or hip was 6.46% and 29.13% for men and women aged 50 years and older, respectively.",
   "source": "pmid:31067339",
-  "source_note_zh": "各年龄段均值与 SD 为构造值：20–29 岁按 T 值定义取 0/1，此后按经验递减；校准条件是按 2010 年人口普查年龄构成加权后，≥50 岁人群 T≤−2.5 的比例与原文年龄标化患病率一致（男 6.46% → 构造值约 6.4%；女 29.13% → 约 29.7%）。原文为全国 7 中心 75,321 人 GE Lunar DXA 调查。逐年龄段的 T 值均值未从文献逐字核对"
+  "source_note_zh": "各年龄段均值与 SD 为构造值：20–29 岁按 T 值定义取 0/1，此后按经验递减；校准条件是按 2010 年人口普查年龄构成加权后，≥50 岁人群 T≤−2.5 的比例与原文年龄标化患病率一致（男 6.46% → 构造值约 6.4%；女 29.13% → 约 29.7%）。原文为全国 7 中心 75,321 人 GE Lunar DXA 调查。逐年龄段的 T 值均值未从文献逐字核对",
+  "estimated": true,
+  "estimated_reason_zh": "逐年龄段 T 值均值与 SD 为构造值，只以原文 ≥50 岁男女骨质疏松年龄标化患病率（6.46%、29.13%）校准，未从文献逐字取得各年龄段分布"
  },
  "effect": {
   "all_cause": {
@@ -212,5 +214,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

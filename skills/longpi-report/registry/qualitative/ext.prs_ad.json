@@ -3,7 +3,7 @@
  "name_zh": "阿尔茨海默病多基因评分",
  "kind": "genetic",
  "system": "brain_sleep",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "PGS:PGS004589",
   "unit": "SD",
@@ -35,7 +35,17 @@
    "per_unit": "1 SD of PRS (z)",
    "direction": "higher_worse",
    "metric": "OR",
-   "note": "每 SD 的 OR（校正 APOE ε4）"
+   "note": "每 SD 的 OR（校正 APOE ε4）",
+   "overlaps_with": [
+    "ext.apoe_e4"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "education",
+    "genetic_pcs",
+    "ext.apoe_e4"
+   ]
   }
  },
  "adjusted_for": [
@@ -101,7 +111,7 @@
  },
  "why_qualitative_zh": "PGS Catalog 中阿尔茨海默病评分的东亚评估仅有韩国记忆门诊小样本病例对照（379 人、159 例，OR 2.09，95% CI 1.09–4.04），置信区间过宽，证据等级低于 B，暂作定性佐证。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
   "ad: 证据等级 C 低于 B"
  ]
