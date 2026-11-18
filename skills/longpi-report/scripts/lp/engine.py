@@ -841,7 +841,7 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
             pt = math.log(statistics.fmean(math.exp(x) for x in lh)) / m.b
             row["years"] = summ([x / m.b for x in lh], 2, pt)
             if T.slope is not None and T.level is not None:   # change of this term's contribution per year
-                e = T.spec["effect"]["all_cause"]
+                e = TM._eff(T.spec["effect"]["all_cause"])
                 shape = T.spec["transform"]["shape"]
                 if shape in ("loglinear", "residualized"):
                     beta = math.log(e["hr"]) * float((T.spec.get("transport") or {}).get("shrink", 1.0)) / e["per"]

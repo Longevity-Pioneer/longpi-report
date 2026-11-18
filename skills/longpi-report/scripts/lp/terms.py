@@ -40,13 +40,33 @@ def _band(rows: List[dict], sex: str, age: float) -> Optional[dict]:
 
 
 def ref_moments(t: dict, sex: str, age: float) -> Optional[Tuple[float, float]]:
+    """(mean, sd) of the reference distribution on the scale the curve is applied to (ln x when log_x / lognormal)."""
     ref = t["reference"]
     if ref.get("by_sex_age"):
         b = _band(ref["by_sex_age"], sex, age)
-        return (b["mean"], b["sd"]) if b else None
+        if not b:
+            return None
+        if "meanlog" in b:
+            return b["meanlog"], b["sdlog"]
+        if "mean" in b:
+            return b["mean"], b["sd"]
+        return None
+    if "meanlog" in ref:
+        return ref["meanlog"], ref["sdlog"]
     if "mean" in ref and "sd" in ref:
         return ref["mean"], ref["sd"]
     return None
+
+
+def _eff(e: dict) -> dict:
+    """An effect block, with `derived` (hr = from.hr ** pow; bounds swap when pow < 0) resolved."""
+    if "hr" in e or not e.get("derived"):
+        return e
+    d = e["derived"]
+    k = float(d["pow"])
+    f = d["from"]
+    lo, hi = f["lo"] ** k, f["hi"] ** k
+    return dict(e, hr=f["hr"] ** k, lo=min(lo, hi), hi=max(lo, hi))
 
 
 def _se(e: dict, inflate: float) -> float:
@@ -59,17 +79,19 @@ def _draw_log(e: dict, rng: Optional[random.Random], shrink: float, inflate: flo
 
 
 def draw_effect(t: dict, oc: str, rng: Optional[random.Random]) -> dict:
-    tr = t.get("transport") or {}
-    shrink, infl = float(tr.get("shrink", 1.0)), float(tr.get("sd_inflate", 1.0))
     e = t["effect"][oc]
+    tr = e.get("transport") or t.get("transport") or {}
+    shrink, infl = float(tr.get("shrink", 1.0)), float(tr.get("sd_inflate", 1.0))
+    e = _eff(e)
     shape = t["transform"]["shape"]
     if shape in ("loglinear", "residualized"):
         return {"beta": _draw_log(e, rng, shrink, infl) / e["per"]}
     if shape == "hinge":
-        return {"b_lo": _draw_log(e["hr_below"], rng, shrink, infl) / e["hr_below"]["per"],
-                "b_hi": _draw_log(e["hr_above"], rng, shrink, infl) / e["hr_above"]["per"]}
+        side = lambda k: (_draw_log(_eff(e[k]), rng, shrink, infl) / _eff(e[k])["per"]) if e.get(k) else 0.0
+        return {"b_lo": side("hr_below"), "b_hi": side("hr_above")}
     if shape == "categorical":
-        return {"log_rr": {lvl: (0.0 if (v in (1, 1.0) or (isinstance(v, dict) and v.get("hr") == 1)) else _draw_log(v, rng, shrink, infl))
+        return {"log_rr": {lvl: (0.0 if (v in (1, 1.0) or (isinstance(v, dict) and v.get("hr") == 1 and "lo" not in v))
+                                 else _draw_log(_eff(v), rng, shrink, infl))
                            for lvl, v in e["levels"].items()}}
     if shape == "indicator":
         return {"log_rr": _draw_log(e, rng, shrink, infl)}
@@ -92,7 +114,9 @@ def f_raw(t: dict, p: dict, x) -> float:
         x = min(x, hi if not tf.get("log_x") else math.log(max(hi, 1e-9)))
     if shape in ("loglinear", "residualized"):
         return p["beta"] * x
-    return p["b_lo"] * max(0.0, tf["knot_lo"] - x) + p["b_hi"] * max(0.0, x - tf["knot_hi"])
+    klo = tf.get("knot_lo", tf.get("knot"))
+    khi = tf.get("knot_hi", tf.get("knot"))
+    return (p["b_lo"] * max(0.0, klo - x) if klo is not None else 0.0) + (p["b_hi"] * max(0.0, x - khi) if khi is not None else 0.0)
 
 
 def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float) -> float:
@@ -100,6 +124,12 @@ def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float) -> float:
     if shape == "categorical":
         probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
         return math.log(sum(pr * math.exp(p["log_rr"].get(lvl, 0.0)) for lvl, pr in probs.items()))
+    if ref.get("kind") == "categorical_mid":
+        probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
+        mids = ref["mids"]
+        if isinstance(next(iter(mids.values())), dict):
+            mids = mids.get(sex, next(iter(mids.values())))
+        return math.log(sum(pr * math.exp(f_raw(t, p, mids[lvl])) for lvl, pr in probs.items()))
     if shape == "indicator":
         prev = ref.get("prevalence")
         if prev is None and ref.get("by_sex_age"):
@@ -121,6 +151,8 @@ def _clip_scale(tf: dict):
 
 
 def normalised(t: dict, p: dict, x, sex: str, age: float) -> float:
+    if t["reference"].get("kind") == "categorical_mid":
+        return f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age)
     if t["transform"].get("log_x") and t["transform"]["shape"] not in ("categorical", "indicator"):
         xx = math.log(max(float(x), 1e-9))
         tf = t["transform"]
@@ -282,18 +314,29 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
         ov = spec.get("overlap") or {}
         base_m, base_sd = float(ov.get("coef", 1.0)), float(ov.get("coef_sd", 0.0))
         mult, why = 1.0, []
+        oc_mult: Dict[str, float] = {}
         med = ov.get("mediated_by") or {}
         frac = sum(v for k, v in med.items() if _mediator_measured(k, model))
         if frac > 0:
             mult *= max(0.0, 1 - frac)
             why.append(f"中介指标已测，按 {1 - frac:.2f} 计")
-        pop = spec.get("population") or {}
-        ar = pop.get("age_range")
-        if ar and not (ar[0] <= model.age <= ar[1]):
-            mult *= 0.7
-            why.append(f"年龄不在研究范围 {ar[0]}–{ar[1]} 岁，按 0.7 计")
-        if pop.get("sex") in ("M", "F") and pop["sex"] != model.sex:
-            T.status, T.reasons = "not_counted", ["研究只含另一性别"]
+        for oc in T.outcomes():
+            e = spec["effect"][oc]
+            pop = dict(spec.get("population") or {}, **(e.get("population") or {}))
+            scope = pop.get("sex_scope") or (pop.get("sex") if pop.get("sex") in ("M", "F") else None)
+            if scope in ("M", "F") and scope != model.sex:
+                oc_mult[oc] = 0.0
+                continue
+            ar = pop.get("age_range")
+            k = 1.0
+            if ar and not (ar[0] <= model.age <= ar[1]):
+                k = 0.7
+                msg = f"年龄不在研究范围 {ar[0]}–{ar[1]} 岁，按 0.7 计"
+                if msg not in why:
+                    why.append(msg)
+            oc_mult[oc] = k
+        if oc_mult and all(v == 0.0 for v in oc_mult.values()):
+            T.status, T.reasons = "not_counted", ["研究只适用于另一性别"]
             out.append(T)
             continue
         if spec["kind"] == "behavior" and rows[-1].get("method") == "self_report":
@@ -301,7 +344,13 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
             mult *= d
             why.append(f"自述行为，按 {d} 计")
         for oc in T.outcomes():
-            T.coef[oc] = (base_m * mult, base_sd * mult)
+            if oc_mult.get(oc, 1.0) == 0.0:
+                continue
+            e = spec["effect"][oc]
+            cm = float(e["coef"]) if e.get("coef") is not None else base_m
+            cs = float(e.get("coef_sd", base_sd)) if e.get("coef") is not None else base_sd
+            k = mult * oc_mult.get(oc, 1.0)
+            T.coef[oc] = (cm * k, cs * k)
         T.notes += why
         T.status = "counted"
         out.append(T)
@@ -334,7 +383,9 @@ def _screening_state(spec: dict, model, years_since) -> dict:
 
 
 def _info(T: Term, oc: str, model) -> float:
-    e = T.spec["effect"][oc]
+    e = _eff(T.spec["effect"][oc])
+    if "hr" not in e:
+        return 0.5
     shape = T.spec["transform"]["shape"]
     if shape in ("loglinear", "residualized"):
         mo = ref_moments(T.spec, model.sex, model.age)
@@ -493,6 +544,9 @@ def spread_years(spec: dict, sex: str, age: float, b: float) -> Optional[float]:
     """How far an unmeasured all-cause term could move LongPi Age (1 SD of its contribution, years)."""
     e = (spec.get("effect") or {}).get("all_cause")
     if not e or spec["transform"]["shape"] not in ("loglinear", "residualized") or spec["kind"] not in ("state", "exposure"):
+        return None
+    e = _eff(e)
+    if "hr" not in e:
         return None
     mo = ref_moments(spec, sex, age)
     if not mo:
