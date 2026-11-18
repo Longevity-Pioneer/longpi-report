@@ -122,6 +122,10 @@ def run(args):
             refused.append({"pgs_id": pid, "license": meta_lic})
             continue
         sf = prs.fetch_score(pid, build)
+        if not meta_lic and not sf.header.get("license"):
+            # licence cannot be established (metadata unreachable, header silent): do not score
+            refused.append({"pgs_id": pid, "license": None})
+            continue
         if not sf.license_ok():
             refused.append({"pgs_id": pid, "license": sf.license})
             continue
@@ -194,7 +198,8 @@ def run(args):
                                         "reference_panel": f"{prs.kg.PANEL_NAME}; EAS n=504"},
                            "license": sf.license})
     for r_ in refused:
-        prs_out.append({"pgs_id": r_["pgs_id"], "scored": False, "reason": "licence does not permit commercial use",
+        prs_out.append({"pgs_id": r_["pgs_id"], "scored": False,
+                        "reason": "licence does not permit commercial use" if r_["license"] else "licence could not be verified",
                         "license": r_["license"], "raw": None, "z": None, "percentile": None, "coverage": None,
                         "min_coverage": args.min_coverage, "disease_id": (reg.get(r_["pgs_id"]) or [None])[0]})
         provenance.append({"step": "prs", "tool": "prs_score", "version": TOOLS["prs_score"],

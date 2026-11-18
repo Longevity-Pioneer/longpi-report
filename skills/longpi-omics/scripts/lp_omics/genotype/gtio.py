@@ -114,7 +114,7 @@ def sniff_format(path: Path) -> str:
                 return "vcf"
             if line.startswith("#") or not line.strip():
                 continue
-            parts = line.rstrip("\n").split("\t")
+            parts = line.rstrip("\r\n").split("\t")
             if len(parts) in (4, 5) and (parts[0].startswith("rs") or parts[0].startswith("i")):
                 return "chip"
             if i > 200:
@@ -160,7 +160,7 @@ def _read_vcf(path, interest, source_type, sample, pass_only):
                             pass
                 continue
             if line.startswith("#CHROM"):
-                cols = line.rstrip("\n").split("\t")
+                cols = line.rstrip("\r\n").split("\t")
                 samples = cols[9:]
                 if not samples:
                     raise ValueError("VCF has no sample column")
@@ -175,7 +175,7 @@ def _read_vcf(path, interest, source_type, sample, pass_only):
                 continue
             if si is None:
                 raise ValueError("VCF data line before #CHROM header")
-            f = line.rstrip("\n").split("\t")
+            f = line.rstrip("\r\n").split("\t")
             if len(f) <= si:
                 continue
             chrom = norm_chrom(f[0])
@@ -233,7 +233,7 @@ def _read_chip(path, interest):
         for line in fh:
             if line.startswith("#") or not line.strip():
                 continue
-            f = line.rstrip("\n").replace(",", "\t").split("\t")
+            f = line.rstrip("\r\n").replace(",", "\t").split("\t")
             if f[0].lower() in ("rsid", "snp", "name"):
                 continue
             if len(f) == 5:  # AncestryDNA style: rsid chrom pos allele1 allele2
