@@ -1,0 +1,26 @@
+{
+ "key": "pmid:26086181",
+ "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:26086181%20AND%20SRC:MED&resultType=core&format=json",
+ "fetched_at": "2026-11-18T05:37:58+00:00",
+ "sha256": "9940bd3c27b1c1a92872e5f0d152956642b2a52b066945bbef121968419754d8",
+ "bytes": 8162,
+ "retrieval": "Europe PMC REST record (core); text = title + abstract; sha256 is of the JSON response",
+ "citation": "Yuan J, Zhang Z, Wen H, Hong X, Hong Z, Qu Q, Tang M, Wu J, Xu Q, Li H, Cummings JL.. Incidence of dementia and subtypes: A cohort study in four regions in China. Alzheimers Dement. 2016. doi:10.1016/j.jalz.2015.02.011. PMID 26086181.",
+ "licence": "abstract only (publisher copyright; article behind subscription)",
+ "data_year": 2001,
+ "text": "Incidence of dementia and subtypes: A cohort study in four regions in China.\n[Abstract]\nIntroduction There is a dearth of literature on the incidence of dementia in China. Methods Using a stratified, multistage, cluster-sampling method, 16,921 nondemented participants ≥55 years were recruited from four regional centers in China in 1997 and followed up to 4.5 years. Cases were identified through a three-step protocol, according to standardized criteria for dementia, Alzheimer's dementia (AD), and vascular dementia (VaD). Results The crude incidence in persons ≥65 years was 12.1/1000 person-years for dementia, 8.2/1000 person-years for AD, and 3.1/1000 person-years for VaD. After adjusting for sociodemographic factors, older age and lower education were associated with a higher risk of incident dementia, AD and VaD; regional difference was associated mainly with incidence of VaD (north vs. south: hazard ratio [HR] = 3.59); modestly with AD (east vs. west: HR = 1.55). Discussion The incidence of dementia in Chinese population is comparable with that in Europe and United States.",
+ "checks": [
+  {
+   "term": "outcome:ad",
+   "number": "8.2",
+   "found": true,
+   "context": "Introduction There is a dearth of literature on the incidence of dementia in China. Methods Using a stratified, multistage, cluster-sampling method, 16,921 nond"
+  },
+  {
+   "term": "outcome:ad",
+   "number": "12.1",
+   "found": true,
+   "context": "Introduction There is a dearth of literature on the incidence of dementia in China. Methods Using a stratified, multistage, cluster-sampling method, 16,921 nond"
+  }
+ ]
+}

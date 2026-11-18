@@ -77,9 +77,10 @@ def blocks(text: str) -> dict:
 
 
 def find_row(rows, label, label_col=0, section=None, occurrence=0):
+    """section: header row label, or a path 'AD/Male' (first 'Male' header after the 'AD' header)."""
     start = 0
-    if section is not None:
-        idx = [i for i, r in enumerate(rows) if len(r) >= 1 and norm(r[0]) == norm(section)]
+    for sec in (section.split("/") if section else []):
+        idx = [i for i, r in enumerate(rows) if i >= start and len(r) >= 1 and norm(r[0]) == norm(sec)]
         if not idx:
             raise KeyError(f"section {section!r} not found")
         start = idx[0] + 1
@@ -215,6 +216,24 @@ SPECS = {
     "masld_songjiang": dict(source="pmcid:PMC11882351", block=2, unit="per_100_py", rows=age_rows(
         [(30, 39, "18–39"), (40, 49, "40–49"), (50, 59, "50–59"), (60, 69, "60–69"), (70, 89, "≥70")], {"M": 3, "F": 5})),
     # ---- Alzheimer disease (Ji County), per 1000 PY, AD column = 5
+    # ---- fix/outcome-baselines additions
+    "prostate_jiangsu_population": dict(source="pmcid:PMC11431764", block=1, unit="persons", rows=[
+        dict(sex="both", age_lo=lo, age_hi=lo + 4 if lo else 0, label=lab, col=1) for lo, lab in (
+            (0, "0–"), (1, "1–4"), (5, "5–9"), (10, "10–14"), (15, "15–19"), (20, "20–24"), (25, "25–29"), (30, "30–34"),
+            (35, "35–39"), (40, "40–44"), (45, "45–49"), (50, "50–54"), (55, "55–59"), (60, "60–64"), (65, "65–69"))]),
+    "t2d_zhejiang": dict(source="pmcid:PMC6995322", block=1, unit="per_100k", rows=[
+        dict(sex=s, age_lo=lo, age_hi=hi, label=lab, col=3, section=sec)
+        for s, sec in (("M", "Males"), ("F", "Females"))
+        for lo, hi, lab in ((30, 39, "30-39"), (40, 49, "40-49"), (50, 59, "50-59"), (60, 69, "60-69"), (70, 79, "70-79"), (80, 89, "≥80"))]),
+    "ad_taiwan_2010": dict(source="pmcid:PMC6878786", block=2, unit="per_1000_py", rows=[
+        dict(sex=s, age_lo=lo, age_hi=hi, label=lab, col=7, section=sec)
+        for s, sec in (("M", "AD/Male"), ("F", "AD/Female"))
+        for lo, hi, lab in ((65, 69, "65–69"), (70, 74, "70–74"), (75, 79, "75–79"), (80, 84, "80–84"), (85, 89, "≥85"))]),
+    "ad_taiwan_2010_crude": dict(source="pmcid:PMC6878786", scalars=[
+        dict(name="ad_crude_2010", block=0, label="Crude", col=7, occurrence=1, unit="per_1000_py")]),
+    "ad_china_4region": dict(source="pmid:26086181", scalars=[
+        dict(name="ad_ge65", block="Abstract", regex=r"dementia, ([\d.]+)/1000 person-years for AD", unit="per_1000_py"),
+        dict(name="dementia_ge65", block="Abstract", regex=r"years was ([\d.]+)/1000 person-years for dementia", unit="per_1000_py")]),
     "ad_jicounty": dict(source="pmcid:PMC8021353", block=1, unit="per_1000_py", rows=[
         *[dict(sex="M", age_lo=lo, age_hi=hi, label=lab, col=5, section="Man") for lo, hi, lab in ((60, 69, "60–69"), (70, 79, "70–79"), (80, 89, "80"))],
         *[dict(sex="F", age_lo=lo, age_hi=hi, label=lab, col=5, section="Woman") for lo, hi, lab in ((60, 69, "60–69"), (70, 79, "70–79"), (80, 89, "80–"))]]),
@@ -240,7 +259,7 @@ def transcribe():
                 body = "\n".join(" | ".join(x) for x in bl[s["block"]])
                 val, lab, col = re.search(s["regex"], body).group(1), s["regex"], ""
             else:
-                row = find_row(bl[s["block"]], s["label"], label_col=s.get("label_col", 0))
+                row = find_row(bl[s["block"]], s["label"], label_col=s.get("label_col", 0), occurrence=s.get("occurrence", 0))
                 val, lab, col = cell_number(row[s["col"]]), s["label"], s["col"]
             loc = f"table block {s['block']}" if isinstance(s["block"], int) else s["block"][:60]
             out.append(dict(source_key=sp["source"], locator=loc, kind="scalar", name=s["name"], sex="", age_lo="", age_hi="",
@@ -452,46 +471,76 @@ def build_all():
     for oid, c in CANCERS.items():
         outs[oid] = build_cancer(oid, c, nat, report)
 
-    # prostate
+    # prostate: 70-79 and 80+ as published; 30-69 in 5-year bands from a log-linear age curve fitted to two published
+    # constraints of the same source (population-weighted mean over ages 0-59 and over 60-69), then x national factor
     used = "outcome:prostate_ca"
     js = scalars("prostate_2019_jiangsu_summary", used)
     f = nat["asir_prostate_M"] / js["asir_M"]
-    raw = age_table("prostate_2019_jiangsu", used)["M"]
-    inc = {"M": [(lo, hi, v * f, r) for lo, hi, v, r in raw]}
+    raw = {(lo, hi): v for lo, hi, v, _ in age_table("prostate_2019_jiangsu", used)["M"]}
+    pop = {lo: v for lo, hi, v, _ in age_table("prostate_jiangsu_population", used)["both"]}
+    r059, r6069 = raw[(30, 59)], raw[(60, 69)]
+    w059 = sum(v for a0, v in pop.items() if a0 < 60)
+    w6069 = pop[60] + pop[65]
+    five = [a0 for a0 in pop if a0 >= 20]  # ages under 20: rate taken as 0
+
+    def curve(A, b, a0):
+        return A * math.exp(b * (a0 + 2.5 - 62.5))
+
+    lo_b, hi_b = 0.01, 1.0
+    for _ in range(200):  # bisection on slope b; level A fixed by the 60-69 constraint
+        b_ = (lo_b + hi_b) / 2
+        A = r6069 * w6069 / sum(curve(1, b_, a0) * pop[a0] for a0 in (60, 65))
+        m059 = sum(curve(A, b_, a0) * pop[a0] for a0 in five if a0 < 60) / w059
+        lo_b, hi_b = (b_, hi_b) if m059 > r059 else (lo_b, b_)
+    slope = b_
+    bands = [(a0, a0 + 4, curve(A, slope, a0) * f, "") for a0 in range(30, 70, 5)]
+    bands += [(70, 79, raw[(70, 79)] * f, ""), (80, 89, raw[(80, 89)] * f, "")]
+    inc = {"M": bands}
     src = load_source("pmcid:PMC11431764")
     outs["prostate_ca"] = rec("prostate_ca", "前列腺癌", ["C61"], "M", rows_out(inc), {
         "source": f"{src['citation']} × 2022 年全国水平：{load_source(NAT)['citation']}", "source_keys": ["pmcid:PMC11431764", NAT],
         "year": 2022, "shape_year": 2019, "region": "China (age shape: Jiangsu Province)", "derived": True,
-        "quality_zh": (f"未找到可逐字核对的全国前列腺癌分年龄发病表；年龄形状取江苏省肿瘤登记地区 2019 年 4 个年龄组发病率"
-                       f"（0–59、60–69、70–79、≥80 岁，原表逐字核对），乘以系数 {f:.3f} = 2022 年全国世标率 ÷ 江苏 2019 年世标率。"
-                       "0–59 岁只有一个合并率，用于 30–59 岁全段，会低估 55–59 岁、高估 30–49 岁；对终身风险影响很小。"
-                       "江苏与全国的地区差别与 PSA 筛查普及度差别都并入系数。"),
-        "inputs": {"asr_source_year": {"M": js["asir_M"]}, "asr_2022": {"M": nat["asir_prostate_M"]}, "factor": {"M": round(f, 4)}}},
+        "quality_zh": (f"未找到可逐字核对的全国或登记地区前列腺癌 5 岁组发病表。江苏省肿瘤登记地区 2019 年只给出 0–59、60–69、70–79、≥80 岁 4 组率"
+                       f"（原表逐字核对）。70–79、80–89 岁直接采用；30–69 岁按 5 岁组重建：假定发病率随年龄按指数上升，"
+                       f"用同一论文的两个约束拟合斜率与水平——按该文人口年龄构成加权，0–59 岁平均率等于 {r059}、60–69 岁平均率等于 {r6069}"
+                       f"（20 岁以下按 0 计），得斜率 {slope:.4f}/岁（约每 {math.log(2) / slope:.1f} 年翻倍）。"
+                       f"全部组再乘系数 {f:.3f} = 2022 年全国世标率 ÷ 江苏 2019 年世标率。人口构成表为男女合计，假定男性年龄构成相同；"
+                       "江苏与全国的地区差别、PSA 筛查普及度差别并入系数。"),
+        "inputs": {"asr_source_year": {"M": js["asir_M"]}, "asr_2022": {"M": nat["asir_prostate_M"]}, "factor": {"M": round(f, 4)},
+                   "age_slope_per_year": round(slope, 5), "constraints": {"mean_0_59": r059, "mean_60_69": r6069}}},
         ["ICD10:C61"], FACTS_NOTE.format(lic=src["licence"]),
         quote=caption("pmcid:PMC11431764", 3), url=src["url"])
-    report["prostate_ca"] = {"factor": f, "lifetime_30_90_M": round(lifetime_risk(inc["M"], "M"), 4),
-                             "cum30_74_scaled_M": round(cum_rate(inc["M"]), 3)}
+    chk059 = sum(curve(A, slope, a0) * pop[a0] for a0 in five if a0 < 60) / w059
+    chk6069 = sum(curve(A, slope, a0) * pop[a0] for a0 in (60, 65)) / w6069
+    report["prostate_ca"] = {"factor": f, "age_slope": slope, "refit_mean_0_59": round(chk059, 3), "refit_mean_60_69": round(chk6069, 3),
+                             "lifetime_30_90_M": round(lifetime_risk(inc["M"], "M"), 4), "cum30_74_scaled_M": round(cum_rate(inc["M"]), 3),
+                             "bands": {f"{lo}-{hi}": round(v, 2) for lo, hi, v, _ in bands}}
 
     # T2D
+    # Clinician-diagnosed, registered T2DM (Zhejiang surveillance): matches the engine's diagnosed-code logic.
+    # The biochemically defined cohorts are still verified and reported, for comparison only.
     used = "outcome:t2d"
-    age = age_table("t2d_age", used)["both"]
-    sx = scalars("t2d_sex", used)
-    k = sx["rate_M"] / sx["rate_F"]
-    inc = split_sex(age, k, 100.0)  # per 1000 PY -> per 100k PY
-    s1, s2 = load_source("pmcid:PMC6169758"), load_source("pmcid:PMC12226831")
+    inc = age_table("t2d_zhejiang", used)
+    cmp_age = age_table("t2d_age", "comparison:t2d")["both"]
+    cmp_sex = scalars("t2d_sex", "comparison:t2d")
+    s1 = load_source("pmcid:PMC6995322")
     outs["t2d"] = rec("t2d", "2 型糖尿病", ["E11"], "both", rows_out(inc), {
-        "source": f"年龄别：{s1['citation']}；性别比：{s2['citation']}", "source_keys": ["pmcid:PMC6169758", "pmcid:PMC12226831"],
-        "year": 2016, "region": "China (32 health check-up centres in 11 cities; sex ratio from 10-province surveillance cohort)",
-        "derived": True,
-        "quality_zh": (f"年龄别发病率取自中国 11 个城市 32 家体检中心队列（2010–2016 年，21.2 万人，4174 例；空腹血糖 ≥7.0 mmol/L 或自报诊断，"
-                       f"含体检发现的未诊断病例），仅分年龄不分性别；按 2010 年中国慢性病及危险因素监测 10 省随访队列的男女发病率之比"
-                       f"（{sx['rate_M']}/{sx['rate_F']} = {k:.3f}）拆分男女，假定各年龄组男女人时相等。"
-                       "体检人群偏城市、偏健康，且未做 OGTT/HbA1c，可能低估；≥70 岁为一个开放组，用于 70–89 岁。"
-                       "来源未区分 1 型与 2 型；成人新发糖尿病绝大多数为 2 型。"),
-        "inputs": {"sex_ratio_M_over_F": round(k, 4), "unit_conversion": "per 1000 PY × 100"}},
+        "source": s1["citation"], "source_keys": ["pmcid:PMC6995322"], "year": 2017,
+        "region": "China (Zhejiang Province diabetes surveillance, 90 districts, ~48 million residents)", "derived": False,
+        "quality_zh": ("浙江省糖尿病监测系统 2007–2017 年登记的、由有资质的医生在当地医院与卫生服务中心诊断的 2 型糖尿病新发病例，"
+                       "分性别 10 岁组平均发病率（每 10 万人年，原表逐字采用）；≥80 岁组用于 80–89 岁。"
+                       "选择理由：引擎只在观测中出现诊断编码时判定“已发生”，基线应是“被诊断”的发病率；登记系统的分母是全体常住居民，"
+                       "未诊断者留在分母中，与引擎口径一致。对照：按 OGTT 主动检测的 10 省随访队列为 13.1/19.9/23.5 每千人年"
+                       "（18–44/45–59/≥60 岁），按空腹血糖的体检队列为 2.18/5.45/12.50/17.61/22.39 每千人年（30–39 至 ≥70 岁），"
+                       "30–49 岁比本表高 3–6 倍以上，差额主要是未诊断的糖尿病（我国约一半糖尿病人未被诊断），且 10 省队列的基线与随访检测方法不同。"
+                       "若引擎日后把化验达标（HbA1c ≥6.5% 或空腹血糖 ≥7.0 mmol/L）也判为“已发生”，应改用 OGTT 口径。"
+                       "局限：单一省份、经济较发达；登记覆盖在 2015 年扩大，年度发病率有波动；风险项效应量多来自生化定义的队列，与“被诊断”口径存在差别。"),
+        "inputs": {"comparison_biochemical_per_1000_py": {"check_up_cohort_by_age": {f"{lo}-{hi}": v for lo, hi, v, _ in cmp_age},
+                                                          "ogtt_cohort_by_sex": cmp_sex}}},
         ["ICD10:E11", "ICD10:E14"], FACTS_NOTE.format(lic=s1["licence"]),
-        quote=caption("pmcid:PMC6169758", 1), url=s1["url"])
-    report["t2d"] = {"sex_ratio": k, **{f"lifetime_30_90_{s}": round(lifetime_risk(inc[s], s), 4) for s in "MF"}}
+        quote=caption("pmcid:PMC6995322", 1), url=s1["url"])
+    report["t2d"] = {**{f"lifetime_30_90_{s}": round(lifetime_risk(inc[s], s), 4) for s in "MF"},
+                     "comparison_lifetime_30_90_checkup_FPG_F": round(lifetime_risk([(lo, hi, v * 100) for lo, hi, v, _ in cmp_age], "F"), 4)}
 
     # hypertension
     used = "outcome:htn"
@@ -539,18 +588,29 @@ def build_all():
     # CKD
     used = "outcome:ckd"
     ck = scalars("ckd_ckb", used)
-    bands = [(30, 59, ck["age_lt60"]), (60, 69, ck["age_60_69"]), (70, 89, ck["age_ge70"])]
+    # The source gives <60 / 60-69 / >=70 only (supplement checked: age shares of cases, no finer rates). 30-59 is split
+    # into 5-year bands with the age slope implied by the two upper bands (constant exponential slope), anchored at 60-69.
+    slope = math.log(ck["age_ge70"] / ck["age_60_69"]) / 10.0
+    implied_mean_age_lt60 = 65 - math.log(ck["age_60_69"] / ck["age_lt60"]) / slope
+    young = [(a0, a0 + 4, ck["age_60_69"] * math.exp(slope * (a0 + 2.5 - 65))) for a0 in range(30, 60, 5)]
+    bands = young + [(60, 69, ck["age_60_69"]), (70, 89, ck["age_ge70"])]
     inc = {s: [(lo, hi, r * ck[f"sex_{s}"] / ck["crude"], "") for lo, hi, r in bands] for s in "MF"}
     s1 = load_source("pmcid:PMC13156572")
     outs["ckd"] = rec("ckd", "慢性肾脏病", ["N18"], "both", rows_out(inc), {
         "source": s1["citation"], "source_keys": ["pmcid:PMC13156572"], "year": 2018,
         "region": "China (China Kadoorie Biobank, 10 areas)", "derived": True,
-        "quality_zh": ("中国慢性病前瞻性研究（CKB，50 万人，30–79 岁，2009–2018 年，5662 例）中经医院与医保记录确认、以 ICD-10 编码的慢性肾脏病"
-                       "（糖尿病肾病、高血压肾病、肾小球肾炎、慢性小管间质性肾炎、梗阻性肾病、N18 等）。原文只分别给出年龄组与性别的发病率，"
-                       f"此处按 年龄组率 × 性别率 ÷ 总体粗率（{ck['crude']}）合成分性别年龄组率。"
-                       "这是“临床诊断并留下就医记录”的慢性肾病，远低于按 eGFR<60 或蛋白尿筛查定义的发病率（约低一个数量级）；"
-                       "≥70 岁组用于 70–89 岁（队列最高 79 岁入组，高龄外推）。"),
-        "inputs": {k2: ck[k2] for k2 in ck}},
+        "quality_zh": ("中国慢性病前瞻性研究（CKB，50 万人，30–79 岁入组，2009–2018 年，5662 例）中经住院与医保记录确认、以 ICD-10 编码的慢性肾脏病"
+                       "（糖尿病肾病、高血压肾病、肾小球肾炎、慢性小管间质性肾炎、梗阻性肾病、N18 等）。"
+                       "原文（含补充材料）只给出 <60、60–69、≥70 岁三组及男女两组发病率，没有更细的年龄组或年龄×性别交叉。"
+                       f"30–59 岁按 5 岁组外推：假定发病率随年龄按常数指数斜率上升，斜率取 60–69 岁与 ≥70 岁两组之比（{ck['age_ge70']}/{ck['age_60_69']}，"
+                       f"按相隔 10 岁计，{slope:.4f}/岁），以 60–69 岁组为锚；据此 <60 岁组平均率 {ck['age_lt60']} 对应的平均年龄为 {implied_mean_age_lt60:.1f} 岁，"
+                       "与 CKB 60 岁以下随访人群的年龄分布相符，作为一致性检查。"
+                       f"性别按 年龄组率 × 性别率 ÷ 总体粗率（{ck['crude']}）合成。"
+                       "口径：“临床诊断并留下住院或医保记录”的慢性肾病，远低于按 eGFR<60 或蛋白尿筛查定义的发病率（约低一个数量级），"
+                       "对应的风险项必须用同一口径（例如以 CKB 等就医记录结局估计的效应量），不能直接套用 eGFR 定义的效应量；"
+                       "≥70 岁组用于 70–89 岁（入组最高 79 岁，高龄外推）。"),
+        "inputs": {**{k2: ck[k2] for k2 in ck}, "age_slope_per_year": round(slope, 5),
+                   "implied_mean_age_lt60": round(implied_mean_age_lt60, 1)}},
         ["ICD10:N18", "ICD10:E11.2", "ICD10:I12", "ICD10:N03", "ICD10:N11"], FACTS_NOTE.format(lic=s1["licence"]),
         quote=caption("pmcid:PMC13156572", 2), url=s1["url"])
     report["ckd"] = {f"lifetime_30_90_{s}": round(lifetime_risk(inc[s], s), 4) for s in "MF"}
@@ -572,22 +632,77 @@ def build_all():
     report["masld"].update({f"risk_10y_from_50_{s}": round(lifetime_risk(inc[s], s, 50, 60), 4) for s in "MF"})
 
     # AD
+    # Level: mainland four-region cohort (AD 8.2/1000 PY at >=65, crude). Age-sex shape: Taiwan national insurance AD
+    # incidence 2010 (5-year bands from 65), scaled by 8.2 / Taiwan crude AD >=65 (2010). 60-64 = half of 65-69.
     used = "outcome:ad"
-    inc = age_table("ad_jicounty", used, scale=100.0)
-    s1 = load_source("pmcid:PMC8021353")
+    tw = age_table("ad_taiwan_2010", used, scale=100.0)
+    twc = scalars("ad_taiwan_2010_crude", used)["ad_crude_2010"]
+    cn = scalars("ad_china_4region", used)
+    k = cn["ad_ge65"] / twc
+    inc = {}
+    for s in "MF":
+        rows = [(lo, hi, v * k, raw) for lo, hi, v, raw in tw[s]]
+        r6569 = rows[0][2]
+        inc[s] = [(30, 59, 0.0, ""), (60, 64, r6569 / 2, "")] + rows
+    jc = age_table("ad_jicounty", "comparison:ad", scale=100.0)
+    st, s1 = load_source("pmcid:PMC6878786"), load_source("pmid:26086181")
     outs["ad"] = rec("ad", "阿尔茨海默病", ["G30"], "both", rows_out(inc), {
-        "source": s1["citation"], "source_keys": ["pmcid:PMC8021353"], "year": 2016,
-        "region": "China (Ji County, Tianjin; rural northern China)", "derived": False,
-        "quality_zh": ("天津蓟县农村 60 岁以上人群 2011–2016 年随访（1181 人，5649 人年）中按 NINCDS-ADRDA 诊断的阿尔茨海默病发病率（不是全因痴呆；"
-                       "同表全因痴呆 127 例中 AD 75 例），每 1000 人年 ×100 换算为每 10 万人年。样本小（每格 5–19 例，置信区间宽），"
-                       "农村、低教育人群发病偏高，约为多地区汇总估计（65 岁以上 AD 约 6–8/1000 人年）的 1.5–2 倍，按此算出的终身风险偏高；"
-                       "60 岁以下无数据（视为 0，早发型 AD 极少），80 岁以上为一个开放组，用于 80–89 岁。"
-                       "目前未找到可逐字核对、分性别年龄的全国 AD 发病表，后续有更大样本来源时应替换。"),
-        "inputs": {"unit_conversion": "per 1000 PY × 100"}},
-        ["ICD10:G30", "ICD10:F00"], FACTS_NOTE.format(lic=s1["licence"]),
-        quote=caption("pmcid:PMC8021353", 1), url=s1["url"])
-    report["ad"] = {f"lifetime_30_90_{s}": round(lifetime_risk(inc[s], s), 4) for s in "MF"}
+        "source": f"水平：{s1['citation']}；年龄与性别形状：{st['citation']}", "source_keys": ["pmid:26086181", "pmcid:PMC6878786"],
+        "year": 2010, "region": "China (level: 4 mainland regions; age-sex shape: Taiwan national health insurance)", "derived": True,
+        "quality_zh": (f"水平取自中国大陆四地区分层整群抽样队列（1997 年入组 16921 名 ≥55 岁非痴呆者，随访 4.5 年，三步法诊断）："
+                       f"≥65 岁 AD 粗发病率 {cn['ad_ge65']}/1000 人年（全因痴呆 {cn['dementia_ge65']}，AD 约占 {cn['ad_ge65'] / cn['dementia_ge65']:.0%}）；"
+                       "该文分年龄性别的表不在公开文本中（仅摘要可逐字核对）。分年龄性别形状取台湾全民健保 2010 年 AD 新发率"
+                       f"（65–69 至 ≥85 岁 5 岁组，男女分列，原表逐字核对），整体乘以 {cn['ad_ge65']} ÷ 台湾同年 ≥65 岁 AD 粗率 {twc} = {k:.3f}，"
+                       "以修正健保诊断的漏报。假定两地 ≥65 岁人群年龄构成相近（台湾老龄化程度略高，系数可能略偏小）。"
+                       "60–64 岁取 65–69 岁率的一半（AD 发病约每 5 岁翻倍，台湾表中 65–69→70–74 岁约 ×2），30–59 岁记为 0（早发型 AD 极少，不计入）；"
+                       "≥85 岁组用于 85–89 岁。对照：天津蓟县农村小样本队列 80 岁以上 AD 为 59.31（男）/69.96（女）每千人年，"
+                       "约为本表的 3–5 倍，已不再采用。这是 AD 本身，不是全因痴呆。"),
+        "inputs": {"ad_ge65_mainland_per_1000": cn["ad_ge65"], "taiwan_crude_ad_ge65_2010_per_1000": twc, "factor": round(k, 4),
+                   "unit_conversion": "per 1000 PY × 100",
+                   "comparison_jicounty_per_100k": {s: {f"{lo}-{hi}": round(v, 1) for lo, hi, v, _ in jc[s]} for s in "MF"}}},
+        ["ICD10:G30", "ICD10:F00"], FACTS_NOTE.format(lic=st["licence"]),
+        quote=caption("pmcid:PMC6878786", 2), url=st["url"])
+    report["ad"] = {"factor": k, **{f"lifetime_30_90_{s}": round(lifetime_risk(inc[s], s), 4) for s in "MF"},
+                    **{f"comparison_jicounty_lifetime_{s}": round(lifetime_risk(jc[s], s), 4) for s in "MF"}}
     return outs, report
+
+
+REGISTRY_CANCER_DEF = ("肿瘤登记报告的新发病例：医院、病理科、死因登记等多渠道收集，按 ICD-10/ICD-O-3 编码，病理或临床诊断，"
+                       "含仅凭死亡证明的病例（DCO，约 1–3%）；不含筛查发现但未确诊者")
+DEFINITIONS = {
+    "crc": REGISTRY_CANCER_DEF + "。部位 C18–C21。",
+    "lung_ca": REGISTRY_CANCER_DEF + "。部位 C33–C34。",
+    "liver_ca": REGISTRY_CANCER_DEF + "。部位 C22（原发性肝癌）。",
+    "gastric_ca": REGISTRY_CANCER_DEF + "。部位 C16。",
+    "breast_ca": REGISTRY_CANCER_DEF + "。部位 C50，仅女性。",
+    "prostate_ca": REGISTRY_CANCER_DEF + "。部位 C61；发病率受 PSA 筛查普及度影响。",
+    "t2d": "医生诊断并登记的 2 型糖尿病（医院与基层卫生服务机构诊断，WHO 标准：随机血糖 ≥11.1、空腹血糖 ≥7.0 或 OGTT 2 小时 ≥11.1 mmol/L 伴症状），"
+           "录入省级糖尿病监测系统；不含未被诊断的生化糖尿病。",
+    "htn": "随访测量血压 ≥140/90 mmHg 或正在服用降压药（队列体检测量，含未诊断者）。",
+    "chd": "监测系统收集的冠心病事件：急性心肌梗死（I21–I22，致死与非致死）、需 PCI/支架或搭桥的心绞痛（I20）、心脏性猝死（I46.1）；"
+           "按首发比例折算为首发事件；不含仅门诊诊断的稳定型冠心病。",
+    "stroke": "监测系统收集的卒中事件：局灶或全面脑功能障碍持续 >24 小时且无其他非血管原因，含蛛网膜下腔出血、脑出血、脑梗死、未分类卒中"
+              "（I60、I61、I63、I64，致死与非致死）；按首发比例折算为首发事件；不含短暂性脑缺血发作。",
+    "ckd": "住院或医保记录中以 ICD-10 编码的慢性肾脏病（糖尿病肾病、高血压肾病、肾小球肾炎、慢性小管间质性肾炎、梗阻性肾病、N18 等），"
+           "即“临床诊断并就医”的慢性肾病；不是按 eGFR<60 或尿白蛋白筛查定义。",
+    "masld": "腹部超声发现肝脂肪变，并至少有一项心血管代谢危险因素（超重/腰围、血糖、血压、甘油三酯、HDL 异常），排除过量饮酒等其他原因；"
+             "社区队列主动超声检查发现，含无症状者。",
+    "ad": "阿尔茨海默病：水平来自大陆队列的三步法诊断（筛查 → 临床评估 → 按 DSM/NINCDS-ADRDA 标准确诊），年龄形状来自健保诊断编码；"
+          "不含血管性痴呆等其他类型痴呆。",
+}
+EXTRA = {"masld": {"report_lifetime": False,
+                   "report_lifetime_why_zh": "脂肪肝可以逆转，逐年累加的终身发病风险会高估，只报告 10 年风险"}}
+
+
+def finalize(oid, o):
+    """Insert definition_zh after sex and keep fields owned by the engine side (EXTRA)."""
+    out = {}
+    for k, v in o.items():
+        out[k] = v
+        if k == "sex":
+            out["definition_zh"] = DEFINITIONS[oid]
+    out.update(EXTRA.get(oid, {}))
+    return out
 
 
 def main(argv=None):
@@ -602,7 +717,7 @@ def main(argv=None):
         return 1
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     for oid, o in outs.items():
-        (OUT_DIR / f"{oid}.json").write_text(json.dumps(o, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        (OUT_DIR / f"{oid}.json").write_text(json.dumps(finalize(oid, o), ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     for key, checks in CHECKS_BY_SOURCE.items():
         p = SRC_DIR / (safe_key(key) + ".json")
         s = json.loads(p.read_text(encoding="utf-8"))

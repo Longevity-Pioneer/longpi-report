@@ -1,0 +1,16 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC11431764,table block 1,age_rate,,both,0,0,0–,1,"876,834",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,1,5,1–4,1,"3,888,093",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,5,9,5–9,1,"5,190,691",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,10,14,10–14,1,"5,197,631",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,15,19,15–19,1,"5,126,747",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,20,24,20–24,1,"6,015,093",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,25,29,25–29,1,"7,212,431",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,30,34,30–34,1,"7,092,290",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,35,39,35–39,1,"6,703,990",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,40,44,40–44,1,"7,326,266",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,45,49,45–49,1,"8,308,845",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,50,54,50–54,1,"7,597,445",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,55,59,55–59,1,"6,289,065",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,60,64,60–64,1,"5,824,887",persons
+pmcid:PMC11431764,table block 1,age_rate,,both,65,69,65–69,1,"4,387,011",persons
