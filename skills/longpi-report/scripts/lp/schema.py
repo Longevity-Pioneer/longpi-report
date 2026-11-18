@@ -18,7 +18,7 @@ RANGES = {
     "ast": (2, 2000), "ggt": (2, 3000), "uric_acid": (50, 1200), "vitd": (2, 200), "apob": (0.2, 4),
 }
 LEVELS = {"关注", "留意", "一般"}
-BACKEND_TERMS = ("MCP", "skill", "engine.py", "params.json", "Mirobody", "LOINC", "Monte Carlo")
+BACKEND_TERMS = ("MCP", "skill", "engine.py", "params.json", "Mirobody", "LOINC", "Monte Carlo", "registry/", "observations.json")
 
 
 def check(person: dict, base: Path) -> dict:
@@ -41,6 +41,30 @@ def check(person: dict, base: Path) -> dict:
         errors.append(f"年龄无法解析：{e}")
     if age is not None and not (30 <= age <= 85):
         warn.append(f"年龄 {age:.0f} 岁在模型主要适用范围（30–85 岁）之外，结果只作参考")
+    for i, c in enumerate(person.get("conditions") or []):
+        if not c.get("icd10"):
+            warn.append(f"conditions[{i}]「{c.get('name', '')}」没有 icd10：不参与疾病风险判定（例如已确诊会被当作未发生），请补 ICD-10 编码")
+    for i, fh in enumerate(person.get("family_history") or []):
+        if not fh.get("disease_id"):
+            warn.append(f"family_history[{i}]「{fh.get('condition', '')}」没有 disease_id：家族史不进入疾病风险")
+    for i, md in enumerate(person.get("medications") or []):
+        if md.get("class") and not md.get("since"):
+            warn.append(f"medications[{i}]「{md.get('name', '')}」没有 since：无法判断哪些化验是在用药期间测的")
+    if person.get("observations_file"):
+        f = Path(person["observations_file"])
+        f = f if f.is_absolute() else Path(base) / f
+        if not f.exists():
+            errors.append(f"observations_file 不存在：{f}")
+        else:
+            try:
+                doc = json.loads(f.read_text(encoding="utf-8"))
+                if doc.get("schema") != "longpi.observations/1":
+                    errors.append("observations_file 的 schema 必须是 longpi.observations/1")
+                for j, o in enumerate(doc.get("observations", [])):
+                    if not o.get("code") or ":" not in str(o.get("code")):
+                        errors.append(f"observations[{j}] 缺标准编码 code（命名空间:值）")
+            except ValueError as e:
+                errors.append(f"observations_file 不是合法 JSON：{e}")
     pheno_dates = []
     for l in person.get("labs", []):
         try:
@@ -189,7 +213,63 @@ def fact_sheet(out: dict) -> str:
     if cm:
         lines += ["- CGM：" + json.dumps(cm, ensure_ascii=False)]
     lines += ["", "## 输入缺口", "- " + "；".join(r.get("missing_domains", [])) if r.get("missing_domains") else ""]
+    lines += _facts_112(r)
     return "\n".join(lines)
+
+
+def _pc(x):
+    return "—" if x is None else f"{100 * x:.1f}%"
+
+
+def _facts_112(r: dict) -> List[str]:
+    """Engine 1.1.2 sections: new terms, qualitative evidence, disease risk, 120 Index behaviour part."""
+    out: List[str] = []
+    ex = r.get("extension") or {}
+    if ex:
+        reg = ex.get("registry", {})
+        out += ["", f"## 新增指标（项目库 {reg.get('version')}；新增项合计 {r['longpi_age'].get('extension_delta', {}).get('median', 0):+} 年；"
+                    f"护栏单项 ±{ex['guardrail']['single_cap_log_hr']}、合计 ±{ex['guardrail']['total_cap_log_hr']} 对数风险，"
+                    f"触及护栏的抽样占 {ex['guardrail']['draws_bound_share']}）"]
+        for t in ex.get("terms", []):
+            val = t["level"] if t["level"] is not None else t["value"]
+            yrs = f"{t['years']['median']:+}（{t['years']['p10']:+} 至 {t['years']['p90']:+}）年" if t.get("years") else t["status"]
+            ev = t.get("evidence") or {}
+            out.append(f"- [{t['id']}] {t['name']}：本人 {val} {t.get('unit') or ''}；{yrs}；结局 {','.join(t['outcomes']) or '—'}；系数 {t['coef']}"
+                       + (f"；每年变化 {t['slope_per_year']}" if t.get("slope_per_year") is not None else "")
+                       + (f"；说明 {'；'.join(t['reasons'] + t['notes'])}" if (t['reasons'] or t['notes']) else "")
+                       + (f"；证据 {ev.get('grade')} PMID {ev.get('pmid')}" if ev.get("pmid") else ""))
+        if ex.get("hidden_count"):
+            out.append(f"- 另有 {ex['hidden_count']} 项遗传结果按本人选择不展示，也未计入（不要在叙述里提及具体内容）")
+        if ex.get("qualitative"):
+            out += ["", "## 定性佐证（不折成岁数）"]
+            out += [f"- {q['name']}：{q.get('why')}" for q in ex["qualitative"]]
+        if ex.get("could_move"):
+            out += ["", "## 未测、可能改变结果的指标（1 个标准差对应的岁数，不是区间收窄）"]
+            out += [f"- {c['name']}：约 ±{c['spread_years']} 岁" + (f"（{c['test'].get('label_zh')}）" if c.get("test") else "") for c in ex["could_move"]]
+        if ex.get("unbuilt_codes"):
+            out += ["", "## 待建项（资料里有、项目库还没有的指标；能联网时用 longpi-term-builder 建项后重新 compute）",
+                    "- " + "、".join(ex["unbuilt_codes"])]
+        if ex.get("conflicts"):
+            out += ["", "## 多来源不一致", "- " + json.dumps(ex["conflicts"], ensure_ascii=False)]
+    dz = r.get("diseases") or {}
+    if dz.get("diseases"):
+        out += ["", "## 疾病风险（10 年 / 终身，括号内同龄人群；风险卡里的数字从这里抄）"]
+        for d in dz["diseases"]:
+            if d["status"] != "estimated":
+                out.append(f"- {d['name']}：{d['status']}" + (f"（{'；'.join(d['notes'])}）" if d.get("notes") else ""))
+                continue
+            drv = "；".join(f"{x['name']} ×{x['hr']}" for x in d["drivers"][:4]) or "无个人因素"
+            out.append(f"- {d['name']}：10 年 {_pc(d['risk10']['median'])}（{_pc(d['risk10']['p10'])}–{_pc(d['risk10']['p90'])}；人群 {_pc(d['peer10'])}）；"
+                       f"终身至 {d['horizon_lifetime_age']} 岁 {_pc(d['lifetime']['median'])}（人群 {_pc(d['peer_lifetime'])}）；因素 {drv}"
+                       + (f"；可补充 {'、'.join(x['name'] for x in d['missing_inputs'][:4])}" if d.get("missing_inputs") else "")
+                       + (f"；{'；'.join(d['notes'])}" if d.get("notes") else ""))
+    b = (r.get("index120") or {}).get("behavior")
+    if b:
+        out += ["", f"## 120 指数：身体状态 {b['state_index']} + 持续行为 {b['behavior_points']:+} = {b['total_index']['median']}（{b['total_index']['p10']}–{b['total_index']['p90']}）"]
+        out += [f"- 已计分：{x['name']} {x['points']:+} 分（风险 ×{x['hr']}）" + (f"；{'；'.join(x['notes'])}" if x.get("notes") else "") for x in b["behaviors"]]
+        out += [f"- 可加分：{g['name']}（目标 {g['target']}）坚持 {g['min_weeks']} 周后约 +{g['points_if_adopted']} 分"
+                + (f"；现在未计入：{'；'.join(g['why_not_now'])}" if g.get("why_not_now") else "") for g in b["how_to_gain"]]
+    return out
 
 
 def check_narrative(n: dict, out: dict) -> List[str]:

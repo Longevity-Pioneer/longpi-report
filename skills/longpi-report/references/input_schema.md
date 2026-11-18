@@ -21,12 +21,17 @@
   "lifestyle": {
     "smoking": { "status": "former", "quit_year": 2019 },    // never / former（写 quit_year）/ current
     "alcohol": { "grams_per_week": 50 },                     // 纯酒精克数，换算见下
-    "sleep_h": 7.0                                           // 问卷口径"平时一晚睡几个小时"
+    "sleep_h": 7.0,                                          // 问卷口径"平时一晚睡几个小时"
+    "mvpa_min_week": { "value": 150, "since": "2026-06" },   // 每周中高强度运动分钟（自述，写开始时间）
+    "resistance_sessions_week": { "value": 2, "since": "2026-06" }
   },
-  "conditions": [ { "name": "高血压", "diagnosed": "2024", "treated": true } ],
-  "medications": [ { "name": "氨氯地平", "dose": "5 mg qd", "since": "2024-06", "class": "antihypertensive" } ],
-  "family_history": [ { "relation": "father", "condition": "高血压", "age_at_dx": 52 } ],
-  "imaging": [ { "date": "2026-05-18", "type": "腹部超声", "finding": "肝脏回声未见明显异常" } ],
+  "conditions": [ { "name": "高血压", "icd10": "I10", "diagnosed": "2024", "treated": true } ],   // icd10 必填（疾病风险据此判定"已发生"）
+  "medications": [ { "name": "氨氯地平", "dose": "5 mg qd", "since": "2024-06", "class": "antihypertensive" } ],   // class + since：判断哪些化验在用药期间
+  "family_history": [ { "relation": "father", "condition": "高血压", "disease_id": "htn", "age_at_dx": 52 } ],   // disease_id 见 registry/outcomes
+  "imaging": [ { "date": "2026-05-18", "type": "冠脉 CT", "finding": "……", "measures": { "cac_agatston": 0 } } ],   // measures 的键见 observation_codes.json 的 LP: 编码
+  "screenings": [ { "test": "crc_fit", "date": "2026-03", "result": "阴性", "report": true } ],   // 按指南完成的筛查，进入 120 指数
+  "observations_file": "observations.json",   // 组学层或读入层产出的标准观测（可选）
+  "genetic_preferences": { "show_opt_in": false, "secondary_findings": false },   // 遗传结果告知选择，默认都不展示
   "other_tests": [ { "date": "2026-05-18", "name": "尿微量白蛋白/肌酐比", "value": "8 mg/g" } ],
   "genetics": { "date": "2025-02-10", "source": "消费级芯片", "pgx": [ { "gene": "CYP2C19", "result": "*1/*2", "phenotype": "中间代谢型" } ] },
   "methylation": [ { "date": "2026-05-18", "vendor": "某厂商", "clock_type": "first_generation", "bio_age": 36.2, "chrono_age": 37.6,
@@ -108,3 +113,21 @@ PhenoAge 需要同一次抽血的前 9 项（albumin 到 wbc）。少 hs-CRP 仍
 - `clock_type` 照报告写：`GrimAge2`、`GrimAge`、`DunedinPACE`、`DNAm PhenoAge`；以日历年龄为训练目标的普通"生物学年龄"写 `first_generation`；不清楚写 `unknown`。同一份报告有几个时钟就写几条。
 - **只有 `GrimAge2` / `GrimAge` 计入 LongPi Age**，而且要在计算日之前 3 年内采样。它们在 NHANES 随访里有明显的额外信息；其他时钟和器官年龄只展示在前沿页，增量见 `params.json: methylation.not_counted`。
 - 计入时，先按 NHANES 参考曲线算"加速"，再减去按这个人其他指标预期的加速，剩下的部分才计入，并且按实验室之间可能的系统差异打折（`s_lab` 2.4 岁）。
+
+
+## 引擎 1.1.2 新增的输入
+
+- **标准观测 `observations_file`**：组学层（`longpi-omics`）把基因组 VCF、甲基化 β 值、蛋白组、代谢组、宏基因组等二级数据算成
+  标准观测，写进 `observations.json`；读入时整理出的其他指标（不在上面化验表里的）也可以写进这个文件。格式见
+  `references/registry_contract.md` 第 2 节。每条观测都要有标准编码（`LOINC:`、`ICD10:`、`PGS:`、`LP:` 等）。
+- **已确诊疾病**：`conditions[].icd10` 由读入时根据诊断名称填写（例如 2 型糖尿病 `E11`、高血压 `I10`）。没有编码的诊断不参与疾病风险判定，`check` 会提示。
+- **家族史**：`family_history[].disease_id` 取 `registry/outcomes/` 里的 id（`t2d`、`chd`、`stroke`、`htn`、`ckd`、`masld`、`crc`、`lung_ca`、`liver_ca`、`gastric_ca`、`breast_ca`、`prostate_ca`、`ad`）。只计一级亲属。
+- **用药**：`medications[].class` 用 `antihypertensive`、`statin`、`lipid_lowering`、`antidiabetic`、`urate_lowering`，并写 `since`（必要时 `until`）。
+  用药期间测得的相关指标会标为"用药下的值"，按用药前的值计算（没有用药前的值时如实说明）。
+- **暂时状态**：某次化验时正在生病、怀孕、刚剧烈运动、非空腹、近 3 个月用过抗生素（宏基因组）、输过血，在该次 `labs[].flags` 写
+  `acute_illness`、`pregnancy`、`post_exercise`、`non_fasting`、`antibiotics_3m`、`transfusion`；相关指标不计入。
+- **行为**：手表步数由脚本从可穿戴数据算出并判断已持续几周；自述的运动写在 `lifestyle`，带 `since`。持续满 8 周才计入 120 指数，自述的打五折。
+- **筛查**：`screenings[].test` 用 `crc_fit`（粪便免疫化学检测）、`crc_colonoscopy`、`lung_ldct`、`liver_us_afp`、`gastroscopy`、`mammography`；
+  有报告的写 `report: true`。
+- **遗传结果告知**：`genetic_preferences.show_opt_in`（是否查看 APOE ε4 等不可干预的结果）和 `secondary_findings`（是否接收单基因致病变异等次要发现）
+  默认都是 `false`；本人选择后才计入和展示。上传前要问清楚。

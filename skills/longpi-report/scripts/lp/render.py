@@ -54,6 +54,24 @@ def methods_cards(res: dict, params: dict, evidence: Optional[dict]) -> dict:
     if val:
         cards.append({"title": "用公共数据检验过吗", "sub": "用美国国家健康调查（NHANES）5 万人、最长 20 年的随访数据检验",
                       "rows": [[k, v] for k, v in val.items()]})
+    ex = res.get("extension") or {}
+    if ex:
+        n_cnt = sum(1 for t in ex.get("terms", []) if t.get("years"))
+        cards.append({"title": "新增指标怎么计入", "sub": f"项目库 {ex.get('registry', {}).get('version', '')}",
+                      "body": "除上面原有的指标外，其他数据（更多化验、影像、组学、长期手表数据等）先由 AI 联网查找发表的研究，把效应量和原文逐字核对后，"
+                              "再按同龄同性别人群归一化计入；只计入在已有指标之外多出来的信息，与已有指标同属一类的会打折或只作参考。"
+                              "单项影响不超过约 1.5 岁，新增项合计不超过约 3 岁。证据不足的只列为参考，不换算成岁数。",
+                      "rows": [["本次计入的新增指标", f"{n_cnt} 项"], ["只作参考的指标", f"{len(ex.get('qualitative', []))} 项"]]})
+    if res.get("diseases"):
+        cards.append({"title": "疾病风险怎么算", "sub": "同一个模型，两个时间窗",
+                      "body": "基线是中国人群分年龄、性别的发病率，乘以本人各项因素的风险倍数，逐年累加得到 10 年风险和终身风险，并扣除先因其他原因去世的概率。"
+                              "先天因素（多基因评分、致病变异、家族史）作用于整个余生，主要抬高终身风险；当前已经偏高的指标会逐渐向人群水平回落，主要抬高 10 年风险。"
+                              "已确诊的疾病不再预测。"})
+    if (res.get("index120") or {}).get("behavior"):
+        cards.append({"title": "行为怎么计入 120 指数", "sub": "身体状态 + 持续行为",
+                      "body": "坚持 8 周以上的行为（步数、运动、规律作息等）按研究中的死亡风险关系立刻计分；自述的行为打五折。"
+                              "按指南完成的癌症筛查按该癌症在同龄人死因中的占比计分，所以分数通常不大。泛泛的体检对全因死亡没有可见影响，不单独加分。"
+                              "行为带来的指标改善被测到后，计入身体状态，行为部分相应减少，不重复计算。"})
     src = ev.get("sources", [])
     if src:
         cards.append({"title": "主要数据与文献", "sub": "完整清单见方法学白皮书", "body": "；".join(src)})

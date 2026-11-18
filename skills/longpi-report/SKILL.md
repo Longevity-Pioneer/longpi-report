@@ -41,7 +41,7 @@ python3 <SKILL>/scripts/longpi_report.py demo    -o /tmp/longpi_demo         # �
 - 体检报告（PDF/照片均可，越多年越好）：血常规、生化、血脂、HbA1c、hs-CRP、尿酸、肝功能、血压、身高体重腰围、超声/心电图结论
 - 可穿戴导出：Apple 健康"导出所有健康数据"的 `export.xml`；其他品牌导出的 CSV
 - 连续血糖（CGM）导出 CSV、家庭血压记录、饮食或用餐时间记录
-- 基因检测报告（药物基因组部分）、甲基化/生物年龄报告
+- 基因检测报告、甲基化/生物年龄报告；有二级数据更好：基因组 VCF 或芯片原始文件、甲基化 β 值矩阵、蛋白组/代谢组定量表、宏基因组丰度表
 - 问卷：性别、出生年月、城市/农村、南方/北方；吸烟（从不/已戒+戒烟年份/正在吸）；饮酒（每周大约喝什么、多少）；
   平时睡几个小时；已确诊疾病；在用药物；父母兄弟姐妹的重大疾病及发病年龄
 
@@ -62,7 +62,15 @@ python3 <SKILL>/scripts/longpi_report.py demo    -o /tmp/longpi_demo         # �
   - **计入 LongPi Age 的只有 GrimAge2 / GrimAge**。报告里写明是 GrimAge2 或 GrimAge 并给出数值时，`clock_type` 写 `GrimAge2` / `GrimAge`，`bio_age` 填数值，`chrono_age` 填采样时年龄。
   - 其他情况照实写：以日历年龄为训练目标的写 `first_generation`；明确是 DunedinPACE、DNAm PhenoAge 的写对应名称；不清楚的写 `unknown`。这些只在前沿页展示，不计入。
   - 不计入的依据：在美国国家健康调查的随访里，它们在 LongPi 之外几乎分辨不出额外的风险。
+- 已确诊疾病填 `icd10`，家族史填 `disease_id`，用药填 `class` 和 `since`，做过的癌症筛查写进 `screenings`（见 `references/input_schema.md` 末节）。
+- 有基因数据时先问清两件事并写进 `genetic_preferences`：是否查看 APOE ε4 这类不可干预的结果；是否接收单基因致病变异等次要发现。默认都不展示。
 - 拿不准的条目先问用户，不要猜。
+
+### 2b. 二级组学数据与新指标
+- 有 VCF、芯片原始文件、β 值矩阵、蛋白组/代谢组/宏基因组表时，用 `longpi-omics` 技能算成标准观测（`observations.json`），在 person.json 写
+  `"observations_file": "observations.json"`。一级数据（FASTQ、IDAT、质谱原始文件）不接收，请用户向检测机构索取二级数据。
+- 资料里有项目库还没有的指标（`check` 与 `compute` 会列出"未建项"），且当前环境能联网时，用 `longpi-term-builder` 技能建项：
+  联网查文献、核对数值、入库后重新 `compute`。不能联网就照常出报告，这些指标列为待建项。**不要自己估一个效应量填进去。**
 - `check` 提示某次血检处于急性炎症或红细胞异常时，问用户当时是否生病、贫血；属暂时状态的，在那次 `labs` 写 `clock_exclude`（见 `references/input_schema.md`），再重新计算。
 
 ### 3. 检查
@@ -73,6 +81,11 @@ python3 <SKILL>/scripts/longpi_report.py demo    -o /tmp/longpi_demo         # �
 `compute` 输出 results.json；`facts` 打印事实表——写叙述时引用的所有数字都从这里抄。
 
 ### 5. 写 narrative.json
+- 疾病风险卡：10 年风险、终身风险和同龄人群的数字只从事实表"疾病风险"一节抄；等级仍按 `references/risk_rules.md` 的指南阈值判断，两者一起写。
+  已确诊的病不写发病风险。事实表提示"按本人选择不展示"的遗传结果，叙述里一个字也不要提。
+- 120 指数分开讲身体状态和持续行为两部分；"可加分"一节是最直接的行为建议。
+- 新增指标与"定性佐证"只照事实表描述，定性的明确说"暂不折算成岁数"。
+
 按 `references/narrative_guide.md` 写：一句话总结、临床待办、风险卡（规则见 `references/risk_rules.md`）、
 药物基因组卡（`references/pgx_rules.md`）、前沿分析卡、数据质量与缺口、数据说明、N-of-1 实验设计。
 - 用户要运动方案时写 `training`，动作优先用内置动作库引用（`{"ref": "goblet_squat"}`，图文自动带出，见 `references/narrative_guide.md`）。
@@ -109,6 +122,9 @@ python3 <SKILL>/scripts/longpi_report.py demo    -o /tmp/longpi_demo         # �
 
 ## 模型一览（详见 `references/methods_summary.md`；完整论证在项目仓库的 `docs/方法学白皮书.md`）
 
+- **项目库（1.1.2）**：除下述原有指标外，任何数据维度都以"项"的形式接入（`registry/`）：效应量来自联网检索并逐字核对原文，
+  按同龄人群归一化，只计在已有指标之外的增量（重叠组打折）；新增项对 LongPi Age 单项不超过约 1.5 岁、合计不超过约 3 岁。
+  同一项目库驱动疾病风险（中国基线发病率 × 个人风险倍数，10 年与终身两个时间窗）和 120 指数的行为部分。
 - **LongPi Age** = 年龄 + ln E[R] / b。b 是联合国 WPP 2024 中国生命表的 Gompertz 斜率（男约 0.0985/年）；
   R 是相对同龄同性别中国人的死亡风险倍数，由血液时钟层（PhenoAge 差值，NHANES 分段校准）和 10 个功能领域
   （心肺、握力、静息心率、睡眠、血压、LDL、血糖、BMI、吸烟、饮酒）的荟萃分析剂量反应合成。

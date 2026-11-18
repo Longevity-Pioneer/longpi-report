@@ -874,7 +874,14 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
             c = m.obs.conflicts(code, m.at, statistics.pstdev(nums) / 2 if len(nums) > 2 else 0.0)
             if c:
                 conflicts.append(c)
+    core_codes = set(OB.core_codes())
+    known = {t["input"]["code"] for t in reg["terms"].values() if not t.get("core")} | \
+            {q.get("input", {}).get("code") for q in reg["qualitative"].values()}
+    unbuilt = sorted(c for c in observed if c not in known and c not in core_codes
+                     and not c.startswith(("LP:monogenic:", "LP:fh:")) and not (c.startswith("ICD10:") and any(
+                         c in (o.get("diagnosed_codes") or []) for o in reg["outcomes"].values())))
     return {"registry": {"version": reg["version"], "digest": reg["digest"]},
+            "unbuilt_codes": unbuilt,
             "hidden_count": sum(1 for T in m.ext.terms if T.status == "hidden"),
             "terms": rows, "qualitative": qual, "could_move": unmeasured[:10],
             "guardrail": {"single_cap_log_hr": m.ext.cap_single, "total_cap_log_hr": m.ext.cap_total,

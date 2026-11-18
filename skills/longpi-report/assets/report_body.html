@@ -28,6 +28,7 @@
       <div class="muted" style="font-size:13px" id="ixText"></div>
       <div class="ms" id="ixMs"></div>
       <p class="tiny" style="margin:8px 0 0">100 = 同龄人群平均；每 +10 分 = 活到 120 岁的可能性 ×10。上排是本人，括号内是人群。</p>
+      <div id="ixBeh" style="margin-top:12px"></div>
     </div>
     <div class="card">
       <div class="kicker">本季度重点行动</div>
@@ -103,7 +104,8 @@
 
 <!-- 风险 -->
 <section class="tab" id="risk">
-  <div class="note" style="margin-bottom:16px">每张卡写清等级、驱动因素、保护因素、依据和下一步。没有经过中国人群校准的绝对概率不给出。等级用图标 + 文字表示：<span id="lvlLegend"></span></div>
+  <div class="card" style="margin-bottom:16px" id="dzCard"><h3>疾病风险预测：当前（10 年）与终身</h3><p class="sub" id="dzSub"></p><div class="grid g3" id="dzGrid"></div></div>
+  <div class="note" style="margin-bottom:16px">下面每张卡按中国指南写清等级、驱动因素、保护因素、依据和下一步。等级用图标 + 文字表示：<span id="lvlLegend"></span></div>
   <div class="grid g3" id="riskGrid"></div>
   <div class="card" style="margin-top:16px" id="pgxCard"><h3>药物基因组卡（就医时出示）</h3><p class="sub" id="pgxSub"></p><ul id="pgx" style="font-size:13px;padding-left:18px;margin:0"></ul></div>
 </section>
@@ -115,6 +117,8 @@
     <div class="card" id="phenoCard"><h3>血液 PhenoAge：与同龄参考人的差值</h3><p class="sub" id="phenoSub"></p><div id="pheno"></div></div>
   </div>
   <div class="card" style="margin-top:16px" id="trajCard"><h3>LongPi Age 历年轨迹</h3><p class="sub" id="trajSub"></p><div id="traj"></div></div>
+  <div class="card" style="margin-top:16px" id="extCard"><h3>新增指标</h3><p class="sub" id="extSub"></p><div id="ext"></div></div>
+  <div class="card" style="margin-top:16px" id="qualCard"><h3>有研究提示、暂不折算的指标</h3><p class="sub">这些指标与健康结局有关联，但证据还不足以换算成岁数，只作参考。</p><ul id="qual" style="font-size:13px;padding-left:18px;margin:0"></ul></div>
   <div class="grid g3" style="margin-top:16px" id="frGrid"></div>
 </section>
 
@@ -289,7 +293,19 @@ function renderOverview() {
     + (core ? `<li class="tiny" style="list-style:none;margin-left:-20px">合并为"核心方案"：预计 ${fmt(core.d_longpi_age.median, 2)} 岁，获益概率 ${(core.p_benefit * 100).toFixed(0)}%</li>` : '');
   const clin = (N.clinical && N.clinical.length) ? N.clinical : (N.risks || []).filter(r => r.level === '关注').map(r => ({action: r.action, due: r.due}));
   $('#clin').innerHTML = clin.length ? clin.map(r => `<li>${esc(r.action)} <span class="tiny">${esc(r.due || '')}</span></li>`).join('') : '<li class="tiny" style="list-style:none;margin-left:-20px">暂无</li>';
-  renderDataValue(); renderWaterfall(); renderSurv(); renderAsks();
+  renderDataValue(); renderWaterfall(); renderSurv(); renderAsks(); renderBehavior();
+}
+
+/* ---------- 120 指数：身体状态 + 持续行为 ---------- */
+function renderBehavior() {
+  const B = R.index120.behavior; const host = $('#ixBeh');
+  if (!B) { host.innerHTML = ''; return; }
+  const rows = (B.behaviors || []).map(b => `<li>${esc(b.name)} <span class="tiny">${b.points >= 0 ? '+' : ''}${b.points.toFixed(1)} 分${(b.notes || []).length ? ' · ' + esc(b.notes.join('；')) : ''}</span></li>`).join('');
+  const gain = (B.how_to_gain || []).filter(g => g.points_if_adopted >= 0.1).slice(0, 3).map(g => `<li>${esc(g.name)}${g.target != null ? `（目标 ${esc(String(g.target))}）` : ''} <span class="tiny">坚持 ${g.min_weeks} 周后约 +${g.points_if_adopted.toFixed(1)} 分</span></li>`).join('');
+  host.innerHTML = `<div class="kicker">加上正在坚持的行为</div>
+    <p style="font-size:13px;margin:6px 0">120 指数 <b>${B.total_index.median}</b> 分 = 身体状态 ${B.state_index} 分 ${B.behavior_points >= 0 ? '+' : '−'} 持续行为 ${Math.abs(B.behavior_points).toFixed(1)} 分（80% 区间 ${B.total_index.p10}–${B.total_index.p90}）。行为立刻计分；指标随后真的变好时，计入身体状态，不重复计算。</p>
+    ${rows ? `<ul style="font-size:13px;padding-left:18px;margin:4px 0">${rows}</ul>` : '<p class="tiny">目前没有已持续 8 周以上、可以计分的行为记录。</p>'}
+    ${gain ? `<div class="kicker" style="margin-top:8px">还能加分的行为</div><ol class="todo">${gain}</ol>` : ''}`;
 }
 
 /* ---------- 请用户补充的资料（可选） ---------- */
@@ -466,7 +482,25 @@ function renderData() {
 
 /* ---------- 风险 ---------- */
 const LV = {'关注': ['--serious', '▲'], '留意': ['--warning', '●'], '一般': ['--good', '✓']};
+function pct(x) { return x == null ? '—' : (x < 0.001 ? '<0.1%' : (100 * x).toFixed(x < 0.1 ? 1 : 0) + '%'); }
+function renderDiseases() {
+  const D = R.diseases; show('#dzCard', !!(D && D.diseases && D.diseases.length));
+  if (!D || !D.diseases) return;
+  $('#dzSub').textContent = '基线为中国人群分年龄、性别的发病率；10 年风险主要反映当前的指标，终身风险（到 ' + (D.diseases.find(d => d.horizon_lifetime_age) || {}).horizon_lifetime_age + ' 岁）还包含先天因素，并已扣除因其他原因先去世的概率。括号内是同龄同性别人群。';
+  const ST = {diagnosed: '已确诊，不再预测', not_applicable: '不适用', no_baseline: '暂无可用的基线数据'};
+  $('#dzGrid').innerHTML = D.diseases.filter(d => d.status !== 'not_applicable').map(d => {
+    if (d.status !== 'estimated') return `<div class="card risk"><h4>${esc(d.name)}</h4><p class="tiny">${esc(ST[d.status] || d.status)}${(d.notes || []).length ? '：' + esc(d.notes.join('；')) : ''}</p></div>`;
+    const dr = (d.drivers || []).slice(0, 3).map(x => `<li>${esc(x.name)} <span class="tiny">风险 ×${x.hr} · 作用${esc(x.persistence)}${x.disclosure === 'counsel' ? ' · 建议遗传咨询' : ''}</span></li>`).join('');
+    const miss = (d.missing_inputs || []).slice(0, 3).map(x => esc(x.name)).join('、');
+    return `<div class="card risk"><h4>${esc(d.name)}</h4>
+      <div class="lab">10 年</div><div><b>${pct(d.risk10.median)}</b> <span class="tiny">（${pct(d.risk10.p10)}–${pct(d.risk10.p90)}；人群 ${pct(d.peer10)}）</span></div>
+      <div class="lab">终身</div><div><b>${pct(d.lifetime.median)}</b> <span class="tiny">（${pct(d.lifetime.p10)}–${pct(d.lifetime.p90)}；人群 ${pct(d.peer_lifetime)}）</span></div>
+      ${dr ? `<div class="lab">主要因素</div><ul>${dr}</ul>` : '<p class="tiny">没有可计入的个人因素，按人群水平估计。</p>'}
+      ${miss ? `<div class="tiny">补充 ${miss} 后估计会更准</div>` : ''}
+      ${(d.notes || []).length ? `<div class="tiny">${esc(d.notes.join('；'))}</div>` : ''}</div>`; }).join('');
+}
 function renderRisk() {
+  renderDiseases();
   $('#lvlLegend').innerHTML = Object.entries(LV).map(([k, [c, ic]]) => ` <span class="lvl" style="color:var(--text)"><span style="color:var(${c})">${ic}</span>${k}</span>`).join(' ');
   $('#riskGrid').innerHTML = (N.risks || []).map(r => { const [c, ic] = LV[r.level] || LV['一般'];
     return `<div class="card risk"><div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start"><h4>${esc(r.name)}</h4><span class="lvl"><span style="color:var(${c})">${ic}</span>${esc(r.level)}${r.todo ? ' · 待办' : ''}</span></div>
@@ -529,6 +563,18 @@ function renderFrontier() {
       series: [{pts: tr.map(p => [dms(p.date), p.delta]), color: css('--s1'), markers: true, band: tr.map(p => [dms(p.date), p.delta - p.noise_sd, p.delta + p.noise_sd])}],
       tip: i => `<b>${tr[i].date}</b><br>LongPi Age ${tr[i].longpi_age}（日历 ${tr[i].age}）<br>差值 ${fmt(tr[i].delta)} 岁`, aria: 'LongPi Age 轨迹'});
   }
+  const E = R.extension || {}; const terms = (E.terms || []);
+  show('#extCard', terms.length > 0);
+  if (terms.length) {
+    const STS = {counted: '已计入', overlap: '与已计入的指标重叠，只作参考', not_counted: '暂不计入', not_sustained: '持续时间不够', not_eligible: '不适用', unmeasured: '未测'};
+    $('#extSub').textContent = '由项目库新增的指标（每一项都有文献出处并经过数值核对）。只有已计入的项会改变 LongPi Age；单项影响不超过约 1.5 岁，新增项合计不超过约 3 岁。';
+    $('#ext').innerHTML = `<table><thead><tr><th>指标</th><th>本人</th><th>对 LongPi Age</th><th>说明</th></tr></thead><tbody>` + terms.map(t => `<tr><td>${esc(t.name)}</td>
+      <td>${t.level != null ? esc(String(t.level)) + ' ' + esc(t.unit || '') : (t.value != null ? esc(String(t.value)) : '—')}${t.slope_per_year != null ? `<div class="tiny">每年 ${t.slope_per_year >= 0 ? '+' : ''}${t.slope_per_year}</div>` : ''}</td>
+      <td>${t.years ? fmt(t.years.median, 2) + ' 岁' : esc(STS[t.status] || t.status)}</td>
+      <td class="tiny">${esc([].concat(t.reasons || [], t.notes || []).join('；'))}${t.evidence && t.evidence.pmid ? ` · PMID ${esc(String(t.evidence.pmid))}` : ''}</td></tr>`).join('') + '</tbody></table>';
+  }
+  const Q = E.qualitative || []; show('#qualCard', Q.length > 0);
+  $('#qual').innerHTML = Q.map(q => `<li>${esc(q.name || q.id)}：${esc(q.why || '')}${q.evidence && q.evidence.pmid ? ` <span class="tiny">PMID ${esc(String(q.evidence.pmid))}</span>` : ''}</li>`).join('');
   $('#frGrid').innerHTML = (N.frontier || []).map(f => `<div class="card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>${esc(f.title)}</h3><span class="pill">${esc(f.grade)}</span></div>
     <p style="font-size:13px;margin:8px 0">${esc(f.body)}</p><div class="tiny">下一步：${esc(f.next)}</div></div>`).join('');
 }

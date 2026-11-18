@@ -145,6 +145,17 @@ def from_person(person: dict, derived: Optional[dict] = None) -> List[dict]:
     return obs
 
 
+CORE_INPUT_KEYS = {"labs": ("albumin", "creatinine", "glucose", "glucose_fasting", "crp", "lymph_pct", "mcv", "rdw", "alp", "wbc", "ldl", "hba1c"),
+                   "vitals": ("sbp", "pulse"), "anthropometrics": ("height_cm", "weight_kg", "bmi"), "fitness": ("vo2max", "grip_kg"),
+                   "wearables": ("rhr_30d", "sleep_h_median", "vo2max_recent")}
+
+
+def core_codes() -> List[str]:
+    """Codes the 1.1.1 model already reads from person.json (not 'unbuilt' even without an ext term)."""
+    cm = codes()
+    return [cm[sec][k][0] for sec, keys in CORE_INPUT_KEYS.items() for k in keys if k in cm[sec]]
+
+
 def load_file(person: dict, base: Optional[Path]) -> dict:
     f = person.get("observations_file")
     if not f:
