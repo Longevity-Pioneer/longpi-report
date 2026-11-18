@@ -11,37 +11,37 @@
  "text": "Incidence and risk factors of dementia and the primary subtypes in northern rural China - PMC\n[Table block 1] Incidence of dementia, Alzheimer disease and vascular dementia: person-years at risk, number of cases, and rates by age and sex (95% confidence interval in parentheses).\n |  | Dementia | Alzheimer disease | vascular dementia\nAge groups, y | Person-years | No. of cases | Rate per 1000 person-years | No. of cases | Rate per 1000 person-years | No. of cases | Rate per 1000 person-years\nMan\n60–69 | 1435 | 12 | 8.36 (3.65–13.07) | 5 | 3.48 (0.44–6.53) | 6 | 4.18 (0.84–7.52)\n70–79 | 925 | 21 | 22.70 (13.10–32.30) | 10 | 10.81 (4.15–17.48) | 7 | 7.57 (1.98–13.15)\n80 | 219.2 | 19 | 86.68 (49.43–123.93) | 13 | 59.31 (28.04–90.58) | 2 | 9.12 (0.34–21.71)\nAll ages | 2579.2 | 52 | 20.98 (15.33–26.62) | 28 | 11.29 (7.13–15.45) | 15 | 6.05 (3.00–9.10)\nWoman\n60–69 | 1884.2 | 22 | 11.68 (6.83–16.53) | 9 | 4.78 (1.66–7.89) | 10 | 5.31 (2.03–8.59\n70–79 | 914.2 | 28 | 30.63 (19.46–41.80) | 19 | 20.78 (11.54–30.03) | 5 | 5.47 (0.69–10.25)\n80– | 271.6 | 25 | 92.05 (57.67–126.43) | 19 | 69.96 (39.62–100.29) | 2 | 7.36 (0.28–17.53)\nAll ages | 3070 | 75 | 24.43 (18.97–29.89) | 47 | 15.31 (10.97–19.65) | 17 | 5.54 (2.91–8.16)\nTotal\n60–69 | 3319.2 | 34 | 10.24 (6.82–13.67) | 14 | 4.22 (2.01–6.42) | 16 | 4.82 (2.46–7.18)\n70–79 | 1839.2 | 49 | 26.64 (19.28–34.00) | 29 | 15.77 (10.07–21.46) | 12 | 6.53 (2.85–10.20)\n80– | 490.8 | 44 | 89.63 (64.36–114.90) | 32 | 65.19 (43.34–87.03) | 4 | 8.15 (0.20–16.10)\nAll ages | 5649.2 | 127 | 22.48 (18.62–26.35) | 75 | 13.28 (10.29–16.26) | 32 | 5.67 (3.71–7.62)",
  "checks": [
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "3.48",
    "found": true,
    "context": "60-69 | 1435 | 12 | 8.36 (3.65-13.07) | 5 | 3.48 (0.44-6.53) | 6 | 4.18 (0.84-7.52)"
   },
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "4.78",
    "found": true,
    "context": "60-69 | 1884.2 | 22 | 11.68 (6.83-16.53) | 9 | 4.78 (1.66-7.89) | 10 | 5.31 (2.03-8.59"
   },
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "20.78",
    "found": true,
    "context": "70-79 | 914.2 | 28 | 30.63 (19.46-41.80) | 19 | 20.78 (11.54-30.03) | 5 | 5.47 (0.69-10.25)"
   },
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "10.81",
    "found": true,
    "context": "70-79 | 925 | 21 | 22.70 (13.10-32.30) | 10 | 10.81 (4.15-17.48) | 7 | 7.57 (1.98-13.15)"
   },
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "59.31",
    "found": true,
    "context": "80 | 219.2 | 19 | 86.68 (49.43-123.93) | 13 | 59.31 (28.04-90.58) | 2 | 9.12 (0.34-21.71)"
   },
   {
-   "term": "outcome:ad",
+   "term": "comparison:ad",
    "number": "69.96",
    "found": true,
    "context": "80- | 271.6 | 25 | 92.05 (57.67-126.43) | 19 | 69.96 (39.62-100.29) | 2 | 7.36 (0.28-17.53)"

@@ -5,82 +5,105 @@
   "E11"
  ],
  "sex": "both",
+ "definition_zh": "医生诊断并登记的 2 型糖尿病（医院与基层卫生服务机构诊断，WHO 标准：随机血糖 ≥11.1、空腹血糖 ≥7.0 或 OGTT 2 小时 ≥11.1 mmol/L 伴症状），录入省级糖尿病监测系统；不含未被诊断的生化糖尿病。",
  "incidence": {
   "unit": "per_100k_py",
   "by_sex_age": [
    {
-    "sex": "F",
-    "age_lo": 30,
-    "age_hi": 39,
-    "rate": 208.68
-   },
-   {
-    "sex": "F",
-    "age_lo": 40,
-    "age_hi": 49,
-    "rate": 521.71
-   },
-   {
-    "sex": "F",
-    "age_lo": 50,
-    "age_hi": 59,
-    "rate": 1196.58
-   },
-   {
-    "sex": "F",
-    "age_lo": 60,
-    "age_hi": 69,
-    "rate": 1685.74
-   },
-   {
-    "sex": "F",
-    "age_lo": 70,
-    "age_hi": 89,
-    "rate": 2143.32
-   },
-   {
     "sex": "M",
     "age_lo": 30,
     "age_hi": 39,
-    "rate": 227.32
+    "rate": 129.06
    },
    {
     "sex": "M",
     "age_lo": 40,
     "age_hi": 49,
-    "rate": 568.29
+    "rate": 348.53
    },
    {
     "sex": "M",
     "age_lo": 50,
     "age_hi": 59,
-    "rate": 1303.42
+    "rate": 640.51
    },
    {
     "sex": "M",
     "age_lo": 60,
     "age_hi": 69,
-    "rate": 1836.26
+    "rate": 842.95
    },
    {
     "sex": "M",
     "age_lo": 70,
+    "age_hi": 79,
+    "rate": 928.57
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
     "age_hi": 89,
-    "rate": 2334.68
+    "rate": 994.03
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "rate": 72.82
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "rate": 222.11
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "rate": 603.77
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 940.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "rate": 1029.38
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 89,
+    "rate": 853.72
    }
   ],
-  "source": "年龄别：Ying Chen, Xiao-Ping Zhang, Jie Yuan, et al. Association of body mass index and age with incident diabetes in Chinese adults: a population-based cohort study. BMJ Open. 2018 Sep 28;8(9):e021768. doi:10.1136/bmjopen-2018-021768. PMID 30269064.；性别比：Shujuan Li, Tingfang Ai, Run Zhang, et al. The incidence and influencing factors of type 2 diabetes mellitus in Chinese adults in 10 provinces: a prospective cohort study. BMC Public Health. 2025 Jul 4;25():2384. doi:10.1186/s12889-025-22584-9. PMID 40615994.",
+  "source": "Meng Wang, Wei-Wei Gong, Jin Pan, et al. Incidence and Time Trends of Type 2 Diabetes Mellitus among Adults in Zhejiang Province, China, 2007-2017. Journal of Diabetes Research. 2020 Jan 19;2020():2597953. doi:10.1155/2020/2597953. PMID 32051832.",
   "source_keys": [
-   "pmcid:PMC6169758",
-   "pmcid:PMC12226831"
+   "pmcid:PMC6995322"
   ],
-  "year": 2016,
-  "region": "China (32 health check-up centres in 11 cities; sex ratio from 10-province surveillance cohort)",
-  "derived": true,
-  "quality_zh": "年龄别发病率取自中国 11 个城市 32 家体检中心队列（2010–2016 年，21.2 万人，4174 例；空腹血糖 ≥7.0 mmol/L 或自报诊断，含体检发现的未诊断病例），仅分年龄不分性别；按 2010 年中国慢性病及危险因素监测 10 省随访队列的男女发病率之比（18.3/16.8 = 1.089）拆分男女，假定各年龄组男女人时相等。体检人群偏城市、偏健康，且未做 OGTT/HbA1c，可能低估；≥70 岁为一个开放组，用于 70–89 岁。来源未区分 1 型与 2 型；成人新发糖尿病绝大多数为 2 型。",
+  "year": 2017,
+  "region": "China (Zhejiang Province diabetes surveillance, 90 districts, ~48 million residents)",
+  "derived": false,
+  "quality_zh": "浙江省糖尿病监测系统 2007–2017 年登记的、由有资质的医生在当地医院与卫生服务中心诊断的 2 型糖尿病新发病例，分性别 10 岁组平均发病率（每 10 万人年，原表逐字采用）；≥80 岁组用于 80–89 岁。选择理由：引擎只在观测中出现诊断编码时判定“已发生”，基线应是“被诊断”的发病率；登记系统的分母是全体常住居民，未诊断者留在分母中，与引擎口径一致。对照：按 OGTT 主动检测的 10 省随访队列为 13.1/19.9/23.5 每千人年（18–44/45–59/≥60 岁），按空腹血糖的体检队列为 2.18/5.45/12.50/17.61/22.39 每千人年（30–39 至 ≥70 岁），30–49 岁比本表高 3–6 倍以上，差额主要是未诊断的糖尿病（我国约一半糖尿病人未被诊断），且 10 省队列的基线与随访检测方法不同。若引擎日后把化验达标（HbA1c ≥6.5% 或空腹血糖 ≥7.0 mmol/L）也判为“已发生”，应改用 OGTT 口径。局限：单一省份、经济较发达；登记覆盖在 2015 年扩大，年度发病率有波动；风险项效应量多来自生化定义的队列，与“被诊断”口径存在差别。",
   "inputs": {
-   "sex_ratio_M_over_F": 1.0893,
-   "unit_conversion": "per 1000 PY × 100"
+   "comparison_biochemical_per_1000_py": {
+    "check_up_cohort_by_age": {
+     "30-39": 2.18,
+     "40-49": 5.45,
+     "50-59": 12.5,
+     "60-69": 17.61,
+     "70-89": 22.39
+    },
+    "ogtt_cohort_by_sex": {
+     "rate_M": 18.3,
+     "rate_F": 16.8
+    }
+   }
   }
  },
  "diagnosed_codes": [
@@ -90,11 +113,11 @@
  "horizon_lifetime_age": 90,
  "license": {
   "commercial_use": true,
-  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：no licence stated on the PMC page (publisher copyright)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
  },
  "evidence": {
-  "quote": "Association between age and body mass index with risk of incident diabetes in Chinese adults",
-  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6169758/",
+  "quote": "Mean incidence rate of type 2 diabetes, 2007-2017 (per 100,000 person-years).",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6995322/",
   "verified_at": "2026-11-18",
   "verifier": "evidence/scripts/build_outcomes.py",
   "numbers_verified": true

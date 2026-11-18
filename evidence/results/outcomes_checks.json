@@ -23,8 +23,8 @@
   }
  },
  "verification": {
-  "transcribed_values_checked": 331,
-  "found_verbatim": 331,
+  "transcribed_values_checked": 371,
+  "found_verbatim": 371,
   "per_source": {
    "pmcid:PMC11256708": {
     "checked": 20,
@@ -51,8 +51,12 @@
     "found": 27
    },
    "pmcid:PMC11431764": {
-    "checked": 5,
-    "found": 5
+    "checked": 20,
+    "found": 20
+   },
+   "pmcid:PMC6995322": {
+    "checked": 12,
+    "found": 12
    },
    "pmcid:PMC6169758": {
     "checked": 5,
@@ -77,6 +81,14 @@
    "pmcid:PMC11882351": {
     "checked": 10,
     "found": 10
+   },
+   "pmcid:PMC6878786": {
+    "checked": 11,
+    "found": 11
+   },
+   "pmid:26086181": {
+    "checked": 2,
+    "found": 2
    },
    "pmcid:PMC8021353": {
     "checked": 6,
@@ -320,13 +332,28 @@
   },
   "prostate_ca": {
    "factor": 1.1551312649164676,
-   "lifetime_30_90_M": 0.0186,
-   "cum30_74_scaled_M": 1.174
+   "age_slope": 0.20964218091178305,
+   "refit_mean_0_59": 0.9,
+   "refit_mean_60_69": 33.91,
+   "lifetime_30_90_M": 0.0189,
+   "cum30_74_scaled_M": 1.23,
+   "bands": {
+    "30-34": 0.04,
+    "35-39": 0.12,
+    "40-44": 0.33,
+    "45-49": 0.94,
+    "50-54": 2.68,
+    "55-59": 7.65,
+    "60-64": 21.81,
+    "65-69": 62.22,
+    "70-79": 150.18,
+    "80-89": 215.19
+   }
   },
   "t2d": {
-   "sex_ratio": 1.0892857142857142,
-   "lifetime_30_90_M": 0.4138,
-   "lifetime_30_90_F": 0.4453
+   "lifetime_30_90_M": 0.2267,
+   "lifetime_30_90_F": 0.2515,
+   "comparison_lifetime_30_90_checkup_FPG_F": 0.4591
   },
   "htn": {
    "sex_ratio": 1.2820512820512822,
@@ -352,8 +379,8 @@
    "monotone_breaks_F": 0
   },
   "ckd": {
-   "lifetime_30_90_M": 0.0564,
-   "lifetime_30_90_F": 0.0586
+   "lifetime_30_90_M": 0.051,
+   "lifetime_30_90_F": 0.0538
   },
   "masld": {
    "lifetime_30_90_M": 0.9591,
@@ -362,8 +389,11 @@
    "risk_10y_from_50_F": 0.5121
   },
   "ad": {
-   "lifetime_30_90_M": 0.2048,
-   "lifetime_30_90_F": 0.3738
+   "factor": 1.5471698113207546,
+   "lifetime_30_90_M": 0.0805,
+   "lifetime_30_90_F": 0.1564,
+   "comparison_jicounty_lifetime_M": 0.2048,
+   "comparison_jicounty_lifetime_F": 0.3738
   }
  }
 }

@@ -1,0 +1,2 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC6878786,table block 0,scalar,ad_crude_2010,,,,Crude,7,5.3,per_1000_py

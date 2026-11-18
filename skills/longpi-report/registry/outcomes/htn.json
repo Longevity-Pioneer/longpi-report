@@ -9,6 +9,7 @@
   "I15"
  ],
  "sex": "both",
+ "definition_zh": "随访测量血压 ≥140/90 mmHg 或正在服用降压药（队列体检测量，含未诊断者）。",
  "incidence": {
   "unit": "per_100k_py",
   "by_sex_age": [

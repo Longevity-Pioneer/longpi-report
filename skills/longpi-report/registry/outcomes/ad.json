@@ -5,56 +5,121 @@
   "G30"
  ],
  "sex": "both",
+ "definition_zh": "阿尔茨海默病：水平来自大陆队列的三步法诊断（筛查 → 临床评估 → 按 DSM/NINCDS-ADRDA 标准确诊），年龄形状来自健保诊断编码；不含血管性痴呆等其他类型痴呆。",
  "incidence": {
   "unit": "per_100k_py",
   "by_sex_age": [
    {
     "sex": "M",
+    "age_lo": 30,
+    "age_hi": 59,
+    "rate": 0.0
+   },
+   {
+    "sex": "M",
     "age_lo": 60,
+    "age_hi": 64,
+    "rate": 100.57
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
     "age_hi": 69,
-    "rate": 348.0
+    "rate": 201.13
    },
    {
     "sex": "M",
     "age_lo": 70,
+    "age_hi": 74,
+    "rate": 417.74
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
     "age_hi": 79,
-    "rate": 1081.0
+    "rate": 711.7
    },
    {
     "sex": "M",
     "age_lo": 80,
+    "age_hi": 84,
+    "rate": 1222.26
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
     "age_hi": 89,
-    "rate": 5931.0
+    "rate": 1949.43
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 59,
+    "rate": 0.0
    },
    {
     "sex": "F",
     "age_lo": 60,
+    "age_hi": 64,
+    "rate": 146.98
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
     "age_hi": 69,
-    "rate": 478.0
+    "rate": 293.96
    },
    {
     "sex": "F",
     "age_lo": 70,
+    "age_hi": 74,
+    "rate": 618.87
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
     "age_hi": 79,
-    "rate": 2078.0
+    "rate": 1036.6
    },
    {
     "sex": "F",
     "age_lo": 80,
+    "age_hi": 84,
+    "rate": 1686.42
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
     "age_hi": 89,
-    "rate": 6996.0
+    "rate": 2490.94
    }
   ],
-  "source": "Xingzhong Gu, Zhihong Shi, Shuai Liu, et al. Incidence and risk factors of dementia and the primary subtypes in northern rural China. Medicine. 2021 Apr 2;100(13):e25343. doi:10.1097/MD.0000000000025343. PMID 33787634.",
+  "source": "水平：Yuan J, Zhang Z, Wen H, Hong X, Hong Z, Qu Q, Tang M, Wu J, Xu Q, Li H, Cummings JL.. Incidence of dementia and subtypes: A cohort study in four regions in China. Alzheimers Dement. 2016. doi:10.1016/j.jalz.2015.02.011. PMID 26086181.；年龄与性别形状：Chih-Ching Liu, Chung-Yi Li, Yu Sun, et al. Gender and Age Differences and the Trend in the Incidence and Prevalence of Dementia and Alzheimer's Disease in Taiwan: A 7-Year National Population-Based Study. BioMed Research International. 2019 Nov 11;2019():5378540. doi:10.1155/2019/5378540. PMID 31815145.",
   "source_keys": [
-   "pmcid:PMC8021353"
+   "pmid:26086181",
+   "pmcid:PMC6878786"
   ],
-  "year": 2016,
-  "region": "China (Ji County, Tianjin; rural northern China)",
-  "derived": false,
-  "quality_zh": "天津蓟县农村 60 岁以上人群 2011–2016 年随访（1181 人，5649 人年）中按 NINCDS-ADRDA 诊断的阿尔茨海默病发病率（不是全因痴呆；同表全因痴呆 127 例中 AD 75 例），每 1000 人年 ×100 换算为每 10 万人年。样本小（每格 5–19 例，置信区间宽），农村、低教育人群发病偏高，约为多地区汇总估计（65 岁以上 AD 约 6–8/1000 人年）的 1.5–2 倍，按此算出的终身风险偏高；60 岁以下无数据（视为 0，早发型 AD 极少），80 岁以上为一个开放组，用于 80–89 岁。目前未找到可逐字核对、分性别年龄的全国 AD 发病表，后续有更大样本来源时应替换。",
+  "year": 2010,
+  "region": "China (level: 4 mainland regions; age-sex shape: Taiwan national health insurance)",
+  "derived": true,
+  "quality_zh": "水平取自中国大陆四地区分层整群抽样队列（1997 年入组 16921 名 ≥55 岁非痴呆者，随访 4.5 年，三步法诊断）：≥65 岁 AD 粗发病率 8.2/1000 人年（全因痴呆 12.1，AD 约占 68%）；该文分年龄性别的表不在公开文本中（仅摘要可逐字核对）。分年龄性别形状取台湾全民健保 2010 年 AD 新发率（65–69 至 ≥85 岁 5 岁组，男女分列，原表逐字核对），整体乘以 8.2 ÷ 台湾同年 ≥65 岁 AD 粗率 5.3 = 1.547，以修正健保诊断的漏报。假定两地 ≥65 岁人群年龄构成相近（台湾老龄化程度略高，系数可能略偏小）。60–64 岁取 65–69 岁率的一半（AD 发病约每 5 岁翻倍，台湾表中 65–69→70–74 岁约 ×2），30–59 岁记为 0（早发型 AD 极少，不计入）；≥85 岁组用于 85–89 岁。对照：天津蓟县农村小样本队列 80 岁以上 AD 为 59.31（男）/69.96（女）每千人年，约为本表的 3–5 倍，已不再采用。这是 AD 本身，不是全因痴呆。",
   "inputs": {
-   "unit_conversion": "per 1000 PY × 100"
+   "ad_ge65_mainland_per_1000": 8.2,
+   "taiwan_crude_ad_ge65_2010_per_1000": 5.3,
+   "factor": 1.5472,
+   "unit_conversion": "per 1000 PY × 100",
+   "comparison_jicounty_per_100k": {
+    "M": {
+     "60-69": 348.0,
+     "70-79": 1081.0,
+     "80-89": 5931.0
+    },
+    "F": {
+     "60-69": 478.0,
+     "70-79": 2078.0,
+     "80-89": 6996.0
+    }
+   }
   }
  },
  "diagnosed_codes": [
@@ -64,11 +129,11 @@
  "horizon_lifetime_age": 90,
  "license": {
   "commercial_use": true,
-  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：no licence stated on the PMC page (publisher copyright)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
  },
  "evidence": {
-  "quote": "Incidence of dementia, Alzheimer disease and vascular dementia: person-years at risk, number of cases, and rates by age and sex (95% confidence interval in parentheses).",
-  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021353/",
+  "quote": "Age- and sex-specific incidence density‡ of dementia and Alzheimer's disease (AD) and secular trend in Taiwan, 2004–2010.",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6878786/",
   "verified_at": "2026-11-18",
   "verifier": "evidence/scripts/build_outcomes.py",
   "numbers_verified": true

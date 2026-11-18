@@ -52,7 +52,7 @@ SOURCES = {
         url="https://pmc.ncbi.nlm.nih.gov/articles/PMC5415464/", tables=[1, 2, 3, 4],
         licence="CC BY-NC (article)", year=2013),
     "pmcid:PMC11431764": dict(
-        url="https://pmc.ncbi.nlm.nih.gov/articles/PMC11431764/", tables=[2, 3],
+        url="https://pmc.ncbi.nlm.nih.gov/articles/PMC11431764/", tables=[1, 2, 3],
         licence="CC BY 4.0", year=2019),
     "pmcid:PMC6169758": dict(
         url="https://pmc.ncbi.nlm.nih.gov/articles/PMC6169758/", tables=[1],
@@ -77,6 +77,14 @@ SOURCES = {
     "pmcid:PMC8021353": dict(
         url="https://pmc.ncbi.nlm.nih.gov/articles/PMC8021353/", tables=[1],
         licence="CC BY-NC 4.0 (article)", year=2016),
+    # added in fix/outcome-baselines
+    "pmcid:PMC6995322": dict(  # Zhejiang diabetes surveillance (clinician-diagnosed, registered T2DM)
+        url="https://pmc.ncbi.nlm.nih.gov/articles/PMC6995322/", tables=[1], licence="", year=2017),
+    "pmcid:PMC6878786": dict(  # Taiwan NHIRD dementia / AD incidence by sex and 5-year age
+        url="https://pmc.ncbi.nlm.nih.gov/articles/PMC6878786/", tables=[0, 2], licence="", year=2010),
+    "pmid:26086181": dict(  # Yuan et al. 2016, four-region Chinese cohort; abstract only (subscription article)
+        url="https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:26086181%20AND%20SRC:MED&resultType=core&format=json",
+        abstract=True, licence="abstract only (publisher copyright; article behind subscription)", year=2001),
 }
 
 
@@ -119,6 +127,11 @@ def licence_from_page(page: str) -> str:
     return "no licence stated on the PMC page (publisher copyright)"
 
 
+def fetch_any(url: str) -> bytes:
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
+    return urllib.request.urlopen(req, timeout=90).read()
+
+
 def fetch(url: str) -> bytes:
     last = None
     for ua in (UA, BROWSER_UA):
@@ -140,7 +153,16 @@ def safe_key(key: str) -> str:
 
 def build_record(key: str, spec: dict) -> dict:
     now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
-    if spec.get("excerpt"):
+    if spec.get("abstract"):
+        raw = fetch_any(spec["url"])
+        r = json.loads(raw)["resultList"]["result"][0]
+        ab = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", r.get("abstractText", "")))).strip()
+        text = f"{r['title']}\n[Abstract]\n{ab}"
+        au = r.get("authorString", "")
+        spec = dict(spec, citation=f"{au}. {r['title']} {r.get('journalInfo', {}).get('journal', {}).get('isoabbreviation', '')}. "
+                                   f"{r.get('pubYear', '')}. doi:{r.get('doi', '')}. PMID {r.get('pmid', '')}.")
+        retrieval = "Europe PMC REST record (core); text = title + abstract; sha256 is of the JSON response"
+    elif spec.get("excerpt"):
         p = EXCERPTS / (safe_key(key) + ".txt")
         raw = p.read_bytes()
         text = raw.decode("utf-8")

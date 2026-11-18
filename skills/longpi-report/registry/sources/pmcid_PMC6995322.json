@@ -1,0 +1,86 @@
+{
+ "key": "pmcid:PMC6995322",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6995322/",
+ "fetched_at": "2026-11-18T05:38:10+00:00",
+ "sha256": "e84323aeb02e4e9fe845c13caa89213884136ae61f824c870bc9e71568f9a504",
+ "bytes": 205212,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks. PMC pages embed per-request tokens, so sha256 of the page differs between fetches while the extracted text does not",
+ "citation": "Meng Wang, Wei-Wei Gong, Jin Pan, et al. Incidence and Time Trends of Type 2 Diabetes Mellitus among Adults in Zhejiang Province, China, 2007-2017. Journal of Diabetes Research. 2020 Jan 19;2020():2597953. doi:10.1155/2020/2597953. PMID 32051832.",
+ "licence": "no licence stated on the PMC page (publisher copyright)",
+ "data_year": 2017,
+ "text": "Incidence and Time Trends of Type 2 Diabetes Mellitus among Adults in Zhejiang Province, China, 2007-2017 - PMC\n[Table block 1] Mean incidence rate of type 2 diabetes, 2007-2017 (per 100,000 person-years).\nAge at diagnosis (years) | Number of cases | Person-years | Incidence | 95% CI\nMales |  |  |  | \n20-29 | 6,733 | 19,552,005 | 34.44 | 33.62-35.27\n30-39 | 28,621 | 22,176,495 | 129.06 | 127.57-130.56\n40-49 | 84,735 | 24,312,230 | 348.53 | 346.19-350.88\n50-59 | 126,342 | 19,725,122 | 640.51 | 636.99-644.05\n60-69 | 113,859 | 13,507,232 | 842.95 | 838.06-847.86\n70-79 | 67,213 | 7,238,313 | 928.57 | 921.57-935.62\n≥80 | 30,126 | 3,030,700 | 994.03 | 982.83-1005.32\n≥20 | 457,629 | 109,542,097 | 417.77 | 416.56-418.98\nStandardized incidence rate∗ | 718,216 | 244,966,073 | 293.19 | 292.51-293.87\nFemales |  |  |  | \n20-29 | 5,571 | 19,282,194 | 28.89 | 28.14-29.66\n30-39 | 16,283 | 22,360,608 | 72.82 | 71.71-73.95\n40-49 | 53,656 | 24,157,195 | 222.11 | 220.24-224.00\n50-59 | 114,419 | 18,950,805 | 603.77 | 600.28-607.28\n60-69 | 122,933 | 13,066,014 | 940.86 | 935.61-946.14\n70-79 | 75,658 | 7,349,879 | 1029.38 | 1022.06-1036.74\n≥80 | 33,620 | 3,938,037 | 853.72 | 844.62-862.90\n≥20 | 422,140 | 109,104,732 | 386.91 | 385.75-388.08\nStandardized incidence rate∗ | 635,876 | 235,141,346 | 270.42 | 269.76-271.09\nOverall |  |  |  | \n20-29 | 12,304 | 38,834,199 | 31.68 | 31.13-32.25\n30-39 | 44,904 | 44,537,102 | 100.82 | 99.89-101.76\n40-49 | 138,391 | 48,469,425 | 285.52 | 284.02-287.03\n50-59 | 240,761 | 38,675,928 | 622.51 | 620.02-625.00\n60-69 | 236,792 | 26,573,246 | 891.09 | 887.51-894.69\n70-79 | 142,871 | 14,588,192 | 979.36 | 974.29-984.45\n≥80 | 63,746 | 6,968,737 | 914.74 | 907.66-921.87\n≥20 | 879,769 | 218,646,829 | 402.37 | 401.53-403.21\nStandardized incidence rate∗ | 1,352,605 | 480,107,419 | 281.73 | 281.26-282.20",
+ "checks": [
+  {
+   "term": "outcome:t2d",
+   "number": "72.82",
+   "found": true,
+   "context": "30-39 | 16,283 | 22,360,608 | 72.82 | 71.71-73.95"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "129.06",
+   "found": true,
+   "context": "30-39 | 28,621 | 22,176,495 | 129.06 | 127.57-130.56"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "222.11",
+   "found": true,
+   "context": "40-49 | 53,656 | 24,157,195 | 222.11 | 220.24-224.00"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "348.53",
+   "found": true,
+   "context": "40-49 | 84,735 | 24,312,230 | 348.53 | 346.19-350.88"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "603.77",
+   "found": true,
+   "context": "50-59 | 114,419 | 18,950,805 | 603.77 | 600.28-607.28"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "640.51",
+   "found": true,
+   "context": "50-59 | 126,342 | 19,725,122 | 640.51 | 636.99-644.05"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "842.95",
+   "found": true,
+   "context": "60-69 | 113,859 | 13,507,232 | 842.95 | 838.06-847.86"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "940.86",
+   "found": true,
+   "context": "60-69 | 122,933 | 13,066,014 | 940.86 | 935.61-946.14"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "928.57",
+   "found": true,
+   "context": "70-79 | 67,213 | 7,238,313 | 928.57 | 921.57-935.62"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "1029.38",
+   "found": true,
+   "context": "70-79 | 75,658 | 7,349,879 | 1029.38 | 1022.06-1036.74"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "994.03",
+   "found": true,
+   "context": "≥80 | 30,126 | 3,030,700 | 994.03 | 982.83-1005.32"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "853.72",
+   "found": true,
+   "context": "≥80 | 33,620 | 3,938,037 | 853.72 | 844.62-862.90"
+  }
+ ]
+}

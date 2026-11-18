@@ -41,7 +41,25 @@ class OutcomeRegistry(unittest.TestCase):
                 for (a_lo, a_hi), (b_lo, _) in zip(bands, bands[1:]):
                     self.assertLess(a_hi, b_lo, f"{oid} {s} overlapping bands")
                 self.assertLessEqual(bands[-1][1], 89, oid)
-            self.assertTrue(all(r["rate"] > 0 for r in rows), oid)
+            # a band may be 0 only when documented as not modelled (AD under 60); every outcome must cover 30-89
+            self.assertTrue(all(r["rate"] >= 0 for r in rows), oid)
+            self.assertTrue(any(r["rate"] > 0 for r in rows), oid)
+            for s in sexes:
+                bands = sorted((r["age_lo"], r["age_hi"]) for r in rows if r["sex"] == s)
+                self.assertEqual(bands[0][0], 30, f"{oid} {s}: must start at 30 (engine uses the nearest band outside the table)")
+                self.assertTrue(all(b[0] == a[1] + 1 for a, b in zip(bands, bands[1:])), f"{oid} {s}: gap between bands")
+
+    def test_definition_recorded(self):
+        for oid, o in self.oc.items():
+            self.assertTrue(o.get("definition_zh"), oid)
+
+    def test_fine_bands_where_reviewed(self):
+        """Prostate and CKD under 60 are in 5-year bands (no single diluted band)."""
+        for oid, sex in (("prostate_ca", "M"), ("ckd", "M"), ("ckd", "F")):
+            young = [r for r in self.oc[oid]["incidence"]["by_sex_age"] if r["sex"] == sex and r["age_hi"] < 60]
+            self.assertTrue(all(r["age_hi"] - r["age_lo"] == 4 for r in young), oid)
+            rates = [r["rate"] for r in sorted(young, key=lambda r: r["age_lo"])]
+            self.assertEqual(rates, sorted(rates), oid)
 
     def test_mortality_share_for_screenable_cancers(self):
         for oid in SCREENABLE:
