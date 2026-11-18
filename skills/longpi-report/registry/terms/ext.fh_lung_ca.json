@@ -3,7 +3,7 @@
  "name_zh": "一级亲属肺癌家族史",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:lung_ca",
   "unit": "0/1",
@@ -34,20 +34,30 @@
    "hr": 1.45,
    "lo": 1.3,
    "hi": 1.63,
-   "coef": 1.0
+   "coef": 0.6,
+   "overlaps_with": [
+    "ext.prs_lung_ca",
+    "ext.smoking"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "ext.smoking",
+    "core.alcohol"
+   ]
   }
  },
  "adjusted_for": [
   "age",
   "sex",
-  "core.smoking",
+  "ext.smoking",
   "core.alcohol"
  ],
  "overlap": {
-  "coef": 1.0,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。亚洲队列联盟合并分析按队列分层，并校正年龄、性别、吸烟包年和饮酒，已覆盖肺癌最主要的危险因素吸烟，系数取 1.0。若已有肺癌多基因评分，二者部分重叠，由引擎按组规则处理。",
+  "rationale_zh": "本项只计疾病结局。亚洲队列联盟合并分析按队列分层，校正年龄、性别、吸烟包年与饮酒，已覆盖 ext.smoking，但未校正肺癌多基因评分；按规则（部分重叠项已校正）系数上限 0.6，取 0.6。",
   "mediated_by": {}
  },
  "transport": {
@@ -85,7 +95,7 @@
   "grade": "B",
   "design": "pooled-cohort",
   "pmid": "39361428",
-  "quote": "FHLC (any LC subtype) was associated with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63).",
+  "quote": "We assessed the association between FHLC with risk of lung cancer (LC) incidence and mortality in a population of East Asian individuals. A total of 478,354 participants from 11 population-based cohorts in the Asia Cohort Consortium were included. A Cox proportional hazards regression model was used to estimate hazard ratios (HRs) and 95% confidence intervals (CIs). A total of 7,785 LC incident cases were identified. FHLC (any LC subtype) was associated with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63).",
   "url": "https://pubmed.ncbi.nlm.nih.gov/39361428/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
@@ -97,5 +107,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

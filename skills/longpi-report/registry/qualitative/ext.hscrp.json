@@ -118,6 +118,8 @@
  },
  "why_qualitative_zh": "PhenoAge 血液时钟已以 CRP 为输入，单列计入会重复计分；现有东亚证据仅为分组比较（<1、1–3、>3 mg/L）且呈非线性，换算为连续效应需人为设定间距，数值依据不足，故只作定性佐证",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-5",
- "verifier_reasons": []
+ "registry_version_added": "2026.11.18-10",
+ "verifier_reasons": [
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例"
+ ]
 }

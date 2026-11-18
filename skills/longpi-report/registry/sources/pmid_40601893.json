@@ -1,0 +1,98 @@
+{
+ "key": "pmid:40601893",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/40601893/",
+ "fetched_at": "2026-11-18T06:27:19Z",
+ "sha256": "c2b7b90e295431418b972a8f589ee31ab5fcd56f76de684a916c0dd8f7da10c9",
+ "citation": "JCO precision oncology 2025",
+ "text": "Polygenic Score Complements Family History and Lynch Syndrome Genes for Predicting Colorectal Cancer Risk.\nPURPOSE: Family history (FH) and pathogenic variants (PVs) in Lynch syndrome (LS) genes are established risk factors of colorectal cancer (CRC). This study evaluates whether newly published polygenic scores (PGSs) improve CRC prediction of known risk factors.\nMETHODS: The associations of CRC risk with FH, PVs in LS genes (MSH2, MLH1, MSH6, PMS2), and PGS were investigated in the UK Biobank (UKB) using population attributable risk percentage (PAR%) and Cox regression. Model performance was assessed using Concordance Index (C-index) in UKB and validated in the Genomic Health Initiative (GHI), a US health care biobank with more diverse ancestry populations.\nRESULTS: In UKB, 18.99%, 11.43%, and 0.42% of participants were positive for PGS, FH, and PVs, respectively, with corresponding PAR% of 29.97%, 6.27%, and 1.25%. In multivariable analysis adjusting for age, sex, and genetic background, each genetic factor independently predicted CRC risk (P < .001). Significant interactions between PVs and FH (P < .001) and PVs and PGS (P = .04) were found; hazard ratio (95% CI) of PVs was significantly higher in those with FH (7.90 [6.27 to 9.94]) than without FH (2.89 [2.32 to 3.60]) and that of PGS was significantly lower in PV carriers (1.69 [1.18 to 2.42]) than noncarriers (2.85 [2.73 to 2.98]). The combined genetic model had a significantly higher C-index (0.677) than models with PVs (0.573), FH (0.578), and PGS (0.669) alone (P < .001). This enhanced performance was validated in GHI across European and non-European ancestries.\nCONCLUSION: PGS complements FH and PVs of LS genes in predicting CRC risk and improves prediction performance beyond traditional genetic factors across diverse populations.\n[full text, Europe PMC PMC12233176]\nGenetic Risk of CRC in the UKB\nMSH6 | 436 (0.1) | 47 (10.78) | 5.46 (4.10 to 7.27) | 4.07E-31 | 154.2 | 0.40\nGenetic Risk of CRC in the UKB\nPMS2 | 1,123 (0.25) | 40 (3.56) | 1.70 (1.25 to 2.32) | 8.09E-04 | 50.5 | 0.17\nMSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11) | 7.44E-86 | 616.2 | 0.32\nMLH1 | 204 (0.05) | 38 (18.63) | 10.89 (7.92 to 14.98) | 7.82E-49 | 278.7 | 0.36",
+ "pmcid": "PMC12233176",
+ "doi": "10.1200/po-25-00081",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.hr",
+   "value": 10.89,
+   "found": true,
+   "context": "MLH1 | 204 (0.05) | 38 (18.63) | 10.89 (7.92 to 14.98)"
+  },
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.lo",
+   "value": 7.92,
+   "found": true,
+   "context": "MLH1 | 204 (0.05) | 38 (18.63) | 10.89 (7.92 to 14.98)"
+  },
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.hi",
+   "value": 14.98,
+   "found": true,
+   "context": "MLH1 | 204 (0.05) | 38 (18.63) | 10.89 (7.92 to 14.98)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.hr",
+   "value": 32.57,
+   "found": true,
+   "context": "MSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.lo",
+   "value": 23.01,
+   "found": true,
+   "context": "MSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11)"
+  },
+  {
+   "term": "ext.mono_msh2",
+   "number": "crc.hi",
+   "value": 46.11,
+   "found": true,
+   "context": "MSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11)"
+  },
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.hr",
+   "value": 5.46,
+   "found": true,
+   "context": "MSH6 | 436 (0.1) | 47 (10.78) | 5.46 (4.10 to 7.27)"
+  },
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.lo",
+   "value": 4.1,
+   "found": true,
+   "context": "MSH6 | 436 (0.1) | 47 (10.78) | 5.46 (4.10 to 7.27)"
+  },
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.hi",
+   "value": 7.27,
+   "found": true,
+   "context": "MSH6 | 436 (0.1) | 47 (10.78) | 5.46 (4.10 to 7.27)"
+  },
+  {
+   "term": "ext.mono_pms2",
+   "number": "crc.hr",
+   "value": 1.7,
+   "found": true,
+   "context": "PMS2 | 1,123 (0.25) | 40 (3.56) | 1.70 (1.25 to 2.32)"
+  },
+  {
+   "term": "ext.mono_pms2",
+   "number": "crc.lo",
+   "value": 1.25,
+   "found": true,
+   "context": "PMS2 | 1,123 (0.25) | 40 (3.56) | 1.70 (1.25 to 2.32)"
+  },
+  {
+   "term": "ext.mono_pms2",
+   "number": "crc.hi",
+   "value": 2.32,
+   "found": true,
+   "context": "PMS2 | 1,123 (0.25) | 40 (3.56) | 1.70 (1.25 to 2.32)"
+  }
+ ]
+}

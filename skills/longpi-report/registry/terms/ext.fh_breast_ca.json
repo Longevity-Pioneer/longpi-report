@@ -3,7 +3,7 @@
  "name_zh": "一级亲属乳腺癌家族史",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:breast_ca",
   "unit": "0/1",
@@ -34,17 +34,27 @@
    "hr": 2.46,
    "lo": 2.03,
    "hi": 2.97,
-   "coef": 0.8
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.prs_breast_ca",
+    "ext.mono_brca1",
+    "ext.mono_brca2",
+    "ext.bmi",
+    "ext.alcohol"
+   ],
+   "adjusted_for": [
+    "age"
+   ]
   }
  },
  "adjusted_for": [
   "age"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.3,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。亚洲女性荟萃分析以病例对照研究为主（遗传项允许），合并的是比值比，各研究校正程度不一，系数取 0.8。若已检出 BRCA1/2 等致病变异，家族史风险部分由其解释，应由引擎按组规则处理。",
+  "rationale_zh": "本项只计疾病结局。荟萃分析合并 76 项研究（71 项病例对照、5 项队列）的 OR，各研究多只按年龄匹配或校正，未校正多基因评分、BRCA1/2 致病变异、BMI 与饮酒。家族史部分由这些已计入项解释（遗传部分对应评分与致病变异，共享生活方式部分对应 BMI、饮酒），按规则（仅校正年龄）系数上限 0.3，取 0.3。",
   "mediated_by": {}
  },
  "transport": {
@@ -56,7 +66,9 @@
   "cohort": "studies of Asian women (systematic review and meta-analysis, mostly case-control)",
   "ancestry": "Asian (mainly East and Southeast Asian)",
   "sex": "F",
-  "sex_scope": "F"
+  "sex_scope": "F",
+  "n": 5184024,
+  "events_source_zh": "未给合并病例数；全文写明 76 项研究共纳入 5,184,024 名女性，属大型合并分析"
  },
  "measurement": {
   "sd_abs": null,
@@ -93,5 +105,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

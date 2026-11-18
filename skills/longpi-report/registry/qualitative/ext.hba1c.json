@@ -1,0 +1,239 @@
+{
+ "kind": "state",
+ "status": "active",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "disclosure": "standard",
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "transfusion"
+ ],
+ "treated_policy": "use_pretreatment",
+ "persistence": {
+  "half_life_years": 1
+ },
+ "id": "ext.hba1c",
+ "name_zh": "糖化血红蛋白（HbA1c）",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LOINC:4548-4",
+  "unit": "%",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   4.0,
+   6.4
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 5.5,
+    "sd": 0.445
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 5.5,
+    "sd": 0.445
+   }
+  ],
+  "pmid": "29312456",
+  "quote": "HbA1c (%) | 5.5(5.2–5.8) | 5.5(5.2–5.8) | 0.232",
+  "source": "中国健康与营养调查 2009 年血样（全国 9 省多阶段随机整群抽样，18–75 岁 7381 人，男 3463、女 3918；PMID 29312456 表 1，按性别给中位数与四分位距）：糖化血红蛋白男女均为 5.5%（5.2–5.8），中位数作均值、四分位距/1.349 作标准差；未按年龄分层。"
+ },
+ "effect": {
+  "t2d": {
+   "hr": 4.48,
+   "lo": 3.92,
+   "hi": 5.13,
+   "per": 1.0,
+   "per_unit": "%（原文为 6.0–6.4% 组对比 5.0–5.4% 参考组，两组中点约差 1 个百分点，近似处理）",
+   "direction": "higher_worse",
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.fpg",
+    "ext.tg",
+    "ext.bmi",
+    "ext.waist",
+    "ext.fh_t2d",
+    "ext.prs_t2d"
+   ]
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "race",
+  "core.lipid",
+  "ext.tg",
+  "ext.bmi",
+  "core.adiposity",
+  "core.bp",
+  "ext.fh_t2d",
+  "education",
+  "core.alcohol",
+  "LP:mvpa_min_week",
+  "core.smoking"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "仅为 2 型糖尿病建项。ARIC 模型 2 校正年龄、性别、种族、LDL-C、HDL-C、甘油三酯、BMI、腰臀比、高血压、糖尿病家族史、教育、饮酒、体力活动与吸烟，但主估计未校正空腹血糖；与 ext.fpg 信息高度重叠。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "US Black and White (ARIC)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "ARIC 研究第 2 次随访，无糖尿病、无心血管病者",
+  "n": 11092,
+  "ancestry": "US Black and White (ARIC)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.02,
+  "source": "NGSP 认证 HPLC 方法分析变异系数约 2%（一般实验室质量数据，未经文献核对）；贫血、血红蛋白病会影响测值"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减重、规律运动、控制精制碳水摄入可降低 HbA1c 与糖尿病风险"
+ },
+ "test": {
+  "label_zh": "抽血查糖化血红蛋白",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "20200384",
+  "quote": "For glycated hemoglobin values of less than 5.0%, 5.0 to less than 5.5%, 5.5 to less than 6.0%, 6.0 to less than 6.5%, and 6.5% or greater, the multivariable-adjusted hazard ratios (with 95% confidence intervals) for diagnosed diabetes were 0.52 (0.40 to 0.69), 1.00 (reference), 1.86 (1.67 to 2.08), 4.48 (3.92 to 5.13), and 16.47 (14.22 to 19.08), respectively.",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20200384/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "21705064",
+    "estimate": "仅 HbA1c 5.7–6.4% vs 正常 HR 6.00（3.76–9.56），TOPICS 3",
+    "why_not": "体检人群纵向数据，仅分类比较，无连续斜率"
+   },
+   {
+    "pmid": "20200384",
+    "estimate": "ARIC：6.0–6.4% vs 5.0–5.4% HR 4.48（3.92–5.13）",
+    "why_not": "只有分类比较；全文无每 1% 的连续估计，不能由组间对比换算斜率；摘要无事件数"
+   }
+  ]
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "可核对的前瞻性证据（ARIC，PMID 20200384）只报告 HbA1c 分组相对于 5.0–5.4% 的 HR，全文也未给出每 1 个百分点的连续估计；按组间中点差换算斜率不被允许，而连续输入无法按分组计分。研究人群为美国黑人与白人，摘要与可访问全文均无新发糖尿病事件数。检索东亚前瞻队列未找到给出连续斜率的估计，故作定性佐证。",
+ "verifier_reasons": [
+  "t2d: 未写结局事件数"
+ ]
+}

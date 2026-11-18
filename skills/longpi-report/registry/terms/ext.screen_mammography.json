@@ -75,7 +75,9 @@
     "prevalence": 0.02
    }
   ],
-  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/breast_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+  "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+  "estimated": true,
+  "estimated_reason_zh": "未找到可核对的中国全国按年龄乳腺 X 线筛查率；亚洲系统综述（PMID 39471004）中国、伊朗、日本、韩国合并乳腺 X 线筛查率 18%，非中国单独数据；按年龄分组数值为估计"
  },
  "effect": {},
  "screening": {
@@ -111,7 +113,10 @@
  "population": {
   "cohort": "Independent UK Panel on Breast Cancer Screening, 11 RCTs",
   "ancestry": "Europe and North America",
-  "sex": "F"
+  "sex": "F",
+  "n": 673573,
+  "n_source_zh": "全报告（Br J Cancer 2013，PMC3693450）表 1 各试验女性人数相加：62 000 + 60 076 + 133 065 + 89 835 + 60 800 + 52 222 + 160 921 + 54 654",
+  "events_source_zh": "摘要、全报告正文与图 2 森林图均未列乳腺癌死亡例数；11 项试验六十余万名女性，按大型 RCT 荟萃分析豁免"
  },
  "measurement": {
   "sd_abs": null,
@@ -141,5 +146,5 @@
  },
  "note_zh": "意向筛查估计（受邀对比未受邀）；中国女性乳腺致密比例较高，国内常联合超声，X 线单独的效果可能低于西方试验。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

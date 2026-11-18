@@ -43,7 +43,11 @@
    "per": 1,
    "per_unit": "year of ProtAgeGap",
    "direction": "higher_worse",
-   "coef": 0.5
+   "coef": 0.5,
+   "overlaps_with": [
+    "ext.diabetes",
+    "ext.htn_dx"
+   ]
   },
   "ckd": {
    "hr": 1.1,
@@ -52,7 +56,11 @@
    "per": 1,
    "per_unit": "year of ProtAgeGap",
    "direction": "higher_worse",
-   "coef": 0.5
+   "coef": 0.5,
+   "overlaps_with": [
+    "ext.sbp",
+    "ext.uacr"
+   ]
   }
  },
  "adjusted_for": [
@@ -126,5 +134,10 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "阿尔茨海默病 HR 1.16（1.12–1.20）、慢性肾病 HR 1.10（1.08–1.11）经逐字核对，但两结局的事件数只在补充材料中，正文与摘要均未给出，无法核对是否达到 100 例；研究人群为英国生物银行（白人占 93%），慢性肾病结局为医院记录定义，校正项未含 APOE、糖尿病与基线肾功能。事件数无法核对，故只作定性佐证。",
+ "verifier_reasons": [
+  "ad: 未写结局事件数",
+  "ckd: 未写结局事件数"
+ ]
 }

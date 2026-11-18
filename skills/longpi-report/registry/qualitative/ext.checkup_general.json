@@ -95,8 +95,10 @@
  },
  "why_qualitative_zh": "Cochrane 系统综述（17 项随机试验）显示一般健康体检对全因死亡（RR 1.00，95% CI 0.97–1.03）、癌症死亡和心血管死亡均无影响，为高确定性证据；因此不计入数值，只作说明：体检的价值在于发现可干预的指标，这些指标已由各自项目计入。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
-  "all_cause: 95% CI 0.97–1.03 含 1（无统计学意义）"
+  "all_cause: 95% CI 0.97–1.03 含 1（无统计学意义；分类水平须改为 hr 1 或整项不入库）",
+  "行为项须写 behavior.target（指南推荐值）与 behavior.target_source",
+  "参考分布未给 pmid+quote：找不到可核对来源时须写 reference.estimated: true 与 estimated_reason_zh"
  ]
 }

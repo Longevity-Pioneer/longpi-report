@@ -201,5 +201,7 @@
   "numbers_verified": true
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "原文只给分组比较（eGFR 45 对 95 的 HR），换算为每 30 单位的斜率需自行设定间距，不符合“不自造换算”的规则；且 eGFR 由肌酐计算，与 PhenoAge 中的肌酐信息大量重复。待有原文给出的连续剂量反应估计后再计入，本版只作定性佐证。",
+ "verifier_reasons": []
 }

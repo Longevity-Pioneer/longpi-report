@@ -211,7 +211,7 @@
   "pmid": "37232235",
   "doi": "10.1161/JAHA.122.029110",
   "url": "https://pubmed.ncbi.nlm.nih.gov/37232235/",
-  "quote": "Among individuals without prior CVD, elevated NT-proBNP (≥75th percentile [81.5 pg/mL] versus <25th percentile [20.5 pg/mL]) was associated with a significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])",
+  "quote": "Among individuals without prior CVD, elevated NT-proBNP (≥75th percentile [81.5 pg/mL] versus <25th percentile [20.5 pg/mL]) was associated with a significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00]) and CVD mortality",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
   "numbers_verified": true
@@ -223,5 +223,7 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "原文只给四分位比较（Q4 对 Q1 的 HR），换算为斜率需以两组中位数之差作间距，不符合“不自造换算”的规则；且来源为美国 NHANES 单一队列。待有原文给出的连续（每 SD 或每翻倍）估计后再计入，本版只作定性佐证。",
+ "verifier_reasons": []
 }

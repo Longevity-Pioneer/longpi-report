@@ -15,21 +15,21 @@
    "number": "gastric_ca.hr",
    "value": 5.94,
    "found": true,
-   "context": "H pylori infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+   "context": "H pylori infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC. "
   },
   {
    "term": "ext.hpylori",
    "number": "gastric_ca.lo",
    "value": 3.25,
    "found": true,
-   "context": " infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+   "context": " infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC. Among the sev"
   },
   {
    "term": "ext.hpylori",
    "number": "gastric_ca.hi",
    "value": 10.86,
    "found": true,
-   "context": "ction was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+   "context": "ction was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC. Among the seven ind"
   }
  ]
 }

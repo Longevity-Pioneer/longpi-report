@@ -3,7 +3,7 @@
  "name_zh": "2 型糖尿病多基因评分",
  "kind": "genetic",
  "system": "metabolic",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "PGS:PGS002308",
   "unit": "SD",
@@ -35,7 +35,16 @@
    "per_unit": "1 SD of PRS (z)",
    "direction": "higher_worse",
    "metric": "OR",
-   "note": "PGS Catalog 记录为每 SD 的 OR（横断面患病），按 HR 近似使用"
+   "note": "PGS Catalog 记录为每 SD 的 OR（台湾生物库横断面已患 2 型糖尿病对非患者），不是前瞻发病 HR，按 HR 近似使用",
+   "overlaps_with": [
+    "ext.fh_t2d"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "genetic_pcs"
+   ],
+   "coef": 0.5
   }
  },
  "adjusted_for": [
@@ -44,10 +53,10 @@
   "genetic_pcs"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.5,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "种系评分不受生活方式混杂，评估模型只校正年龄、性别与主成分。评分部分经血糖与体重指数起作用：无文献给出该评分经可测中介的比例，按约定默认中介合计 0.5（空腹血糖 0.3、BMI 0.2）；已测血糖或 BMI 时按中介比例折减。系数 0.8 反映评估人群为横断面患病对照（OR 近似 HR）。",
+  "rationale_zh": "台湾生物库评估校正年龄、性别与前 10 个主成分，未校正家族史；家族史与评分共享遗传信息，上限 0.6。病例为横断面已患 2 型糖尿病（患病率约 5%），每 SD 的 OR 按 HR 近似可能略高估，系数再降至 0.5。评分部分经血糖与体重指数起作用，按约定默认中介合计 0.5（空腹血糖 0.3、BMI 0.2），已测时另行折减。",
   "mediated_by": {
    "LOINC:1558-6": 0.3,
    "LOINC:39156-5": 0.2
@@ -87,19 +96,42 @@
  "disclosure": "standard",
  "evidence": {
   "grade": "B",
-  "design": "pgs-catalog-evaluation",
+  "design": "case-control",
   "source": "pgs_perf:PPM013072",
   "pmid": "35765100",
   "quote": "Odds Ratio (OR): 2.01 [1.93, 2.1]",
   "url": "https://www.pgscatalog.org/performance/PPM013072/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "design_note_zh": "台湾生物库评估比较的是横断面已患与未患 2 型糖尿病者，属遗传项允许的病例对照设计；无该评分在东亚人群前瞻发病队列中的 HR。",
+  "alternatives_considered": [
+   {
+    "source": "PGS Catalog",
+    "estimate": "PGS002308 全部表现记录",
+    "why_not": "东亚人群只有台湾生物库的 OR（横断面），无前瞻发病 HR"
+   },
+   {
+    "source": "PGS Catalog",
+    "estimate": "全部 2 型糖尿病评分中东亚人群前瞻发病 HR 记录",
+    "why_not": "只有英国生物库东亚裔 1350 人、37 例的记录，事件数不足 100"
+   },
+   {
+    "pmid": "31974579",
+    "estimate": "中国嘉道理生物库与新加坡华人队列 2 型糖尿病遗传风险评分",
+    "why_not": "评分不同于输入的 PGS002308，摘要只给分组比较，无每 SD 的 HR"
+   },
+   {
+    "pmid": "37432247",
+    "estimate": "无锡队列 46 位点评分最高对最低五分位 HR 2.06 (1.42–2.97)，440 例",
+    "why_not": "评分不同于 PGS002308，且为五分位比较"
+   }
+  ]
  },
  "license": {
   "commercial_use": true,
   "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

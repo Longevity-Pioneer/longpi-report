@@ -1,0 +1,265 @@
+{
+ "id": "ext.fpg",
+ "name_zh": "空腹血糖（连续值）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LOINC:1558-6",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_hi": 4.5,
+  "clip": [
+   3.9,
+   6.0
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 5.123,
+    "sd": 0.708
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 5.073,
+    "sd": 0.63
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 5.073,
+    "sd": 0.63
+   }
+  ],
+  "pmid": "29312456",
+  "quote": "FPG (mg/dl) | 92.3(84.9–102.1) | 91.4(84.6–99.9) | 0.001",
+  "source": "中国健康与营养调查 2009 年血样（全国 9 省多阶段随机整群抽样，18–75 岁 7381 人，男 3463、女 3918；PMID 29312456 表 1，按性别给中位数与四分位距）：空腹血糖男 92.3（84.9–102.1）、女 91.4（84.6–99.9）mg/dL，按 18.016 换算为 mmol/L，中位数作均值、四分位距/1.349 作标准差；未按年龄分层，各年龄段取同一值；样本含少量已知糖尿病者（男 3.4%、女 2.2%）。"
+ },
+ "effect": {
+  "t2d": {
+   "hr_above": {
+    "hr": 7.3,
+    "lo": 6.53,
+    "hi": 8.17,
+    "per": 1,
+    "per_unit": "mmol/L（拐点 4.5 mmol/L 以上；原文分段 Cox 回归的右段斜率）"
+   },
+   "direction": "higher_worse",
+   "overlaps_with": [
+    "ext.hba1c",
+    "ext.tg",
+    "ext.bmi",
+    "ext.waist",
+    "ext.fh_t2d",
+    "ext.prs_t2d"
+   ],
+   "coef": 0.5
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "ext.bmi",
+  "core.bp",
+  "core.lipid",
+  "ext.tg",
+  "ext.alt",
+  "core.smoking",
+  "core.alcohol"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "仅为 2 型糖尿病建项，不进入 LongPi Age。原文分段 Cox 回归校正了年龄、性别、BMI、收缩压、舒张压、总胆固醇、甘油三酯、ALT、吸烟与饮酒，未校正糖化血红蛋白、腰围、糖尿病家族史与多基因评分，按部分校正取 0.5。关联呈 J 形：中国人群拐点 4.5 mmol/L，其下斜率无统计学意义（HR 1.09，0.66–1.79），故只取拐点以上斜率；截断上限 6.0 mmol/L，≥6.1 mmol/L 的空腹血糖受损与糖尿病由 ext.diabetes 与确诊判定处理。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian (Chinese)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Rich Healthcare Group 体检人群（中国 11 城市 32 家体检中心，2010–2016 年，回顾性纵向数据；中国亚组）",
+  "n": 204640,
+  "events": 2238,
+  "ancestry": "Chinese",
+  "age_range": [
+   20,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.05,
+  "source": "实验室葡萄糖氧化酶法分析变异约 2%–3%，叠加个体日间生物学变异约 5%（经验值，未逐句核对）"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "non_fasting"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减重、规律运动与控制精制碳水摄入可降低空腹血糖；空腹血糖受损者应进一步做口服葡萄糖耐量试验或糖化血红蛋白检测。"
+ },
+ "test": {
+  "label_zh": "空腹抽血查血糖",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "C",
+  "design": "retrospective-cohort",
+  "pmid": "36872318",
+  "pmcid": "PMC9985867",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36872318/",
+  "quote": "The risk of T2D increased rapidly with increasing FPG level beyond the inflexion point. On the right side of the inflexion point, the multivariate-adjusted HRs (95% CI) for all populations, Chinese and Japanese were 7.75 (6.97, 8.62), 7.3 (6.53, 8.17), and 21.13 (13.17, 33.91) respectively.",
+  "alternatives_considered": [
+   {
+    "pmid": "34624178",
+    "estimate": "FPG 98–99 vs ≤89 mg/dL HR 3.41（2.79–4.15），日本松下体检人群",
+    "why_not": "回顾性队列；只有分类比较"
+   },
+   {
+    "pmid": "23037459",
+    "estimate": "FPG 100–109 vs <90 mg/dL HR 5.2（2.4–11.2）",
+    "why_not": "回顾性职场队列，仅 901 名男性"
+   },
+   {
+    "pmid": "21705064",
+    "estimate": "仅空腹血糖受损 vs 正常 HR 6.16（4.33–8.77），TOPICS 3",
+    "why_not": "体检人群纵向数据，仅分类比较，且对比组含 5.6–6.9 mmol/L，超出本项截断范围"
+   },
+   {
+    "pmid": "16207847",
+    "estimate": "以色列青年男性，正常范围内 FPG 分位比较",
+    "why_not": "非东亚、仅男性，摘要无可核对的 HR 与 CI"
+   },
+   {
+    "pmid": "27861364",
+    "estimate": "开滦前瞻队列，4867 例新发糖尿病",
+    "why_not": "基线空腹血糖的 HR 只在补充表 eTable 3，无法抓取核对"
+   },
+   {
+    "pmid": "20536521",
+    "estimate": "EPIC-Potsdam 病例队列，约 84 mg/dL 以上风险上升",
+    "why_not": "非东亚，153 例，摘要无 HR"
+   }
+  ],
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "唯一给出中国人群连续斜率的研究（PMID 36872318）为体检机构回顾性纵向数据，研究设计不在入库范围；其拐点以上斜率 HR 7.3（6.53–8.17）每 mmol/L，数据限于正常空腹血糖范围，且结局定义本身含空腹血糖 ≥7.0 mmol/L，存在测量重合与回归均值问题，数值偏大。检索中国慢性病前瞻性研究、开滦、大庆、上海及日韩前瞻队列，未找到可逐字核对、给出连续或分段斜率的前瞻性估计，故作定性佐证。",
+ "verifier_reasons": [
+  "t2d: 证据等级 C 低于 B",
+  "t2d: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')"
+ ]
+}

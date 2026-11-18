@@ -1,0 +1,35 @@
+{
+ "key": "pmid:27379518",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/27379518/",
+ "fetched_at": "2026-11-18T06:14:39Z",
+ "sha256": "1f4fbcb3bbda277c8b96d8a74630ae84bcaf05eefe7a5a8889b68aee0ce32aad",
+ "citation": "PLoS medicine 2016",
+ "text": "Risks and Population Burden of Cardiovascular Diseases Associated with Diabetes in China: A Prospective Study of 0.5 Million Adults.\nBACKGROUND: In China, diabetes prevalence is rising rapidly, but little is known about the associated risks and population burden of cardiovascular diseases. We assess associations of diabetes with major cardiovascular diseases and the relevance of diabetes duration and other modifiable risk factors to these associations.\nMETHODS AND FINDINGS: A nationwide prospective study recruited 512,891 men and women aged 30-79 y between 25 June 2004 and 15 July 2008 from ten diverse localities across China. During ~7 y of follow-up, 7,353 cardiovascular deaths and 25,451 non-fatal major cardiovascular events were recorded among 488,760 participants without prior cardiovascular disease at baseline. Cox regression yielded adjusted hazard ratios (HRs) comparing disease risks in individuals with diabetes to those without. Overall, 5.4% (n = 26,335) of participants had self-reported (2.7%) or screen-detected (2.7%) diabetes. Individuals with self-reported diabetes had an adjusted HR of 2.07 (95% CI 1.90-2.26) for cardiovascular mortality. There were significant excess risks of major coronary event (2.44, 95% CI 2.18-2.73), ischaemic stroke (1.68, 95% CI 1.60-1.77), and intracerebral haemorrhage (1.24, 95% CI 1.07-1.44). Screen-detected diabetes was also associated with significant, though more modest, excess cardiovascular risks, with corresponding HRs of 1.66 (95% CI 1.51-1.83), 1.62 (95% CI 1.40-1.86), 1.48 (95% CI 1.40-1.57), and 1.17 (95% CI 1.01-1.36), respectively. Misclassification of screen-detected diabetes may have caused these risk estimates to be underestimated, whilst lack of data on lipids may have resulted in residual confounding of diabetes-associated cardiovascular disease risks. Among individuals with diabetes, cardiovascular risk increased progressively with duration of diabetes and number of other presenting modifiable cardiovascular risk factors. Assuming a causal association, diabetes now accounts for ~0.5 million (489,676, 95% CI 335,777-681,202) cardiovascular deaths annually in China.\nCONCLUSIONS: Among Chinese adults, diabetes is associated with significantly increased risks of major cardiovascular diseases. The increasing prevalence and younger age of onset of diabetes foreshadow greater diabetes-attributable disease burden in China.\n[full text, Europe PMC PMC4933372]\nSelf-reported diabetes was also associated with significant, but more modest, excess risk of ICH, with an adjusted HR of 1.24 (95% CI 1.07–1.44), more extreme for fatal (1.59, 95% CI 1.30–1.96) than for non-fatal (1.00, 95% CI 0.81–1.23) events (Table 2). The risk varied little across participant subgroups (S5 Fig). For total stroke, self-reported diabetes was associated with an adjusted HR of 1.61 (95% CI 1.54–1.69; Table 2).",
+ "pmcid": "PMC4933372",
+ "doi": "10.1371/journal.pmed.1002026",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.hr",
+   "value": 1.61,
+   "found": true,
+   "context": "elf-reported diabetes was associated with an adjusted HR of 1.61 (95% CI 1.54-1.69"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.lo",
+   "value": 1.54,
+   "found": true,
+   "context": "diabetes was associated with an adjusted HR of 1.61 (95% CI 1.54-1.69"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.hi",
+   "value": 1.69,
+   "found": true,
+   "context": "tes was associated with an adjusted HR of 1.61 (95% CI 1.54-1.69"
+  }
+ ]
+}

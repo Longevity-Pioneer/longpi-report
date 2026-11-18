@@ -3,7 +3,7 @@
  "name_zh": "BRCA1 致病变异携带",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:monogenic:HGNC:1100",
   "unit": "0/1",
@@ -36,18 +36,29 @@
    "lo": 5.33,
    "hi": 11.27,
    "direction": "higher_worse",
-   "note": "OR 按 HR 近似"
+   "note": "OR 按 HR 近似",
+   "overlaps_with": [
+    "ext.fh_breast_ca"
+   ],
+   "adjusted_for": [
+    "age",
+    "race",
+    "study"
+   ],
+   "coef": 0.6,
+   "applies_sex": "F"
   }
  },
  "adjusted_for": [
   "age",
+  "race",
   "study"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "种系致病变异不受生活方式混杂；研究未校正多基因评分与家族史，携带状态可解释部分家族史，重叠由家族史项一侧处理。系数 0.8 为病例对照 OR 近似 HR 的保守折减。",
+  "rationale_zh": "种系致病变异不受生活方式混杂，BMI、饮酒不是其混杂因素；常见变异多基因评分与罕见致病变异信息基本独立。携带状态可解释部分家族史，与 ext.fh_breast_ca 重叠，CARRIERS 模型校正年龄、种族与研究来源，未校正家族史，按规则（校正了其他混杂、未校正重叠项）系数上限 0.6，取 0.6。",
   "mediated_by": {}
  },
  "transport": {
@@ -60,7 +71,8 @@
   "n": 64791,
   "events": 32247,
   "ancestry": "United States (population-based, mostly European)",
-  "sex": "F"
+  "sex": "F",
+  "events_source_zh": "摘要：32,247 women with breast cancer (case patients)"
  },
  "measurement": {
   "sd_abs": null,
@@ -87,11 +99,18 @@
   "grade": "B",
   "design": "case-control",
   "pmid": "33471974",
-  "quote": "Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)",
+  "quote": "Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively",
   "url": "https://pubmed.ncbi.nlm.nih.gov/33471974/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "30287823",
+    "estimate": "日本生物银行 7051 例乳腺癌、11,241 名对照的分基因 OR",
+    "why_not": "摘要未给 OR 与 CI，分基因数值只在全文表格行中，表格行不含结局名称，过不了结局用词门槛"
+   }
+  ]
  },
  "license": {
   "commercial_use": true,
@@ -99,5 +118,5 @@
  },
  "gene": "BRCA1",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

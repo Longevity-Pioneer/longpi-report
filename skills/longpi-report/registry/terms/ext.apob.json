@@ -38,16 +38,107 @@
   "kind": "normal",
   "by_sex_age": [
    {
-    "sex": "both",
+    "sex": "M",
     "age_lo": 18,
+    "age_hi": 29,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
     "age_hi": 99,
-    "mean": 0.8,
-    "sd": 0.24
+    "mean": 0.88,
+    "sd": 0.259
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 0.88,
+    "sd": 0.267
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 0.88,
+    "sd": 0.267
    }
   ],
-  "pmid": "41079004",
-  "quote": "Figure 1 shows that the distributions of plasma levels of all LDL-related biomarkers were about 1 SD lower in Chinese than in Europeans",
-  "source": "CKB 与 UKB 对比（PMID 41079004）：中国人群 LDL 相关指标分布约低 1 SD；UKB ApoB 均值 103.4 mg/dL、SD 23.8 mg/dL（PMID 38241044 表 1）。据此推算均值 1.034−0.238≈0.80 g/L、SD 0.24 g/L，为推算值，未按年龄性别分层"
+  "pmid": "29312456",
+  "quote": "ApoB (mg/dl) | 0.88(0.72–1.07) | 0.88(0.71–1.07) | 0.563",
+  "source": "中国健康与营养调查 2009 年血样（全国 9 省多阶段随机整群抽样，18–75 岁 7381 人，男 3463、女 3918；PMID 29312456 表 1，按性别给中位数与四分位距）：ApoB 男 0.88（0.72–1.07）、女 0.88（0.71–1.07）；原表单位标为 mg/dl，但数值量级与正文“apoB ≥1.17 g/L in men”一致，实为 g/L。中位数作均值、四分位距/1.349 作标准差；未按年龄分层。原稿由 UKB 均值减 1 SD 推算的参考分布已弃用。"
  },
  "effect": {
   "all_cause": {
@@ -68,7 +159,12 @@
    "population": {
     "events": 23818
    },
-   "coef": 0.3
+   "coef": 0.3,
+   "overlaps_with": [
+    "ext.ldl",
+    "ext.hdl",
+    "ext.lpa"
+   ]
   }
  },
  "adjusted_for": [
@@ -124,5 +220,5 @@
   "numbers_verified": true
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-4"
+ "registry_version_added": "2026.11.18-9"
 }

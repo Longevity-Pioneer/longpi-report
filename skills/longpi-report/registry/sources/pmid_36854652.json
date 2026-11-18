@@ -1,0 +1,35 @@
+{
+ "key": "pmid:36854652",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36854652/",
+ "fetched_at": "2026-11-18T06:02:13Z",
+ "sha256": "947e13d56260f143fad0594822a72e0dd4bca73e7a06ef96c44f088cba408368",
+ "citation": "British journal of sports medicine 2023",
+ "text": "Non-occupational physical activity and risk of cardiovascular disease, cancer and mortality outcomes: a dose-response meta-analysis of large prospective studies.\nOBJECTIVE: To estimate the dose-response associations between non-occupational physical activity and several chronic disease and mortality outcomes in the general adult population.\nDESIGN: Systematic review and cohort-level dose-response meta-analysis.\nDATA SOURCES: PubMed, Scopus, Web of Science and reference lists of published studies.\nELIGIBILITY CRITERIA: Prospective cohort studies with (1) general population samples >10 000 adults, (2) ≥3 physical activity categories, and (3) risk measures and CIs for all-cause mortality or incident total cardiovascular disease, coronary heart disease, stroke, heart failure, total cancer and site-specific cancers (head and neck, myeloid leukaemia, myeloma, gastric cardia, lung, liver, endometrium, colon, breast, bladder, rectum, oesophagus, prostate, kidney).\nRESULTS: 196 articles were included, covering 94 cohorts with >30 million participants. The evidence base was largest for all-cause mortality (50 separate results; 163 415 543 person-years, 811 616 events), and incidence of cardiovascular disease (37 results; 28 884 209 person-years, 74 757 events) and cancer (31 results; 35 500 867 person-years, 185 870 events). In general, higher activity levels were associated with lower risk of all outcomes. Differences in risk were greater between 0 and 8.75 marginal metabolic equivalent of task-hours per week (mMET-hours/week) (equivalent to the recommended 150 min/week of moderate-to-vigorous aerobic physical activity), with smaller marginal differences in risk above this level to 17.5 mMET-hours/week, beyond which additional differences were small and uncertain. Associations were stronger for all-cause (relative risk (RR) at 8.75 mMET-hours/week: 0.69, 95% CI 0.65 to 0.73) and cardiovascular disease (RR at 8.75 mMET-hours/week: 0.71, 95% CI 0.66 to 0.77) mortality than for cancer mortality (RR at 8.75 mMET-hours/week: 0.85, 95% CI 0.81 to 0.89). If all insufficiently active individuals had achieved 8.75 mMET-hours/week, 15.7% (95% CI 13.1 to 18.2) of all premature deaths would have been averted.\nCONCLUSIONS: Inverse non-linear dose-response associations suggest substantial protection against a range of chronic disease outcomes from small increases in non-occupational physical activity in inactive adults. PROSPERO registration number CRD42018095481.",
+ "pmcid": "PMC10423495",
+ "doi": "10.1136/bjsports-2022-105669",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.hr",
+   "value": 0.69,
+   "found": true,
+   "context": " for all-cause (relative risk (RR) at 8.75 mMET-hours/week: 0.69, 95% CI 0.65 to 0.73) and cardiovascular disease (RR at 8.7"
+  },
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.lo",
+   "value": 0.65,
+   "found": true,
+   "context": "e (relative risk (RR) at 8.75 mMET-hours/week: 0.69, 95% CI 0.65 to 0.73) and cardiovascular disease (RR at 8.75 mMET-hours/"
+  },
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.hi",
+   "value": 0.73,
+   "found": true,
+   "context": "ive risk (RR) at 8.75 mMET-hours/week: 0.69, 95% CI 0.65 to 0.73) and cardiovascular disease (RR at 8.75 mMET-hours/week: 0."
+  }
+ ]
+}

@@ -1,10 +1,10 @@
 {
  "key": "pmid:36872318",
  "url": "https://pubmed.ncbi.nlm.nih.gov/36872318/",
- "fetched_at": "2026-11-18T03:23:22Z",
- "sha256": "40f13f8c151f5cf1be46aefcda443ac4d0a920219065c23dd61bd15323b10124",
+ "fetched_at": "2026-11-18T06:07:56Z",
+ "sha256": "a04ef49843ba0d87b01adc336966bd47541d5b2b78c6055c5158217322b0536f",
  "citation": "Journal of translational medicine 2023",
- "text": "J-shape relationship between normal fasting plasma glucose and risk of type 2 diabetes in the general population: results from two cohort studies.\nBACKGROUND: Previous studies have reported that high fasting plasma glucose (FPG), even that within the normal range, is associated with the risk of type 2 diabetes (T2D). Nevertheless, these findings are limited to specific populations. Thus, studies in the general population are imperative.\nMETHODS: This study included two cohorts comprising 204 640 individuals who underwent physical examinations at the Rich Healthcare Group present at 32 locations in 11 cities of China from 2010 to 2016 and 15 464 individuals who underwent physical tests at the Murakami Memorial Hospital in Japan. Cox regression, restricted cubic spline (RCS), Kaplan-Meier (KM) curves, and subgroup analysis were used to determine the relationship between FPG and T2D. Receiver operating characteristic (ROC) curves were used to evaluate the predictive power of FPG for T2D.\nRESULTS: The mean age of the 220 104 participants (204 640 Chinese and 15 464 Japanese participants) was 41.8 years (41.7 years for the Chinese and 43.7 years for the Japanese participants). During follow-up, 2611 individuals developed T2D (2238 Chinese and 373 Japanese participants). The RCS demonstrated a J-shaped relationship between FPG and T2D risk, with inflexion points of 4.5 and 5.2 for the Chinese and Japanese populations, respectively. Multivariate-adjusted hazard ratio (HR) was 7.75 for FPG and T2D risk after the inflexion point (7.3 for Chinese and 21.13 for Japanese participants).\nCONCLUSIONS: In general Chinese and Japanese populations, the normal baseline FPG range showed a J-shaped relationship with the risk of T2D. Baseline FPG levels help identify individuals at high risk of T2D and may enable early primary prevention to improve their outcomes.\n[full text, Europe PMC PMC9985867]\nFPG (mmol/L)4.9 ± 0.54.1 ± 0.34.6 ± 0.14.9 ± 0.15.2 ± 0.15.6 ± 0.2 < 0.001\nHigher FPG levels were associated with an increased risk of developing T2D in the fully model (Table 2). Multivariate-adjusted HRs (95% confidence interval [CI]) of the relationship between FPG and T2D in all populations, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively. We further divided the population into five FPG quintile groups (Q1–Q5), which were also positively correlated with the T2D incidence (all P for trend < 0.001).",
+ "text": "J-shape relationship between normal fasting plasma glucose and risk of type 2 diabetes in the general population: results from two cohort studies.\nBACKGROUND: Previous studies have reported that high fasting plasma glucose (FPG), even that within the normal range, is associated with the risk of type 2 diabetes (T2D). Nevertheless, these findings are limited to specific populations. Thus, studies in the general population are imperative.\nMETHODS: This study included two cohorts comprising 204 640 individuals who underwent physical examinations at the Rich Healthcare Group present at 32 locations in 11 cities of China from 2010 to 2016 and 15 464 individuals who underwent physical tests at the Murakami Memorial Hospital in Japan. Cox regression, restricted cubic spline (RCS), Kaplan-Meier (KM) curves, and subgroup analysis were used to determine the relationship between FPG and T2D. Receiver operating characteristic (ROC) curves were used to evaluate the predictive power of FPG for T2D.\nRESULTS: The mean age of the 220 104 participants (204 640 Chinese and 15 464 Japanese participants) was 41.8 years (41.7 years for the Chinese and 43.7 years for the Japanese participants). During follow-up, 2611 individuals developed T2D (2238 Chinese and 373 Japanese participants). The RCS demonstrated a J-shaped relationship between FPG and T2D risk, with inflexion points of 4.5 and 5.2 for the Chinese and Japanese populations, respectively. Multivariate-adjusted hazard ratio (HR) was 7.75 for FPG and T2D risk after the inflexion point (7.3 for Chinese and 21.13 for Japanese participants).\nCONCLUSIONS: In general Chinese and Japanese populations, the normal baseline FPG range showed a J-shaped relationship with the risk of T2D. Baseline FPG levels help identify individuals at high risk of T2D and may enable early primary prevention to improve their outcomes.\n[full text, Europe PMC PMC9985867]\nWe adjusted the variables of the fully model to further construct the RCS to depict the risk for FPG and T2D. Multivariate-adjusted RCS (Fig. 3) revealed a nonlinear relationship between FPG and new-onset T2D in all populations, Chinese, and Japanese. (all P for nonlinearity < 0.05). The inflexion points for the relationship between FPG and new-onset T2D in the Chinese and Japanese populations were 4.5 mmol/L and 5.2 mmol/L, respectively (Table 3). The risk of T2D increased rapidly with increasing FPG level beyond the inflexion point. On the right side of the inflexion point, the multivariate-adjusted HRs (95% CI) for all populations, Chinese and Japanese were 7.75 (6.97, 8.62), 7.3 (6.53, 8.17), and 21.13 (13.17, 33.91) respectively. We further divided the population into two groups based on the FPG inflexion points. The KM curves (Fig. 4) which were used to visualise the changes in T2D incidence between the two groups over the follow-up period showed a slow increase in T2D incidence in the groups to the left of the inflexion point. (all log-rank test P < 0.001).\nFPG (mmol/L)4.9 ± 0.54.1 ± 0.34.6 ± 0.14.9 ± 0.15.2 ± 0.15.6 ± 0.2 < 0.001\nHigher FPG levels were associated with an increased risk of developing T2D in the fully model (Table 2). Multivariate-adjusted HRs (95% confidence interval [CI]) of the relationship between FPG and T2D in all populations, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively. We further divided the population into five FPG quintile groups (Q1–Q5), which were also positively correlated with the T2D incidence (all P for trend < 0.001).",
  "pmcid": "PMC9985867",
  "doi": "10.1186/s12967-023-04006-9",
  "open_access": "Y",
@@ -12,24 +12,24 @@
  "checks": [
   {
    "term": "ext.fpg",
-   "number": "t2d.hr",
-   "value": 5.5,
+   "number": "t2d.hr_above.hr",
+   "value": 7.3,
    "found": true,
-   "context": "l populations, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively."
+   "context": "l populations, Chinese and Japanese were 7.75 (6.97, 8.62), 7.3 (6.53, 8.17), and 21.13 (13.17, 33.91) respectively."
   },
   {
    "term": "ext.fpg",
-   "number": "t2d.lo",
-   "value": 5.02,
+   "number": "t2d.hr_above.lo",
+   "value": 6.53,
    "found": true,
-   "context": "ulations, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively."
+   "context": "ulations, Chinese and Japanese were 7.75 (6.97, 8.62), 7.3 (6.53, 8.17), and 21.13 (13.17, 33.91) respectively."
   },
   {
    "term": "ext.fpg",
-   "number": "t2d.hi",
-   "value": 6.02,
+   "number": "t2d.hr_above.hi",
+   "value": 8.17,
    "found": true,
-   "context": "ns, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively."
+   "context": "ns, Chinese and Japanese were 7.75 (6.97, 8.62), 7.3 (6.53, 8.17), and 21.13 (13.17, 33.91) respectively."
   }
  ]
 }

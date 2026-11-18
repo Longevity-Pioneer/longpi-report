@@ -281,7 +281,7 @@ def _epmc_record(query: str) -> dict:
 
 
 def _epmc_fulltext_paragraphs(pmcid: str) -> List[str]:
-    body = http_get(f"https://www.ebi.ac.uk/europepmc/webservices/rest/{_q(pmcid)}/fullTextXML", accept="application/xml")
+    body = http_get(f"https://www.ebi.ac.uk/europepmc/webservices/rest/{_q(pmcid)}/fullTextXML", accept="application/xml", timeout=90)
     root = ET.fromstring(body)
     out = []
     for tag in ("p", "tr", "caption", "title"):
@@ -1006,7 +1006,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             fail.append(f"{oc}: 缺 quote")
             continue
         try:
-            src = fetch_source(key, root, need=[quote], refresh=refresh, offline=offline)
+            src = fetch_source(key, root, need=[quote] + ([norm_text(ev["table_caption"])] if ev.get("table_caption") else []), refresh=refresh, offline=offline)
             used.add(key)
         except PrivacyError:
             raise
@@ -1019,6 +1019,11 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             fail.append(f"{oc}: quote 不是 {key} 原文的子串（空白归一化后）")
             continue
         words_in = text if key.startswith("pgs_perf:") else quote   # PGS records: the trait line names the outcome
+        cap = norm_text(ev.get("table_caption") or "")
+        if cap and cap.lower() in text.lower():   # a table row quote: its caption (also in the source text) names the outcome
+            words_in = words_in + " " + cap
+        elif cap:
+            fail.append(f"{oc}: evidence.table_caption 不是 {key} 原文的子串")
         if not outcome_words_ok(scr["disease_id"] if oc == "screening" else oc, words_in, screening=(oc == "screening")):
             fail.append(f"{oc}: quote 未出现该结局的用词（{OUTCOME_WORDS.get(scr['disease_id'] if oc == 'screening' else oc, '')}），"
                         "数值可能属于另一结局")

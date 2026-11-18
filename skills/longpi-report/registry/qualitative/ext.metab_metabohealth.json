@@ -75,7 +75,8 @@
    50,
    95
   ],
-  "sex": "both"
+  "sex": "both",
+  "events_source_zh": "全文：多组学子队列 1424 人中 132 例死亡（摘要未给）"
  },
  "measurement": {
   "sd_abs": null,
@@ -101,7 +102,7 @@
  },
  "disclosure": "standard",
  "evidence": {
-  "grade": "B",
+  "grade": "C",
   "design": "prospective-cohort",
   "pmid": "37303208",
   "pmcid": "PMC10562890",
@@ -119,5 +120,10 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "按统一规则（规则 3：B 级须为大型前瞻队列、荟萃或孟德尔随机化的主分析，事件 ≥100；全因死亡项另须合并分析或单一队列死亡 ≥1000 例），MetaboHealth 每 SD 死亡 HR 1.60（1.35–1.89）来自鹿特丹研究多组学子样本（1424 人、132 例死亡）的次要分析，评分原始构建研究（Deelen 2019，44 168 人、5512 例死亡）正文只给 14 项代谢物各自的 HR，未给评分每 SD 的 HR，无法替代。评分含葡萄糖、白蛋白、炎症与脂蛋白指标，与已计入的表型年龄时钟、血糖、血脂领域共享信息。降为 C 级，只作定性佐证，与 DunedinPACE 处理一致。",
+ "verifier_reasons": [
+  "all_cause: 证据等级 C 低于 B",
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例"
+ ]
 }

@@ -1,0 +1,13 @@
+{
+ "key": "pmid:31576770",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31576770/",
+ "fetched_at": "2026-11-18T06:11:25Z",
+ "sha256": "c61d27cd54d364b91236c065d410101e120835aa90e30b959156ce3179aedf15",
+ "citation": "Journal of the American Heart Association 2019",
+ "text": "Association Between Active Commuting and Incident Cardiovascular Diseases in Chinese: A Prospective Cohort Study.\nBackground Active commuting is related to a higher level of physical activity but more exposure to ambient air pollutants. With the rather serious air pollution in urban China, we aimed to examine the association between active commuting and risk of incident cardiovascular disease in the Chinese population. Methods and Results A total of 104 170 urban commuters without major chronic diseases at baseline were included from China Kadoorie Biobank. Self-reported commuting mode was defined as nonactive commuting, work at home or near home, walking, and cycling. Multivariable Cox regression was used to examine associations between commuting mode and cardiovascular disease. Overall, 47.2% of the participants reported nonactive commuting, 13.4% reported work at home or work near home, 20.1% reported walking, and 19.4% reported cycling. During a median follow-up of 10 years, we identified 5374 incidents of ischemic heart disease, 664 events of hemorrhagic stroke, and 4834 events of ischemic stroke. After adjusting for sex, socioeconomic status, lifestyle factors, sedentary time, body mass index, comorbidities, household air pollution, passive smoking, and other domain physical activity, walking (hazard ratio, 0.90; 95% CI, 0.84-0.96) and cycling (hazard ratio, 0.81; 95% CI, 0.74-0.88) were associated with a lower risk of ischemic heart disease than nonactive commuting. Cycling was associated with a lower risk of ischemic stroke (hazard ratio, 0.92; 95% CI, 0.84-1.00). No significant association was found of walking or cycling with hemorrhagic stroke. The associations of commuting mode with major cardiovascular disease were consistent among men and women and across different levels of other domain physical activity. Conclusions In urban China, cycling was associated with a lower risk of ischemic heart disease and ischemic stroke. Walking was associated with a lower risk of ischemic heart disease.\n[full text, Europe PMC PMC6818036]\nFamily history of heart attack, % | 4.8 | 4.2 | 4.8 | 4.3",
+ "pmcid": "PMC6818036",
+ "doi": "10.1161/jaha.119.012556",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

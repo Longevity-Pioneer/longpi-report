@@ -118,8 +118,11 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
-  "all_cause.hr_above: 95% CI 1.0–1.89 含 1（无统计学意义）"
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例",
+  "all_cause.hr_above: 95% CI 1.0–1.89 含 1（无统计学意义；分类水平须改为 hr 1 或整项不入库）",
+  "all_cause: 未写结局事件数",
+  "参考分布未给 pmid+quote：找不到可核对来源时须写 reference.estimated: true 与 estimated_reason_zh"
  ]
 }

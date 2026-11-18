@@ -3,7 +3,7 @@
  "name_zh": "结直肠癌多基因评分",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "PGS:PGS005162",
   "unit": "SD",
@@ -35,7 +35,17 @@
    "per_unit": "1 SD of PRS (z)",
    "direction": "higher_worse",
    "metric": "HR",
-   "note": "每 SD 的 HR（PLoS Med 摘要：each standard deviation increase）"
+   "note": "每 SD 的 HR（PLoS Med 摘要：each standard deviation increase）",
+   "overlaps_with": [
+    "ext.fh_crc"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "region",
+    "genetic_pcs"
+   ],
+   "coef": 0.6
   }
  },
  "adjusted_for": [
@@ -45,10 +55,10 @@
   "genetic_pcs"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "中国嘉道理生物库前瞻发病 HR，校正年龄、性别、地区与主成分；原文摘要写明效应为每 SD。种系易感位点主要经组织特异通路起作用，项目库中暂无可测中介，mediated_by 为空。系数 0.8 为与家族史等项可能部分重叠的保守折减。",
+  "rationale_zh": "中国嘉道理生物库前瞻发病 HR，校正年龄、性别、地区与前 10 个遗传主成分，未校正家族史。家族史与多基因评分共享部分遗传信息（英国生物库分析显示二者正相关但各自独立，PMID 39291673），研究未校正家族史，按规则（校正了主成分等其他混杂、未校正重叠项）系数上限 0.6，取 0.6。错配修复基因致病变异与多基因评分相互独立（Helfand 2025 英国生物库，χ² P = 0.22），不列为重叠。",
   "mediated_by": {}
  },
  "transport": {
@@ -99,5 +109,5 @@
   "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

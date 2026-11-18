@@ -1,0 +1,56 @@
+{
+ "key": "pmid:26331816",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/26331816/",
+ "fetched_at": "2026-11-18T06:11:18Z",
+ "sha256": "e8981aa63c311227162687bc3599eb85d2ab3b54ce0411e4c324cfa159ce348f",
+ "citation": "Cancer 2015",
+ "text": "Emerging tobacco-related cancer risks in China: A nationwide, prospective study of 0.5 million adults.\nBACKGROUND: In China, cigarette consumption has increased substantially since the 1980s, almost exclusively in men. This study was aimed at assessing the emerging cancer risks.\nMETHODS: A nationwide, prospective study recruited 210,259 men and 302,632 women aged 30 to 79 years from 10 areas of China from 2004 to 2008; approximately 18,000 incident cancers were recorded during 7 years of follow-up. Cox regression yielded adjusted risk ratios (RRs) comparing smokers (including those who had stopped because of illness but not those who had stopped by choice) with never-smokers.\nRESULTS: Among men, 68% were smokers; their overall cancer risk was significantly increased (RR, 1.44; 95% confidence interval [CI], 1.37-1.53), and it was greater in urban (RR, 1.55; 95% CI, 1.41-1.70) than in rural areas (RR, 1.39; 95% CI, 1.30-1.49). This excess accounted for 23% of all cancers between the ages of 40 and 79 years, with significantly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55), esophageal cancer (RR, 1.47; 95% CI, 1.24-1.73), and an aggregate of 5 other minor sites (RR, 1.52; 95% CI, 1.25-1.86). For lung cancer, the RRs were much greater for nonadenocarcinoma (RR, 5.83; 95% CI, 5.02-6.77) than for adenocarcinoma (RR, 1.78; 95% CI, 1.36-2.34). Among exsmokers (6.7%) who had stopped by choice, there was little excess cancer risk approximately 15 years after quitting. Among the few female smokers (3%), the overall cancer risk was also significantly increased (RR, 1.42; 95% CI, 1.28-1.57). Smoking was estimated to cause approximately 435,000 new cancers per year in China (approximately 360,000 in men and approximately 75,000 in women).\nCONCLUSIONS: In China, smoking now causes a quarter of all adult male cancers. High male uptake rates before the age of 20 years and nearly universal use of cigarettes foreshadow substantial tobacco-attributed risks in China unless there is widespread cessation.",
+ "pmcid": "PMC4584499",
+ "doi": "10.1002/cncr.29560",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.hr",
+   "value": 1.34,
+   "found": true,
+   "context": "r cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.lo",
+   "value": 1.16,
+   "found": true,
+   "context": "1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.hi",
+   "value": 1.55,
+   "found": true,
+   "context": " 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "lung_ca.current.hr",
+   "value": 2.51,
+   "found": true,
+   "context": "ears, with significantly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "lung_ca.current.lo",
+   "value": 2.18,
+   "found": true,
+   "context": "nificantly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach "
+  },
+  {
+   "term": "ext.smoking",
+   "number": "lung_ca.current.hi",
+   "value": 2.9,
+   "found": true,
+   "context": "antly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cance"
+  }
+ ]
+}

@@ -1,0 +1,34 @@
+{
+ "key": "pmid:37555441",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37555441/",
+ "fetched_at": "2026-11-18T06:02:05Z",
+ "sha256": "5c54f77fa6d37a1ea29a246eda1b21ec795c3a9f03abb8cefdb74f23a0aa7258",
+ "citation": "European journal of preventive cardiology 2023",
+ "text": "The association between daily step count and all-cause and cardiovascular mortality: a meta-analysis.\nAIMS: There is good evidence showing that inactivity and walking minimal steps/day increase the risk of cardiovascular (CV) disease and general ill-health. The optimal number of steps and their role in health is, however, still unclear. Therefore, in this meta-analysis, we aimed to evaluate the relationship between step count and all-cause mortality and CV mortality.\nMETHODS AND RESULTS: We systematically searched relevant electronic databases from inception until 12 June 2022. The main endpoints were all-cause mortality and CV mortality. An inverse-variance weighted random-effects model was used to calculate the number of steps/day and mortality. Seventeen cohort studies with a total of 226 889 participants (generally healthy or patients at CV risk) with a median follow-up 7.1 years were included in the meta-analysis. A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001], while a 500-step increment was associated with a 7% decrease in CV mortality (HR 0.93; 95% CI 0.91-0.95; P < 0.001). Compared with the reference quartile with median steps/day 3867 (2500-6675), the Quartile 1 (Q1, median steps: 5537), Quartile 2 (Q2, median steps 7370), and Quartile 3 (Q3, median steps 11 529) were associated with lower risk for all-cause mortality (48, 55, and 67%, respectively; P < 0.05, for all). Similarly, compared with the lowest quartile of steps/day used as reference [median steps 2337, interquartile range 1596-4000), higher quartiles of steps/day (Q1 = 3982, Q2 = 6661, and Q3 = 10 413) were linearly associated with a reduced risk of CV mortality (16, 49, and 77%; P < 0.05, for all). Using a restricted cubic splines model, we observed a nonlinear dose-response association between step count and all-cause and CV mortality (Pnonlineraly < 0.001, for both) with a progressively lower risk of mortality with an increased step count.\nCONCLUSION: This meta-analysis demonstrates a significant inverse association between daily step count and all-cause mortality and CV mortality with more the better over the cut-off point of 3867 steps/day for all-cause mortality and only 2337 steps for CV mortality.",
+ "doi": "10.1093/eurjpc/zwad229",
+ "open_access": "N",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.steps_daily",
+   "number": "all_cause.hr_below.derived.hr",
+   "value": 0.85,
+   "found": true,
+   "context": "5% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]"
+  },
+  {
+   "term": "ext.steps_daily",
+   "number": "all_cause.hr_below.derived.lo",
+   "value": 0.81,
+   "found": true,
+   "context": "ality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]"
+  },
+  {
+   "term": "ext.steps_daily",
+   "number": "all_cause.hr_below.derived.hi",
+   "value": 0.91,
+   "found": true,
+   "context": " [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]"
+  }
+ ]
+}

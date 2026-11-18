@@ -115,8 +115,11 @@
  },
  "why_qualitative_zh": "可逐字核对的估计只有美国 HRS 的 4 年死亡比值比（每年加速 OR 1.056，95% CI 1.037–1.075，原始时钟列），不是风险比，正文未给死亡数；原始训练文献（Levine 2018）只报告每年 HR 1.045 而无可信区间。DNAm PhenoAge 以血液 PhenoAge 为训练目标，与已计入的 core.phenoage_clock 及 GrimAge2 高度重叠；本仓库 NHANES 分析显示其在 LongPi 模型基础上残差每 SD 的 HR 为 1.107，C 指数增益 0.0016，故只作定性佐证。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
+ "registry_version_added": "2026.11.18-10",
  "verifier_reasons": [
-  "all_cause: HR 1.056 与 CI 1.037–1.075 未在 quote 中成组出现（数值与原文结论未绑定）"
+  "all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例",
+  "all_cause: quote 未出现该结局的用词（mortalit|death|died|dying|surviv|死亡），数值可能属于另一结局",
+  "all_cause: HR 1.056 与 CI 1.037–1.075 未在 quote 中成组出现（数值与原文结论未绑定）",
+  "all_cause: 未写结局事件数"
  ]
 }

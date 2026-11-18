@@ -3,7 +3,7 @@
  "name_zh": "脑卒中多基因评分",
  "kind": "genetic",
  "system": "cardiovascular",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "PGS:PGS002259",
   "unit": "SD",
@@ -35,17 +35,25 @@
    "per_unit": "1 SD of PRS (z)",
    "direction": "higher_worse",
    "metric": "HR",
-   "note": "PGS Catalog 记录为每 SD 的 HR；事件数 1227 来自原文摘要（卒中发病，80 岁前）"
+   "note": "PGS Catalog 记录为每 SD 的 HR；事件数 1227 来自原文摘要（卒中发病，80 岁前）",
+   "overlaps_with": [
+    "ext.sbp",
+    "ext.diabetes"
+   ],
+   "adjusted_for": [
+    "sex"
+   ],
+   "coef": 0.3
   }
  },
  "adjusted_for": [
   "sex"
  ],
  "overlap": {
-  "coef": 0.8,
+  "coef": 0.3,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "中国前瞻队列的发病 HR（全部卒中）。评分部分经血压起作用：无文献给出该评分经可测中介的比例，按约定默认中介合计 0.5（收缩压 0.5）；已测血压时按比例折减。",
+  "rationale_zh": "中国前瞻队列（China-PAR）的发病 HR（全部卒中，80 岁前），PGS Catalog 记录协变量仅为性别。该 metaPRS 由卒中及其相关性状（血压、血糖等）的东亚 GWAS 结果合成，与 ext.sbp、ext.diabetes 共享信息，研究未校正，按规则系数上限 0.3，取 0.3。另保留默认中介（收缩压 0.5），已测时再折减。",
   "mediated_by": {
    "LOINC:8480-6": 0.5
   }
@@ -59,7 +67,8 @@
   "cohort": "China-PAR cohorts, Lu 2021 Neurology",
   "n": 41006,
   "events": 1227,
-  "ancestry": "East Asian (Chinese)"
+  "ancestry": "East Asian (Chinese)",
+  "events_source_zh": "PMID 34031205 摘要：1,227 participants developed stroke before age 80 years（PGS Catalog 记录未填病例数）"
  },
  "measurement": {
   "sd_abs": null,
@@ -98,5 +107,5 @@
   "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

@@ -124,7 +124,8 @@
     "mean": 152.9,
     "sd": 22.4
    }
-  ]
+  ],
+  "norms_marker": "sbp"
  },
  "effect": {
   "chd": {
@@ -134,10 +135,15 @@
    "per": 10,
    "per_unit": "mmHg (usual SBP)",
    "direction": "higher_worse",
-   "coef": 0.8,
+   "coef": 0.6,
    "population": {
-    "events": 4450
-   }
+    "events": 4450,
+    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病"
+   },
+   "overlaps_with": [
+    "ext.diabetes",
+    "ext.smoking"
+   ]
   },
   "stroke": {
    "hr": 1.3,
@@ -146,10 +152,16 @@
    "per": 10,
    "per_unit": "mmHg (usual SBP)",
    "direction": "higher_worse",
-   "coef": 0.8,
+   "coef": 0.6,
    "population": {
-    "events": 29343
-   }
+    "events": 29343,
+    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病（此处事件数为缺血性卒中；全部卒中合计 36 926 例）"
+   },
+   "overlaps_with": [
+    "ext.diabetes",
+    "ext.smoking",
+    "ext.alcohol"
+   ]
   },
   "ckd": {
    "hr": 1.4,
@@ -160,22 +172,31 @@
    "direction": "higher_worse",
    "coef": 0.6,
    "population": {
-    "events": 1940
+    "events": 1940,
+    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病"
    },
    "evidence": {
     "pmid": "29773120",
     "grade": "B",
     "design": "prospective-cohort",
     "quote": "Usual systolic blood pressure was also positively associated with incident chronic kidney disease (1.40 [1.35-1.44])"
-   }
+   },
+   "overlaps_with": [
+    "ext.uacr"
+   ]
   }
  },
  "adjusted_for": [
   "age",
   "sex",
+  "region",
+  "education",
   "core.smoking",
+  "ext.smoking",
   "core.alcohol",
-  "core.adiposity"
+  "ext.alcohol",
+  "core.adiposity",
+  "ext.bmi"
  ],
  "overlap": {
   "coef": 0.8,
@@ -183,7 +204,7 @@
   "overlaps_with": [
    "core.bp"
   ],
-  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.bp（只计全因死亡）不重复计数。原研究校正了年龄、性别、地区、教育、吸烟、饮酒和体重指数，未校正血脂（基线未测）；敏感性分析加入糖尿病后结果基本不变。降压试验支持血压对冠心病和卒中的因果作用，故冠心病、卒中取 0.8。慢性肾病的关联原作者认为可能部分来自反向因果或残余混杂，且降压试验未见肾衰竭显著下降，故慢性肾病取 0.6。卒中采用缺血性卒中的 HR（占卒中多数）；脑出血关联更强（1.68），此处取保守值。HR 已做回归稀释校正（对应长期平均收缩压），单次测量值代入可能略高估；40–49 岁的 HR 约为 70–79 岁的两倍，本项未按年龄分层。",
+  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.bp（只计全因死亡）不重复计数。原研究主模型校正年龄、性别、地区、教育、吸烟、饮酒和体重指数，未校正血脂（基线未测）；糖尿病只在敏感性分析中加入（结果基本不变），按主模型计，与糖尿病项未互相校正，属部分校正，冠心病、卒中系数由 0.8 降至 0.6。慢性肾病的关联原作者认为可能部分来自反向因果或残余混杂，且与白蛋白尿项共享信息、未互相校正，取 0.6。卒中采用缺血性卒中的 HR（1.30，占全部卒中的 79%）用于全部卒中；脑出血关联更强（1.68），原文未给全部卒中合并估计，此处为保守值，会低估全部卒中风险。HR 已做回归稀释校正（对应长期平均收缩压），单次测量值代入可能略高估；40–49 岁的 HR 约为 70–79 岁的两倍，本项未按年龄分层。",
   "mediated_by": {}
  },
  "transport": {
@@ -241,5 +262,10 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9",
+ "adjusted_for_sensitivity": [
+  "physical_activity",
+  "fruit_vegetables",
+  "ext.diabetes"
+ ]
 }

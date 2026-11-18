@@ -1,0 +1,244 @@
+{
+ "id": "ext.tg",
+ "name_zh": "甘油三酯（糖尿病风险）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:2571-8",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.3,
+   4.5
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "meanlog": 0.2698,
+    "sdlog": 0.659
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "meanlog": 0.1993,
+    "sdlog": 0.5773
+   }
+  ],
+  "pmid": "29312456",
+  "quote": "Triglycerides (mg/dl) | 116(77.9–189.5) | 108.1(74.4–162.1) | 0.0001",
+  "source": "中国健康与营养调查 2009 年血样（全国 9 省多阶段随机整群抽样，18–75 岁 7381 人，男 3463、女 3918；PMID 29312456 表 1，按性别给中位数与四分位距）：甘油三酯男 116（77.9–189.5）、女 108.1（74.4–162.1）mg/dL，按 88.57 换算为 mmol/L，对数正态 meanlog = ln(中位数)，sdlog = ln(Q3/Q1)/1.349；未按年龄分层。"
+ },
+ "effect": {
+  "t2d": {
+   "hr": 1.25,
+   "lo": 1.21,
+   "hi": 1.3,
+   "per": 1,
+   "per_unit": "mmol/L",
+   "direction": "higher_worse",
+   "overlaps_with": [
+    "ext.fpg",
+    "ext.hba1c",
+    "ext.bmi",
+    "ext.waist",
+    "ext.fh_t2d",
+    "ext.prs_t2d"
+   ]
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.adiposity",
+  "core.bp",
+  "ext.fpg",
+  "ext.hdl",
+  "ext.ldl",
+  "LOINC:1742-6",
+  "core.smoking",
+  "core.alcohol",
+  "ext.fh_t2d"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "仅为 2 型糖尿病建项。原文完全校正模型已同时校正年龄、性别、BMI、血压、空腹血糖、HDL-C、LDL-C、转氨酶、肾功能、吸烟、饮酒与糖尿病家族史，属于互相校正的估计，但未校正糖化血红蛋白、腰围与多基因评分，系数取 0.6。关联呈非线性：1.27 mmol/L 以下斜率更陡（HR 2.35），以上较平（HR 1.14），此处用全范围线性估计。数据为体检人群回顾性队列的二次分析。冠心病未纳入：ERFC 在校正 HDL-C 与非 HDL 胆固醇后 TG 与冠心病的 HR 为 0.99（0.94–1.05），无独立关联。脂肪肝暂未找到可核对的东亚队列连续估计。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Rich Healthcare Group health-check cohort, 32 sites in 11 Chinese cities (secondary analysis of a retrospective cohort, 2010-2016)",
+  "n": 202888,
+  "ancestry": "Chinese",
+  "age_range": [
+   20,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.2,
+  "source": "甘油三酯个体内日间生物学变异约 20%（经验值）"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "non_fasting"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "限制精制碳水与酒精、减重、规律运动可显著降低甘油三酯。"
+ },
+ "test": {
+  "label_zh": "空腹抽血查血脂四项",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "C",
+  "design": "retrospective-cohort",
+  "pmid": "40171237",
+  "pmcid": "PMC11960458",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/40171237/",
+  "quote": "After adjusting for confounding variables, baseline TG levels were positively associated with incident DM. (HR:1.25,95% CI:1.21-1.30,P<0.001)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "29155120",
+    "estimate": "河南农村队列，TG 第四 vs 第一四分位 HR 2.32（1.73–3.13），720 例",
+    "why_not": "只有分位比较，无连续斜率"
+   },
+   {
+    "pmid": "19903920",
+    "estimate": "ERFC 冠心病 HR 0.99（0.94–1.05）",
+    "why_not": "冠心病结局校正 HDL-C 与非 HDL-C 后无独立关联"
+   }
+  ]
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "disclosure": "standard",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "现有连续估计（PMID 40171237，HR 1.25，1.21–1.30 每 mmol/L）来自体检机构回顾性纵向数据的二次分析，研究设计不在入库范围，摘要亦未给出事件数；关联呈非线性（1.27 mmol/L 以下更陡）。前瞻性中国队列只报告分位比较，不能换算为连续斜率，故作定性佐证。",
+ "verifier_reasons": [
+  "t2d: 证据等级 C 低于 B",
+  "t2d: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')",
+  "t2d: quote 未出现该结局的用词（diabet|T2D|glyc），数值可能属于另一结局",
+  "t2d: 未写结局事件数"
+ ]
+}

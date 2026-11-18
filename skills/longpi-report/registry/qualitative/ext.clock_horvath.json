@@ -119,6 +119,9 @@
  },
  "why_qualitative_zh": "原文效应量经逐字核对，但该时钟与已计入的 GrimAge2（core.methylation）及血液 PhenoAge（core.phenoage_clock）信息高度重叠，现有研究均未校正这两项。本仓库 NHANES 分析显示，在 LongPi 模型基础上 Horvath 时钟残差每 SD 的 HR 为 1.086，C 指数增益仅 0.0011，对个人风险几乎不增加信息，故只作定性佐证，不计入 LongPi Age。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-3",
- "verifier_reasons": []
+ "registry_version_added": "2026.11.18-10",
+ "verifier_reasons": [
+  "all_cause: quote 未出现该结局的用词（mortalit|death|died|dying|surviv|死亡），数值可能属于另一结局",
+  "all_cause: 事件数 862 无法核对且未写 events_source_zh"
+ ]
 }

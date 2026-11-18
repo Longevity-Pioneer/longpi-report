@@ -3,7 +3,7 @@
  "name_zh": "一级亲属肝癌家族史",
  "kind": "genetic",
  "system": "whole_body",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:liver_ca",
   "unit": "0/1",
@@ -34,22 +34,32 @@
    "hr": 1.69,
    "lo": 1.1,
    "hi": 2.61,
-   "coef": 0.5
+   "coef": 0.5,
+   "overlaps_with": [
+    "ext.hbv",
+    "ext.alcohol",
+    "ext.smoking",
+    "ext.diabetes"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "ext.smoking",
+    "ext.alcohol"
+   ]
   }
  },
  "adjusted_for": [
   "age",
   "sex",
-  "core.smoking",
-  "core.alcohol"
+  "ext.smoking",
+  "ext.alcohol"
  ],
  "overlap": {
   "coef": 0.5,
   "coef_sd": 0.2,
-  "overlaps_with": [
-   "ext.hbv"
-  ],
-  "rationale_zh": "本项只计疾病结局。研究校正了生活方式因素，但未校正乙肝、丙肝病毒感染；东亚人群肝癌家族聚集很大部分来自乙肝病毒母婴和家庭内传播，与 ext.hbv 重叠明显，系数取 0.5。原文未给出肝癌事件数，置信区间较宽。",
+  "overlaps_with": [],
+  "rationale_zh": "本项只计疾病结局。JPHC 研究校正了生活方式因素，但未校正乙肝、丙肝病毒感染；东亚人群肝癌家族聚集很大部分来自乙肝病毒母婴和家庭内传播，与 ext.hbv 重叠明显，系数取 0.5。",
   "mediated_by": {}
  },
  "transport": {
@@ -90,7 +100,19 @@
   "url": "https://pubmed.ncbi.nlm.nih.gov/31595492/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "alternatives_considered": [
+   {
+    "pmid": "23669307",
+    "estimate": "HBsAg 阳性且有家族史对阴性且无家族史 HR 32.33 (20.8–50.3)",
+    "why_not": "为联合暴露组比较，未给单独的家族史主效应；显示家族史效应主要存在于乙肝感染者"
+   },
+   {
+    "pmid": "29060983",
+    "estimate": "海门队列肝癌家族史与肝癌死亡相关",
+    "why_not": "摘要未给家族史的 HR 与置信区间，结局为肝癌死亡"
+   }
+  ]
  },
  "license": {
   "commercial_use": true,
@@ -98,5 +120,9 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-10",
+ "why_qualitative_zh": "原文摘要未给出肝癌事件数，全文非开放获取，无法核对事件数是否达到 100 例，置信区间较宽（1.10–2.61）。台湾 REVEAL 队列（PMID 23669307，22,472 人、374 例肝癌）显示，乙肝表面抗原阴性者有无肝癌家族史的累积风险几乎相同（0.62% 对 0.65%），而在阳性者中家族史使风险加倍，即家族史的作用主要表现为与乙肝感染的交互，用一个独立于 ext.hbv 的乘法风险比计入会误导。暂作定性提示。",
+ "verifier_reasons": [
+  "liver_ca: 未写结局事件数"
+ ]
 }

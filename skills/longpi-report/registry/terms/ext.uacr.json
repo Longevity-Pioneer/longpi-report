@@ -53,7 +53,7 @@
    "per": 1.683,
    "per_unit": "ln(ACR) 单位：原文 UACR 10–<30 对 <10 mg/g；两组中位数（约 15.8 与 2.9 mg/g）由上述 4C 构成比拟合的对数正态分布推算，原文未给组中位数",
    "direction": "higher_worse",
-   "coef": 0.8,
+   "coef": 0.5,
    "evidence": {
     "pmid": "42584389",
     "grade": "B",
@@ -70,7 +70,23 @@
     "ancestry": "Chinese",
     "shrink": 1.0,
     "sd_inflate": 1.0
-   }
+   },
+   "overlaps_with": [
+    "ext.sbp"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "education",
+    "LP:egfr_ckdepi2021",
+    "lifestyle",
+    "ext.diabetes",
+    "ext.htn_dx",
+    "core.adiposity",
+    "core.lipid",
+    "medication"
+   ],
+   "outcome_definition_zh": "4C 研究的新发慢性肾病为化验定义：随访时单次 eGFR <60 mL/min/1.73m²（未重复确认），或 eGFR 下降 ≥50%、eGFR <15、终末期肾病、肾病死亡（全文方法部分）。本库 ckd 基线为中国慢性病前瞻性研究中经医院与医保记录、ICD-10 编码的临床诊断慢性肾病，两者定义不同（化验定义发病率约高一个数量级），故按规则 5 将结局系数降至 0.5。结局不以白蛋白尿定义，不存在以 UACR 预测 UACR 的循环问题。"
   }
  },
  "adjusted_for": [
@@ -93,7 +109,7 @@
    "core.adiposity",
    "core.phenoage_clock"
   ],
-  "rationale_zh": "白蛋白尿是血压、血糖与肥胖所致微血管损伤的下游表现，并与肾功能相关（表型年龄时钟已含肌酐）。CKD-PC 模型校正了收缩压、糖尿病、吸烟、总胆固醇与 eGFR，未校正体重指数和表型年龄时钟，属部分校正，取 0.5。全因死亡模型的校正项按 CKD-PC 2010 方法学记录，摘要仅写'校正潜在混杂'，全文未能抓取核对。肾病结局（4C）校正了年龄、性别、教育、基线 eGFR、生活方式与代谢因素（糖尿病、高血压、腹型肥胖、LDL 升高）及用药，近似全校正，结局系数取 0.8（而非 1.0），因组中位数为推算值",
+  "rationale_zh": "白蛋白尿是血压、血糖与肥胖所致微血管损伤的下游表现，并与肾功能相关（表型年龄时钟已含肌酐）。CKD-PC 模型校正了收缩压、糖尿病、吸烟、总胆固醇与 eGFR，未校正体重指数和表型年龄时钟，属部分校正，取 0.5。全因死亡模型的校正项按 CKD-PC 2010 方法学记录，摘要仅写'校正潜在混杂'，全文未能抓取核对。肾病结局（4C）校正了年龄、性别、教育、基线 eGFR、生活方式与代谢因素（糖尿病、高血压、腹型肥胖、LDL 升高）及用药，近似全校正，结局系数取 0.8（而非 1.0），因组中位数为推算值。修订：肾病结局来源（4C）的结局为单次 eGFR 定义，与本库按 ICD 编码的临床诊断慢性肾病不同，按规则 5 将系数由 0.8 降至 0.5；该结局与收缩压项共享信息，4C 校正的是高血压状态而非收缩压连续值，属部分校正，上限 0.6。",
   "mediated_by": {}
  },
  "transport": {
@@ -149,5 +165,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

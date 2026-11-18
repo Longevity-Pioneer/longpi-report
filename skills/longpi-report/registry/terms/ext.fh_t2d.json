@@ -3,7 +3,7 @@
  "name_zh": "糖尿病家族史",
  "kind": "genetic",
  "system": "metabolic",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:fh:t2d",
   "unit": "0/1",
@@ -33,22 +33,32 @@
   "t2d": {
    "hr": 1.9,
    "lo": 1.57,
-   "hi": 2.29
+   "hi": 2.29,
+   "overlaps_with": [
+    "ext.prs_t2d",
+    "ext.bmi",
+    "ext.waist",
+    "ext.fpg",
+    "ext.hba1c"
+   ],
+   "adjusted_for": [
+    "age",
+    "sex",
+    "multivariable_unspecified"
+   ],
+   "coef": 0.6
   }
  },
  "adjusted_for": [
   "age",
   "sex",
-  "core.smoking",
-  "core.alcohol",
-  "core.adiposity",
-  "LP:mvpa_min_week"
+  "multivariable_unspecified"
  ],
  "overlap": {
-  "coef": 0.7,
+  "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "仅为 2 型糖尿病建项，属先天项，不进入 LongPi Age。家族史既反映遗传易感，也部分经共享的肥胖与生活方式起作用；原文模型为多因素校正，但摘要未写明是否校正 BMI 与血糖，若与 ext.bmi、ext.fpg 同时计入可能部分重复，系数取 0.7。证据来自 CKB 苏州吴中单一地区（1214 例新发糖尿病），地区代表性有限。",
+  "rationale_zh": "仅为 2 型糖尿病建项，属先天项。摘要只写校正后的 HR，并报告吸烟、饮酒、BMI 与体力活动对关联无修饰作用，但未列模型协变量，全文为中文期刊且无法取得，故不把 ext.bmi 等记为已校正，按部分校正处理。家族史与 2 型糖尿病多基因评分、BMI、腰围、血糖共享信息，系数上限 0.6，取 0.6。证据来自 CKB 苏州吴中单一地区，地区代表性有限。",
   "mediated_by": {}
  },
  "transport": {
@@ -65,7 +75,8 @@
    30,
    79
   ],
-  "sex": "both"
+  "sex": "both",
+  "events_source_zh": "摘要：a total of 423 men and 791 women were diagnosed as having diabetes，合计 1214 例"
  },
  "measurement": {
   "sd_abs": null,
@@ -102,5 +113,5 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

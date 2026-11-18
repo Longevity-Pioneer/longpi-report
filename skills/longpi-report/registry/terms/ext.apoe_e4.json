@@ -3,7 +3,7 @@
  "name_zh": "APOE ε4 等位基因个数",
  "kind": "genetic",
  "system": "brain_sleep",
- "group": null,
+ "group": "genetic",
  "input": {
   "code": "LP:apoe_e4_count",
   "unit": "count",
@@ -30,7 +30,9 @@
     }
    }
   ],
-  "source": "按哈代-温伯格平衡由东亚 ε4 等位基因频率 q=0.0863 推算（1000 Genomes phase 3 EAS，rs429358 C 等位，经 Ensembl REST 查询；gnomAD EAS 为 0.0977）。数值未经原文核对，属推算值。"
+  "source": "按哈代-温伯格平衡由东亚 ε4 等位基因频率 q=0.0863 推算（1000 Genomes phase 3 EAS，rs429358 C 等位，经 Ensembl REST 查询；gnomAD EAS 为 0.0977）。",
+  "estimated": true,
+  "estimated_reason_zh": "未找到摘要或正文可逐句核对、且按 ε4 个数给出中国成人基因型分布的文献，故按哈代-温伯格平衡由公共数据库东亚等位基因频率推算。推算的 ε4 携带率 16.5%，与中国老年健康影响因素跟踪调查 80 岁以上 6160 人中 17.5% 为 ε4 携带者（PMID 34061824；高龄人群因生存选择可能偏低）接近。"
  },
  "effect": {
   "ad": {
@@ -39,40 +41,41 @@
      "hr": 1
     },
     "1": {
-     "hr": 5.6,
-     "lo": 3.9,
-     "hi": 8.0
+     "hr": 3.08,
+     "lo": 2.57,
+     "hi": 3.69
     },
     "2": {
-     "hr": 33.1,
-     "lo": 13.6,
-     "hi": 80.5
+     "hr": 11.76,
+     "lo": 6.38,
+     "hi": 21.47
     }
    },
    "direction": null,
-   "note": "OR 相对 ε3/ε3，按 HR 近似；水平 1 取 ε3/ε4（ε2/ε4 并入），水平 0 以 ε3/ε3 为参照（ε2 携带者并入，其风险略低）。Belloy 2023 JAMA Neurol 东亚 21,852 人 ε3/ε4 OR 4.54（3.99–5.17），方向一致。"
+   "overlaps_with": [],
+   "adjusted_for": [],
+   "note": "OR 相对 ε3/ε3，按 HR 近似。水平 1 取原文 ε4/ε3（ε2/ε4 并入，其风险较低），水平 2 取 ε4/ε4；水平 0 以 ε3/ε3 为参照，ε2/ε2、ε2/ε3 并入（Belloy 2023 显示东亚人群 ε2 与阿尔茨海默病无关联，OR 0.97，0.77–1.23，并入参照组偏差小）。本文为中国人群荟萃分析，ε4/ε3 的 OR 低于 Belloy 2023 东亚估计（4.54）与 Choi 2019（4.98），ε4/ε4 的 OR 与 2026 年日本人群再评估（约 12–15 倍）一致，属偏保守取值。"
   }
  },
- "adjusted_for": [
-  "age",
-  "study"
- ],
+ "adjusted_for": [],
  "overlap": {
   "coef": 0.8,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "种系变异不受混杂；与阿尔茨海默病多基因评分的重叠由评分侧处理（评分若含 APOE 区域须剔除）。系数 0.8 反映病例对照 OR 近似 HR 与日本人群小样本的不确定性。",
+  "rationale_zh": "种系基因型在受孕时确定，不受糖尿病、高血压等后天因素混杂；同病种已计入的 ext.diabetes、ext.htn_dx、ext.prot_protage_gap 均不是 APOE 基因型的混杂因素，APOE 经血脂与血管途径的中介作用很小，故 overlaps_with 为空，荟萃分析合并的粗 OR 不需校正这些项。阿尔茨海默病多基因评分（ext.prs_ad，目前为定性项）的评估已校正 APOE ε4，评分若含 APOE 区域须剔除。系数 0.8 反映病例对照 OR 近似 HR，且纳入研究多为医院来源的小样本病例对照。",
   "mediated_by": {}
  },
  "transport": {
-  "ancestry": "Japanese",
+  "ancestry": "Chinese",
   "shrink": 1.0,
   "sd_inflate": 1.0
  },
  "population": {
-  "cohort": "APOE and Alzheimer Disease Meta Analysis Consortium (Farrer 1997), Japanese stratum",
-  "n": 14537,
-  "ancestry": "Japanese"
+  "cohort": "20 Chinese case-control studies 2000-2013 (Liu 2014 Sci Rep meta-analysis)",
+  "n": 3317,
+  "events": 1576,
+  "ancestry": "Chinese",
+  "sex": "both"
  },
  "measurement": {
   "sd_abs": null,
@@ -99,17 +102,41 @@
  "evidence": {
   "grade": "B",
   "design": "meta-analysis",
-  "pmid": "9343467",
-  "quote": "The APOE epsilon4-AD association in Japanese subjects was stronger than in Caucasian subjects (epsilon3/epsilon4: OR=5.6, 95% CI=3.9-8.0; epsilon4/epsilon4: OR=33.1, 95% CI=13.6-80.5)",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/9343467/",
+  "pmid": "24632849",
+  "pmcid": "PMC3955907",
+  "quote": "Genotype ApoE ε4/ε4 and ε4/ε3 have statistically significant association with AD as well (ε4/ε4: OR = 11.76, 95% CI = 6.38-21.47, P < 0.00001; ε4/ε3: OR = 3.08, 95% CI = 2.57-3.69, P < 0.00001)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/24632849/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "design_note_zh": "荟萃分析合并的是病例对照研究（遗传项允许），共 1576 例阿尔茨海默病、1741 名对照；原文未说明逐研究的诊断标准，多为 NINCDS-ADRDA 或 DSM 临床诊断。",
+  "alternatives_considered": [
+   {
+    "pmid": "37930705",
+    "estimate": "东亚 APOE*34 OR 4.54 (3.99–5.17)",
+    "why_not": "东亚 ε4/ε4 估计只在图与补充材料中，无法逐字核对；东亚部分为引用 Farrer 1997 与 Choi 2019 的已发表汇总结果，未给东亚病例数。作为方向一致的佐证保留在说明中。"
+   },
+   {
+    "pmid": "31426376",
+    "estimate": "东亚（韩日）ε3/ε4 OR 4.98 (4.4–5.6)，ε4/ε4 25.12 (19.0–33.5)，2302 例",
+    "why_not": "数值只在全文表格行中，该行不含结局名称，过不了结局用词门槛；韩国部分对照为未做认知筛查、年轻 17 岁的人群对照，2026 年日本再评估（PMID 42337630）认为该韩国 ε4/ε4 估计明显偏高。"
+   },
+   {
+    "pmid": "9343467",
+    "estimate": "日本 ε3/ε4 OR 5.6 (3.9–8.0)，ε4/ε4 33.1 (13.6–80.5)",
+    "why_not": "基于 1993–1995 年六篇小样本报告，2026 年日本再评估（PMID 42337630）指出其 ε4/ε4 估计偏高；未给病例数。"
+   },
+   {
+    "pmid": "42337630",
+    "estimate": "日本 21 项研究 ε4/ε4 对 ε3/ε3 固定效应 OR 13.53 (7.53–24.33)",
+    "why_not": "摘要与正文只给 ε4/ε4，ε3/ε4 的合并 OR 只有点估计（5.11）无可核对的 CI，无法同时给出两个水平；作为 ε4/ε4 取值合理性的佐证。"
+   }
+  ]
  },
  "license": {
   "commercial_use": true,
   "note": "效应量为文献数据"
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-9"
 }

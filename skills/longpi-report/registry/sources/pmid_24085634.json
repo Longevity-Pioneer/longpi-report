@@ -14,21 +14,21 @@
    "number": "screening.hr",
    "value": 0.86,
    "found": true,
-   "context": "FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)"
+   "context": ".65 to 0.79, high quality evidence) and FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)."
   },
   {
    "term": "ext.screen_crc_fit",
    "number": "screening.lo",
    "value": 0.8,
    "found": true,
-   "context": "FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)"
+   "context": "high quality evidence) and FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)."
   },
   {
    "term": "ext.screen_crc_fit",
    "number": "screening.hi",
    "value": 0.92,
    "found": true,
-   "context": "FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)"
+   "context": "lity evidence) and FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)."
   }
  ]
 }
