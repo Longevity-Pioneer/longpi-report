@@ -1,11 +1,11 @@
 {
- "digest": "bdfbfaa2fab99cf8a71abb02abccf9f1b7baf3938b7ead04fdfa7d061ebabf4d",
+ "digest": "a95ed110c217cf936341ceb26c08522787aa08c6c9a07aee2b6956e0dc396ffe",
  "files": {
-  "../data/observation_codes.json": "7f668915f680e890ff49bbc57f4fe5ebc68515c19d9c960ca525e845eb1289a8",
+  "../data/observation_codes.json": "bdb1b01c18a2f12adca06e58aaeb1700062367bdad21f4d4b7c5bb405d048df9",
   "../data/params.json": "cbbe6e43b77ff65632d3521046c4df8246bba4a09f010eb5f8df0fdf2b678023",
   "../data/population_norms_china.json": "e8157db4904252b3c824bd7703180b18a0c0a51842255287dac74cca63bb3791",
   "../data/systems.json": "f84cbe8a7f4226c6ae7c3df95f3c5944d6292382a26df1882fb567b834cc8038",
-  "VERSION": "6ea326baccebf13eba5eb6b3feb36d007c7d898ba5e3b96104fec23e3523647d",
+  "VERSION": "cad787292b62a07847b139346bfa1b8ff0a533b04cc585782da77b13cdc99b0c",
   "groups.json": "04fc16916d5a4a75d5b4bb9819d4ac5be6ac4960a72f791f2a89519cb0c2279e",
   "outcomes/ad.json": "7511b978cf527023a9d7b5b6a66f2cc258cf52bdb912b20bdb015437f3bb4a39",
   "outcomes/breast_ca.json": "360a5cd6f7bdeb6b126b1d7529202daee75e04016299d82e457ed422831dd120",
@@ -239,5 +239,5 @@
   "terms/ext.uacr.json": "b0d1ccd2a8b97d7fe8a5bac8906b4705b6389f50b1e843b640e1d884f3c0221d",
   "terms/ext.waist.json": "5f3fd3cc5560c60aaf99b665dc6465e8bb1d5be48bac1b7eb3f4c707695ab2d1"
  },
- "version": "2026.11.18-11"
+ "version": "2026.11.18-12"
 }
