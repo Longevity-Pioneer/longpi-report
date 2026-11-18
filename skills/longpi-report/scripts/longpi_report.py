@@ -73,7 +73,8 @@ def cmd_render(a) -> int:
         print("narrative problems:\n- " + "\n- ".join(problems), file=sys.stderr)
         if a.strict:
             return 2
-    params = json.loads((SKILL / "data" / "params.json").read_text(encoding="utf-8"))
+    from lp import params as PR
+    params = PR.load()
     evidence = json.loads((SKILL / "data" / "evidence_summary.json").read_text(encoding="utf-8")) \
         if (SKILL / "data" / "evidence_summary.json").exists() else None
     pm = out.get("person_meta", {})

@@ -53,7 +53,8 @@ def expect_normal(g, mu: float, sd: float) -> float:
 
 @lru_cache(maxsize=1)
 def _params() -> dict:
-    return json.loads((DATA_DIR / "params.json").read_text(encoding="utf-8"))
+    from . import params as PR
+    return PR.load()
 
 
 @lru_cache(maxsize=1)

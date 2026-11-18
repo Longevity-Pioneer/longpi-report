@@ -23,6 +23,12 @@ DOC = ROOT / "docs" / "技术文档.md"
 sys.path.insert(0, str(SKILL / "scripts"))
 
 
+def PARAMS() -> dict:
+    """params.json + registry core terms (lp.params), the 1.1.1 parameter shape."""
+    from lp import params as PR
+    return PR.load()
+
+
 def J(p: Path):
     return json.loads(p.read_text(encoding="utf-8"))
 
@@ -128,7 +134,7 @@ def block_biovariation() -> str:
 
 
 def block_domains() -> str:
-    p = J(DATA / "params.json")
+    p = PARAMS()
     rows = ["| id | 名称 | 输入键 | 形状 | 剂量反应（值（95% CI）/ 每多少单位） | clip | 人群分布键 | 因果 | 文献编号 |", "|---|---|---|---|---|---|---|---|---|"]
     for d in p["domains"]:
         if d["shape"] == "loglinear":
@@ -168,7 +174,7 @@ def block_domains() -> str:
 
 
 def block_devices() -> str:
-    dv = J(DATA / "params.json")["devices"]
+    dv = PARAMS()["devices"]
     rows = ["| 项目 | 参数 | 说明 |", "|---|---|---|"]
     for k, v in dv["watch_vo2max"].items():
         rows.append(f"| 手表 VO2max · {k} | 偏差 {v['bias']:+} ± {v['bias_sd']}，随机 SD {v['sd']} | {v['source']} |")
@@ -188,7 +194,7 @@ def block_devices() -> str:
 
 
 def block_calibration() -> str:
-    c = J(DATA / "params.json")["calibration"]
+    c = PARAMS()["calibration"]
     g = c["gap"]
     rows = [f"PhenoAge 差值分段：拐点 {g['knots']}；斜率（低段 / 中段 / 高段）= {g['slopes']}，SE = {g['slopes_sd']}。", "",
             "| 领域 | 有 PhenoAge：c（SD） | 规则 | 无 PhenoAge：c（SD） | 规则 |", "|---|---|---|---|---|"]
@@ -231,7 +237,7 @@ def block_norms() -> str:
 
 
 def block_scenarios() -> str:
-    s = J(DATA / "params.json")["scenarios"]
+    s = PARAMS()["scenarios"]
     rows = ["| 情景 | 名称 | 类型与参数 | 权重 |", "|---|---|---|---|"]
     for k, d in s["defs"].items():
         params = {kk: vv for kk, vv in d.items() if kk not in ("name_zh", "desc_zh")}
@@ -242,7 +248,7 @@ def block_scenarios() -> str:
 
 
 def block_interventions() -> str:
-    p = J(DATA / "params.json")
+    p = PARAMS()
     rows = ["| id | 名称 | 证据 | 依从性 | 效应（完全坚持时） | 适用条件 | 核心 | 处方 |", "|---|---|---|---|---|---|---|---|"]
     for iv in p["interventions"]:
         eff = []
@@ -264,7 +270,7 @@ def block_interventions() -> str:
 
 
 def block_misc_params() -> str:
-    p = J(DATA / "params.json")
+    p = PARAMS()
     rows = ["| 参数 | 值 | 位置 |", "|---|---|---|"]
     rows.append(f"| 参数版本 | {p['version']} | `params.json: version` |")
     rows.append(f"| 极高龄拟合年龄 / 过渡年龄 | {p['old_age']['fit_ages']} / {p['old_age']['blend_ages']} | `old_age` |")
@@ -361,7 +367,7 @@ def block_worked_example() -> str:
     from lp import domains as DM, engine as EN, mortality as M
     o = J(SKILL / "examples" / "output" / "results.json")
     r = o["results"]
-    p = J(DATA / "params.json")
+    p = PARAMS()
     b = M.Reference("M").gompertz_slope(2026)
     age = r["person"]["chrono_age"]
     out = [f"演示用户 D01：男，{age} 岁，Gompertz 斜率 b = {b:.4f}。下面用参数点值手算，结果与 results.json 中蒙特卡洛期望值对照。", ""]
@@ -460,7 +466,7 @@ def block_schema_rules() -> str:
 
 def block_clock_residual() -> str:
     from lp import mortality as M
-    p = J(SKILL / "data" / "params.json")["clock_residual"]
+    p = PARAMS()["clock_residual"]
     res = J(ROOT / "evidence" / "results" / "nhanes_methylation.json")["blood_clock_residual"]
     bm, bf = M.Reference("M").gompertz_slope(2026), M.Reference("F").gompertz_slope(2026)
     rows = ["| 年龄段中点 | 残差 SD（对数风险） | 约合 LongPi 年（男 / 女，1 SD） | NHANES 人数 |", "|---|---|---|---|"]
@@ -472,7 +478,7 @@ def block_clock_residual() -> str:
 
 
 def block_methylation() -> str:
-    pm = J(SKILL / "data" / "params.json")["methylation"]
+    pm = PARAMS()["methylation"]
     res = J(ROOT / "evidence" / "results" / "nhanes_methylation.json")["methylation"]
     rows = [f"样本：{res['n']:,} 人（{res['age_range'][0]:.0f}–{res['age_range'][1]:.0f} 岁），{res['deaths']:,} 例死亡，随访中位 {res['median_follow_up_years']:.1f} 年；"
             f"LongPi LP 在此样本中的 Cox 系数 {res['lp_coef_in_base']:.3f}，C 指数（年龄 + 性别 + LP）{res['c_base']:.4f}。", "",
@@ -495,7 +501,7 @@ def block_methylation() -> str:
 
 
 def block_data_menu() -> str:
-    dm = J(SKILL / "data" / "params.json")["data_menu"]
+    dm = PARAMS()["data_menu"]
     rows = [f"每项比较 {dm['n_draws']} 次同一组抽样（种子 7）；收窄 < {dm['show_min_years']} 年不展示。典型血检值（算单次噪声）：" +
             "、".join(f"{k} {v}" for k, v in dm["typical_blood"].items()) + "。", "",
             "| id | 文案（未测 / 设备 / 换更准方法） | 做了以后剩下的测量误差 | 难度 | 费用 |", "|---|---|---|---|---|"]

@@ -1,0 +1,246 @@
+{
+ "schema": "longpi.observation_codes/1",
+ "note_zh": "person.json 原有字段 → 标准编码。LOINC 码由建项工具对照 NLM Clinical Tables 校验；LP: 为 LongPi 自定义派生量。",
+ "labs": {
+  "albumin": [
+   "LOINC:1751-7",
+   "g/L"
+  ],
+  "creatinine": [
+   "LOINC:2160-0",
+   "umol/L"
+  ],
+  "glucose": [
+   "LOINC:2345-7",
+   "mmol/L"
+  ],
+  "glucose_fasting": [
+   "LOINC:1558-6",
+   "mmol/L"
+  ],
+  "crp": [
+   "LOINC:30522-7",
+   "mg/L"
+  ],
+  "lymph_pct": [
+   "LOINC:736-9",
+   "%"
+  ],
+  "mcv": [
+   "LOINC:787-2",
+   "fL"
+  ],
+  "rdw": [
+   "LOINC:788-0",
+   "%"
+  ],
+  "alp": [
+   "LOINC:6768-6",
+   "U/L"
+  ],
+  "wbc": [
+   "LOINC:6690-2",
+   "10^9/L"
+  ],
+  "ldl": [
+   "LOINC:13457-7",
+   "mmol/L"
+  ],
+  "hdl": [
+   "LOINC:2085-9",
+   "mmol/L"
+  ],
+  "tc": [
+   "LOINC:2093-3",
+   "mmol/L"
+  ],
+  "tg": [
+   "LOINC:2571-8",
+   "mmol/L"
+  ],
+  "apob": [
+   "LOINC:1884-6",
+   "g/L"
+  ],
+  "lpa": [
+   "LOINC:10835-7",
+   "mg/L"
+  ],
+  "hba1c": [
+   "LOINC:4548-4",
+   "%"
+  ],
+  "alt": [
+   "LOINC:1742-6",
+   "U/L"
+  ],
+  "ast": [
+   "LOINC:1920-8",
+   "U/L"
+  ],
+  "ggt": [
+   "LOINC:2324-2",
+   "U/L"
+  ],
+  "uric_acid": [
+   "LOINC:3084-1",
+   "umol/L"
+  ],
+  "vitd": [
+   "LOINC:1989-3",
+   "ng/mL"
+  ],
+  "platelets": [
+   "LOINC:777-3",
+   "10^9/L"
+  ],
+  "cystatin_c": [
+   "LOINC:33863-2",
+   "mg/L"
+  ],
+  "nt_probnp": [
+   "LOINC:33762-6",
+   "pg/mL"
+  ],
+  "uacr": [
+   "LOINC:9318-7",
+   "mg/g"
+  ],
+  "egfr": [
+   "LP:egfr_ckdepi2021",
+   "mL/min/1.73m2"
+  ]
+ },
+ "vitals": {
+  "sbp": [
+   "LOINC:8480-6",
+   "mmHg"
+  ],
+  "dbp": [
+   "LOINC:8462-4",
+   "mmHg"
+  ],
+  "pulse": [
+   "LOINC:8867-4",
+   "/min"
+  ]
+ },
+ "anthropometrics": {
+  "height_cm": [
+   "LOINC:8302-2",
+   "cm"
+  ],
+  "weight_kg": [
+   "LOINC:29463-7",
+   "kg"
+  ],
+  "bmi": [
+   "LOINC:39156-5",
+   "kg/m2"
+  ],
+  "waist_cm": [
+   "LOINC:8280-0",
+   "cm"
+  ]
+ },
+ "fitness": {
+  "vo2max": [
+   "LP:vo2max",
+   "ml/kg/min"
+  ],
+  "grip_kg": [
+   "LP:grip_kg",
+   "kg"
+  ]
+ },
+ "wearables": {
+  "steps_90d": [
+   "LP:steps_daily_mean",
+   "steps/day"
+  ],
+  "rhr_30d": [
+   "LP:rhr_watch",
+   "/min"
+  ],
+  "hrv_30d": [
+   "LP:hrv_sdnn",
+   "ms"
+  ],
+  "sleep_h_median": [
+   "LP:sleep_watch_h",
+   "h"
+  ],
+  "vo2max_recent": [
+   "LP:vo2max_watch",
+   "ml/kg/min"
+  ]
+ },
+ "lp_codes": {
+  "LP:egfr_ckdepi2021": "eGFR（CKD-EPI 2021，引擎由肌酐计算）",
+  "LP:vo2max": "VO2max（CPET 或手表，method 区分）",
+  "LP:grip_kg": "握力（kg，优势手最好成绩）",
+  "LP:steps_daily_mean": "日均步数（近 90 天中位，可穿戴）",
+  "LP:rhr_watch": "手表静息心率",
+  "LP:hrv_sdnn": "手表 HRV（SDNN）",
+  "LP:sleep_watch_h": "手表睡眠时长",
+  "LP:vo2max_watch": "手表估算 VO2max",
+  "LP:mvpa_min_week": "每周中高强度运动分钟",
+  "LP:resistance_sessions_week": "每周抗阻训练次数",
+  "LP:sleep_regularity_index": "睡眠规律指数（0–100）",
+  "LP:med_adherence": "已处方慢病药物按时服用（0/1，pdc≥0.8）",
+  "LP:smoking_status": "吸烟状态",
+  "LP:alcohol_g_week": "饮酒克/周",
+  "LP:cac_agatston": "冠脉钙化积分（Agatston）",
+  "LP:carotid_plaque": "颈动脉斑块（0/1）",
+  "LP:dxa_tscore_min": "DXA 最低 T 值",
+  "LP:liver_stiffness_kpa": "肝脏硬度（kPa）",
+  "LP:cap_db_m": "受控衰减参数 CAP（dB/m）",
+  "LP:cgm_mean": "CGM 平均血糖",
+  "LP:cgm_cv": "CGM 变异系数",
+  "LP:cgm_tir": "CGM 3.9–7.8 时间占比",
+  "LP:apoe_e4_count": "APOE ε4 等位基因个数（0/1/2）",
+  "LP:monogenic:<HGNC>": "该基因 ClinVar 致病/可能致病变异携带（0/1）",
+  "LP:clock.<name>_accel": "时钟加速（时钟值 − 同龄参考，年；name 如 grimage2、horvath、hannum、dnam_phenoage、dunedinpace）",
+  "LP:prot.<clock>_gap": "蛋白组时钟年龄差（年；如 prot.organage_heart_gap、prot.protage_gap）",
+  "LP:metab.<score>": "代谢组评分（如 metab.metabohealth）",
+  "LP:micro.<index>": "宏基因组指标（如 micro.gmhi、micro.shannon）",
+  "LP:screen.<test>": "按指南完成的筛查（值=最近一次距今年数；如 screen.crc_fit、screen.crc_colonoscopy、screen.lung_ldct、screen.liver_us_afp、screen.gastroscopy、screen.mammography、screen.cervical）",
+  "LP:fh:<disease_id>": "一级亲属患病（0/1）"
+ },
+ "conditions": {
+  "field": "icd10",
+  "note_zh": "person.json conditions[] 须由读入时填 icd10（如 E11）；未填的不参与疾病判定，check 会提示"
+ },
+ "family_history": {
+  "field": "disease_id",
+  "note_zh": "family_history[] 须填 disease_id（registry/outcomes 的 id）"
+ },
+ "medications": {
+  "field": "class",
+  "treated_map": {
+   "antihypertensive": [
+    "LOINC:8480-6",
+    "LOINC:8462-4"
+   ],
+   "statin": [
+    "LOINC:13457-7",
+    "LOINC:2093-3",
+    "LOINC:1884-6"
+   ],
+   "lipid_lowering": [
+    "LOINC:13457-7",
+    "LOINC:2093-3",
+    "LOINC:1884-6",
+    "LOINC:2571-8"
+   ],
+   "antidiabetic": [
+    "LOINC:1558-6",
+    "LOINC:2345-7",
+    "LOINC:4548-4"
+   ],
+   "urate_lowering": [
+    "LOINC:3084-1"
+   ]
+  }
+ }
+}

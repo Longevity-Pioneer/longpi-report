@@ -1,0 +1,61 @@
+{
+ "id": "core.alcohol",
+ "core": true,
+ "engine": "domain",
+ "order": 9,
+ "name_zh": "饮酒",
+ "kind": "exposure",
+ "system": null,
+ "spec": {
+  "id": "alcohol",
+  "name_zh": "饮酒",
+  "input": "alcohol_g_week",
+  "unit": "g/week",
+  "shape": "loglinear",
+  "clip": [
+   0,
+   1500
+  ],
+  "norm": "alcohol",
+  "norm_kind": "categorical_mid",
+  "group": "lifestyle",
+  "causal": true,
+  "mids": {
+   "M": {
+    "none": 0,
+    "moderate": 140,
+    "hazardous": 350,
+    "harmful": 560
+   },
+   "F": {
+    "none": 0,
+    "moderate": 70,
+    "hazardous": 210,
+    "harmful": 385
+   }
+  },
+  "rr": {
+   "value": 1.07,
+   "lo": 1.05,
+   "hi": 1.1,
+   "per": 100,
+   "lit": "C8a",
+   "source": "Millwood IY, et al. Lancet Public Health 2023 (CKB men, genetic analysis): all-cause HR 1.07 (1.05-1.10) per 100 g/week; category mid-points from WHO g/day bands"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

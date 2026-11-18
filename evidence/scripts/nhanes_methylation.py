@@ -165,7 +165,8 @@ def main() -> int:
     src, pheno_src, dnam_src, skill_dir, results = map(Path, sys.argv[1:6])
     sys.path.insert(0, str(skill_dir / "scripts"))
     from lp import domains as DM  # noqa: E402
-    cal = json.loads((skill_dir / "data" / "params.json").read_text(encoding="utf-8"))["calibration"]
+    from lp import params as PR  # noqa: E402
+    cal = PR.load()["calibration"]
     d = NC.prepare(src, pheno_src)
     norms = NC.build_norms(d)
     d = d.join(NC.lhr_columns(d, DM, norms))

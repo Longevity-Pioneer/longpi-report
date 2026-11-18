@@ -37,7 +37,8 @@ def _table() -> dict:
 
 @lru_cache(maxsize=1)
 def model_params() -> dict:
-    return json.loads((DATA_DIR / "params.json").read_text(encoding="utf-8"))
+    from . import params as PR
+    return PR.load()
 
 
 def _sex(sex: str) -> str:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy the NHANES calibration into the skill's params.json and write data/evidence_summary.json.
+"""Copy the NHANES calibration into the skill's registry core terms (registry/terms/core.*) and write data/evidence_summary.json.
 
 Usage: apply_calibration.py <results_dir> <skill_data_dir>
 """
@@ -11,16 +11,17 @@ res_dir, data = Path(sys.argv[1]), Path(sys.argv[2])
 cal = json.loads((res_dir / "nhanes_calibration.json").read_text())
 ph = json.loads((res_dir / "phenoage_validation.json").read_text())
 hist = json.loads((res_dir / "scenario_history.json").read_text())
-params = json.loads((data / "params.json").read_text())
+sys.path.insert(0, str(data.parent / "scripts"))
+from lp import registry as RG  # noqa: E402
 
 c = cal["calibration"]
-params["calibration"] = {
+calibration = {
     "source": "NHANES 1999-2018 with mortality follow-up to 2019 (evidence/scripts/nhanes_calibration.py)",
     "gap": {k: c["gap"][k] for k in ("knots", "slopes", "slopes_sd")},
     "with_clock": {k: {"value": v["value"], "sd": v["sd"], "rule": v["rule"], "basis": v["basis"]} for k, v in c["with_clock"].items()},
     "without_clock": {k: {"value": v["value"], "sd": v["sd"], "rule": v["rule"], "basis": v["basis"]} for k, v in c["without_clock"].items()},
 }
-(data / "params.json").write_text(json.dumps(params, ensure_ascii=False, indent=1), encoding="utf-8")
+RG.write_core(calibration=calibration, root=data.parent / "registry")
 
 vw, vo = cal["validation"]["with_clock"], cal["validation"]["without_clock"]
 comp = cal["validation"]["comparators"]

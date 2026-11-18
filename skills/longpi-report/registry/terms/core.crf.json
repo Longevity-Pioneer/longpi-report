@@ -1,0 +1,45 @@
+{
+ "id": "core.crf",
+ "core": true,
+ "engine": "domain",
+ "order": 0,
+ "name_zh": "心肺适能",
+ "kind": "state",
+ "system": "lung_fitness",
+ "spec": {
+  "id": "crf",
+  "name_zh": "心肺适能",
+  "input": "vo2max",
+  "unit": "ml/kg/min",
+  "shape": "loglinear",
+  "clip": [
+   12,
+   65
+  ],
+  "norm": "vo2max",
+  "group": "fitness",
+  "rr": {
+   "value": 0.89,
+   "lo": 0.86,
+   "hi": 0.92,
+   "per": 3.5,
+   "source": "Laukkanen JA, et al. Mayo Clin Proc 2022;97:1054: per +1 MET RR 0.89 (0.86-0.92); Kodama 2009 JAMA 0.87 (0.84-0.90)",
+   "lit": "B1b"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 0.8526,
+   "sd": 0.2376,
+   "rule": "discounted",
+   "basis": "NHANES 0.60 (SE 0.39) combined with literature prior 1 (SD 0.3)"
+  },
+  "without_clock": {
+   "value": 0.8698,
+   "sd": 0.2359,
+   "rule": "discounted",
+   "basis": "NHANES 0.66 (SE 0.38) combined with literature prior 1 (SD 0.3)"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

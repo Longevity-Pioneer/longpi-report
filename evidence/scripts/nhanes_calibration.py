@@ -4,7 +4,7 @@
 Usage: nhanes_calibration.py <nhanes_parquet> <phenoage_parquet> <skill_dir> <results_dir>
 
 Uses the engine's own domain code (skills/longpi-report/scripts/lp/domains.py) and parameters
-(data/params.json). Population norms are NHANES's own: "peers" here are US adults of the same
+(registry/terms/core.*, assembled by lp.params). Population norms are NHANES's own: "peers" here are US adults of the same
 age and sex, exactly as the engine uses Chinese peers for Chinese users.
 
 Steps
@@ -12,7 +12,7 @@ Steps
   2  PhenoAge gap calibration: piecewise-linear log hazard, knots at -5 and +5 years
   3  joint recalibration -> domain coefficients c_d with and without PhenoAge; causal domains fixed at 1
   4  temporal validation of the final configuration: fit on 1999-2008, test on 2009-2018
-  5  writes the calibration block for params.json and a summary for the report's methods tab
+  5  writes the calibration block for the registry core terms and a summary for the report's methods tab
 """
 from __future__ import annotations
 

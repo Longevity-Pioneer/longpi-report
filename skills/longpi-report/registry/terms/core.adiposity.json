@@ -1,0 +1,55 @@
+{
+ "id": "core.adiposity",
+ "core": true,
+ "engine": "domain",
+ "order": 7,
+ "name_zh": "体重（BMI）",
+ "kind": "state",
+ "system": "metabolic",
+ "spec": {
+  "id": "adiposity",
+  "name_zh": "体重（BMI）",
+  "input": "bmi",
+  "unit": "kg/m2",
+  "shape": "hinge",
+  "knot_lo": 22.5,
+  "knot_hi": 25.0,
+  "clip": [
+   15,
+   45
+  ],
+  "norm": "bmi",
+  "group": "cardiometabolic",
+  "rr_below": {
+   "value": 1.1,
+   "lo": 1.05,
+   "hi": 1.15,
+   "per": 2.5,
+   "source": "derived from GBMC, Lancet 2016 (East Asia): BMI 15-18.5 HR 1.36 and 18.5-20 HR 1.13 vs 22.5-25",
+   "lit": "C5b,C5c"
+  },
+  "rr_above": {
+   "value": 1.39,
+   "lo": 1.34,
+   "hi": 1.44,
+   "per": 5,
+   "source": "Global BMI Mortality Collaboration, Lancet 2016: per 5 kg/m2 above 25, East Asia HR 1.39 (1.34-1.44)",
+   "lit": "C5b"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 0.0267,
+   "sd": 0.0449,
+   "rule": "overlap",
+   "basis": "NHANES joint estimate 0.03 (SE 0.04): overlap discount"
+  },
+  "without_clock": {
+   "value": 0.2185,
+   "sd": 0.04,
+   "rule": "overlap",
+   "basis": "NHANES joint estimate 0.22 (SE 0.04): overlap discount"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

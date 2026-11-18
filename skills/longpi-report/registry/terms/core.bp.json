@@ -1,0 +1,46 @@
+{
+ "id": "core.bp",
+ "core": true,
+ "engine": "domain",
+ "order": 4,
+ "name_zh": "血压",
+ "kind": "state",
+ "system": "cardiovascular",
+ "spec": {
+  "id": "bp",
+  "name_zh": "血压",
+  "input": "sbp_office",
+  "unit": "mmHg",
+  "shape": "loglinear",
+  "clip": [
+   115,
+   185
+  ],
+  "norm": "sbp",
+  "group": "cardiometabolic",
+  "rr": {
+   "value": 1.0929,
+   "lo": 1.0,
+   "hi": 1.1905,
+   "per": 10,
+   "source": "RCT evidence pooled 50:50: Ettehad D, Lancet 2016 (per 10 mmHg lower SBP, all-cause RR 0.87, 0.84-0.91) and BPLTTC, Lancet 2021 (per 5 mmHg HR 0.98, 0.96-1.01)",
+   "lit": "C1a,C1c"
+  },
+  "causal": true
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

@@ -1,0 +1,20 @@
+{
+ "digest": "0477695817786b0280391c597e2bd78cf26eb22624137b2bd93960e8ec420770",
+ "files": {
+  "VERSION": "8fe8ddb6fa14cee750933529472b4c5dedf24ad640fb2e9b054dda112c0e0fc2",
+  "groups.json": "c44d05cebd681cde9b506fd0c4b022a8efd0fd4f6d480188ec0dde7fbbc096b5",
+  "terms/core.adiposity.json": "0c1fc4cb8be3ea130af8dc241e01236d2389af2328a6a0d4999dba0966fb5860",
+  "terms/core.alcohol.json": "491e4935e4dea6f670ebd1952af0b3ea387a611e6800fab72f4ceb059f16ab1a",
+  "terms/core.bp.json": "bfa2913d0daf71a26b4618cbd198c27c3578231ac491f377809d8542ed8b31d4",
+  "terms/core.crf.json": "c696b9f628f25f195e9b9c09e6260c507a29fe6ba5e2b3d9ee534f0464117190",
+  "terms/core.glucose.json": "4ea584d3d070007c4db7a8121bde208fc4df40646669f2f28a794bd15fc04f58",
+  "terms/core.lipid.json": "b40db2cbe4ff08b1991c5f603c65432cdedc81f5a565db34c4f9946e5e291d28",
+  "terms/core.methylation.json": "b97e6b894f673960049956514daf6a54c5156d0d6a15cc323dfe5d84f626f882",
+  "terms/core.muscle.json": "ddbdfc82e83e6dc5edc93f2967cbeb1b8d0123e032ccefda9e5246bc53e1bc7d",
+  "terms/core.phenoage_clock.json": "1bf85130b66d83954308ac8469d0137906556e53f09dbe64c4272657ed479112",
+  "terms/core.rhr.json": "357665bb6c772248fec35f4f6ce0ae9abefc3ce91127929f0c44ed40c924b08b",
+  "terms/core.sleep.json": "c30c29a7183b53eddd5384777cac6345ff05984d2b7164389ef3a85aae16a3e7",
+  "terms/core.smoking.json": "9647298fe31f4773d35cdbe55c214459fa1221790c0bf0861f9073d44b77c906"
+ },
+ "version": "2026.11.18-1"
+}

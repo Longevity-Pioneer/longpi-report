@@ -1,0 +1,130 @@
+{
+ "id": "core.methylation",
+ "core": true,
+ "engine": "methylation",
+ "order": 101,
+ "name_zh": "甲基化时钟增量（GrimAge2 / GrimAge）",
+ "kind": "state",
+ "group": "aging_clock",
+ "spec": {
+  "counted": [
+   "GrimAge2",
+   "GrimAge"
+  ],
+  "default_unmeasured": "GrimAge2",
+  "max_age_years": 3,
+  "s_lab": 2.4,
+  "s_lab_source": "McEwen LM, et al. Clin Epigenetics 2018;10:123: the same samples on 450K vs EPIC across preprocessing methods differed by a median absolute 1.44-3.10 years (systematic offsets). As a normal SD of a difference that is 2.1-4.6 years, i.e. 1.5-3.3 years per pipeline; mid-point 2.4 (derived)",
+  "s_pop_source": "NHANES: mean residual of the 'Other race (incl. Asian)' group (n 74), used as the scale of a population offset",
+  "clocks": {
+   "GrimAge2": {
+    "ref": {
+     "M": [
+      24.221,
+      0.73591
+     ],
+     "F": [
+      25.0908,
+      0.68709
+     ]
+    },
+    "resid_on": {
+     "intercept": 1.4383,
+     "lp": 6.0945,
+     "age": -0.01368,
+     "male": 0.2778
+    },
+    "sd_resid": 4.5102,
+    "beta": 0.05308,
+    "beta_se": 0.00661,
+    "s_pop": 0.71,
+    "hr_per_sd_resid": 1.27,
+    "c_gain": 0.0067,
+    "hr_per_sd_alone": 1.55,
+    "r2_explained_by_lp": 0.2601,
+    "weighted_hr_per_sd_resid": 1.336
+   },
+   "GrimAge": {
+    "ref": {
+     "M": [
+      16.9275,
+      0.76661
+     ],
+     "F": [
+      16.4872,
+      0.72869
+     ]
+    },
+    "resid_on": {
+     "intercept": 1.1868,
+     "lp": 5.0287,
+     "age": -0.01129,
+     "male": 0.2292
+    },
+    "sd_resid": 4.201,
+    "beta": 0.0571,
+    "beta_se": 0.00696,
+    "s_pop": 0.85,
+    "hr_per_sd_resid": 1.271,
+    "c_gain": 0.0068,
+    "hr_per_sd_alone": 1.514,
+    "r2_explained_by_lp": 0.2162,
+    "weighted_hr_per_sd_resid": 1.327
+   }
+  },
+  "not_counted": {
+   "DNAm PhenoAge": {
+    "hr_per_sd_resid": 1.107,
+    "c_gain": 0.0016,
+    "p": 0.0002844321886961714
+   },
+   "DunedinPoAm": {
+    "hr_per_sd_resid": 1.151,
+    "c_gain": 0.0025,
+    "p": 1.3432747411060691e-06
+   },
+   "Horvath": {
+    "hr_per_sd_resid": 1.086,
+    "c_gain": 0.0011,
+    "p": 0.0029201868964499264
+   },
+   "Hannum": {
+    "hr_per_sd_resid": 1.084,
+    "c_gain": 0.0009,
+    "p": 0.003363128675612088
+   },
+   "Skin & blood": {
+    "hr_per_sd_resid": 1.012,
+    "c_gain": 0.0001,
+    "p": 0.6431175979351877
+   },
+   "Zhang": {
+    "hr_per_sd_resid": 1.049,
+    "c_gain": 0.0005,
+    "p": 0.07535609471193233
+   },
+   "Lin": {
+    "hr_per_sd_resid": 1.033,
+    "c_gain": 0.0003,
+    "p": 0.22610447802586267
+   },
+   "Weidner": {
+    "hr_per_sd_resid": 1.032,
+    "c_gain": 0.0001,
+    "p": 0.23202271090541987
+   },
+   "Vidal-Bralo": {
+    "hr_per_sd_resid": 1.056,
+    "c_gain": 0.0002,
+    "p": 0.04161921750701229
+   },
+   "DNAm telomere length": {
+    "hr_per_sd_resid": 0.844,
+    "c_gain": 0.0042,
+    "p": 1.5137660406809382e-09
+   }
+  },
+  "source": "NHANES 1999-2002 DNA methylation epigenetic biomarkers (dnmepi, released 2024-07-31) linked to mortality to 2019: 2,307 adults aged 50-85, 1,202 deaths, median follow-up 17.2 y; residual of each clock's age acceleration given the LongPi log HR, age and sex (evidence/scripts/nhanes_methylation.py)"
+ },
+ "note_zh": "1.1.1 原有甲基化增量"
+}

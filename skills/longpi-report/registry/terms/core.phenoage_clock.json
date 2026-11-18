@@ -1,0 +1,43 @@
+{
+ "id": "core.phenoage_clock",
+ "core": true,
+ "engine": "phenoage_clock",
+ "order": 100,
+ "name_zh": "血液时钟（PhenoAge 差值）",
+ "kind": "state",
+ "group": "aging_clock",
+ "calibration_source": "NHANES 1999-2018 with mortality follow-up to 2019 (evidence/scripts/nhanes_calibration.py)",
+ "gap": {
+  "knots": [
+   -5.0,
+   5.0
+  ],
+  "slopes": [
+   0.01024,
+   0.07003,
+   0.0365
+  ],
+  "slopes_sd": [
+   0.00805,
+   0.00445,
+   0.00211
+  ]
+ },
+ "clock_residual": {
+  "age_mid": [
+   29.5,
+   49.5,
+   67.0,
+   80.0
+  ],
+  "sd": [
+   0.2819,
+   0.3076,
+   0.3397,
+   0.3747
+  ],
+  "source": "NHANES 1999-2018 PhenoAge sample with core domains (n 35,086, 5,891 deaths): residual SD of the with-PhenoAge LongPi log HR given the no-blood-test log HR, age and sex (evidence/scripts/nhanes_methylation.py)",
+  "note": "drawn as N(-sd^2/2, sd^2) so the population average risk stays 1; added only when no blood clock is available"
+ },
+ "note_zh": "1.1.1 原有血液时钟层：NHANES 分段校准与无血检时的残差"
+}

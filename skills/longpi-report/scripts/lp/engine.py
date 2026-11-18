@@ -32,16 +32,16 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence, Tuple
 
-from . import clinical, clock, domains as DM, mortality as M
+from . import clinical, clock, domains as DM, mortality as M, params as PR
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 ENGINE_VERSION = "1.1.1"
 MILESTONES = (80, 90, 100, 110, 120)
 
 
-@lru_cache(maxsize=1)
 def P() -> dict:
-    return json.loads((DATA_DIR / "params.json").read_text(encoding="utf-8"))
+    """params.json + registry core terms, in the 1.1.1 shape (lp.params)."""
+    return PR.load()
 
 
 # ------------------------------------------------------------------ small helpers

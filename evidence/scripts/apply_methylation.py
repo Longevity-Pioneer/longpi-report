@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy the NHANES blood-clock residual and methylation-clock estimates into the skill's params.json,
+"""Copy the NHANES blood-clock residual and methylation-clock estimates into the skill's registry core terms,
 and add the matching rows to data/evidence_summary.json.
 
 Usage: apply_methylation.py <results_dir> <skill_data_dir>
@@ -14,7 +14,9 @@ from pathlib import Path
 
 res_dir, data = Path(sys.argv[1]), Path(sys.argv[2])
 r = json.loads((res_dir / "nhanes_methylation.json").read_text(encoding="utf-8"))
-params = json.loads((data / "params.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(data.parent / "scripts"))
+from lp import registry as RG  # noqa: E402
+params = {}
 
 a = r["blood_clock_residual"]
 params["clock_residual"] = {
@@ -58,7 +60,7 @@ params["methylation"] = {
                f"{mm['median_follow_up_years']:.1f} y; residual of each clock's age acceleration given the LongPi log HR, age and sex "
                "(evidence/scripts/nhanes_methylation.py)"),
 }
-(data / "params.json").write_text(json.dumps(params, ensure_ascii=False, indent=1), encoding="utf-8")
+RG.write_core(methylation=params["methylation"], clock_residual=params["clock_residual"], root=data.parent / "registry")
 
 ev = json.loads((data / "evidence_summary.json").read_text(encoding="utf-8"))
 g2 = mm["clocks"]["GrimAge2"]

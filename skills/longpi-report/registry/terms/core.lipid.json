@@ -1,0 +1,46 @@
+{
+ "id": "core.lipid",
+ "core": true,
+ "engine": "domain",
+ "order": 5,
+ "name_zh": "血脂",
+ "kind": "state",
+ "system": "cardiovascular",
+ "spec": {
+  "id": "lipid",
+  "name_zh": "血脂",
+  "input": "ldl",
+  "unit": "mmol/L",
+  "shape": "loglinear",
+  "clip": [
+   1.4,
+   6.5
+  ],
+  "norm": "ldl",
+  "group": "cardiometabolic",
+  "rr": {
+   "value": 1.0989,
+   "lo": 1.0309,
+   "hi": 1.1765,
+   "per": 1,
+   "source": "CTT Collaboration, Lancet 2012 (people without vascular disease): per 1 mmol/L lower LDL-C all-cause RR 0.91 (0.85-0.97)",
+   "lit": "C3b"
+  },
+  "causal": true
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.1,
+   "rule": "causal",
+   "basis": "causal effect size (trials or genetics), coefficient 1"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

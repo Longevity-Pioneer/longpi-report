@@ -1,0 +1,45 @@
+{
+ "id": "core.rhr",
+ "core": true,
+ "engine": "domain",
+ "order": 2,
+ "name_zh": "静息心率",
+ "kind": "state",
+ "system": "cardiovascular",
+ "spec": {
+  "id": "rhr",
+  "name_zh": "静息心率",
+  "input": "rhr_clinic",
+  "unit": "bpm",
+  "shape": "loglinear",
+  "clip": [
+   45,
+   110
+  ],
+  "norm": "rhr",
+  "group": "fitness",
+  "rr": {
+   "value": 1.09,
+   "lo": 1.07,
+   "hi": 1.12,
+   "per": 10,
+   "source": "Zhang D, et al. CMAJ 2016;188:E53: per +10 bpm RR 1.09 (1.07-1.12); Asian cohorts 1.13 (1.07-1.19)",
+   "lit": "B5a"
+  }
+ },
+ "coef_sets": {
+  "with_clock": {
+   "value": 0.826,
+   "sd": 0.1243,
+   "rule": "overlap",
+   "basis": "NHANES joint estimate 0.83 (SE 0.12): overlap discount"
+  },
+  "without_clock": {
+   "value": 1.0,
+   "sd": 0.3,
+   "rule": "literature",
+   "basis": "literature; NHANES 1.36 (SE 0.11) is at least as strong, not used to inflate"
+  }
+ },
+ "note_zh": "1.1.1 原有领域，参数与出处原样迁入"
+}

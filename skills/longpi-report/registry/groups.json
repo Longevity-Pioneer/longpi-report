@@ -1,0 +1,87 @@
+{
+ "note_zh": "重叠组：同一机制的项。组内按信息量排序，只有研究同时校正了前面各项的才继续计入；组内打折系数合计上限 cap。",
+ "groups": {
+  "aging_clock": {
+   "name_zh": "衰老时钟",
+   "cap": 1.2,
+   "members_core": [
+    "core.phenoage_clock",
+    "core.methylation"
+   ]
+  },
+  "lipids": {
+   "name_zh": "致动脉粥样硬化脂蛋白",
+   "cap": 1.2,
+   "members_core": [
+    "core.lipid"
+   ]
+  },
+  "glycemia": {
+   "name_zh": "血糖",
+   "cap": 1.2,
+   "members_core": [
+    "core.glucose"
+   ]
+  },
+  "adiposity": {
+   "name_zh": "体脂",
+   "cap": 1.2,
+   "members_core": [
+    "core.adiposity"
+   ]
+  },
+  "fitness": {
+   "name_zh": "体能",
+   "cap": 1.2,
+   "members_core": [
+    "core.crf",
+    "core.muscle",
+    "core.rhr"
+   ]
+  },
+  "blood_pressure": {
+   "name_zh": "血压",
+   "cap": 1.2,
+   "members_core": [
+    "core.bp"
+   ]
+  },
+  "sleep": {
+   "name_zh": "睡眠",
+   "cap": 1.2,
+   "members_core": [
+    "core.sleep"
+   ]
+  },
+  "inflammation": {
+   "name_zh": "炎症",
+   "cap": 1.2,
+   "members_core": [
+    "core.phenoage_clock"
+   ]
+  },
+  "kidney": {
+   "name_zh": "肾功能",
+   "cap": 1.2,
+   "members_core": [
+    "core.phenoage_clock"
+   ]
+  },
+  "physical_activity": {
+   "name_zh": "身体活动行为",
+   "cap": 1.2,
+   "members_core": []
+  },
+  "screening": {
+   "name_zh": "癌症筛查",
+   "cap": 10.0,
+   "members_core": []
+  }
+ },
+ "guardrails": {
+  "ext_total_abs_log_hr": 0.3,
+  "ext_single_abs_log_hr": 0.15,
+  "population_neutral_tol": 0.02,
+  "note_zh": "新增项（ext.*）对单人对数风险的合计贡献上限 ±0.30（约 ±3 岁），单项 ±0.15；发布前人群平均风险偏差须 <2%"
+ }
+}
