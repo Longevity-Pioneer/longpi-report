@@ -197,6 +197,7 @@ def check_code(code: str, offline: bool = False) -> Tuple[bool, str]:
         return True, "LP 编码已登记"
     if offline:
         return True, f"{ns} 未联网校验（--offline）"
+    local = _locally_registered(code)
     try:
         if ns == "LOINC":
             r = json.loads(http_get(f"https://clinicaltables.nlm.nih.gov/api/loinc_items/v3/search?terms={_q(val)}&df=LOINC_NUM,text"))
@@ -226,8 +227,25 @@ def check_code(code: str, offline: bool = False) -> Tuple[bool, str]:
     except PrivacyError:   # not a well-formed identifier: never sent, the code is simply invalid
         return False, f"{code} 不是格式正确的 {ns} 编码"
     except Exception as e:  # network or parse failure
+        if local:
+            # the dictionary service is unreachable, but the code is one the engine already maps from person.json
+            # (each was checked against the official dictionary when it was registered)
+            return True, f"{ns} 字典服务不可达，按本地已登记编码通过（{local}）"
         return None, f"{ns} 联网校验失败（稍后重试）：{type(e).__name__}: {e}"
     return False, f"未知命名空间 {ns}"
+
+
+def _locally_registered(code: str) -> Optional[str]:
+    """Codes listed in the engine's observation_codes.json (labs / vitals / anthropometrics)."""
+    try:
+        oc = json.loads((RG.SKILL_DIR / "data" / "observation_codes.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    for sec in ("labs", "vitals", "anthropometrics", "fitness", "wearables"):
+        for key, v in (oc.get(sec) or {}).items():
+            if isinstance(v, list) and v and v[0] == code:
+                return f"{sec}.{key}"
+    return None
 
 
 def pgs_license(pgs_id: str) -> Tuple[Optional[bool], str]:
@@ -270,6 +288,15 @@ def _pubmed_abstract(pmid: str) -> Tuple[str, str]:
     y = root.find(".//PubDate/Year")
     meta = (j.text if j is not None else "") + (" " + y.text if y is not None else "")
     return "\n".join(parts), meta
+
+
+_EPMC_TAG = re.compile(r"</?(?:i|b|u|em|strong|sub|sup|p|br|h\d|span|div|sc|italic|bold)(?:\s[^<>]*)?/?>", re.I)
+
+
+def _epmc_clean(text: str) -> str:
+    """Europe PMC abstracts carry a few formatting tags; remove only those. A bare "<7 hours" or "18.5-<20" is text."""
+    import html as _html
+    return _html.unescape(_EPMC_TAG.sub(" ", text or ""))
 
 
 def _epmc_record(query: str) -> dict:
@@ -349,7 +376,7 @@ def fetch_source(key: str, root: Path, need: Iterable[str] = (), refresh: bool =
                 # NCBI unreachable (e.g. a proxy breaking TLS): the same PubMed abstract via Europe PMC
                 if not rec_e.get("abstractText"):
                     raise
-                abst = (rec_e.get("title") or "") + "\n" + re.sub(r"<[^>]+>", " ", rec_e["abstractText"])
+                abst = (rec_e.get("title") or "") + "\n" + _epmc_clean(rec_e["abstractText"])
                 meta = f"{rec_e.get('journalTitle', '')} {rec_e.get('pubYear', '')} (abstract via Europe PMC)"
             texts.append(abst)
         elif kind == "doi":
@@ -358,7 +385,7 @@ def fetch_source(key: str, root: Path, need: Iterable[str] = (), refresh: bool =
                 abst, meta = _pubmed_abstract(rec_e["pmid"])
                 texts.append(abst)
             elif rec_e.get("abstractText"):
-                texts.append((rec_e.get("title") or "") + "\n" + re.sub(r"<[^>]+>", " ", rec_e["abstractText"]))
+                texts.append((rec_e.get("title") or "") + "\n" + _epmc_clean(rec_e["abstractText"]))
             url = f"https://doi.org/{val}"
         elif kind == "pmcid":
             rec_e = _epmc_record(f"PMCID:{val}")
