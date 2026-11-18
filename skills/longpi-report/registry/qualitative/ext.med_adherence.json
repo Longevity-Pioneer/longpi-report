@@ -1,0 +1,113 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.med_adherence",
+ "name_zh": "慢病药物按时服用",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "LP:med_adherence",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.6
+   }
+  ],
+  "pmid": "23907142",
+  "quote": "Overall, 60% (95% CI: 52-68%) of included participants had good adherence (adherence ≥ 80%) to cardiovascular medications.",
+  "source": "已处方心血管药物者中良好依从（≥80%）的比例，荟萃分析合并值（多为欧美人群）"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 0.71,
+   "lo": 0.64,
+   "hi": 0.78,
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.0,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.bp",
+   "core.lipid"
+  ],
+  "rationale_zh": "依从性的获益经血压、血脂下降实现，而服药后的血压、血脂实测值已计入 core.bp、core.lipid；同时存在明显的健康依从者效应（安慰剂依从良好者死亡风险同样降低），不计入数值。",
+  "mediated_by": {
+   "core.bp": 0.5,
+   "core.lipid": 0.5
+  }
+ },
+ "transport": {
+  "ancestry": "mostly US and Europe",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Chowdhury 2013 meta-analysis, 44 prospective studies",
+  "n": 1978919,
+  "events": 94126,
+  "ancestry": "mostly US and Europe",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "处方覆盖天数比例（PDC≥0.8）或自述"
+ },
+ "persistence": {
+  "half_life_years": 0.5
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "按医嘱规律服药，使血压、血脂达标；效果以复测的血压、血脂体现。"
+ },
+ "test": {
+  "label_zh": "处方取药记录或服药自评",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "23907142",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/23907142/",
+  "quote": "Corresponding RRs of all-cause mortality were 0.55 (0.46-0.67) and 0.71 (0.64-0.78) for good adherence to statins and antihypertensive agents.",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "why_qualitative_zh": "良好依从与全因死亡风险降低相关（降压药 RR 0.71，他汀 RR 0.55），但安慰剂依从良好者死亡风险同样降低（Simpson 2006 BMJ，PMID 16790458：OR 0.56），提示关联主要反映健康依从者效应而非药物本身；药物的真实获益已通过服药后的血压、血脂实测值计入 core.bp、core.lipid，再计入会重复。故只作定性提示。",
+ "note_zh": "佐证：Simpson 2006（PMID 16790458）原文“Good adherence to placebo was associated with lower mortality (0.56, 0.43 to 0.74)”。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": []
+}

@@ -1,0 +1,122 @@
+{
+ "id": "ext.clock_dnam_phenoage",
+ "name_zh": "甲基化 PhenoAge 时钟加速",
+ "kind": "state",
+ "system": "whole_body",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:clock.dnam_phenoage_accel",
+  "unit": "years",
+  "platform": "Illumina HumanMethylation450 / EPIC (blood DNA methylation)",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -20,
+   20
+  ],
+  "log_x": false
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未取得经核对的重复测量误差；不同预处理流程与芯片版本之间存在系统偏差（见 core.methylation 的 s_lab_source）"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "时钟加速可随戒烟、减重、体力活动等生活方式改变而变化，但干预效果的随机对照证据有限。"
+ },
+ "test": {
+  "label_zh": "血液 DNA 甲基化检测（DNAm PhenoAge）",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "reference": {
+  "kind": "residualized",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 6.83
+   }
+  ],
+  "source": "美国健康与退休研究（HRS 2016，n 3,581）原始 DNAm PhenoAge 年龄加速均值 0.00、标准差 6.83 年（Faul 2023 表 1）；非中国人群",
+  "pmid": "36802439",
+  "quote": "PhenoAge (2018)0.00 (6.83)"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.056,
+   "lo": 1.037,
+   "hi": 1.075,
+   "per": 1,
+   "per_unit": "year of DNAm PhenoAge acceleration (odds ratio for 4-year mortality)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.1,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.methylation",
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "所引估计为 4 年死亡的比值比（原始时钟列，未做协变量校正），未校正 GrimAge2 与血液 PhenoAge；DNAm PhenoAge 本身以血液 PhenoAge 为训练目标。本仓库 NHANES 分析显示，在 LongPi 模型基础上其残差每 SD 的 HR 为 1.107，C 指数增益 0.0016，故系数取 0.1。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "United States (multi-ethnic)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Health and Retirement Study 2016 Venous Blood Study",
+  "n": 3581,
+  "ancestry": "United States (multi-ethnic)",
+  "age_range": [
+   50,
+   100
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "36802439",
+  "pmcid": "PMC9992763",
+  "doi": "10.1073/pnas.2215840120",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36802439/",
+  "quote": "PhenoAge Accel1.056***1.037, 1.0751.114***1.088, 1.1411.103***1.075, 1.131",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "why_qualitative_zh": "可逐字核对的估计只有美国 HRS 的 4 年死亡比值比（每年加速 OR 1.056，95% CI 1.037–1.075，原始时钟列），不是风险比，正文未给死亡数；原始训练文献（Levine 2018）只报告每年 HR 1.045 而无可信区间。DNAm PhenoAge 以血液 PhenoAge 为训练目标，与已计入的 core.phenoage_clock 及 GrimAge2 高度重叠；本仓库 NHANES 分析显示其在 LongPi 模型基础上残差每 SD 的 HR 为 1.107，C 指数增益 0.0016，故只作定性佐证。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "all_cause: HR 1.056 与 CI 1.037–1.075 未在 quote 中成组出现（数值与原文结论未绑定）"
+ ]
+}

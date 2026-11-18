@@ -1,0 +1,154 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.screen_crc_colonoscopy",
+ "name_zh": "结肠镜筛查结直肠癌",
+ "system": "whole_body",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.crc_colonoscopy",
+  "unit": "years since last test",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator",
+  "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.01
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.03
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.08
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.12
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.13
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.1
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.06
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/crc.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+ },
+ "effect": {},
+ "screening": {
+  "disease_id": "crc",
+  "mortality_rr": {
+   "hr": 0.88,
+   "lo": 0.68,
+   "hi": 1.08
+  },
+  "eligible": {
+   "age": [
+    50,
+    75
+   ],
+   "sex": "both",
+   "requires": []
+  },
+  "interval_years": 10
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Northern Europe",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NordICC 13-year follow-up (Norway, Poland, Sweden), intention-to-screen",
+  "n": 84583,
+  "ancestry": "Northern Europe",
+  "age_range": [
+   55,
+   64
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述或检查报告日期"
+ },
+ "persistence": {
+  "half_life_years": 10
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "50–75 岁每 10 年做一次结肠镜，或按医生建议缩短间隔。"
+ },
+ "test": {
+  "label_zh": "结肠镜检查，每 10 年一次",
+  "cost_level": 3
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "rct",
+  "pmid": "42102826",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/42102826/",
+  "quote": "Colorectal cancer mortality was 106 (0·41%) of 28 217 in the screening group and 236 (0·47%) of 56 366 in the no-screening group (intention-to-screen RR 0·88 [0·68-1·08], per-protocol RR 0·70 [0·26-1·25]).",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "取 NordICC 13 年随访意向筛查 RR 0.88（0.68–1.08），置信区间跨 1，死亡获益未达统计学显著；受邀组仅约 42% 实际接受结肠镜，意向筛查估计对实际做过结肠镜者偏保守。按方案分析 RR 0.70（0.26–1.25）同样不显著且受自选择影响，不采用。10 年随访（NEJM 2022，PMID 36214590）意向筛查 RR 0.90（0.64–1.16）。",
+ "why_qualitative_zh": "唯一的随机对照试验（NordICC）13 年意向筛查分析中结直肠癌死亡 RR 为 0.88（0.68–1.08），置信区间含 1，未证明降低死亡；受邀者实际接受肠镜者仅约四成，按方案分析亦不显著。本版只作定性佐证，不计入指数。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "screening: 95% CI 0.68–1.08 含 1（无统计学意义）"
+ ]
+}

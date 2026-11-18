@@ -1,0 +1,34 @@
+{
+ "key": "pmid:21067804",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
+ "fetched_at": "2026-11-18T03:21:20Z",
+ "sha256": "b428de1257a39f3538356ee8b6b5072eb7590f295ba50d2f883c1fae501bbf13",
+ "citation": "Lancet (London, England) 2010",
+ "text": "Efficacy and safety of more intensive lowering of LDL cholesterol: a meta-analysis of data from 170,000 participants in 26 randomised trials.\nBACKGROUND: Lowering of LDL cholesterol with standard statin regimens reduces the risk of occlusive vascular events in a wide range of individuals. We aimed to assess the safety and efficacy of more intensive lowering of LDL cholesterol with statin therapy.\nMETHODS: We undertook meta-analyses of individual participant data from randomised trials involving at least 1000 participants and at least 2 years' treatment duration of more versus less intensive statin regimens (five trials; 39 612 individuals; median follow-up 5·1 years) and of statin versus control (21 trials; 129 526 individuals; median follow-up 4·8 years). For each type of trial, we calculated not only the average risk reduction, but also the average risk reduction per 1·0 mmol/L LDL cholesterol reduction at 1 year after randomisation.\nFINDINGS: In the trials of more versus less intensive statin therapy, the weighted mean further reduction in LDL cholesterol at 1 year was 0·51 mmol/L. Compared with less intensive regimens, more intensive regimens produced a highly significant 15% (95% CI 11-18; p<0·0001) further reduction in major vascular events, consisting of separately significant reductions in coronary death or non-fatal myocardial infarction of 13% (95% CI 7-19; p<0·0001), in coronary revascularisation of 19% (95% CI 15-24; p<0·0001), and in ischaemic stroke of 16% (95% CI 5-26; p=0·005). Per 1·0 mmol/L reduction in LDL cholesterol, these further reductions in risk were similar to the proportional reductions in the trials of statin versus control. When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001), including those with LDL cholesterol lower than 2 mmol/L on the less intensive or control regimen. Across all 26 trials, all-cause mortality was reduced by 10% per 1·0 mmol/L LDL reduction (RR 0·90, 95% CI 0·87-0·93; p<0·0001), largely reflecting significant reductions in deaths due to coronary heart disease (RR 0·80, 99% CI 0·74-0·87; p<0·0001) and other cardiac causes (RR 0·89, 99% CI 0·81-0·98; p=0·002), with no significant effect on deaths due to stroke (RR 0·96, 95% CI 0·84-1·09; p=0·5) or other vascular causes (RR 0·98, 99% CI 0·81-1·18; p=0·8). No significant effects were observed on deaths due to cancer or other non-vascular causes (RR 0·97, 95% CI 0·92-1·03; p=0·3) or on cancer incidence (RR 1·00, 95% CI 0·96-1·04; p=0·9), even at low LDL cholesterol concentrations.\nINTERPRETATION: Further reductions in LDL cholesterol safely produce definite further reductions in the incidence of heart attack, of revascularisation, and of ischaemic stroke, with each 1·0 mmol/L reduction reducing the annual rate of these major vascular events by just over a fifth. There was no evidence of any threshold within the cholesterol range studied, suggesting that reduction of LDL cholesterol by 2-3 mmol/L would reduce risk by about 40-50%.\nFUNDING: UK Medical Research Council, British Heart Foundation, European Community Biomed Programme, Australian National Health and Medical Research Council, and National Heart Foundation.",
+ "pmcid": "PMC2988224",
+ "doi": "10.1016/s0140-6736(10)61350-5",
+ "open_access": "Y",
+ "checks": [
+  {
+   "term": "ext.ldl",
+   "number": "chd.derived.from.hr",
+   "value": 0.78,
+   "found": true,
+   "context": "were found in all types of patient studied (rate ratio [RR] 0.78, 95% CI 0.76-0.80; p<0.0001)"
+  },
+  {
+   "term": "ext.ldl",
+   "number": "chd.derived.from.lo",
+   "value": 0.76,
+   "found": true,
+   "context": " all types of patient studied (rate ratio [RR] 0.78, 95% CI 0.76-0.80; p<0.0001)"
+  },
+  {
+   "term": "ext.ldl",
+   "number": "chd.derived.from.hi",
+   "value": 0.8,
+   "found": true,
+   "context": "types of patient studied (rate ratio [RR] 0.78, 95% CI 0.76-0.80; p<0.0001)"
+  }
+ ]
+}

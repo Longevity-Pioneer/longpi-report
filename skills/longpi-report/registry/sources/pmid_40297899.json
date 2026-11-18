@@ -1,0 +1,35 @@
+{
+ "key": "pmid:40297899",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/40297899/",
+ "fetched_at": "2026-11-18T03:53:00Z",
+ "sha256": "21d83d4884dd5d7cccca201ff9014f6ee59a6c3e61d52f7e5c9ea2c7e53fe754",
+ "citation": "Circulation 2025",
+ "text": "Causal Relevance of Lp(a) for Coronary Heart Disease and Stroke Types in East Asian and European Ancestry Populations: A Mendelian Randomization Study.\nBACKGROUND: Elevated plasma levels of Lp(a) [lipoprotein(a)] are a causal risk factor for coronary heart disease and stroke in European individuals, but the causal relevance of Lp(a) for different stroke types and in East Asian individuals with different Lp(a) genetic architecture is uncertain.\nMETHODS: We measured plasma levels of Lp(a) in a nested case-control study of 18 174 adults (mean [SD] age, 57 [10] years; 49% female) in the China Kadoorie Biobank (CKB) and performed a genome-wide association analysis to identify genetic variants affecting Lp(a) levels, with replication in ancestry-specific subsets in UK Biobank. We further performed 2-sample Mendelian randomization analyses, associating ancestry-specific Lp(a)-associated instrumental variants derived from CKB or from published data in European individuals with risk of myocardial infarction (n=17 091), ischemic stroke (IS [n=29 233]) and its subtypes, or intracerebral hemorrhage (n=5845) in East Asian and European individuals using available data from CKB and genome-wide association analysis consortia.\nRESULTS: In CKB observational analyses, plasma levels of Lp(a) were log-linearly and positively associated with higher risks of myocardial infarction and IS, but not with intracerebral hemorrhage. In genome-wide association analysis, we identified 29 single nucleotide polymorphisms independently associated with Lp(a) that together explained 33% of variance in Lp(a) in Chinese individuals. In UK Biobank, the lead Chinese variants identified in CKB were replicated in 1260 Chinese individuals, but explained only 10% of variance in Lp(a) in European individuals. In Mendelian randomization analyses, however, there were highly concordant effects of Lp(a) across both ancestries for all cardiovascular disease outcomes examined. In combined analyses of both ancestries, the proportional reductions in risk per 100 nmol/L lower genetically predicted Lp(a) levels for myocardial infarction were 3-fold greater than for total IS (rate ratio, 0.78 [95% CI, 0.76-0.81] versus 0.94 [0.92-0.96]), but were similar to those for large-artery IS (0.80 [0.73-0.87]; n=8134). There were weaker associations with cardioembolic IS (0.92 [95% CI, 0.86-0.98]; n=11 730), and no association with small-vessel IS (0.99 [0.91-1.07]; n=12 343) or with intracerebral hemorrhage (1.08 [0.96-1.21]; n=5845).\nCONCLUSIONS: The effects of Lp(a) on risk of myocardial infarction and large-artery IS were comparable in East Asian and European individuals, suggesting that people with either ancestry could expect comparable proportional benefits for equivalent reductions in Lp(a), but there was little effect on other stroke types.\n[full text, Europe PMC PMC12165552]\nIn CKB, the distribution of plasma levels of Lp(a) in controls was highly right-skewed, and only 8% of controls had Lp(a) levels ≥100 nmol/L and 4% Lp(a) levels ≥150 nmol/L (Figure 2A). The median levels of Lp(a) in Chinese individuals were comparable with those in European individuals in UKB,3 but the proportions with Lp(a) levels ≥100 nmol/L were 2-fold greater in European individuals than in Chinese individuals.3 In a subset of participants, the Spearman correlation coefficients (95% CI) between Lp(a) levels at baseline and repeat measurements 3 and 8 years later assessed using an identical polyclonal Lp(a) assay were 0.93 (0.92–0.95) and 0.91 (0.89–0.92), respectively (Figure S1). The agreement in plasma Lp(a) levels measured using the polyclonal assay at baseline and a monoclonal assay at first resurvey yielded a Spearman correlation coefficient (95% CI) of 0.92 (0.91–0.92) (Figure S1). There were minor deviations in the accuracy of the polyclonal Lp(a) assay at Lp(a) levels ≥150 nmol/L. apo(a) isoforms in Chinese adults had a bimodal distribution, with ≈25% having a small predominant isoform with ≤22 KIV2 repeats (Figure 2B). Plasma levels of Lp(a) in CKB were inversely associated with number of KIV2 repeats, consistent with findings in European individuals (Figure 2C).4,5\nIn ancestry-specific 2-sample MR analyses of MI (n=77 892), IS (n=91 333), and ICH (n=5845) cases in East Asian individuals and European individuals (Table S13), there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively) and large-artery IS (0.78 [0.76–0.81] versus 0.80 [0.73–0.87], respectively) (Figure 5). The RRs for all other outcomes were concordant in East Asian individuals (mainly BioBank Japan) and European individuals, but the overall effects on cardioembolic IS were much weaker (0.92 [0.86–0.98]), and were not statistically significant for small-vessel IS (0.99 [0.91–1.07]) or ICH (1.08 [0.96–1.21] in East Asian individuals only). Results of alternative MR approaches involving different assumptions (Methods in Supplemental Material) were unaltered, providing support for the validity of the causal relevance of genetically predicted Lp(a) for MI and stroke types (Table S14).",
+ "pmcid": "PMC12165552",
+ "doi": "10.1161/circulationaha.124.072086",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.lpa",
+   "number": "chd.derived.from.hr",
+   "value": 0.78,
+   "found": true,
+   "context": " Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72-0.84] versus 0.78 [0.76-0.81], respectively)"
+  },
+  {
+   "term": "ext.lpa",
+   "number": "chd.derived.from.lo",
+   "value": 0.72,
+   "found": true,
+   "context": "uals and European individuals for risk of MI (0.78 [95% CI, 0.72-0.84] versus 0.78 [0.76-0.81], respectively)"
+  },
+  {
+   "term": "ext.lpa",
+   "number": "chd.derived.from.hi",
+   "value": 0.84,
+   "found": true,
+   "context": "and European individuals for risk of MI (0.78 [95% CI, 0.72-0.84] versus 0.78 [0.76-0.81], respectively)"
+  }
+ ]
+}

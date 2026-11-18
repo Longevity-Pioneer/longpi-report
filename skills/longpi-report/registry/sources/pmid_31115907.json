@@ -1,0 +1,55 @@
+{
+ "key": "pmid:31115907",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31115907/",
+ "fetched_at": "2026-11-18T03:12:35Z",
+ "sha256": "247b66526fd65f14be5599ebc6719c709462268a00785d0b305e15af28aa23a8",
+ "citation": "International journal of cancer 2020",
+ "text": "Cancer incidence in relation to body fatness among 0.5 million men and women: Findings from the China Kadoorie Biobank.\nHigh body mass index (BMI) has been associated with an increased risk of several cancers. Evidence relating body fatness, especially based on different anthropometric measures, to risk of major cancers in China from prospective cohort studies is lacking. The prospective China Kadoorie Biobank study recruited 0.5 million adults aged 30-79 years from 10 diverse areas across China during 2004-2008, recording 21,474 incident cancers during 8.95 years of follow-up. BMI, body fat percentage (BFP), waist circumference (WC) and waist-to-hip ratio (WHR) were measured at baseline. We assessed the associations of body fatness with 15 major cancers by calculating Cox regression yielded adjusted hazard ratios (HRs). Each 5 kg/m2 increase in BMI was associated with an increased risk of endometrial (HR, 2.01; 95% CI, 1.72-2.35), postmenopausal breast (HR, 1.29; 95% CI, 1.18-1.40), colorectal (HR, 1.17; 95% CI, 1.10-1.25) and cervical (HR, 1.15; 95% CI, 1.03-1.29) cancer, whereas it was associated with a reduced risk of esophageal (HR, 0.73; 95% CI, 0.67-0.79), lung (HR, 0.78; 95% CI, 0.74-0.82), liver (HR, 0.85; 95% CI, 0.79-0.92) and gastric (HR, 0.88; 95% CI, 0.82-0.94) cancer. Significant linear trends of BMI-cancer associations were observed, excluding for lung, gastric and cervical cancer (both overall and nonlinear p < 0.05). The relation between BFP, WC and WHR and the above cancers was similar to that of BMI. Our study indicates that either high or low body fatness contributes to the incidence of different types of cancer in China.",
+ "pmcid": "PMC7614994",
+ "doi": "10.1002/ijc.32394",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.bmi",
+   "number": "crc.hr",
+   "value": 1.17,
+   "found": true,
+   "context": "colorectal (HR, 1.17; 95% CI, 1.10-1.25)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "crc.lo",
+   "value": 1.1,
+   "found": true,
+   "context": "colorectal (HR, 1.17; 95% CI, 1.10-1.25)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "crc.hi",
+   "value": 1.25,
+   "found": true,
+   "context": "colorectal (HR, 1.17; 95% CI, 1.10-1.25)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "breast_ca.hr",
+   "value": 1.29,
+   "found": true,
+   "context": "postmenopausal breast (HR, 1.29; 95% CI, 1.18-1.40)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "breast_ca.lo",
+   "value": 1.18,
+   "found": true,
+   "context": "postmenopausal breast (HR, 1.29; 95% CI, 1.18-1.40)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "breast_ca.hi",
+   "value": 1.4,
+   "found": true,
+   "context": "postmenopausal breast (HR, 1.29; 95% CI, 1.18-1.40)"
+  }
+ ]
+}

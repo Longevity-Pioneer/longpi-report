@@ -1,0 +1,35 @@
+{
+ "key": "pmid:42584389",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/42584389/",
+ "fetched_at": "2026-11-18T03:14:26Z",
+ "sha256": "221306c5b335896aa88211b5a452c14793d11e75d7d83c97e738b9211fb67870",
+ "citation": "JACC. Asia 2026",
+ "text": "Lifestyle and Metabolic Health, Low-Grade to Clinically Elevated Albuminuria, and Cardiovascular-Renal Diseases.\nBACKGROUND: Albuminuria from low-grade to clinically elevated range confers cardiorenal risks.\nOBJECTIVES: The authors aimed to investigate the differential roles of lifestyle/metabolic factors in the association of fine-categorized and continuously measured urinary albumin-to-creatinine ratio (UACR) levels with cardiorenal outcomes.\nMETHODS: A total of 82,509 participants from the China Cardiometabolic Disease and Cancer Cohort (4C) Study were included, with a median follow-up of 3.0 years. Outcomes included incident cardiovascular disease (CVD), incident CKD, their composite, along with surrogate markers. Lifestyle factors included tobacco use, alcohol use, diet, physical activity and sleep. Metabolic factors included diabetes, hypertension, abdominal obesity, and elevated low-density lipoprotein cholesterol. Cox proportional hazard models were used to calculate hazard ratios.\nRESULTS: Compared to the lowest UACR, participants with mildly elevated UACR (≥10 to <30 mg/g) had a 39% higher risk of composite cardiorenal outcomes (multivariable-adjusted HR: 1.39, 95% CI: 1.29-1.50), whereas those with clinically elevated UACR (≥30 mg/g) had over double the risk (HR: 2.29, 95% CI: 2.12-2.47). A nonlinear J-shaped association was observed between continuous UACR and cardiorenal outcomes (Pnonlinearity = 0.0009), with UACR ≥10 mg/g already conferring risks, a pattern also reflected by the deterioration of PREVENT score and estimated glomerular filtration rate. Optimal lifestyle and metabolic status generally attenuated CVD risk related to low-grade albuminuria, while improvement of the latter additionally decreased CVD and cardiorenal risk, even in clinically elevated albuminuria (additive Pinteraction <0.0001). Hypertension showed the largest relative contribution to cardiorenal risk, particularly in UACR <30 mg/g.\nCONCLUSIONS: Our findings highlighted low-grade albuminuria as a key preventive window for cardiorenal outcomes requiring both aspects of modifiable risk factors, and the cardiovascular benefits of metabolic improvement in established albuminuria.\n[full text, Europe PMC PMC13654428]\nComparison of baseline characteristics between the included and excluded participants (Supplemental Table 1) showed that while study participants were slightly younger and had marginally better metabolic status, the SMDs for most variables were <0.1, indicating that the included cohort was largely representative of the broader population. Among 82,509 included participants (mean ± SD age, 56.29 ± 8.60 years; 66.2% [54,610] women), the participants in the 3 UACR categories were 56,333 (68.27%) for UACR <10 mg/g, 17,747 (21.51%) for UACR ≥10 to <30 mg/g, and 8,429 (10.22%) for UACR≥30 mg/g (Supplemental Table 3). Compared to the lowest UACR, participants in the higher UACR categories were older, less educated, and had higher body mass index, blood pressure levels, blood glucose, blood lipids, and lower eGFR (P < 0.001). With the elevation of UACR, the proportion of participants with metabolic risk factors rose in turn, whereas the metabolic risk factors of participants who met optimal lifestyle status generally dropped.\nOver a median follow-up of 3.0 years (IQR: 2.9-3.2 years), 4,280 (5.19%) participants experienced a composite of cardiorenal outcomes, with an incidence rate of 16.32 (15.83-16.82) per 1000 person-years. Compared with UACR <10 mg/g, those with a UACR ≥10 to <30 mg/g had a 39% higher risk of composite outcomes (multivariable-adjusted HR: 1.39, 95% CI: 1.29-1.50), and those with a UACR ≥30 mg/g had over double the risk (HR: 2.29, 95% CI: 2.12-2.47) (Table 1). As for separate CVD and CKD outcomes, 2,308 (2.80%) participants experienced incident CVD, among whom 302 (0.37%) experienced nonfatal myocardial infarction, 1,274 (1.56%) experienced nonfatal stroke, 184 (0.22%) were hospitalized or treated for heart failure, and 599 (0.73%) died from CVD. The upper 2 UACR categories were associated with significantly higher risks of incident CVD (HR: 1.41, 95% CI: 1.27-1.56 for UACR ≥10 to <30 mg/g; HR: 2.02, 95% CI: 1.81-2.25 for UACR ≥30 mg/g). Similar and progressively more pronounced associations were observed for nonfatal stroke, heart failure, and CVD death, while only the highest but not the mildly elevated UACR category was associated with an elevated risk of nonfatal myocardial infarction. As for renal outcomes, 2,088 (2.55%) participants experienced incident CKD, among whom 2,043 (2.49%) individuals had CKD development and 224 (0.27%) had CKD progression. Compared with the lowest UACR, the risk of incident CKD significantly increased among participants with UACR ≥10 to <30 mg/g (HR: 1.33, 95% CI: 1.19-1.48) and UACR ≥30 mg/g (HR: 2.72, 95% CI: 2.44-3.03). Similar associations were found for CKD development and progression. No significant modification was found regarding sex and education level, while more evident cardiorenal and CKD risks were observed in participants aged <60 years (Supplemental Table 5). Results were not materially changed when excluding those with missing covariates at baseline (Supplemental Table 6), or when controlling for potential confounding using propensity score weighting (Supplemental Table 7). Associations remained robust for most outcomes except nonfatal stroke after excluding those with boundary UACR values (UACR 10 to <20 mg/g; Supplemental Table 8). When accounting for the competing risk of cardiovascular mortality using Fine-Gray subdistribution hazard models, the positive associations between higher UACR categories and the risk of all CKD outcomes were slightly attenuated but remained significant (Supplemental Table 9).",
+ "pmcid": "PMC13654428",
+ "doi": "10.1016/j.jacasi.2026.06.032",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.uacr",
+   "number": "ckd.hr",
+   "value": 1.33,
+   "found": true,
+   "context": "increased among participants with UACR ≥10 to <30 mg/g (HR: 1.33, 95% CI: 1.19-1.48)"
+  },
+  {
+   "term": "ext.uacr",
+   "number": "ckd.lo",
+   "value": 1.19,
+   "found": true,
+   "context": "g participants with UACR ≥10 to <30 mg/g (HR: 1.33, 95% CI: 1.19-1.48)"
+  },
+  {
+   "term": "ext.uacr",
+   "number": "ckd.hi",
+   "value": 1.48,
+   "found": true,
+   "context": "ticipants with UACR ≥10 to <30 mg/g (HR: 1.33, 95% CI: 1.19-1.48)"
+  }
+ ]
+}

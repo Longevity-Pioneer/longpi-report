@@ -1,0 +1,123 @@
+{
+ "id": "ext.metab_metabohealth",
+ "name_zh": "MetaboHealth 代谢组死亡风险评分",
+ "kind": "state",
+ "system": "whole_body",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:metab.metabohealth",
+  "unit": "SD (z-score of the age-residualized MetaboHealth score)",
+  "platform": "Nightingale Health 1H-NMR metabolomics",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -4,
+   4
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 1.0
+   }
+  ],
+  "source": "原文将 MetaboHealth（Deelen 2019 的 14 项 NMR 代谢物加权评分）对年龄回归取残差后标准化；引擎输入须是相对同龄参考人群的 z 值，故参考分布取标准正态。尚无中国人群 MetaboHealth 分布数据。"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.6,
+   "lo": 1.35,
+   "hi": 1.89,
+   "per": 1,
+   "per_unit": "SD of age-residualized MetaboHealth",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.adiposity",
+  "core.methylation"
+ ],
+ "overlap": {
+  "coef": 0.4,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.methylation",
+   "core.phenoage_clock",
+   "core.glucose",
+   "core.lipid"
+  ],
+  "rationale_zh": "所引 HR 与 GrimAge 互相校正（另校正性别、BMI、细胞组成，年龄作时间尺度），因此与 core.methylation 的重叠已扣除；但评分含葡萄糖、白蛋白、糖蛋白乙酰基（炎症）与多项脂蛋白指标，与 core.phenoage_clock（白蛋白、血糖、CRP）、core.glucose、core.lipid 共享信息而研究未校正，属部分校正，系数取 0.4。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (Netherlands)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Rotterdam Study (multi-omics subcohorts)",
+  "n": 1424,
+  "events": 132,
+  "ancestry": "European (Netherlands)",
+  "age_range": [
+   50,
+   95
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "Nightingale NMR 平台不同定量版本之间存在差异（Metabolites 2023 技术报告，PMID 38132863，未逐字核对）；单项代谢物批间 CV 多在 5% 以内（未核对）"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "non_fasting"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "评分中的血糖、炎症标志与脂蛋白组分可随减重、体力活动、血糖控制与戒烟改善；以评分本身为终点的干预试验证据有限。"
+ },
+ "test": {
+  "label_zh": "血液核磁代谢组检测（Nightingale 平台，计算 MetaboHealth 评分）",
+  "cost_level": 3
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "37303208",
+  "pmcid": "PMC10562890",
+  "doi": "10.1093/gerona/glad137",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/37303208/",
+  "quote": "When combining DNAm GrimAge and MetaboHealth in a model, both showed an independent risk of all-cause mortality, respectively, DNAm GrimAge (HR 1.56 [CI 1.31;1.85]) and MetaboHealth (HR 1.60 [CI 1.35;1.89])",
+  "note": "评分构建见 Deelen J, et al. Nat Commun 2019;10:3346（PMID 31431621，44,168 人，5,512 例死亡；正文只给 14 项代谢物各自的 HR，未给评分每 SD 的 HR）。",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据；MetaboHealth 权重公开发表，Nightingale 平台为商业检测"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

@@ -1,0 +1,77 @@
+{
+ "key": "pmid:29773120",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29773120/",
+ "fetched_at": "2026-11-18T03:03:53Z",
+ "sha256": "eb43534ab604d5cf2aec2ef03c3dc19ffc88334703345f0840a6845eac46cbe3",
+ "citation": "The Lancet. Global health 2018",
+ "text": "Age-specific association between blood pressure and vascular and non-vascular chronic diseases in 0·5 million adults in China: a prospective cohort study.\nBACKGROUND: The age-specific association between blood pressure and vascular disease has been studied mostly in high-income countries, and before the widespread use of brain imaging for diagnosis of the main stroke types (ischaemic stroke and intracerebral haemorrhage). We aimed to investigate this relationship among adults in China.\nMETHODS: 512 891 adults (59% women) aged 30-79 years were recruited into a prospective study from ten areas of China between June 25, 2004, and July 15, 2008. Participants attended assessment centres where they were interviewed about demographic and lifestyle characteristics, and their blood pressure, height, and weight were measured. Incident disease was identified through linkage to local mortality records, chronic disease registries, and claims to the national health insurance system. We used Cox regression analysis to produce adjusted hazard ratios (HRs) relating systolic blood pressure to disease incidence. HRs were corrected for regression dilution to estimate associations with long-term average (usual) systolic blood pressure.\nFINDINGS: During a median follow-up of 9 years (IQR 8-10), there were 88 105 incident vascular and non-vascular chronic disease events (about 90% of strokes events were diagnosed using brain imaging). At ages 40-79 years (mean age at event 64 years [SD 9]), usual systolic blood pressure was continuously and positively associated with incident major vascular disease throughout the range 120-180 mm Hg: each 10 mm Hg higher usual systolic blood pressure was associated with an approximately 30% higher risk of ischaemic heart disease (HR 1·31 [95% CI 1·28-1·34]) and ischaemic stroke (1·30 [1·29-1·31]), but the association with intracerebral haemorrhage was about twice as steep (1·68 [1·65-1·71]). HRs for vascular disease were twice as steep at ages 40-49 years than at ages 70-79 years. Usual systolic blood pressure was also positively associated with incident chronic kidney disease (1·40 [1·35-1·44]) and diabetes (1·14 [1·12-1·15]). About half of all vascular deaths in China were attributable to elevated blood pressure (ie, systolic blood pressure >120 mm Hg), accounting for approximately 1 million deaths (<80 years of age) annually.\nINTERPRETATION: Among adults in China, systolic blood pressure was continuously related to major vascular disease with no evidence of a threshold down to 120 mm Hg. Unlike previous studies in high-income countries, blood pressure was more strongly associated with intracerebral haemorrhage than with ischaemic stroke. Even small reductions in mean blood pressure at a population level could be expected to have a major impact on vascular morbidity and mortality.\nFUNDING: UK Wellcome Trust, UK Medical Research Council, British Heart Foundation, Cancer Research UK, Kadoorie Charitable Foundation, Chinese Ministry of Science and Technology, and the National Science Foundation of China.",
+ "pmcid": "PMC5960069",
+ "doi": "10.1016/s2214-109x(18)30217-1",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.sbp",
+   "number": "chd.hr",
+   "value": 1.31,
+   "found": true,
+   "context": "pproximately 30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "chd.lo",
+   "value": 1.28,
+   "found": true,
+   "context": "30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "chd.hi",
+   "value": 1.34,
+   "found": true,
+   "context": "igher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "stroke.hr",
+   "value": 1.3,
+   "found": true,
+   "context": " disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "stroke.lo",
+   "value": 1.29,
+   "found": true,
+   "context": "se (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "stroke.hi",
+   "value": 1.31,
+   "found": true,
+   "context": "pproximately 30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "ckd.hr",
+   "value": 1.4,
+   "found": true,
+   "context": "positively associated with incident chronic kidney disease (1.40 [1.35-1.44])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "ckd.lo",
+   "value": 1.35,
+   "found": true,
+   "context": "vely associated with incident chronic kidney disease (1.40 [1.35-1.44])"
+  },
+  {
+   "term": "ext.sbp",
+   "number": "ckd.hi",
+   "value": 1.44,
+   "found": true,
+   "context": "associated with incident chronic kidney disease (1.40 [1.35-1.44])"
+  }
+ ]
+}

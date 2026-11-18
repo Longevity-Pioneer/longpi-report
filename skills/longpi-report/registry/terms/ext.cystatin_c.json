@@ -1,0 +1,129 @@
+{
+ "kind": "state",
+ "status": "active",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "disclosure": "standard",
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "persistence": {
+  "half_life_years": 5
+ },
+ "id": "ext.cystatin_c",
+ "name_zh": "胱抑素 C",
+ "system": "kidney",
+ "group": "kidney",
+ "input": {
+  "code": "LOINC:33863-2",
+  "unit": "mg/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.4,
+   5.0
+  ],
+  "log_x": true
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 59,
+    "meanlog": -0.23,
+    "sdlog": 0.1519
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 99,
+    "meanlog": -0.085,
+    "sdlog": 0.1102
+   }
+  ],
+  "pmid": "22467317",
+  "quote": "0.59-1.07 mg/L for subjects aged 19-59 years; 0.74-1.14 mg/L for the older aged ≥60 years",
+  "source": "中国健康人群 95% 参考区间（PMID 22467317），按对数正态 2.5/97.5 百分位反推 meanlog 与 sdlog；参考人群为健康体检者，离散度低于一般人群"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 2.87,
+   "lo": 1.938,
+   "hi": 4.26,
+   "per": 1.0,
+   "per_unit": "ln(mg/L)（每增加 1 个自然对数单位，约合每翻倍 HR 2.07）",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity",
+  "core.bp",
+  "core.lipid",
+  "core.glucose"
+ ],
+ "overlap": {
+  "coef": 0.4,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "胱抑素 C 与 PhenoAge 中的肌酐同反映肾小球滤过，但受肌肉量影响小、另含炎症等信息；研究模型 3 校正了吸烟、饮酒、体重指数、高血压、高胆固醇、糖尿病及慢性肾病，未校正 PhenoAge，按部分校正取 0.4",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "US (NHANES, multi-ethnic)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NHANES 1999–2002（≥50 岁），随访至 2019",
+  "n": 1642,
+  "events": 981,
+  "ancestry": "US (NHANES, multi-ethnic)",
+  "age_range": [
+   50,
+   85
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.05,
+  "source": "颗粒增强免疫比浊法分析变异系数约 3–6%（一般实验室质量数据，未经文献核对）"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "控制血压、血糖，避免肾毒性药物，有助于延缓肾功能下降"
+ },
+ "test": {
+  "label_zh": "抽血查胱抑素 C",
+  "cost_level": 2
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "39859953",
+  "quote": "In a weighted Cox regression model, a one-unit increase in ln-serum cystatin C was linked to an increased hazard ratio (HR) of 2.87 (95% CI: 1.938-4.26, p < 0.001) for all-cause mortality",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/39859953/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-4"
+}

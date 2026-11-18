@@ -1,0 +1,146 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.mvpa",
+ "name_zh": "每周中高强度运动时间",
+ "system": "cardiovascular",
+ "group": "physical_activity",
+ "input": {
+  "code": "LP:mvpa_min_week",
+  "unit": "min/week",
+  "platform": null,
+  "methods": [
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 300,
+  "clip": [
+   0,
+   1500
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "categorical_mid",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "p": {
+     "none": 0.55,
+     "low": 0.2,
+     "meet": 0.15,
+     "high": 0.1
+    }
+   }
+  ],
+  "mids": {
+   "none": 0,
+   "low": 75,
+   "meet": 225,
+   "high": 450
+  },
+  "source": "粗略估计：中国成人业余时间锻炼普遍较少，约半数几乎无业余中高强度活动；未找到可核对的中国成人每周业余中高强度活动分钟数按性别年龄的分布，数值未经原文核对"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.2821,
+    "lo": 1.2658,
+    "hi": 1.2987,
+    "derived": {
+     "from": {
+      "hr": 0.78,
+      "lo": 0.77,
+      "hi": 0.79
+     },
+     "pow": -1
+    },
+    "per": 300,
+    "per_unit": "min/week（相当于 0→15 MET-h/wk）"
+   },
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity",
+  "core.bp",
+  "core.glucose"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.crf"
+  ],
+  "rationale_zh": "合并分析校正了年龄、性别、教育、吸烟、饮酒、体重指数、糖尿病、高血压、心血管病和癌症，但未校正心肺适能；中高强度运动主要通过心肺适能起作用，属部分校正，系数取 0.5。测得 VO2max 时再按中介比例 0.3（默认值，无可核对文献）扣减。",
+  "mediated_by": {
+   "core.crf": 0.3
+  }
+ },
+ "transport": {
+  "ancestry": "pooled US (NHIS), UK (UK Biobank), Chinese (China Kadoorie Biobank) and Taiwan Chinese (Mei Jau)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NHIS + UK Biobank + China Kadoorie Biobank + Mei Jau pooled (JAMA Netw Open 2024)",
+  "n": 2011186,
+  "events": 177436,
+  "ancestry": "pooled US (NHIS), UK (UK Biobank), Chinese (China Kadoorie Biobank) and Taiwan Chinese (Mei Jau)",
+  "age_range": [
+   20,
+   97
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述业余活动换算 MET-h/wk；手表测得时剧烈强度分钟宜按 2 倍计入（75 分钟剧烈约等于 150 分钟中等）"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "每周中等强度运动由 0 增至 150–300 分钟获益最大，超过 300 分钟后增益有限。"
+ },
+ "test": {
+  "label_zh": "手表或问卷记录每周中高强度运动分钟数",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "39570587",
+  "pmcid": "PMC11582934",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/39570587/",
+  "quote": "The hazard ratio for mortality associated with meeting the recommended PA in the total sample was 0.78 (95% CI, 0.77-0.79).",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "原文为达到推荐量（≥7.5 MET-h/wk）对未达到的 HR；剂量反应曲线显示 0→7.5 MET-h/wk 降 14%、0→15 降 22%、0→22.5 降 25%。折线拐点取 300 分钟/周（15 MET-h/wk），拐点以下每少 300 分钟风险乘 1/0.78，与曲线中段吻合。Arem 2015（PMID 25844730，美欧 66 万人，1–2 倍推荐量 HR 0.69）方向一致，作为佐证。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

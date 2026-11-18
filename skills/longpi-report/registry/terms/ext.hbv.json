@@ -1,0 +1,112 @@
+{
+ "id": "ext.hbv",
+ "name_zh": "慢性乙型肝炎病毒感染（HBsAg 阳性）",
+ "kind": "state",
+ "system": "liver",
+ "group": null,
+ "input": {
+  "code": "ICD10:B18.1",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "lab",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.031
+   }
+  ],
+  "pmid": "31199446",
+  "quote": "The prevalence of HBsAg positivity was 3.1% (n = 15 355).",
+  "source": "中国慢性病前瞻性研究基线现场快速试纸检测 HBsAg 阳性率 3.1%（30–79 岁，496 732 人）；与效应量出自同一检测方法，故用于归一化。快速试纸灵敏度偏低，全国人群 HBsAg 流行率可能更高；未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "liver_ca": {
+   "hr": 15.77,
+   "lo": 14.15,
+   "hi": 17.57,
+   "coef": 1.0
+  },
+  "gastric_ca": {
+   "hr": 1.41,
+   "lo": 1.11,
+   "hi": 1.8,
+   "coef": 0.6
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.1,
+  "overlaps_with": [],
+  "rationale_zh": "本项只计疾病结局。原文 Cox 模型校正了年龄、性别、地区、教育、家庭收入、婚姻、吸烟、饮酒、癌症家族史和体重指数，已覆盖肝癌的主要并存危险因素（丙肝病毒未校正，但在中国人群中流行率低），肝癌系数取 1.0。胃癌关联较弱（HR 1.41），仅在小样本队列中重复，且未校正幽门螺杆菌感染，系数取 0.6。肝癌家族史与乙肝感染的重叠在 ext.fh_liver_ca 一侧打折。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank",
+  "n": 496732,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "HBsAg 定性检测；CKB 用现场快速试纸，灵敏度低于实验室化学发光法，可能使 HR 偏向无效"
+ },
+ "persistence": {
+  "half_life_years": 30
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "规范抗病毒治疗可降低肝癌风险；HBsAg 阳性者应每 6 个月做肝脏超声和甲胎蛋白检查。本项 HR 来自未区分治疗状态的人群。"
+ },
+ "test": {
+  "label_zh": "抽血查乙肝表面抗原（HBsAg）",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "31199446",
+  "quote": "participants who were HBsAg seropositive (n = 15 355) had a higher risk of hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/31199446/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

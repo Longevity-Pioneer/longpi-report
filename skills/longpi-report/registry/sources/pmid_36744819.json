@@ -1,0 +1,34 @@
+{
+ "key": "pmid:36744819",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36744819/",
+ "fetched_at": "2026-11-18T03:24:41Z",
+ "sha256": "e41587a594a213a631ea95d173922b12d3e5135f65e9ccd8b993dea6346c17ce",
+ "citation": "Liver international : official journal of the International Association for the Study of the Liver 2023",
+ "text": "Liver stiffness is associated with excess mortality in the general population driven by heart failure: The Rotterdam Study.\nBACKGROUND: Elevated liver stiffness reflects hepatic fibrosis but can also be secondary to venous congestion. We aimed to study the association between liver stiffness and mortality in the general population, stratified for heart failure and/or coronary heart disease (CHD).\nMETHODS: We analysed individuals enrolled in the ongoing prospective population-based Rotterdam Study who attended a visit between 2009-2014 that included liver stiffness measurement. Exclusion criteria for the primary analysis were incomplete data on heart failure, unreliable liver stiffness, alcohol abuse and viral hepatitis, leaving 4.153 participants (aged 67.5 ± 8.4 years, 44.2% male) for analysis with a median follow-up of 6.0 (interquartile range: 5.1-7.0) years. Secondary analysis included participants with viral hepatitis, alcohol abuse and/or unreliable measurement. The association between liver stiffness and mortality was assessed using Cox regression. Associations between heart failure, CHD, and echocardiographic characteristics and liver stiffness were quantified with linear regression.\nRESULTS: Liver stiffness ≥8.0 kPa was associated with mortality (aHR: 1.37, 95%CI: 1.00-1.89). However, this was driven by participants with heart failure (aHR: 2.48, 95%CI: 1.15-5.35), since high liver stiffness was not associated with mortality in participants without heart failure and/or CHD (aHR: 1.07, 95%CI: 0.70-1.64). Results were consistent when individuals with viral hepatitis, alcohol abuse or unreliable liver stiffness measurement were not excluded. Several cardiovascular characteristics were significantly associated with higher liver stiffness, e.g. heart failure, moderate/poor diastolic dysfunction, and right atrium diameter > 4.5 cm.\nCONCLUSION: In our cohort of community-dwelling elderly, high liver stiffness was associated with excess mortality, primarily explained by participants with heart failure. Moreover, heart failure and its indicators were associated with increased liver stiffness.",
+ "doi": "10.1111/liv.15538",
+ "open_access": "N",
+ "epmc_license": "cc by-nc",
+ "checks": [
+  {
+   "term": "ext.liver_stiffness",
+   "number": "all_cause.hr_above.hr",
+   "value": 1.37,
+   "found": true,
+   "context": "iver stiffness ≥8.0 kPa was associated with mortality (aHR: 1.37, 95%CI: 1.00-1.89)"
+  },
+  {
+   "term": "ext.liver_stiffness",
+   "number": "all_cause.hr_above.lo",
+   "value": 1.0,
+   "found": true,
+   "context": "s ≥8.0 kPa was associated with mortality (aHR: 1.37, 95%CI: 1.00-1.89)"
+  },
+  {
+   "term": "ext.liver_stiffness",
+   "number": "all_cause.hr_above.hi",
+   "value": 1.89,
+   "found": true,
+   "context": "0 kPa was associated with mortality (aHR: 1.37, 95%CI: 1.00-1.89)"
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "key": "pmid:31214711",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31214711/",
+ "fetched_at": "2026-11-18T03:43:40Z",
+ "sha256": "6f846e108a56ea589bd3431ce57499d1edee69fa37b6a89a99fe5e3739dfa3ce",
+ "citation": "Journal of the National Cancer Institute 2020",
+ "text": "Germline Pathogenic Variants in 7636 Japanese Patients With Prostate Cancer and 12 366 Controls.\nBACKGROUND: Genetic testing has been conducted in patients with prostate cancer (PCa) using multigene panels, but no centralized guidelines for genetic testing exist. To overcome this limitation, we investigated the demographic and clinical characteristics of patients with pathogenic variants.\nMETHODS: We sequenced eight genes associated with hereditary PCa in 7636 unselected Japanese patients with PCa and 12 366 male, cancer-free control individuals. We assigned clinical significance for all 1456 variants using the American College of Medical Genetics and Genomics guidelines and ClinVar. We compared the frequency of carriers bearing pathogenic variants between cases and control participants with calculated PCa risk in each gene and documented the demographic and clinical characteristics of patients bearing pathogenic variants. All statistical tests were two-sided.\nRESULTS: We identified 136 pathogenic variants, and 2.9% of patients and 0.8% of control individuals had a pathogenic variant. Association with PCa risk was statistically significant for variants in BRCA2 (P < .001, odds ratio [OR] = 5.65, 95% confidence interval [CI] = 3.55 to 9.32), HOXB13 (P < .001, OR = 4.73, 95% CI = 2.84 to 8.19), and ATM (P < .001, OR = 2.86, 95% CI = 1.63 to 5.15). We detected recurrent new pathogenic variants such as p.Gly132Glu of HOXB13. Patients with pathogenic variants were 2.0 years younger at diagnosis and more often had smoking and alcohol drinking histories as well as family histories of breast, pancreatic, lung, and liver cancers.\nCONCLUSIONS: This largest sequencing study of PCa heredity provides additional evidence supporting the latest consensus among clinicians for developing genetic testing guidelines for PCa.",
+ "pmcid": "PMC7156928",
+ "doi": "10.1093/jnci/djz124",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc",
+ "checks": [
+  {
+   "term": "ext.mono_brca2",
+   "number": "prostate_ca.hr",
+   "value": 5.65,
+   "found": true,
+   "context": "nificant for variants in BRCA2 (P < .001, odds ratio [OR] = 5.65, 95% confidence interval [CI] = 3.55 to 9.32)"
+  },
+  {
+   "term": "ext.mono_brca2",
+   "number": "prostate_ca.lo",
+   "value": 3.55,
+   "found": true,
+   "context": "001, odds ratio [OR] = 5.65, 95% confidence interval [CI] = 3.55 to 9.32)"
+  },
+  {
+   "term": "ext.mono_brca2",
+   "number": "prostate_ca.hi",
+   "value": 9.32,
+   "found": true,
+   "context": "s ratio [OR] = 5.65, 95% confidence interval [CI] = 3.55 to 9.32)"
+  }
+ ]
+}

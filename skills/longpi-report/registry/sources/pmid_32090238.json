@@ -1,0 +1,33 @@
+{
+ "key": "pmid:32090238",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/32090238/",
+ "fetched_at": "2026-11-18T03:19:26Z",
+ "sha256": "b665cdc591d8b276c4623d73d1d738c9d2f6967126ed85443ce1bba9d705ceaf",
+ "citation": "Alcohol and alcoholism (Oxford, Oxfordshire) 2020",
+ "text": "Alcohol Consumption by Beverage Type and Risk of Breast Cancer: A Dose-Response Meta-Analysis of Prospective Cohort Studies.\nAIMS: Alcohol intake has been shown to increase the risk of breast cancer. However, the dose-response analysis of different alcoholic beverages (spirits, wine and beer) is not clear. Our meta-analysis aims to provide a dose-response estimation between different alcohols and breast cancer risk.\nMETHODS: Search of PubMed and Web of Science and manual searches were conducted up to 1 December 2018, and summary relative risks (RRs) and attributable risk percentage (ARP) for alcohol intake on the development of breast cancer were calculated. Dose-response meta-analysis modeled relationships between drinking type and breast cancer risk. Sources of heterogeneity were explored, and sensitivity analyses were conducted to test the robustness of findings.\nRESULTS: In total, 22 cohort studies and 45,350 breast cancer cases were included. Current drinkers for ER+ had an increased risk compared with never drinkers. In dose-response analysis, there was a statistically significant linear trend with breast cancer risk increasing gradually by total alcohol and wine dose: when adding 10 g per day, the risk increased by 10.5% (RR = 1.10, 95%CI = 1.08-1.13) in total alcohol and 8.9% (RR = 1.08, 95%CI = 1.04-1.14) in wine. For postmenopausal women, the risk increases by 11.1% (RR = 1.11, 95%CI = 1.09-1.13) with every 10 g of total alcohol increase. Furthermore, the breast cancer alcohol-attributed percentage is higher in Europe than in North America and Asia.\nCONCLUSIONS: The effect of drinking on the incidence of breast cancer is mainly manifested in ER+ breast cancer. Quantitative analysis showed total drinking had a significant risk for breast cancer, especially for postmenopausal women. However, for different alcohols, just wine intake has the similar results.",
+ "doi": "10.1093/alcalc/agaa012",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.alcohol",
+   "number": "breast_ca.hr",
+   "value": 1.1,
+   "found": true,
+   "context": "when adding 10 g per day, the risk increased by 10.5% (RR = 1.10, 95%CI = 1.08-1.13) in total alcohol"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "breast_ca.lo",
+   "value": 1.08,
+   "found": true,
+   "context": " g per day, the risk increased by 10.5% (RR = 1.10, 95%CI = 1.08-1.13) in total alcohol"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "breast_ca.hi",
+   "value": 1.13,
+   "found": true,
+   "context": "r day, the risk increased by 10.5% (RR = 1.10, 95%CI = 1.08-1.13) in total alcohol"
+  }
+ ]
+}

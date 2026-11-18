@@ -1,0 +1,55 @@
+{
+ "key": "pmid:29298802",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29298802/",
+ "fetched_at": "2026-11-18T03:11:34Z",
+ "sha256": "1936d35ef7b9c0cbf5e4414082f05e49637cd2fb789766c8916c5b0d46ac36fd",
+ "citation": "Diabetes care 2018",
+ "text": "Associations of General and Central Adiposity With Incident Diabetes in Chinese Men and Women.\nOBJECTIVE: We assess associations of general and central adiposity in middle age and of young adulthood adiposity with incident diabetes in adult Chinese and estimate the associated population burden of diabetes.\nRESEARCH DESIGN AND METHODS: The prospective China Kadoorie Biobank enrolled 512,891 adults 30-79 years of age from 10 localities across China during 2004-2008. During 9.2 years of follow-up, 13,416 cases of diabetes were recorded among 482,589 participants without diabetes at baseline. Cox regression yielded adjusted hazard ratios (HRs) for incident diabetes associated with measures of general (e.g., BMI and BMI at 25 years) and central (e.g., waist circumference [WC]) adiposity.\nRESULTS: The mean (SD) BMI was 23.6 kg/m2 (3.4 kg/m2), and 3.8% had a BMI ≥30 kg/m2. Throughout the range examined (19-32 kg/m2), BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81) (P for heterogeneity <0.001). For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustment attenuated these associations, especially those of BMI. BMI at age 25 years was weakly positively associated with diabetes (men HR 1.09 [95% CI 1.05-1.12]; women 1.04 [1.02-1.07] per SD), which was reversed after adjustment for baseline BMI. In China, the increase in adiposity accounted for ∼50% of the increase in diabetes burden since 1980.\nCONCLUSIONS: Among relatively lean Chinese adults, higher adiposity-general and central-was strongly positively associated with the risk of incident diabetes. The predicted continuing increase in adiposity in China foreshadows escalating rates of diabetes.",
+ "pmcid": "PMC6548563",
+ "doi": "10.2337/dc17-1852",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.waist",
+   "number": "t2d.hr",
+   "value": 1.91,
+   "found": true,
+   "context": "For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual a"
+  },
+  {
+   "term": "ext.waist",
+   "number": "t2d.lo",
+   "value": 1.87,
+   "found": true,
+   "context": "C, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustm"
+  },
+  {
+   "term": "ext.waist",
+   "number": "t2d.hi",
+   "value": 1.95,
+   "found": true,
+   "context": "s per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women (P for heterogeneity <0.001). Mutual adjustment a"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "t2d.hr",
+   "value": 1.77,
+   "found": true,
+   "context": " BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "t2d.lo",
+   "value": 1.73,
+   "found": true,
+   "context": "reater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "t2d.hi",
+   "value": 1.81,
+   "found": true,
+   "context": "r in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)"
+  }
+ ]
+}

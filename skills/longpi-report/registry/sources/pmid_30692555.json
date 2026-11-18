@@ -1,0 +1,35 @@
+{
+ "key": "pmid:30692555",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/30692555/",
+ "fetched_at": "2026-11-18T03:12:09Z",
+ "sha256": "7306a62bbd9337e611ae846d3c9ef32ed44cba09fd5ea0c992781fbf417cd133",
+ "citation": "Scientific reports 2019",
+ "text": "Adiposity in relation to risks of fatty liver, cirrhosis and liver cancer: a prospective study of 0.5 million Chinese adults.\nAdiposity is an increasing public health problem in China. We aimed to examine the associations of adiposity with non-alcoholic fatty liver disease (NAFLD) and other chronic liver diseases in Chinese adults. The prospective China Kadoorie Biobank recruited 512,891 adults aged 30-79 years from 10 areas. During 10 years of follow-up, 7,386 incident liver disease cases were recorded among 503,991 participants without prior cancer or chronic liver disease at baseline. The mean body mass index (BMI) (SD) was 23.7 (3.3) kg/m2 and mean waist circumference (WC) 80.3 (9.8) cm, with 33% having BMI ≥25 kg/m2. Throughout the range examined (BMI 15-50) BMI showed a log-linear positive association with NAFLD (n = 1,298), with adjusted HR per 5 kg/m2 of 2.81 (95% CI 2.63-3.01), adjusting for regression dilution. There were also positive associations of percent body fat, WC, and waist-to-hip ratio with NAFLD, with HRs per 1-SD of 2.27 (2.14-2.41), 2.60 (2.44-2.76), and 1.84 (1.76-1.92). BMI was unrelated to viral hepatitis (n = 1,477), and had a U-shaped association with cirrhosis (n = 2,082) and an inverse association with liver cancer (n = 2,568), which disappeared after excluding the first 5 years of follow-up. Among Chinese adults, adiposity was a major risk factor for NAFLD but not other chronic liver diseases.",
+ "pmcid": "PMC6349919",
+ "doi": "10.1038/s41598-018-36460-7",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.bmi",
+   "number": "masld.hr",
+   "value": 2.81,
+   "found": true,
+   "context": "ion with NAFLD (n = 1,298), with adjusted HR per 5 kg/m2 of 2.81 (95% CI 2.63-3.01)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "masld.lo",
+   "value": 2.63,
+   "found": true,
+   "context": "D (n = 1,298), with adjusted HR per 5 kg/m2 of 2.81 (95% CI 2.63-3.01)"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "masld.hi",
+   "value": 3.01,
+   "found": true,
+   "context": "= 1,298), with adjusted HR per 5 kg/m2 of 2.81 (95% CI 2.63-3.01)"
+  }
+ ]
+}

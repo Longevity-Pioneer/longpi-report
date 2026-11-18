@@ -1,0 +1,106 @@
+{
+ "id": "ext.mono_msh2",
+ "name_zh": "MSH2 致病变异携带（林奇综合征）",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:monogenic:HGNC:7325",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.000352
+   }
+  ],
+  "source": "美国、加拿大、澳大利亚人群登记的结直肠癌家系分离分析估计的人群携带率（Win 2017）；中国人群分基因携带率暂缺。",
+  "pmid": "27799157",
+  "quote": "MLH1 = 1 in 1,946, MSH2 = 1 in 2,841, MSH6 = 1 in 758, PMS2 = 1 in 714"
+ },
+ "effect": {
+  "crc": {
+   "hr": 20.48,
+   "lo": 11.71,
+   "hi": 33.27,
+   "direction": "higher_worse",
+   "note": "错配修复基因合并携带者的标化发病比 SIR（161 MLH1、222 MSH2、47 MSH6、16 PMS2）"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "country"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂；与家族史项的重叠由家族史项处理。系数 0.8 为家系分离分析外推到一般人群的保守折减。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Australia, North America, Europe (family registries)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Colon Cancer Family Registry prospective cohort of unaffected MMR carriers (Win 2012 JCO)",
+  "n": 446,
+  "ancestry": "Australia, North America, Europe (family registries)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "林奇综合征携带者应接受遗传咨询，按指南自 20–25 岁起每 1–2 年结肠镜检查。"
+ },
+ "test": {
+  "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+  "cost_level": 4
+ },
+ "disclosure": "counsel",
+ "evidence": {
+  "grade": "C",
+  "design": "prospective-cohort",
+  "pmid": "22331944",
+  "quote": "mutation carriers had an increased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/22331944/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "gene": "MSH2",
+ "why_qualitative_zh": "未检索到 MSH2 单基因、带 95% 置信区间且结局事件 ≥100 的结直肠癌相对风险。可用的前瞻队列（Win 2012）为四个错配修复基因合并的标化发病比 20.48（11.71–33.27），仅 446 名携带者、随访中位 5 年，按置信区间推算结直肠癌事件约 15–20 例，远少于 100 例；日本生物银行病例对照（PMID 33309985）摘要只给 OR（MLH1 8.6、MSH2 18.1）未给置信区间且非开放获取。暂作定性佐证。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-5",
+ "verifier_reasons": [
+  "crc: 证据等级 C 低于 B"
+ ]
+}

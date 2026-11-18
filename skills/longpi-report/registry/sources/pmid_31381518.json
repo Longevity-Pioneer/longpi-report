@@ -1,0 +1,33 @@
+{
+ "key": "pmid:31381518",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31381518/",
+ "fetched_at": "2026-11-18T03:34:18Z",
+ "sha256": "3421f21f4214fc049abd974288e45b4a4c03895493262e8f7bd1defe8660cdb3",
+ "citation": "Journal of Alzheimer's disease : JAD 2019",
+ "text": "Midlife Hypertension and Alzheimer's Disease: A Systematic Review and Meta-Analysis.\nBACKGROUND: Hypertension is an established risk factor for stroke and vascular dementia but recent meta-analyses examining the association between Alzheimer's disease (AD) and hypertension have found no significant association. These meta-analyses included short term studies starting in late life which may have obscured the real effect of midlife hypertension.\nOBJECTIVE: To examine the association of AD with midlife hypertension, by including only studies with a sufficiently long follow up duration.\nMETHODS: Relevant studies were found by searches of MEDLINE, EMBASE, and PubMed. Study outcomes were grouped by measures of blood pressure and definition of hypertension (e.g., systolic hypertension > 140 mmHg or > 160 mmHg). We assessed pooled effect estimates using random effects models and heterogeneity of pooled estimates through the I2 statistic.\nRESULTS: Literature search found 3,426 publications of which 7 were eligible studies. There was a significant association between systolic hypertension (>160 mm Hg) and AD (HR 1.25, 95CI 1.06 - 1.47, p = 0.0065). Similarly, for systolic hypertension > 140 mm Hg, there was a smaller but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021). For diastolic hypertension, all four studies found no significant associations between diastolic hypertension and AD, and these data could not be pooled due to heterogeneity in reporting.\nCONCLUSIONS: Our study found that midlife stage 1 and stage 2 systolic hypertension is associated with increased risk of AD by 18 and 25%, respectively, although no association was found for diastolic hypertension. It is likely that assertive control of systolic hypertension starting in midlife is important to preventing AD.",
+ "doi": "10.3233/jad-190474",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.htn_dx",
+   "number": "ad.hr",
+   "value": 1.18,
+   "found": true,
+   "context": ", there was a smaller but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021)"
+  },
+  {
+   "term": "ext.htn_dx",
+   "number": "ad.lo",
+   "value": 1.02,
+   "found": true,
+   "context": " a smaller but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021)"
+  },
+  {
+   "term": "ext.htn_dx",
+   "number": "ad.hi",
+   "value": 1.35,
+   "found": true,
+   "context": "ler but still significant association (HR 1.18, 95CI 1.02 - 1.35, p = 0.021)"
+  }
+ ]
+}

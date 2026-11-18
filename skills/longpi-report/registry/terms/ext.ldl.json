@@ -1,0 +1,206 @@
+{
+ "id": "ext.ldl",
+ "name_zh": "低密度脂蛋白胆固醇（冠心病风险）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:13457-7",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   1.0,
+   6.5
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "source": "中国成人 LDL-C 分性别年龄分布；data/population_norms_china.json markers.ldl（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 2.745,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 2.745,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 2.905,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 3.115,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 3.145,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 3.105,
+    "sd": 0.86
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 3.075,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 2.675,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 2.675,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 2.835,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 3.045,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 3.075,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 3.035,
+    "sd": 0.86
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 3.005,
+    "sd": 0.86
+   }
+  ],
+  "kind": "normal"
+ },
+ "effect": {
+  "chd": {
+   "hr": 1.2821,
+   "lo": 1.25,
+   "hi": 1.3158,
+   "per": 1,
+   "per_unit": "mmol/L",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.78,
+     "lo": 0.76,
+     "hi": 0.8
+    },
+    "pow": -1
+   }
+  }
+ },
+ "adjusted_for": [
+  "randomised"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "仅为冠心病建项，不写全因死亡，避免与 core.lipid 重复。效应来自他汀随机对照试验的个体数据荟萃分析（每降低 1 mmol/L 的率比取倒数），随机化排除了混杂，属于因果效应，系数取 1.0。终点为主要血管事件（冠心病死亡、非致死性心肌梗死、冠脉血运重建与缺血性卒中），以冠脉事件为主，用作冠心病的近似；试验期约 5 年，终生暴露的效应应更大，此处偏保守。卒中未纳入：CKB 显示 LDL-C 与缺血性卒中正相关、与脑出血负相关，摘要未给可核对的数值。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational trial participants (mostly European)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Cholesterol Treatment Trialists' (CTT) Collaboration, 26 randomised trials",
+  "n": 169138,
+  "ancestry": "multinational (mostly European)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.06,
+  "source": "Friedewald 计算或直接测定 LDL-C 的分析与生物学变异约 6%（经验值）"
+ },
+ "persistence": {
+  "half_life_years": 10
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减少饱和脂肪摄入；风险较高者在医生指导下使用他汀等降脂药物。"
+ },
+ "test": {
+  "label_zh": "抽血查血脂四项",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "pmid": "21067804",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
+  "quote": "When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "disclosure": "standard",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

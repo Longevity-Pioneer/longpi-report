@@ -1,0 +1,143 @@
+{
+ "kind": "state",
+ "status": "active",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "disclosure": "standard",
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "persistence": {
+  "half_life_years": 50
+ },
+ "id": "ext.lpa",
+ "name_zh": "脂蛋白(a)",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:10835-7",
+  "unit": "mg/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0,
+   3000
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "meanlog": 4.517,
+    "sdlog": 1.173
+   }
+  ],
+  "pmid": "40297899",
+  "quote": "only 8% of controls had Lp(a) levels ≥100 nmol/L and 4% Lp(a) levels ≥150 nmol/L",
+  "source": "CKB 对照组 Lp(a) 分布（PMID 40297899）：≥100 nmol/L 占 8%、≥150 nmol/L 占 4%，据此拟合对数正态（中位数约 19.2 nmol/L）；按 Copenhagen 研究原文 50 mg/dL≈105 nmol/L 换算为质量单位（中位数约 92 mg/L）。检测方法与 apo(a) 异构体会使换算存在误差"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.05,
+   "lo": 1.01,
+   "hi": 1.09,
+   "per": 500,
+   "per_unit": "mg/L（50 mg/dL，原文约合 105 nmol/L）",
+   "direction": "higher_worse"
+  },
+  "chd": {
+   "hr": 1.2821,
+   "lo": 1.1905,
+   "hi": 1.3889,
+   "per": 476,
+   "per_unit": "mg/L（原文为每降低 100 nmol/L，按 105 nmol/L≈50 mg/dL 折算约 476 mg/L；原文结局为心肌梗死）",
+   "direction": "higher_worse",
+   "derived": {
+    "from": {
+     "hr": 0.78,
+     "lo": 0.72,
+     "hi": 0.84
+    },
+    "pow": -1
+   },
+   "evidence": {
+    "pmid": "40297899",
+    "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
+    "grade": "A",
+    "design": "mendelian-randomization"
+   },
+   "population": {
+    "cohort": "东亚两样本孟德尔随机化（CKB、BioBank Japan 等）",
+    "ancestry": "East Asian (CKB, BioBank Japan)"
+   },
+   "transport": {
+    "ancestry": "East Asian",
+    "shrink": 1.0,
+    "sd_inflate": 1.0
+   },
+   "coef": 0.8
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.15,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "Lp(a) 主要由遗传决定，与 LDL-C 的机制重叠有限，但常规 LDL-C 测定包含 Lp(a) 胆固醇；摘要未说明全因死亡模型是否校正 LDL-C，按仅校正年龄性别处理取上限 0.3。冠心病结局为孟德尔随机化估计，单列系数 0.8",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Copenhagen City Heart Study + Copenhagen General Population Study",
+  "n": 69764,
+  "ancestry": "Danish (European)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.08,
+  "source": "免疫比浊法受 apo(a) 异构体影响，方法间差异较大（一般实验室质量数据，未经文献核对）"
+ },
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "Lp(a) 水平主要由遗传决定，生活方式影响很小；目前尚无获批的特异性降 Lp(a) 药物，升高者宜更严格控制其他危险因素"
+ },
+ "test": {
+  "label_zh": "抽血查脂蛋白(a)（一生至少一次）",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "30608559",
+  "quote": "For cardiovascular mortality, a 50 mg/dL (105 nmol/L) increase in lipoprotein(a) levels was associated observationally with a hazard ratio of 1.16 (1.09-1.23), and genetically with risk ratios of 1.23 (1.08-1.41) based on LPA KIV2 and of 0.98 (0.88-1.09) based on LPA rs10455872. For all-cause mortality, corresponding values were 1.05 (1.01-1.09), 1.10 (1.04-1.18), and 0.97 (0.92-1.02), respectively.",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/30608559/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-4"
+}

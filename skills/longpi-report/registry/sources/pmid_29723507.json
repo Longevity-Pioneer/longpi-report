@@ -1,0 +1,33 @@
+{
+ "key": "pmid:29723507",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29723507/",
+ "fetched_at": "2026-11-18T03:27:43Z",
+ "sha256": "2c4baf5f90473b0392d0e57dd6f512e5efb7af64c7b8310e80b3fa6b103f385b",
+ "citation": "Gastroenterology 2018",
+ "text": "Endoscopic Screening in Asian Countries Is Associated With Reduced Gastric Cancer Mortality: A Meta-analysis and Systematic Review.\nBACKGROUND & AIMS: It is not clear how endoscopic screening for gastric cancer affects incidence or mortality. We performed a systematic review and meta-analysis to evaluate the relationship between endoscopic screening for gastric cancer and mortality and incidence.\nMETHODS: We conducted a systematic search of PubMed and EMBASE for published cohort and case-control studies of adults without gastric cancer who underwent endoscopic screening at least once that included a comparator and reported outcomes of mortality or incidence through March 8, 2018. Two investigators independently reviewed the included studies and extracted relevant data. The effect estimate of interest was the relative risk (RR). We used a random effects model to combine RRs and 95% confidence intervals (Cis).\nRESULTS: Our final analysis included 6 cohort studies and 4 nested case-control studies comprising 342,013 individuals, all from Asia. The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was associated with a 40% RR reduction in gastric cancer mortality. We did not observe an association between endoscopic screening and incidence (RR, 1.14; 95% CI, 0.93-1.40). Subgroup analysis showed significant reductions in gastric cancer mortality after endoscopic screening compared with no screening (RR, 0.58; 95% CI, 0.48-0.70) or radiographic screening (RR, 0.33; 95% CI, 0.12-0.91). However, endoscopic screening did not significantly reduce mortality compared with expected deaths (RR, 0.67; 95% CI, 0.38-1.16).\nCONCLUSIONS: In a systematic review and meta-analysis, we found that endoscopic screening may reduce the risk of death from gastric cancer and not affect incidence in Asian countries. Population-based prospective cohort studies are warranted to confirm our findings.",
+ "doi": "10.1053/j.gastro.2018.04.026",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.screen_gastroscopy",
+   "number": "screening.hr",
+   "value": 0.6,
+   "found": true,
+   "context": "The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was"
+  },
+  {
+   "term": "ext.screen_gastroscopy",
+   "number": "screening.lo",
+   "value": 0.49,
+   "found": true,
+   "context": "The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was associated wi"
+  },
+  {
+   "term": "ext.screen_gastroscopy",
+   "number": "screening.hi",
+   "value": 0.73,
+   "found": true,
+   "context": "The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was associated with a "
+  }
+ ]
+}

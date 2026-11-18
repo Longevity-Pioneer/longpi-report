@@ -1,0 +1,227 @@
+{
+ "id": "ext.nt_probnp",
+ "name_zh": "N 末端 B 型利钠肽原（NT-proBNP）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "LOINC:33762-6",
+  "unit": "pg/mL",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   5,
+   220
+  ],
+  "log_x": false,
+  "note_zh": "原文样条在算术尺度上近似线性（非线性检验 P>0.05），且第 2、3 四分位组 HR 仅 1.08、1.13，按对数尺度线性会高估中段风险，故用算术尺度；上限截于原文第 4 四分位组 p75（218.7 pg/mL），避免外推（原文 ≥300 pg/mL 者风险与既往心血管病者相当）"
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "meanlog": 2.215,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "meanlog": 2.685,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "meanlog": 3.085,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "meanlog": 3.499,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "meanlog": 3.914,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "meanlog": 4.353,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "meanlog": 4.821,
+    "sdlog": 0.784
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "meanlog": 2.88,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "meanlog": 3.288,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "meanlog": 3.638,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "meanlog": 4.004,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "meanlog": 4.371,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "meanlog": 4.745,
+    "sdlog": 0.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "meanlog": 5.141,
+    "sdlog": 0.68
+   }
+  ],
+  "pmid": "24524609",
+  "quote": "Quantile regression derived normal reference values for NT-proBNP in male were 4.5-86.8 ng/L in the 40-44 years old group",
+  "source_note_zh": "上海心脏健康研究（SHHS，5133 名 ≥40 岁健康中国人，罗氏电化学发光法）按性别、5 岁年龄组给出的参考范围（视为 2.5–97.5 百分位）：meanlog=(ln 下限+ln 上限)/2，sdlog=(ln 上限−ln 下限)/3.92；40–49、50–59、60–69、70–79 岁为相邻两组均值，80–99 岁与 18–39 岁按原文所述 ln NT-proBNP 随年龄线性上升外推（男 0.043/年，女 0.037/年）。18–39 岁为外推值；该人群为健康者，较一般人群偏低偏窄",
+  "source": "pmid:24524609"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.67,
+   "lo": 1.39,
+   "hi": 2.0,
+   "per": 126.2,
+   "per_unit": "pg/mL（原文第 4 四分位组中位数 138.6 与第 1 四分位组中位数 12.4 之差）",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "race",
+  "education",
+  "core.alcohol",
+  "core.smoking",
+  "physical_activity",
+  "core.adiposity",
+  "core.bp",
+  "core.glucose",
+  "core.lipid",
+  "LP:egfr_ckdepi2021"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.bp",
+   "core.adiposity",
+   "core.glucose",
+   "core.lipid",
+   "core.smoking",
+   "core.alcohol"
+  ],
+  "rationale_zh": "NT-proBNP 反映心室壁应力，与血压、肾功能相关，与体脂负相关；原文已校正血压、糖尿病、高胆固醇、体重指数、吸烟、饮酒与 eGFR，规则上限 1.0。考虑到肾功能信息部分已含于表型年龄时钟（肌酐）且研究未校正该时钟，中段四分位组效应不显著、算术线性为近似，取 0.6 保守计入",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "US multi-ethnic (72.8% White)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NHANES 1999–2004，随访至 2019",
+  "n": 10645,
+  "events": 3155,
+  "ancestry": "US multi-ethnic (72.8% White)",
+  "age_range": [
+   20,
+   85
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未检索到可核对的个体内生物学变异文献；分析变异小，但个体内短期波动较大，解读单次结果需谨慎"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "post_exercise"
+ ],
+ "treated_policy": "use_as_is",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "升高者应排查心力衰竭、瓣膜病、心房颤动与肾功能下降；控制血压、规律运动有助于降低心脏负荷。本项不用于心力衰竭诊断"
+ },
+ "test": {
+  "label_zh": "抽血查 NT-proBNP",
+  "cost_level": 2
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "37232235",
+  "doi": "10.1161/JAHA.122.029110",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/37232235/",
+  "quote": "Among individuals without prior CVD, elevated NT-proBNP (≥75th percentile [81.5 pg/mL] versus <25th percentile [20.5 pg/mL]) was associated with a significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "国内一般人群中尚未检索到给出每单位或每 SD 全因死亡 HR 的大型队列；日本久山町研究（PMID 42686524，497 例死亡）只报告 NT-proBNP 5 年变化与死亡的关系，作佐证。Geng 2017 荟萃（PMID 28134294，11 项研究）为最高比最低类别 HR 2.44（2.11–2.83），类别切点不统一，未采用",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

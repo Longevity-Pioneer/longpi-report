@@ -1,0 +1,13 @@
+{
+ "key": "pmid:36631148",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36631148/",
+ "fetched_at": "2026-11-18T03:34:31Z",
+ "sha256": "7b47e3dcb83631672896d71b3d63ad9264f17fd6942a8a766f58ecf3cfb6a9b3",
+ "citation": "BMJ (Clinical research ed.) 2023",
+ "text": "Prevalence, awareness, treatment, and control of hypertension in China, 2004-18: findings from six rounds of a national survey.\nOBJECTIVE: To assess the recent trends in prevalence and management of hypertension in China, nationally and by population subgroups.\nDESIGN: Six rounds of a national survey, China.\nSETTING: China Chronic Disease and Risk Factors Surveillance, 2004-18.\nPARTICIPANTS: 642 523 community dwelling adults aged 18-69 years (30 501 in 2004, 47 353 in 2007, 90 491 in 2010, 156 836 in 2013, 162 293 in 2015, and 155 049 in 2018).\nMAIN OUTCOME MEASURES: Hypertension was defined as a blood pressure of ≥140/90 mm Hg or taking antihypertensive drugs. The main outcome measures were hypertension prevalence and proportion of people with hypertension who were aware of their hypertension, who were treated for hypertension, and whose blood pressure was controlled below 140/90 mm Hg.\nRESULTS: The standardised prevalence of hypertension in adults aged 18-69 years in China increased from 20.8% (95% confidence interval 19.0% to 22.5%) in 2004 to 29.6% (27.8% to 31.3%) in 2010, then decreased to 24.7% (23.2% to 26.1%) in 2018. During 2010-18, the absolute annual decline in prevalence of hypertension among women was more than twice that among men (-0.83 percentage points (95% confidence interval -1.13 to -0.52) v -0.40 percentage points (-0.73 to -0.07)). Despite modest improvements in the awareness, treatment, and control of hypertension since 2004, rates remained low in 2018, at 38.3% (36.3% to 40.4%), 34.6% (32.6% to 36.7%), and 12.0% (10.6% to 13.4%). Of 274 million (95% confidence interval 238 to 311 million) adults aged 18-69 years with hypertension in 2018, control was inadequate in an estimated 240 million (215 to 264 million). Across all surveys, women with low educational attainment had higher prevalence of hypertension than those with higher education, but the finding was mixed for men. The gap in hypertension control between urban and rural areas persisted, despite larger improvements in diagnosis and control in rural than in urban areas.\nCONCLUSIONS: The prevalence of hypertension in China has slightly declined since 2010, but treatment and control remain low. The findings highlight the need for improving detection and treatment of hypertension through the strengthening of primary care in China, especially in rural areas.",
+ "pmcid": "PMC10498511",
+ "doi": "10.1136/bmj-2022-071952",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

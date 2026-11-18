@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM022401",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM022401",
+ "fetched_at": "2026-11-18T03:47:11Z",
+ "sha256": "7174f0b532fe89995dd88062bd78787917307023a37395f831ef3c312172ac60",
+ "citation": "",
+ "text": "PPM022401 | score PGS005163 | trait Lung Cancer\nancestry: East Asian | cohorts: CKB | n: 100219 | cases: 1540\npublication: Zhu M PLoS Med 2025-02-28 PMID 40019942\ncovariates: Age,Sex (if applicable),Region,Top 10 genetic ancestry principal components\nHazard Ratio (HR): 1.22 [1.16, 1.28]\nBeta (β): 0.199 [None, None]\nConcordance Statistic (C-index): 0.55 [None, None]",
+ "pgs_id": "PGS005163",
+ "checks": [
+  {
+   "term": "ext.prs_lung_ca",
+   "number": "lung_ca.hr",
+   "value": 1.22,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.22 [1.16, 1.28]"
+  },
+  {
+   "term": "ext.prs_lung_ca",
+   "number": "lung_ca.lo",
+   "value": 1.16,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.22 [1.16, 1.28]"
+  },
+  {
+   "term": "ext.prs_lung_ca",
+   "number": "lung_ca.hi",
+   "value": 1.28,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.22 [1.16, 1.28]"
+  }
+ ]
+}

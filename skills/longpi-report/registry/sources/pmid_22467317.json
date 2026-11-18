@@ -1,0 +1,12 @@
+{
+ "key": "pmid:22467317",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/22467317/",
+ "fetched_at": "2026-11-18T03:54:19Z",
+ "sha256": "0afc206ff69c43106b5818092b9e3d3a4b694ea3aaba9e75f5960e2c9777c5e9",
+ "citation": "Journal of clinical laboratory analysis 2012",
+ "text": "Reference intervals and factors contributing to serum cystatin C levels in a Chinese population.\nBACKGROUND: Serum cystatin C (Cys-C), an inhibitor of cysteine proteases, has been suggested as an ideal biomarker of glomerular filtration rate (GFR).\nOBJECTIVES: The objective of this study was to describe the reference intervals of serum Cys-C and identify factors associated with serum Cys-C or its variability, including age, gender, creatinine (Crea), blood urea nitrogen (BUN), and uric acid (UA).\nDESIGN AND METHODS: Serum Cys-C, Crea, BUN, and UA were measured in 4,517 healthy participants aged 8-89 years attending our hospital. Serum Cys-C was analyzed using a latex-enhanced immunoturbidimetric method. Crea were tested by picric acid jaffe method, BUN, and UA by kinetic UV assays.\nRESULTS: The predominant characteristic of Cys-C distribution was that Cys-C concentration in age ≥60 years group was the highest (P < 0.05). The differences of Cys-C concentration between males and females existed for subjects aged from 30 to 59 years (P < 0.05). In a multiple model adjusted only for gender and age, gender (β = 0.007) has stronger effect on Cys-C levels, compared with age (β = 0.003). The clinical variables, comprised of age, gender, Crea, BUN, and UA, involved in the fully adjusted equation accounted for 37.6% of variation of Cys-C.\nCONCLUSIONS: Ninety-five percent reference intervals for healthy population were partitioned into three categories only by age, 0.59-1.07 mg/L for subjects aged 19-59 years; 0.74-1.14 mg/L for the older aged ≥60 years; and 0.63-1.11 mg/L for children aged ≤18 years. Serum Cys-C is significantly related to gender, age, UA, Crea, and BUN. Besides, there are still other factors contributing to variation of Cys-C levels.",
+ "pmcid": "PMC6807548",
+ "doi": "10.1002/jcla.20504",
+ "open_access": "N",
+ "checks": []
+}

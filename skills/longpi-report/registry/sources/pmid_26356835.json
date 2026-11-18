@@ -1,0 +1,33 @@
+{
+ "key": "pmid:26356835",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/26356835/",
+ "fetched_at": "2026-11-18T03:20:47Z",
+ "sha256": "28d254a794da63d1db27aecb2d2e5c32c692d6c78b66778f8327c2e82658e047",
+ "citation": "Circulation journal : official journal of the Japanese Circulation Society 2015",
+ "text": "Incremental benefit of coronary artery calcium score above traditional risk factors for all-cause mortality in asymptomatic Korean adults.\nBACKGROUND: Coronary artery calcium score (CACS) is a well-recognized marker for subclinical coronary atherosclerosis, particularly in asymptomatic populations. To date, however, the added prognostic benefit of CACS compared with traditional risk factors in an Asian population remains unknown. This study therefore investigated the benefit of CACS over traditional risk factors for all-cause mortality in a large multicenter registry of asymptomatic Korean adults.\nMETHODS AND RESULTS: A total of 34,386 individuals were retrospectively enrolled to participate in a general health examination. The Framingham 10-year risk score (FRS) was calculated according to the traditional risk stratification algorithm and CACS was calculated in log(CACS+1) for continuous data and categorized as 0, 1-100, 101-400 and >400. During a median follow-up of 4.9 years (IQR, 3.0-7.1), there were 303 all-cause deaths (0.9%). Following adjustment, CACS was independently associated with all-cause death (hazard ratio, 1.10; 95% confidence interval (CI): 1.05-1.17; P<0.001). Notably, CACS added further prognostic value above and beyond FRS (likelihood ratio, χ(2)=75.42, P<0.001; continuous net reclassification improvement=0.40, 95% CI: 0.29-0.51, P≤0.001; improving C-statistic from 0.64, 95% CI: 0.61-0.67 to 0.68, 95% CI: 0.64-0.71; ∆C=0.04, 95% CI: 0.01-0.06, P=0.002).\nCONCLUSIONS: In an asymptomatic Korean population, CACS improved prediction of all-cause mortality over and above that of a conventional risk tool.",
+ "doi": "10.1253/circj.cj-15-0651",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.cac",
+   "number": "all_cause.hr",
+   "value": 1.1,
+   "found": true,
+   "context": "ndependently associated with all-cause death (hazard ratio, 1.10; 95% confidence interval (CI): 1.05-1.17; P<0.001)"
+  },
+  {
+   "term": "ext.cac",
+   "number": "all_cause.lo",
+   "value": 1.05,
+   "found": true,
+   "context": "se death (hazard ratio, 1.10; 95% confidence interval (CI): 1.05-1.17; P<0.001)"
+  },
+  {
+   "term": "ext.cac",
+   "number": "all_cause.hi",
+   "value": 1.17,
+   "found": true,
+   "context": "ath (hazard ratio, 1.10; 95% confidence interval (CI): 1.05-1.17; P<0.001)"
+  }
+ ]
+}

@@ -1,0 +1,152 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.screen_liver_us_afp",
+ "name_zh": "超声联合甲胎蛋白筛查肝癌",
+ "system": "whole_body",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.liver_us_afp",
+  "unit": "years since last test",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator",
+  "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.05
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.1
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.15
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.2
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.2
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.15
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.1
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文（指慢性乙肝感染者中近半年做过超声加甲胎蛋白的比例）；筛查效应经 outcomes/liver_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+ },
+ "effect": {},
+ "screening": {
+  "disease_id": "liver_ca",
+  "mortality_rr": {
+   "hr": 0.63,
+   "lo": 0.41,
+   "hi": 0.98
+  },
+  "eligible": {
+   "age": [
+    35,
+    75
+   ],
+   "sex": "both",
+   "requires": [
+    "ICD10:B18.1"
+   ]
+  },
+  "interval_years": 0.5
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Shanghai HCC screening RCT (Zhang 2004), HBV infection or chronic hepatitis",
+  "n": 18816,
+  "ancestry": "Chinese",
+  "age_range": [
+   35,
+   59
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述或检查报告日期"
+ },
+ "persistence": {
+  "half_life_years": 0.5
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "慢性乙肝感染者每 6 个月做一次肝脏超声和甲胎蛋白。"
+ },
+ "test": {
+  "label_zh": "肝脏超声加甲胎蛋白，每 6 个月一次",
+  "cost_level": 2
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "rct",
+  "pmid": "15042359",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/15042359/",
+  "quote": "the HCC mortality rate was significantly lower in the screened group than in controls, being 83.2/100,000 and 131.5/100,000, respectively, with a mortality rate ratio of 0.63 (95%CI 0.41-0.98).",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "单一中国随机试验，肝癌死亡共 86 例、筛查组完成率 58.2%，存在方法学局限，证据等级定为 B。试验年龄 35–59 岁，eligible 按国内指南放宽至 75 岁。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

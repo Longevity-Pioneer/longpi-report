@@ -176,12 +176,32 @@ def validate_term(t: dict) -> List[str]:
     ev = t["evidence"]
     if ev.get("grade") not in GRADES:
         pr.append("evidence.grade 必须是 A/B/C/D")
-    for oc, e in t["effect"].items():
-        for k in ("hr", "lo", "hi", "per"):
+    shape = t["transform"].get("shape")
+
+    def _hr_block(e: dict, where: str, need_per: bool = True) -> None:
+        for k in ("hr", "lo", "hi") + (("per",) if need_per else ()):
             if k not in e:
-                pr.append(f"effect.{oc} 缺 {k}")
+                pr.append(f"{where} 缺 {k}")
         if all(k in e for k in ("hr", "lo", "hi")) and not (0 < e["lo"] <= e["hr"] <= e["hi"]):
-            pr.append(f"effect.{oc}：须 0 < lo ≤ hr ≤ hi")
+            pr.append(f"{where}：须 0 < lo ≤ hr ≤ hi")
+
+    for oc, e in t["effect"].items():
+        if shape == "hinge":
+            if not (e.get("hr_below") or e.get("hr_above")):
+                pr.append(f"effect.{oc} 折线形状须有 hr_below 或 hr_above")
+            for side in ("hr_below", "hr_above"):
+                if e.get(side):
+                    _hr_block(e[side], f"effect.{oc}.{side}")
+        elif shape == "categorical":
+            lv = e.get("levels") or {}
+            if not lv:
+                pr.append(f"effect.{oc} 分类形状须有 levels")
+            for name, s in lv.items():
+                if s.get("hr") == 1 and "lo" not in s:
+                    continue
+                _hr_block(s, f"effect.{oc}.levels.{name}", need_per=False)
+        else:
+            _hr_block(e, f"effect.{oc}", need_per=shape != "indicator")
         if e.get("direction") not in ("higher_worse", "higher_better", None):
             pr.append(f"effect.{oc}.direction 取值不对")
     lic = t["license"]

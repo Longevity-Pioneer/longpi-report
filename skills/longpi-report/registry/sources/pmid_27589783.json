@@ -1,0 +1,13 @@
+{
+ "key": "pmid:27589783",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/27589783/",
+ "fetched_at": "2026-11-18T03:53:41Z",
+ "sha256": "e5f208ecbcc208161205d77a8bf49f4e5e66ac361c6b3e89be0fc7f0ff9855e2",
+ "citation": "International journal of environmental research and public health 2016",
+ "text": "Distribution of High-Sensitivity C-Reactive Protein and Its Relationship with Other Cardiovascular Risk Factors in the Middle-Aged Chinese Population.\nBACKGROUND: An increased concentration of high-sensitivity C-reactive protein (hs-CRP) indicates risk for cardiovascular disease (CVD). Because the available data is limited, a cross-sectional survey was conducted in 2009-2010 to describe hs-CRP distribution and its relationship with established CVD risk factors.\nMETHODS: A population-based sample of adults aged 35 to 64 years (n = 14,046) was taken from 12 research populations across China. Demographic and clinical characteristics were recorded, and hs-CRP measured. Pearson's and Kendall's tau-b correlation coefficient, and multiple regression analyses were used to test the relationship between hs-CRP and other CVD risk factors.\nRESULTS: For 8389 (4412 females) eligible participants, hs-CRP was 1.89 ± 4.37 mg/L (median (25th, 75th): 0.80 (0.40, 1.80)), and increased with age, BP, glucose, and BMI (p < 0.05), males had significantly higher hs-CRP than females (2.07 (4.89) vs. 1.73 (3.83), p < 0.001). About 24.3% had the hs-CRP concentrations more than the top quartile (25.8% in males, 22.9% in females), 12.3% (13.3% in males, 11.5% in females) >3 mg/L. There was a significant positive correlation of quartiles of hs-CRP concentrations with age, SBP, DBP, glucose level, BMI, LDL-C/HDL-C ratio, and LDL-C/total cholesterol ratio (p < 0.001). The elevated hs-CRP (>1.80 mg/L) related positively with age, LDL-C, BP, glucose, BMI, and living north and negatively with HDL-C/TC, LDL-C/TC, TC independently (p < 0.05). For subjects with coexisting hypertension, diabetes, high cholesterol, and obesity, about 63.0% were in the top quartile of hs-CRP concentrations.\nCONCLUSIONS: Hs-CRP was associated with most of the known CVD risk factors. Measurement of hs-CRP may provide a more comprehensive view of the patient's overall risk profile in the Chinese population.",
+ "pmcid": "PMC5036705",
+ "doi": "10.3390/ijerph13090872",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

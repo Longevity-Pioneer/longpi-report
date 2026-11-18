@@ -1,0 +1,104 @@
+{
+ "id": "ext.fh_htn",
+ "name_zh": "高血压家族史",
+ "kind": "genetic",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "LP:fh:htn",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.3
+   }
+  ],
+  "source": "估计值，未经原文核对：未找到可逐句核对的中国成人高血压家族史比例，按约 30% 设定；患病率只影响归一化中心"
+ },
+ "effect": {
+  "htn": {
+   "hr": 1.14,
+   "lo": 1.03,
+   "hi": 1.27
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "core.alcohol",
+  "core.smoking",
+  "core.adiposity",
+  "core.bp",
+  "LP:mvpa_min_week",
+  "salt_intake"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "仅为高血压建项，属先天项。原文 Cox 模型同时校正年龄、民族、收入、体力活动、吸烟、饮酒、超重肥胖、食盐摄入与基线血压状态（正常/高血压前期），属于互相校正的估计，系数取 1.0。采用摘要中男性的估计（1.14），女性表中估计更高（1.39），取男性值偏保守。研究人群为辽宁农村 35 岁以上成人，随访约 28 个月。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "rural Liaoning province population-based cohort",
+  "n": 24360,
+  "ancestry": "Chinese",
+  "age_range": [
+   35,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自报一级亲属病史，存在回忆与知晓偏差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有高血压家族史者应限盐、控制体重并每年测量血压。"
+ },
+ "test": {
+  "label_zh": "询问父母与兄弟姐妹是否患高血压",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "20065274",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20065274/",
+  "quote": "family history of hypertension (HR = 1.14; 95% CI, 1.03-1.27)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

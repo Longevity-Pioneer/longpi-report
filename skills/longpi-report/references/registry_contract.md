@@ -115,6 +115,15 @@
 - `screening`（仅筛查行为项）：`{"disease_id": "crc", "mortality_rr": {"hr": 0.78, "lo": 0.7, "hi": 0.87}, "eligible": {"age": [50, 75], "sex": "both", "requires": []}, "interval_years": 1}`；
   其 `effect` 可为空，指数贡献 = ln(1 − 死因占比 × (1 − RR))，死因占比取 `outcomes/<disease>.json: mortality_share`。
 - `disclosure`：`standard` 正常展示 · `counsel` 展示并提示遗传咨询 · `opt_in` 默认不展示（APOE ε4 纯合等）。
+- 建项层补充字段（引擎可忽略不用的字段，但须兼容）：
+  - `effect.<oc>.evidence` / `population` / `transport` / `coef`：该结局来自与顶层 `evidence` 不同的文献时，按结局覆盖顶层字段；`coef` 覆盖 `overlap.coef`。
+  - `effect.<oc>.derived = {"from": {"hr","lo","hi"}, "pow": k}`：原文数字（被逐字核对）经 `hr = from.hr^k` 换算（k<0 时上下限互换），例如四分位比较折算为每 1000 步。
+  - `overlap.overlaps_with`：与本项机制重叠的已计入项 id；代码按 §4.1 规则核对 `coef` 上限（全部已校正 ≤1，部分 ≤0.6，仅年龄性别 ≤0.3）。
+  - `reference.kind` 另有：`lognormal`（`by_sex_age` 行给 `meanlog`/`sdlog`，配合 `log_x`）、`prevalence`（指示项）、`categorical_mid`（连续输入、人群按分档给 `p`，`reference.mids = {档: 代表值}`）；`reference.pmid`+`quote` 时代码核对原句。
+  - `reference.log_norm = {oc: [{sex, age_lo, age_hi, value}]}`（可选，预先算好的 ln E_ref[exp f]）；人群中性检查会核对它与参考分布一致。
+  - `population.sex_scope`：`M`/`F` 只适用于单一性别（乳腺癌、前列腺癌项自动按结局限定）。
+  - 来源 `evidence.source = "pgs_perf:PPMxxxxxx"`：PGS Catalog 的表现记录（文本由代码按固定格式生成）。
+  - 遗传项（`kind: genetic`）的研究设计另允许大型病例对照（胚系变异先于发病，无反向因果）。
 - 自动入库标准（方案 A）：人体前瞻队列/荟萃/孟德尔随机化；结局事件 ≥100；HR 与 95% CI；数值与原文逐字核对通过；等级 ≥B；平台一致或有换算；参考分布可得；
   许可允许商业使用；方向与原文一致。任何一条不满足 → 写进 `registry/qualitative/`（字段相同，另加 `why_qualitative_zh`）。
 
@@ -141,6 +150,7 @@
 `{"key": "pmid:12345678", "url": "...", "fetched_at": "...", "sha256": "...", "text": "抓取到的摘要或全文相关段落", "checks": [{"term": "ext.apob", "number": "1.10", "found": true, "context": "..."}]}`
 
 核对由代码完成：`hr`、`lo`、`hi` 三个数字必须原样出现在 `text` 中，并与 `quote` 同段；`quote` 必须是 `text` 的子串（空白归一化后）。
+`verify` 只把抓取结果写进建项层缓存（`skills/longpi-term-builder/.cache/`，不入版本库），不改动已冻结的项目库；`add` 时才把用到的来源连同核对记录写入 `registry/sources/` 并冻结。
 
 ## 6. 工具库（`skills/longpi-omics/tools/REGISTRY.json`）
 

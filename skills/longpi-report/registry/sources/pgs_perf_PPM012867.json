@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM012867",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM012867",
+ "fetched_at": "2026-11-18T03:47:42Z",
+ "sha256": "7b61497e5fb50ab4bd93ff060d840df14907ff0e1acc7d3e6107c3b8f46356d2",
+ "citation": "",
+ "text": "PPM012867 | score PGS002259 | trait Incident stroke\nancestry: East Asian | cohorts:  | n: 41006 | cases: 0\npublication: Lu X Neurology 2021-05-24 PMID 34031205\ncovariates: Sex\nHazard Ratio (HR): 1.28 [1.21, 1.36]",
+ "pgs_id": "PGS002259",
+ "checks": [
+  {
+   "term": "ext.prs_stroke",
+   "number": "stroke.hr",
+   "value": 1.28,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.28 [1.21, 1.36]"
+  },
+  {
+   "term": "ext.prs_stroke",
+   "number": "stroke.lo",
+   "value": 1.21,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.28 [1.21, 1.36]"
+  },
+  {
+   "term": "ext.prs_stroke",
+   "number": "stroke.hi",
+   "value": 1.36,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.28 [1.21, 1.36]"
+  }
+ ]
+}

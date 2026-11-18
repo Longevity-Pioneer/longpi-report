@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM012743",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM012743",
+ "fetched_at": "2026-11-18T03:47:20Z",
+ "sha256": "f95d19103479ce9e639d0e5d6b487839bbfa029fc5f6cbc0ac3ab25d98c0eca1",
+ "citation": "",
+ "text": "PPM012743 | score PGS002241 | trait Prostate cancer\nancestry: East Asian | cohorts: BBJ | n: 178726 | cases: 5192\npublication: Mars N Cell Genom 2022-04-13 PMID 35591975\ncovariates: age, 10 PCs (+/- dataset-specific technical covariates)\nOdds Ratio (OR): 1.69 [1.64, 1.74]",
+ "pgs_id": "PGS002241",
+ "checks": [
+  {
+   "term": "ext.prs_prostate_ca",
+   "number": "prostate_ca.hr",
+   "value": 1.69,
+   "found": true,
+   "context": "Odds Ratio (OR): 1.69 [1.64, 1.74]"
+  },
+  {
+   "term": "ext.prs_prostate_ca",
+   "number": "prostate_ca.lo",
+   "value": 1.64,
+   "found": true,
+   "context": "Odds Ratio (OR): 1.69 [1.64, 1.74]"
+  },
+  {
+   "term": "ext.prs_prostate_ca",
+   "number": "prostate_ca.hi",
+   "value": 1.74,
+   "found": true,
+   "context": "Odds Ratio (OR): 1.69 [1.64, 1.74]"
+  }
+ ]
+}

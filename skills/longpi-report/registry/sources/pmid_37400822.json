@@ -1,0 +1,35 @@
+{
+ "key": "pmid:37400822",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37400822/",
+ "fetched_at": "2026-11-18T03:24:42Z",
+ "sha256": "a2998989fb701f85f8f7e6b7798e18b8f254af8d1b853f4301060cbe4ea965e6",
+ "citation": "BMC medicine 2023",
+ "text": "Family history and breast cancer risk for Asian women: a systematic review and meta-analysis.\nBACKGROUND: Studies of women of European ancestry have shown that the average familial relative risk for first-degree relatives of women with breast cancer is approximately twofold, but little is known for Asian women. We aimed to provide evidence for the association between family history and breast cancer risk for Asian women by systematically reviewing published literature.\nMETHODS: Studies reporting the familial relative risk of breast cancer for Asian women were searched in three online databases and complemented by a manual search. Odds ratios (ORs) for the association between family history and breast cancer risk were pooled across all included studies and by subgroups in terms of the type of family history, age, menopausal status and geographical region.\nRESULTS: The pooled OR for women who have a first-degree relative with breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97). There was no evidence that the familial risk differed by the type of affected relative (mother versus sisters), the woman's age (< 50 years versus ≥ 50 years), menopausal status (pre versus post) and geographical region (East and Southeast Asia versus other regions) (all P > 0.3). The pooled ORs for women of Asian ancestry with a family history in any relative were similar for those living in non-Asian countries (2.26, 95% CI: 1.42, 3.59) compared with those living in Asian countries (2.18, 95% CI: 1.85, 2.58).\nCONCLUSIONS: Family history of breast cancer is associated with an approximately twofold relative risk of breast cancer for Asian women, which is of similar magnitude to that observed for women of European ancestry. This implies that similar familial factors are implicated in breast cancer risk between women of European and Asian ancestries. Genetic factors are likely to play a substantial role in explaining the breast cancer familial risk for Asian women, as similar risks were observed across different living environments and cultures.",
+ "pmcid": "PMC10318753",
+ "doi": "10.1186/s12916-023-02950-3",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.fh_breast_ca",
+   "number": "breast_ca.hr",
+   "value": 2.46,
+   "found": true,
+   "context": "men who have a first-degree relative with breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97)."
+  },
+  {
+   "term": "ext.fh_breast_ca",
+   "number": "breast_ca.lo",
+   "value": 2.03,
+   "found": true,
+   "context": " with breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97)."
+  },
+  {
+   "term": "ext.fh_breast_ca",
+   "number": "breast_ca.hi",
+   "value": 2.97,
+   "found": true,
+   "context": "breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97)."
+  }
+ ]
+}

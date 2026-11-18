@@ -1,0 +1,33 @@
+{
+ "key": "pmid:32842310",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/32842310/",
+ "fetched_at": "2026-11-18T03:29:09Z",
+ "sha256": "1707dbfee74a8af073c4f66a3671a65f354f7c6b280db80c463bf69e77c6985e",
+ "citation": "Zhonghua yu fang yi xue za zhi [Chinese journal of preventive medicine] 2020",
+ "text": "[Association between family history of diabetes and incident diabetes of adults: a prospective study].\nObjective: To evaluate the association betweew family history of diabetes and incident diabetes of adults. Methods: A total of 49 266 participants in the China Kadoorie Biobank (CKB) study from Wuzhong district of Suzhou city were included in the analysis, after the exclusion of those with heart disease, stroke, cancer and diabetes at baseline survey. The person-year of follow-up was calculated from the date on completion of baseline survey to the date on any firstly-occurred event, i.e., diabetes incidence, death, loss of follow-up, or December 31, 2013. Cox regression model was used to estimate the hazards ratios of the association between family history of diabetes and incident diabetes. Results: During 348 677 person-years of the follow-up (median 7.08 years), a total of 423 men and 791 women were diagnosed as having diabetes. Compared to those without diabetic family history, participants with family history of diabetes showed a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29), and the risk increased with the number of relatives suffering from diabetes (Pfor trend<0.05). The family history of maternal type, sibling type, and sibling and parental type had a statistically significant association with the risk of diabetes. The adjusted HR (95%CI) was 2.03 (1.45-2.77), 2.07 (1.56-2.68) and 2.39 (1.14-4.34), respectively. Modification effects of tobacco smoking, alcohol drinking, body mass index and physical activity on the association between diabetic family history and risk of diabetes were not observed in the study (Pfor interaction >0.05). Conclusions: Diabetic family history is associated with the increased incident diabetes, and the risk increased with the number of relatives suffering from diabetes.",
+ "doi": "10.3760/cma.j.cn112150-20200212-00091",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.fh_t2d",
+   "number": "t2d.hr",
+   "value": 1.9,
+   "found": true,
+   "context": "etes showed a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29)"
+  },
+  {
+   "term": "ext.fh_t2d",
+   "number": "t2d.lo",
+   "value": 1.57,
+   "found": true,
+   "context": "howed a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29)"
+  },
+  {
+   "term": "ext.fh_t2d",
+   "number": "t2d.hi",
+   "value": 2.29,
+   "found": true,
+   "context": " a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29)"
+  }
+ ]
+}

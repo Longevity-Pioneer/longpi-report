@@ -1,0 +1,102 @@
+{
+ "id": "ext.prs_stroke",
+ "name_zh": "脑卒中多基因评分",
+ "kind": "genetic",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "PGS:PGS002259",
+  "unit": "SD",
+  "platform": "PGS Catalog harmonized scoring file (GRCh38)",
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -4,
+   4
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "mean": 0,
+  "sd": 1,
+  "source": "z within 1000G EAS reference (omics layer)"
+ },
+ "effect": {
+  "stroke": {
+   "hr": 1.28,
+   "lo": 1.21,
+   "hi": 1.36,
+   "per": 1,
+   "per_unit": "1 SD of PRS (z)",
+   "direction": "higher_worse",
+   "metric": "HR",
+   "note": "PGS Catalog 记录为每 SD 的 HR；事件数 1227 来自原文摘要（卒中发病，80 岁前）"
+  }
+ },
+ "adjusted_for": [
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "中国前瞻队列的发病 HR（全部卒中）。评分部分经血压起作用：无文献给出该评分经可测中介的比例，按约定默认中介合计 0.5（收缩压 0.5）；已测血压时按比例折减。",
+  "mediated_by": {
+   "LOINC:8480-6": 0.5
+  }
+ },
+ "transport": {
+  "ancestry": "East Asian (Chinese)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China-PAR cohorts, Lu 2021 Neurology",
+  "n": 41006,
+  "events": 1227,
+  "ancestry": "East Asian (Chinese)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "多基因评分不可改变；评分偏高者更应控制可改变的危险因素并按指南筛查。"
+ },
+ "test": {
+  "label_zh": "全基因组测序或基因芯片（含插补）计算多基因评分",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pgs-catalog-evaluation",
+  "source": "pgs_perf:PPM012867",
+  "pmid": "34031205",
+  "quote": "Hazard Ratio (HR): 1.28 [1.21, 1.36]",
+  "url": "https://www.pgscatalog.org/performance/PPM012867/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

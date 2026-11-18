@@ -1,0 +1,101 @@
+{
+ "id": "ext.fh_lung_ca",
+ "name_zh": "一级亲属肺癌家族史",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:fh:lung_ca",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0575
+   }
+  ],
+  "pmid": "36813828",
+  "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+  "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（5.75，原文为结直肠癌与肺癌并列%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "lung_ca": {
+   "hr": 1.45,
+   "lo": 1.3,
+   "hi": 1.63,
+   "coef": 1.0
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "本项只计疾病结局。亚洲队列联盟合并分析按队列分层，并校正年龄、性别、吸烟包年和饮酒，已覆盖肺癌最主要的危险因素吸烟，系数取 1.0。若已有肺癌多基因评分，二者部分重叠，由引擎按组规则处理。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Asia Cohort Consortium (11 cohorts, China/Japan/Korea)",
+  "n": 478354,
+  "events": 7785,
+  "ancestry": "East Asian (Chinese, Japanese, Korean)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有肺癌家族史者可按指南提前考虑低剂量 CT 筛查。"
+ },
+ "test": {
+  "label_zh": "询问父母、兄弟姐妹、子女是否患过肺癌",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "39361428",
+  "quote": "FHLC (any LC subtype) was associated with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63).",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/39361428/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

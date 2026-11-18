@@ -1,0 +1,102 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.checkup_general",
+ "name_zh": "定期一般健康体检",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:checkup_general",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.4
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国成人近 2 年体检率原文；本项不计入数值，分布只为格式完整"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.0,
+   "lo": 0.97,
+   "hi": 1.03,
+   "direction": null
+  }
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 0.0,
+  "coef_sd": 0.0,
+  "overlaps_with": [],
+  "rationale_zh": "随机试验显示一般健康体检对全因死亡无影响，不计入数值；体检发现的指标异常已通过各自项目计入。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "mostly Northern Europe and US",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Cochrane review (Krogsbøll 2019), 11 RCTs for total mortality",
+  "n": 233298,
+  "events": 21535,
+  "ancestry": "mostly Northern Europe and US",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述"
+ },
+ "persistence": {
+  "half_life_years": 2
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "一般体检本身不降低死亡风险；有效的是针对性筛查（结直肠癌、肺癌、乳腺癌等）和对已发现危险因素的治疗。"
+ },
+ "test": {
+  "label_zh": "近 2 年是否做过一般健康体检",
+  "cost_level": 2
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "pmid": "30699470",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/30699470/",
+  "quote": "Health checks have little or no effect on total mortality (risk ratio (RR) 1.00, 95% confidence interval (CI) 0.97 to 1.03; 11 trials; 233,298 participants and 21,535 deaths; high-certainty evidence, I2 = 0%)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "why_qualitative_zh": "Cochrane 系统综述（17 项随机试验）显示一般健康体检对全因死亡（RR 1.00，95% CI 0.97–1.03）、癌症死亡和心血管死亡均无影响，为高确定性证据；因此不计入数值，只作说明：体检的价值在于发现可干预的指标，这些指标已由各自项目计入。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "all_cause: 95% CI 0.97–1.03 含 1（无统计学意义）"
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.screen_gastroscopy",
+ "name_zh": "胃镜筛查胃癌",
+ "system": "whole_body",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.gastroscopy",
+  "unit": "years since last test",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator",
+  "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.03
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.06
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.12
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.18
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.2
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.15
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.08
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文（东亚系统综述合并胃镜筛查参与率约 38%，PMID 42591170，为受邀者参与率而非人群覆盖率）；筛查效应经 outcomes/gastric_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+ },
+ "effect": {},
+ "screening": {
+  "disease_id": "gastric_ca",
+  "mortality_rr": {
+   "hr": 0.6,
+   "lo": 0.49,
+   "hi": 0.73
+  },
+  "eligible": {
+   "age": [
+    45,
+    75
+   ],
+   "sex": "both",
+   "requires": []
+  },
+  "interval_years": 3
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian (China, Korea, Japan)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Zhang 2018 meta-analysis: 6 cohort + 4 nested case-control studies, all from Asia (China, Korea, Japan)",
+  "n": 342013,
+  "ancestry": "East Asian (China, Korea, Japan)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述或检查报告日期"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "45 岁以上、胃癌高发地区居民或幽门螺杆菌感染、有家族史者定期做胃镜。"
+ },
+ "test": {
+  "label_zh": "胃镜检查，高危人群每 2–3 年一次",
+  "cost_level": 3
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "29723507",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/29723507/",
+  "quote": "The combined result (RR, 0.60; 95% CI, 0.49-0.73) indicated that endoscopic screening was associated with a 40% RR reduction in gastric cancer mortality.",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "证据来自观察性研究（队列与巢式病例对照），无随机试验；另一荟萃分析（PMID 37424675）按方案 RR 0.52、意向筛查 RR 0.94（不显著），提示项目层面获益可能更小。中国高发区与非高发区获益差别较大，eligible 未区分地区。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

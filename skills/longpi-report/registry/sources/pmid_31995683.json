@@ -1,0 +1,33 @@
+{
+ "key": "pmid:31995683",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31995683/",
+ "fetched_at": "2026-11-18T03:28:15Z",
+ "sha256": "cbfd62fb97e08a3d2661e7423812e7441f2d1f43e697676a8bc4e4bb8c67db8b",
+ "citation": "The New England journal of medicine 2020",
+ "text": "Reduced Lung-Cancer Mortality with Volume CT Screening in a Randomized Trial.\nBACKGROUND: There are limited data from randomized trials regarding whether volume-based, low-dose computed tomographic (CT) screening can reduce lung-cancer mortality among male former and current smokers.\nMETHODS: A total of 13,195 men (primary analysis) and 2594 women (subgroup analyses) between the ages of 50 and 74 were randomly assigned to undergo CT screening at T0 (baseline), year 1, year 3, and year 5.5 or no screening. We obtained data on cancer diagnosis and the date and cause of death through linkages with national registries in the Netherlands and Belgium, and a review committee confirmed lung cancer as the cause of death when possible. A minimum follow-up of 10 years until December 31, 2015, was completed for all participants.\nRESULTS: Among men, the average adherence to CT screening was 90.0%. On average, 9.2% of the screened participants underwent at least one additional CT scan (initially indeterminate). The overall referral rate for suspicious nodules was 2.1%. At 10 years of follow-up, the incidence of lung cancer was 5.58 cases per 1000 person-years in the screening group and 4.91 cases per 1000 person-years in the control group; lung-cancer mortality was 2.50 deaths per 1000 person-years and 3.30 deaths per 1000 person-years, respectively. The cumulative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the control group, similar to the values at years 8 and 9. Among women, the rate ratio was 0.67 (95% CI, 0.38 to 1.14) at 10 years of follow-up, with values of 0.41 to 0.52 in years 7 through 9.\nCONCLUSIONS: In this trial involving high-risk persons, lung-cancer mortality was significantly lower among those who underwent volume CT screening than among those who underwent no screening. There were low rates of follow-up procedures for results suggestive of lung cancer. (Funded by the Netherlands Organization of Health Research and Development and others; NELSON Netherlands Trial Register number, NL580.).",
+ "doi": "10.1056/nejmoa1911793",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.screen_lung_ldct",
+   "number": "screening.hr",
+   "value": 0.76,
+   "found": true,
+   "context": "ative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in t"
+  },
+  {
+   "term": "ext.screen_lung_ldct",
+   "number": "screening.lo",
+   "value": 0.61,
+   "found": true,
+   "context": " cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with "
+  },
+  {
+   "term": "ext.screen_lung_ldct",
+   "number": "screening.hi",
+   "value": 0.94,
+   "found": true,
+   "context": "at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the cont"
+  }
+ ]
+}

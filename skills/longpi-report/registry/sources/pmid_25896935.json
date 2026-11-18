@@ -1,0 +1,98 @@
+{
+ "key": "pmid:25896935",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/25896935/",
+ "fetched_at": "2026-11-18T03:21:54Z",
+ "sha256": "7f0737a8fdc57f6a64334aa90825faac7f96db78f2eea21b9e23f50d7523a61c",
+ "citation": "BMJ (Clinical research ed.) 2015",
+ "text": "Impact of smoking and smoking cessation on cardiovascular events and mortality among older adults: meta-analysis of individual participant data from prospective cohort studies of the CHANCES consortium.\nOBJECTIVE: To investigate the impact of smoking and smoking cessation on cardiovascular mortality, acute coronary events, and stroke events in people aged 60 and older, and to calculate and report risk advancement periods for cardiovascular mortality in addition to traditional epidemiological relative risk measures.\nDESIGN: Individual participant meta-analysis using data from 25 cohorts participating in the CHANCES consortium. Data were harmonised, analysed separately employing Cox proportional hazard regression models, and combined by meta-analysis.\nRESULTS: Overall, 503,905 participants aged 60 and older were included in this study, of whom 37,952 died from cardiovascular disease. Random effects meta-analysis of the association of smoking status with cardiovascular mortality yielded a summary hazard ratio of 2.07 (95% CI 1.82 to 2.36) for current smokers and 1.37 (1.25 to 1.49) for former smokers compared with never smokers. Corresponding summary estimates for risk advancement periods were 5.50 years (4.25 to 6.75) for current smokers and 2.16 years (1.38 to 2.39) for former smokers. The excess risk in smokers increased with cigarette consumption in a dose-response manner, and decreased continuously with time since smoking cessation in former smokers. Relative risk estimates for acute coronary events and for stroke events were somewhat lower than for cardiovascular mortality, but patterns were similar.\nCONCLUSIONS: Our study corroborates and expands evidence from previous studies in showing that smoking is a strong independent risk factor of cardiovascular events and mortality even at older age, advancing cardiovascular mortality by more than five years, and demonstrating that smoking cessation in these age groups is still beneficial in reducing the excess risk.\n[full text, Europe PMC PMC4413837]\nSimilar patterns to those for cardiovascular mortality were seen for the associations of smoking related predictors with acute coronary and stroke events, albeit somewhat weaker, particularly in the case of stroke events (fig 5; supplementary figs 11, 14, 15, 16, 19, 20). Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers. The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26). For both acute coronary and stroke events, risks tended to increase with daily cigarette consumption in current smokers (hazard ratio for linear trend per 10 cigarettes were: 1.36 (1.28 to 1.45, P<0.001 for acute coronary events, and 1.25 (1.19 to 1.31), P<0.001 for stroke; details not shown), and to decrease with time since smoking cessation in former smokers (hazard ratios for linear trend per 10 years were: 0.83 (0.78 to 0.89), P<0.001 for acute coronary events, and 0.87 (0.84 to 0.91), P<0.001 for stroke; details not shown).",
+ "pmcid": "PMC4413837",
+ "doi": "10.1136/bmj.h1551",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "chd.former.hr",
+   "value": 1.18,
+   "found": true,
+   "context": "ary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "chd.former.lo",
+   "value": 1.06,
+   "found": true,
+   "context": "ents were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "chd.former.hi",
+   "value": 1.32,
+   "found": true,
+   "context": "e 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "chd.current.hr",
+   "value": 1.98,
+   "found": true,
+   "context": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) "
+  },
+  {
+   "term": "ext.smoking",
+   "number": "chd.current.lo",
+   "value": 1.75,
+   "found": true,
+   "context": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for fo"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "chd.current.hi",
+   "value": 2.25,
+   "found": true,
+   "context": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smo"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.former.hr",
+   "value": 1.17,
+   "found": true,
+   "context": "ctive hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.former.lo",
+   "value": 1.07,
+   "found": true,
+   "context": "hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.former.hi",
+   "value": 1.26,
+   "found": true,
+   "context": "atios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.current.hr",
+   "value": 1.58,
+   "found": true,
+   "context": "The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.current.lo",
+   "value": 1.4,
+   "found": true,
+   "context": "The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "stroke.current.hi",
+   "value": 1.78,
+   "found": true,
+   "context": "The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+  }
+ ]
+}

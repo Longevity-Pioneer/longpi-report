@@ -1,0 +1,94 @@
+{
+ "id": "ext.test_steps",
+ "name_zh": "日均步数",
+ "kind": "behavior",
+ "system": "musculoskeletal",
+ "group": "physical_activity",
+ "input": {
+  "code": "LP:steps_daily_mean",
+  "unit": "steps/day",
+  "platform": null,
+  "methods": [
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 8000,
+  "clip": [
+   1000,
+   20000
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 6500,
+    "sd": 2800
+   }
+  ],
+  "source": "fixture: illustrative distribution for tests"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.15,
+    "lo": 1.118,
+    "hi": 1.181,
+    "per": 1000,
+    "derived": {
+     "from": {
+      "hr": 0.55,
+      "lo": 0.49,
+      "hi": 0.62
+     },
+     "pow": -0.23316
+    }
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "测试用",
+  "mediated_by": {
+   "core.crf": 0.3
+  }
+ },
+ "transport": {
+  "ancestry": "mixed",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "15 cohorts",
+  "n": 47471,
+  "events": 3013,
+  "ancestry": "multinational (US, Europe, Japan, Australia)"
+ },
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "35247352",
+  "quote": "Compared with the lowest quartile, the adjusted HR for all-cause mortality was 0·60 (95% CI 0·51-0·71) for quartile 2, 0·55 (0·49-0·62) for quartile 3"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ }
+}

@@ -1,0 +1,34 @@
+{
+ "key": "pmid:20200384",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/20200384/",
+ "fetched_at": "2026-11-18T03:53:27Z",
+ "sha256": "8ce4a674efae0881d1d5857f493e7ffe30dc8f083a5e8c223500235e5a3665f5",
+ "citation": "The New England journal of medicine 2010",
+ "text": "Glycated hemoglobin, diabetes, and cardiovascular risk in nondiabetic adults.\nBACKGROUND: Fasting glucose is the standard measure used to diagnose diabetes in the United States. Recently, glycated hemoglobin was also recommended for this purpose.\nMETHODS: We compared the prognostic value of glycated hemoglobin and fasting glucose for identifying adults at risk for diabetes or cardiovascular disease. We measured glycated hemoglobin in whole-blood samples from 11,092 black or white adults who did not have a history of diabetes or cardiovascular disease and who attended the second visit (occurring in the 1990-1992 period) of the Atherosclerosis Risk in Communities (ARIC) study.\nRESULTS: The glycated hemoglobin value at baseline was associated with newly diagnosed diabetes and cardiovascular outcomes. For glycated hemoglobin values of less than 5.0%, 5.0 to less than 5.5%, 5.5 to less than 6.0%, 6.0 to less than 6.5%, and 6.5% or greater, the multivariable-adjusted hazard ratios (with 95% confidence intervals) for diagnosed diabetes were 0.52 (0.40 to 0.69), 1.00 (reference), 1.86 (1.67 to 2.08), 4.48 (3.92 to 5.13), and 16.47 (14.22 to 19.08), respectively. For coronary heart disease, the hazard ratios were 0.96 (0.74 to 1.24), 1.00 (reference), 1.23 (1.07 to 1.41), 1.78 (1.48 to 2.15), and 1.95 (1.53 to 2.48), respectively. The hazard ratios for stroke were similar. In contrast, glycated hemoglobin and death from any cause were found to have a J-shaped association curve. All these associations remained significant after adjustment for the baseline fasting glucose level. The association between the fasting glucose levels and the risk of cardiovascular disease or death from any cause was not significant in models with adjustment for all covariates as well as glycated hemoglobin. For coronary heart disease, measures of risk discrimination showed significant improvement when glycated hemoglobin was added to models including fasting glucose.\nCONCLUSIONS: In this community-based population of nondiabetic adults, glycated hemoglobin was similarly associated with a risk of diabetes and more strongly associated with risks of cardiovascular disease and death from any cause as compared with fasting glucose. These data add to the evidence supporting the use of glycated hemoglobin as a diagnostic test for diabetes.",
+ "pmcid": "PMC2872990",
+ "doi": "10.1056/nejmoa0908359",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.hba1c",
+   "number": "t2d.hr",
+   "value": 4.48,
+   "found": true,
+   "context": "0.52 (0.40 to 0.69), 1.00 (reference), 1.86 (1.67 to 2.08), 4.48 (3.92 to 5.13), and 16.47 (14.22 to 19.08), respectively."
+  },
+  {
+   "term": "ext.hba1c",
+   "number": "t2d.lo",
+   "value": 3.92,
+   "found": true,
+   "context": "0.40 to 0.69), 1.00 (reference), 1.86 (1.67 to 2.08), 4.48 (3.92 to 5.13), and 16.47 (14.22 to 19.08), respectively."
+  },
+  {
+   "term": "ext.hba1c",
+   "number": "t2d.hi",
+   "value": 5.13,
+   "found": true,
+   "context": "0.69), 1.00 (reference), 1.86 (1.67 to 2.08), 4.48 (3.92 to 5.13), and 16.47 (14.22 to 19.08), respectively."
+  }
+ ]
+}

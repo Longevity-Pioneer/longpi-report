@@ -1,0 +1,231 @@
+{
+ "id": "ext.diabetes",
+ "name_zh": "已确诊 2 型糖尿病（疾病风险）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "ICD10:E11",
+  "unit": "indicator",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.0197
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.0256
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.0437
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.076
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.0941
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.1075
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.1075
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.017
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.0221
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.0378
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.0657
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.0814
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.0929
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.0929
+   }
+  ],
+  "pmid": "34962526",
+  "quote": "In 2018, among adults with diabetes, 36.7% (95% CI, 34.7%-38.6%) reported being aware of their condition",
+  "source": "派生值：已确诊患病率 = 中国成人慢性病与营养监测 2018 分性别年龄糖尿病总患病率（data/population_norms_china.json markers.glycemic 的 diabetes 比例，ADA 标准）× 全国知晓率 36.7%（Wang L, JAMA 2021, PMID 34962526）。假定各年龄段知晓率相同（实际老年人知晓率较高、青年较低），80 岁以上沿用 70–79 岁数值。"
+ },
+ "effect": {
+  "chd": {
+   "hr": 2.0,
+   "lo": 1.83,
+   "hi": 2.19,
+   "coef": 1.0
+  },
+  "stroke": {
+   "hr": 2.27,
+   "lo": 1.95,
+   "hi": 2.65,
+   "coef": 1.0
+  },
+  "liver_ca": {
+   "hr": 1.97,
+   "lo": 1.79,
+   "hi": 2.16,
+   "coef": 0.7,
+   "evidence": {
+    "pmid": "38661292",
+    "grade": "B",
+    "design": "pooled-cohort",
+    "quote": "Hazard ratio (HR) (95% confidence interval [95%CI]) of liver cancer diagnosis in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, gender, body mass index, tobacco smoking, alcohol use, and heterogeneity across studies (n = 586,072; events = 4620)."
+   },
+   "population": {
+    "cohort": "Asia Cohort Consortium, 20 cohorts",
+    "n": 586072,
+    "events": 4620,
+    "ancestry": "East Asian (China, Japan, Korea, Taiwan, Singapore)"
+   },
+   "transport": {
+    "ancestry": "East Asian",
+    "shrink": 1.0,
+    "sd_inflate": 1.0
+   }
+  },
+  "ad": {
+   "hr": 1.56,
+   "lo": 1.41,
+   "hi": 1.73,
+   "coef": 0.5,
+   "evidence": {
+    "pmid": "24843720",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "AD (n = 20) was 1.56 (1.41-1.73, I (2) = 9.8%)"
+   },
+   "population": {
+    "cohort": "28 prospective studies (meta-analysis)",
+    "ancestry": "multinational (mostly US/Europe, some Japanese/Chinese)",
+    "events": null
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.bp",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.glucose（只计全因死亡）不重复计数；与同组的血糖类疾病项（如糖化血红蛋白、空腹血糖）由 glycemia 组规则排序打折。冠心病、缺血性卒中取自新兴危险因素协作组 102 项前瞻研究个体数据荟萃分析，已校正年龄、性别、吸烟、收缩压和体重指数，再校正血脂、炎症和肾功能指标后基本不变，属互相校正，系数取 1.0；研究人群以欧美为主，按非东亚人群收缩。卒中采用缺血性卒中估计值（2.27），出血性卒中较低（1.56）。肝癌取亚洲队列联盟 20 个东亚队列合并分析，校正年龄、性别、体重指数、吸烟和饮酒，但未校正乙肝病毒感染这一中国肝癌的首要危险因素，系数取 0.7。阿尔茨海默病取荟萃分析合并值，各研究校正不一；中国慢性病前瞻性研究中糖尿病与阿尔茨海默病无显著关联（HR 0.92，0.62–1.36），与全因痴呆相关（1.36，1.13–1.65），主要通过血管性痴呆，东亚人群证据不一致，系数取 0.5。慢性肾病、代谢相关脂肪性肝病未找到合格的东亚发病研究摘要，本项暂不计。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (mostly European/US)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Emerging Risk Factors Collaboration, 102 prospective studies (52 765 vascular outcomes in total; outcome-specific counts not in abstract)",
+  "n": 698782,
+  "events": null,
+  "ancestry": "multinational (mostly European/US)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "已确诊状态（0/1），以病历诊断或自述医生诊断为准"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [
+  "pregnancy"
+ ],
+ "treated_policy": "ignore",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "确诊后规范控制血糖、血压、血脂并戒烟，可降低心脑血管并发症风险；部分新型降糖药有心血管获益证据，用药遵医嘱。"
+ },
+ "test": {
+  "label_zh": "病历：是否已确诊 2 型糖尿病",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "20609967",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20609967/",
+  "quote": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

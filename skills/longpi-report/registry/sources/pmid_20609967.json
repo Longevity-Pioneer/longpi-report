@@ -1,0 +1,55 @@
+{
+ "key": "pmid:20609967",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/20609967/",
+ "fetched_at": "2026-11-18T03:33:10Z",
+ "sha256": "123bd488dcdd7b04339dd1c49621b7bdd55561dad3584af25a2bd9ebcb599cf3",
+ "citation": "Lancet (London, England) 2010",
+ "text": "Diabetes mellitus, fasting blood glucose concentration, and risk of vascular disease: a collaborative meta-analysis of 102 prospective studies.\nBACKGROUND: Uncertainties persist about the magnitude of associations of diabetes mellitus and fasting glucose concentration with risk of coronary heart disease and major stroke subtypes. We aimed to quantify these associations for a wide range of circumstances.\nMETHODS: We undertook a meta-analysis of individual records of diabetes, fasting blood glucose concentration, and other risk factors in people without initial vascular disease from studies in the Emerging Risk Factors Collaboration. We combined within-study regressions that were adjusted for age, sex, smoking, systolic blood pressure, and body-mass index to calculate hazard ratios (HRs) for vascular disease.\nFINDINGS: Analyses included data for 698 782 people (52 765 non-fatal or fatal vascular outcomes; 8.49 million person-years at risk) from 102 prospective studies. Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke; 1.56 (1.19-2.05) for haemorrhagic stroke; 1.84 (1.59-2.13) for unclassified stroke; and 1.73 (1.51-1.98) for the aggregate of other vascular deaths. HRs did not change appreciably after further adjustment for lipid, inflammatory, or renal markers. HRs for coronary heart disease were higher in women than in men, at 40-59 years than at 70 years and older, and with fatal than with non-fatal disease. At an adult population-wide prevalence of 10%, diabetes was estimated to account for 11% (10-12%) of vascular deaths. Fasting blood glucose concentration was non-linearly related to vascular risk, with no significant associations between 3.90 mmol/L and 5.59 mmol/L. Compared with fasting blood glucose concentrations of 3.90-5.59 mmol/L, HRs for coronary heart disease were: 1.07 (0.97-1.18) for lower than 3.90 mmol/L; 1.11 (1.04-1.18) for 5.60-6.09 mmol/L; and 1.17 (1.08-1.26) for 6.10-6.99 mmol/L. In people without a history of diabetes, information about fasting blood glucose concentration or impaired fasting glucose status did not significantly improve metrics of vascular disease prediction when added to information about several conventional risk factors.\nINTERPRETATION: Diabetes confers about a two-fold excess risk for a wide range of vascular diseases, independently from other conventional risk factors. In people without diabetes, fasting blood glucose concentration is modestly and non-linearly associated with risk of vascular disease.\nFUNDING: British Heart Foundation, UK Medical Research Council, and Pfizer.",
+ "pmcid": "PMC2904878",
+ "doi": "10.1016/s0140-6736(10)60484-9",
+ "open_access": "Y",
+ "checks": [
+  {
+   "term": "ext.diabetes",
+   "number": "chd.hr",
+   "value": 2.0,
+   "found": true,
+   "context": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "chd.lo",
+   "value": 1.83,
+   "found": true,
+   "context": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for isch"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "chd.hi",
+   "value": 2.19,
+   "found": true,
+   "context": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.hr",
+   "value": 2.27,
+   "found": true,
+   "context": "s were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.lo",
+   "value": 1.95,
+   "found": true,
+   "context": ": 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "stroke.hi",
+   "value": 2.65,
+   "found": true,
+   "context": "0 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke"
+  }
+ ]
+}

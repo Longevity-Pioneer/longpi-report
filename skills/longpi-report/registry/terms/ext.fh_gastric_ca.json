@@ -1,0 +1,104 @@
+{
+ "id": "ext.fh_gastric_ca",
+ "name_zh": "一级亲属胃癌家族史",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:fh:gastric_ca",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.1197
+   }
+  ],
+  "pmid": "36813828",
+  "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+  "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（11.97%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "gastric_ca": {
+   "hr": 1.44,
+   "lo": 1.32,
+   "hi": 1.58,
+   "coef": 0.8
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "ext.hpylori"
+  ],
+  "rationale_zh": "本项只计疾病结局。合并分析校正了性别、吸烟、饮酒、教育和体重指数，但未校正幽门螺杆菌感染；家族聚集部分来自家庭内幽门螺杆菌传播，与 ext.hpylori 部分重叠，系数取 0.8。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Asia Cohort Consortium (12 prospective cohorts)",
+  "n": 550508,
+  "events": 2258,
+  "ancestry": "East Asian (Chinese, Japanese, Korean)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有胃癌家族史者宜检测并根除幽门螺杆菌，按指南做胃镜筛查。"
+ },
+ "test": {
+  "label_zh": "询问父母、兄弟姐妹、子女是否患过胃癌",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "38649672",
+  "quote": "The risk of incident gastric cancer was higher in individuals with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/38649672/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

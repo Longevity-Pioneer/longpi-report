@@ -1,0 +1,55 @@
+{
+ "key": "pmid:20483451",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/20483451/",
+ "fetched_at": "2026-11-18T03:12:20Z",
+ "sha256": "c0bbd9ffef00b38d6c1cd645cd74562b9663738ae59e3621d7296367456887d5",
+ "citation": "Lancet (London, England) 2010",
+ "text": "Association of estimated glomerular filtration rate and albuminuria with all-cause and cardiovascular mortality in general population cohorts: a collaborative meta-analysis.\nBACKGROUND: Substantial controversy surrounds the use of estimated glomerular filtration rate (eGFR) and albuminuria to define chronic kidney disease and assign its stages. We undertook a meta-analysis to assess the independent and combined associations of eGFR and albuminuria with mortality.\nMETHODS: In this collaborative meta-analysis of general population cohorts, we pooled standardised data for all-cause and cardiovascular mortality from studies containing at least 1000 participants and baseline information about eGFR and urine albumin concentrations. Cox proportional hazards models were used to estimate hazard ratios (HRs) for all-cause and cardiovascular mortality associated with eGFR and albuminuria, adjusted for potential confounders.\nFINDINGS: The analysis included 105,872 participants (730,577 person-years) from 14 studies with urine albumin-to-creatinine ratio (ACR) measurements and 1,128,310 participants (4,732,110 person-years) from seven studies with urine protein dipstick measurements. In studies with ACR measurements, risk of mortality was unrelated to eGFR between 75 mL/min/1.73 m(2) and 105 mL/min/1.73 m(2) and increased at lower eGFRs. Compared with eGFR 95 mL/min/1.73 m(2), adjusted HRs for all-cause mortality were 1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 mL/min/1.73 m(2). ACR was associated with risk of mortality linearly on the log-log scale without threshold effects. Compared with ACR 0.6 mg/mmol, adjusted HRs for all-cause mortality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol, and 2.22 (1.97-2.51) for 33.9 mg/mmol. eGFR and ACR were multiplicatively associated with risk of mortality without evidence of interaction. Similar findings were recorded for cardiovascular mortality and in studies with dipstick measurements.\nINTERPRETATION: eGFR less than 60 mL/min/1.73 m(2) and ACR 1.1 mg/mmol (10 mg/g) or more are independent predictors of mortality risk in the general population. This study provides quantitative data for use of both kidney measures for risk assessment and definition and staging of chronic kidney disease.\nFUNDING: Kidney Disease: Improving Global Outcomes (KDIGO), US National Kidney Foundation, and Dutch Kidney Foundation.",
+ "pmcid": "PMC3993088",
+ "doi": "10.1016/s0140-6736(10)60674-5",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.hr",
+   "value": 1.57,
+   "found": true,
+   "context": " were 1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) f"
+  },
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.lo",
+   "value": 1.39,
+   "found": true,
+   "context": "1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 "
+  },
+  {
+   "term": "ext.egfr",
+   "number": "all_cause.hr_below.hi",
+   "value": 1.78,
+   "found": true,
+   "context": "(95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 mL/mi"
+  },
+  {
+   "term": "ext.uacr",
+   "number": "all_cause.hr",
+   "value": 1.63,
+   "found": true,
+   "context": "-cause mortality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol"
+  },
+  {
+   "term": "ext.uacr",
+   "number": "all_cause.lo",
+   "value": 1.5,
+   "found": true,
+   "context": " mortality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol"
+  },
+  {
+   "term": "ext.uacr",
+   "number": "all_cause.hi",
+   "value": 1.77,
+   "found": true,
+   "context": "ality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol"
+  }
+ ]
+}

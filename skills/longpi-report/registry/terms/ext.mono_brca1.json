@@ -1,0 +1,103 @@
+{
+ "id": "ext.mono_brca1",
+ "name_zh": "BRCA1 致病变异携带",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:monogenic:HGNC:1100",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0053
+   }
+  ],
+  "source": "上海地区 2,080 名健康汉族人 BRCA1/2 致病/可能致病变异合并携带率 0.53%（1/189）。原文未分基因，此处两基因各取合并值，属上限；对归一化的影响约 0.03 对数单位。",
+  "pmid": "38566028",
+  "quote": "with a 0.53% (1 in 189) prevalence of pathogenic/likely pathogenic (PLP) variant"
+ },
+ "effect": {
+  "breast_ca": {
+   "hr": 7.62,
+   "lo": 5.33,
+   "hi": 11.27,
+   "direction": "higher_worse",
+   "note": "OR 按 HR 近似"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "study"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "种系致病变异不受生活方式混杂；研究未校正多基因评分与家族史，携带状态可解释部分家族史，重叠由家族史项一侧处理。系数 0.8 为病例对照 OR 近似 HR 的保守折减。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "United States (population-based, mostly European)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "CARRIERS consortium population-based case-control (Hu 2021 NEJM)",
+  "n": 64791,
+  "events": 32247,
+  "ancestry": "United States (population-based, mostly European)",
+  "sex": "F"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "携带者应接受遗传咨询，按指南提前并加强乳腺影像筛查，评估预防性措施。"
+ },
+ "test": {
+  "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+  "cost_level": 4
+ },
+ "disclosure": "counsel",
+ "evidence": {
+  "grade": "B",
+  "design": "case-control",
+  "pmid": "33471974",
+  "quote": "Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/33471974/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "gene": "BRCA1",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

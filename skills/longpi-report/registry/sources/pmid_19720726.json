@@ -1,0 +1,54 @@
+{
+ "key": "pmid:19720726",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/19720726/",
+ "fetched_at": "2026-11-18T03:22:41Z",
+ "sha256": "f2f782defd6bb08f281c25b8be6e6cce839e7f2e6577cfbc41c102d5be0675c7",
+ "citation": "International journal of epidemiology 2009",
+ "text": "Meta-analysis of epidemiologic studies on cigarette smoking and liver cancer.\nBACKGROUND: Whereas the International Agency for Research on Cancer (IARC) Monograph concluded that the evidence for the relationship between cigarette smoking and liver cancer is sufficient, the US Surgeon General's report summarized the data as suggestive but not sufficient.\nMETHODS: A meta-analysis of previous epidemiologic studies may help to clarify the potential association. We identified 38 cohort studies and 58 case-control studies in a systematic literature search for studies on liver cancer and cigarette smoking. The meta-relative risk (mRR) of liver cancer and dose-response trends were calculated. Tests for heterogeneity, publication bias assessment and influence analyses were performed.\nRESULTS: Compared with never smokers, the adjusted mRR was 1.51 [95% confidence interval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former smokers. The increased liver cancer risk among current smokers appeared to be consistent in strata of different regions, study designs, study sample sizes and publication periods.\nCONCLUSION: The results of our meta-analysis show that tobacco smoking is associated with liver cancer development, which supports the conclusion by the IARC Monograph. This conclusion has an important public health message for areas with high smoking prevalence and high liver cancer incidence such as China.",
+ "doi": "10.1093/ije/dyp280",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.former.hr",
+   "value": 1.12,
+   "found": true,
+   "context": "confidence interval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.former.lo",
+   "value": 0.78,
+   "found": true,
+   "context": "terval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.former.hi",
+   "value": 1.6,
+   "found": true,
+   "context": "l (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.hr",
+   "value": 1.51,
+   "found": true,
+   "context": "Compared with never smokers, the adjusted mRR was 1.51 [95% confidence interval (CI) 1.37-1.67] for current smoker"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.lo",
+   "value": 1.37,
+   "found": true,
+   "context": "rs, the adjusted mRR was 1.51 [95% confidence interval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for f"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "liver_ca.current.hi",
+   "value": 1.67,
+   "found": true,
+   "context": "he adjusted mRR was 1.51 [95% confidence interval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former"
+  }
+ ]
+}

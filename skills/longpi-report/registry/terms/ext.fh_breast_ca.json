@@ -1,0 +1,97 @@
+{
+ "id": "ext.fh_breast_ca",
+ "name_zh": "一级亲属乳腺癌家族史",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:fh:breast_ca",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0343
+   }
+  ],
+  "pmid": "36813828",
+  "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+  "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（3.43，男女合计%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "breast_ca": {
+   "hr": 2.46,
+   "lo": 2.03,
+   "hi": 2.97,
+   "coef": 0.8
+  }
+ },
+ "adjusted_for": [
+  "age"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "本项只计疾病结局。亚洲女性荟萃分析以病例对照研究为主（遗传项允许），合并的是比值比，各研究校正程度不一，系数取 0.8。若已检出 BRCA1/2 等致病变异，家族史风险部分由其解释，应由引擎按组规则处理。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "studies of Asian women (systematic review and meta-analysis, mostly case-control)",
+  "ancestry": "Asian (mainly East and Southeast Asian)",
+  "sex": "F",
+  "sex_scope": "F"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有乳腺癌家族史者可考虑遗传咨询，并按指南提前做乳腺影像筛查。"
+ },
+ "test": {
+  "label_zh": "询问父母、兄弟姐妹、子女是否患过乳腺癌",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "37400822",
+  "quote": "The pooled OR for women who have a first-degree relative with breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97).",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/37400822/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

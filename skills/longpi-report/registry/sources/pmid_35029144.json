@@ -1,0 +1,35 @@
+{
+ "key": "pmid:35029144",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35029144/",
+ "fetched_at": "2026-11-18T03:23:13Z",
+ "sha256": "5788a58f54a4724b75654ae848dc47e864b9fdc43dc8345861835cda31c762fa",
+ "citation": "eLife 2022",
+ "text": "DunedinPACE, a DNA methylation biomarker of the pace of aging.\nBACKGROUND: Measures to quantify changes in the pace of biological aging in response to intervention are needed to evaluate geroprotective interventions for humans. Previously, we showed that quantification of the pace of biological aging from a DNA-methylation blood test was possible (Belsky et al., 2020). Here, we report a next-generation DNA-methylation biomarker of Pace of Aging, DunedinPACE (for Pace of Aging Calculated from the Epigenome).\nMETHODS: We used data from the Dunedin Study 1972-1973 birth cohort tracking within-individual decline in 19 indicators of organ-system integrity across four time points spanning two decades to model Pace of Aging. We distilled this two-decade Pace of Aging into a single-time-point DNA-methylation blood-test using elastic-net regression and a DNA-methylation dataset restricted to exclude probes with low test-retest reliability. We evaluated the resulting measure, named DunedinPACE, in five additional datasets.\nRESULTS: DunedinPACE showed high test-retest reliability, was associated with morbidity, disability, and mortality, and indicated faster aging in young adults with childhood adversity. DunedinPACE effect-sizes were similar to GrimAge Clock effect-sizes. In analysis of incident morbidity, disability, and mortality, DunedinPACE and added incremental prediction beyond GrimAge.\nCONCLUSIONS: DunedinPACE is a novel blood biomarker of the pace of aging for gerontology and geroscience.\nFUNDING: This research was supported by US-National Institute on Aging grants AG032282, AG061378, AG066887, and UK Medical Research Council grant MR/P005918/1.\n[full text, Europe PMC PMC8853656]\nFramingham analysis included n = 2471 members of the Offspring cohort (54% women) with average age of 66 years (SD = 9) at DNA methylation measurement during 2005–2008. Over follow-up through 2018, 23% died, 13% were newly diagnosed with cardiovascular disease (CVD), and 6% had a first stroke or transient ischemic attack (TIA). Disability follow-up was conducted through 2015 based on participant reports of limitations to activities of daily living (ADLs) on the Nagi, Katz, and Rosow-Brelsau scales. Participants with faster DunedinPACE at baseline were at increased risk for CVD, stroke/TIA, and mortality (CVD HR = 1.39 [1.26–1.54]; stroke/TIA HR = 1.37 [1.19–1.58]; mortality HR = 1.65 95% CI [1.51–1.79], Figure 4B). They were also more likely to develop disability (Nagi ADL IRR = 1.40 [1.19–1.65]; Katz ADL IRR = 1.33 [1.16–1.53]; Rosow-Breslau ADL IRR = 1.39 [1.24–1.56]).",
+ "pmcid": "PMC8853656",
+ "doi": "10.7554/elife.73420",
+ "open_access": "Y",
+ "epmc_license": "cc0",
+ "checks": [
+  {
+   "term": "ext.clock_dunedinpace",
+   "number": "all_cause.hr",
+   "value": 1.65,
+   "found": true,
+   "context": ".26-1.54]; stroke/TIA HR = 1.37 [1.19-1.58]; mortality HR = 1.65 95% CI [1.51-1.79], Figure 4B)"
+  },
+  {
+   "term": "ext.clock_dunedinpace",
+   "number": "all_cause.lo",
+   "value": 1.51,
+   "found": true,
+   "context": "roke/TIA HR = 1.37 [1.19-1.58]; mortality HR = 1.65 95% CI [1.51-1.79], Figure 4B)"
+  },
+  {
+   "term": "ext.clock_dunedinpace",
+   "number": "all_cause.hi",
+   "value": 1.79,
+   "found": true,
+   "context": "TIA HR = 1.37 [1.19-1.58]; mortality HR = 1.65 95% CI [1.51-1.79], Figure 4B)"
+  }
+ ]
+}

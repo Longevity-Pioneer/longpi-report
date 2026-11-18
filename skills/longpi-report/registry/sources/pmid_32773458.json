@@ -1,0 +1,54 @@
+{
+ "key": "pmid:32773458",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/32773458/",
+ "fetched_at": "2026-11-18T03:22:09Z",
+ "sha256": "5729a761eb4800216fa2ecbabac3d05e3299bfa069648406756975839d2fc2af",
+ "citation": "The American journal of gastroenterology 2020",
+ "text": "Smoking and Colorectal Cancer Risk, Overall and by Molecular Subtypes: A Meta-Analysis.\nINTRODUCTION: The aim of this study was to provide the most comprehensive and up-to-date evidence on the association between cigarette smoking and colorectal cancer (CRC) risk.\nMETHODS: We conducted a systematic review and meta-analysis of epidemiological studies on the association between cigarette smoking and CRC risk published up to September 2018. We calculated relative risk (RR) of CRC according to smoking status, intensity, duration, pack-years, and time since quitting, with a focus on molecular subtypes of CRC.\nRESULTS: The meta-analysis summarizes the evidence from 188 original studies. Compared with never smokers, the pooled RR for CRC was 1.14 (95% confidence interval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former smokers. CRC risk increased linearly with smoking intensity and duration. Former smokers who had quit smoking for more than 25 years had significantly decreased risk of CRC compared with current smokers. Smoking was strongly associated with the risk of CRC, characterized by high CpG island methylator phenotype (RR 1.42; 95% CI 1.20-1.67; number of studies [n] = 4), BRAF mutation (RR 1.63; 95% CI 1.23-2.16; n = 4), or high microsatellite instability (RR 1.56; 95% CI 1.32-1.85; n = 8), but not characterized by KRAS (RR 1.04; 95% CI 0.90-1.20; n = 5) or TP53 (RR 1.13; 95% CI 0.99-1.29; n = 5) mutations.\nDISCUSSION: Cigarette smoking increases the risk of CRC in a dose-dependent manner with intensity and duration, and quitting smoking reduces CRC risk. Smoking greatly increases the risk of CRC that develops through the microsatellite instability pathway, characterized by microsatellite instability-high, CpG island methylator phenotype positive, and BRAF mutation.",
+ "doi": "10.14309/ajg.0000000000000803",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "crc.former.hr",
+   "value": 1.17,
+   "found": true,
+   "context": "confidence interval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "crc.former.lo",
+   "value": 1.15,
+   "found": true,
+   "context": "terval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "crc.former.hi",
+   "value": 1.2,
+   "found": true,
+   "context": "l [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "crc.current.hr",
+   "value": 1.14,
+   "found": true,
+   "context": "Compared with never smokers, the pooled RR for CRC was 1.14 (95% confidence interval [CI] 1.10-1.18) for current smoker"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "crc.current.lo",
+   "value": 1.1,
+   "found": true,
+   "context": "he pooled RR for CRC was 1.14 (95% confidence interval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for f"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "crc.current.hi",
+   "value": 1.18,
+   "found": true,
+   "context": "oled RR for CRC was 1.14 (95% confidence interval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former"
+  }
+ ]
+}

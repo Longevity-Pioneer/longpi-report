@@ -1,0 +1,153 @@
+{
+ "id": "ext.uacr",
+ "name_zh": "尿白蛋白/肌酐比值（UACR）",
+ "kind": "state",
+ "system": "kidney",
+ "group": "kidney",
+ "input": {
+  "code": "LOINC:9318-7",
+  "unit": "mg/g",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   2,
+   300
+  ],
+  "log_x": true,
+  "note_zh": "原文报告 ACR 与死亡在对数-对数尺度上线性、无阈值；取 ACR 3.4 对 0.6 mg/mmol（约 30 对 5 mg/g）的 HR，per=ln(3.4/0.6)=1.7346。高于 30 mg/g 时斜率变缓（33.9 mg/mmol 对 0.6 的 HR 为 2.22），按 1.63 外推会高估，故上限截于 300 mg/g"
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "meanlog": 1.645,
+    "sdlog": 1.384
+   }
+  ],
+  "pmid": "42584389",
+  "quote": "56,333 (68.27%) for UACR <10 mg/g, 17,747 (21.51%) for UACR ≥10 to <30 mg/g, and 8,429 (10.22%) for UACR≥30 mg/g",
+  "source": "pmid:42584389",
+  "source_note_zh": "中国心血管代谢疾病与癌症队列（4C，82,509 人，≥40 岁社区人群）UACR 三档构成比拟合对数正态：P(<10)=0.6827、P(<30)=0.8978 → meanlog 1.645（中位数约 5.2 mg/g）、sdlog 1.384。未分性别年龄，18–39 岁为外推；4C 人群代谢异常比例偏高，分布可能偏右"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.63,
+   "lo": 1.5,
+   "hi": 1.77,
+   "per": 1.7346,
+   "per_unit": "ln(ACR) 单位（ACR 3.4 对 0.6 mg/mmol，即约 30 对 5 mg/g）",
+   "direction": "higher_worse"
+  },
+  "ckd": {
+   "hr": 1.33,
+   "lo": 1.19,
+   "hi": 1.48,
+   "per": 1.683,
+   "per_unit": "ln(ACR) 单位：原文 UACR 10–<30 对 <10 mg/g；两组中位数（约 15.8 与 2.9 mg/g）由上述 4C 构成比拟合的对数正态分布推算，原文未给组中位数",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "42584389",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "Compared with the lowest UACR, the risk of incident CKD significantly increased among participants with UACR ≥10 to <30 mg/g (HR: 1.33, 95% CI: 1.19-1.48)"
+   },
+   "population": {
+    "cohort": "China Cardiometabolic Disease and Cancer Cohort (4C)",
+    "n": 82509,
+    "events": 2088,
+    "ancestry": "Chinese"
+   },
+   "transport": {
+    "ancestry": "Chinese",
+    "shrink": 1.0,
+    "sd_inflate": 1.0
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "race",
+  "cvd_history",
+  "core.bp",
+  "core.glucose",
+  "core.smoking",
+  "core.lipid",
+  "LP:egfr_ckdepi2021"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.bp",
+   "core.glucose",
+   "core.adiposity",
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "白蛋白尿是血压、血糖与肥胖所致微血管损伤的下游表现，并与肾功能相关（表型年龄时钟已含肌酐）。CKD-PC 模型校正了收缩压、糖尿病、吸烟、总胆固醇与 eGFR，未校正体重指数和表型年龄时钟，属部分校正，取 0.5。全因死亡模型的校正项按 CKD-PC 2010 方法学记录，摘要仅写'校正潜在混杂'，全文未能抓取核对。肾病结局（4C）校正了年龄、性别、教育、基线 eGFR、生活方式与代谢因素（糖尿病、高血压、腹型肥胖、LDL 升高）及用药，近似全校正，结局系数取 0.8（而非 1.0），因组中位数为推算值",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational general-population cohorts (mostly Europe/US)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "CKD Prognosis Consortium，14 项含 ACR 的一般人群队列",
+  "n": 105872,
+  "events": null,
+  "ancestry": "multinational general-population cohorts (mostly Europe/US)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未检索到可核对的个体内变异文献；UACR 日间波动大，指南建议 3–6 个月内多次测定"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "post_exercise"
+ ],
+ "treated_policy": "use_as_is",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "控制血压与血糖、减重、限盐、戒烟可降低白蛋白尿；已用 ACEI/ARB/SGLT2 抑制剂者按当前值计。UACR ≥30 mg/g 持续 3 个月即属慢性肾脏病，应就诊肾内科"
+ },
+ "test": {
+  "label_zh": "晨尿查尿白蛋白/肌酐比值",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "20483451",
+  "doi": "10.1016/S0140-6736(10)60674-5",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20483451/",
+  "quote": "ACR was associated with risk of mortality linearly on the log-log scale without threshold effects. Compared with ACR 0.6 mg/mmol, adjusted HRs for all-cause mortality were 1.20 (1.15-1.26) for ACR 1.1 mg/mmol, 1.63 (1.50-1.77) for 3.4 mg/mmol",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "中国佐证：全国慢性肾脏病调查（PMID 28592243，47,204 人）ACR 30–299 对 <30 mg/g 全因死亡 HR 1.26（1.04–1.53），≥300 为 2.07（1.40–3.04），方向一致但幅度低于 CKD-PC 外推，支持收缩。UACR ≥30 本身即为慢性肾脏病诊断标准之一，肾病结局对已达该水平者含义有限",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

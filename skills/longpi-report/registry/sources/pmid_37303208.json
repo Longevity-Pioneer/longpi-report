@@ -1,0 +1,35 @@
+{
+ "key": "pmid:37303208",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37303208/",
+ "fetched_at": "2026-11-18T03:29:52Z",
+ "sha256": "7731aa295be250510557f40592c03fe030cfd7e4820287fb21dd881abf1f4fc7",
+ "citation": "The journals of gerontology. Series A, Biological sciences and medical sciences 2023",
+ "text": "Epigenetic and Metabolomic Biomarkers for Biological Age: A Comparative Analysis of Mortality and Frailty Risk.\nBiological age captures a person's age-related risk of unfavorable outcomes using biophysiological information. Multivariate biological age measures include frailty scores and molecular biomarkers. These measures are often studied in isolation, but here we present a large-scale study comparing them. In 2 prospective cohorts (n = 3 222), we compared epigenetic (DNAm Horvath, DNAm Hannum, DNAm Lin, DNAm epiTOC, DNAm PhenoAge, DNAm DunedinPoAm, DNAm GrimAge, and DNAm Zhang) and metabolomic-based (MetaboAge and MetaboHealth) biomarkers in reflection of biological age, as represented by 5 frailty measures and overall mortality. Biomarkers trained on outcomes with biophysiological and/or mortality information outperformed age-trained biomarkers in frailty reflection and mortality prediction. DNAm GrimAge and MetaboHealth, trained on mortality, showed the strongest association with these outcomes. The associations of DNAm GrimAge and MetaboHealth with frailty and mortality were independent of each other and of the frailty score mimicking clinical geriatric assessment. Epigenetic, metabolomic, and clinical biological age markers seem to capture different aspects of aging. These findings suggest that mortality-trained molecular markers may provide novel phenotype reflecting biological age and strengthen current clinical geriatric health and well-being assessment.\n[full text, Europe PMC PMC10562890]\nTo determine whether the risk of mortality captured by the best-performing epigenetic aging predictor and metabolomic aging predictor were mutually independent, we performed a Cox proportional hazard analysis including both aging predictors and adjusted for sex, BMI, and cell count. When combining DNAm GrimAge and MetaboHealth in a model, both showed an independent risk of all-cause mortality, respectively, DNAm GrimAge (HR 1.56 [CI 1.31;1.85]) and MetaboHealth (HR 1.60 [CI 1.35;1.89]). The concordance increased slightly from 0.69 when only using DNAm GrimAge and 0.67 when only including MetaboHealth to 0.70 in the combined model. These results were robust among the RS overall study population and subcohorts (Supplementary Table 11). These results remained, again, similar when adjusting for the MPI and smoking status and socioeconomic status and no-sex differences were found (Table 2, Supplementary Tables 11 and 12).",
+ "pmcid": "PMC10562890",
+ "doi": "10.1093/gerona/glad137",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.metab_metabohealth",
+   "number": "all_cause.hr",
+   "value": 1.6,
+   "found": true,
+   "context": " DNAm GrimAge (HR 1.56 [CI 1.31;1.85]) and MetaboHealth (HR 1.60 [CI 1.35;1.89])"
+  },
+  {
+   "term": "ext.metab_metabohealth",
+   "number": "all_cause.lo",
+   "value": 1.35,
+   "found": true,
+   "context": "mAge (HR 1.56 [CI 1.31;1.85]) and MetaboHealth (HR 1.60 [CI 1.35;1.89])"
+  },
+  {
+   "term": "ext.metab_metabohealth",
+   "number": "all_cause.hi",
+   "value": 1.89,
+   "found": true,
+   "context": "(HR 1.56 [CI 1.31;1.85]) and MetaboHealth (HR 1.60 [CI 1.35;1.89])"
+  }
+ ]
+}

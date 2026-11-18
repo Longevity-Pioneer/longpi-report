@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM022399",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM022399",
+ "fetched_at": "2026-11-18T03:46:43Z",
+ "sha256": "28c812ecba7a35513cc93feddc4f2e070620816e657c4b2ade7e9a8176c4d906",
+ "citation": "",
+ "text": "PPM022399 | score PGS005162 | trait Colorectal Cancer\nancestry: East Asian | cohorts: CKB | n: 100219 | cases: 740\npublication: Zhu M PLoS Med 2025-02-28 PMID 40019942\ncovariates: Age,Sex (if applicable),Region,Top 10 genetic ancestry principal components\nHazard Ratio (HR): 1.54 [1.43, 1.66]\nBeta (β): 0.432 [None, None]\nConcordance Statistic (C-index): 0.612 [None, None]",
+ "pgs_id": "PGS005162",
+ "checks": [
+  {
+   "term": "ext.prs_crc",
+   "number": "crc.hr",
+   "value": 1.54,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.54 [1.43, 1.66]"
+  },
+  {
+   "term": "ext.prs_crc",
+   "number": "crc.lo",
+   "value": 1.43,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.54 [1.43, 1.66]"
+  },
+  {
+   "term": "ext.prs_crc",
+   "number": "crc.hi",
+   "value": 1.66,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.54 [1.43, 1.66]"
+  }
+ ]
+}

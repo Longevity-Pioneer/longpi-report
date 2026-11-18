@@ -1,0 +1,33 @@
+{
+ "key": "pmid:20028993",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/20028993/",
+ "fetched_at": "2026-11-18T03:44:43Z",
+ "sha256": "cf75f9120ca79684185f9946eec533fb4cc42102bcab8066c5eea1742f93e9c5",
+ "citation": "Journal of the National Cancer Institute 2010",
+ "text": "Risks of Lynch syndrome cancers for MSH6 mutation carriers.\nBACKGROUND: Germline mutations in MSH6 account for 10%-20% of Lynch syndrome colorectal cancers caused by hereditary DNA mismatch repair gene mutations. Because there have been only a few studies of mutation carriers, their cancer risks are uncertain.\nMETHODS: We identified 113 families of MSH6 mutation carriers from five countries that we ascertained through family cancer clinics and population-based cancer registries. Mutation status, sex, age, and histories of cancer, polypectomy, and hysterectomy were sought from 3104 of their relatives. Age-specific cumulative risks for carriers and hazard ratios (HRs) for cancer risks of carriers, compared with those of the general population of the same country, were estimated by use of a modified segregation analysis with appropriate conditioning depending on ascertainment.\nRESULTS: For MSH6 mutation carriers, the estimated cumulative risks to ages 70 and 80 years, respectively, were as follows: for colorectal cancer, 22% (95% confidence interval [CI] = 14% to 32%) and 44% (95% CI = 28% to 62%) for men and 10% (95% CI = 5% to 17%) and 20% (95% CI = 11% to 35%) for women; for endometrial cancer, 26% (95% CI = 18% to 36%) and 44% (95% CI = 30% to 58%); and for any cancer associated with Lynch syndrome, 24% (95% CI = 16% to 37%) and 47% (95% CI = 32% to 66%) for men and 40% (95% CI = 32% to 52%) and 65% (95% CI = 53% to 78%) for women. Compared with incidence for the general population, MSH6 mutation carriers had an eightfold increased incidence of colorectal cancer (HR = 7.6, 95% CI = 5.4 to 10.8), which was independent of sex and age. Women who were MSH6 mutation carriers had a 26-fold increased incidence of endometrial cancer (HR = 25.5, 95% CI = 16.8 to 38.7) and a sixfold increased incidence of other cancers associated with Lynch syndrome (HR = 6.0, 95% CI = 3.4 to 10.7).\nCONCLUSION: We have obtained precise and accurate estimates of both absolute and relative cancer risks for MSH6 mutation carriers.",
+ "doi": "10.1093/jnci/djp473",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.hr",
+   "value": 7.6,
+   "found": true,
+   "context": "an eightfold increased incidence of colorectal cancer (HR = 7.6, 95% CI = 5.4 to 10.8)"
+  },
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.lo",
+   "value": 5.4,
+   "found": true,
+   "context": "ncreased incidence of colorectal cancer (HR = 7.6, 95% CI = 5.4 to 10.8)"
+  },
+  {
+   "term": "ext.mono_msh6",
+   "number": "crc.hi",
+   "value": 10.8,
+   "found": true,
+   "context": "d incidence of colorectal cancer (HR = 7.6, 95% CI = 5.4 to 10.8)"
+  }
+ ]
+}

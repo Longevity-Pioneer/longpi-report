@@ -1,0 +1,35 @@
+{
+ "key": "pmid:29867176",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29867176/",
+ "fetched_at": "2026-11-18T03:25:10Z",
+ "sha256": "023b6a54e183419e88f9e625b3e2d181bb1c1121165fec024b8b935871c61d91",
+ "citation": "The American journal of gastroenterology 2018",
+ "text": "Lower Relative Contribution of Positive Family History to Colorectal Cancer Risk with Increasing Age: A Systematic Review and Meta-Analysis of 9.28 Million Individuals.\nOBJECTIVES: Existing algorithms predicting the risk of colorectal cancer (CRC) assign a fixed score for family history of CRC. Whether the increased CRC risk attributed to family history of CRC was higher in younger patients remains inconclusive. We examined the risk of CRC associated with family history of CRC in first-degree relative (FDR) according to the age of index subjects (<40 vs. ≥40; <50 vs. ≥50; and <60 vs. ≥60 years).\nMETHODS: Ovid Medline, EMBASE, and gray literature from the reference lists of all identified studies were searched from their inception to March 2017. We included case-control/cohort studies that investigated the relationship between family history of CRC in FDR and prevalence of CRC. Two reviewers independently selected articles according to the PRISMA guideline. A random effects meta-analysis pooled relative risks (RR).\nRESULTS: We analyzed 9.28 million subjects from 63 studies. A family history of CRC in FDR confers a higher risk of CRC (RR = 1.76, 95% CI = 1.57-1.97, p < 0.001). This increased risk was higher in younger individuals (RR = 3.29, 95% CI = 1.67-6.49 for <40 years versus RR = 1.42, 95% CI = 1.24-1.62 for ≥40 years, p = 0.017; RR = 2.81, 95% CI = 1.94-4.07 for <50 years versus RR = 1.47, 95% CI = 1.28-1.69 for ≥50 years, p = 0.001). No publication bias was identified, and the findings are robust in subgroup analyses.\nCONCLUSIONS: The increase in relative risk of CRC attributed to family history was found to be higher in younger individuals. Family history of CRC could be assigned a higher score for younger subjects in CRC risk prediction algorithms. Future studies should examine if such approach may improve their predictive capability.",
+ "pmcid": "PMC6768593",
+ "doi": "10.1038/s41395-018-0075-y",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.fh_crc",
+   "number": "crc.hr",
+   "value": 1.76,
+   "found": true,
+   "context": "ly history of CRC in FDR confers a higher risk of CRC (RR = 1.76, 95% CI = 1.57-1.97, p < 0.001)."
+  },
+  {
+   "term": "ext.fh_crc",
+   "number": "crc.lo",
+   "value": 1.57,
+   "found": true,
+   "context": "RC in FDR confers a higher risk of CRC (RR = 1.76, 95% CI = 1.57-1.97, p < 0.001)."
+  },
+  {
+   "term": "ext.fh_crc",
+   "number": "crc.hi",
+   "value": 1.97,
+   "found": true,
+   "context": " FDR confers a higher risk of CRC (RR = 1.76, 95% CI = 1.57-1.97, p < 0.001)."
+  }
+ ]
+}

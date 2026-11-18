@@ -1,0 +1,35 @@
+{
+ "key": "pmid:22073129",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/22073129/",
+ "fetched_at": "2026-11-18T03:26:06Z",
+ "sha256": "acbb321adda1ff5a479c678c50bd696292c39c5da73b15b5e97a408ab0992250",
+ "citation": "PloS one 2011",
+ "text": "An epidemiological reappraisal of the familial aggregation of prostate cancer: a meta-analysis.\nStudies on familial aggregation of cancer may suggest an overall contribution of inherited genes or a shared environment in the development of malignant disease. We performed a meta-analysis on familial clustering of prostate cancer. Out of 74 studies reporting data on familial aggregation of prostate cancer in unselected populations retrieved by a Pubmed search and browsing references, 33 independent studies meeting the inclusion criteria were used in the analysis performed with the random effects model. The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74). The incidence rate for men who have a brother who got prostate cancer increases 3.14 times (CI:2.37-4.15), and for those with affected father 2.35 times (CI:2.02-2.72). The pooled estimate of RR for two or more affected first-degree family members relative to no history in father and in brother is 4.39 (CI:2.61-7.39). First-degree family history appears to increase the incidence rate of prostate cancer more in men under 65 (RR:2.87, CI:2.21-3.74), than in men aged 65 and older (RR:1.92, CI:1.49-2.47), p for interaction = 0.002. The attributable fraction among those having an affected first-degree relative equals to 59.7% (CI:55.6-63.5%) for men at all ages, 65.2% (CI:57.7-71.4%) for men younger than 65 and 47.9% (CI:37.1-56.8%) for men aged 65 or older. For those with a family history in 2 or more first-degree family members 77.2% (CI:65.4-85.0%) of prostate cancer incidence can be attributed to the familial clustering. Our combined estimates show strong familial clustering and a significant effect-modification by age meaning that familial aggregation was associated with earlier disease onset (before age 65).",
+ "pmcid": "PMC3205054",
+ "doi": "10.1371/journal.pone.0027130",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.fh_prostate_ca",
+   "number": "prostate_ca.hr",
+   "value": 2.48,
+   "found": true,
+   "context": "-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74)."
+  },
+  {
+   "term": "ext.fh_prostate_ca",
+   "number": "prostate_ca.lo",
+   "value": 2.25,
+   "found": true,
+   "context": "fected father or brother, is 2.48 (95% confidence interval: 2.25-2.74)."
+  },
+  {
+   "term": "ext.fh_prostate_ca",
+   "number": "prostate_ca.hi",
+   "value": 2.74,
+   "found": true,
+   "context": "d father or brother, is 2.48 (95% confidence interval: 2.25-2.74)."
+  }
+ ]
+}

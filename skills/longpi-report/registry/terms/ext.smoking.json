@@ -1,0 +1,415 @@
+{
+ "id": "ext.smoking",
+ "name_zh": "吸烟状态（疾病风险）",
+ "kind": "exposure",
+ "system": "whole_body",
+ "group": "lifestyle",
+ "input": {
+  "code": "LP:smoking_status",
+  "unit": "category",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "categorical"
+ },
+ "reference": {
+  "kind": "categorical",
+  "source": "中国成人慢性病与营养监测 2018 吸烟状态分性别年龄构成；data/population_norms_china.json markers.smoking（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "never": 0.546,
+     "former": 0.029,
+     "current": 0.425
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "never": 0.44,
+     "former": 0.052,
+     "current": 0.508
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "never": 0.387,
+     "former": 0.078,
+     "current": 0.535
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "never": 0.313,
+     "former": 0.127,
+     "current": 0.56
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "never": 0.304,
+     "former": 0.195,
+     "current": 0.501
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "never": 0.344,
+     "former": 0.25,
+     "current": 0.406
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "never": 0.37,
+     "former": 0.28,
+     "current": 0.35
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "never": 0.973,
+     "former": 0.005,
+     "current": 0.022
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "never": 0.984,
+     "former": 0.003,
+     "current": 0.013
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "never": 0.977,
+     "former": 0.003,
+     "current": 0.02
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "never": 0.969,
+     "former": 0.005,
+     "current": 0.026
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "never": 0.958,
+     "former": 0.01,
+     "current": 0.032
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "never": 0.96,
+     "former": 0.015,
+     "current": 0.025
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "never": 0.96,
+     "former": 0.015,
+     "current": 0.025
+    }
+   }
+  ]
+ },
+ "effect": {
+  "lung_ca": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.27,
+     "lo": 1.23,
+     "hi": 1.33
+    },
+    "current": {
+     "hr": 2.71,
+     "lo": 2.63,
+     "hi": 2.79
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "33396462",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "HRs for former smokers versus never smokers were 1.27 (95% CI = 1.23-1.33) for men and 1.43 (95% CI = 1.16-1.81) for women. HRs for current smokers versus never smokers were 2.71 (95% CI = 2.63-2.79) for men and 2.70 (95% CI = 2.48-2.94) for women."
+   },
+   "population": {
+    "cohort": "Korean National Health Screening 2007-2008 linked to Korea Central Cancer Registry",
+    "ancestry": "Korean",
+    "age_range": [
+     40,
+     79
+    ],
+    "sex": "both"
+   },
+   "transport": {
+    "ancestry": "Korean",
+    "shrink": 1.0,
+    "sd_inflate": 1.0
+   }
+  },
+  "chd": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.18,
+     "lo": 1.06,
+     "hi": 1.32
+    },
+    "current": {
+     "hr": 1.98,
+     "lo": 1.75,
+     "hi": 2.25
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "25896935",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers."
+   },
+   "population": {
+    "cohort": "CHANCES consortium, 25 cohorts, age >=60",
+    "n": 503905,
+    "ancestry": "European and US (multinational)",
+    "age_range": [
+     60,
+     99
+    ],
+    "sex": "both"
+   }
+  },
+  "stroke": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.17,
+     "lo": 1.07,
+     "hi": 1.26
+    },
+    "current": {
+     "hr": 1.58,
+     "lo": 1.4,
+     "hi": 1.78
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "25896935",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
+   },
+   "population": {
+    "cohort": "CHANCES consortium, 25 cohorts, age >=60",
+    "n": 503905,
+    "ancestry": "European and US (multinational)",
+    "age_range": [
+     60,
+     99
+    ],
+    "sex": "both"
+   }
+  },
+  "crc": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.17,
+     "lo": 1.15,
+     "hi": 1.2
+    },
+    "current": {
+     "hr": 1.14,
+     "lo": 1.1,
+     "hi": 1.18
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "32773458",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "Compared with never smokers, the pooled RR for CRC was 1.14 (95% confidence interval [CI] 1.10-1.18) for current smokers and 1.17 (95% CI 1.15-1.20) for former smokers."
+   },
+   "population": {
+    "cohort": "188 studies (meta-analysis)",
+    "ancestry": "multinational (mostly US/Europe, some Asian)"
+   }
+  },
+  "gastric_ca": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.3,
+     "lo": 1.23,
+     "hi": 1.37
+    },
+    "current": {
+     "hr": 1.53,
+     "lo": 1.44,
+     "hi": 1.62
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "38231449",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "Compared with never smokers, the pooled RR for GC was 1.53 (95% confidence interval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) for former smokers."
+   },
+   "population": {
+    "cohort": "205 studies (case-control and cohort meta-analysis)",
+    "ancestry": "multinational (Asia, Europe, US)"
+   }
+  },
+  "liver_ca": {
+   "levels": {
+    "never": {
+     "hr": 1
+    },
+    "former": {
+     "hr": 1.12,
+     "lo": 0.78,
+     "hi": 1.6
+    },
+    "current": {
+     "hr": 1.51,
+     "lo": 1.37,
+     "hi": 1.67
+    }
+   },
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "19720726",
+    "grade": "B",
+    "design": "meta-analysis",
+    "quote": "Compared with never smokers, the adjusted mRR was 1.51 [95% confidence interval (CI) 1.37-1.67] for current smokers and 1.12 (95% CI 0.78-1.60) for former smokers."
+   },
+   "population": {
+    "cohort": "38 cohort and 58 case-control studies (meta-analysis)",
+    "ancestry": "multinational (Asia, Europe, US)"
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.smoking"
+  ],
+  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.smoking（只计全因死亡）不重复计数。吸烟是上述疾病的因果暴露，主要危险因素（血压、血脂、体重）多为其下游或与之弱相关，混杂偏倚有限；但各来源校正项不一（荟萃分析各研究校正不同，韩国队列校正年龄等常规因素），故各结局取 0.8 而非 1.0。肺癌用韩国全国体检队列男性估计值（东亚人群，男女估计接近）；冠心病与卒中缺少同时给出既往吸烟与当前吸烟估计值的东亚发病研究摘要，改用欧美 60 岁以上人群 CHANCES 个体数据荟萃分析，并按非东亚人群收缩；中国慢性病前瞻性研究显示中国男性吸烟者缺血性心脏病 HR 约 1.2–1.3，低于该估计，收缩后仍可能偏高。结直肠癌、胃癌、肝癌用跨地区荟萃分析（含病例对照研究）。既往吸烟者风险随戒烟年限下降，本项未区分戒烟年限。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (mostly European/US)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "见各结局",
+  "ancestry": "multinational (mostly European/US)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述吸烟状态，无连续测量误差；中国慢性病前瞻性研究以呼出气一氧化碳验证自述吸烟"
+ },
+ "persistence": {
+  "half_life_years": 10
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "ignore",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "戒烟可降低上述疾病风险，戒烟越早获益越大；可使用戒烟门诊、药物辅助与行为支持。"
+ },
+ "test": {
+  "label_zh": "问卷：吸烟状态（从不、已戒、当前）",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "25896935",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/25896935/",
+  "quote": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers.",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

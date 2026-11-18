@@ -1,0 +1,55 @@
+{
+ "key": "pmid:33471974",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/33471974/",
+ "fetched_at": "2026-11-18T03:42:48Z",
+ "sha256": "d5960afe385403ebe1b7636ec20a9938ddab57aa5bbb6d11b6487dc2da3cdc47",
+ "citation": "The New England journal of medicine 2021",
+ "text": "A Population-Based Study of Genes Previously Implicated in Breast Cancer.\nBACKGROUND: Population-based estimates of the risk of breast cancer associated with germline pathogenic variants in cancer-predisposition genes are critically needed for risk assessment and management in women with inherited pathogenic variants.\nMETHODS: In a population-based case-control study, we performed sequencing using a custom multigene amplicon-based panel to identify germline pathogenic variants in 28 cancer-predisposition genes among 32,247 women with breast cancer (case patients) and 32,544 unaffected women (controls) from population-based studies in the Cancer Risk Estimates Related to Susceptibility (CARRIERS) consortium. Associations between pathogenic variants in each gene and the risk of breast cancer were assessed.\nRESULTS: Pathogenic variants in 12 established breast cancer-predisposition genes were detected in 5.03% of case patients and in 1.63% of controls. Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively. Pathogenic variants in PALB2 were associated with a moderate risk (odds ratio, 3.83; 95% CI, 2.68 to 5.63). Pathogenic variants in BARD1, RAD51C, and RAD51D were associated with increased risks of estrogen receptor-negative breast cancer and triple-negative breast cancer, whereas pathogenic variants in ATM, CDH1, and CHEK2 were associated with an increased risk of estrogen receptor-positive breast cancer. Pathogenic variants in 16 candidate breast cancer-predisposition genes, including the c.657_661del5 founder pathogenic variant in NBN, were not associated with an increased risk of breast cancer.\nCONCLUSIONS: This study provides estimates of the prevalence and risk of breast cancer associated with pathogenic variants in known breast cancer-predisposition genes in the U.S. population. These estimates can inform cancer testing and screening and improve clinical management strategies for women in the general population with inherited pathogenic variants in these genes. (Funded by the National Institutes of Health and the Breast Cancer Research Foundation.).",
+ "pmcid": "PMC8127622",
+ "doi": "10.1056/nejmoa2005936",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.mono_brca1",
+   "number": "breast_ca.hr",
+   "value": 7.62,
+   "found": true,
+   "context": "ated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+  },
+  {
+   "term": "ext.mono_brca1",
+   "number": "breast_ca.lo",
+   "value": 5.33,
+   "found": true,
+   "context": "er, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+  },
+  {
+   "term": "ext.mono_brca1",
+   "number": "breast_ca.hi",
+   "value": 11.27,
+   "found": true,
+   "context": " odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27)"
+  },
+  {
+   "term": "ext.mono_brca2",
+   "number": "breast_ca.hr",
+   "value": 5.23,
+   "found": true,
+   "context": "s of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively"
+  },
+  {
+   "term": "ext.mono_brca2",
+   "number": "breast_ca.lo",
+   "value": 4.09,
+   "found": true,
+   "context": " confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively"
+  },
+  {
+   "term": "ext.mono_brca2",
+   "number": "breast_ca.hi",
+   "value": 6.77,
+   "found": true,
+   "context": "nce interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively"
+  }
+ ]
+}

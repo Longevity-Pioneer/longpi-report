@@ -1,0 +1,33 @@
+{
+ "key": "pmid:31595492",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31595492/",
+ "fetched_at": "2026-11-18T03:25:41Z",
+ "sha256": "712e885bb68a4bcb2e47cc9422f27d4b14935b022946b7595e74025fd9e0143e",
+ "citation": "International journal of cancer 2020",
+ "text": "Family history of cancer and subsequent risk of cancer: A large-scale population-based prospective study in Japan.\nFamily history (FH) of cancer is an important factor of increased risk of several cancers. Although the association between FH of cancer and concordant cancer risk has been reported in many previous epidemiological studies, no comprehensive prospective study with adjustment for lifestyle habits has evaluated the association of FH of cancer and concordant cancer risk. We investigated the association between FH of cancer and concordant cancer risk in a Japanese population-based prospective study, initiated in 1990 for cohort I and in 1993 for cohort II. We analyzed data on 103,707 eligible subjects without a history of cancer who responded to a self-administered questionnaire including FH of cancer at baseline. Study subjects were followed through 2012 and analyzed using multivariable-adjusted Cox proportional hazards regression models. During 1,802,581 person-years of follow-up, a total of 16,336 newly diagnosed cancers were identified. Any site (Hazard ratios = 1.11 (95% confidence interval = 1.07-1.15]), esophagus (2.11 [1.00-4.45]), stomach (1.36 [1.19-1.55]), liver (1.69 [1.10-2.61]), pancreas (2.63 [1.45-4.79]), lung (1.51 [1.14-2.00]), uterus (1.93 [1.06-3.51]) and bladder cancers (6.06 [2.49-14.74]) with FH of the concordant cancer were associated with an increased risk compared to those without FH. Our findings suggest that having FH of cancer is associated with an increased risk of several concordant cancer incidences in an Asian population. Enquiring about FH of several types of cancer may be important in identifying groups at high-risk of those cancers.",
+ "doi": "10.1002/ijc.32724",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.fh_liver_ca",
+   "number": "liver_ca.hr",
+   "value": 1.69,
+   "found": true,
+   "context": "liver (1.69 [1.10-2.61])"
+  },
+  {
+   "term": "ext.fh_liver_ca",
+   "number": "liver_ca.lo",
+   "value": 1.1,
+   "found": true,
+   "context": "liver (1.69 [1.10-2.61])"
+  },
+  {
+   "term": "ext.fh_liver_ca",
+   "number": "liver_ca.hi",
+   "value": 2.61,
+   "found": true,
+   "context": "liver (1.69 [1.10-2.61])"
+  }
+ ]
+}

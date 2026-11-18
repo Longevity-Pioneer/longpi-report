@@ -1,0 +1,97 @@
+{
+ "id": "ext.fh_prostate_ca",
+ "name_zh": "一级亲属前列腺癌家族史",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:fh:prostate_ca",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0437
+   }
+  ],
+  "pmid": "36813828",
+  "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+  "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（4.37，男女合计%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "prostate_ca": {
+   "hr": 2.48,
+   "lo": 2.25,
+   "hi": 2.74,
+   "coef": 0.8
+  }
+ },
+ "adjusted_for": [
+  "age"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "本项只计疾病结局。前列腺癌已知可改变的危险因素少，家族史效应受混杂影响小，但荟萃分析各研究校正程度不一，且家族史阳性者更常接受 PSA 筛查，存在检出偏倚，系数取 0.8；研究人群以欧美为主，另按非东亚人群收缩。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (mainly European and North American)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "33 independent studies in unselected populations (meta-analysis)",
+  "ancestry": "multinational (mainly European and North American)",
+  "sex": "M",
+  "sex_scope": "M"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有前列腺癌家族史者可与医生讨论提前做 PSA 检查。"
+ },
+ "test": {
+  "label_zh": "询问父母、兄弟姐妹、子女是否患过前列腺癌",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "22073129",
+  "quote": "The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74).",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/22073129/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

@@ -1,0 +1,13 @@
+{
+ "key": "pmid:38566028",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/38566028/",
+ "fetched_at": "2026-11-18T03:43:14Z",
+ "sha256": "976f3384cd190c4e70da570740e36cf9288b3e420522f468a5706a38d62b13d2",
+ "citation": "BMC cancer 2024",
+ "text": "Population-based BRCA germline mutation screening in the Han Chinese identifies individuals at risk of BRCA mutation-related cancer: experience from a clinical diagnostic center from greater Shanghai area.\nBACKGROUND: Deleterious BRCA1/2 (BRCA) mutation raises the risk for BRCA mutation-related malignancies, including breast, ovarian, prostate, and pancreatic cancer. Germline variation of BRCA exhibits substantial ethnical diversity. However, there is limited research on the Chinese Han population, constraining the development of strategies for BRCA mutation screening in this large ethnic group.\nMETHODS: We profile the BRCA mutational spectrum, including single nucleotide variation, insertion/deletion, and large genomic rearrangements in 2,080 apparently healthy Chinese Han individuals and 522 patients with BRCA mutation-related cancer, to determine the BRCA genetic background of the Chinese Han population, especially of the East Han. Incident cancer events were monitored in 1,005 participants from the healthy group, comprising 11 BRCA pathogenic/likely pathogenic (PLP) variant carriers and 994 PLP-free individuals, including 3 LGR carriers.\nRESULTS: Healthy Chinese Han individuals demonstrated a distinct BRCA mutational spectrum compared to cancer patients, with a 0.53% (1 in 189) prevalence of pathogenic/likely pathogenic (PLP) variant, alongside a 3 in 2,080 occurrence of LGR. BRCA1 c. 5470_5477del demonstrated high prevalence (0.44%) in the North Han Chinese and penetrance for breast cancer. None of the 3 LGR carriers developed cancer during the follow-up. We calculated a relative risk of 135.55 (95% CI 25.07 to 732.88) for the development of BRCA mutation-related cancers in the BRCA PLP variant carriers (mean age 42.91 years, median follow-up 10 months) compared to PLP-free individuals (mean age 48.47 years, median follow-up 16 months).\nCONCLUSION: The unique BRCA mutational profile in the Chinese Han highlights the potential for standardized population-based BRCA variant screening to enhance BRCA mutation-related cancer prevention and treatment.",
+ "pmcid": "PMC10988807",
+ "doi": "10.1186/s12885-024-12089-w",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

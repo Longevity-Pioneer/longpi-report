@@ -1,0 +1,130 @@
+{
+ "id": "ext.prot_protage_gap",
+ "name_zh": "蛋白组年龄差（ProtAge）",
+ "kind": "state",
+ "system": "whole_body",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:prot.protage_gap",
+  "unit": "years (ProtAge minus chronological age)",
+  "platform": "Olink Explore 3072 (204-protein ProtAge model, Argentieri 2024)",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -15,
+   15
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 3.0
+   }
+  ],
+  "pmid": "39117878",
+  "quote": "In the UKB, the average years of ProtAgeGap among the top 5% and bottom 5% of ProtAgeGap was 6.3 and -6 years, respectively",
+  "source": "正文未给 ProtAgeGap 标准差；由英国生物银行最高 5% 与最低 5% 的平均差值（6.3 与 −6 年）按正态尾部均值 ≈2.06 SD 推算 SD ≈3.0 年（推导值）。原文报告中国慢性病前瞻性研究（CKB）分布与英国相近（图 2g–i），但未给数值。"
+ },
+ "effect": {
+  "ad": {
+   "hr": 1.16,
+   "lo": 1.12,
+   "hi": 1.2,
+   "per": 1,
+   "per_unit": "year of ProtAgeGap",
+   "direction": "higher_worse",
+   "coef": 0.5
+  },
+  "ckd": {
+   "hr": 1.1,
+   "lo": 1.08,
+   "hi": 1.11,
+   "per": 1,
+   "per_unit": "year of ProtAgeGap",
+   "direction": "higher_worse",
+   "coef": 0.5
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.phenoage_clock",
+   "core.methylation"
+  ],
+  "rationale_zh": "所引 HR 来自模型 3（校正年龄、性别、汤森剥夺指数、招募中心、体力活动分组、吸烟、BMI 与既往高血压）。阿尔茨海默病未校正 APOE 与教育，慢性肾病未校正糖尿病、血压数值与基线肾功能，故两项疾病系数取 0.5。本项只为疾病建，不写 all_cause：原文全因死亡 HR 只在图 5 与补充表 7–12 中，正文无可逐字核对的数值与区间。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (UK Biobank, 93% white)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "UK Biobank Pharma Proteomics Project",
+  "n": 45441,
+  "ancestry": "European (UK Biobank, 93% white)",
+  "age_range": [
+   39,
+   71
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未取得经核对的 ProtAge 重复测量误差；Olink 与 SomaScan 平台之间蛋白测值不能互换，本项只适用于 Olink Explore 平台"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "原文显示蛋白组年龄差与吸烟、体力活动、BMI 等相关，但以其为终点的干预证据缺乏。"
+ },
+ "test": {
+  "label_zh": "血浆蛋白组检测（Olink Explore，计算 ProtAge 年龄差）",
+  "cost_level": 5
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "39117878",
+  "pmcid": "PMC11405266",
+  "doi": "10.1038/s41591-024-03164-7",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/39117878/",
+  "quote": "In the fully adjusted model that also included covariates for BMI and prevalent hypertension (model 3), the largest effect size per 1-year increase of ProtAgeGap was observed for AD (hazard ratio (HR) 1.16; 95% confidence interval (CI) 1.12-1.20), all-cause dementia (HR 1.12; 95% CI 1.10-1.15) and CKD (HR 1.10; 95% CI 1.08-1.11)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据；ProtAge 模型权重随文发表（补充表 1）"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}
