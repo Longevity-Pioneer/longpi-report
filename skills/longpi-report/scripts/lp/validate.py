@@ -53,8 +53,11 @@ def _date_ok(s, today: Optional[date] = None, allow_future_days: int = 0) -> Tup
 
 
 def _list_of_dicts(person: dict, key: str, errors: List[str]) -> list:
+    if key not in person:
+        return []
     v = person.get(key)
     if v is None:
+        errors.append(f"{key} 不能是 null（没有就删去这个字段或写 []）")
         return []
     if not isinstance(v, list) or not all(isinstance(x, dict) for x in v):
         errors.append(f"{key} 必须是对象列表")
@@ -119,6 +122,17 @@ def validate(person, base: Optional[Path] = None) -> Tuple[List[str], List[str]]
                 errors.append(f"labs[{i}].{k} 的数值不是有限数字：{v!r}")
             elif val <= 0 and k not in ("lymph_pct",):
                 errors.append(f"labs[{i}].{k} 必须为正数：{val}")
+            else:
+                from .schema import RANGES
+                from . import units as UU
+                lo_hi = RANGES.get(k)
+                unit = v[1] if isinstance(v, list) and len(v) > 1 else (v.get("unit") if isinstance(v, dict) else None)
+                try:
+                    cv = UU.to_canonical("glucose" if k == "glucose_fasting" else k, float(val), unit)
+                except (TypeError, ValueError):
+                    cv = None
+                if lo_hi and cv is not None and not (lo_hi[0] / 5 <= cv <= lo_hi[1] * 5):
+                    errors.append(f"labs[{i}].{k}={val} {unit or ''} 远超可能范围（{lo_hi[0]}–{lo_hi[1]}），多半是单位或录入错误")
         fl = l.get("flags")
         if fl is not None and (not isinstance(fl, list) or not all(isinstance(x, str) for x in fl)):
             errors.append(f"labs[{i}].flags 必须是字符串列表")
@@ -160,7 +174,7 @@ def validate(person, base: Optional[Path] = None) -> Tuple[List[str], List[str]]
         if c.get("diagnosed") is not None and not _date_ok(str(c["diagnosed"]), as_of)[0]:
             errors.append(f"conditions[{i}].diagnosed 日期无效")
     for i, m in enumerate(_list_of_dicts(person, "medications", errors)):
-        if m.get("class") is not None and m.get("class") not in MED_CLASSES:
+        if m.get("class") is not None and (not isinstance(m.get("class"), str) or m["class"] not in MED_CLASSES):
             errors.append(f"medications[{i}].class 必须是 {sorted(x for x in MED_CLASSES if x)} 之一")
         for k in ("since", "until"):
             if m.get(k) is not None and not _date_ok(str(m[k]), as_of, 3660 if k == "until" else 0)[0]:
@@ -190,9 +204,12 @@ def validate(person, base: Optional[Path] = None) -> Tuple[List[str], List[str]]
             if not isinstance(ms, dict):
                 errors.append(f"imaging[{i}].measures 必须是对象")
             else:
+                rng = _ranges()
                 for k, v in ms.items():
                     if not finite(v):
                         errors.append(f"imaging[{i}].measures.{k} 不是有限数字")
+                    elif ("LP:" + k) in rng and not (rng["LP:" + k][0] <= v <= rng["LP:" + k][1]):
+                        errors.append(f"imaging[{i}].measures.{k}={v} 不在合理范围 {rng['LP:' + k]}")
     for i, r in enumerate(_list_of_dicts(person, "methylation", errors)):
         for k, (lo, hi) in (("bio_age", (5, 130)), ("chrono_age", (10, 110))):
             if r.get(k) is not None and (not finite(r[k]) or not (lo <= r[k] <= hi)):

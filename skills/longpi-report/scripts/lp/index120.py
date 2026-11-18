@@ -55,45 +55,54 @@ def compute(m, draws: List[dict], res: dict, n_max: int = 300) -> dict:
                      "value": T.value, "notes": T.notes, "screening": T.screening,
                      "evidence": {"pmid": (T.spec.get("evidence") or {}).get("pmid"), "grade": (T.spec.get("evidence") or {}).get("grade")}})
     rows.sort(key=lambda r: -r["points"])
-    # behaviours that would add points if adopted
+    # behaviours that would add points: not counted yet (absent, not sustained, overdue), or counted below the target
     gain = []
-    counted = {T.id for T in beh}
     status = {T.id: T for T in ext.terms}
+    contrib_now = {r["id"]: r for r in rows}
     for sp in RG.ext_terms(ext.reg):
-        if sp["kind"] != "behavior" or sp["id"] in counted:
+        if sp["kind"] != "behavior":
             continue
         T0 = status.get(sp["id"])
-        tgt = (sp.get("behavior") or {}).get("target")
+        bh = sp.get("behavior") or {}
+        tgt = bh.get("target")
+        coef = float((sp.get("overlap") or {}).get("coef", 1.0))
+        med = (sp.get("overlap") or {}).get("mediated_by") or {}
+        coef *= max(0.0, 1 - sum(v for k, v in med.items() if TM._mediator_measured(k, m)))
         if sp.get("screening"):
+            if T0 is not None and T0.status == "counted":
+                continue                                   # already up to date
             st = TM._screening_state(sp, m, None)
             if not st["eligible"]:
                 continue
             share = TM.screening_share(ext.reg, sp["screening"]["disease_id"], m.sex, m.age)
-            l = math.log(max(1e-6, 1 - share * (1 - sp["screening"]["mortality_rr"]["hr"])))
-            l *= float((sp.get("overlap") or {}).get("coef", 1.0))
-        elif tgt is not None and sp["transform"]["shape"] in ("loglinear", "residualized", "hinge", "categorical"):
-            p = TM.draw_effect(sp, "all_cause", None) if "all_cause" in sp.get("effect", {}) else None
-            if p is None:
-                continue
-            l = TM.normalised(sp, p, tgt, m.sex, m.age, float((sp.get("overlap") or {}).get("coef", 1.0)))
-            cur = T0.level if (T0 is not None and T0.level is not None) else None
-            if cur is not None:   # measured but not yet counted (not sustained): gain is target relative to now
-                pass
-            med = (sp.get("overlap") or {}).get("mediated_by") or {}
-            frac = sum(v for k, v in med.items() if TM._mediator_measured(k, m))
-            l *= max(0.0, 1 - frac)
+            u = TM.screening_uptake(sp, m.sex, m.age)
+            red = share * (1 - sp["screening"]["mortality_rr"]["hr"])
+            l_new = coef * (math.log(max(1e-6, 1 - red)) - math.log(max(1e-6, 1 - u * red)))
+            l_now = 0.0
+        elif tgt is not None and "all_cause" in (sp.get("effect") or {}):
+            p = TM.draw_effect(sp, "all_cause", None)
+            l_new = TM.normalised(sp, p, tgt, m.sex, m.age, coef)
+            cur = None if T0 is None else (T0.level if T0.level is not None else T0.value)
+            if cur is not None and isinstance(cur, (int, float)):
+                if TM.normalised(sp, p, cur, m.sex, m.age, coef) <= l_new:
+                    continue                               # already at or beyond the target
+            counted_now = contrib_now.get(sp["id"])
+            l_now = math.log(counted_now["hr"]) if counted_now else 0.0
         else:
             continue
-        l = max(-ext.bcap_single, min(ext.bcap_single, l))
-        if l >= 0:
+        l_new = max(-ext.bcap_single, min(ext.bcap_single, l_new))
+        d = l_new - l_now
+        if d >= 0:
             continue
-        pts = _weighted(m, R_total * math.exp(l), s2_bar) - idx_total
-        gain.append({"id": sp["id"], "name": sp["name_zh"], "target": tgt, "points_if_adopted": round(pts, 2),
+        pts = _weighted(m, R_total * math.exp(d), s2_bar) - idx_total
+        gain.append({"id": sp["id"], "name": sp["name_zh"], "target": tgt, "target_source": bh.get("target_source"),
+                     "current": None if T0 is None else (T0.level if T0.level is not None else T0.value),
+                     "points_if_adopted": round(pts, 2), "screening": bool(sp.get("screening")),
                      "status": None if T0 is None else T0.status, "why_not_now": None if T0 is None else T0.reasons,
-                     "min_weeks": (sp.get("behavior") or {}).get("min_weeks", 8), "evidence_grade": (sp.get("evidence") or {}).get("grade")})
+                     "min_weeks": bh.get("min_weeks", 8), "evidence_grade": (sp.get("evidence") or {}).get("grade")})
     gain.sort(key=lambda r: -r["points_if_adopted"])
     return {"state_index": round(idx_state, 1), "total_index": summ(sub_idx, 1, idx_total),
             "behavior_points": round(idx_total - idx_state, 1), "behaviors": rows, "how_to_gain": gain[:8],
             "guardrail": {"single_cap_log_hr": ext.bcap_single, "total_cap_log_hr": ext.bcap_total,
                           "draws_bound_share": round(bound / max(1, len(draws)), 3)},
-            "note": "身体状态部分与 1.1.1 的 120 指数相同；行为部分只计入已持续的行为与按指南完成的筛查"}
+            "note": "身体状态部分基于 LongPi Age 的风险倍数（含已计入的新增指标）；行为部分只计入已持续的行为与按指南按期完成的筛查"}

@@ -27,6 +27,11 @@ from . import terms as TM
 
 def _rate(oc: dict, sex: str, age: float) -> Optional[float]:
     rows = (oc.get("incidence") or {}).get("by_sex_age") or []
+    cand = [r for r in rows if r.get("sex", sex) in (sex, "both")]
+    if not cand:
+        return None
+    if age < min(r["age_lo"] for r in cand):
+        return 0.0                        # below the youngest band there is no baseline: counted as 0, not extrapolated
     b = TM._band(rows, sex, age)
     if b is None:
         return None
@@ -36,12 +41,12 @@ def _rate(oc: dict, sex: str, age: float) -> Optional[float]:
 
 
 def _weight(T, t: float) -> float:
-    if T.kind in ("genetic", "exposure"):
+    """Persistence of a term over the horizon: genetic terms constant; exposures constant unless the spec gives a
+    half-life (e.g. smoking risk that fades after quitting); current states fade with their half-life (default 10 y)."""
+    hl = (T.spec.get("persistence") or {}).get("half_life_years")
+    if T.kind == "genetic" or (T.kind == "exposure" and hl is None):
         return 1.0
-    hl = ((T.spec.get("persistence") or {}).get("half_life_years"))
-    if hl is None:
-        hl = 10.0
-    return 0.5 ** (t / float(hl))
+    return 0.5 ** (t / float(hl if hl is not None else 10.0))
 
 
 def _risk(oc: dict, sex: str, age0: float, surv_ages: List[float], surv: List[float], log_rr_t, horizon: float) -> float:
@@ -63,8 +68,9 @@ def _risk(oc: dict, sex: str, age0: float, surv_ages: List[float], surv: List[fl
 
 
 def _summ(vals: List[float], point: float, nd: int = 4) -> dict:
+    """median / p10 / p90 of the draws; `mean` is the expected risk (the number a probability statement should use)."""
     from .engine import q
-    return {"median": round(point, nd), "p10": round(q(vals, 0.1), nd), "p90": round(q(vals, 0.9), nd)}
+    return {"median": round(q(vals, 0.5), nd), "mean": round(point, nd), "p10": round(q(vals, 0.1), nd), "p90": round(q(vals, 0.9), nd)}
 
 
 def compute(m, draws: List[dict], n_max: int = 300) -> dict:
@@ -99,10 +105,14 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
             continue
         if _rate(oc, m.sex, m.age) is None:
             row["status"] = "no_baseline"
-            row["notes"].append("该年龄没有基线发病率")
+            row["notes"].append("该性别没有基线发病率")
             out.append(row)
             continue
-        horizon_life = max(0.0, float(oc.get("horizon_lifetime_age", 90)) - m.age)
+        lo_band = min(r["age_lo"] for r in (oc.get("incidence") or {}).get("by_sex_age", []) if r.get("sex", m.sex) in (m.sex, "both"))
+        if m.age < lo_band:
+            row["notes"].append(f"{lo_band} 岁以下没有基线发病率，这段年龄按 0 计")
+        horizon_age = max(float(oc.get("horizon_lifetime_age", 90)), math.ceil(m.age) + 10)   # lifetime >= 10-year window
+        horizon_life = horizon_age - m.age
         terms = [T for T in m.ext.counted if did in T.coef and T.kind != "behavior"]
         r10, rl, rr_now = [], [], []
         parts_acc: Dict[str, List[float]] = {T.id: [] for T in terms}
@@ -122,9 +132,12 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
         if oc.get("report_lifetime") is False:
             row["lifetime"] = None
             row["notes"].append(oc.get("report_lifetime_why_zh", "只报告 10 年风险"))
-        row["horizon_lifetime_age"] = oc.get("horizon_lifetime_age", 90)
+        row["horizon_lifetime_age"] = int(horizon_age)
         row["peer10"] = round(_risk(oc, m.sex, m.age, m.ages, surv_ref, zero, 10.0), 4)
         row["peer_lifetime"] = None if oc.get("report_lifetime") is False else round(_risk(oc, m.sex, m.age, m.ages, surv_ref, zero, horizon_life), 4)
+        if row["lifetime"] is not None:
+            for k in ("median", "mean"):
+                row["lifetime"][k] = max(row["lifetime"][k], row["risk10"][k])
         row["rr_now"] = _summ(rr_now, statistics.fmean(rr_now), 2)
         drivers = []
         for T in terms:
@@ -149,7 +162,7 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
                     continue
                 missing.append({"id": sp["id"], "name": sp["name_zh"], "kind": sp["kind"], "test": sp.get("test")})
         row["missing_inputs"] = missing
-        chip = [v for v in genetics.get("monogenic") or [] if did in (v.get("disease_ids") or [])
+        chip = [v for v in genetics.get("monogenic") or [] if isinstance(v, dict) and did in (v.get("disease_ids") or [])
                 and v.get("source_type") == "chip" and not v.get("confirmed_clinical")]
         if chip and m.ext.prefs.get("secondary_findings"):
             row["notes"].append("消费级芯片检出 " + "、".join(sorted({v["gene"] for v in chip})) +

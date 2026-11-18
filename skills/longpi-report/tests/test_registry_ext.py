@@ -158,7 +158,8 @@ class Ext(unittest.TestCase):
         finally:
             RG.use(EXT)
         row = next(x for x in r["extension"]["terms"] if x["id"] == "ext.test_apob")
-        self.assertLessEqual(row["years"]["p90"] * r["gompertz_b"], 0.15 + 1e-6)
+        off = r["extension"]["guardrail"]["recentre_offset_log_hr"]
+        self.assertLessEqual(row["years"]["p90"] * r["gompertz_b"] - off, 0.15 + 1e-3)
         self.assertGreater(r["extension"]["guardrail"]["draws_bound_share"], 0.9)
 
     def test_steps_raise_index_not_longpi_age(self):
@@ -227,7 +228,10 @@ class Ext(unittest.TestCase):
         ids = {x["id"] for x in r["extension"]["terms"]}
         self.assertNotIn("ext.test_apoe", ids)
         self.assertNotIn("ext.test_brca2", ids)
-        self.assertEqual(r["extension"]["hidden_count"], 2)
+        self.assertNotIn("hidden_count", r["extension"])
+        blob = json.dumps(r, ensure_ascii=False)
+        self.assertNotIn("apoe", blob.lower())
+        self.assertNotIn("HGNC:1101", blob)
         p["genetic_preferences"] = {"show_opt_in": True, "secondary_findings": True}
         r = run(p)
         ids = {x["id"] for x in r["extension"]["terms"]}

@@ -35,7 +35,7 @@ def filter_series(times: Sequence[float], ys: Sequence[float], rs: Sequence[floa
         P = _mm(_mm(F, P), _t(F))
         P[0][0] += q_level * dt
         P[1][1] += q_slope * dt
-        s = P[0][0] + r
+        s = max(P[0][0] + r, 1e-12)
         k0, k1 = P[0][0] / s, P[1][0] / s
         innov = y - x[0]
         x = [x[0] + k0 * innov, x[1] + k1 * innov]
@@ -60,11 +60,15 @@ def level_and_slope(rows: List[dict], meas_sd: List[float], t_now: float, ref_sd
     0.1 SD per sqrt(year); slope prior 0.1 SD per year), so a slope is only reported when the data inform it."""
     if not rows:
         return {"level": None, "level_sd": None, "slope": None, "slope_sd": None, "n": 0, "slope_informed": False}
+    floor = 1e-3 * max(ref_sd, 1e-9)                   # no zero-variance observation (avoids division by zero)
+    meas_sd = [max(m, floor) for m in meas_sd]
     if len(rows) == 1:
         return {"level": float(rows[0]["value"]), "level_sd": meas_sd[0], "slope": None, "slope_sd": None, "n": 1,
                 "slope_informed": False}
     s0 = slope_frac * ref_sd
+    # diffuse prior on the level (10 population SDs) centred on the first value: the first observation is not
+    # counted twice in any meaningful way
     out = filter_series([r["t"] for r in rows], [float(r["value"]) for r in rows], [s * s for s in meas_sd], t_now,
-                        float(rows[0]["value"]), max(ref_sd, meas_sd[0]), s0, (q_frac * ref_sd) ** 2, (0.25 * s0) ** 2)
+                        float(rows[0]["value"]), 10 * max(ref_sd, meas_sd[0]), s0, (q_frac * ref_sd) ** 2, (0.25 * s0) ** 2)
     out["slope_informed"] = out["slope_sd"] < 0.8 * s0
     return out

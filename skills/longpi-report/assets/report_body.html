@@ -493,8 +493,8 @@ function renderDiseases() {
     const dr = (d.drivers || []).slice(0, 3).map(x => `<li>${esc(x.name)} <span class="tiny">风险 ×${x.hr} · 作用${esc(x.persistence)}${x.disclosure === 'counsel' ? ' · 建议遗传咨询' : ''}</span></li>`).join('');
     const miss = (d.missing_inputs || []).slice(0, 3).map(x => esc(x.name)).join('、');
     return `<div class="card risk"><h4>${esc(d.name)}</h4>
-      <div class="lab">10 年</div><div><b>${pct(d.risk10.median)}</b> <span class="tiny">（${pct(d.risk10.p10)}–${pct(d.risk10.p90)}；人群 ${pct(d.peer10)}）</span></div>
-      ${d.lifetime ? `<div class="lab">终身</div><div><b>${pct(d.lifetime.median)}</b> <span class="tiny">（${pct(d.lifetime.p10)}–${pct(d.lifetime.p90)}；人群 ${pct(d.peer_lifetime)}）</span></div>` : ''}
+      <div class="lab">10 年</div><div><b>${pct(d.risk10.mean)}</b> <span class="tiny">（${pct(d.risk10.p10)}–${pct(d.risk10.p90)}；人群 ${pct(d.peer10)}）</span></div>
+      ${d.lifetime ? `<div class="lab">终身</div><div><b>${pct(d.lifetime.mean)}</b> <span class="tiny">（${pct(d.lifetime.p10)}–${pct(d.lifetime.p90)}；人群 ${pct(d.peer_lifetime)}）</span></div>` : ''}
       ${dr ? `<div class="lab">主要因素</div><ul>${dr}</ul>` : '<p class="tiny">没有可计入的个人因素，按人群水平估计。</p>'}
       ${miss ? `<div class="tiny">补充 ${miss} 后估计会更准</div>` : ''}
       ${(d.notes || []).length ? `<div class="tiny">${esc(d.notes.join('；'))}</div>` : ''}
@@ -643,7 +643,9 @@ function renderTraining() {
   const block = b => `<div class="card"><h3>${esc(b.title)}</h3>${b.sub ? `<p class="sub">${esc(b.sub)}</p>` : ''}
     ${b.table ? tbl(b) : ''}${b.steps ? `<ol class="todo">${b.steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol>` : ''}
     ${b.list ? `<ul class="tlist">${b.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}${b.text ? `<p style="font-size:13px;margin:8px 0 0">${esc(b.text)}</p>` : ''}</div>`;
-  const pics = ex => (ex.images || []).length ? `<div class="expics">${ex.images.map((src, i) => `<figure><img src="${src}" alt="${esc(ex.name)}${i ? '结束姿势' : '起始姿势'}" loading="lazy"><figcaption>${(ex.captions || ['起始', '结束'])[i] || ''}</figcaption></figure>`).join('')}</div>` : '';
+  const IMG_RE = /^data:image\/(png|jpeg|webp|gif);base64,[A-Za-z0-9+\/=]+$/;
+  const pics = ex => { const ims = (ex.images || []).filter(s => typeof s === 'string' && IMG_RE.test(s));
+    return ims.length ? `<div class="expics">${ims.map((src, i) => `<figure><img src="${esc(src)}" alt="${esc(ex.name)}${i ? '结束姿势' : '起始姿势'}" loading="lazy"><figcaption>${esc((ex.captions || ['起始', '结束'])[i] || '')}</figcaption></figure>`).join('')}</div>` : ''; };
   const dl = (k, v) => v ? `<dt>${k}</dt><dd>${Array.isArray(v) ? v.map(esc).join('；') : esc(v)}</dd>` : '';
   const exCard = ex => `<div class="card excard">${pics(ex)}
     <div class="row" style="margin-top:10px"><h3>${esc(ex.name)}</h3>${ex.dose ? `<span class="pill">${esc(ex.dose)}</span>` : ''}</div>
@@ -670,9 +672,10 @@ function renderAll() {
   try { ({ov: renderOverview, data: renderData, risk: renderRisk, fr: renderFrontier, iv: renderIv, me: renderMethods})[on](); }
   catch (e) { const bn = $('#banner'); bn.style.display = ''; bn.textContent = '本页部分内容未能显示（' + e.message + '）。请用最新版脚本重新计算并生成报告。'; console.error(e); }
 }
-(() => { let t = location.hash.replace(/^#(tab-)?/, '');
-  if (!document.querySelector(`#nav button[data-t="${t}"]`)) { try { t = localStorage.getItem('lp-tab'); } catch (e) { t = null; } }
-  const b = t && document.querySelector(`#nav button[data-t="${t}"]`); if (b) b.click(); })();
+(() => { const TABS = ['ov', 'data', 'risk', 'fr', 'iv', 'me'];
+  let t = location.hash.replace(/^#(tab-)?/, '');
+  if (!TABS.includes(t)) { try { t = localStorage.getItem('lp-tab'); } catch (e) { t = null; } }
+  const b = TABS.includes(t) && document.querySelector(`#nav button[data-t="${t}"]`); if (b) b.click(); })();
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', renderAll);
 let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(renderAll, 150); });
 renderAll();

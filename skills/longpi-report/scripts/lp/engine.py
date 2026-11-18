@@ -64,8 +64,14 @@ def decimal_year(d: date) -> float:
     return d.year + (d - date(d.year, 1, 1)).days / 365.25
 
 
+_DATE_FULL = __import__("re").compile(r"^\d{4}(-\d{2}(-\d{2}([ T]\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:?\d{2})?)?)?)?$")
+
+
 def parse_date(s) -> date:
-    s = str(s)
+    """YYYY, YYYY-MM, YYYY-MM-DD, optionally with a time; anything else (trailing text included) is an error."""
+    s = str(s).strip()
+    if not _DATE_FULL.match(s):
+        raise ValueError(f"日期格式无效：{s[:30]!r}")
     if len(s) == 4:
         s += "-07-01"
     elif len(s) == 7:
@@ -813,6 +819,23 @@ def _evidence_brief(spec: dict) -> dict:
             "design": ev.get("design")}
 
 
+def _genetics_public(g: dict) -> dict:
+    """Only numeric QC and ancestry fields leave the engine; free text (notes, file names) never does."""
+    out = {}
+    if not isinstance(g, dict):
+        return out
+    for k in ("build", "source_type"):
+        if isinstance(g.get(k), str) and len(g[k]) <= 20:
+            out[k] = g[k]
+    qc = g.get("qc") if isinstance(g.get("qc"), dict) else {}
+    out["qc"] = {k: qc[k] for k in ("n_variants", "call_rate", "het_rate") if isinstance(qc.get(k), (int, float))}
+    if qc.get("sex_check") in ("ok", "mismatch", "unknown"):
+        out["qc"]["sex_check"] = qc["sex_check"]
+    an = g.get("ancestry") if isinstance(g.get("ancestry"), dict) else {}
+    out["ancestry"] = {k: round(float(an[k]), 3) for k in ("EAS", "EUR", "AFR", "AMR", "SAS") if isinstance(an.get(k), (int, float))}
+    return out
+
+
 def ext_summary(m: Model, draws: List[dict]) -> dict:
     """New (registry) terms as they apply to this person: counted terms with years, and why the others are not counted."""
     reg = m.ext.reg
@@ -847,16 +870,31 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
                     beta = math.log(e["hr"]) * float((T.spec.get("transport") or {}).get("shrink", 1.0)) / e["per"]
                     row["years_per_year"] = round(T.coef["all_cause"][0] * beta * T.slope / m.b, 3)
         rows.append(row)
-    observed = set(m.obs.by_code)
     qual = []
     prefs = m.ext.prefs
+    hidden_codes = {T.spec["input"]["code"] for T in m.ext.terms if T.status == "hidden"}
+    opt_in_codes = {(sp.get("input") or {}).get("code", "").upper() for sp in list(reg["terms"].values()) + list(reg["qualitative"].values())
+                    if sp.get("disclosure") == "opt_in"}
+
+    def sensitive(code: str) -> bool:
+        """Genetic codes that must not surface (in any list) unless the person chose to see them."""
+        c = (code or "").strip()
+        cu = c.upper()
+        if c in hidden_codes:
+            return True
+        if not prefs["secondary_findings"] and (cu.startswith("LP:MONOGENIC:") or cu.startswith("HGNC:")):
+            return True
+        if not prefs["show_opt_in"] and (cu.startswith("LP:APOE") or cu in opt_in_codes):
+            return True
+        return False
+    observed = {c for c in m.obs.by_code if not sensitive(c)}
     for q in reg["qualitative"].values():
         qc = q.get("input", {}).get("code", "")
         if qc.startswith("LP:monogenic:") and not prefs["secondary_findings"]:
             continue
         if q.get("disclosure") == "opt_in" and not prefs["show_opt_in"]:
             continue
-        if qc in observed:
+        if qc in observed and not sensitive(qc):
             qual.append({"id": q["id"], "name": q.get("name_zh"), "why": q.get("why_qualitative_zh"), "evidence": _evidence_brief(q)})
     unmeasured = []
     for sp in RG.ext_terms(reg):
@@ -867,7 +905,7 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
             unmeasured.append({"id": sp["id"], "name": sp["name_zh"], "spread_years": sy, "test": sp.get("test")})
     unmeasured.sort(key=lambda r: (((r.get("test") or {}).get("cost_level", 9)), -r["spread_years"]))
     conflicts = []
-    for code in observed:
+    for code in sorted(observed):
         rows_c = m.obs.by_code[code]
         nums = [o["value"] for o in rows_c if isinstance(o.get("value"), (int, float))]
         if len(nums) >= 2:
@@ -877,18 +915,22 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
     core_codes = set(OB.core_codes())
     known = {t["input"]["code"] for t in reg["terms"].values() if not t.get("core")} | \
             {q.get("input", {}).get("code") for q in reg["qualitative"].values()}
-    unbuilt = sorted(c for c in observed if c not in known and c not in core_codes
+    unbuilt = sorted(c for c in observed if c not in known and c not in core_codes and not sensitive(c)
                      and not c.startswith(("LP:monogenic:", "LP:fh:")) and not (c.startswith("ICD10:") and any(
                          c in (o.get("diagnosed_codes") or []) for o in reg["outcomes"].values())))
     return {"registry": {"version": reg["version"], "digest": reg["digest"]},
             "unbuilt_codes": unbuilt,
-            "hidden_count": sum(1 for T in m.ext.terms if T.status == "hidden"),
             "terms": rows, "qualitative": qual, "could_move": unmeasured[:10],
             "guardrail": {"single_cap_log_hr": m.ext.cap_single, "total_cap_log_hr": m.ext.cap_total,
+                          "recentre_offset_log_hr": round(m.ext.life_offset, 4),
                           "draws_bound_share": round(bound / max(1, len(draws)), 3)},
             "conflicts": conflicts,
-            "genetics": {k: v for k, v in (m.obs.genetics or {}).items() if k in ("build", "source_type", "qc", "ancestry")},
-            "provenance": m.obs.provenance}
+            "genetics": _genetics_public(m.obs.genetics),
+            "provenance": [{k: str(x.get(k))[:120] for k in ("step", "tool", "version") if x.get(k) is not None}
+                           for x in m.obs.provenance if isinstance(x, dict)],
+            "dropped_observations": [{"code": d["code"] if not sensitive(d.get("code") or "") else "（遗传结果）", "why": d["why"]}
+                                     for d in m.obs.dropped][:50],
+            "registry_overridden": RG.overridden()}
 
 
 def trajectory(m: Model) -> dict:

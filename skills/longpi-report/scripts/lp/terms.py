@@ -263,7 +263,7 @@ def _mediator_measured(key: str, model) -> bool:
         if k == "methylation":
             return getattr(model, "meth", None) is not None
         return k in model.I.values
-    return model.obs.has(key)
+    return bool(model.obs.series(key, model.at, None, ("acute_illness", "pregnancy", "transfusion")))
 
 
 def match(model, reg: Optional[dict] = None) -> List[Term]:
@@ -289,7 +289,7 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
             continue
         if spec.get("disclosure") == "opt_in" and not prefs["show_opt_in"]:
             rule = spec.get("disclosure_rule") or {}
-            v = (model.obs.by_code[code][-1] or {}).get("value")
+            v = (model.obs.rows(code)[-1] or {}).get("value")
             if "opt_in_if_value_ge" not in rule or (isinstance(v, (int, float)) and v >= rule["opt_in_if_value_ge"]):
                 T.status, T.reasons = "hidden", ["该结果默认不展示，本人选择查看后才计入"]
                 out.append(T)
@@ -355,12 +355,17 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
                 out.append(T)
                 continue
             ref_sd = mo[1]
-            dense = len(rows) > 60
+            # near-daily measurements are not independent: aggregate by week when the median spacing is under a week
+            dts = sorted(o.get("datetime") or "" for o in rows)
+            from .observations import _safe_date
+            gaps = [((_safe_date(b) or model.at) - (_safe_date(a) or model.at)).days for a, b in zip(dts, dts[1:])]
+            dense = len(rows) > 60 or (len(gaps) >= 3 and sorted(gaps)[len(gaps) // 2] < 7)
             LG_rows = rows
             if dense:
                 from .observations import weekly
                 LG_rows = weekly(rows)
-            pts = [dict(o, t=decimal_year(parse_date(o["datetime"])) if o.get("datetime") else model.year0) for o in LG_rows]
+            pts = [dict(o, t=decimal_year(parse_date(o["datetime"]))) for o in LG_rows if o.get("datetime")] or \
+                  [dict(o, t=model.year0) for o in LG_rows[-1:]]
             sds = [_meas_sd(spec, o, ref_sd) for o in pts]
             if spec["transform"].get("log_x"):   # on the log scale an absolute SD becomes a relative one
                 sds = [s / max(abs(float(o["value"])), 1e-9) for s, o in zip(sds, pts)]
@@ -399,8 +404,10 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
 
 def preferences(person: dict) -> dict:
     """Genetic result preferences (PRD §5b.4); both default to False (not shown unless the person chose)."""
-    g = person.get("genetic_preferences") or {}
-    return {"show_opt_in": bool(g.get("show_opt_in", False)), "secondary_findings": bool(g.get("secondary_findings", False))}
+    g = person.get("genetic_preferences")
+    g = g if isinstance(g, dict) else {}
+    # only a JSON true counts as consent; "false", "no", 1 or anything else means not chosen
+    return {"show_opt_in": g.get("show_opt_in") is True, "secondary_findings": g.get("secondary_findings") is True}
 
 
 def _finish_coef(T: Term, spec: dict, model, last: Optional[dict]) -> bool:
@@ -421,6 +428,10 @@ def _finish_coef(T: Term, spec: dict, model, last: Optional[dict]) -> bool:
         if scope in ("M", "F") and scope != model.sex:
             oc_mult[oc] = 0.0
             continue
+        aa, asx = e.get("applies_age"), e.get("applies_sex")
+        if (aa and not (aa[0] <= model.age <= aa[1])) or (asx in ("M", "F") and asx != model.sex):
+            oc_mult[oc] = 0.0
+            continue
         ar = pop.get("age_range")
         k = 1.0
         if ar and not (ar[0] <= model.age <= ar[1]):
@@ -429,8 +440,8 @@ def _finish_coef(T: Term, spec: dict, model, last: Optional[dict]) -> bool:
             if msg not in why:
                 why.append(msg)
         oc_mult[oc] = k
-    if oc_mult and all(v == 0.0 for v in oc_mult.values()):
-        T.status, T.reasons = "not_counted", ["研究只适用于另一性别"]
+    if oc_mult and all(v == 0.0 for v in oc_mult.values()) and not spec.get("screening"):
+        T.status, T.reasons = "not_counted", ["研究只适用于另一性别或另一年龄段"]
         return True
     if spec["kind"] == "behavior" and (last or {"method": "self_report"}).get("method") == "self_report":
         d = float((spec.get("behavior") or {}).get("self_report_discount", 0.5))
@@ -444,6 +455,8 @@ def _finish_coef(T: Term, spec: dict, model, last: Optional[dict]) -> bool:
         cs = float(e.get("coef_sd", base_sd)) if e.get("coef") is not None else base_sd
         k = mult * oc_mult.get(oc, 1.0)
         T.coef[oc] = (cm * k, cs * k)
+    if spec.get("screening"):
+        T.coef["screen"] = (base_m * mult, base_sd * mult)
     T.notes += why
     T.status = "counted"
     return True
@@ -460,18 +473,20 @@ def _requirement_met(req: str, model) -> bool:
         return False
     if not vals:
         return True
-    latest = sorted(model.obs.by_code[code], key=lambda o: o.get("datetime") or "")[-1]
+    latest = sorted(model.obs.rows(code), key=lambda o: o.get("datetime") or "")[-1]
     return str(latest.get("value")) in vals.split("|")
 
 
 def _absent_means_no(spec: dict, person: dict) -> bool:
     """A diagnosis / family-history indicator not listed counts as 0 when the person filled that list."""
+    from .observations import codes
     code = spec["input"]["code"]
     if spec["transform"]["shape"] != "indicator":
         return False
-    if code.startswith("ICD10:"):
+    rule = codes().get("absent_means_no", {})
+    if code.startswith("ICD10:") and code in rule.get("codes", []):
         return "conditions" in person
-    if code.startswith("LP:fh:"):
+    if any(code.startswith(pf) for pf in rule.get("prefixes", [])):
         return "family_history" in person
     return False
 
@@ -530,6 +545,11 @@ def _core_coef(cid: str, model) -> Optional[float]:
     return float(model.pp["calibration"][model.coef_set][k]["value"])
 
 
+def _core_name(cid: str, model) -> str:
+    k = cid[5:]
+    return model.specs[k]["name_zh"] if k in getattr(model, "specs", {}) else cid
+
+
 def _adjusted(T: Term, key: str) -> bool:
     return key in (T.spec.get("adjusted_for") or []) or key in [x.split(":", 1)[-1] for x in (T.spec.get("adjusted_for") or [])]
 
@@ -539,7 +559,7 @@ def _apply_groups(terms: List[Term], model, reg: dict) -> None:
     study adjusted for every higher-ranked counted ext term; the group's summed coefficients (core + ext) are capped."""
     groups = reg["groups"].get("groups", {})
     for gid, g in groups.items():
-        members = [T for T in terms if T.status == "counted" and T.spec.get("group") == gid]
+        members = [T for T in terms if T.status == "counted" and T.spec.get("group") == gid and not T.spec.get("screening")]
         if not members:
             continue
         ocs = sorted({oc for T in members for oc in T.coef})
@@ -548,11 +568,23 @@ def _apply_groups(terms: List[Term], model, reg: dict) -> None:
             mem.sort(key=lambda T: -_info(T, oc, model) * T.coef[oc][0])
             counted: List[Term] = []
             for T in mem:
-                if all(_adjusted(T, U.id) or _adjusted(T, U.spec["input"]["code"]) for U in counted):
+                if g.get("rule") == "cap_only" or all(_adjusted(T, U.id) or _adjusted(T, U.spec["input"]["code"]) for U in counted):
                     counted.append(T)
                 else:
                     T.coef.pop(oc)
                     T.notes.append(f"与已计入的{counted[0].spec['name_zh']}同属一组，研究未校正它，此结局只作佐证")
+            if oc == "all_cause":
+                # a measured core domain of the same mechanism carries the NHANES estimate of what that mechanism adds
+                # beyond everything else; an ext term whose study did not adjust for it may not weigh more than it
+                for cid in g.get("members_core", []):
+                    cc = _core_coef(cid, model)
+                    if cc is None or cid in ("core.phenoage_clock", "core.methylation"):
+                        continue
+                    for T in counted:
+                        if not _adjusted(T, cid) and T.coef[oc][0] > cc:
+                            m0, s0 = T.coef[oc]
+                            T.coef[oc] = (cc, s0 * cc / m0 if m0 else 0.0)
+                            T.notes.append(f"研究未校正已计入的{_core_name(cid, model)}，系数不超过它（{cc:.2f}）")
             core_sum = 0.0
             if oc == "all_cause":
                 core_sum = sum(c for c in (_core_coef(cid, model) for cid in g.get("members_core", [])) if c is not None)
@@ -565,15 +597,22 @@ def _apply_groups(terms: List[Term], model, reg: dict) -> None:
                     T.coef[oc] = (m * k, s * k)
                     T.notes.append(f"{g['name_zh']}组系数合计超上限，按比例压缩到 {k:.2f}")
         for T in members:
-            if not T.coef:
+            if not any(k != "screen" for k in T.coef):
                 T.status = "overlap"
                 T.reasons = T.reasons or ["与已计入的项重叠，只作佐证"]
 
 
 # ----------------------------------------------------------------------------- draws
 
+_OFFSET_CACHE: Dict[tuple, float] = {}
+
+
 class ExtModel:
-    """Counted ext terms and their per-draw contributions. Uses its own random stream."""
+    """Counted ext terms and their per-draw contributions.
+
+    Random numbers: one integer per Monte Carlo draw from the model's ext stream, then one independent stream per
+    term seeded by (that integer, term id) - adding or removing a term never changes the draws of another term.
+    One coefficient z per term is shared by all its outcomes."""
 
     def __init__(self, model, reg: Optional[dict] = None):
         self.m = model
@@ -587,38 +626,69 @@ class ExtModel:
         self.bcap_single = float(gr.get("behavior_single_abs_log_hr", 0.35))
         self.bcap_total = float(gr.get("behavior_total_abs_log_hr", 0.50))
         self.dcap_single = float(gr.get("disease_single_abs_log_hr", 1.1))
+        self.dcap_total = float(gr.get("disease_total_abs_log_hr", 2.5))
+        key = (tuple((T.id, T.coef["all_cause"]) for T in self.life_terms()), model.sex, round(model.age, 1))
+        if key not in _OFFSET_CACHE:
+            _OFFSET_CACHE[key] = self._clamp_offset() if self.life_terms() else 0.0
+        self.life_offset = _OFFSET_CACHE[key]
 
     def life_terms(self) -> List[Term]:
         """Terms that enter LongPi Age: state/exposure with an all-cause effect."""
         return [T for T in self.counted if T.kind in ("state", "exposure") and "all_cause" in T.coef]
 
     def behavior_terms(self) -> List[Term]:
-        return [T for T in self.counted if T.kind == "behavior" and ("all_cause" in T.coef or T.screening)]
+        return [T for T in self.counted if T.kind == "behavior" and ("all_cause" in T.coef or (T.screening and "screen" in T.coef))]
+
+    def _draw_term(self, T: Term, rng: random.Random, x_from_reference: bool = False) -> dict:
+        d = {"eff": {}, "c": {}}
+        z = rng.gauss(0.0, 1.0)
+        for oc, (cm, cs) in T.coef.items():
+            if oc != "screen":
+                d["eff"][oc] = draw_effect(T.spec, oc, rng)
+            d["c"][oc] = 1.0 if (cm >= 1.0 and cs == 0) else min(1.0, max(0.0, cm + cs * z))
+        if x_from_reference:
+            d["x"] = _sample_reference(T.spec, self.m.sex, self.m.age, rng)
+        elif T.level is not None:
+            d["x"] = rng.gauss(T.level, T.level_sd or 0.0)
+        else:
+            d["x"] = T.value
+        if T.screening:
+            sc = T.spec["screening"]["mortality_rr"]
+            tr = T.spec.get("transport") or {}
+            d["screen_log_rr"] = rng.gauss(math.log(sc["hr"]) * float(tr.get("shrink", 1.0)), _se(sc, float(tr.get("sd_inflate", 1.0))))
+        return d
 
     def draw(self, rng: random.Random) -> dict:
-        th = {}
-        for T in self.counted:
-            d = {"eff": {}, "c": {}}
-            for oc, (cm, cs) in T.coef.items():
-                d["eff"][oc] = draw_effect(T.spec, oc, rng)
-                d["c"][oc] = min(1.0, max(0.0, rng.gauss(cm, cs))) if cs else min(1.0, max(0.0, cm))
-            if T.level is not None:
-                d["x"] = rng.gauss(T.level, T.level_sd or 0.0)
-            else:
-                d["x"] = T.value
-            if T.screening:
-                sc = T.spec["screening"]["mortality_rr"]
-                d["screen_log_rr"] = rng.gauss(math.log(sc["hr"]), _se(sc, 1.0))
-            th[T.id] = d
-        return th
+        base = rng.getrandbits(52)
+        return {T.id: self._draw_term(T, random.Random(f"{base}:{T.id}")) for T in self.counted}
 
     def contribution(self, T: Term, th: dict, oc: str) -> float:
         d = th[T.id]
-        return normalised(T.spec, d["eff"][oc], d["x"], self.m.sex, self.m.age, d["c"][oc])
+        v = normalised(T.spec, d["eff"][oc], d["x"], self.m.sex, self.m.age, d["c"][oc])
+        return v if math.isfinite(v) else 0.0
+
+    def _clamp_offset(self, n: int = 3000) -> float:
+        """Clamping the ext terms biases peers below R = 1; this offset re-centres the clamped sum so that same-age,
+        same-sex peers (every counted term drawn from its reference distribution) average exactly R = 1."""
+        rng = random.Random(20261118)
+        terms = self.life_terms()
+        tot = 0.0
+        for _ in range(n):
+            raw = {}
+            for T in terms:
+                d = self._draw_term(T, rng, x_from_reference=True)
+                v = normalised(T.spec, d["eff"]["all_cause"], d["x"], self.m.sex, self.m.age, d["c"]["all_cause"])
+                raw[T.id] = v if math.isfinite(v) else 0.0
+            tot += math.exp(sum(_clamp(raw, self.cap_single, self.cap_total)[0].values()))
+        return -math.log(tot / n)
 
     def life_parts(self, th: dict) -> Tuple[Dict[str, float], bool]:
         raw = {T.id: self.contribution(T, th, "all_cause") for T in self.life_terms()}
-        return _clamp(raw, self.cap_single, self.cap_total)
+        out, bound = _clamp(raw, self.cap_single, self.cap_total)
+        if out and self.life_offset:
+            k = self.life_offset / len(out)
+            out = {kk: v + k for kk, v in out.items()}
+        return out, bound
 
     def behavior_parts(self, th: dict, age: Optional[float] = None) -> Tuple[Dict[str, float], bool]:
         raw = {}
@@ -626,28 +696,76 @@ class ExtModel:
             if T.screening:
                 share = screening_share(self.reg, T.screening["disease_id"], self.m.sex, age or self.m.age)
                 rr = math.exp(th[T.id]["screen_log_rr"])
-                c = th[T.id]["c"].get("all_cause", 1.0) if T.coef else 1.0
-                raw[T.id] = c * math.log(max(1e-6, 1 - share * (1 - rr)))
+                c = th[T.id]["c"].get("screen", 1.0)
+                u = screening_uptake(T.spec, self.m.sex, age or self.m.age)
+                # relative to peers, a fraction u of whom are screened: (1 - s(1-RR)) / (1 - u s(1-RR)), scaled by c
+                red = share * (1 - rr)
+                raw[T.id] = c * (math.log(max(1e-6, 1 - red)) - math.log(max(1e-6, 1 - u * red)))
             else:
                 raw[T.id] = self.contribution(T, th, "all_cause")
         return _clamp(raw, self.bcap_single, self.bcap_total)
 
     def disease_parts(self, th: dict, oc: str) -> Dict[str, float]:
-        out = {}
+        out, capped = {}, {}
         for T in self.counted:
             if oc not in T.coef or T.kind == "behavior":
                 continue
             v = self.contribution(T, th, oc)
-            if T.spec["transform"]["shape"] != "indicator":
-                v = max(-self.dcap_single, min(self.dcap_single, v))
-            out[T.id] = v
+            if T.spec["transform"]["shape"] == "indicator" or T.kind == "genetic":
+                out[T.id] = v          # carrier / genotype effects are large by nature; capped only through the group
+            else:
+                capped[T.id] = max(-self.dcap_single, min(self.dcap_single, v))
+        tot = sum(capped.values())
+        if abs(tot) > self.dcap_total:
+            k = self.dcap_total / abs(tot)
+            capped = {kk: v * k for kk, v in capped.items()}
+        out.update(capped)
         return out
 
 
+def _sample_reference(t: dict, sex: str, age: float, rng: random.Random):
+    """One draw of the term's input from its reference distribution (peers)."""
+    ref, shape = t["reference"], t["transform"]["shape"]
+    if shape == "indicator":
+        prev = ref.get("prevalence")
+        if prev is None and ref.get("by_sex_age"):
+            prev = (_band(ref["by_sex_age"], sex, age) or {}).get("prevalence", 0.0)
+        return 1 if rng.random() < float(prev or 0.0) else 0
+    if shape == "categorical" or ref.get("kind") == "categorical_mid":
+        probs = ref["p"] if "p" in ref else (_band(ref.get("by_sex_age") or [], sex, age) or {}).get("p", {})
+        u, acc = rng.random(), 0.0
+        for lvl, pr in probs.items():
+            acc += pr
+            if u <= acc:
+                break
+        if ref.get("kind") == "categorical_mid":
+            mids = ref["mids"]
+            if isinstance(next(iter(mids.values())), dict):
+                mids = mids.get(sex, next(iter(mids.values())))
+            return float(mids[lvl])
+        return lvl
+    mu, sd = ref_moments(t, sex, age)
+    z = rng.gauss(mu, sd)
+    if _is_lognormal(t, sex, age) or t["transform"].get("log_x"):
+        return math.exp(z)
+    return z
+
+
+def screening_uptake(spec: dict, sex: str, age: float) -> float:
+    ref = spec.get("reference") or {}
+    if ref.get("by_sex_age"):
+        b = _band(ref["by_sex_age"], sex, age)
+        return float((b or {}).get("prevalence", 0.0))
+    return float(ref.get("prevalence", 0.0))
+
+
 def _clamp(raw: Dict[str, float], single: float, total: float) -> Tuple[Dict[str, float], bool]:
+    """Each term to +-single, then the sum to +-total (proportional). Non-finite values count as 0."""
     bound = False
     out = {}
     for k, v in raw.items():
+        if not math.isfinite(v):
+            v = 0.0
         c = max(-single, min(single, v))
         bound |= c != v
         out[k] = c

@@ -6,6 +6,7 @@ import copy
 import html
 import json
 import mimetypes
+import re
 from pathlib import Path
 from typing import Optional
 
@@ -85,6 +86,31 @@ def exercise_library() -> dict:
     return json.loads((SKILL_DIR / "data" / "exercise_library.json").read_text(encoding="utf-8"))
 
 
+DATA_IMG_RE = re.compile(r"^data:image/(png|jpeg|webp|gif);base64,[A-Za-z0-9+/=]+$")
+IMG_MAGIC = {".jpg": b"\xff\xd8\xff", ".jpeg": b"\xff\xd8\xff", ".png": b"\x89PNG", ".gif": b"GIF8", ".webp": b"RIFF"}
+
+
+def _safe_image(src: str, roots) -> Optional[Path]:
+    """An image file inside one of `roots` (no absolute paths, no escaping with ..), with an image extension,
+    matching magic bytes, at most 3 MB. Anything else is ignored, so a narrative cannot embed arbitrary local files."""
+    rel = Path(src)
+    if rel.is_absolute() or ".." in rel.parts or rel.suffix.lower() not in IMG_MAGIC:
+        return None
+    for r in roots:
+        if not r:
+            continue
+        f = (Path(r) / rel).resolve()
+        try:
+            f.relative_to(Path(r).resolve())
+        except ValueError:
+            continue
+        if f.is_file() and f.stat().st_size <= 3 * 1024 * 1024:
+            with f.open("rb") as fh:
+                if fh.read(4).startswith(IMG_MAGIC[rel.suffix.lower()][:4]):
+                    return f
+    return None
+
+
 def _data_uri(f: Path) -> str:
     mt = mimetypes.guess_type(f.name)[0] or "image/jpeg"
     return f"data:{mt};base64," + base64.b64encode(f.read_bytes()).decode("ascii")
@@ -118,10 +144,13 @@ def inline_training_images(narrative: dict, base: Optional[Path]) -> dict:
                 used_lib = True
             imgs = []
             for src in ex.get("images", []):
-                if str(src).startswith("data:"):
-                    imgs.append(src)
+                if not isinstance(src, str):
                     continue
-                f = next((r / src for r in roots + [SKILL_DIR] if r and (r / src).is_file()), None)
+                if src.startswith("data:"):
+                    if DATA_IMG_RE.match(src):
+                        imgs.append(src)
+                    continue
+                f = _safe_image(src, roots + [SKILL_DIR / "assets"])
                 if f is not None:
                     imgs.append(_data_uri(f))
             ex["images"] = imgs

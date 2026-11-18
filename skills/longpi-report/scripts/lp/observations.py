@@ -15,6 +15,7 @@ disease risk and the 120 Index only.
 from __future__ import annotations
 
 import json
+import math
 import statistics
 from datetime import date, timedelta
 from functools import lru_cache
@@ -131,10 +132,15 @@ def from_person(person: dict, derived: Optional[dict] = None) -> List[dict]:
             if v.get("since"):
                 weeks = max(0, (as_of - _d(v["since"])).days // 7)
             add(code, float(v["value"]), "", as_of, "self_report", "问卷", sustained_weeks=weeks)
+    from .validate import norm_icd10
     for c in person.get("conditions") or []:
-        if c.get("icd10"):
-            when = _d(str(c["diagnosed"])) if c.get("diagnosed") else None
-            add("ICD10:" + str(c["icd10"]).upper(), 1, "", when, "self_report" if not c.get("source") else "lab", "已确诊疾病")
+        icd = norm_icd10(c.get("icd10")) if isinstance(c, dict) else None
+        if icd:
+            when = _safe_date(c.get("diagnosed"))
+            add("ICD10:" + icd, 1, "", when, "self_report" if not c.get("source") else "lab", "已确诊疾病")
+    for nf in person.get("negative_findings") or []:
+        if isinstance(nf, dict) and isinstance(nf.get("code"), str) and ":" in nf["code"]:
+            add(nf["code"].strip(), 0, "", _safe_date(nf.get("date")), "lab" if nf.get("report") else "self_report", "明确阴性")
     for fh in person.get("family_history") or []:
         if fh.get("disease_id") and fh.get("relation") in ("father", "mother", "brother", "sister", "son", "daughter", "sibling", "parent", "child"):
             add("LP:fh:" + fh["disease_id"], 1, "", None, "self_report", "家族史",
@@ -163,6 +169,29 @@ def core_codes() -> List[str]:
     return [cm[sec][k][0] for sec, keys in CORE_INPUT_KEYS.items() for k in keys if k in cm[sec]]
 
 
+def _safe_date(s) -> Optional[date]:
+    try:
+        return _d(str(s)) if s else None
+    except (ValueError, TypeError):
+        return None
+
+
+def _usable(o: dict, ranges: dict) -> Optional[str]:
+    """None if the observation can be used; otherwise the reason it is dropped (validation reports it too)."""
+    if not isinstance(o, dict) or not isinstance(o.get("code"), str) or ":" not in o["code"]:
+        return "缺标准编码"
+    v = o.get("value")
+    if isinstance(v, bool) or not (isinstance(v, str) or (isinstance(v, (int, float)) and math.isfinite(v))):
+        return "数值无效"
+    if isinstance(v, (int, float)) and o["code"] in ranges and not (ranges[o["code"]][0] <= v <= ranges[o["code"]][1]):
+        return "超出合理范围"
+    if o.get("datetime") is not None and _safe_date(o["datetime"]) is None:
+        return "日期无效"
+    if o.get("sd") is not None and not (isinstance(o["sd"], (int, float)) and math.isfinite(o["sd"]) and o["sd"] >= 0):
+        return "sd 无效"
+    return None
+
+
 def load_file(person: dict, base: Optional[Path]) -> dict:
     f = person.get("observations_file")
     if not f:
@@ -175,27 +204,52 @@ def load_file(person: dict, base: Optional[Path]) -> dict:
 
 
 class Observations:
-    """All observations of one person, indexed by code."""
+    """All observations of one person, indexed by code. Unusable rows are dropped with a reason (`dropped`)."""
 
     def __init__(self, person: dict, derived: Optional[dict] = None, base: Optional[Path] = None):
         self.person = person
         self.doc = load_file(person, base)
-        self.items = from_person(person, derived) + [dict(o, obs_id=o.get("obs_id") or f"f{i}")
-                                                     for i, o in enumerate(self.doc.get("observations", []))]
-        self.genetics = self.doc.get("genetics") or {}
-        self.provenance = self.doc.get("provenance") or []
+        rng = codes().get("ranges", {})
+        file_obs = self.doc.get("observations", [])
+        raw = from_person(person, derived) + [dict(o, obs_id=o.get("obs_id") or f"f{i}") if isinstance(o, dict) else o
+                                              for i, o in enumerate(file_obs if isinstance(file_obs, list) else [])]
+        self.items, self.dropped = [], []
+        for o in raw:
+            o = _to_canonical(o) if isinstance(o, dict) else o
+            why = _usable(o, rng)
+            if why:
+                self.dropped.append({"code": (o.get("code") if isinstance(o, dict) else None), "why": why})
+            else:
+                o["code"] = o["code"].strip()
+                self.items.append(o)
+        g = self.doc.get("genetics")
+        self.genetics = g if isinstance(g, dict) else {}
+        pv = self.doc.get("provenance")
+        self.provenance = pv if isinstance(pv, list) else []
         self.by_code: Dict[str, List[dict]] = {}
         for o in self.items:
             self.by_code.setdefault(o["code"], []).append(o)
 
+    def matching(self, code: str) -> List[str]:
+        """Observed codes that satisfy `code`: the same code, or for ICD-10 a more specific one (E11 <- E11.9)."""
+        if code.startswith("ICD10:"):
+            return [c for c in self.by_code if c == code or c.startswith(code + ".")]
+        return [code] if code in self.by_code else []
+
     def has(self, code: str) -> bool:
-        return code in self.by_code
+        return bool(self.matching(code))
+
+    def rows(self, code: str) -> List[dict]:
+        return [o for c in self.matching(code) for o in self.by_code[c]]
 
     def series(self, code: str, at: date, methods: Optional[List[str]] = None, exclude_flags=(),
                max_years: float = 10.0) -> List[dict]:
-        """Usable observations of `code` up to `at`, best method only (precedence), oldest first."""
+        """Usable observations of `code` up to `at`, best method only (precedence), oldest first.
+
+        Precedence (lab > tool > vendor > device > self_report) applies among observations from the last 3 years of
+        what is available, so an old laboratory value does not override a recent run of home measurements."""
         rows = []
-        for o in self.by_code.get(code, []):
+        for o in self.rows(code):
             when = _d(o["datetime"]) if o.get("datetime") else None
             if when is not None and (when > at or (at - when).days > max_years * 365.25):
                 continue
@@ -206,14 +260,17 @@ class Observations:
             rows.append(o)
         if not rows:
             return []
-        best = max(METHOD_RANK.get(o.get("method"), 0) for o in rows)
+        newest = max((_safe_date(o.get("datetime")) or date(1900, 1, 1)) for o in rows)
+        recent = [o for o in rows if (newest - (_safe_date(o.get("datetime")) or newest)).days <= 3 * 365.25]
+        # the best method is chosen among recent observations; its whole history is then used (trend, pre-treatment)
+        best = max(METHOD_RANK.get(o.get("method"), 0) for o in (recent or rows))
         rows = [o for o in rows if METHOD_RANK.get(o.get("method"), 0) == best]
         return sorted(rows, key=lambda o: o.get("datetime") or "")
 
     def conflicts(self, code: str, at: date, tol_sd: float) -> Optional[dict]:
         """Latest value of each method; flagged when two differ by more than 2 x tol_sd."""
         latest = {}
-        for o in self.by_code.get(code, []):
+        for o in self.rows(code):
             if o.get("datetime") and _d(o["datetime"]) > at:
                 continue
             m = o.get("method")
@@ -226,6 +283,25 @@ class Observations:
         if hi - lo > 2 * tol_sd:
             return {"code": code, "values": nums}
         return None
+
+
+_LAB_BY_CODE = None
+
+
+def _to_canonical(o: dict) -> dict:
+    """Observations of a known lab code in another unit (e.g. LDL in mg/dL) are converted to the canonical unit."""
+    global _LAB_BY_CODE
+    if _LAB_BY_CODE is None:
+        _LAB_BY_CODE = {v[0]: (k, v[1]) for k, v in codes()["labs"].items()}
+    code, v, u = o.get("code"), o.get("value"), o.get("unit")
+    if code in _LAB_BY_CODE and isinstance(v, (int, float)) and not isinstance(v, bool) and u:
+        key, canon = _LAB_BY_CODE[code]
+        if u.replace(" ", "").lower() != canon.replace(" ", "").lower():
+            try:
+                return dict(o, value=U.to_canonical(key, float(v), u), unit=canon, unit_reported=u)
+            except (ValueError, TypeError):
+                return o
+    return o
 
 
 def weekly(rows: List[dict]) -> List[dict]:

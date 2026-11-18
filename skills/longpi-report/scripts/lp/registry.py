@@ -42,8 +42,16 @@ def _read(p: Path) -> dict:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+DATA_FILES = ("params.json", "observation_codes.json", "population_norms_china.json", "systems.json")
+ID_RE = __import__("re").compile(r"^(core|ext)\.[a-z0-9_]{1,60}$")
+
+
 def _files(root: Path) -> List[Path]:
     out = []
+    data = root.parent / "data"      # the engine-wide data files are part of the frozen state too
+    for name in DATA_FILES:
+        if (data / name).exists():
+            out.append(data / name)
     for sub in ("terms", "qualitative", "outcomes", "sources"):
         d = root / sub
         if d.is_dir():
@@ -54,6 +62,13 @@ def _files(root: Path) -> List[Path]:
     return out
 
 
+def _rel(p: Path, root: Path) -> str:
+    try:
+        return str(p.relative_to(root))
+    except ValueError:
+        return "../data/" + p.name
+
+
 def _sha(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -62,7 +77,7 @@ def freeze(root: Path = REG_DIR, version: Optional[str] = None) -> dict:
     """Write VERSION (if given) and MANIFEST.json; returns the manifest."""
     if version:
         (root / "VERSION").write_text(version + "\n", encoding="utf-8")
-    files = {str(p.relative_to(root)): _sha(p) for p in _files(root)}
+    files = {_rel(p, root): _sha(p) for p in _files(root)}
     body = json.dumps(files, sort_keys=True, ensure_ascii=False)
     man = {"version": (root / "VERSION").read_text(encoding="utf-8").strip(), "files": files,
            "digest": hashlib.sha256(body.encode("utf-8")).hexdigest()}
@@ -76,7 +91,7 @@ def verify_manifest(root: Path = REG_DIR) -> dict:
     if not mp.exists():
         raise RegistryError(f"项目库缺少 MANIFEST.json：{root}")
     man = _read(mp)
-    have = {str(p.relative_to(root)): _sha(p) for p in _files(root)}
+    have = {_rel(p, root): _sha(p) for p in _files(root)}
     bad = sorted(k for k in set(have) | set(man["files"]) if have.get(k) != man["files"].get(k))
     if bad:
         raise RegistryError("项目库文件与 MANIFEST 不一致（未冻结的改动或被篡改）：" + "，".join(bad[:10]))
@@ -93,12 +108,25 @@ def load(root: Optional[str] = None) -> dict:
         t = _read(p)
         if t.get("status", "active") != "active":
             continue
+        if not ID_RE.match(str(t.get("id", ""))) or p.stem != t["id"]:
+            raise RegistryError(f"项目库条目 id 不合规或与文件名不符：{p.name}")
+        if t["id"] in terms:
+            raise RegistryError(f"项目库条目重复：{t['id']}")
+        if not t.get("core"):
+            prob = validate_term(t)
+            if prob:
+                raise RegistryError(f"项目库条目 {t['id']} 不合规：" + "；".join(prob[:3]))
         terms[t["id"]] = t
     qual = {(_read(p))["id"]: _read(p) for p in sorted((r / "qualitative").glob("*.json"))} if (r / "qualitative").is_dir() else {}
     outcomes = {(_read(p))["id"]: _read(p) for p in sorted((r / "outcomes").glob("*.json"))} if (r / "outcomes").is_dir() else {}
     groups = _read(r / "groups.json") if (r / "groups.json").exists() else {"groups": {}}
     return {"version": man["version"], "digest": man["digest"], "terms": terms, "qualitative": qual,
             "groups": groups, "outcomes": outcomes, "root": str(r)}
+
+
+def overridden() -> bool:
+    """True when the registry is not the one shipped with the skill (LONGPI_REGISTRY_DIR or registry.use)."""
+    return Path(REG_DIR).resolve() != Path(SKILL_DIR / "registry").resolve()
 
 
 def use(root) -> None:
@@ -112,11 +140,20 @@ def use(root) -> None:
 
 def source(key: str, root: Optional[str] = None) -> Optional[dict]:
     p = Path(root or REG_DIR) / "sources" / (safe_key(key) + ".json")
-    return _read(p) if p.exists() else None
+    if not p.exists():
+        return None
+    rec = _read(p)
+    if rec.get("key") not in (None, key):
+        raise RegistryError(f"来源文件名冲突：{key} 与 {rec.get('key')}")
+    return rec
 
 
 def safe_key(key: str) -> str:
-    return "".join(c if c.isalnum() or c in "-_." else "_" for c in key)
+    """File name of a source record. Kept readable (existing records use it); an empty key is refused, and the
+    record stores its original key so two keys mapping to one name are detected (`source()` checks it)."""
+    if not key:
+        raise RegistryError("来源键为空")
+    return "".join(c if c.isalnum() or c in "-_." else "_" for c in key).strip(".") or "_"
 
 
 # ----------------------------------------------------------------------------- the 1.1.1 model
@@ -165,8 +202,8 @@ def validate_term(t: dict) -> List[str]:
             pr.append(f"缺字段 {k}")
     if pr:
         return pr
-    if not t["id"].startswith("ext."):
-        pr.append("新项 id 必须以 ext. 开头")
+    if not ID_RE.match(str(t["id"])) or not t["id"].startswith("ext."):
+        pr.append("新项 id 必须是 ext. 加小写字母、数字或下划线")
     if t["kind"] not in KINDS:
         pr.append(f"kind 必须是 {KINDS}")
     if t["transform"].get("shape") not in SHAPES:

@@ -22,6 +22,19 @@ BACKEND_TERMS = ("MCP", "skill", "engine.py", "params.json", "Mirobody", "LOINC"
 
 
 def check(person: dict, base: Path) -> dict:
+    from .validate import validate
+    v_err, v_warn = validate(person, base)
+    if v_err:   # strict type/range/date problems first; the checks below assume well-formed input
+        return {"errors": v_err, "warnings": v_warn, "missing": [], "phenoage_tests": []}
+    try:
+        rep = _check(person, base)
+    except (TypeError, ValueError, KeyError, AttributeError) as e:
+        return {"errors": [f"输入格式有误：{type(e).__name__}: {e}"], "warnings": v_warn, "missing": [], "phenoage_tests": []}
+    rep["warnings"] = v_warn + rep.get("warnings", [])
+    return rep
+
+
+def _check(person: dict, base: Path) -> dict:
     errors: List[str] = []
     warn: List[str] = []
     p = person.get("person", {})
@@ -41,15 +54,6 @@ def check(person: dict, base: Path) -> dict:
         errors.append(f"年龄无法解析：{e}")
     if age is not None and not (30 <= age <= 85):
         warn.append(f"年龄 {age:.0f} 岁在模型主要适用范围（30–85 岁）之外，结果只作参考")
-    for i, c in enumerate(person.get("conditions") or []):
-        if not c.get("icd10"):
-            warn.append(f"conditions[{i}]「{c.get('name', '')}」没有 icd10：不参与疾病风险判定（例如已确诊会被当作未发生），请补 ICD-10 编码")
-    for i, fh in enumerate(person.get("family_history") or []):
-        if not fh.get("disease_id"):
-            warn.append(f"family_history[{i}]「{fh.get('condition', '')}」没有 disease_id：家族史不进入疾病风险")
-    for i, md in enumerate(person.get("medications") or []):
-        if md.get("class") and not md.get("since"):
-            warn.append(f"medications[{i}]「{md.get('name', '')}」没有 since：无法判断哪些化验是在用药期间测的")
     if person.get("observations_file"):
         f = Path(person["observations_file"])
         f = f if f.is_absolute() else Path(base) / f
@@ -238,8 +242,10 @@ def _facts_112(r: dict) -> List[str]:
                        + (f"；每年变化 {t['slope_per_year']}" if t.get("slope_per_year") is not None else "")
                        + (f"；说明 {'；'.join(t['reasons'] + t['notes'])}" if (t['reasons'] or t['notes']) else "")
                        + (f"；证据 {ev.get('grade')} PMID {ev.get('pmid')}" if ev.get("pmid") else ""))
-        if ex.get("hidden_count"):
-            out.append(f"- 另有 {ex['hidden_count']} 项遗传结果按本人选择不展示，也未计入（不要在叙述里提及具体内容）")
+        if ex.get("registry_overridden"):
+            out.append("- ⚠ 本次使用的不是技能自带的项目库（LONGPI_REGISTRY_DIR 或测试替换），结果不能作为正式报告")
+        if ex.get("dropped_observations"):
+            out.append("- 未采用的观测：" + "；".join(f"{d['code']}（{d['why']}）" for d in ex["dropped_observations"][:10]))
         if ex.get("qualitative"):
             out += ["", "## 定性佐证（不折成岁数）"]
             out += [f"- {q['name']}：{q.get('why')}" for q in ex["qualitative"]]
@@ -259,8 +265,8 @@ def _facts_112(r: dict) -> List[str]:
                 out.append(f"- {d['name']}：{d['status']}" + (f"（{'；'.join(d['notes'])}）" if d.get("notes") else ""))
                 continue
             drv = "；".join(f"{x['name']} ×{x['hr']}" for x in d["drivers"][:4]) or "无个人因素"
-            out.append(f"- {d['name']}：10 年 {_pc(d['risk10']['median'])}（{_pc(d['risk10']['p10'])}–{_pc(d['risk10']['p90'])}；人群 {_pc(d['peer10'])}）；"
-                       + (f"终身至 {d['horizon_lifetime_age']} 岁 {_pc(d['lifetime']['median'])}（人群 {_pc(d['peer_lifetime'])}）；" if d.get("lifetime") else "不报告终身风险；")
+            out.append(f"- {d['name']}：10 年 {_pc(d['risk10']['mean'])}（{_pc(d['risk10']['p10'])}–{_pc(d['risk10']['p90'])}；人群 {_pc(d['peer10'])}）；"
+                       + (f"终身至 {d['horizon_lifetime_age']} 岁 {_pc(d['lifetime']['mean'])}（人群 {_pc(d['peer_lifetime'])}）；" if d.get("lifetime") else "不报告终身风险；")
                        + f"因素 {drv}"
                        + (f"；可补充 {'、'.join(x['name'] for x in d['missing_inputs'][:4])}" if d.get("missing_inputs") else "")
                        + (f"；{'；'.join(d['notes'])}" if d.get("notes") else ""))
@@ -274,9 +280,55 @@ def _facts_112(r: dict) -> List[str]:
     return out
 
 
+OPT_IN_WORDS = ("APOE", "ε4", "e4/e4", "阿尔茨海默病遗传")
+SECONDARY_WORDS = ("BRCA", "LDLR", "PCSK9", "MLH1", "MSH2", "MSH6", "PMS2", "林奇", "致病变异", "致病性变异")
+NARRATIVE_LISTS = ("risks", "frontier", "pgx", "top3", "clinical", "quality_issues", "gaps")
+
+
+def structure_problems(n) -> List[str]:
+    """Type errors that would break rendering (reported before any other check)."""
+    if not isinstance(n, dict):
+        return ["narrative.json 的最外层必须是对象"]
+    probs = []
+    for k in NARRATIVE_LISTS:
+        if k in n and not isinstance(n[k], list):
+            probs.append(f"{k} 必须是列表")
+    for k in ("risks", "frontier", "clinical"):
+        if isinstance(n.get(k), list) and not all(isinstance(x, dict) for x in n[k]):
+            probs.append(f"{k} 的每一项必须是对象")
+    for k in ("asks", "supplements", "training", "n_of_1", "data_notes"):
+        if k in n and not isinstance(n[k], dict):
+            probs.append(f"{k} 必须是对象")
+    if isinstance(n.get("asks"), dict) and not all(isinstance(x, dict) for x in n["asks"].get("items", []) or []):
+        probs.append("asks.items 的每一项必须是对象")
+    tr = n.get("training")
+    if isinstance(tr, dict):
+        for i, se in enumerate(tr.get("sessions", []) or []):
+            if not isinstance(se, dict) or not all(isinstance(e, dict) for e in se.get("exercises", []) or []):
+                probs.append(f"training.sessions[{i}] 及其 exercises 必须是对象")
+            else:
+                for j, e in enumerate(se.get("exercises", []) or []):
+                    for img in e.get("images", []) or []:
+                        if not isinstance(img, str):
+                            probs.append(f"training.sessions[{i}].exercises[{j}].images 必须是字符串")
+    return probs
+
+
 def check_narrative(n: dict, out: dict) -> List[str]:
     """Deterministic checks on Claude's narrative before rendering."""
-    probs: List[str] = []
+    probs: List[str] = structure_problems(n)
+    if probs:
+        return probs
+    prefs = ((out.get("results") or {}).get("diseases") or {}).get("preferences") or {}
+    blob0 = json.dumps(n, ensure_ascii=False)
+    if not prefs.get("show_opt_in"):
+        hit = [w for w in OPT_IN_WORDS if w.lower() in blob0.lower()]
+        if hit:
+            probs.append(f"本人未选择查看不可干预的遗传结果，叙述里不能出现：{'、'.join(hit)}")
+    if not prefs.get("secondary_findings"):
+        hit = [w for w in SECONDARY_WORDS if w.lower() in blob0.lower()]
+        if hit:
+            probs.append(f"本人未选择接收次要发现，叙述里不能出现：{'、'.join(hit)}")
     for i, rk in enumerate(n.get("risks", [])):
         for k in ("name", "level", "drivers", "evidence", "action"):
             if not rk.get(k):

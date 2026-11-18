@@ -69,9 +69,10 @@ def cmd_render(a) -> int:
         return 2
     narrative = json.loads(Path(a.narrative).read_text(encoding="utf-8")) if a.narrative else {}
     problems = SC.check_narrative(narrative, out)
+    blocking = SC.structure_problems(narrative) + [x for x in problems if x.startswith("本人未选择")]
     if problems:
         print("narrative problems:\n- " + "\n- ".join(problems), file=sys.stderr)
-        if a.strict:
+        if a.strict or blocking:
             return 2
     from lp import params as PR
     params = PR.load()
@@ -116,5 +117,19 @@ def main(argv=None) -> int:
     return a.f(a)
 
 
+def _guarded(argv=None) -> int:
+    """One-line errors for users; LONGPI_DEBUG=1 shows the traceback."""
+    import os
+    try:
+        return main(argv)
+    except SystemExit:
+        raise
+    except Exception as e:  # noqa: BLE001
+        if os.environ.get("LONGPI_DEBUG"):
+            raise
+        print(f"出错：{type(e).__name__}: {e}（设置 LONGPI_DEBUG=1 查看详情）", file=sys.stderr)
+        return 2
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(_guarded())
