@@ -255,8 +255,12 @@ class PopulationCheck(unittest.TestCase):
             t["id"] = f"ext.j{i}"
             terms.append(t)
         res = T.check_population(terms, n=8000)
-        self.assertFalse(res["ok"])
-        self.assertTrue(any("合计" in f for f in res["fails"]))
+        self.assertTrue(res["ok"], res["fails"][:3])        # coefficient-then-normalise keeps the mean at 1
+        for row in res["combined"]:                         # normalise-then-coefficient (PRD as written) does not
+            self.assertLess(row["mean_exp_normalise_then_coef"], 0.9)
+        c = 0.5
+        b = math.log(1.8)
+        self.assertAlmostEqual(T.log_mean_exp_ref(terms[0], "all_cause", "M", 50, scale=c), 0.5 * (c * b) ** 2, places=6)
 
     def test_unnormalised_term_caught(self):
         bad = normal_term(hr=1.6, shape="residualized")

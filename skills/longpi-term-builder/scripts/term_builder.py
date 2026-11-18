@@ -215,8 +215,8 @@ def check_code(code: str, offline: bool = False) -> Tuple[bool, str]:
             return (r.get("id") == val, r.get("name", "") + " | license: " + (r.get("license") or "")[:200])
         if ns == "HMDB":
             return (bool(re.match(r"^HMDB\d{7}$", val)), "HMDB 只做格式校验（无公开 REST）")
-    except PrivacyError:
-        raise
+    except PrivacyError:   # not a well-formed identifier: never sent, the code is simply invalid
+        return False, f"{code} 不是格式正确的 {ns} 编码"
     except Exception as e:  # network or parse failure
         return False, f"{ns} 校验失败：{type(e).__name__}: {e}"
     return False, f"未知命名空间 {ns}"
@@ -580,28 +580,42 @@ def ref_kind(term: dict) -> str:
     return {"categorical": "categorical", "indicator": "prevalence"}.get(term["transform"]["shape"], "normal")
 
 
-def log_mean_exp_ref(term: dict, oc: str, sex: str, age: float) -> float:
-    """ln E_ref[exp f(X)] for the reference population of this sex and age (the engine's normaliser)."""
+_Z_N = 1200
+_Z = [-8.0 + 16.0 * i / _Z_N for i in range(_Z_N + 1)]
+_ZW = [(1 if i in (0, _Z_N) else (4 if i % 2 else 2)) * (16.0 / _Z_N) / 3 * math.exp(-z * z / 2) / math.sqrt(2 * math.pi)
+       for i, z in enumerate(_Z)]
+
+
+def _expect_std_normal(g: Callable[[float], float]) -> float:
+    """E[g(Z)], Z ~ N(0,1), Simpson on [-8, 8]. Clipping and hinges make g non-smooth, where 20-point Gauss-Hermite
+    can be off by 1-3%; Simpson on this grid stays within about 1e-4."""
+    return sum(w * g(z) for z, w in zip(_Z, _ZW))
+
+
+def log_mean_exp_ref(term: dict, oc: str, sex: str, age: float, scale: float = 1.0) -> float:
+    """ln E_ref[exp(scale * f(X))] for the reference population of this sex and age (the engine's normaliser;
+    `scale` = overlap coefficient when the coefficient is applied before normalising)."""
     row = ref_band(term, sex, age)
     if row is None:
         raise LookupError(f"{term['id']}: 参考分布未覆盖 {sex} {age}")
     kind = ref_kind(term)
+    F = lambda x: math.exp(scale * f_raw(term, oc, x))  # noqa: E731
     if kind == "categorical":
-        return math.log(sum(p * math.exp(f_raw(term, oc, lvl)) for lvl, p in row["p"].items()))
+        return math.log(sum(p * F(lvl) for lvl, p in row["p"].items()))
     if kind == "categorical_mid":
         mids = term["reference"]["mids"]
         mids = mids.get(sex, mids) if isinstance(mids, dict) and sex in mids else mids
-        return math.log(sum(p * math.exp(f_raw(term, oc, mids[lvl])) for lvl, p in row["p"].items()))
+        return math.log(sum(p * F(mids[lvl]) for lvl, p in row["p"].items()))
     if kind == "prevalence":
         p = row["prevalence"]
-        return math.log(1 - p + p * math.exp(f_raw(term, oc, 1)))
+        return math.log(1 - p + p * F(1))
     if kind == "lognormal":   # ln X ~ N(meanlog, sdlog)
         mu, sd = row["meanlog"], row["sdlog"]
-        return math.log(sum(w * math.exp(f_raw(term, oc, math.exp(mu + sd * z))) for z, w in zip(_GH_X, _GH_W)))
+        return math.log(_expect_std_normal(lambda z: F(math.exp(mu + sd * z))))
     mu, sd = row["mean"], row["sd"]   # normal / residualized
     if sd <= 0:
-        return f_raw(term, oc, mu)
-    return math.log(sum(w * math.exp(f_raw(term, oc, mu + sd * z)) for z, w in zip(_GH_X, _GH_W)))
+        return scale * f_raw(term, oc, mu)
+    return math.log(_expect_std_normal(lambda z: F(mu + sd * z)))
 
 
 def sample_ref(term: dict, sex: str, age: float, rng: random.Random):
@@ -693,20 +707,28 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
                     if oc == "all_cause" and t["kind"] in ("state", "exposure", "behavior"):
                         c = coef(t)
                         key = ("behavior" if t["kind"] == "behavior" else "state", sex, lo)
-                        combined.setdefault(key, []).append((t, c, L))
+                        Lc = log_mean_exp_ref(t, oc, sex, age, scale=c) if c > 0 else 0.0
+                        combined.setdefault(key, []).append((t, c, L, Lc))
     comb_rows = []
     for (part, sex, lo), lst in sorted(combined.items()):
         hi = dict(AGE_BANDS)[lo]
         age = (lo + hi) / 2
-        acc = 0.0
-        for _ in range(n // 4):
-            s = 0.0
-            for t, c, L in lst:
-                s += c * (f_raw(t, "all_cause", sample_ref(t, sex, age, rng)) - L)
-            acc += math.exp(s)
-        m = acc / (n // 4)
-        ok = abs(m - 1) <= tol * 1.5
-        comb_rows.append({"part": part, "sex": sex, "band": f"{lo}-{hi}", "n_terms": len(lst), "mean_exp": round(m, 4), "ok": ok})
+        acc_c, acc_prd, acc_sq = 0.0, 0.0, 0.0
+        m_draws = max(1, n // 4)
+        for _ in range(m_draws):
+            s_c, s_prd = 0.0, 0.0
+            for t, c, L, Lc in lst:
+                f = f_raw(t, "all_cause", sample_ref(t, sex, age, rng))
+                s_c += c * f - Lc            # coefficient applied, then normalised: population mean exactly 1
+                s_prd += c * (f - L)         # PRD 2.3 as written (normalise, then coefficient): Jensen deficit
+            acc_c += math.exp(s_c)
+            acc_sq += math.exp(2 * s_c)
+            acc_prd += math.exp(s_prd)
+        m, m_prd = acc_c / m_draws, acc_prd / m_draws
+        se = math.sqrt(max(0.0, acc_sq / m_draws - m * m) / m_draws)
+        ok = abs(m - 1) <= tol + 3 * se and abs(m - 1) <= 2 * tol
+        comb_rows.append({"part": part, "sex": sex, "band": f"{lo}-{hi}", "n_terms": len(lst), "mean_exp": round(m, 4),
+                          "mean_exp_normalise_then_coef": round(m_prd, 4), "ok": ok})
         if not ok:
             fails.append(f"合计（{part} {sex} {lo}-{hi}，{len(lst)} 项）：人群平均风险倍数 {m:.4f}")
     return {"ok": not fails, "fails": fails, "rows": rows, "combined": comb_rows, "n": n, "tol": tol,
@@ -889,6 +911,10 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         for pre, g in groups3.items():
             if all(k in g for k in ("hr", "lo", "hi")) and not find_triplet(g["hr"], g["lo"], g["hi"], quote):
                 fail.append(f"{pre}: HR {g['hr']} 与 CI {g['lo']}–{g['hi']} 未在 quote 中成组出现（数值与原文结论未绑定）")
+            if all(k in g for k in ("hr", "lo", "hi")) and g["lo"] <= 1.0 <= g["hi"]:
+                msg = f"{pre}: 95% CI {g['lo']}–{g['hi']} 含 1（无统计学意义）"
+                # a non-significant level inside a categorical term is acceptable; a main estimate is not
+                (warn if spec["transform"]["shape"] == "categorical" and not e.get("_screening") else fail).append(msg)
         pop = dict(spec.get("population") or {})
         pop.update(e.get("population") or {})
         if pop.get("events") is not None and oc != "screening":
