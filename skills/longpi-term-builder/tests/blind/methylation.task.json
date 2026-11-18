@@ -1,0 +1,12 @@
+{
+ "task_id": "methylation",
+ "compare_to": "core.methylation",
+ "input": {
+  "code": "LP:clock.grimage2_accel",
+  "unit": "year"
+ },
+ "outcome": "all_cause",
+ "analyte_zh": "DNA 甲基化 GrimAge2 加速（时钟年龄减同龄参考，年）",
+ "shape_hint": "residualized",
+ "instructions_zh": "按 longpi-term-builder 的 SKILL.md 流程，为下列指标建一条项规格（registry_contract.md §3），结局为全因死亡（effect.all_cause）。独立检索文献，不得查看 skills/longpi-report/registry/terms/ 下的 core.* 文件、data/params.json、evidence/ 目录或本仓库历史提交。把规格写到 tests/blind/out/<task_id>.json，再运行 term_builder.py verify。"
+}

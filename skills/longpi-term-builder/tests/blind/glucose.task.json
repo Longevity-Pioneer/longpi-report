@@ -1,0 +1,17 @@
+{
+ "task_id": "glucose",
+ "compare_to": "core.glucose",
+ "input": {
+  "code": "LP:glycemic_status",
+  "unit": null
+ },
+ "outcome": "all_cause",
+ "analyte_zh": "血糖状态分类：正常、糖尿病前期、糖尿病（按 ADA 诊断标准）；参考组为正常",
+ "shape_hint": "categorical",
+ "instructions_zh": "按 longpi-term-builder 的 SKILL.md 流程，为下列指标建一条项规格（registry_contract.md §3），结局为全因死亡（effect.all_cause）。独立检索文献，不得查看 skills/longpi-report/registry/terms/ 下的 core.* 文件、data/params.json、evidence/ 目录或本仓库历史提交。把规格写到 tests/blind/out/<task_id>.json，再运行 term_builder.py verify。",
+ "levels": [
+  "normal",
+  "prediabetes",
+  "diabetes"
+ ]
+}

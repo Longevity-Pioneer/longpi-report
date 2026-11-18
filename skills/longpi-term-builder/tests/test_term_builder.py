@@ -325,6 +325,42 @@ class Codes(unittest.TestCase):
         self.assertTrue(T.check_code("LOINC:1884-6")[0])
 
 
+class BlindScorer(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(HERE / "blind"))
+        import score_blind
+        self.S = score_blind
+
+    def task(self, tid):
+        return json.loads((HERE / "blind" / f"{tid}.task.json").read_text(encoding="utf-8"))
+
+    def test_eleven_tasks_without_numbers(self):
+        tasks = sorted((HERE / "blind").glob("*.task.json"))
+        self.assertEqual(len(tasks), 11)
+        for p in tasks:
+            txt = p.read_text(encoding="utf-8")
+            self.assertNotRegex(txt, r"\d\.\d", p.name)          # no effect sizes or CIs in the task
+            self.assertNotIn("pmid", txt.lower())
+
+    def test_rescaled_loglinear_and_hinge(self):
+        bp = {"effect": {"all_cause": {"hr": 1.0929 ** 0.5, "lo": 1, "hi": 1.1, "per": 5}}, "transform": {"shape": "loglinear"}}
+        self.assertTrue(self.S.score(self.task("bp"), bp)["pass"])
+        bp["effect"]["all_cause"]["hr"] = 1.25
+        self.assertFalse(self.S.score(self.task("bp"), bp)["pass"])
+        sl = {"transform": {"shape": "hinge"}, "effect": {"all_cause": {"hr_below": {"hr": 1.06, "per": 1},
+                                                                         "hr_above": {"hr": 1.30, "per": 1}}}}
+        r = self.S.score(self.task("sleep"), sl)
+        self.assertFalse(r["pass"])
+        self.assertEqual([x["pass"] for x in r["rows"]], [True, False])
+
+    def test_categorical_and_methylation(self):
+        sm = {"transform": {"shape": "categorical"}, "effect": {"all_cause": {"levels": {
+            "never": {"hr": 1}, "former_lt5": {"hr": 1.2}, "former_ge5": {"hr": 1.0}, "current": {"hr": 1.34}}}}}
+        self.assertTrue(self.S.score(self.task("smoking"), sm)["pass"])
+        me = {"transform": {"shape": "residualized"}, "effect": {"all_cause": {"hr": 1.055, "per": 1}}}
+        self.assertTrue(self.S.score(self.task("methylation"), me)["pass"])
+
+
 class RealRegistry(unittest.TestCase):
     def test_frozen_registry_population_neutral(self):
         terms = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((REAL_REG / "terms").glob("*.json"))]

@@ -1,0 +1,18 @@
+{
+ "task_id": "smoking",
+ "compare_to": "core.smoking",
+ "input": {
+  "code": "LP:smoking_status",
+  "unit": null
+ },
+ "outcome": "all_cause",
+ "analyte_zh": "吸烟状态：从不吸烟、已戒烟不满五年、已戒烟五年及以上、目前吸烟；参考组为从不吸烟",
+ "shape_hint": "categorical",
+ "instructions_zh": "按 longpi-term-builder 的 SKILL.md 流程，为下列指标建一条项规格（registry_contract.md §3），结局为全因死亡（effect.all_cause）。独立检索文献，不得查看 skills/longpi-report/registry/terms/ 下的 core.* 文件、data/params.json、evidence/ 目录或本仓库历史提交。把规格写到 tests/blind/out/<task_id>.json，再运行 term_builder.py verify。",
+ "levels": [
+  "never",
+  "former_lt5",
+  "former_ge5",
+  "current"
+ ]
+}

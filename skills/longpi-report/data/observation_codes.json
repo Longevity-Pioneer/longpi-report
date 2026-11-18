@@ -207,7 +207,9 @@
   "LP:screen.<test>": "按指南完成的筛查（值=最近一次距今年数；如 screen.crc_fit、screen.crc_colonoscopy、screen.lung_ldct、screen.liver_us_afp、screen.gastroscopy、screen.mammography、screen.cervical）",
   "LP:fh:<disease_id>": "一级亲属患病（0/1）",
   "LP:hpylori_positive": "幽门螺杆菌感染（尿素呼气试验、粪便抗原或血清抗体阳性，0/1）",
-  "LP:checkup_general": "定期一般健康体检（近 2 年内做过，0/1；不含针对性筛查）"
+  "LP:checkup_general": "定期一般健康体检（近 2 年内做过，0/1；不含针对性筛查）",
+  "LP:sleep_selfreport_h": "自述每晚睡眠时长（小时）",
+  "LP:glycemic_status": "血糖状态分类（normal/prediabetes/diabetes，按 ADA 标准由空腹血糖、HbA1c 或诊断判定）"
  },
  "conditions": {
   "field": "icd10",
