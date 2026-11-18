@@ -13,8 +13,10 @@ from pathlib import Path
 
 SKILL = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SKILL / "scripts"))
+sys.path.insert(0, str(SKILL / "tests"))
 
 from lp import registry as RG  # noqa: E402
+import core_registry  # noqa: E402
 
 FIX = SKILL / "tests" / "fixtures"
 EXT = FIX / "registry_ext"
@@ -48,10 +50,15 @@ def demo():
 
 
 class Migration(unittest.TestCase):
-    """Core terms moved to the registry: numbers identical to engine 1.1.1 (fixtures made before the move)."""
+    """Core terms moved to the registry: numbers identical to engine 1.1.1 (fixtures made before the move).
+    Run on the release registry with the new terms removed (the demo person has data some new terms use)."""
 
     @classmethod
     def setUpClass(cls):
+        RG.use(core_registry.path())
+
+    @classmethod
+    def tearDownClass(cls):
         RG.use(MAIN)
 
     def test_identical_to_1_1_1(self):
@@ -99,10 +106,6 @@ class Ext(unittest.TestCase):
 
     def test_unmeasured_terms_change_nothing(self):
         p = demo()
-        a = run(p)
-        RG.use(MAIN)
-        b = run(p)
-        RG.use(EXT)
         # the fixture registry adds terms the demo person has data for (steps, ldl); remove those inputs
         q = copy.deepcopy(p)
         q.pop("wearables")
@@ -110,11 +113,10 @@ class Ext(unittest.TestCase):
             for k in ("ldl", "glucose_fasting"):
                 l["items"].pop(k, None)
         c = run(q)
-        RG.use(MAIN)
+        RG.use(core_registry.path())
         d = run(q)
         RG.use(EXT)
         self.assertEqual(c["longpi_age"]["value"], d["longpi_age"]["value"])
-        self.assertTrue(a and b)
 
     def test_population_neutral(self):
         from lp import terms as TM

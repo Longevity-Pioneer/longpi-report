@@ -13,6 +13,19 @@ from pathlib import Path
 
 SKILL = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(SKILL / "scripts"))
+sys.path.insert(0, str(SKILL / "tests"))
+
+
+def setUpModule():
+    """The 1.1.1 tests run on the release registry without the new (ext.*) terms; see test_registry_ext for those."""
+    import core_registry
+    from lp import registry as RG
+    RG.use(core_registry.path())
+
+
+def tearDownModule():
+    from lp import registry as RG
+    RG.use(SKILL / "registry")
 
 from lp import clinical, clock, domains as DM, engine as EN, mortality as M, units, wearables as WR  # noqa: E402
 
