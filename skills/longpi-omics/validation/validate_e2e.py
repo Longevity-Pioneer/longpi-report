@@ -14,7 +14,7 @@ SK = HERE.parent
 OMICS = SK / "scripts" / "omics.py"
 E2E = SK.parent / "longpi-report" / "examples" / "e2e"
 FIXG = SK / "tests" / "fixtures" / "genotype"
-PGS = ["PGS002262", "PGS002259", "PGS003353", "PGS000050", "PGS000070", "PGS000662", "PGS003850"]
+PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 DATE = "2026-11-18"
 
 

@@ -26,7 +26,7 @@
 
 | 文件 | 对象 | 内容 |
 |---|---|---|
-| `P1_genotypes_GRCh38.vcf` | P1（男，汉族北京样本） | 单样本 VCF，带 contig 头部。保留：祖源信息位点、APOE、药物基因组位点、7 个测试评分的全部位点（含纯合参考的调用）；BRCA1、BRCA2、LDLR、MLH1、PCSK9、TP53 基因区与 X 染色体一段（150 kb）只保留非参考调用，与真实全基因组 VCF 一致 |
+| `P1_genotypes_GRCh38.vcf` | P1（男，汉族北京样本） | 单样本 VCF，带 contig 头部。保留：祖源信息位点、APOE、药物基因组位点、4 个测试评分的全部位点（含纯合参考的调用）；BRCA1、BRCA2、LDLR、MLH1、PCSK9、TP53 基因区与 X 染色体一段（150 kb）只保留非参考调用，与真实全基因组 VCF 一致 |
 | `P2_chip_23andme_GRCh37.txt` | P2（女，汉族南方样本） | 23andMe 格式的芯片文本（GRCh37 坐标，经 UCSC 链文件转换），只含单核苷酸位点 |
 | `P2_wgs_LDLR_GRCh38.vcf` | P2 | 小型"全基因组来源"VCF：LDLR 区域的真实调用，另**人为加入**一个 ClinVar 致病（审核 ≥2 星）的 LDLR 杂合单核苷酸变异，用于检验单基因致病变异路径；该变异为合成，不属于原始样本 |
 | `genotype_sources.json` | — | 派生说明：来源人群、加入变异的 ClinVar 编号与坐标、测试评分清单 |
@@ -34,7 +34,7 @@
 
 说明：
 
-- 测试评分：PGS002262（冠心病）、PGS002259（卒中）、PGS003353（2 型糖尿病）、PGS000050（乳腺癌）、PGS000070（肺癌）、PGS000662（前列腺癌）、PGS003850（结直肠癌）。
+- 测试评分：PGS002262（冠心病，540 个位点）、PGS003353（2 型糖尿病，287 个）、PGS000050（乳腺癌，44 个）、PGS000070（肺癌，19 个），均以东亚人群为主建立。
 - 同一 P1 调用转换到 GRCh37 的版本（无 contig 头部，用于检验按标记位点识别版本）放在 `skills/longpi-omics/tests/fixtures/genotype/`。
 - 运行示例：`python3 skills/longpi-omics/scripts/omics.py genotype skills/longpi-report/examples/e2e/P1_genotypes_GRCh38.vcf --sex M --person-code P1 --pgs PGS002262 --out P1.observations.json`；
   `P2_wgs_LDLR_GRCh38.vcf` 需加 `--source-type wgs`。

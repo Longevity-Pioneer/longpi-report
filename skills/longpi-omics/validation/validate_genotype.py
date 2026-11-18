@@ -279,7 +279,7 @@ def v_clinvar(n_each=25, seed=7):
 
 if __name__ == "__main__":
     which = sys.argv[1] if len(sys.argv) > 1 else "all"
-    pgs_ids = ["PGS002262", "PGS002259", "PGS003353", "PGS000050", "PGS000070", "PGS000662", "PGS003850"]
+    pgs_ids = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
     if which in ("all", "prs"):
         v_prs(pgs_ids)
     if which in ("all", "ancestry"):

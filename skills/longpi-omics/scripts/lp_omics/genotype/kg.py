@@ -78,7 +78,7 @@ def _run_query(c, cdir, sfile, lines, *, timeout=1200):
     raise RuntimeError(f"bcftools query chr{c} failed: {err}")
 
 
-def query_sites(sites, samples, *, regions=None, workers: int = 8, batch: int = 20):
+def query_sites(sites, samples, *, regions=None, workers: int = 8, batch: int = 5):
     """Return {(chrom, pos): [(ref, alt, [gt per requested sample])]} for GRCh38 sites.
 
     Exact sites are fetched for all 2504 unrelated samples in small batches and cached locally

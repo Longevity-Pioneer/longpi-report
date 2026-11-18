@@ -17,7 +17,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 E2E = HERE.parents[1] / "longpi-report" / "examples" / "e2e"
-PGS = ["PGS002262", "PGS002259", "PGS003353", "PGS000050", "PGS000070", "PGS000662", "PGS003850"]
+PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 
 
 def commands(person: str, out: Path) -> list[list[str]]:

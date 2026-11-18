@@ -14,7 +14,7 @@ from lp_omics.genotype import clinvar, gtio, prs  # noqa: E402
 
 FIX = HERE.parent / "tests" / "fixtures" / "omics-ref"
 E2E = HERE.parents[1] / "longpi-report" / "examples" / "e2e"
-PGS = ["PGS000070", "PGS002262"]
+PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 
 
 def main():

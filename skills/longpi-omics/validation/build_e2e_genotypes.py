@@ -21,7 +21,7 @@ from lp_omics import common  # noqa: E402
 from lp_omics.genotype import clinvar, core, kg, liftover, prs  # noqa: E402
 
 OUT = HERE.parents[1] / "longpi-report" / "examples" / "e2e"
-PGS = ["PGS002262", "PGS002259", "PGS003353", "PGS000050", "PGS000070", "PGS000662", "PGS003850"]
+PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 GENES = ["BRCA1", "BRCA2", "LDLR", "MLH1", "PCSK9", "TP53"]
 XREGION = ("X", 20_000_000, 20_150_000)
 GRCH38_LEN = {"1": 248956422, "2": 242193529, "3": 198295559, "4": 190214555, "5": 181538259, "6": 170805979,

@@ -20,7 +20,7 @@ sys.path.insert(0, str(SCRIPTS))
 from lp_omics import common  # noqa: E402
 from lp_omics.genotype import clinvar, core, gtio, pgx, prs  # noqa: E402
 
-PGS = ["PGS000070", "PGS002262"]
+PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 
 
 def run_cli(*args, ref=REF, env_extra=None):
@@ -134,6 +134,32 @@ class TestGenotypeE2E(unittest.TestCase):
         self.assertFalse(mono[0]["confirmed_clinical"])
         self.assertIn("Weedon", mono[0]["note"])
         self.assertFalse(any(o["code"].startswith("LP:monogenic") for o in d["observations"]))
+
+    def test_run_e2e_people(self):
+        sys.path.insert(0, str(SCRIPTS))
+        import run_e2e
+        env_old = os.environ.get("LONGPI_OMICS_REF")
+        os.environ["LONGPI_OMICS_REF"] = str(REF)
+        try:
+            out = self.td / "people" / "P2" / "observations.json"
+            run_e2e.build("P2", out, ["--offline"])
+            first = out.read_bytes()
+            run_e2e.build("P2", out, ["--offline"])
+            self.assertEqual(first, out.read_bytes())
+        finally:
+            if env_old is None:
+                os.environ.pop("LONGPI_OMICS_REF", None)
+            else:
+                os.environ["LONGPI_OMICS_REF"] = env_old
+        d = json.loads(out.read_text())
+        codes = [o["code"] for o in d["observations"]]
+        self.assertIn("LP:monogenic:HGNC:6547", codes)          # WGS supplement, counted
+        self.assertIn("LP:apoe_e4_count", codes)                # chip run kept
+        self.assertTrue(any(c.startswith("LP:prot.") for c in codes))
+        self.assertTrue(any(c.startswith("LP:micro.") for c in codes))
+        g = d["genetics"]
+        self.assertEqual(g["build"], "GRCh37")
+        self.assertTrue(any(m.get("supplement") and m["gene"] == "LDLR" for m in g["monogenic"]))
 
     def test_merge_idempotent(self):
         out = self.td / "merge.json"
