@@ -1,0 +1,7 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC6037587,table block 1,scalar,asir_M,,,,Male,5,27.94,per_100k
+pmcid:PMC6037587,table block 1,scalar,asir_F,,,,Female,5,11.27,per_100k
+pmcid:PMC6037587,table block 1,scalar,cum074_M,,,,Male,6,3.52,per_100k
+pmcid:PMC6037587,table block 1,scalar,cum074_F,,,,Female,6,1.32,per_100k
+pmcid:PMC6037587,table block 3,scalar,asmr_M,,,,Male,5,19.21,per_100k
+pmcid:PMC6037587,table block 3,scalar,asmr_F,,,,Female,5,7.63,per_100k

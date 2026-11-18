@@ -1,0 +1,74 @@
+{
+ "key": "pmcid:PMC11882351",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11882351/",
+ "fetched_at": "2026-11-18T03:27:50+00:00",
+ "sha256": "fcbe90f69bc919a3122a13fdda7e9ca339cd0a5d43cc8c6d0618c4d9e8946200",
+ "bytes": 281470,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Yurou Xu, Youyi Wang, Xiajing Yao, et al. Prevalence, Incidence, and Recovery of Metabolic Dysfunction-associated Steatotic Liver Disease and Associations With Weight Loss and Lipid Reduction in a Chinese Community-based Cohort. Journal of Epidemiology. 2025 Apr 5;35(4):195. doi:10.2188/jea.JE20240224. PMID 39401903.",
+ "licence": "no licence stated on the PMC page (publisher copyright)",
+ "data_year": 2023,
+ "text": "Prevalence, Incidence, and Recovery of Metabolic Dysfunction-associated Steatotic Liver Disease and Associations With Weight Loss and Lipid Reduction in a Chinese Community-based Cohort - PMC\n[Table block 2] Table 3. Incidence density of MASLD and Cox proportional hazard regression of risk factors for MASLD incidence in Songjiang district.\nCharacteristics | Total (N = 13,052) | Male (N = 5,015) | Female (N = 8,037)\nID, per 100 PYs | HR (95% CI)*** | ID, per 100 PYs | HR (95% CI)** | ID, per 100 PYs | HR (95% CI)*\nTotal | 8.4 | — | 7.9 | — | 8.7 | 1.08 (0.99–1.18)\nAge, years\n18–39 | 5.1 | 1 | 9.7 | 1 | 3.3 | 1\n40–49 | 6.0 | 0.93 (0.70–1.23) | 8.4 | 0.67 (0.44–1.04) | 5.3 | 1.28 (0.87–1.89)\n50–59 | 7.0 | 0.83 (0.65–1.07) | 6.4 | 0.42 (0.29–0.59) | 7.3 | 1.32 (0.93–1.89)\n60–69 | 9.8 | 1.39 (1.08–1.78) | 8.6 | 0.76 (0.54–1.08) | 10.7 | 2.11 (1.47–3.03)\n≥70 | 8.3 | 1.02 (0.79–1.32) | 7.6 | 0.59 (0.41–0.86) | 8.9 | 1.50 (1.03–2.18)\nEducation\nIlliterate or primary school | 9.2 | 1 | 8.1 | 1 | 9.8 | 1\nMiddle school | 7.4 | 1.00 (0.93–1.09) | 7.9 | 1.09 (0.97–1.23) | 7.0 | 0.95 (0.85–1.06)\nHigh school or above | 6.9 | 0.95 (0.84–1.08) | 7.7 | 0.98 (0.82–1.17) | 6.1 | 0.93 (0.78–1.12)\nMarital status\nMarried | 8.4 | 1 | 7.9 | 1 | 8.7 | 1\nDivorced/Widowed/Single | 8.5 | 0.85 (0.76–0.96) | 8.0 | 0.93 (0.73–1.19) | 8.7 | 0.83 (0.73–0.95)\nOccupation\nOfficer | 7.7 | 1 | 7.9 | 1 | 7.4 | 1\nProfessional | 7.9 | 1.10 (0.87–1.40) | 7.8 | 1.13 (0.83–1.54) | 7.9 | 1.06 (0.73–1.54)\nWorker | 8.3 | 1.24 (1.00–1.54) | 8.8 | 1.51 (1.13–2.02) | 8.0 | 1.02 (0.74–1.42)\nFarmer | 9.9 | 1.31 (1.05–1.62) | 8.7 | 1.45 (1.08–1.94) | 10.5 | 1.15 (0.83–1.59)\nOther | 7.6 | 0.97 (0.79–1.20) | 7.1 | 1.02 (0.77–1.35) | 7.9 | 0.89 (0.65–1.22)\nBMI, kg/m2\n<18.5 | 1.2 | 0.19 (0.12–0.30) | 1.3 | 0.15 (0.06–0.41) | 1.1 | 0.21 (0.13–0.35)\n18.5–<24.0 | 5.8 | 1 | 5.1 | 1 | 6.1 | 1\n24.0–<28.0 | 13.1 | 2.05 (1.91–2.20) | 11.8 | 2.17 (1.94–2.44) | 14.2 | 1.98 (1.82–2.16)\n≥28.0 | 20.0 | 2.83 (2.51–3.19) | 19.3 | 3.32 (2.70–4.08) | 20.5 | 2.65 (2.28–3.07)\nper 1 kg/m2 increase |  | 1.15 (1.14–1.17) |  | 1.17 (1.15–1.19) |  | 1.15 (1.13–1.16)\nWC, cm\nMale <90/Female <85 | 7.0 | 1 | 6.9 | 1 | 7.1 | 1\nMale ≥90/Female ≥85 | 15.6 | 1.33 (1.23–1.44) | 14.4 | 1.17 (1.02–1.35) | 16.2 | 1.40 (1.28–1.54)\nper 1 cm increase |  | 1.04 (1.03–1.04) |  | 1.03 (1.02–1.04) |  | 1.03 (1.03–1.04)\nWHR\nMale ≤0.90/Female ≤0.85 | 6.7 | 1 | 6.7 | 1 | 6.6 | 1\nMale >0.90/Female >0.85 | 11.8 | 1.26 (1.17–1.35) | 11.2 | 1.13 (1.01–1.26) | 12.1 | 1.34 (1.22–1.47)\nper 0.05 increase |  | 1.13 (1.09–1.16) |  | 1.10 (1.04–1.16) |  | 1.14 (1.10–1.18)\nSmoking status\nNever | 8.7 | 1 | 8.6 | 1 | 8.7 | 1\nFormer | 7.0 | 0.65 (0.54–0.79) | 6.9 | 0.66 (0.55–0.80) | 9.9 | —\nCurrent | 7.6 | 0.89 (0.80–0.99) | 7.6 | 0.90 (0.81–1.00) | 5.1 | —\nAlcohol intake, gram/day\n0 | 8.5 | 1 | 8.0 | 1 | 8.7 | 1\n0.1–10.0 | 7.5 | 0.87 (0.75–1.02) | 7.4 | 0.88 (0.75–1.04) | 9.8 | 0.89 (0.49–1.61)\n10.1–20.0 | 7.6 | 0.90 (0.72–1.13) | 7.6 | 0.90 (0.71–1.13) | 10.5 | 1.58 (0.22–1.28)\n20.1–30.0 | 8.1 | 0.91 (0.67–1.24) | 8.1 | 0.92 (0.68–1.25) | — | —\nFamily history of fatty liver\nNo | 8.4 | 1 | 7.9 | 1 | 8.8 | 1\nYes | 8.1 | 0.93 (0.78–1.10) | 7.7 | 1.05 (0.75–1.48) | 8.2 | 0.91 (0.74–1.10)",
+ "checks": [
+  {
+   "term": "outcome:masld",
+   "number": "9.7",
+   "found": true,
+   "context": "18-39 | 5.1 | 1 | 9.7 | 1 | 3.3 | 1"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "3.3",
+   "found": true,
+   "context": "18-39 | 5.1 | 1 | 9.7 | 1 | 3.3 | 1"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "8.4",
+   "found": true,
+   "context": "40-49 | 6.0 | 0.93 (0.70-1.23) | 8.4 | 0.67 (0.44-1.04) | 5.3 | 1.28 (0.87-1.89)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "5.3",
+   "found": true,
+   "context": "40-49 | 6.0 | 0.93 (0.70-1.23) | 8.4 | 0.67 (0.44-1.04) | 5.3 | 1.28 (0.87-1.89)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "6.4",
+   "found": true,
+   "context": "50-59 | 7.0 | 0.83 (0.65-1.07) | 6.4 | 0.42 (0.29-0.59) | 7.3 | 1.32 (0.93-1.89)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "7.3",
+   "found": true,
+   "context": "50-59 | 7.0 | 0.83 (0.65-1.07) | 6.4 | 0.42 (0.29-0.59) | 7.3 | 1.32 (0.93-1.89)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "8.6",
+   "found": true,
+   "context": "60-69 | 9.8 | 1.39 (1.08-1.78) | 8.6 | 0.76 (0.54-1.08) | 10.7 | 2.11 (1.47-3.03)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "10.7",
+   "found": true,
+   "context": "60-69 | 9.8 | 1.39 (1.08-1.78) | 8.6 | 0.76 (0.54-1.08) | 10.7 | 2.11 (1.47-3.03)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "7.6",
+   "found": true,
+   "context": "≥70 | 8.3 | 1.02 (0.79-1.32) | 7.6 | 0.59 (0.41-0.86) | 8.9 | 1.50 (1.03-2.18)"
+  },
+  {
+   "term": "outcome:masld",
+   "number": "8.9",
+   "found": true,
+   "context": "≥70 | 8.3 | 1.02 (0.79-1.32) | 7.6 | 0.59 (0.41-0.86) | 8.9 | 1.50 (1.03-2.18)"
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC5415464,table block 1,scalar,asir_F,,,,All,5,28.42,per_100k
+pmcid:PMC5415464,table block 1,scalar,cum074_F,,,,All,6,3.07,per_100k
+pmcid:PMC5415464,table block 3,scalar,asmr_F,,,,All,5,6.34,per_100k

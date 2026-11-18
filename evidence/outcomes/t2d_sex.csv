@@ -1,0 +1,3 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC12226831,table block 2,scalar,rate_M,,,,Male,3,18.3,per_1000_py
+pmcid:PMC12226831,table block 2,scalar,rate_F,,,,Female,3,16.8,per_1000_py

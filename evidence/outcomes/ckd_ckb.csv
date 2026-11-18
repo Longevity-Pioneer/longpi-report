@@ -1,0 +1,7 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC13156572,table block 2,scalar,crude,,,,Crude rates,1,119.9,per_100k
+pmcid:PMC13156572,table block 2,scalar,sex_M,,,,Male,1,129.0,per_100k
+pmcid:PMC13156572,table block 2,scalar,sex_F,,,,Female,1,114.5,per_100k
+pmcid:PMC13156572,table block 2,scalar,age_lt60,,,,< 60 yrs,1,78.9,per_100k
+pmcid:PMC13156572,table block 2,scalar,age_60_69,,,,60–69 yrs,1,139.8,per_100k
+pmcid:PMC13156572,table block 2,scalar,age_ge70,,,,≥ 70 yrs,1,219.2,per_100k

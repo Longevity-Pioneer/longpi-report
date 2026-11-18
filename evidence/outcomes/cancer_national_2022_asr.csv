@@ -1,0 +1,21 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC11256708,table block 0,scalar,asir_crc_M,,,,Colon-rectum,7,24.74,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_crc_F,,,,Colon-rectum,10,15.70,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_lung_M,,,,Lung,7,52.03,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_lung_F,,,,Lung,10,30.34,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_liver_M,,,,Liver,7,22.72,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_liver_F,,,,Liver,10,7.42,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_gastric_M,,,,Stomach,7,19.47,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_gastric_F,,,,Stomach,10,8.29,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_breast_F,,,,Female breast,10,33.04,per_100k_segi
+pmcid:PMC11256708,table block 0,scalar,asir_prostate_M,,,,Prostate,7,9.68,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_crc_M,,,,Colon-rectum,7,10.85,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_crc_F,,,,Colon-rectum,10,6.48,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_lung_M,,,,Lung,7,39.51,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_lung_F,,,,Lung,10,14.71,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_liver_M,,,,Liver,7,19.14,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_liver_F,,,,Liver,10,6.15,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_gastric_M,,,,Stomach,7,13.77,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_gastric_F,,,,Stomach,10,5.34,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_breast_F,,,,Female breast,10,6.10,per_100k_segi
+pmcid:PMC11256708,table block 1,scalar,asmr_prostate_M,,,,Prostate,7,3.26,per_100k_segi

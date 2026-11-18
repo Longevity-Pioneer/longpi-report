@@ -1,0 +1,368 @@
+{
+ "id": "liver_ca",
+ "name_zh": "肝癌",
+ "icd10": [
+  "C22"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 6.53
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 15.44
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 28.28
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 39.26
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 61.96
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 74.13
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 82.72
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 93.37
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 109.15
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 128.19
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 142.33
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 129.11
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 1.49
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 2.42
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 5.47
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 8.18
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 14.43
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 20.19
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 28.78
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 38.53
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 51.82
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 65.18
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 74.28
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 70.24
+   }
+  ],
+  "source": "Wan-Qing Chen, Rong-Shou Zheng, Si-Wei Zhang. Liver cancer incidence and mortality in China, 2009. Chinese Journal of Cancer. 2013 Apr;32(4):162. doi:10.5732/cjc.013.10027. PMID 23489585. × 2022 年全国水平：Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.",
+  "source_keys": [
+   "pmcid:PMC3845572",
+   "pmcid:PMC11256708"
+  ],
+  "year": 2022,
+  "shape_year": 2009,
+  "region": "China",
+  "derived": true,
+  "quality_zh": "年龄形状取自国家癌症中心2009年全国肿瘤登记地区肝癌分性别 5 岁组年龄别发病率与死亡率（原表逐字核对）；再按性别乘以同一系数，使世标率等于 2022 年全国估计值（Han 等 2024 年《国家癌症中心杂志》表 1、表 2），系数 = 2022 年全国世标率 ÷ 2009年登记地区世标率（男发病×0.779、死亡×0.732；女发病×0.779、死亡×0.720）。假定各年龄组变化幅度相同，登记地区与全国的差别也并入该系数。85 岁及以上组原为开放组，此处截至 89 岁。形状年份较早（2009 年），此后肝癌年龄别发病整体后移，60 岁以下可能略偏高、高龄略偏低。",
+  "inputs": {
+   "age_table": "evidence/outcomes/liver_2009_incidence.csv",
+   "asr_source_year": {
+    "M": 29.17,
+    "F": 9.52
+   },
+   "asr_2022": {
+    "M": 22.72,
+    "F": 7.42
+   },
+   "factor": {
+    "M": 0.7789,
+    "F": 0.7794
+   }
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:C22"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：Creative Commons Attribution-NonCommercial-ShareAlike 3.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Table 3. Age-specific incidences of liver cancer in cancer registration areas in 2009.",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3845572/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ },
+ "mortality_share": {
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "share": 0.03824
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "share": 0.08839
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "share": 0.1103
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "share": 0.10634
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "share": 0.09122
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "share": 0.07393
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "share": 0.04811
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "share": 0.03548
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "share": 0.02719
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "share": 0.02157
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "share": 0.01401
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "share": 0.00756
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "share": 0.01203
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "share": 0.02621
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "share": 0.03788
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "share": 0.03932
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "share": 0.04398
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "share": 0.04008
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "share": 0.03347
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "share": 0.02908
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "share": 0.02403
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "share": 0.0172
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "share": 0.01056
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "share": 0.00611
+   }
+  ],
+  "source": "Wan-Qing Chen, Rong-Shou Zheng, Si-Wei Zhang. Liver cancer incidence and mortality in China, 2009. Chinese Journal of Cancer. 2013 Apr;32(4):162. doi:10.5732/cjc.013.10027. PMID 23489585.（年龄别死亡率）× 2022 年全国死亡世标率（Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.）；全因死亡率：WPP 2024 中国生命表 2022 年各单岁 mx 在年龄组内平均",
+  "year": 2022,
+  "derived": true,
+  "source_keys": [
+   "pmcid:PMC3845572",
+   "pmcid:PMC11256708",
+   "data/lifetable_china_wpp2024.json"
+  ],
+  "method_zh": "死因占比 = 该癌种年龄别死亡率（按 2022 年全国死亡世标率校准）÷ 同性别同年龄组全因死亡率",
+  "inputs": {
+   "asmr_source_year": {
+    "M": 26.14,
+    "F": 8.54
+   },
+   "asmr_2022": {
+    "M": 19.14,
+    "F": 6.15
+   },
+   "factor": {
+    "M": 0.7322,
+    "F": 0.7201
+   }
+  }
+ }
+}

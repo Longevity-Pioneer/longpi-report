@@ -1,0 +1,100 @@
+{
+ "id": "masld",
+ "name_zh": "代谢相关脂肪性肝病",
+ "icd10": [
+  "K76.0"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "rate": 9700.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "rate": 8400.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "rate": 6400.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 8600.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 7600.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "rate": 3300.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "rate": 5300.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "rate": 7300.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 10700.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 8900.0
+   }
+  ],
+  "source": "Yurou Xu, Youyi Wang, Xiajing Yao, et al. Prevalence, Incidence, and Recovery of Metabolic Dysfunction-associated Steatotic Liver Disease and Associations With Weight Loss and Lipid Reduction in a Chinese Community-based Cohort. Journal of Epidemiology. 2025 Apr 5;35(4):195. doi:10.2188/jea.JE20240224. PMID 39401903.",
+  "source_keys": [
+   "pmcid:PMC11882351"
+  ],
+  "year": 2023,
+  "region": "China (Shanghai, Songjiang community cohort)",
+  "derived": false,
+  "quality_zh": "上海松江社区成人队列（基线 2016–2017 年，随访至 2023 年，13052 名基线无 MASLD 者，约 5.7 万人年）超声脂肪肝 + 至少一项心血管代谢危险因素定义的 MASLD 发病密度（每 100 人年，×1000 换算为每 10 万人年，数值未改）。单一城市郊区队列；18–39 岁组用于 30–39 岁，≥70 岁组用于 70–89 岁。MASLD 可逆，同一研究报告了较高的恢复率，因此按发病率积分的“终身风险”会远高于横断面患病率，宜作为“10 年内出现”的风险解读。",
+  "inputs": {
+   "unit_conversion": "per 100 PY × 1000"
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:K76.0",
+  "ICD10:K75.81"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：no licence stated on the PMC page (publisher copyright)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Table 3. Incidence density of MASLD and Cox proportional hazard regression of risk factors for MASLD incidence in Songjiang district.",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11882351/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

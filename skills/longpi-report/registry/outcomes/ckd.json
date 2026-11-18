@@ -1,0 +1,84 @@
+{
+ "id": "ckd",
+ "name_zh": "慢性肾脏病",
+ "icd10": [
+  "N18"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 59,
+    "rate": 84.89
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 150.41
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 235.84
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 59,
+    "rate": 75.35
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 133.5
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 209.33
+   }
+  ],
+  "source": "Zhiqing Zeng, Si Cheng, Yizhen Hu, et al. Trends in 10th Revision of the International Classification of Diseases–Coded CKD Incidence Among Chinese Adults. Kidney International Reports. 2026 Apr 1;11(6):106525. doi:10.1016/j.ekir.2026.106525. PMID 42112160.",
+  "source_keys": [
+   "pmcid:PMC13156572"
+  ],
+  "year": 2018,
+  "region": "China (China Kadoorie Biobank, 10 areas)",
+  "derived": true,
+  "quality_zh": "中国慢性病前瞻性研究（CKB，50 万人，30–79 岁，2009–2018 年，5662 例）中经医院与医保记录确认、以 ICD-10 编码的慢性肾脏病（糖尿病肾病、高血压肾病、肾小球肾炎、慢性小管间质性肾炎、梗阻性肾病、N18 等）。原文只分别给出年龄组与性别的发病率，此处按 年龄组率 × 性别率 ÷ 总体粗率（119.9）合成分性别年龄组率。这是“临床诊断并留下就医记录”的慢性肾病，远低于按 eGFR<60 或蛋白尿筛查定义的发病率（约低一个数量级）；≥70 岁组用于 70–89 岁（队列最高 79 岁入组，高龄外推）。",
+  "inputs": {
+   "crude": 119.9,
+   "sex_M": 129.0,
+   "sex_F": 114.5,
+   "age_lt60": 78.9,
+   "age_60_69": 139.8,
+   "age_ge70": 219.2
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:N18",
+  "ICD10:E11.2",
+  "ICD10:I12",
+  "ICD10:N03",
+  "ICD10:N11"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC-ND 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Regional and population variations in incidence rates for total CKD and its subtypes",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13156572/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

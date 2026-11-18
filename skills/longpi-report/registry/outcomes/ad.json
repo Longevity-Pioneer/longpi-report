@@ -1,0 +1,76 @@
+{
+ "id": "ad",
+ "name_zh": "阿尔茨海默病",
+ "icd10": [
+  "G30"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 348.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "rate": 1081.0
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 89,
+    "rate": 5931.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 478.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "rate": 2078.0
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 89,
+    "rate": 6996.0
+   }
+  ],
+  "source": "Xingzhong Gu, Zhihong Shi, Shuai Liu, et al. Incidence and risk factors of dementia and the primary subtypes in northern rural China. Medicine. 2021 Apr 2;100(13):e25343. doi:10.1097/MD.0000000000025343. PMID 33787634.",
+  "source_keys": [
+   "pmcid:PMC8021353"
+  ],
+  "year": 2016,
+  "region": "China (Ji County, Tianjin; rural northern China)",
+  "derived": false,
+  "quality_zh": "天津蓟县农村 60 岁以上人群 2011–2016 年随访（1181 人，5649 人年）中按 NINCDS-ADRDA 诊断的阿尔茨海默病发病率（不是全因痴呆；同表全因痴呆 127 例中 AD 75 例），每 1000 人年 ×100 换算为每 10 万人年。样本小（每格 5–19 例，置信区间宽），农村、低教育人群发病偏高，约为多地区汇总估计（65 岁以上 AD 约 6–8/1000 人年）的 1.5–2 倍，按此算出的终身风险偏高；60 岁以下无数据（视为 0，早发型 AD 极少），80 岁以上为一个开放组，用于 80–89 岁。目前未找到可逐字核对、分性别年龄的全国 AD 发病表，后续有更大样本来源时应替换。",
+  "inputs": {
+   "unit_conversion": "per 1000 PY × 100"
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:G30",
+  "ICD10:F00"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Incidence of dementia, Alzheimer disease and vascular dementia: person-years at risk, number of cases, and rates by age and sex (95% confidence interval in parentheses).",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8021353/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

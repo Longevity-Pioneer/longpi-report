@@ -1,0 +1,134 @@
+{
+ "key": "pmcid:PMC11256708",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11256708/",
+ "fetched_at": "2026-11-18T03:24:10+00:00",
+ "sha256": "70b063903055f727ca93401ab6f7683e6259b8c2f032c44416360d085b043143",
+ "bytes": 228324,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.",
+ "licence": "CC BY-NC-ND 4.0 (stated on article page)",
+ "data_year": 2022,
+ "text": "Cancer incidence and mortality in China, 2022 - PMC\n[Table block 0] Estimated numbers of new cancer cases and cancer incidence rates in China in 2022.\nCancer sites | ICD-10 | All | Male | Female\nCases (×104) | Crude rate (1/105) | ASIR (1/105) | Cases (×104) | Crude rate (1/105) | ASIR (1/105) | Cases (×104) | Crude rate (1/105) | ASIR (1/105)\nLip, oral cavity & pharynx | C00–10, 12–13 | 6.51 | 4.61 | 2.72 | 4.56 | 6.33 | 3.87 | 1.95 | 2.82 | 1.60\nNasopharynx | C11 | 5.10 | 3.61 | 2.36 | 3.67 | 5.08 | 3.39 | 1.44 | 2.08 | 1.33\nEsophagus | C15 | 22.40 | 15.87 | 8.32 | 16.75 | 23.23 | 13.09 | 5.65 | 8.19 | 3.78\nStomach | C16 | 35.87 | 25.41 | 13.72 | 24.66 | 34.20 | 19.47 | 11.21 | 16.23 | 8.29\nColon-rectum | C18–21 | 51.71 | 36.63 | 20.10 | 30.77 | 42.67 | 24.74 | 20.94 | 30.32 | 15.70\nLiver | C22 | 36.77 | 26.04 | 15.03 | 26.79 | 37.16 | 22.72 | 9.98 | 14.44 | 7.42\nGallbladder | C23 | 3.11 | 2.21 | 1.14 | 1.27 | 1.76 | 0.97 | 1.85 | 2.67 | 1.30\nPancreas | C25 | 11.87 | 8.41 | 4.44 | 6.71 | 9.31 | 5.29 | 5.15 | 7.46 | 3.63\nLarynx | C32 | 2.95 | 2.09 | 1.16 | 2.72 | 3.77 | 2.19 | 0.23 | 0.33 | 0.17\nLung | C33–34 | 106.06 | 75.13 | 40.78 | 65.87 | 91.36 | 52.03 | 40.19 | 58.18 | 30.34\nMelanoma of skin | C43 | 0.88 | 0.62 | 0.37 | 0.44 | 0.61 | 0.37 | 0.44 | 0.64 | 0.36\nFemale breast | C50 | 35.72 | 51.71 | 33.04 | – | – | – | 35.72 | 51.71 | 33.04\nCervix | C53 | 15.07 | 21.81 | 13.83 | – | – | – | 15.07 | 21.81 | 13.83\nUterus | C54 | 7.77 | 11.25 | 6.84 | – | – | – | 7.77 | 11.25 | 6.84\nOvary | C56 | 6.11 | 8.84 | 5.68 | – | – | – | 6.11 | 8.84 | 5.68\nProstate | C61 | 13.42 | 18.61 | 9.68 | 13.42 | 18.61 | 9.68 | – | – | –\nTestis | C62 | 0.35 | 0.48 | 0.41 | 0.35 | 0.48 | 0.41 | – | – | –\nKidney | C64 | 7.37 | 5.22 | 3.13 | 4.73 | 6.56 | 4.08 | 2.64 | 3.81 | 2.21\nBladder | C67 | 9.29 | 6.58 | 3.44 | 7.32 | 10.15 | 5.67 | 1.97 | 2.85 | 1.39\nBrain, CNS | C70–72 | 8.75 | 6.20 | 4.17 | 4.24 | 5.88 | 4.13 | 4.51 | 6.53 | 4.20\nThyroid | C73 | 46.61 | 33.02 | 24.64 | 12.49 | 17.32 | 13.25 | 34.12 | 49.40 | 36.51\nLymphoma | C81–86, 88 | 8.52 | 6.03 | 3.77 | 4.81 | 6.68 | 4.34 | 3.71 | 5.36 | 3.21\nLeukemia | C91–95 | 8.19 | 5.80 | 4.54 | 4.70 | 6.52 | 5.14 | 3.50 | 5.06 | 3.94\nAll other sites⁎ | Other | 31.69 | 22.45 | 13.31 | 16.73 | 23.20 | 14.42 | 14.96 | 21.66 | 12.28\nAll sites⁎ | All | 482.47 | 341.75 | 201.61 | 253.39 | 351.44 | 209.61 | 229.08 | 331.64 | 197.03\n[Table block 1] Estimated numbers of cancer deaths and cancer mortality rates in China in 2022.\nCancer sites | ICD-10 | All | Male | Female\nDeaths (×104) | Crude rate (1/105) | ASMR (1/105) | Deaths (×104) | Crude rate (1/105) | ASMR (1/105) | Deaths (×104) | Crude rate (1/105) | ASMR (1/105)\nLip, oral cavity & pharynx | C00–10, 12–13 | 3.52 | 2.49 | 1.33 | 2.58 | 3.58 | 2.06 | 0.94 | 1.35 | 0.63\nNasopharynx | C11 | 2.84 | 2.01 | 1.18 | 2.13 | 2.95 | 1.81 | 0.71 | 1.03 | 0.56\nEsophagus | C15 | 18.75 | 13.28 | 6.68 | 14.04 | 19.47 | 10.70 | 4.71 | 6.82 | 2.92\nStomach | C16 | 26.04 | 18.44 | 9.39 | 18.16 | 25.18 | 13.77 | 7.88 | 11.41 | 5.34\nColon-rectum | C18–21 | 24.00 | 17.00 | 8.56 | 14.26 | 19.78 | 10.85 | 9.74 | 14.10 | 6.48\nLiver | C22 | 31.65 | 22.42 | 12.59 | 22.98 | 31.87 | 19.14 | 8.68 | 12.56 | 6.15\nGallbladder | C23 | 2.45 | 1.74 | 0.87 | 0.98 | 1.36 | 0.74 | 1.47 | 2.13 | 0.99\nPancreas | C25 | 10.63 | 7.53 | 3.88 | 6.11 | 8.47 | 4.73 | 4.52 | 6.55 | 3.06\nLarynx | C32 | 1.69 | 1.19 | 0.62 | 1.50 | 2.08 | 1.16 | 0.18 | 0.26 | 0.12\nLung | C33–34 | 73.33 | 51.94 | 26.66 | 51.59 | 71.55 | 39.51 | 21.74 | 31.47 | 14.71\nMelanoma of skin | C43 | 0.54 | 0.38 | 0.20 | 0.29 | 0.40 | 0.23 | 0.25 | 0.36 | 0.18\nFemale breast | C50 | 7.50 | 10.86 | 6.10 | – | – | – | 7.50 | 10.86 | 6.10\nCervix | C53 | 5.57 | 8.06 | 4.54 | – | – | – | 5.57 | 8.06 | 4.54\nUterus | C54 | 1.35 | 1.96 | 1.05 | – | – | – | 1.35 | 1.96 | 1.05\nOvary | C56 | 3.26 | 4.73 | 2.64 | – | – | – | 3.26 | 4.73 | 2.64\nProstate | C61 | 4.75 | 6.59 | 3.26 | 4.75 | 6.59 | 3.26 | – | – | –\nTestis | C62 | 0.08 | 0.11 | 0.07 | 0.08 | 0.11 | 0.07 | – | – | –\nKidney | C64 | 2.40 | 1.70 | 0.91 | 1.64 | 2.27 | 1.30 | 0.76 | 1.10 | 0.54\nBladder | C67 | 4.14 | 2.93 | 1.34 | 3.25 | 4.51 | 2.31 | 0.88 | 1.28 | 0.52\nBrain, CNS | C70–72 | 5.66 | 4.01 | 2.51 | 3.16 | 4.38 | 2.88 | 2.51 | 3.63 | 2.15\nThyroid | C73 | 1.16 | 0.82 | 0.45 | 0.43 | 0.60 | 0.35 | 0.72 | 1.05 | 0.55\nLymphoma | C81–86, 88 | 4.16 | 2.95 | 1.64 | 2.51 | 3.48 | 2.06 | 1.65 | 2.39 | 1.24\nLeukemia | C91–95 | 5.01 | 3.55 | 2.37 | 2.92 | 4.04 | 2.78 | 2.09 | 3.03 | 1.97\nAll other sites⁎ | Other | 16.78 | 11.89 | 6.47 | 9.42 | 13.07 | 7.64 | 7.36 | 10.66 | 5.37\nAll sites⁎ | All | 257.42 | 182.34 | 96.47 | 162.93 | 225.97 | 127.49 | 94.49 | 136.79 | 67.81",
+ "checks": [
+  {
+   "term": "national_2022_level",
+   "number": "10.85",
+   "found": true,
+   "context": "Colon-rectum | C18-21 | 24.00 | 17.00 | 8.56 | 14.26 | 19.78 | 10.85 | 9.74 | 14.10 | 6.48"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "6.48",
+   "found": true,
+   "context": "Colon-rectum | C18-21 | 24.00 | 17.00 | 8.56 | 14.26 | 19.78 | 10.85 | 9.74 | 14.10 | 6.48"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "24.74",
+   "found": true,
+   "context": "Colon-rectum | C18-21 | 51.71 | 36.63 | 20.10 | 30.77 | 42.67 | 24.74 | 20.94 | 30.32 | 15.70"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "15.70",
+   "found": true,
+   "context": "Colon-rectum | C18-21 | 51.71 | 36.63 | 20.10 | 30.77 | 42.67 | 24.74 | 20.94 | 30.32 | 15.70"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "33.04",
+   "found": true,
+   "context": "Female breast | C50 | 35.72 | 51.71 | 33.04 | - | - | - | 35.72 | 51.71 | 33.04"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "6.10",
+   "found": true,
+   "context": "Female breast | C50 | 7.50 | 10.86 | 6.10 | - | - | - | 7.50 | 10.86 | 6.10"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "19.14",
+   "found": true,
+   "context": "Liver | C22 | 31.65 | 22.42 | 12.59 | 22.98 | 31.87 | 19.14 | 8.68 | 12.56 | 6.15"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "6.15",
+   "found": true,
+   "context": "Liver | C22 | 31.65 | 22.42 | 12.59 | 22.98 | 31.87 | 19.14 | 8.68 | 12.56 | 6.15"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "22.72",
+   "found": true,
+   "context": "Liver | C22 | 36.77 | 26.04 | 15.03 | 26.79 | 37.16 | 22.72 | 9.98 | 14.44 | 7.42"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "7.42",
+   "found": true,
+   "context": "Liver | C22 | 36.77 | 26.04 | 15.03 | 26.79 | 37.16 | 22.72 | 9.98 | 14.44 | 7.42"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "52.03",
+   "found": true,
+   "context": "Lung | C33-34 | 106.06 | 75.13 | 40.78 | 65.87 | 91.36 | 52.03 | 40.19 | 58.18 | 30.34"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "30.34",
+   "found": true,
+   "context": "Lung | C33-34 | 106.06 | 75.13 | 40.78 | 65.87 | 91.36 | 52.03 | 40.19 | 58.18 | 30.34"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "39.51",
+   "found": true,
+   "context": "Lung | C33-34 | 73.33 | 51.94 | 26.66 | 51.59 | 71.55 | 39.51 | 21.74 | 31.47 | 14.71"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "14.71",
+   "found": true,
+   "context": "Lung | C33-34 | 73.33 | 51.94 | 26.66 | 51.59 | 71.55 | 39.51 | 21.74 | 31.47 | 14.71"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "9.68",
+   "found": true,
+   "context": "Prostate | C61 | 13.42 | 18.61 | 9.68 | 13.42 | 18.61 | 9.68 | - | - | -"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "3.26",
+   "found": true,
+   "context": "Prostate | C61 | 4.75 | 6.59 | 3.26 | 4.75 | 6.59 | 3.26 | - | - | -"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "13.77",
+   "found": true,
+   "context": "Stomach | C16 | 26.04 | 18.44 | 9.39 | 18.16 | 25.18 | 13.77 | 7.88 | 11.41 | 5.34"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "5.34",
+   "found": true,
+   "context": "Stomach | C16 | 26.04 | 18.44 | 9.39 | 18.16 | 25.18 | 13.77 | 7.88 | 11.41 | 5.34"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "19.47",
+   "found": true,
+   "context": "Stomach | C16 | 35.87 | 25.41 | 13.72 | 24.66 | 34.20 | 19.47 | 11.21 | 16.23 | 8.29"
+  },
+  {
+   "term": "national_2022_level",
+   "number": "8.29",
+   "found": true,
+   "context": "Stomach | C16 | 35.87 | 25.41 | 13.72 | 24.66 | 34.20 | 19.47 | 11.21 | 16.23 | 8.29"
+  }
+ ]
+}

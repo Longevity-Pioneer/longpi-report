@@ -1,0 +1,44 @@
+{
+ "key": "pmcid:PMC6169758",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6169758/",
+ "fetched_at": "2026-11-18T03:26:01+00:00",
+ "sha256": "9251098925d1d3b5b3eb77bffc8ebd82c9d27c00609f76e10c21a97f76c31272",
+ "bytes": 204419,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Ying Chen, Xiao-Ping Zhang, Jie Yuan, et al. Association of body mass index and age with incident diabetes in Chinese adults: a population-based cohort study. BMJ Open. 2018 Sep 28;8(9):e021768. doi:10.1136/bmjopen-2018-021768. PMID 30269064.",
+ "licence": "CC BY-NC 4.0 (stated on article page)",
+ "data_year": 2016,
+ "text": "Association of body mass index and age with incident diabetes in Chinese adults: a population-based cohort study - PMC\n[Table block 1] Association between age and body mass index with risk of incident diabetes in Chinese adults\nAge, year | Participants (n) | Events (n) | Incidence rate (per 1000 persons per year) | HRs\nBody mass index adjusted | Multivariable adjusted +body mass index\n20 to <30 | 28 633 | 75 | 0.93 | Ref. | Ref.\n30 to <40 | 82 976 | 546 | 2.18 | 1.64 (1.29, 2.09) | 2.07 (1.24, 3.47)\n40 to <50 | 45 414 | 789 | 5.45 | 3.83 (3.03, 4.86) | 4.83 (2.90, 8.03)\n50 to <60 | 30 006 | 1224 | 12.50 | 8.39 (6.64, 10.59) | 12.26 (7.42, 20.27)\n60 to <70 | 17 534 | 976 | 17.61 | 11.77 (9.30, 14.89) | 15.50 (9.34, 25.70)\n≥70 | 7270 | 564 | 22.39 | 17.55 (13.79, 22.33) | 21.98 (13.14, 36.77)\nP for trend | – | – | – | <0.0001 | <0.0001\nCrude rate | 211 833 | 4174 | 6.17 | – | –\nStandardised rate* | 211 833 | 4174 | 7.35 | – | –\nBody mass index, kg/m2 |  |  |  | Age adjusted | Multivariable adjusted\n<18.5 | 12 081 | 31 | 0.82 | 0.39 (0.27, 0.56) | 0.46 (0.24, 0.90)\n18.5 to <24.0 | 116 812 | 1073 | 2.72 | Ref. | Ref.\n24.0 to <28.0 | 64 774 | 1936 | 9.44 | 2.51 (2.33, 2.70) | 2.36 (2.04, 2.73)\n≥28.0 | 18 166 | 1134 | 21.00 | 5.58 (5.13, 6.07) | 5.22 (4.44, 6.13)\nP for trend |  |  |  | <0.0001 | <0.0001",
+ "checks": [
+  {
+   "term": "outcome:t2d",
+   "number": "2.18",
+   "found": true,
+   "context": "30 to <40 | 82 976 | 546 | 2.18 | 1.64 (1.29, 2.09) | 2.07 (1.24, 3.47)"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "5.45",
+   "found": true,
+   "context": "40 to <50 | 45 414 | 789 | 5.45 | 3.83 (3.03, 4.86) | 4.83 (2.90, 8.03)"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "12.50",
+   "found": true,
+   "context": "50 to <60 | 30 006 | 1224 | 12.50 | 8.39 (6.64, 10.59) | 12.26 (7.42, 20.27)"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "17.61",
+   "found": true,
+   "context": "60 to <70 | 17 534 | 976 | 17.61 | 11.77 (9.30, 14.89) | 15.50 (9.34, 25.70)"
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "22.39",
+   "found": true,
+   "context": "≥70 | 7270 | 564 | 22.39 | 17.55 (13.79, 22.33) | 21.98 (13.14, 36.77)"
+  }
+ ]
+}

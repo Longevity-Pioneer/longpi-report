@@ -1,0 +1,96 @@
+{
+ "id": "htn",
+ "name_zh": "高血压",
+ "icd10": [
+  "I10",
+  "I11",
+  "I12",
+  "I13",
+  "I15"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 1314.61
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 49,
+    "rate": 3330.34
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 64,
+    "rate": 6660.67
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 89,
+    "rate": 9903.37
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 1685.39
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 49,
+    "rate": 4269.66
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 64,
+    "rate": 8539.33
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 89,
+    "rate": 12696.63
+   }
+  ],
+  "source": "Su-Fen Qi, Bing Zhang, Hui-Jun Wang, et al. Joint Effects of Age and Body Mass Index on the Incidence of Hypertension Subtypes in the China Health and Nutrition Survey: A Cohort Study over 22 Years. Preventive medicine. 2016 May 4;89():23. doi:10.1016/j.ypmed.2016.05.004. PMID 27155441.",
+  "source_keys": [
+   "pmcid:PMC6443580"
+  ],
+  "year": 2011,
+  "region": "China (China Health and Nutrition Survey, 9 provinces)",
+  "derived": true,
+  "quality_zh": "中国健康与营养调查 1989–2011 年队列（5.3 万人，11.9 万人年，5208 例；血压 ≥140/90 mmHg 或服降压药）的年龄组发病率，按同表男女发病率之比（5.0/3.9 = 1.282）拆分男女，假定男女人时相等。年龄组较宽：18–34 岁组用于 30–34 岁，≥65 岁组用于 65–89 岁；队列跨 22 年，早期随访的诊断阈值与测量方法与现在不同。",
+  "inputs": {
+   "sex_ratio_M_over_F": 1.2821,
+   "unit_conversion": "per 100 PY × 1000"
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:I10",
+  "ICD10:I11",
+  "ICD10:I12",
+  "ICD10:I13",
+  "ICD10:I15"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：NIH author manuscript; no open licence stated (publisher copyright)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Incident Rates of Hypertension and Subtypes in All Participants (IR, 95%CI)",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6443580/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

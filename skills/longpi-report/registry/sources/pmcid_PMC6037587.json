@@ -1,0 +1,338 @@
+{
+ "key": "pmcid:PMC6037587",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6037587/",
+ "fetched_at": "2026-11-18T03:25:00+00:00",
+ "sha256": "9e92f60dc996f48c68defb1c50295056ed2437ea1ea358492419edfd1da2f90b",
+ "bytes": 205634,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Lei Yang, Rongshou Zheng, Ning Wang, et al. Incidence and mortality of stomach cancer in China, 2014. Chinese Journal of Cancer Research. 2018 Jun;30(3):291. doi:10.21147/j.issn.1000-9604.2018.03.01. PMID 30046223.",
+ "licence": "no licence stated on the PMC page (publisher copyright)",
+ "data_year": 2014,
+ "text": "Incidence and mortality of stomach cancer in China, 2014 - PMC\n[Table block 1] Stomach cancer incidence in China, 2014\nAreas | Sex | Cases (×104) | Crude rate (1/105) | Ratio (%) | ASIRC (1/105) | ASIRW (1/105) | Cumulative rate 0–74 (%) | TASR 35–64 (1/105) | Rank\nASIRC, age-standardized incidence rate adjusted by Chinese standard population; ASIRW, age-standardized incidence rate adjusted by world standard population; TASR, truncated age-standardized rate by world standard population.\nAll | Both | 41.04 | 30.00 | 10.79 | 19.62 | 19.51 | 2.42 | 28.80 | 2\nMale | 28.79 | 41.08 | 13.62 | 27.88 | 27.94 | 3.52 | 40.91 | 2\nFemale | 12.25 | 18.36 | 7.25 | 11.55 | 11.27 | 1.32 | 16.49 | 5\nUrban | Both | 21.06 | 28.11 | 9.30 | 17.29 | 17.17 | 2.10 | 25.36 | 3\nMale | 14.67 | 38.66 | 11.94 | 24.50 | 24.56 | 3.06 | 35.82 | 2\nFemale | 6.39 | 17.27 | 6.17 | 10.37 | 10.07 | 1.16 | 14.86 | 5\nRural | Both | 19.98 | 32.29 | 12.97 | 22.82 | 22.73 | 2.85 | 33.59 | 2\nMale | 14.12 | 43.93 | 15.94 | 32.45 | 32.51 | 4.13 | 47.85 | 2\nFemale | 5.86 | 19.72 | 8.95 | 13.22 | 12.96 | 1.54 | 18.82 | 3\n[Table block 2] Age-specific incidence rates of stomach cancer in China, 2014 (1/105)\nAge groups | All areas |  | Urban areas |  | Rural areas\nBoth | Male | Female |  | Both | Male | Female |  | Both | Male | Female\n0– | 0.51 | 0.65 | 0.35 |  | 0.79 | 1.04 | 0.50 |  | 0.13 | 0.12 | 0.14\n1– | 0.01 | 0.02 | 0.00 |  | 0.02 | 0.04 | 0.00 |  | 0.00 | 0.00 | 0.00\n5– | 0.04 | 0.04 | 0.04 |  | 0.00 | 0.00 | 0.00 |  | 0.07 | 0.07 | 0.08\n10– | 0.03 | 0.03 | 0.04 |  | 0.07 | 0.07 | 0.07 |  | 0.00 | 0.00 | 0.00\n15– | 0.13 | 0.16 | 0.11 |  | 0.11 | 0.08 | 0.14 |  | 0.16 | 0.24 | 0.07\n20– | 0.44 | 0.34 | 0.56 |  | 0.37 | 0.30 | 0.45 |  | 0.52 | 0.38 | 0.68\n25– | 1.22 | 1.05 | 1.40 |  | 1.16 | 0.81 | 1.51 |  | 1.29 | 1.32 | 1.27\n30– | 2.60 | 2.13 | 3.10 |  | 2.48 | 1.94 | 3.03 |  | 2.77 | 2.37 | 3.21\n35– | 4.29 | 4.07 | 4.53 |  | 4.15 | 3.61 | 4.68 |  | 4.48 | 4.63 | 4.32\n40– | 8.78 | 10.11 | 7.40 |  | 8.07 | 8.87 | 7.27 |  | 9.67 | 11.63 | 7.58\n45– | 17.02 | 22.04 | 11.88 |  | 14.83 | 18.58 | 11.05 |  | 19.67 | 26.17 | 12.89\n50– | 29.31 | 40.25 | 18.16 |  | 26.50 | 36.30 | 16.51 |  | 33.27 | 45.82 | 20.49\n55– | 54.36 | 80.90 | 26.79 |  | 48.07 | 71.21 | 24.36 |  | 63.66 | 94.99 | 30.44\n60– | 87.09 | 131.49 | 42.62 |  | 74.78 | 114.47 | 35.64 |  | 104.38 | 154.94 | 52.60\n65– | 122.39 | 181.49 | 62.69 |  | 104.98 | 155.55 | 54.60 |  | 145.87 | 215.90 | 73.78\n70– | 156.03 | 228.97 | 84.34 |  | 135.20 | 200.23 | 72.86 |  | 184.12 | 266.64 | 100.28\n75– | 179.95 | 260.13 | 106.40 |  | 158.92 | 231.15 | 93.82 |  | 210.13 | 300.85 | 124.83\n80– | 185.85 | 264.41 | 121.44 |  | 170.92 | 242.49 | 111.44 |  | 207.46 | 296.71 | 135.71\n85+ | 147.92 | 206.96 | 109.51 |  | 141.60 | 203.21 | 100.19 |  | 156.99 | 212.61 | 122.48\nAll | 30.00 | 41.08 | 18.36 |  | 28.11 | 38.66 | 17.27 |  | 32.29 | 43.93 | 19.72\n[Table block 3] Stomach cancer mortality in China, 2014\nAreas | Sex | Deaths (×104) | Crude rate (1/105) | Ratio (%) | ASMRC (1/105) | ASMRW (1/105) | Cumulative rate 0–74 (%) | TASR 35–64 (1/105) | Rank\nASMRC, age-standardized mortality rate adjusted by Chinese standard population; ASMRW, age-standardized mortality rate adjusted by world standard population; TASR, truncated age-standardized rate by world standard population.\nAll | Both | 29.38 | 21.48 | 12.80 | 13.44 | 13.30 | 1.55 | 15.77 | 3\nMale | 20.49 | 29.24 | 14.11 | 19.33 | 19.21 | 2.27 | 22.49 | 3\nFemale | 8.89 | 13.33 | 10.54 | 7.80 | 7.63 | 0.84 | 8.93 | 2\nUrban | Both | 14.74 | 19.68 | 11.29 | 11.51 | 11.38 | 1.30 | 13.52 | 3\nMale | 10.28 | 27.09 | 12.58 | 16.64 | 16.56 | 1.93 | 19.22 | 3\nFemale | 4.47 | 12.08 | 9.14 | 6.66 | 6.50 | 0.69 | 7.80 | 3\nRural | Both | 14.64 | 23.66 | 14.78 | 16.12 | 15.94 | 1.90 | 18.90 | 3\nMale | 10.21 | 31.78 | 16.08 | 22.98 | 22.82 | 2.73 | 26.99 | 3\nFemale | 4.43 | 14.89 | 12.46 | 9.40 | 9.21 | 1.04 | 10.52 | 2\n[Table block 4] Age-specific mortality rates of stomach cancer in China, 2014 (1/105)\nAge groups | All areas |  | Urban areas |  | Rural areas\nBoth | Male | Female |  | Both | Male | Female |  | Both | Male | Female\n0– | 0.03 | 0.00 | 0.06 |  | 0.00 | 0.00 | 0.00 |  | 0.06 | 0.00 | 0.14\n1– | 0.00 | 0.00 | 0.00 |  | 0.00 | 0.00 | 0.00 |  | 0.00 | 0.00 | 0.00\n5– | 0.01 | 0.03 | 0.00 |  | 0.02 | 0.03 | 0.00 |  | 0.01 | 0.02 | 0.00\n10– | 0.00 | 0.00 | 0.00 |  | 0.00 | 0.00 | 0.00 |  | 0.00 | 0.00 | 0.00\n15– | 0.04 | 0.05 | 0.04 |  | 0.04 | 0.05 | 0.03 |  | 0.05 | 0.04 | 0.05\n20– | 0.25 | 0.23 | 0.26 |  | 0.24 | 0.27 | 0.20 |  | 0.26 | 0.19 | 0.33\n25– | 0.60 | 0.52 | 0.68 |  | 0.52 | 0.41 | 0.63 |  | 0.69 | 0.64 | 0.74\n30– | 1.33 | 1.23 | 1.42 |  | 1.18 | 1.15 | 1.21 |  | 1.52 | 1.34 | 1.72\n35– | 2.08 | 2.08 | 2.09 |  | 2.05 | 1.97 | 2.13 |  | 2.13 | 2.21 | 2.04\n40– | 4.56 | 5.11 | 3.98 |  | 4.20 | 4.38 | 4.02 |  | 5.00 | 6.00 | 3.93\n45– | 8.68 | 11.19 | 6.12 |  | 7.36 | 9.43 | 5.27 |  | 10.28 | 13.28 | 7.15\n50– | 15.22 | 21.04 | 9.31 |  | 13.51 | 18.35 | 8.58 |  | 17.64 | 24.83 | 10.33\n55– | 29.00 | 43.53 | 13.89 |  | 24.50 | 36.93 | 11.77 |  | 35.63 | 53.12 | 17.09\n60– | 51.17 | 76.93 | 25.37 |  | 42.98 | 65.41 | 20.85 |  | 62.67 | 92.78 | 31.83\n65– | 80.16 | 118.97 | 40.96 |  | 65.96 | 99.30 | 32.75 |  | 99.31 | 145.07 | 52.21\n70– | 117.72 | 173.52 | 62.88 |  | 98.17 | 147.66 | 50.72 |  | 144.10 | 207.41 | 79.77\n75– | 161.64 | 236.18 | 93.28 |  | 136.43 | 201.69 | 77.60 |  | 197.84 | 284.62 | 116.25\n80– | 194.24 | 280.45 | 123.56 |  | 176.33 | 253.65 | 112.06 |  | 220.16 | 319.94 | 139.95\n85+ | 181.71 | 258.15 | 131.99 |  | 173.13 | 249.90 | 121.55 |  | 194.03 | 270.58 | 146.52\nAll | 21.48 | 29.24 | 13.33 |  | 19.68 | 27.09 | 12.08 |  | 23.66 | 31.78 | 14.89",
+ "checks": [
+  {
+   "term": "outcome:gastric_ca",
+   "number": "1.23",
+   "found": true,
+   "context": "30- | 1.33 | 1.23 | 1.42 |  | 1.18 | 1.15 | 1.21 |  | 1.52 | 1.34 | 1.72"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "1.42",
+   "found": true,
+   "context": "30- | 1.33 | 1.23 | 1.42 |  | 1.18 | 1.15 | 1.21 |  | 1.52 | 1.34 | 1.72"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "2.13",
+   "found": true,
+   "context": "30- | 2.60 | 2.13 | 3.10 |  | 2.48 | 1.94 | 3.03 |  | 2.77 | 2.37 | 3.21"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "3.10",
+   "found": true,
+   "context": "30- | 2.60 | 2.13 | 3.10 |  | 2.48 | 1.94 | 3.03 |  | 2.77 | 2.37 | 3.21"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "2.08",
+   "found": true,
+   "context": "35- | 2.08 | 2.08 | 2.09 |  | 2.05 | 1.97 | 2.13 |  | 2.13 | 2.21 | 2.04"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "2.09",
+   "found": true,
+   "context": "35- | 2.08 | 2.08 | 2.09 |  | 2.05 | 1.97 | 2.13 |  | 2.13 | 2.21 | 2.04"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "4.07",
+   "found": true,
+   "context": "35- | 4.29 | 4.07 | 4.53 |  | 4.15 | 3.61 | 4.68 |  | 4.48 | 4.63 | 4.32"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "4.53",
+   "found": true,
+   "context": "35- | 4.29 | 4.07 | 4.53 |  | 4.15 | 3.61 | 4.68 |  | 4.48 | 4.63 | 4.32"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "5.11",
+   "found": true,
+   "context": "40- | 4.56 | 5.11 | 3.98 |  | 4.20 | 4.38 | 4.02 |  | 5.00 | 6.00 | 3.93"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "3.98",
+   "found": true,
+   "context": "40- | 4.56 | 5.11 | 3.98 |  | 4.20 | 4.38 | 4.02 |  | 5.00 | 6.00 | 3.93"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "10.11",
+   "found": true,
+   "context": "40- | 8.78 | 10.11 | 7.40 |  | 8.07 | 8.87 | 7.27 |  | 9.67 | 11.63 | 7.58"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "7.40",
+   "found": true,
+   "context": "40- | 8.78 | 10.11 | 7.40 |  | 8.07 | 8.87 | 7.27 |  | 9.67 | 11.63 | 7.58"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "22.04",
+   "found": true,
+   "context": "45- | 17.02 | 22.04 | 11.88 |  | 14.83 | 18.58 | 11.05 |  | 19.67 | 26.17 | 12.89"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "11.88",
+   "found": true,
+   "context": "45- | 17.02 | 22.04 | 11.88 |  | 14.83 | 18.58 | 11.05 |  | 19.67 | 26.17 | 12.89"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "11.19",
+   "found": true,
+   "context": "45- | 8.68 | 11.19 | 6.12 |  | 7.36 | 9.43 | 5.27 |  | 10.28 | 13.28 | 7.15"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "6.12",
+   "found": true,
+   "context": "45- | 8.68 | 11.19 | 6.12 |  | 7.36 | 9.43 | 5.27 |  | 10.28 | 13.28 | 7.15"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "21.04",
+   "found": true,
+   "context": "50- | 15.22 | 21.04 | 9.31 |  | 13.51 | 18.35 | 8.58 |  | 17.64 | 24.83 | 10.33"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "9.31",
+   "found": true,
+   "context": "50- | 15.22 | 21.04 | 9.31 |  | 13.51 | 18.35 | 8.58 |  | 17.64 | 24.83 | 10.33"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "40.25",
+   "found": true,
+   "context": "50- | 29.31 | 40.25 | 18.16 |  | 26.50 | 36.30 | 16.51 |  | 33.27 | 45.82 | 20.49"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "18.16",
+   "found": true,
+   "context": "50- | 29.31 | 40.25 | 18.16 |  | 26.50 | 36.30 | 16.51 |  | 33.27 | 45.82 | 20.49"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "43.53",
+   "found": true,
+   "context": "55- | 29.00 | 43.53 | 13.89 |  | 24.50 | 36.93 | 11.77 |  | 35.63 | 53.12 | 17.09"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "13.89",
+   "found": true,
+   "context": "55- | 29.00 | 43.53 | 13.89 |  | 24.50 | 36.93 | 11.77 |  | 35.63 | 53.12 | 17.09"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "80.90",
+   "found": true,
+   "context": "55- | 54.36 | 80.90 | 26.79 |  | 48.07 | 71.21 | 24.36 |  | 63.66 | 94.99 | 30.44"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "26.79",
+   "found": true,
+   "context": "55- | 54.36 | 80.90 | 26.79 |  | 48.07 | 71.21 | 24.36 |  | 63.66 | 94.99 | 30.44"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "76.93",
+   "found": true,
+   "context": "60- | 51.17 | 76.93 | 25.37 |  | 42.98 | 65.41 | 20.85 |  | 62.67 | 92.78 | 31.83"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "25.37",
+   "found": true,
+   "context": "60- | 51.17 | 76.93 | 25.37 |  | 42.98 | 65.41 | 20.85 |  | 62.67 | 92.78 | 31.83"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "131.49",
+   "found": true,
+   "context": "60- | 87.09 | 131.49 | 42.62 |  | 74.78 | 114.47 | 35.64 |  | 104.38 | 154.94 | 52.60"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "42.62",
+   "found": true,
+   "context": "60- | 87.09 | 131.49 | 42.62 |  | 74.78 | 114.47 | 35.64 |  | 104.38 | 154.94 | 52.60"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "181.49",
+   "found": true,
+   "context": "65- | 122.39 | 181.49 | 62.69 |  | 104.98 | 155.55 | 54.60 |  | 145.87 | 215.90 | 73.78"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "62.69",
+   "found": true,
+   "context": "65- | 122.39 | 181.49 | 62.69 |  | 104.98 | 155.55 | 54.60 |  | 145.87 | 215.90 | 73.78"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "118.97",
+   "found": true,
+   "context": "65- | 80.16 | 118.97 | 40.96 |  | 65.96 | 99.30 | 32.75 |  | 99.31 | 145.07 | 52.21"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "40.96",
+   "found": true,
+   "context": "65- | 80.16 | 118.97 | 40.96 |  | 65.96 | 99.30 | 32.75 |  | 99.31 | 145.07 | 52.21"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "173.52",
+   "found": true,
+   "context": "70- | 117.72 | 173.52 | 62.88 |  | 98.17 | 147.66 | 50.72 |  | 144.10 | 207.41 | 79.77"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "62.88",
+   "found": true,
+   "context": "70- | 117.72 | 173.52 | 62.88 |  | 98.17 | 147.66 | 50.72 |  | 144.10 | 207.41 | 79.77"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "228.97",
+   "found": true,
+   "context": "70- | 156.03 | 228.97 | 84.34 |  | 135.20 | 200.23 | 72.86 |  | 184.12 | 266.64 | 100.28"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "84.34",
+   "found": true,
+   "context": "70- | 156.03 | 228.97 | 84.34 |  | 135.20 | 200.23 | 72.86 |  | 184.12 | 266.64 | 100.28"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "236.18",
+   "found": true,
+   "context": "75- | 161.64 | 236.18 | 93.28 |  | 136.43 | 201.69 | 77.60 |  | 197.84 | 284.62 | 116.25"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "93.28",
+   "found": true,
+   "context": "75- | 161.64 | 236.18 | 93.28 |  | 136.43 | 201.69 | 77.60 |  | 197.84 | 284.62 | 116.25"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "260.13",
+   "found": true,
+   "context": "75- | 179.95 | 260.13 | 106.40 |  | 158.92 | 231.15 | 93.82 |  | 210.13 | 300.85 | 124.83"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "106.40",
+   "found": true,
+   "context": "75- | 179.95 | 260.13 | 106.40 |  | 158.92 | 231.15 | 93.82 |  | 210.13 | 300.85 | 124.83"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "264.41",
+   "found": true,
+   "context": "80- | 185.85 | 264.41 | 121.44 |  | 170.92 | 242.49 | 111.44 |  | 207.46 | 296.71 | 135.71"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "121.44",
+   "found": true,
+   "context": "80- | 185.85 | 264.41 | 121.44 |  | 170.92 | 242.49 | 111.44 |  | 207.46 | 296.71 | 135.71"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "280.45",
+   "found": true,
+   "context": "80- | 194.24 | 280.45 | 123.56 |  | 176.33 | 253.65 | 112.06 |  | 220.16 | 319.94 | 139.95"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "123.56",
+   "found": true,
+   "context": "80- | 194.24 | 280.45 | 123.56 |  | 176.33 | 253.65 | 112.06 |  | 220.16 | 319.94 | 139.95"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "206.96",
+   "found": true,
+   "context": "85+ | 147.92 | 206.96 | 109.51 |  | 141.60 | 203.21 | 100.19 |  | 156.99 | 212.61 | 122.48"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "109.51",
+   "found": true,
+   "context": "85+ | 147.92 | 206.96 | 109.51 |  | 141.60 | 203.21 | 100.19 |  | 156.99 | 212.61 | 122.48"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "258.15",
+   "found": true,
+   "context": "85+ | 181.71 | 258.15 | 131.99 |  | 173.13 | 249.90 | 121.55 |  | 194.03 | 270.58 | 146.52"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "131.99",
+   "found": true,
+   "context": "85+ | 181.71 | 258.15 | 131.99 |  | 173.13 | 249.90 | 121.55 |  | 194.03 | 270.58 | 146.52"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "11.27",
+   "found": true,
+   "context": "Female | 12.25 | 18.36 | 7.25 | 11.55 | 11.27 | 1.32 | 16.49 | 5"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "1.32",
+   "found": true,
+   "context": "Female | 12.25 | 18.36 | 7.25 | 11.55 | 11.27 | 1.32 | 16.49 | 5"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "7.63",
+   "found": true,
+   "context": "Female | 8.89 | 13.33 | 10.54 | 7.80 | 7.63 | 0.84 | 8.93 | 2"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "19.21",
+   "found": true,
+   "context": "Male | 20.49 | 29.24 | 14.11 | 19.33 | 19.21 | 2.27 | 22.49 | 3"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "27.94",
+   "found": true,
+   "context": "Male | 28.79 | 41.08 | 13.62 | 27.88 | 27.94 | 3.52 | 40.91 | 2"
+  },
+  {
+   "term": "outcome:gastric_ca",
+   "number": "3.52",
+   "found": true,
+   "context": "Male | 28.79 | 41.08 | 13.62 | 27.88 | 27.94 | 3.52 | 40.91 | 2"
+  }
+ ]
+}

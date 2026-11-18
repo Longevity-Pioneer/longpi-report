@@ -1,0 +1,46 @@
+Source: Zheng C, Wang X, Gu R, et al. The Burden of Cardiovascular Disease in China: Incidence Estimates From National Surveillance (2023). JACC. 2026;87:1453-1465. doi:10.1016/j.jacc.2025.08.060. Open access, CC BY-NC-ND 4.0.
+Retrieval note: the publisher site refuses scripted downloads (HTTP 403 / bot challenge). The excerpt below is the text layer of the article PDF (https://www.jacc.org/doi/pdf/10.1016/j.jacc.2025.08.060) as returned by a web-reader service on 2026-11-18. Sentences are copied without edits; Table 1 and the Figure 1 bar labels (part of the PDF text layer) are re-laid out as pipe-separated rows with the numbers unchanged.
+
+[Abstract, RESULTS]
+In 2023, the estimated crude CVD incidence rate was 620.33 per 100,000, with age-standardized rates of 526.24 (WSR) and 635.81 (CSR). The crude incidence rates were 490.96 per 100,000 for stroke and 129.38 per 100,000 for coronary heart disease; the WSRs were 416.11 and 110.14 per 100,000, respectively, and the CSRs were 513.28 and 137.16 per 100,000, respectively.
+
+[Methods, outcome definition]
+In this survey, incident cases of critical atherosclerotic CVD events encompassed fatal and nonfatal coronary heart disease (CHD) (including acute myocardial infarction, revascularization-required angina pectoris, and sudden cardiac death) and stroke and were consecutively and systematically collected through standardized monitoring protocols.
+CHD encompassed the following 3 categories of diseases: 1) myocardial infarction, ICD-10 codes I21 and I22; 2) angina pectoris (I20), but only the cases treated with percutaneous transluminal coronary angioplasty/stenting or coronary artery bypass grafting were collected; and 3) sudden cardiac death (I46.1). Stroke events were defined as rapidly developing signs of focal (or global) disturbance of cerebral function lasting >24 hours (unless interrupted by surgery or death) with no apparent nonvascular cause. The definition included patients presenting with clinical signs and symptoms suggestive of subarachnoid hemorrhage (I60), intracerebral hemorrhage (I61), cerebral infarction (I63), or stroke not specified as hemorrhage or infarction (I64).
+The denominator population estimates were derived from the Seventh National Census conducted in 2020, which was provided by the National Bureau of Statistics, with incidence rates expressed as cases per 100,000.
+
+[Table 1 Overview of the CVD Incidence Rate (per 100,000) Across 262 Surveillance Sites in China, 2023]
+| | All Crude Rate | WSR | CSR | Men Crude Rate | WSR | CSR | Women Crude Rate | WSR | CSR |
+| CVD | 620.33 | 526.24 | 635.81 | 717.36 | 590.11 | 738.49 | 519.64 | 453.54 | 530.61 |
+| CHD | 129.38 | 110.14 | 137.16 | 165.60 | 137.34 | 173.62 | 91.78 | 80.49 | 96.72 |
+| Stroke | 490.96 | 416.11 | 513.28 | 551.75 | 452.77 | 578.85 | 427.87 | 373.06 | 445.81 |
+
+[Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and Age Groups Across 262 Surveillance Sites in China, 2023; columns: Age Group (Years) | Male | Female, per 100,000]
+CVD
+18-24 | 4.29 | 2.19
+25-34 | 20.34 | 5.23
+35-44 | 133.20 | 29.21
+45-54 | 375.18 | 137.90
+55-64 | 1,063.97 | 548.90
+65-74 | 2,164.19 | 1,504.06
+≥75 | 4,366.08 | 3,490.82
+CHD
+18-24 | 1.13 | 0.23
+25-34 | 7.22 | 0.70
+35-44 | 46.93 | 4.28
+45-54 | 112.51 | 18.64
+55-64 | 261.27 | 85.18
+65-74 | 457.02 | 248.87
+≥75 | 874.56 | 693.83
+Stroke
+18-24 | 3.16 | 1.97
+25-34 | 13.12 | 4.53
+35-44 | 86.27 | 24.93
+45-54 | 262.67 | 119.26
+55-64 | 802.70 | 463.72
+65-74 | 1,707.17 | 1,255.19
+≥75 | 3,491.52 | 2,796.99
+
+[Results, first-onset vs recurrent]
+Overall, 556,511 (58.9%) were male, the average age was 69.7 years, 51.6% were from urban areas, and 59.3% came from eastern regions. In addition, a substantial proportion of the cases (83.0%) were first-onset events, and 10.1% were fatal cases.
+The crude incidence rates were 518.38/100,000 for first-onset CVD events and 101.95/100,000 for recurrent events.
