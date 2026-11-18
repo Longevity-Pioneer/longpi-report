@@ -117,6 +117,13 @@ def from_person(person: dict, derived: Optional[dict] = None) -> List[dict]:
         if w.get(k) is not None:
             add(code, float(w[k]), unit, as_of, "device", "可穿戴设备", sustained_weeks=w.get(k + "_sustained_weeks"))
     ls = person.get("lifestyle") or {}
+    sm = ls.get("smoking") or {}
+    if sm.get("status") in ("never", "former", "current"):
+        add("LP:smoking_status", sm["status"], "category", as_of, "self_report", "问卷")
+    al = ls.get("alcohol") or {}
+    gw = al.get("grams_per_week", 7 * al["grams_per_day"] if al.get("grams_per_day") is not None else None)
+    if gw is not None:
+        add("LP:alcohol_g_week", float(gw), "g/week", as_of, "self_report", "问卷")
     for key, code in (("mvpa_min_week", "LP:mvpa_min_week"), ("resistance_sessions_week", "LP:resistance_sessions_week")):
         v = ls.get(key)
         if isinstance(v, dict) and v.get("value") is not None:

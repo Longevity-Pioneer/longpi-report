@@ -239,6 +239,12 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
         T = Term(spec)
         code = spec["input"]["code"]
         if not model.obs.has(code):
+            if _absent_means_no(spec, model.person):
+                T.value, T.status = 0, "counted"
+                T.notes.append("资料中未列出，按“没有”计")
+                T.obs_used = [{"code": code, "value": 0, "method": "self_report", "source_file": "问卷（未列出）"}]
+                if _finish_coef(T, spec, model, None):
+                    out.append(T)
             continue
         if code.startswith("LP:monogenic:") and not prefs["secondary_findings"]:
             T.status, T.reasons = "hidden", ["未选择接收次要发现"]
@@ -251,9 +257,11 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
                 T.status, T.reasons = "hidden", ["该结果默认不展示，本人选择查看后才计入"]
                 out.append(T)
                 continue
-        methods = spec["input"].get("methods")
+        methods = [{"measured": "lab"}.get(x, x) for x in (spec["input"].get("methods") or [])] or None
         excl = spec.get("exclude_if_flags", DEFAULT_EXCLUDE.get(spec["kind"], []))
-        rows_all = model.obs.series(code, model.at, methods, ())
+        persistent = code.startswith(PERSISTENT_PREFIXES)
+        max_years = float("inf") if persistent else float(spec["input"].get("max_age_years", 10))
+        rows_all = model.obs.series(code, model.at, methods, (), max_years=max_years)
         rows = [o for o in rows_all if not any(f in excl for f in o.get("flags") or [])]
         if rows_all and not rows:
             T.status, T.reasons = "not_counted", ["可用的数据都处于暂时状态（" + "、".join(sorted({f for o in rows_all for f in o.get("flags") or []})) + "），不计入"]
@@ -268,7 +276,8 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
                 out.append(T)
                 continue
             rows = ok
-        rows = [o for o in rows if _units_ok(spec, o)]
+        if not spec.get("screening"):
+            rows = [o for o in rows if _units_ok(spec, o)]
         if not rows:
             T.status, T.reasons = "not_counted", [f"单位与研究不一致（需要 {spec['input'].get('unit')}）"]
             out.append(T)
@@ -282,12 +291,16 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
                 T.notes.append("只有用药期间的值，按测得值计算（可能低估未治疗时的风险）")
         shape = spec["transform"]["shape"]
         T.obs_used = [{k: o.get(k) for k in ("code", "value", "unit", "datetime", "method", "source_file", "flags")} for o in rows]
-        if shape in ("categorical", "indicator"):
+        if spec.get("screening"):
+            T.value = float(rows[-1]["value"])          # years since the last test
+        elif shape in ("categorical", "indicator"):
             T.value = rows[-1]["value"]
             if shape == "indicator":
                 T.value = 1 if float(T.value) >= 0.5 else 0
         else:
             mo = ref_moments(spec, model.sex, model.age)
+            if mo is None and spec["reference"].get("kind") == "categorical_mid":
+                mo = _mid_moments(spec, model.sex, model.age)
             if mo is None:
                 T.status, T.reasons = "not_counted", ["该性别年龄没有参考分布"]
                 out.append(T)
@@ -329,49 +342,7 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
                 T.reasons = [f"已持续 {weeks or 0} 周，满 {bh.get('min_weeks', 8)} 周后计入"]
                 out.append(T)
                 continue
-        # coefficients
-        ov = spec.get("overlap") or {}
-        base_m, base_sd = float(ov.get("coef", 1.0)), float(ov.get("coef_sd", 0.0))
-        mult, why = 1.0, []
-        oc_mult: Dict[str, float] = {}
-        med = ov.get("mediated_by") or {}
-        frac = sum(v for k, v in med.items() if _mediator_measured(k, model))
-        if frac > 0:
-            mult *= max(0.0, 1 - frac)
-            why.append(f"中介指标已测，按 {1 - frac:.2f} 计")
-        for oc in T.outcomes():
-            e = spec["effect"][oc]
-            pop = dict(spec.get("population") or {}, **(e.get("population") or {}))
-            scope = pop.get("sex_scope") or (pop.get("sex") if pop.get("sex") in ("M", "F") else None)
-            if scope in ("M", "F") and scope != model.sex:
-                oc_mult[oc] = 0.0
-                continue
-            ar = pop.get("age_range")
-            k = 1.0
-            if ar and not (ar[0] <= model.age <= ar[1]):
-                k = 0.7
-                msg = f"年龄不在研究范围 {ar[0]}–{ar[1]} 岁，按 0.7 计"
-                if msg not in why:
-                    why.append(msg)
-            oc_mult[oc] = k
-        if oc_mult and all(v == 0.0 for v in oc_mult.values()):
-            T.status, T.reasons = "not_counted", ["研究只适用于另一性别"]
-            out.append(T)
-            continue
-        if spec["kind"] == "behavior" and rows[-1].get("method") == "self_report":
-            d = float((spec.get("behavior") or {}).get("self_report_discount", 0.5))
-            mult *= d
-            why.append(f"自述行为，按 {d} 计")
-        for oc in T.outcomes():
-            if oc_mult.get(oc, 1.0) == 0.0:
-                continue
-            e = spec["effect"][oc]
-            cm = float(e["coef"]) if e.get("coef") is not None else base_m
-            cs = float(e.get("coef_sd", base_sd)) if e.get("coef") is not None else base_sd
-            k = mult * oc_mult.get(oc, 1.0)
-            T.coef[oc] = (cm * k, cs * k)
-        T.notes += why
-        T.status = "counted"
+        _finish_coef(T, spec, model, rows[-1])
         out.append(T)
     _apply_groups(out, model, reg)
     return out
@@ -383,6 +354,92 @@ def preferences(person: dict) -> dict:
     return {"show_opt_in": bool(g.get("show_opt_in", False)), "secondary_findings": bool(g.get("secondary_findings", False))}
 
 
+def _finish_coef(T: Term, spec: dict, model, last: Optional[dict]) -> bool:
+    """Coefficients (overlap, mediation, age range, sex scope, self-report). Sets T.status; returns True."""
+    ov = spec.get("overlap") or {}
+    base_m, base_sd = float(ov.get("coef", 1.0)), float(ov.get("coef_sd", 0.0))
+    mult, why = 1.0, []
+    oc_mult: Dict[str, float] = {}
+    med = ov.get("mediated_by") or {}
+    frac = sum(v for k, v in med.items() if _mediator_measured(k, model))
+    if frac > 0:
+        mult *= max(0.0, 1 - frac)
+        why.append(f"中介指标已测，按 {1 - frac:.2f} 计")
+    for oc in T.outcomes():
+        e = spec["effect"][oc]
+        pop = dict(spec.get("population") or {}, **(e.get("population") or {}))
+        scope = pop.get("sex_scope") or (pop.get("sex") if pop.get("sex") in ("M", "F") else None)
+        if scope in ("M", "F") and scope != model.sex:
+            oc_mult[oc] = 0.0
+            continue
+        ar = pop.get("age_range")
+        k = 1.0
+        if ar and not (ar[0] <= model.age <= ar[1]):
+            k = 0.7
+            msg = f"年龄不在研究范围 {ar[0]}–{ar[1]} 岁，按 0.7 计"
+            if msg not in why:
+                why.append(msg)
+        oc_mult[oc] = k
+    if oc_mult and all(v == 0.0 for v in oc_mult.values()):
+        T.status, T.reasons = "not_counted", ["研究只适用于另一性别"]
+        return True
+    if spec["kind"] == "behavior" and (last or {"method": "self_report"}).get("method") == "self_report":
+        d = float((spec.get("behavior") or {}).get("self_report_discount", 0.5))
+        mult *= d
+        why.append(f"自述行为，按 {d} 计")
+    for oc in T.outcomes():
+        if oc_mult.get(oc, 1.0) == 0.0:
+            continue
+        e = spec["effect"][oc]
+        cm = float(e["coef"]) if e.get("coef") is not None else base_m
+        cs = float(e.get("coef_sd", base_sd)) if e.get("coef") is not None else base_sd
+        k = mult * oc_mult.get(oc, 1.0)
+        T.coef[oc] = (cm * k, cs * k)
+    T.notes += why
+    T.status = "counted"
+    return True
+
+
+GRACE = 1.25   # a screening a few weeks past its interval still counts (appointments slip); beyond 1.25x it does not
+PERSISTENT_PREFIXES = ("ICD10:", "LP:fh:", "LP:monogenic:", "PGS:", "LP:apoe", "LP:hpylori")
+
+
+def _requirement_met(req: str, model) -> bool:
+    """`CODE` (present) or `CODE=v1|v2` (latest value is one of them)."""
+    code, _, vals = req.partition("=")
+    if not model.obs.has(code):
+        return False
+    if not vals:
+        return True
+    latest = sorted(model.obs.by_code[code], key=lambda o: o.get("datetime") or "")[-1]
+    return str(latest.get("value")) in vals.split("|")
+
+
+def _absent_means_no(spec: dict, person: dict) -> bool:
+    """A diagnosis / family-history indicator not listed counts as 0 when the person filled that list."""
+    code = spec["input"]["code"]
+    if spec["transform"]["shape"] != "indicator":
+        return False
+    if code.startswith("ICD10:"):
+        return "conditions" in person
+    if code.startswith("LP:fh:"):
+        return "family_history" in person
+    return False
+
+
+def _mid_moments(spec: dict, sex: str, age: float) -> Optional[Tuple[float, float]]:
+    ref = spec["reference"]
+    probs = ref["p"] if "p" in ref else (_band(ref.get("by_sex_age") or [], sex, age) or {}).get("p")
+    if not probs:
+        return None
+    mids = ref["mids"]
+    if isinstance(next(iter(mids.values())), dict):
+        mids = mids.get(sex, next(iter(mids.values())))
+    mu = sum(pr * mids[k] for k, pr in probs.items())
+    var = sum(pr * (mids[k] - mu) ** 2 for k, pr in probs.items())
+    return mu, max(var, 1e-6) ** 0.5
+
+
 def _screening_state(spec: dict, model, years_since) -> dict:
     sc = spec["screening"]
     el = sc.get("eligible") or {}
@@ -392,11 +449,12 @@ def _screening_state(spec: dict, model, years_since) -> dict:
     if el.get("sex") in ("M", "F") and el["sex"] != model.sex:
         ok, why = False, "不适用于该性别"
     for req in el.get("requires") or []:
-        if not model.obs.has(req):
-            ok, why = False, "只适用于高危人群（" + req + "）"
-    up = years_since is not None and float(years_since) <= float(sc.get("interval_years", 1))
+        if not _requirement_met(req, model):
+            ok, why = False, el.get("requires_zh") or "只适用于高危人群"
+    up = years_since is not None and float(years_since) <= GRACE * float(sc.get("interval_years", 1))
     if ok and not up:
-        why = f"上次筛查距今 {float(years_since):.1f} 年，超过推荐间隔 {sc.get('interval_years')} 年"
+        why = (f"上次筛查距今 {float(years_since):.1f} 年，超过推荐间隔 {sc.get('interval_years')} 年" if years_since is not None
+               else "没有筛查记录")
     return {"eligible": ok, "up_to_date": bool(ok and up), "why": why, "years_since": years_since,
             "disease_id": sc.get("disease_id"), "interval_years": sc.get("interval_years")}
 

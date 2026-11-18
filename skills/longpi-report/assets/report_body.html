@@ -301,7 +301,7 @@ function renderBehavior() {
   const B = R.index120.behavior; const host = $('#ixBeh');
   if (!B) { host.innerHTML = ''; return; }
   const rows = (B.behaviors || []).map(b => `<li>${esc(b.name)} <span class="tiny">${b.points >= 0 ? '+' : ''}${b.points.toFixed(1)} 分${(b.notes || []).length ? ' · ' + esc(b.notes.join('；')) : ''}</span></li>`).join('');
-  const gain = (B.how_to_gain || []).filter(g => g.points_if_adopted >= 0.1).slice(0, 3).map(g => `<li>${esc(g.name)}${g.target != null ? `（目标 ${esc(String(g.target))}）` : ''} <span class="tiny">坚持 ${g.min_weeks} 周后约 +${g.points_if_adopted.toFixed(1)} 分</span></li>`).join('');
+  const gain = (B.how_to_gain || []).filter(g => g.points_if_adopted >= 0.1).slice(0, 3).map(g => `<li>${esc(g.name)}${g.target != null ? `（目标 ${esc(String(g.target))}）` : ''} <span class="tiny">${g.target != null ? `坚持 ${g.min_weeks} 周后` : '按指南按期完成后'}约 +${g.points_if_adopted.toFixed(1)} 分</span></li>`).join('');
   host.innerHTML = `<div class="kicker">加上正在坚持的行为</div>
     <p style="font-size:13px;margin:6px 0">120 指数 <b>${B.total_index.median}</b> 分 = 身体状态 ${B.state_index} 分 ${B.behavior_points >= 0 ? '+' : '−'} 持续行为 ${Math.abs(B.behavior_points).toFixed(1)} 分（80% 区间 ${B.total_index.p10}–${B.total_index.p90}）。行为立刻计分；指标随后真的变好时，计入身体状态，不重复计算。</p>
     ${rows ? `<ul style="font-size:13px;padding-left:18px;margin:4px 0">${rows}</ul>` : '<p class="tiny">目前没有已持续 8 周以上、可以计分的行为记录。</p>'}

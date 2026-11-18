@@ -260,7 +260,7 @@ def _facts_112(r: dict) -> List[str]:
                 continue
             drv = "；".join(f"{x['name']} ×{x['hr']}" for x in d["drivers"][:4]) or "无个人因素"
             out.append(f"- {d['name']}：10 年 {_pc(d['risk10']['median'])}（{_pc(d['risk10']['p10'])}–{_pc(d['risk10']['p90'])}；人群 {_pc(d['peer10'])}）；"
-                       (f"终身至 {d['horizon_lifetime_age']} 岁 {_pc(d['lifetime']['median'])}（人群 {_pc(d['peer_lifetime'])}）；" if d.get("lifetime") else "不报告终身风险；")
+                       + (f"终身至 {d['horizon_lifetime_age']} 岁 {_pc(d['lifetime']['median'])}（人群 {_pc(d['peer_lifetime'])}）；" if d.get("lifetime") else "不报告终身风险；")
                        + f"因素 {drv}"
                        + (f"；可补充 {'、'.join(x['name'] for x in d['missing_inputs'][:4])}" if d.get("missing_inputs") else "")
                        + (f"；{'；'.join(d['notes'])}" if d.get("notes") else ""))
@@ -268,7 +268,8 @@ def _facts_112(r: dict) -> List[str]:
     if b:
         out += ["", f"## 120 指数：身体状态 {b['state_index']} + 持续行为 {b['behavior_points']:+} = {b['total_index']['median']}（{b['total_index']['p10']}–{b['total_index']['p90']}）"]
         out += [f"- 已计分：{x['name']} {x['points']:+} 分（风险 ×{x['hr']}）" + (f"；{'；'.join(x['notes'])}" if x.get("notes") else "") for x in b["behaviors"]]
-        out += [f"- 可加分：{g['name']}（目标 {g['target']}）坚持 {g['min_weeks']} 周后约 +{g['points_if_adopted']} 分"
+        out += [f"- 可加分：{g['name']}" + (f"（目标 {g['target']}）坚持 {g['min_weeks']} 周后" if g.get("target") is not None else "：按指南按期完成后")
+                + f"约 +{g['points_if_adopted']} 分"
                 + (f"；现在未计入：{'；'.join(g['why_not_now'])}" if g.get("why_not_now") else "") for g in b["how_to_gain"]]
     return out
 

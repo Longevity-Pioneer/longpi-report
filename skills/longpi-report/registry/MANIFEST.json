@@ -1,7 +1,7 @@
 {
- "digest": "478fdf79bd6d6859a7f9f6494baaa170d7f088b6fc893dfbb586d13f94cf9392",
+ "digest": "76e364c775552baf11c6ed39fd7b7b148ca458e96251e6fae748cc2246e914f1",
  "files": {
-  "VERSION": "ac81c77c854d2ba5fabac181ee34b4c40253da5fc333656e486f4fbed3099ee7",
+  "VERSION": "ef0c520de6b1399e749a778830d7871c64a3490d5109c5470289a2a22d7463a9",
   "groups.json": "fca2a0065c845e12df9b0f3f6802fc2f1059ba7d4d1a5df5e38764b7a871b94a",
   "outcomes/ad.json": "0f0eed316625bcd7f574a9485459e5b8e99cab45619815ef66eb7099ea007613",
   "outcomes/breast_ca.json": "60d7666a9cd22b59831f2cd16e3bc70799b3ab924d9db7a419482ca396d4b6bb",
@@ -206,8 +206,8 @@
   "terms/ext.sbp.json": "2c78e7f583b775e9870534c6046849811203dcd9e39e624a738748e9fec5295b",
   "terms/ext.screen_crc_fit.json": "60b93a11409650a1bc1ab3a637e031c7ccdbc74a0c941d40548626ce8b353f56",
   "terms/ext.screen_gastroscopy.json": "5758047117d669a095e73750e5db7e2d307fd20942a8ec52bf182a3f14cc0283",
-  "terms/ext.screen_liver_us_afp.json": "bef2f16c704c995dc31b8d113c39f4f31ed712114b61c515dafdfe852971b562",
-  "terms/ext.screen_lung_ldct.json": "1ef4ff7b40c377c1c8c9a2919c077e2bc2bf095ad228b215f3ee8d99012f36f9",
+  "terms/ext.screen_liver_us_afp.json": "bb244af81086f992c68411235b00272250cfbdf382ab27971d159b317e44a3f6",
+  "terms/ext.screen_lung_ldct.json": "316620b0bb15aed474bc61d3d5c4b73f5aa9355a912071638810b0b7c9d0ed0b",
   "terms/ext.screen_mammography.json": "f53ccec9eba4419235dbb378de5e03a8886ae8ac35e811553c511c82daf26f22",
   "terms/ext.sleep_regularity.json": "9dbe5067fa66a9d1e141ed077c51d7ab3c3ed9de9a162d203fd65dd8d81fd33b",
   "terms/ext.smoking.json": "d9be05b380dba0c196e8959cf6590a2d57400a455639a25378eee33ff8c761b0",
@@ -216,5 +216,5 @@
   "terms/ext.uacr.json": "145388e363cdc6189f0e2be7c76b83159ad050611c000709f28d16827c7fcf73",
   "terms/ext.waist.json": "750d9122900d3e9d74ba896c8570ae83ea27f79999fdf7fabd4d133f5f89a374"
  },
- "version": "2026.11.18-6"
+ "version": "2026.11.18-7"
 }

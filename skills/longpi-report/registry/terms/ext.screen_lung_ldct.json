@@ -92,8 +92,9 @@
    ],
    "sex": "both",
    "requires": [
-    "LP:smoking_status"
-   ]
+    "LP:smoking_status=current|former"
+   ],
+   "requires_zh": "只适用于吸烟或戒烟不满 15 年、吸烟量较大的人（中国肺癌筛查指南 2021：≥30 包年）"
   },
   "interval_years": 1
  },
@@ -148,5 +149,8 @@
  },
  "note_zh": "eligible.requires 的 LP:smoking_status 须为现吸或已戒烟（戒烟不足 15 年），且吸烟量达到筛查指南的重度吸烟阈值；从不吸烟者不适用本项（非吸烟者 LDCT 筛查的死亡获益缺乏随机试验证据）。NELSON 主分析为男性；女性亚组 RR 0.67（0.38–1.14）。NLST（PMID 21714641）肺癌死亡相对下降 20.0%，方向一致。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-2"
+ "registry_version_added": "2026.11.18-2",
+ "notes_zh": [
+  "2026-11-18 主线：适用条件由“有吸烟状态记录”改为“目前吸烟或已戒烟”；包年数暂未进入数据，报告中提示按指南核对"
+ ]
 }

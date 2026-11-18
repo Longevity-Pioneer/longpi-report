@@ -93,7 +93,8 @@
    "sex": "both",
    "requires": [
     "ICD10:B18.1"
-   ]
+   ],
+   "requires_zh": "只适用于乙肝或丙肝感染、肝硬化等肝癌高危人群"
   },
   "interval_years": 0.5
  },
