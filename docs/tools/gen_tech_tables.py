@@ -413,7 +413,8 @@ def block_worked_example() -> str:
 
 
 def block_tests() -> str:
-    lines = (SKILL / "tests" / "test_engine.py").read_text(encoding="utf-8").splitlines()
+    lines = (SKILL / "tests" / "test_engine.py").read_text(encoding="utf-8").splitlines() + \
+        (SKILL / "tests" / "test_registry_ext.py").read_text(encoding="utf-8").splitlines()
     rows = ["| 测试类 | 测试 | 检查什么 |", "|---|---|---|"]
     cls = ""
     desc = {
@@ -442,6 +443,21 @@ def block_tests() -> str:
         "test_outputs": "演示用户端到端：区间顺序正确、三个情景、有干预；补测后区间 < 现在 < 只知道年龄性别，完整度在 0–100",
         "test_missing_everything_is_neutral": "没有任何数据的 45 岁男性，LongPi Age = 45 ± 0.35",
         "test_demo_narrative_passes_checks": "演示叙述通过叙述检查",
+        "test_identical_to_1_1_1": "核心项迁入项目库后，三个样例（演示用户、无血检、只有年龄性别）的结果与 1.1.1 逐位一致",
+        "test_manifest_detects_change": "改动项目库文件而未冻结时加载报错",
+        "test_no_ext_terms_in_release_registry_are_unverified": "发布的项目库里每个新增项都通过结构检查且数值已核对",
+        "test_unmeasured_terms_change_nothing": "没有对应数据的新增项不改变 LongPi Age",
+        "test_population_neutral": "每个新增项按参考分布抽样时 E[exp l] ≈ 1（±0.02）",
+        "test_guardrail_caps_a_wild_term": "单项、合计护栏截断正确",
+        "test_guardrail_in_engine": "效应量放大 10 倍的假项被单项上限截住，并报告触及护栏",
+        "test_steps_raise_index_not_longpi_age": "步数 4000→9000 持续 10 周：120 指数上升、LongPi Age 不变；再测到 VO2max 时步数的计分减少（不重复计）",
+        "test_behaviour_not_sustained": "行为持续不足 8 周不计分",
+        "test_prs_lifetime_vs_glucose_current": "只提高多基因评分：终身风险的绝对增加大于 10 年；只提高空腹血糖：10 年风险的相对增幅大于终身",
+        "test_diagnosed": "已确诊（ICD-10）的疾病显示已发生，不再预测",
+        "test_disclosure_defaults": "APOE 等不可干预结果与单基因次要发现默认不计入、不展示；本人选择后计入",
+        "test_transient_and_treated": "急性病期的化验不计入；他汀开始后的值按用药前的值计算",
+        "test_deterministic": "同一输入、同一项目库两次运行逐位一致，并记录项目库版本",
+        "test_slope_recovered": "长时序滤波还原线性趋势斜率；单次测量不报告斜率",
     }
     for l in lines:
         m = re.match(r"^class (\w+)\(", l)
@@ -516,6 +532,50 @@ def block_data_menu() -> str:
     return "\n".join(rows)
 
 
+def block_registry_terms() -> str:
+    """Every ext.* term of the frozen registry (engine 1.1.2)."""
+    from lp import registry as RG, terms as TM
+    reg = RG.load()
+    rows = [f"项目库版本 `{reg['version']}`（摘要 `{reg['digest'][:12]}`）。", "",
+            "| id | 名称 | 类型 | 结局 | 效应（HR，95% CI，每多少） | 系数 | 组 | 等级 | 出处 |", "|---|---|---|---|---|---|---|---|---|"]
+    for t in RG.ext_terms(reg):
+        effs = []
+        for oc, e in (t.get("effect") or {}).items():
+            if t["transform"]["shape"] == "hinge":
+                parts = [f"{side[3:]} {TM._eff(e[side])['hr']}（{TM._eff(e[side])['lo']}–{TM._eff(e[side])['hi']}）/{e[side]['per']}"
+                         for side in ("hr_below", "hr_above") if e.get(side)]
+                effs.append(f"{oc}: " + "；".join(parts))
+            elif t["transform"]["shape"] == "categorical":
+                effs.append(f"{oc}: " + "；".join(f"{k} {v.get('hr')}" for k, v in (e.get("levels") or {}).items()))
+            else:
+                ee = TM._eff(e)
+                effs.append(f"{oc}: {round(ee['hr'], 3)}（{round(ee['lo'], 3)}–{round(ee['hi'], 3)}）" + (f"/{e['per']}" if e.get("per") else ""))
+        if t.get("screening"):
+            mr = t["screening"]["mortality_rr"]
+            effs.append(f"筛查死亡 RR {mr['hr']}（{mr['lo']}–{mr['hi']}）")
+        ev = t.get("evidence") or {}
+        src = f"PMID {ev['pmid']}" if ev.get("pmid") else (ev.get("doi") or ev.get("source") or "")
+        rows.append(f"| `{t['id']}` | {t['name_zh']} | {t['kind']} | {', '.join((t.get('effect') or {}).keys()) or ('筛查' if t.get('screening') else '')} | "
+                    f"{'<br>'.join(effs)} | {(t.get('overlap') or {}).get('coef', '')} | {t.get('group') or ''} | {ev.get('grade', '')} | {src} |")
+    q = list(reg["qualitative"].values())
+    rows += ["", f"定性佐证 {len(q)} 项（不折成岁数）：", "", "| id | 名称 | 原因 |", "|---|---|---|"]
+    rows += [f"| `{x['id']}` | {x.get('name_zh', '')} | {x.get('why_qualitative_zh', '')} |" for x in sorted(q, key=lambda x: x["id"])]
+    return "\n".join(rows)
+
+
+def block_outcomes() -> str:
+    from lp import registry as RG
+    reg = RG.load()
+    rows = ["| id | 疾病 | 性别 | 基线来源 | 年份 | 年龄段 | 筛查死因占比 | 商业许可 |", "|---|---|---|---|---|---|---|---|"]
+    for k, o in sorted(reg["outcomes"].items()):
+        inc = o.get("incidence") or {}
+        bands = inc.get("by_sex_age") or []
+        ages = f"{min(b['age_lo'] for b in bands)}–{max(b['age_hi'] for b in bands)}" if bands else ""
+        rows.append(f"| `{k}` | {o.get('name_zh', '')} | {o.get('sex', 'both')} | {inc.get('source', '')} | {inc.get('year', '')} | {ages} | "
+                    f"{'有' if o.get('mortality_share') else ''} | {(o.get('license') or {}).get('commercial_use')} |")
+    return "\n".join(rows)
+
+
 BLOCKS = {
     "function_index": block_function_index, "lifetable": block_lifetable, "phenoage_ref": block_phenoage_ref,
     "biovariation": block_biovariation, "domains": block_domains, "devices": block_devices, "calibration": block_calibration,
@@ -523,6 +583,7 @@ BLOCKS = {
     "validation": block_validation, "sensitivity": block_sensitivity, "demo": block_demo,
     "units": block_units, "worked_example": block_worked_example, "tests": block_tests, "schema_rules": block_schema_rules,
     "clock_residual": block_clock_residual, "methylation": block_methylation, "data_menu": block_data_menu,
+    "registry_terms": block_registry_terms, "outcomes": block_outcomes,
 }
 
 
