@@ -4,9 +4,9 @@
 
 LongPi Report 将个人的体检化验、可穿戴设备、连续血糖、家庭血压、基因与 DNA 甲基化数据整理为一份单文件网页报告。报告内容包括：
 
-- LongPi Age（死亡风险等效年龄）
-- 120 指数与个人生存曲线
-- 疾病风险卡与药物基因组提示
+- LongPi Age（死亡风险等效年龄）及各系统年龄
+- 120 指数（身体状态 + 持续行为）与个人生存曲线
+- 13 种疾病的 10 年风险与终身风险，以及药物基因组提示
 - 干预效果预测、运动方案与补充剂建议
 - 补测清单与数据完整度
 
@@ -28,6 +28,10 @@ LongPi Report 将个人的体检化验、可穿戴设备、连续血糖、家庭
 | 异常期血检 | 自动识别急性炎症期和红细胞指标异常的化验，给出排除后的对照结果 |
 | 运动方案 | 内置 24 个动作的图文库（起止姿势照片、步骤、要点、常见错误、降阶与进阶） |
 | 离线单文件 | 报告为单个 HTML，不加载任何外部资源，支持深浅色与手机浏览 |
+| 可扩展的项目库（1.1.2） | 任何新数据维度（更多化验、影像、组学、长期手表数据）以"项"的形式接入：效应量由联网检索取得并与原文逐字核对，按同龄人群归一化，只计在已有指标之外的增量；证据不足的只作定性佐证 |
+| 疾病风险（1.1.2） | 中国人群分年龄性别发病率 × 个人风险倍数，同一模型给出 10 年与终身风险；先天因素作用于整个余生，当前偏高的指标逐渐回落 |
+| 120 指数行为部分（1.1.2） | 坚持 8 周以上的行为与按指南按期完成的癌症筛查立刻计分，指标改善后转入身体状态，不重复计算 |
+| 组学二级数据（1.1.2） | 基因组 VCF/芯片、甲基化 β 值、蛋白组、代谢组、宏基因组由 `longpi-omics` 算成标准观测；遗传结果分级告知，不可干预结果与次要发现默认不展示 |
 
 ![运动方案（演示）](docs/figures/report_training.png)
 
@@ -71,10 +75,20 @@ python3 scripts/longpi_report.py check   person.json                  # 检查�
 python3 scripts/longpi_report.py compute person.json -o results.json  # 计算
 python3 scripts/longpi_report.py facts   results.json                 # 撰写叙述用的事实表
 python3 scripts/longpi_report.py render  results.json narrative.json -o report.html
-python3 -m unittest discover -s tests                                 # 25 项测试
+python3 -m unittest discover -s tests                                 # 68 项测试
 ```
 
 合成演示报告见 `skills/longpi-report/examples/output/report.html`。
+
+## 三个技能
+
+| 技能 | 作用 |
+|---|---|
+| `skills/longpi-report` | 出报告（离线，仅需 Python 标准库） |
+| `skills/longpi-omics` | 组学二级数据 → 标准观测（可联网下载参考数据，需要 numpy 等） |
+| `skills/longpi-term-builder` | 联网检索文献 → 项规格 → 数值与原文逐字核对 → 入库（项目库 `skills/longpi-report/registry/`） |
+
+设计见 `docs/PRD-可扩展评估架构.md`，接口见 `skills/longpi-report/references/registry_contract.md`。
 
 ## 模型概要
 
