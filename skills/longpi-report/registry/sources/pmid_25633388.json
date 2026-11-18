@@ -1,0 +1,56 @@
+{
+ "key": "pmid:25633388",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/25633388/",
+ "fetched_at": "2026-11-18T03:22:37Z",
+ "sha256": "ac64c06bb5b8a445e05249926e83331fbf5f606c3dd660449ca0adcd2d701bc2",
+ "citation": "Genome biology 2015",
+ "text": "DNA methylation age of blood predicts all-cause mortality in later life.\nBACKGROUND: DNA methylation levels change with age. Recent studies have identified biomarkers of chronological age based on DNA methylation levels. It is not yet known whether DNA methylation age captures aspects of biological age.\nRESULTS: Here we test whether differences between people's chronological ages and estimated ages, DNA methylation age, predict all-cause mortality in later life. The difference between DNA methylation age and chronological age (Δage) was calculated in four longitudinal cohorts of older people. Meta-analysis of proportional hazards models from the four cohorts was used to determine the association between Δage and mortality. A 5-year higher Δage is associated with a 21% higher mortality risk, adjusting for age and sex. After further adjustments for childhood IQ, education, social class, hypertension, diabetes, cardiovascular disease, and APOE e4 status, there is a 16% increased mortality risk for those with a 5-year higher Δage. A pedigree-based heritability analysis of Δage was conducted in a separate cohort. The heritability of Δage was 0.43.\nCONCLUSIONS: DNA methylation-derived measures of accelerated aging are heritable traits that predict mortality independently of health status, lifestyle factors, and known genetic factors.\n[full text, Europe PMC PMC4350614]\nSensitivity analyses were performed to control for potentially confounding variables: smoking, education, childhood IQ (LBC1921 and LBC1936 only), social class (LBC1921 and LBC1936 only), APOE (LBC1921, LBC1936, and NAS only), cardiovascular disease, high blood pressure, and diabetes. When entered together in a fully adjusted model (Figure 2) the meta-analyzed hazards ratio (HR) per 5-year increment was 1.16 (95% CI (1.08, 1.25), P = 6.0x10-9) for the fully adjusted Hannum Δage and 1.09 (95% CI (1.02, 1.15), P = 0.0069) for the fully adjusted Horvath Δage. In the LBC datasets, which were the only datasets to contain information on all of the covariates, inclusion of the covariates one at a time made very little difference to basic, age-, and sex-adjusted results (Additional file 4).",
+ "pmcid": "PMC4350614",
+ "doi": "10.1186/s13059-015-0584-6",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.clock_hannum",
+   "number": "all_cause.hr",
+   "value": 1.16,
+   "found": true,
+   "context": "e meta-analyzed hazards ratio (HR) per 5-year increment was 1.16 (95% CI (1.08, 1.25), P = 6.0x10-9) for the fully adjusted "
+  },
+  {
+   "term": "ext.clock_hannum",
+   "number": "all_cause.lo",
+   "value": 1.08,
+   "found": true,
+   "context": "d hazards ratio (HR) per 5-year increment was 1.16 (95% CI (1.08, 1.25), P = 6.0x10-9) for the fully adjusted Hannum Δage"
+  },
+  {
+   "term": "ext.clock_hannum",
+   "number": "all_cause.hi",
+   "value": 1.25,
+   "found": true,
+   "context": "rds ratio (HR) per 5-year increment was 1.16 (95% CI (1.08, 1.25), P = 6.0x10-9) for the fully adjusted Hannum Δage"
+  },
+  {
+   "term": "ext.clock_horvath",
+   "number": "all_cause.hr",
+   "value": 1.09,
+   "found": true,
+   "context": "1.25), P = 6.0x10-9) for the fully adjusted Hannum Δage and 1.09 (95% CI (1.02, 1.15), P = 0.0069) for the fully adjusted Ho"
+  },
+  {
+   "term": "ext.clock_horvath",
+   "number": "all_cause.lo",
+   "value": 1.02,
+   "found": true,
+   "context": "x10-9) for the fully adjusted Hannum Δage and 1.09 (95% CI (1.02, 1.15), P = 0.0069) for the fully adjusted Horvath Δage"
+  },
+  {
+   "term": "ext.clock_horvath",
+   "number": "all_cause.hi",
+   "value": 1.15,
+   "found": true,
+   "context": " for the fully adjusted Hannum Δage and 1.09 (95% CI (1.02, 1.15), P = 0.0069) for the fully adjusted Horvath Δage"
+  }
+ ]
+}

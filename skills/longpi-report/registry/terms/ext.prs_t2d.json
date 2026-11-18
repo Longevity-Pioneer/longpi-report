@@ -1,0 +1,105 @@
+{
+ "id": "ext.prs_t2d",
+ "name_zh": "2 型糖尿病多基因评分",
+ "kind": "genetic",
+ "system": "metabolic",
+ "group": null,
+ "input": {
+  "code": "PGS:PGS002308",
+  "unit": "SD",
+  "platform": "PGS Catalog harmonized scoring file (GRCh38)",
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -4,
+   4
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "mean": 0,
+  "sd": 1,
+  "source": "z within 1000G EAS reference (omics layer)"
+ },
+ "effect": {
+  "t2d": {
+   "hr": 2.01,
+   "lo": 1.93,
+   "hi": 2.1,
+   "per": 1,
+   "per_unit": "1 SD of PRS (z)",
+   "direction": "higher_worse",
+   "metric": "OR",
+   "note": "PGS Catalog 记录为每 SD 的 OR（横断面患病），按 HR 近似使用"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "genetic_pcs"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "种系评分不受生活方式混杂，评估模型只校正年龄、性别与主成分。评分部分经血糖与体重指数起作用：无文献给出该评分经可测中介的比例，按约定默认中介合计 0.5（空腹血糖 0.3、BMI 0.2）；已测血糖或 BMI 时按中介比例折减。系数 0.8 反映评估人群为横断面患病对照（OR 近似 HR）。",
+  "mediated_by": {
+   "LOINC:1558-6": 0.3,
+   "LOINC:39156-5": 0.2
+  }
+ },
+ "transport": {
+  "ancestry": "East Asian (Taiwanese)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Taiwan Biobank (Ge 2022 Genome Med evaluation)",
+  "n": 54078,
+  "events": 2806,
+  "ancestry": "East Asian (Taiwanese)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "多基因评分不可改变；评分偏高者更应控制可改变的危险因素并按指南筛查。"
+ },
+ "test": {
+  "label_zh": "全基因组测序或基因芯片（含插补）计算多基因评分",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pgs-catalog-evaluation",
+  "source": "pgs_perf:PPM013072",
+  "pmid": "35765100",
+  "quote": "Odds Ratio (OR): 2.01 [1.93, 2.1]",
+  "url": "https://www.pgscatalog.org/performance/PPM013072/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

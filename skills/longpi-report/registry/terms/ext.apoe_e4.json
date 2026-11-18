@@ -1,0 +1,115 @@
+{
+ "id": "ext.apoe_e4",
+ "name_zh": "APOE ε4 等位基因个数",
+ "kind": "genetic",
+ "system": "brain_sleep",
+ "group": null,
+ "input": {
+  "code": "LP:apoe_e4_count",
+  "unit": "count",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "categorical"
+ },
+ "reference": {
+  "kind": "categorical",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "p": {
+     "0": 0.83483,
+     "1": 0.15772,
+     "2": 0.00745
+    }
+   }
+  ],
+  "source": "按哈代-温伯格平衡由东亚 ε4 等位基因频率 q=0.0863 推算（1000 Genomes phase 3 EAS，rs429358 C 等位，经 Ensembl REST 查询；gnomAD EAS 为 0.0977）。数值未经原文核对，属推算值。"
+ },
+ "effect": {
+  "ad": {
+   "levels": {
+    "0": {
+     "hr": 1
+    },
+    "1": {
+     "hr": 5.6,
+     "lo": 3.9,
+     "hi": 8.0
+    },
+    "2": {
+     "hr": 33.1,
+     "lo": 13.6,
+     "hi": 80.5
+    }
+   },
+   "direction": null,
+   "note": "OR 相对 ε3/ε3，按 HR 近似；水平 1 取 ε3/ε4（ε2/ε4 并入），水平 0 以 ε3/ε3 为参照（ε2 携带者并入，其风险略低）。Belloy 2023 JAMA Neurol 东亚 21,852 人 ε3/ε4 OR 4.54（3.99–5.17），方向一致。"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "study"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "种系变异不受混杂；与阿尔茨海默病多基因评分的重叠由评分侧处理（评分若含 APOE 区域须剔除）。系数 0.8 反映病例对照 OR 近似 HR 与日本人群小样本的不确定性。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Japanese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "APOE and Alzheimer Disease Meta Analysis Consortium (Farrer 1997), Japanese stratum",
+  "n": 14537,
+  "ancestry": "Japanese"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "基因型不可改变；携带者更应控制血压、血糖、听力与运动等可改变因素。"
+ },
+ "test": {
+  "label_zh": "APOE 基因分型（rs429358、rs7412）",
+  "cost_level": 2
+ },
+ "disclosure": "opt_in",
+ "disclosure_note_zh": "APOE ε4 纯合（ε4/ε4）默认不展示，须本人事先选择知情并建议配合遗传咨询。",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "9343467",
+  "quote": "The APOE epsilon4-AD association in Japanese subjects was stronger than in Caucasian subjects (epsilon3/epsilon4: OR=5.6, 95% CI=3.9-8.0; epsilon4/epsilon4: OR=33.1, 95% CI=13.6-80.5)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/9343467/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

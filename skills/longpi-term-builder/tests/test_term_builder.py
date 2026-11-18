@@ -379,7 +379,7 @@ class RealRegistry(unittest.TestCase):
     def test_frozen_registry_population_neutral(self):
         terms = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((REAL_REG / "terms").glob("*.json"))]
         RG.verify_manifest(REAL_REG)
-        res = T.check_population(terms, n=3000)
+        res = T.check_population(terms, n=20000)
         self.assertTrue(res["ok"], res["fails"][:5])
 
 

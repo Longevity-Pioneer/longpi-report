@@ -1,0 +1,56 @@
+{
+ "key": "pmid:31199446",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/31199446/",
+ "fetched_at": "2026-11-18T03:22:42Z",
+ "sha256": "6340a066daec5e607d32cbd94ffe33909e9e580d029568e8987669f854b4afa8",
+ "citation": "JAMA network open 2019",
+ "text": "Associations Between Hepatitis B Virus Infection and Risk of All Cancer Types.\nIMPORTANCE: Hepatitis B virus (HBV) has been identified as a major risk factor for hepatocellular carcinoma. However, the associations between HBV infection and other cancer types are not well understood.\nOBJECTIVE: To assess the associations between chronic HBV infection and risk of all cancer types.\nDESIGN, SETTING, AND PARTICIPANTS: This population-based study involved 3 cohorts in China. The China Kadoorie Biobank (CKB) prospective cohort study, conducted between June 2004 and July 2008, used a dipstick assay for detection of serum hepatitis B surface antigen (HBsAg) among 496 732 participants to determine the association between HBV infection and risk of all cancer types. Two cohort studies were used to validate the associations by applying more precise serum HBsAg detection assays: the Qidong cohort (37 336 participants enrolled from November 2007 to April 2011) and the Changzhou nested case-control study (17 723 participants enrolled from June 2004 to September 2005). A total of 97 samples of stomach cancer tissues, 10 samples of pancreatic cancer tissues, and 9 samples of lung cancer tissues were included to assess the presence of HBV replication and expression. Statistical analysis was performed from December 2016 to October 2018.\nEXPOSURES: Serum HBsAg status in the population-based stage and HBV DNA status, the expression of hepatitis B X protein, and hepatitis B core antibody (anti-HBc) in the tissue-based stage.\nMAIN OUTCOMES AND MEASURES: Incidence of all cancer types during follow-up.\nRESULTS: In the CKB cohort, the mean (SD) age of the 496 732 participants was 51.5 (10.7) years; 59.0% of the participants were women. After 4.4 million person-years of follow-up, participants who were HBsAg seropositive (n = 15 355) had a higher risk of hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80), colorectal cancer (HR, 1.42; 95% CI, 1.12-1.81), oral cancer (HR, 1.58; 95% CI, 1.01-2.49), pancreatic cancer (HR, 1.65; 95% CI, 1.03-2.65), and lymphoma (HR, 2.10; 95% CI, 1.34-3.31) when compared with participants who were HBsAg seronegative (n = 481 377). Because of the limitation of sample size, only associations of HBV infection with hepatocellular carcinoma and stomach cancer were validated in the Qidong cohort (hepatocellular carcinoma: HR, 17.51; 95% CI, 13.86-22.11; stomach cancer: HR, 2.02; 95% CI, 1.24-3.29); the Changzhou nested case-control study validated only an association between HBV infection and stomach cancer (odds ratio, 1.76; 95% CI, 1.04-2.98). Moreover, among 22 participants with stomach cancer from the Qidong cohort who were anti-HBc seropositive, 12 samples (54.5%) of cancer tissues were HBV DNA positive, while among 25 participants with stomach cancer who were anti-HBc seronegative, no HBV DNA was detected. The same negative and positive rate was observed in the validation set from Zhejiang Tumor Hospital (19 of 35 samples [54.3%] were HBV DNA positive). Moreover, among the 8 patients with stomach cancer from the Qidong cohort who were anti-HBc seropositive, anti-HBc and hepatitis B X protein were expressed in all of their stomach cancer tissue samples. The same phenomenon was observed in the patients with pancreatic cancer but not in the patients with lung cancer, which was consistent with the population-based results of the CKB cohort.\nCONCLUSIONS AND RELEVANCE: This study found that HBV infection was also associated with the risk of nonliver cancer, especially digestive system cancers among adults in China.\n[full text, Europe PMC PMC6575146]\nThe mean (SD) age of the 496 732 participants was 51.5 (10.7) years; 59.0% of the participants were women, 41.0% were men, and 44.5% were from urban areas (eTable 2 in the Supplement). The prevalence of HBsAg positivity was 3.1% (n = 15 355). Participants who were HBsAg positive were more likely to be younger, male, and urban residents. During 4.4 million person-years of follow-up, there were 20 891 incident cases of cancer (eTable 3 in the Supplement). Multivariable-adjusted analyses showed that HBsAg seropositivity was associated with an increased risk of overall cancer incidence (HR, 2.18; 95% CI, 2.05-2.32) (Table 1). We checked for nonproportional hazards by testing for a nonzero slope in the scaled Schoenfeld residuals over time. Hepatitis B surface antigen seropositivity was also associated with the risks of several site-specific cancers, including HCC (HR, 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80), colorectal cancer (HR, 1.42; 95% CI, 1.12-1.81), oral cavity cancer (HR, 1.58; 95% CI, 1.01-2.49), lymphoma (HR, 2.10; 95% CI, 1.34-3.31), and pancreatic cancer (HR, 1.65; 95% CI, 1.03-2.65). There were no statistically significant associations between HBsAg seropositivity and other cancer sites. Hepatitis C core antibody was not detected in the study population; however, the prevalence of hepatitis C core antibody was low in China (0.43%).22",
+ "pmcid": "PMC6575146",
+ "doi": "10.1001/jamanetworkopen.2019.5718",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.hbv",
+   "number": "liver_ca.hr",
+   "value": 15.77,
+   "found": true,
+   "context": "higher risk of hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1."
+  },
+  {
+   "term": "ext.hbv",
+   "number": "liver_ca.lo",
+   "value": 14.15,
+   "found": true,
+   "context": "hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)"
+  },
+  {
+   "term": "ext.hbv",
+   "number": "liver_ca.hi",
+   "value": 17.57,
+   "found": true,
+   "context": "cellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)"
+  },
+  {
+   "term": "ext.hbv",
+   "number": "gastric_ca.hr",
+   "value": 1.41,
+   "found": true,
+   "context": "atio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)"
+  },
+  {
+   "term": "ext.hbv",
+   "number": "gastric_ca.lo",
+   "value": 1.11,
+   "found": true,
+   "context": "77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)"
+  },
+  {
+   "term": "ext.hbv",
+   "number": "gastric_ca.hi",
+   "value": 1.8,
+   "found": true,
+   "context": "5% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)"
+  }
+ ]
+}

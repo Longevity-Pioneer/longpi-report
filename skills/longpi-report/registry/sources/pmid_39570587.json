@@ -1,0 +1,35 @@
+{
+ "key": "pmid:39570587",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/39570587/",
+ "fetched_at": "2026-11-18T03:25:23Z",
+ "sha256": "116016694367f42b9e35dc2bd70e37d8c747683976536baa9ace3a81462c44ce",
+ "citation": "JAMA network open 2024",
+ "text": "Physical Activity and All-Cause Mortality by Age in 4 Multinational Megacohorts.\nIMPORTANCE: Physical activity (PA) guidelines recommend the same amount of PA through adulthood to live longer.\nOBJECTIVE: To explore whether there is an age-dependent association between PA and all-cause mortality and to investigate the age-dependent associations between other modifiable health factors (high educational level, not smoking, not regularly consuming alcohol, healthy body weight, and living without hypertension and diabetes) and mortality.\nDESIGN, SETTING, AND PARTICIPANTS: This cohort study used a pooled analysis of 4 population-based prospective cohorts (National Health Interview Survey, 1997-2018; UK Biobank, 2006-2010; China Kadoorie Biobank, 2004-2008; and Mei Jau, 1997-2016). Data were analyzed from June 2022 to September 2024.\nEXPOSURES: Self-reported leisure-time PA.\nMAIN OUTCOMES AND MEASURES: The primary outcome was deaths identified through follow-up linkage to national death registries. Analyses were performed for the total sample and by age groups (20-29, 30-39, 40-49, 50-59, 60-69, 70-79, and ≥80 years). Cox proportional hazards regression models with stratification by study were used to calculate mortality hazard ratios and their 95% CIs for the pooled dataset and by age group.\nRESULTS: A heterogeneous sample of 2 011 186 individuals (mean [SD] age, 49.1 [14.3] years; age range, 20-97 years; 1 105 581 women [55.0%]) were included. After a median (IQR) follow-up of 11.5 (9.3-13.5) years, 177 436 deaths occurred. The association between PA and mortality in the total sample showed a nonlinear dose-response pattern, but age modified this association (P for interaction <.001); PA was consistently associated with a lower risk of mortality across all age groups, but the reduction in risk was greater in older vs younger age groups, especially at high levels of PA. The hazard ratio for mortality associated with meeting the recommended PA in the total sample was 0.78 (95% CI, 0.77-0.79). This inverse association between meeting PA recommendations and mortality was somewhat greater as age increased (P for interaction <.001). Age also modified the associations of the other modifiable health factors with mortality (all P for interaction <.001), but the magnitude of associations was greater in younger vs older age groups.\nCONCLUSIONS AND RELEVANCE: In this pooled analysis of cohort studies, the association between PA and mortality risk remained consistent across the adult lifespan, which contrasts with other modifiable health factors, for which associations with mortality risk diminished with age. Given these findings, the promotion of regular PA is essential at all stages of adult life.",
+ "pmcid": "PMC11582934",
+ "doi": "10.1001/jamanetworkopen.2024.46802",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.hr",
+   "value": 0.78,
+   "found": true,
+   "context": "ted with meeting the recommended PA in the total sample was 0.78 (95% CI, 0.77-0.79)."
+  },
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.lo",
+   "value": 0.77,
+   "found": true,
+   "context": "ng the recommended PA in the total sample was 0.78 (95% CI, 0.77-0.79)."
+  },
+  {
+   "term": "ext.mvpa",
+   "number": "all_cause.hr_below.derived.hi",
+   "value": 0.79,
+   "found": true,
+   "context": "e recommended PA in the total sample was 0.78 (95% CI, 0.77-0.79)."
+  }
+ ]
+}

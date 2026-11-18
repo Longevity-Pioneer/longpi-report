@@ -1,0 +1,35 @@
+{
+ "key": "pmid:32967840",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/32967840/",
+ "fetched_at": "2026-11-18T03:53:53Z",
+ "sha256": "c93512f154349d1d29cda5b134df164ec6ae097bffa23f9eccab497a6422e296",
+ "citation": "BMJ (Clinical research ed.) 2020",
+ "text": "Central fatness and risk of all cause mortality: systematic review and dose-response meta-analysis of 72 prospective cohort studies.\nOBJECTIVE: To quantify the association of indices of central obesity, including waist circumference, hip circumference, thigh circumference, waist-to-hip ratio, waist-to-height ratio, waist-to-thigh ratio, body adiposity index, and A body shape index, with the risk of all cause mortality in the general population, and to clarify the shape of the dose-response relations.\nDESIGN: Systematic review and meta-analysis.\nDATA SOURCES: PubMed and Scopus from inception to July 2019, and the reference lists of all related articles and reviews.\nELIGIBILITY CRITERIA FOR SELECTING STUDIES: Prospective cohort studies reporting the risk estimates of all cause mortality across at least three categories of indices of central fatness. Studies that reported continuous estimation of the associations were also included.\nDATA SYNTHESIS: A random effects dose-response meta-analysis was conducted to assess linear trend estimations. A one stage linear mixed effects meta-analysis was used for estimating dose-response curves.\nRESULTS: Of 98 745 studies screened, 1950 full texts were fully reviewed for eligibility. The final analyses consisted of 72 prospective cohort studies with 2 528 297 participants. The summary hazard ratios were as follows: waist circumference (10 cm, 3.94 inch increase): 1.11 (95% confidence interval 1.08 to 1.13, I2=88%, n=50); hip circumference (10 cm, 3.94 inch increase): 0.90 (0.81 to 0.99, I2=95%, n=9); thigh circumference (5 cm, 1.97 inch increase): 0.82 (0.75 to 0.89, I2=54%, n=3); waist-to-hip ratio (0.1 unit increase): 1.20 (1.15 to 1.25, I2=90%, n=31); waist-to-height ratio (0.1 unit increase): 1.24 (1.12 to 1.36, I2=94%, n=11); waist-to-thigh ratio (0.1 unit increase): 1.21 (1.03 to 1.39, I2=97%, n=2); body adiposity index (10% increase): 1.17 (1.00 to 1.33, I2=75%, n=4); and A body shape index (0.005 unit increase): 1.15 (1.10 to 1.20, I2=87%, n=9). Positive associations persisted after accounting for body mass index. A nearly J shaped association was found between waist circumference and waist-to-height ratio and the risk of all cause mortality in men and women. A positive monotonic association was observed for waist-to-hip ratio and A body shape index. The association was U shaped for body adiposity index.\nCONCLUSIONS: Indices of central fatness including waist circumference, waist-to-hip ratio, waist-to-height ratio, waist-to-thigh ratio, body adiposity index, and A body shape index, independent of overall adiposity, were positively and significantly associated with a higher all cause mortality risk. Larger hip circumference and thigh circumference were associated with a lower risk. The results suggest that measures of central adiposity could be used with body mass index as a supplementary approach to determine the risk of premature death.",
+ "pmcid": "PMC7509947",
+ "doi": "10.1136/bmj.m3324",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc",
+ "checks": [
+  {
+   "term": "ext.waist",
+   "number": "all_cause.hr",
+   "value": 1.11,
+   "found": true,
+   "context": "waist circumference (10 cm, 3.94 inch increase): 1.11 (95% confidence interval 1.08 to 1.13, I2=88%, n=50)"
+  },
+  {
+   "term": "ext.waist",
+   "number": "all_cause.lo",
+   "value": 1.08,
+   "found": true,
+   "context": " (10 cm, 3.94 inch increase): 1.11 (95% confidence interval 1.08 to 1.13, I2=88%, n=50)"
+  },
+  {
+   "term": "ext.waist",
+   "number": "all_cause.hi",
+   "value": 1.13,
+   "found": true,
+   "context": " 3.94 inch increase): 1.11 (95% confidence interval 1.08 to 1.13, I2=88%, n=50)"
+  }
+ ]
+}

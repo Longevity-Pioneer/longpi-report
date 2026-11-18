@@ -1,0 +1,33 @@
+{
+ "key": "pmid:42102826",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/42102826/",
+ "fetched_at": "2026-11-18T03:26:44Z",
+ "sha256": "8ef898dd614dc16adffe61a4ee591295ee20ae4a7cf55cb06033fb1db584c97a",
+ "citation": "Lancet (London, England) 2026",
+ "text": "Long-term effects of colonoscopy screening on colorectal cancer incidence and mortality: a multicountry, population-based randomised controlled trial.\nBACKGROUND: We previously reported the 10-year effects of colonoscopy screening on colorectal cancer incidence and mortality. Here, we report the effects after 13 years of follow-up.\nMETHODS: In this multicountry, population-based randomised controlled trial, 84 583 men and women aged 55-64 years at enrolment from Norway, Poland, and Sweden were randomly allocated (1:2) to colonoscopy screening or no screening and analysed. The primary outcomes were colorectal cancer incidence and mortality after 10-15 years of follow-up in intention-to-screen analyses, with first analysis after 10 years, and repeated every other year or at longer intervals. This trial is registered with ClinicalTrials.gov, NCT00883792, and is ongoing.\nFINDINGS: At 13 years of follow-up, colorectal cancer incidence was 375 colorectal cancers (1·46%) of 28 217 individuals in the screening group and 912 colorectal cancers (1·80%) of 56 366 individuals in the no-screening group. The risk ratio (RR) was 0·81 (95% CI 0·71-0·90) in intention-to-screen analyses and 0·55 (0·33-0·81) in per-protocol analyses. The risk for proximal colorectal cancer was 129 (0·51%) in the screening group versus 283 (0·56%) in the no-screening group (RR 0·91 [0·71-1·09]), and the risk for distal colorectal cancer was 224 (0·87%) in the screening group versus 563 (1·11%) in the no-screening group (RR 0·79 [0·65-0·89]; interaction p<0·0001). In men, the colorectal cancer risk was 214 (1·69%) of 14 154 in the screening group and 541 (2·19%) of 28 247 in the no-screening group (RR 0·77 [0·64 to -0·88]); in women, the risk was 161 (1·24%) of 14 063 in the screening group versus 371 (1·43%) of 28 119 in the no-screening group (RR 0·87 [0·70 to 1·02]; interaction p<0·0001). Colorectal cancer mortality was 106 (0·41%) of 28 217 in the screening group and 236 (0·47%) of 56 366 in the no-screening group (intention-to-screen RR 0·88 [0·68-1·08], per-protocol RR 0·70 [0·26-1·25]). The observed colorectal cancer mortality in the non-screening group (0·47%) was substantially lower than expected at the time of designing the trial (0·82%).\nINTERPRETATION: One colonoscopy significantly reduced colorectal cancer incidence but not mortality over 13 years. Colorectal cancer mortality was lower in both study groups than when the trial was designed.\nFUNDING: The Norwegian Research Council, the Nordic Cancer Union, the Norwegian Cancer Society, and the Health Fund of South-East Norway.",
+ "doi": "10.1016/s0140-6736(26)00508-8",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.screen_crc_colonoscopy",
+   "number": "screening.hr",
+   "value": 0.88,
+   "found": true,
+   "context": "of 56 366 in the no-screening group (intention-to-screen RR 0.88 [0.68-1.08], per-protocol RR 0.70 [0.26-1.25])."
+  },
+  {
+   "term": "ext.screen_crc_colonoscopy",
+   "number": "screening.lo",
+   "value": 0.68,
+   "found": true,
+   "context": "366 in the no-screening group (intention-to-screen RR 0.88 [0.68-1.08], per-protocol RR 0.70 [0.26-1.25])."
+  },
+  {
+   "term": "ext.screen_crc_colonoscopy",
+   "number": "screening.hi",
+   "value": 1.08,
+   "found": true,
+   "context": "n the no-screening group (intention-to-screen RR 0.88 [0.68-1.08], per-protocol RR 0.70 [0.26-1.25])."
+  }
+ ]
+}

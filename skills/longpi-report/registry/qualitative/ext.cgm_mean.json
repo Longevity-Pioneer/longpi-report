@@ -1,0 +1,116 @@
+{
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "transport": {
+  "ancestry": "US veterans with diabetes",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "persistence": {
+  "half_life_years": 0.5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_as_is",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "id": "ext.cgm_mean",
+ "name_zh": "CGM 平均血糖",
+ "input": {
+  "code": "LP:cgm_mean",
+  "unit": "mmol/L",
+  "platform": "CGM (≥10 days)",
+  "methods": [
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   3.5,
+   20
+  ],
+  "log_x": false,
+  "note_zh": "原文摘要只给 HR 1.18，未给置信区间与单位间隔；lo/hi 暂填点估计、per 暂填 1，仅为满足结构校验，不得用于计算"
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 5.6,
+    "sd": 0.5
+   }
+  ],
+  "source": "构造值：非糖尿病成人 CGM 平均血糖约 5.3–6.0 mmol/L，未检索到可逐字核对的中国一般人群分布文献，数值未经原文核对"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.18,
+   "lo": 1.18,
+   "hi": 1.18,
+   "per": 1.0,
+   "per_unit": "原文摘要未说明单位间隔（可能为每 1 SD）",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.2,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "CGM 平均血糖与糖化血红蛋白高度相关（可换算为血糖管理指标 GMI），与已计入的血糖领域基本是同一信息；摘要称'校正死亡相关变量'且另行校正 HbA1c 后仍显著，但全文未能核对校正变量，按仅校正年龄、性别处理，取 0.2，且本项不计入数值",
+  "mediated_by": {}
+ },
+ "population": {
+  "cohort": "美国退伍军人医疗系统使用 Dexcom CGM 的糖尿病患者（65% 为 2 型）",
+  "n": 2752,
+  "events": 407,
+  "ancestry": "US veterans with diabetes"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "传感器准确度与佩戴天数影响读数"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "控制总能量与精制碳水、规律运动可降低平均血糖；本项对非糖尿病者仅作描述"
+ },
+ "test": {
+  "label_zh": "佩戴连续血糖监测 10–14 天",
+  "cost_level": 3
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "retrospective-cohort",
+  "pmid": "40768053",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/40768053/",
+  "quote": "higher MG, TAR, CV, and GRI and lower TIR during the 6-month LM were associated with 5-year mortality (hazard ratios: MG 1.18, TAR 1.20, GRI 1.23, CV 1.18, and TIR 0.83; all P ≤ 0.01)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "该研究为电子病历回顾性分析，摘要未给置信区间与单位间隔，全文非开放获取未能核对。中国 2 型糖尿病队列只报告了 TIR 与变异系数，未单独报告平均血糖",
+ "why_qualitative_zh": "现有死亡证据只来自糖尿病患者（单中心或退伍军人医疗系统人群），而本平台使用者多为非糖尿病人群，其 CGM 指标分布（平均血糖约 5–6 mmol/L、3.9–7.8 mmol/L 时间占比多在 85% 以上）远离研究人群的取值范围，不能外推；非糖尿病人群中 CGM 指标与全因死亡、事件 ≥100 的前瞻研究未检索到。此外该指标与已计入的血糖领域（空腹血糖、糖化血红蛋白）信息高度重叠。故列为定性佐证，不计入 LongPi Age；所引研究为回顾性电子病历队列，摘要未给置信区间和单位间隔，数值无法完整核对",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "all_cause: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')",
+  "all_cause: HR 1.18 与 CI 1.18–1.18 未在 quote 中成组出现（数值与原文结论未绑定）"
+ ]
+}

@@ -1,0 +1,302 @@
+{
+ "id": "ext.bmi",
+ "name_zh": "体重指数（疾病风险）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "adiposity",
+ "input": {
+  "code": "LOINC:39156-5",
+  "unit": "kg/m2",
+  "platform": null,
+  "methods": [
+   "measured",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   17,
+   40
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "source": "中国成人 BMI 分性别年龄分布；data/population_norms_china.json markers.bmi（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 24.1,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 24.1,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 24.7,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 24.7,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 23.8,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 23.8,
+    "sd": 3.65
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 22.9,
+    "sd": 3.65
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 23.1,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 23.1,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 24.7,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 24.7,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 24.2,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 24.2,
+    "sd": 3.79
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 23.0,
+    "sd": 3.79
+   }
+  ],
+  "kind": "normal"
+ },
+ "effect": {
+  "t2d": {
+   "hr": 1.77,
+   "lo": 1.73,
+   "hi": 1.81,
+   "per": 3.4,
+   "per_unit": "kg/m2 (1 SD; women's estimate, the lower of the two sexes)",
+   "direction": "higher_worse",
+   "coef": 0.5,
+   "evidence": {
+    "pmid": "29298802",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)"
+   },
+   "population": {
+    "cohort": "China Kadoorie Biobank",
+    "n": 482589,
+    "events": 13416,
+    "ancestry": "Chinese"
+   }
+  },
+  "htn": {
+   "hr": 1.1,
+   "lo": 1.07,
+   "hi": 1.12,
+   "per": 1,
+   "per_unit": "kg/m2",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "41357077",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "aHR, 1.10; 95% CI, 1.07-1.12"
+   },
+   "population": {
+    "cohort": "China Health and Nutrition Survey (baseline normal BMI 18.5–23.9)",
+    "n": 9583,
+    "events": 3025,
+    "ancestry": "Chinese"
+   }
+  },
+  "masld": {
+   "hr": 2.81,
+   "lo": 2.63,
+   "hi": 3.01,
+   "per": 5,
+   "per_unit": "kg/m2",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "30692555",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "BMI showed a log-linear positive association with NAFLD (n = 1,298), with adjusted HR per 5 kg/m2 of 2.81 (95% CI 2.63-3.01)"
+   },
+   "population": {
+    "cohort": "China Kadoorie Biobank",
+    "n": 503991,
+    "events": 1298,
+    "ancestry": "Chinese"
+   }
+  },
+  "crc": {
+   "hr": 1.17,
+   "lo": 1.1,
+   "hi": 1.25,
+   "per": 5,
+   "per_unit": "kg/m2",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "31115907",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "colorectal (HR, 1.17; 95% CI, 1.10-1.25)"
+   },
+   "population": {
+    "cohort": "China Kadoorie Biobank",
+    "n": 512891,
+    "ancestry": "Chinese"
+   }
+  },
+  "breast_ca": {
+   "hr": 1.29,
+   "lo": 1.18,
+   "hi": 1.4,
+   "per": 5,
+   "per_unit": "kg/m2 (postmenopausal women)",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "evidence": {
+    "pmid": "31115907",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "postmenopausal breast (HR, 1.29; 95% CI, 1.18-1.40)"
+   },
+   "population": {
+    "cohort": "China Kadoorie Biobank (postmenopausal women)",
+    "ancestry": "Chinese",
+    "sex": "F"
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "LP:mvpa_min_week"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.adiposity"
+  ],
+  "rationale_zh": "仅为疾病建项，不写全因死亡，避免与 core.adiposity 在 LongPi Age 中重复计入。CKB 各结局模型校正了年龄、性别、地区、教育、吸烟、饮酒与体力活动，未校正血糖、血压等中介；体重是上游暴露，不应以中介校正，故结直肠癌、乳腺癌、脂肪肝取 0.8。2 型糖尿病单独取 0.5：ext.fpg 的效应已校正 BMI，而 BMI 的总效应有相当部分经空腹血糖中介，同时计入两项时须打折，以免重复。高血压证据来自 CHNS，模型已校正基线收缩压、舒张压、腰臀比、吸烟、饮酒与糖尿病，但研究对象基线 BMI 限于正常范围，外推到超重人群时取 0.8。乳腺癌效应来自绝经后女性，引擎没有绝经状态，以年龄 ≥50 岁近似；CKB 同队列绝经前女性亦呈正相关，用于全部女性不会改变方向。BMI 与肝癌在 CKB 中呈反向关联且排除前 5 年后消失，未纳入。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank / China Health and Nutrition Survey",
+  "n": 512891,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": 0.5,
+  "cv": null,
+  "source": "测量身高体重计算的 BMI 误差约 0.5 kg/m2（经验值）；自报身高体重偏差更大"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "通过控制总能量摄入与增加体力活动减重；中国成人 BMI 宜保持在 18.5–23.9 kg/m2。"
+ },
+ "test": {
+  "label_zh": "测量身高体重",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "29298802",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/29298802/",
+  "quote": "BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

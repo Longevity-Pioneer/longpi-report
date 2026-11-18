@@ -1,0 +1,108 @@
+{
+ "id": "ext.prs_ad",
+ "name_zh": "阿尔茨海默病多基因评分",
+ "kind": "genetic",
+ "system": "brain_sleep",
+ "group": null,
+ "input": {
+  "code": "PGS:PGS004589",
+  "unit": "SD",
+  "platform": "PGS Catalog harmonized scoring file (GRCh38)",
+  "methods": [
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -4,
+   4
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "residualized",
+  "mean": 0,
+  "sd": 1,
+  "source": "z within 1000G EAS reference (omics layer)"
+ },
+ "effect": {
+  "ad": {
+   "hr": 2.09,
+   "lo": 1.09,
+   "hi": 4.04,
+   "per": 1,
+   "per_unit": "1 SD of PRS (z)",
+   "direction": "higher_worse",
+   "metric": "OR",
+   "note": "每 SD 的 OR（校正 APOE ε4）"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "education",
+  "genetic_pcs",
+  "ext.apoe_e4"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "评估已校正 APOE ε4 状态，与 ext.apoe_e4 信息不重复；但评估样本小（379 人、159 例），置信区间很宽。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian (Korean)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Korean memory-clinic cohorts (BICWALZS, PREMIER), Jung 2022 JAMA Netw Open",
+  "n": 379,
+  "events": 159,
+  "ancestry": "East Asian (Korean)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "多基因评分不可改变；评分偏高者更应控制可改变的危险因素并按指南筛查。"
+ },
+ "test": {
+  "label_zh": "全基因组测序或基因芯片（含插补）计算多基因评分",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "C",
+  "design": "pgs-catalog-evaluation",
+  "source": "pgs_perf:PPM020712",
+  "pmid": "36520433",
+  "quote": "Odds Ratio (OR): 2.09 [1.09, 4.04]",
+  "url": "https://www.pgscatalog.org/performance/PPM020712/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "PGS Catalog 评分；许可文本由 verify 从 PGS Catalog 读取，未见非商业限制；效应量为 PGS Catalog 收录的评估记录"
+ },
+ "why_qualitative_zh": "PGS Catalog 中阿尔茨海默病评分的东亚评估仅有韩国记忆门诊小样本病例对照（379 人、159 例，OR 2.09，95% CI 1.09–4.04），置信区间过宽，证据等级低于 B，暂作定性佐证。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "ad: 证据等级 C 低于 B"
+ ]
+}

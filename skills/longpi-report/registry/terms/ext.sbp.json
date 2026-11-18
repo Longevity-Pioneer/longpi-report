@@ -1,0 +1,245 @@
+{
+ "id": "ext.sbp",
+ "name_zh": "收缩压（疾病风险）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "blood_pressure",
+ "input": {
+  "code": "LOINC:8480-6",
+  "unit": "mmHg",
+  "platform": null,
+  "methods": [
+   "device",
+   "lab",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   100,
+   200
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "source": "中国成人慢性病与营养监测 2018 收缩压分性别年龄分布；data/population_norms_china.json markers.sbp（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 125.3,
+    "sd": 15.9
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 127.1,
+    "sd": 15.9
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 130.4,
+    "sd": 19.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 135.8,
+    "sd": 19.2
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 139.7,
+    "sd": 22.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 143.29999999999998,
+    "sd": 22.4
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 146.2,
+    "sd": 22.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 113.2,
+    "sd": 15.9
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 116.3,
+    "sd": 15.9
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 124.6,
+    "sd": 19.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 133.5,
+    "sd": 19.2
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 139.4,
+    "sd": 22.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 146.70000000000002,
+    "sd": 22.4
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 152.9,
+    "sd": 22.4
+   }
+  ]
+ },
+ "effect": {
+  "chd": {
+   "hr": 1.31,
+   "lo": 1.28,
+   "hi": 1.34,
+   "per": 10,
+   "per_unit": "mmHg (usual SBP)",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "population": {
+    "events": 4450
+   }
+  },
+  "stroke": {
+   "hr": 1.3,
+   "lo": 1.29,
+   "hi": 1.31,
+   "per": 10,
+   "per_unit": "mmHg (usual SBP)",
+   "direction": "higher_worse",
+   "coef": 0.8,
+   "population": {
+    "events": 29343
+   }
+  },
+  "ckd": {
+   "hr": 1.4,
+   "lo": 1.35,
+   "hi": 1.44,
+   "per": 10,
+   "per_unit": "mmHg (usual SBP)",
+   "direction": "higher_worse",
+   "coef": 0.6,
+   "population": {
+    "events": 1940
+   },
+   "evidence": {
+    "pmid": "29773120",
+    "grade": "B",
+    "design": "prospective-cohort",
+    "quote": "Usual systolic blood pressure was also positively associated with incident chronic kidney disease (1.40 [1.35-1.44])"
+   }
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol",
+  "core.adiposity"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.bp"
+  ],
+  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.bp（只计全因死亡）不重复计数。原研究校正了年龄、性别、地区、教育、吸烟、饮酒和体重指数，未校正血脂（基线未测）；敏感性分析加入糖尿病后结果基本不变。降压试验支持血压对冠心病和卒中的因果作用，故冠心病、卒中取 0.8。慢性肾病的关联原作者认为可能部分来自反向因果或残余混杂，且降压试验未见肾衰竭显著下降，故慢性肾病取 0.6。卒中采用缺血性卒中的 HR（占卒中多数）；脑出血关联更强（1.68），此处取保守值。HR 已做回归稀释校正（对应长期平均收缩压），单次测量值代入可能略高估；40–49 岁的 HR 约为 70–79 岁的两倍，本项未按年龄分层。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "China Kadoorie Biobank",
+  "n": 512891,
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.08,
+  "source": "诊室单次收缩压测量的个体内变异约 8%（一般估计，未逐字核对）"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "post_exercise"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "限盐、减重、规律运动、限酒；达到用药指征时遵医嘱降压。"
+ },
+ "test": {
+  "label_zh": "测量诊室或家庭收缩压",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "29773120",
+  "doi": "10.1016/S2214-109X(18)30184-7",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/29773120/",
+  "quote": "each 10 mm Hg higher usual systolic blood pressure was associated with an approximately 30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

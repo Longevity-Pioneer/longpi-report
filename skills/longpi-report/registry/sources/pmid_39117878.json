@@ -1,0 +1,56 @@
+{
+ "key": "pmid:39117878",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/39117878/",
+ "fetched_at": "2026-11-18T03:31:44Z",
+ "sha256": "053d51e8ac2a7f9723a63f92c7979bfc7c9fe3b3d78979440970733076f2906d",
+ "citation": "Nature medicine 2024",
+ "text": "Proteomic aging clock predicts mortality and risk of common age-related diseases in diverse populations.\nCirculating plasma proteins play key roles in human health and can potentially be used to measure biological age, allowing risk prediction for age-related diseases, multimorbidity and mortality. Here we developed a proteomic age clock in the UK Biobank (n = 45,441) using a proteomic platform comprising 2,897 plasma proteins and explored its utility to predict major disease morbidity and mortality in diverse populations. We identified 204 proteins that accurately predict chronological age (Pearson r = 0.94) and found that proteomic aging was associated with the incidence of 18 major chronic diseases (including diseases of the heart, liver, kidney and lung, diabetes, neurodegeneration and cancer), as well as with multimorbidity and all-cause mortality risk. Proteomic aging was also associated with age-related measures of biological, physical and cognitive function, including telomere length, frailty index and reaction time. Proteins contributing most substantially to the proteomic age clock are involved in numerous biological functions, including extracellular matrix interactions, immune response and inflammation, hormone regulation and reproduction, neuronal structure and function and development and differentiation. In a validation study involving biobanks in China (n = 3,977) and Finland (n = 1,990), the proteomic age clock showed similar age prediction accuracy (Pearson r = 0.92 and r = 0.94, respectively) compared to its performance in the UK Biobank. Our results demonstrate that proteomic aging involves proteins spanning multiple functional categories and can be used to predict age-related functional status, multimorbidity and mortality risk across geographically and genetically diverse populations.\n[full text, Europe PMC PMC11405266]\nUsing 204 APs in the final model, we calculated participants’ ProtAgeGap as the difference between ProtAge and chronological age in all three cohorts. In the UKB, the average years of ProtAgeGap among the top 5% and bottom 5% of ProtAgeGap was 6.3 and −6 years, respectively, resulting in a mean difference of approximately 12.3 years in biological aging between them. ProtAgeGap showed similar distributions across all three cohorts in females and males, across self-reported ethnicities in the UKB and across geographical regions in the CKB (Fig. 2g–i).\nWe further used multivariable Cox proportional hazards models to investigate whether associations of ProtAgeGap with mortality and the 14 common noncancer diseases studied persisted after adjustment for chronological age, sex, smoking, physical activity, sociodemographic factors and clinical risk factors. ProtAgeGap showed a significant association with mortality and all noncancer incident disease outcomes except Parkinson’s disease across all models in the UKB (Fig. 5). In the fully adjusted model that also included covariates for BMI and prevalent hypertension (model 3), the largest effect size per 1-year increase of ProtAgeGap was observed for AD (hazard ratio (HR) 1.16; 95% confidence interval (CI) 1.12–1.20), all-cause dementia (HR 1.12; 95% CI 1.10–1.15) and CKD (HR 1.10; 95% CI 1.08–1.11). ProtAgeGap20 was associated with all diseases investigated, including Parkinson’s disease. Summary statistics from all models are shown in Supplementary Tables 7–12.",
+ "pmcid": "PMC11405266",
+ "doi": "10.1038/s41591-024-03164-7",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ad.hr",
+   "value": 1.16,
+   "found": true,
+   "context": "crease of ProtAgeGap was observed for AD (hazard ratio (HR) 1.16; 95% confidence interval (CI) 1.12-1.20), all-cause dementi"
+  },
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ad.lo",
+   "value": 1.12,
+   "found": true,
+   "context": "or AD (hazard ratio (HR) 1.16; 95% confidence interval (CI) 1.12-1.20), all-cause dementia (HR 1.12; 95% CI 1.10-1.15) and C"
+  },
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ad.hi",
+   "value": 1.2,
+   "found": true,
+   "context": " (hazard ratio (HR) 1.16; 95% confidence interval (CI) 1.12-1.20), all-cause dementia (HR 1.12; 95% CI 1.10-1.15) and CKD (H"
+  },
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ckd.hr",
+   "value": 1.1,
+   "found": true,
+   "context": "terval (CI) 1.12-1.20), all-cause dementia (HR 1.12; 95% CI 1.10-1.15) and CKD (HR 1.10; 95% CI 1.08-1.11)"
+  },
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ckd.lo",
+   "value": 1.08,
+   "found": true,
+   "context": "mentia (HR 1.12; 95% CI 1.10-1.15) and CKD (HR 1.10; 95% CI 1.08-1.11)"
+  },
+  {
+   "term": "ext.prot_protage_gap",
+   "number": "ckd.hi",
+   "value": 1.11,
+   "found": true,
+   "context": "a (HR 1.12; 95% CI 1.10-1.15) and CKD (HR 1.10; 95% CI 1.08-1.11)"
+  }
+ ]
+}

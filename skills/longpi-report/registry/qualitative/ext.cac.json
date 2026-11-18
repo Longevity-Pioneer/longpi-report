@@ -1,0 +1,277 @@
+{
+ "id": "ext.cac",
+ "name_zh": "冠状动脉钙化积分（Agatston）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": null,
+ "input": {
+  "code": "LP:cac_agatston",
+  "unit": "Agatston",
+  "platform": "ECG-gated non-contrast CT",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   1,
+   3000
+  ],
+  "log_x": true,
+  "note_zh": "原文按 ln(CACS+1) 连续建模；此处下限截于 1，使 0 分对应 ln 值 0，与 ln(0+1) 一致，正值处与 ln(CAC+1) 近似"
+ },
+ "reference": {
+  "kind": "categorical_mid",
+  "mids": {
+   "0": 1,
+   "1-99": 30,
+   "100-399": 200,
+   "400+": 800
+  },
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "0": 0.97,
+     "1-99": 0.017,
+     "100-399": 0.008,
+     "400+": 0.005
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "0": 0.92,
+     "1-99": 0.044,
+     "100-399": 0.022,
+     "400+": 0.014
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "0": 0.8,
+     "1-99": 0.11,
+     "100-399": 0.056,
+     "400+": 0.034
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "0": 0.55,
+     "1-99": 0.248,
+     "100-399": 0.126,
+     "400+": 0.076
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "0": 0.35,
+     "1-99": 0.358,
+     "100-399": 0.182,
+     "400+": 0.11
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "0": 0.18,
+     "1-99": 0.451,
+     "100-399": 0.23,
+     "400+": 0.139
+    }
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "0": 0.1,
+     "1-99": 0.495,
+     "100-399": 0.252,
+     "400+": 0.153
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "p": {
+     "0": 0.99,
+     "1-99": 0.006,
+     "100-399": 0.003,
+     "400+": 0.001
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "p": {
+     "0": 0.97,
+     "1-99": 0.017,
+     "100-399": 0.008,
+     "400+": 0.005
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "p": {
+     "0": 0.92,
+     "1-99": 0.044,
+     "100-399": 0.022,
+     "400+": 0.014
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "p": {
+     "0": 0.8,
+     "1-99": 0.11,
+     "100-399": 0.056,
+     "400+": 0.034
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "p": {
+     "0": 0.55,
+     "1-99": 0.248,
+     "100-399": 0.126,
+     "400+": 0.076
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "p": {
+     "0": 0.28,
+     "1-99": 0.396,
+     "100-399": 0.202,
+     "400+": 0.122
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "p": {
+     "0": 0.15,
+     "1-99": 0.468,
+     "100-399": 0.238,
+     "400+": 0.144
+    }
+   }
+  ],
+  "pmid": "42707625",
+  "quote": "The ages at which CAC positivity reached 25%, 50%, and 75% were 48, 57, and 70 years for men versus 58, 67, and 76 years for women.",
+  "source": "pmid:42707625",
+  "source_note_zh": "CAC>0 比例按北京社区 42,363 人非门控胸部 CT 目测阳性率的年龄节点（男 48/57/70 岁、女 58/67/76 岁分别达 25%/50%/75%）插值得到；阳性者在 1–99、100–399、≥400 三档的分配（0.55/0.28/0.17）为假设值，未取自文献；目测法敏感度低于 Agatston 定量，各档组中值（1/30/200/800）为约定值"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1,
+   "lo": 1.05,
+   "hi": 1.17,
+   "per": 1.0,
+   "per_unit": "ln(CACS+1) 每增加 1 个单位",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.bp",
+  "core.lipid",
+  "core.smoking",
+  "core.glucose"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.lipid",
+   "core.bp",
+   "core.smoking",
+   "core.glucose"
+  ],
+  "rationale_zh": "冠脉钙化是血脂、血压、吸烟、血糖长期暴露的累积结果，信息与这四个领域高度重叠。摘要仅写'校正后'，并以 Framingham 风险评分为对照，推断校正了 FRS 各组分，未能核对全文，故不取 0.8，暂取 0.5",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Korean",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "韩国多中心无症状体检人群钙化积分登记（回顾性纳入）",
+  "n": 34386,
+  "events": 303,
+  "ancestry": "Korean",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未检索到可核对的重复扫描变异文献；低分段（1–10）重复测量一致性较差"
+ },
+ "persistence": {
+  "half_life_years": 15
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "use_as_is",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "钙化积分基本不可逆，他汀治疗下积分可能上升而斑块趋于稳定；本项提示动脉粥样硬化负担，干预重点仍是血脂、血压、血糖与戒烟"
+ },
+ "test": {
+  "label_zh": "冠脉钙化积分 CT（心电门控平扫）",
+  "cost_level": 3
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "retrospective-cohort",
+  "pmid": "26356835",
+  "doi": "10.1253/circj.CJ-15-0651",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/26356835/",
+  "quote": "Following adjustment, CACS was independently associated with all-cause death (hazard ratio, 1.10; 95% confidence interval (CI): 1.05-1.17; P<0.001)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "其他证据：美国 CAC Consortium 亚裔美国人（PMID 31486775，仅 56 例死亡）CAC≥400 对 0 的全因死亡 HR 3.3（1.3–8.6）；美国临床转诊人群（PMID 26705490，13,092 人，522 例死亡）1–99、100–399 对 0 的 HR 分别为 1.5（1.1–2.1）、1.8（1.3–2.5）；MESA 四族群（PMID 18367736，162 例冠心病事件）钙化积分翻倍使主要冠脉事件风险增加 15%–35%，摘要无合并 CI，未单列冠心病结局。全因死亡证据多来自临床指征扫描或回顾性登记，前瞻性一般人群队列的全因死亡 HR 未检索到",
+ "why_qualitative_zh": "现有全因死亡证据以回顾性登记和临床指征扫描人群为主（本条韩国数据为回顾性纳入的体检登记），不属于入库标准规定的前瞻队列、荟萃或孟德尔随机化设计；校正变量未能核对全文；参考分布中阳性者的分档比例为假设值。故列为定性佐证，提示动脉粥样硬化负担，不计入 LongPi Age",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "all_cause: 研究设计 retrospective-cohort 不在入库范围 ('meta-analysis', 'pooled-cohort', 'prospective-cohort', 'mendelian-randomization', 'rct', 'meta-analysis-rct', 'pgs-catalog-evaluation')"
+ ]
+}

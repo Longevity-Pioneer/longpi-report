@@ -1,0 +1,35 @@
+{
+ "key": "pmid:33634874",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/33634874/",
+ "fetched_at": "2026-11-18T03:18:51Z",
+ "sha256": "37e43d55eb150f5f98233f75efb4002c9a658f9295c8ffa667de37ab3a11ee36",
+ "citation": "International journal of cancer 2021",
+ "text": "Alcohol drinking and risks of total and site-specific cancers in China: A 10-year prospective study of 0.5 million adults.\nAlcohol drinking is associated with increased risks of several site-specific cancers, but its role in many other cancers remains inconclusive. Evidence is more limited from China, where cancer rates, drinking patterns and alcohol tolerability differ importantly from Western populations. The prospective China Kadoorie Biobank recruited >512 000 adults aged 30 to 79 years from 10 diverse areas during 2004 to 2008, recording alcohol consumption patterns by a standardised questionnaire. Self-reported alcohol consumption was estimated as grams of pure alcohol per week based on beverage type, amount consumed per occasion and drinking frequency. After 10 years of follow-up, 26 961 individuals developed cancer. Cox regression was used to estimate adjusted hazard ratios (HRs) and 95% confidence intervals (CIs) relating alcohol consumption to incidence of site-specific cancers. Overall, 33% (n = 69 734) of men drank alcohol regularly (ie, ≥weekly) at baseline. Among male current regular drinkers, alcohol intake showed positive dose-response associations with risks of cancers in the oesophagus (655 events; HR = 1.98 [95%CI 1.79-2.18], per 280 g/wk), mouth and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43]), gallbladder (107; 1.60 [1.16-2.22]) and lung (1017; 1.25 [1.10-1.42]), similarly among never- and ever-regular smokers. After adjustment for total alcohol intake, there were greater risks of oesophageal cancer in daily drinkers than nondaily drinkers and of liver cancer when drinking without meals. The risks of oesophageal cancer and lung cancer were greater in men reporting flushing after drinking than not. In this male population, alcohol drinking accounted for 7% of cancer cases. Among women, only 2% drank regularly, with no clear associations between alcohol consumption and cancer risk. Among Chinese men, alcohol drinking is associated with increased risks of cancer at multiple sites, with certain drinking patterns (eg, daily, drinking without meals) and low alcohol tolerance further exacerbating the risks.",
+ "pmcid": "PMC8359462",
+ "doi": "10.1002/ijc.33538",
+ "open_access": "N",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.alcohol",
+   "number": "liver_ca.hr",
+   "value": 1.52,
+   "found": true,
+   "context": "/wk), mouth and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43])"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "liver_ca.lo",
+   "value": 1.31,
+   "found": true,
+   "context": "mouth and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43])"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "liver_ca.hi",
+   "value": 1.76,
+   "found": true,
+   "context": " and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43])"
+  }
+ ]
+}

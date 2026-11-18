@@ -1,0 +1,145 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.screen_crc_fit",
+ "name_zh": "粪便潜血或免疫化学检测筛查结直肠癌",
+ "system": "whole_body",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.crc_fit",
+  "unit": "years since last test",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator",
+  "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.01
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.03
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.08
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.12
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.12
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.08
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.05
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/crc.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+ },
+ "effect": {},
+ "screening": {
+  "disease_id": "crc",
+  "mortality_rr": {
+   "hr": 0.86,
+   "lo": 0.8,
+   "hi": 0.92
+  },
+  "eligible": {
+   "age": [
+    50,
+    75
+   ],
+   "sex": "both",
+   "requires": []
+  },
+  "interval_years": 1
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "US and Europe",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Cochrane review (Holme 2013), FOBT randomised trials, intention-to-screen",
+  "ancestry": "US and Europe",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述或检查报告日期"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "50–75 岁每年做一次粪便免疫化学检测，阳性者须做结肠镜。"
+ },
+ "test": {
+  "label_zh": "粪便免疫化学检测（FIT），每年一次",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "meta-analysis-rct",
+  "pmid": "24085634",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/24085634/",
+  "quote": "FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "RR 0.86 为愈创木脂法潜血（gFOBT）随机试验的意向筛查合并估计；FIT 灵敏度高于 gFOBT，按此估计偏保守。中国嘉善、海宁等社区试验方向一致，未纳入数值。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

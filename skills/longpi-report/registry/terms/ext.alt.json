@@ -1,0 +1,120 @@
+{
+ "id": "ext.alt",
+ "name_zh": "丙氨酸氨基转移酶（脂肪肝风险）",
+ "kind": "state",
+ "system": "liver",
+ "group": null,
+ "input": {
+  "code": "LOINC:1742-6",
+  "unit": "U/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   8,
+   40
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "meanlog": 2.857,
+    "sdlog": 0.786
+   }
+  ],
+  "source": "研究人群分布：中国 11 城市非糖尿病体检人群 ALT 23.71 ± 21.93 IU/L（男女合并），按矩匹配换算为对数正态（meanlog 2.857，sdlog 0.786）；男性 ALT 高于女性，合并分布会使男性风险偏高、女性偏低",
+  "pmid": "40171237",
+  "quote": "ALT(IU/L)23.71 ± 21.93"
+ },
+ "effect": {
+  "masld": {
+   "hr": 2.21,
+   "lo": 1.73,
+   "hi": 2.81,
+   "per": 17,
+   "per_unit": "U/L (contrast of category midpoints: 26-34 vs <16 U/L, approx. 30 vs 13)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "core.adiposity",
+  "core.glucose",
+  "core.bp",
+  "ext.tg",
+  "ext.hdl",
+  "core.smoking",
+  "core.alcohol",
+  "LP:mvpa_min_week"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.adiposity"
+  ],
+  "rationale_zh": "仅为脂肪肝建项。原文已同时校正 BMI、体重变化、血糖、血压、甘油三酯、HDL-C、胰岛素抵抗、CRP、吸烟、饮酒与运动，属于互相校正的估计；但原文只报告分类比较（26–34 vs <16 U/L），此处按两组中点之差 17 U/L 线性化，且研究对象仅为韩国健康男性、ALT 限于参考区间内（<35 U/L），外推到女性与 ALT 升高者不确定，系数取 0.6。ALT 升高本身也可能是已存在而未诊断的脂肪肝的表现。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Korean",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Kangbuk Samsung Hospital health-screening cohort (healthy Korean men)",
+  "n": 5237,
+  "events": 984,
+  "ancestry": "Korean",
+  "sex": "M"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.15,
+  "source": "ALT 个体内生物学变异约 15%–20%（经验值）"
+ },
+ "persistence": {
+  "half_life_years": 2
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "hepatotoxic_drug"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减重、限酒与减少含糖饮料摄入可降低 ALT；ALT 持续升高应做肝脏超声与病毒性肝炎筛查。"
+ },
+ "test": {
+  "label_zh": "抽血查肝功能",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "17272484",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/17272484/",
+  "quote": "aHR values (95% confidence intervals) for ALT concentrations were 1.53 (1.18-1.98), 1.66 (1.29-2.13), 1.62 (1.26-2.08), and 2.21 (1.73-2.81) for ALT concentrations of 16-18, 19-21, 22-25, and 26-34 U/L",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "disclosure": "standard",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

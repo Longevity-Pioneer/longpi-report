@@ -1,0 +1,35 @@
+{
+ "key": "pmid:36802439",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36802439/",
+ "fetched_at": "2026-11-18T03:31:09Z",
+ "sha256": "b705b82f1d3d39c7b4d4756b71758b32ebb59666d23542163a87eb64a234149f",
+ "citation": "Proceedings of the National Academy of Sciences of the United States of America 2023",
+ "text": "Epigenetic-based age acceleration in a representative sample of older Americans: Associations with aging-related morbidity and mortality.\nBiomarkers developed from DNA methylation (DNAm) data are of growing interest as predictors of health outcomes and mortality in older populations. However, it is unknown how epigenetic aging fits within the context of known socioeconomic and behavioral associations with aging-related health outcomes in a large, population-based, and diverse sample. This study uses data from a representative, panel study of US older adults to examine the relationship between DNAm-based age acceleration measures in the prediction of cross-sectional and longitudinal health outcomes and mortality. We examine whether recent improvements to these scores, using principal component (PC)-based measures designed to remove some of the technical noise and unreliability in measurement, improve the predictive capability of these measures. We also examine how well DNAm-based measures perform against well-known predictors of health outcomes such as demographics, SES, and health behaviors. In our sample, age acceleration calculated using \"second and third generation clocks,\" PhenoAge, GrimAge, and DunedinPACE, is consistently a significant predictor of health outcomes including cross-sectional cognitive dysfunction, functional limitations and chronic conditions assessed 2 y after DNAm measurement, and 4-y mortality. PC-based epigenetic age acceleration measures do not significantly change the relationship of DNAm-based age acceleration measures to health outcomes or mortality compared to earlier versions of these measures. While the usefulness of DNAm-based age acceleration as a predictor of later life health outcomes is quite clear, other factors such as demographics, SES, mental health, and health behaviors remain equally, if not more robust, predictors of later life outcomes.\n[full text, Europe PMC PMC9992763]\nPhenoAge (2018)0.00 (6.83)−28.01–42.110.00 (6.38)−21.09–31.04\nDunedinPACE (2022)†1.02 (0.15)0.63–1.741.02 (0.15)0.63–1.74\nHannum (2013)0.00 (5.04)−29.77–45.660.00 (5.99)−26.71–30.24\nHorvath (2013)0.00 (6.22)−36.28–32.980.00 (5.87)−22.41–33.57\nRegression coefficients that show the associations of sex, race/ethnicity, education, health behaviors, depression, and childhood socioeconomic status (SES) and hardship with the accelerated age epigenetic measures and DunedinPACE are shown in SI Appendix, Tables S3A and S3B, for the original and PC-trained measures of age acceleration, respectively. Females have lower age acceleration than males across all the measures, with and without PC training, with the exception of GrimAge. For the calculation of GrimAge, sex is also regressed out of the measure because both age and sex are used in the calculation of the GrimAge measure. Education is not significantly related to age acceleration with the first generation clocks or the original PhenoAge. However, lower education is associated with faster aging using the DunedinPACE measure, both the original and PC-trained GrimAge acceleration measures, and PC-trained PhenoAge acceleration; all with the expected gradient in the effect estimates.\nLow childhood SES is associated with faster aging using the PhenoAge measure. After PC training, only the Hannum age acceleration measure is associated with childhood SES. Low childhood SES is also associated with faster aging using the DunedinPACE measure. Counterintuitively, childhood financial hardship is significantly associated with slower aging using the original Horvath, Hannum, and PhenoAge acceleration measures. After PC training, childhood financial hardship remains significantly associated with slower aging with the Horvath and Hannum age acceleration measures.\nWith available data, cognition could only be analyzed cross-sectionally with DNAm. Faster age acceleration using the second generation clocks and DunedinPACE is associated with higher cognitive dysfunction. These relationships are mostly unchanged with PC training, with only the Horvath and PhenoAge acceleration estimates changing significantly with PC training. All of the coefficients are ameliorated with adjustment for demographic, SES, and behavioral covariates and cell type, with the estimates for PhenoAge, GrimAge, and DunedinPACE significantly different in the fully adjusted model compared to the unadjusted PC version models.\nWhile PC training generally leads to an upward shift in the mean epigenetic age of the sample, PC training does not significantly change the relationship of DNAm-based age acceleration measures to demographics or health behavior predictors nor the relationship between age acceleration and select health outcomes, cross-sectional and longitudinal. PhenoAge acceleration is the measure most affected by PC training in the prediction of these outcomes.\nPhenoAge Accel0.023***0.015, 0.0300.035***0.027, 0.0440.023***0.014, 0.031\nPhenoAge Accel0.017***0.013, 0.0220.043***0.038, 0.0490.033***0.028, 0.038\nPhenoAge Accel0.043***0.024, 0.0630.098***0.077, 0.1190.045***0.025, 0.065\nPhenoAge Accel1.056***1.037, 1.0751.114***1.088, 1.1411.103***1.075, 1.131",
+ "pmcid": "PMC9992763",
+ "doi": "10.1073/pnas.2215840120",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.clock_dnam_phenoage",
+   "number": "all_cause.hr",
+   "value": 1.056,
+   "found": true,
+   "context": "PhenoAge Accel1.056***1.037, 1.0751.114***1.088, 1.1411.103***1.075, 1.131"
+  },
+  {
+   "term": "ext.clock_dnam_phenoage",
+   "number": "all_cause.lo",
+   "value": 1.037,
+   "found": true,
+   "context": "PhenoAge Accel1.056***1.037, 1.0751.114***1.088, 1.1411.103***1.075, 1.131"
+  },
+  {
+   "term": "ext.clock_dnam_phenoage",
+   "number": "all_cause.hi",
+   "value": 1.075,
+   "found": true,
+   "context": "enoAge Accel1.056***1.037, 1.0751.114***1.088, 1.1411.103***1.075, 1.131"
+  }
+ ]
+}

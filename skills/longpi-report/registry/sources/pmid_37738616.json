@@ -1,0 +1,35 @@
+{
+ "key": "pmid:37738616",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37738616/",
+ "fetched_at": "2026-11-18T03:32:14Z",
+ "sha256": "f7255444fc817760d946e6290110bbfa0893d1e5c8e8b527268f486c64e2b2a3",
+ "citation": "Sleep 2024",
+ "text": "Sleep regularity is a stronger predictor of mortality risk than sleep duration: A prospective cohort study.\nAbnormally short and long sleep are associated with premature mortality, and achieving optimal sleep duration has been the focus of sleep health guidelines. Emerging research demonstrates that sleep regularity, the day-to-day consistency of sleep-wake timing, can be a stronger predictor for some health outcomes than sleep duration. The role of sleep regularity in mortality, however, has not been investigated in a large cohort with objective data. We therefore aimed to compare how sleep regularity and duration predicted risk for all-cause and cause-specific mortality. We calculated Sleep Regularity Index (SRI) scores from > 10 million hours of accelerometer data in 60 977 UK Biobank participants (62.8 ± 7.8 years, 55.0% female, median[IQR] SRI: 81.0[73.8-86.3]). Mortality was reported up to 7.8 years after accelerometer recording in 1859 participants (4.84 deaths per 1000 person-years, mean (±SD) follow-up of 6.30 ± 0.83 years). Higher sleep regularity was associated with a 20%-48% lower risk of all-cause mortality (p < .001 to p = 0.004), a 16%-39% lower risk of cancer mortality (p < 0.001 to p = 0.017), and a 22%-57% lower risk of cardiometabolic mortality (p < 0.001 to p = 0.048), across the top four SRI quintiles compared to the least regular quintile. Results were adjusted for age, sex, ethnicity, and sociodemographic, lifestyle, and health factors. Sleep regularity was a stronger predictor of all-cause mortality than sleep duration, by comparing equivalent mortality models, and by comparing nested SRI-mortality models with and without sleep duration (p = 0.14-0.20). These findings indicate that sleep regularity is an important predictor of mortality risk and is a stronger predictor than sleep duration. Sleep regularity may be a simple, effective target for improving general health and survival.\n[full text, Europe PMC PMC10782501]\nOur analyses included 60 997 participants with valid SRI scores. The SRI distribution was negatively skewed, had a median (IQR) of 81.0 (73.8–86.3), and ranged from 2.5 to 98.5, as described in our previous work [22]. Sleep duration had mean (±SD) of 6.77 ± 1.00 hours, and ranged from 0.48 to 13.49 hours. The mean (±SD) follow-up period between accelerometer recording and study endpoint (March 21, 2021) was 6.30 ± 0.83 years. All-cause mortality rate was 4.84 deaths per 1000 person-years, with 1859 all-cause deaths, 377 by cardiometabolic causes, and 1092 by cancer. Mean (±SD) time to mortality was 5.96 ± 1.32 years. Participants in the final sample of 60 997 were 62.8 ± 7.8 years of age, 55.0% female, 97.2% white ethnicity, 60.8% employed, 7.3% shift workers, and had median income range £31000–51 999, Townsend deprivation index score of −1.79 ± 2.77, ≥1 weekly social activities in 72.9%, social visits most commonly experienced weekly (36.2%), 83.6% from an urban postcode, 36.4% previous and 6.3% current smokers, and mean (±SD) physical activity of 28.4 ± 8.1 milli-g across weekly recordings. Descriptive statistics of each covariate across SRI and sleep duration quintiles are provided in Table 1. Number of deaths by all-causes, cardiometabolic, cancer, and other causes are provided in Tables 2 and 3 for each SRI and sleep duration quintile. Intraindividual variability in sleep onset and offset timing across SRI quintiles are provided in Supporting Information Supplementary Results S2.7.\nN = 46 721SRI (20%–40%)296 (0.63)0.83 [0.71 to 0.96]*61 (0.13)0.85 [0.61 to 1.17]170 (0.36)0.84 [0.69 to 1.03]65 (0.14)0.83 [0.61 to 1.13]",
+ "pmcid": "PMC10782501",
+ "doi": "10.1093/sleep/zsad253",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.sleep_regularity",
+   "number": "all_cause.hr_below.derived.hr",
+   "value": 0.83,
+   "found": true,
+   "context": "SRI (20%-40%)296 (0.63)0.83 [0.71 to 0.96]*"
+  },
+  {
+   "term": "ext.sleep_regularity",
+   "number": "all_cause.hr_below.derived.lo",
+   "value": 0.71,
+   "found": true,
+   "context": "SRI (20%-40%)296 (0.63)0.83 [0.71 to 0.96]*"
+  },
+  {
+   "term": "ext.sleep_regularity",
+   "number": "all_cause.hr_below.derived.hi",
+   "value": 0.96,
+   "found": true,
+   "context": "SRI (20%-40%)296 (0.63)0.83 [0.71 to 0.96]*"
+  }
+ ]
+}

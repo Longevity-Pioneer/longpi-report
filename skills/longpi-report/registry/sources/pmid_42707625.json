@@ -1,0 +1,13 @@
+{
+ "key": "pmid:42707625",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/42707625/",
+ "fetched_at": "2026-11-18T03:21:00Z",
+ "sha256": "c842f9e48283b6687e672644acb02f8d8ee6630ee87fa76545b9aeedbdd7286a",
+ "citation": "Frontiers in cardiovascular medicine 2026",
+ "text": "Coronary artery calcium and thoracic aortic calcification on non-ECG-gated chest CT in a large community-based cohort of Chinese men and women.\nAIMS: Non-ECG-gated chest CT frequently identifies coronary artery calcification (CAC) and thoracic aortic calcification (TAC), but age- and sex-specific thresholds remain unclear in Chinese communities. The ACC/AHA guideline recommends statins for those with CAC ≥75th percentile1. In subgroups with CAC positivity rate ≤25%, any detectable CAC corresponds to the ≥75th percentile. We aimed to determine precise sex-specific age thresholds using single-year stratification for opportunistic cardiovascular risk stratification.\nMETHODS: A total of 42 363 participants aged 1-105 years (mean age: 56.9 ± 17.3 years; 52.0% male) who underwent non‑ECG‑gated chest CT from 2023 to 2025 were enrolled in this retrospective study. CAC and TAC were visually evaluated as binary (present/absent) variables. Single‑year stratification was applied to calculate key age thresholds corresponding to 25%, 50%, and 75% positivity rates of CAC and TAC. Distributions of isolated CAC, isolated TAC, and combined vascular calcification were compared between men and women.\nRESULTS: The ages at which CAC positivity reached 25%, 50%, and 75% were 48, 57, and 70 years for men versus 58, 67, and 76 years for women. Corresponding TAC threshold ages were 57, 60, and 71 years in men and 60, 67, and 78 years in women; TAC showed strong age dependence with modest sex‑related differences. The inflection age for CAC positivity exceeding 25% was approximately 58 years in women, around 10 years later than that observed in men. Isolated CAC was more frequent among men, while isolated TAC predominated in women; combined calcification became the dominant phenotype with increasing age.\nCONCLUSION: In male aged <48 years and women aged <58 years, CAC detected on non-gated chest CT may warrant statin initiation, providing additional cost-free opportunistic risk stratification beyond current guideline recommendations. Moreover, CAC-negative individuals aged <70 years in men and <76 years in women are likely to have a favorable cardiovascular prognosis.",
+ "pmcid": "PMC13547932",
+ "doi": "10.3389/fcvm.2026.1890920",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

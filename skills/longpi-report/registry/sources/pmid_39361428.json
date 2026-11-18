@@ -1,0 +1,35 @@
+{
+ "key": "pmid:39361428",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/39361428/",
+ "fetched_at": "2026-11-18T03:25:56Z",
+ "sha256": "b291abedf11547682c3f6e9f49a0e6fa9844dbd6ebf917ff7b9759f7632674aa",
+ "citation": "International journal of cancer 2025",
+ "text": "Association between family history with lung cancer incidence and mortality risk in the Asia Cohort Consortium.\nFamily history of lung cancer (FHLC) has been widely studied but most prospective cohort studies have primarily been conducted in non-Asian countries. We assessed the association between FHLC with risk of lung cancer (LC) incidence and mortality in a population of East Asian individuals. A total of 478,354 participants from 11 population-based cohorts in the Asia Cohort Consortium were included. A Cox proportional hazards regression model was used to estimate hazard ratios (HRs) and 95% confidence intervals (CIs). A total of 7,785 LC incident cases were identified. FHLC (any LC subtype) was associated with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63). The positive association was observed in men and women (HR = 1.44, 95% CI = 1.26-1.66 in men; HR = 1.47, 95% CI = 1.22-1.79 in women), and in both never-smokers and ever-smokers (HR = 1.43, 95% CI = 1.18-1.73 in never-smokers; HR = 1.46, 95% CI =1.27-1.67 in ever-smokers). FHLC was associated with an increased risk of lung adenocarcinoma (HR = 1.63, 95% CI: 1.36-1. 94), squamous cell carcinoma (HR = 1.88, 95% CI: 1.46-2.44), and other non-small cell LC (HR = 1.94, 95% CI: 1.02-3.68). However, we found no evidence of significant effect modification by sex, smoking status, and ethnic groups. In conclusion, FHLC was associated with increased risk of LC incidence and mortality, and the associations remained consistent regardless of sex, smoking status and ethnic groups among the East Asian population.",
+ "pmcid": "PMC11661513",
+ "doi": "10.1002/ijc.35191",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc",
+ "checks": [
+  {
+   "term": "ext.fh_lung_ca",
+   "number": "lung_ca.hr",
+   "value": 1.45,
+   "found": true,
+   "context": "was associated with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63)."
+  },
+  {
+   "term": "ext.fh_lung_ca",
+   "number": "lung_ca.lo",
+   "value": 1.3,
+   "found": true,
+   "context": "with an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63)."
+  },
+  {
+   "term": "ext.fh_lung_ca",
+   "number": "lung_ca.hi",
+   "value": 1.63,
+   "found": true,
+   "context": "an increased risk of LC incidence (HR = 1.45, 95% CI = 1.30-1.63)."
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "key": "pmid:35662611",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35662611/",
+ "fetched_at": "2026-11-18T03:40:43Z",
+ "sha256": "58cbd831941bf979fcec14603d024777d755e7e46cff8ad33afe2297b688b7da",
+ "citation": "Diabetes research and clinical practice 2022",
+ "text": "Impact of short-term glycemic variability on risk of all-cause mortality in type 2 diabetes patients with well-controlled glucose profile by continuous glucose monitoring: A prospective cohort study.\nAIMS: To investigate the association between short-term glycemic variability (GV) and all-cause mortality in type 2 diabetes with well-controlled glucose profile by continuous glucose monitoring (CGM).\nMETHODS: In this prospective study, 1839 diabetes patients who reached percentage of time in the target glucose range of 3.9-10 mmol/L > 70%, percentage of time above range of 10 mmol/L < 25% and percentage of time below range of 3.9 mmol/L < 4% on CGM were enrolled and were classified into five groups by coefficient of variation for glucose (%CV) level: ≤20%, 20-25%, 25-30%, 30-35%, and > 35%. Cox proportional hazard models were used to estimate hazard ratios (HRs) of all-cause mortality risk associated with the different %CV categories.\nRESULTS: At baseline, participants had mean age of 60.9 years and mean HbA1c of 7.3% (56 mmol/mol). A total of 165 deaths were identified during a median follow-up of 6.9 years. In multivariate Cox regression analysis, HRs associated with %CV categories were 1.00, 1.16 (95% CI 0.78-1.73), 1.38 (95% CI 0.89-2.15), 1.33 (95% CI 0.77-2.29) and 2.26 (95% CI 1.13-4.52) for all-cause mortality.\nCONCLUSIONS: Greater %CV was associated with increased risk for all-cause mortality even among patients with seemingly well-controlled glucose status.",
+ "doi": "10.1016/j.diabres.2022.109940",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.cgm_cv",
+   "number": "all_cause.hr_above.hr",
+   "value": 2.26,
+   "found": true,
+   "context": "1.33 (95% CI 0.77-2.29) and 2.26 (95% CI 1.13-4.52) for all-cause mortality"
+  },
+  {
+   "term": "ext.cgm_cv",
+   "number": "all_cause.hr_above.lo",
+   "value": 1.13,
+   "found": true,
+   "context": "1.33 (95% CI 0.77-2.29) and 2.26 (95% CI 1.13-4.52) for all-cause mortality"
+  },
+  {
+   "term": "ext.cgm_cv",
+   "number": "all_cause.hr_above.hi",
+   "value": 4.52,
+   "found": true,
+   "context": "1.33 (95% CI 0.77-2.29) and 2.26 (95% CI 1.13-4.52) for all-cause mortality"
+  }
+ ]
+}

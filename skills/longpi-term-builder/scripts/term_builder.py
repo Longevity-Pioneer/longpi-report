@@ -218,7 +218,7 @@ def check_code(code: str, offline: bool = False) -> Tuple[bool, str]:
     except PrivacyError:   # not a well-formed identifier: never sent, the code is simply invalid
         return False, f"{code} 不是格式正确的 {ns} 编码"
     except Exception as e:  # network or parse failure
-        return False, f"{ns} 校验失败：{type(e).__name__}: {e}"
+        return None, f"{ns} 联网校验失败（稍后重试）：{type(e).__name__}: {e}"
     return False, f"未知命名空间 {ns}"
 
 
@@ -695,10 +695,31 @@ def check_population(terms: List[dict], n: int = 20000, tol: float = 0.02, seed:
                                 fails.append(f"{t['id']} {oc} {sex} {lo}-{hi}: 引擎归一化 {Le:.6f} 与建项层不一致")
                         except Exception:
                             pass
-                    vals = [math.exp(f_raw(t, oc, sample_ref(t, sex, age, rng)) - L) for _ in range(n)]
-                    m = sum(vals) / n
-                    sd = math.sqrt(sum((v - m) ** 2 for v in vals) / max(1, n - 1))
-                    se = sd / math.sqrt(n)
+                    kind = ref_kind(t)
+                    if kind in ("categorical", "categorical_mid", "prevalence"):
+                        # discrete reference: exact expectation (sampling rare levels such as APOE e4/e4 is noise)
+                        row = ref_band(t, sex, age)
+                        if kind == "prevalence":
+                            pv = row["prevalence"]
+                            probs = {1: pv, 0: 1 - pv}
+                            bad_p = not 0 <= pv <= 1
+                        else:
+                            probs = dict(row["p"])
+                            bad_p = abs(sum(probs.values()) - 1) > 1e-3 or min(probs.values()) < 0
+                        if bad_p:
+                            fails.append(f"{t['id']} {oc} {sex} {lo}-{hi}: 参考分布概率不合法（和须为 1）")
+                            continue
+                        if kind == "categorical_mid":
+                            mids = t["reference"]["mids"]
+                            mids = mids.get(sex, mids) if isinstance(mids, dict) and sex in mids else mids
+                            probs = {mids[k]: v for k, v in probs.items()}
+                        m = sum(pv * math.exp(f_raw(t, oc, lvl) - L) for lvl, pv in probs.items())
+                        se = 0.0
+                    else:
+                        vals = [math.exp(f_raw(t, oc, sample_ref(t, sex, age, rng)) - L) for _ in range(n)]
+                        m = sum(vals) / n
+                        sd = math.sqrt(sum((v - m) ** 2 for v in vals) / max(1, n - 1))
+                        se = sd / math.sqrt(n)
                     ok = abs(m - 1) <= tol + 3 * se and abs(m - 1) <= 2 * tol
                     rows.append({"term": t["id"], "outcome": oc, "sex": sex, "band": f"{lo}-{hi}", "mean_exp": round(m, 4),
                                  "mc_se": round(se, 4), "ok": ok})
@@ -809,6 +830,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
     """Run every gate on a term spec. verdict: auto_accept | qualitative | invalid."""
     fail, warn, invalid, checks, info = [], [], [], [], []
     used: set = set()
+    retry = False
     st = RG.validate_term(spec)
     if st:
         invalid += st
@@ -816,7 +838,11 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
     tid = spec["id"]
     code = spec["input"]["code"]
     ok, det = check_code(code, offline)
-    (info if ok else invalid).append(f"编码 {code}: {det}")
+    if ok is None:
+        retry = True
+        fail.append(f"编码 {code}: {det}")
+    else:
+        (info if ok else invalid).append(f"编码 {code}: {det}")
     # dedupe by code (+platform)
     for sub in ("terms", "qualitative"):
         for p in sorted((root / sub).glob("*.json")) if (root / sub).is_dir() else []:
@@ -892,6 +918,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             raise
         except Exception as ex:
             fail.append(f"{oc}: 来源 {key} 抓取失败 {type(ex).__name__}: {ex}")
+            retry = retry or not isinstance(ex, (LookupError, ValueError))
             continue
         text = norm_text(src["text"])
         if quote.lower() not in text.lower():
@@ -973,7 +1000,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             warn.append(f"adjusted_for/mediated_by 用词 {k} 不在约定词表")
     verdict = "invalid" if invalid else ("qualitative" if fail else "auto_accept")
     return {"id": tid, "verdict": verdict, "invalid": invalid, "fail": fail, "warn": warn, "info": info, "checks": checks,
-            "sources": sorted(used)}
+            "sources": sorted(used), "retry": retry}
 
 
 # ----------------------------------------------------------------------------- reference expansion
@@ -1031,7 +1058,9 @@ def add(specs: List[dict], root: Path = RG.REG_DIR, qualitative: bool = False, w
         res = verify(spec, root, offline=offline)
         if res["verdict"] == "invalid":
             return {"ok": False, "error": f"{spec.get('id')}: 无效，不能入库：" + "；".join(res["invalid"])}
-        sub = "qualitative" if (qualitative or res["verdict"] == "qualitative") else "terms"
+        if res.get("retry"):   # a network failure must not silently downgrade a term to qualitative
+            return {"ok": False, "error": f"{spec.get('id')}: 联网核对未完成，请重试：" + "；".join(res["fail"])}
+        sub ="qualitative" if (qualitative or res["verdict"] == "qualitative") else "terms"
         if sub == "qualitative" and not qualitative:
             return {"ok": False, "error": f"{spec['id']}: 未通过自动入库标准，须加 --qualitative：" + "；".join(res["fail"])}
         t = expand_reference(spec)
@@ -1104,9 +1133,53 @@ def _print_verify(res: dict) -> None:
         print(f"  [核对] {c['number']}={c['value']} {'找到' if c['found'] else '未找到'}  {c['context'][:100]}")
 
 
+def _fmt_effect(t: dict, oc: str, e: dict) -> str:
+    def tri(x):
+        return f"{x['hr']:g} ({x['lo']:g}–{x['hi']:g})" if all(k in x for k in ("hr", "lo", "hi")) else "—"
+    shape = t["transform"]["shape"]
+    if shape == "hinge":
+        return "；".join(f"{side[3:]} {tri(e[side])}/{e[side].get('per', '')}" for side in ("hr_below", "hr_above") if e.get(side))
+    if shape == "categorical":
+        return "；".join(f"{k} {tri(v)}" for k, v in (e.get("levels") or {}).items() if "lo" in v)
+    per = f"/{e['per']:g} {e.get('per_unit', '')}".rstrip() if shape not in ("indicator",) and "per" in e else ""
+    return tri(e) + per
+
+
+def build_log(root: Path = RG.REG_DIR) -> str:
+    """Markdown table of every ext.* term (counted and qualitative) in the frozen registry."""
+    man = RG.verify_manifest(root)
+    lines = [f"项目库版本 {man['version']}（MANIFEST {man['digest'][:12]}），由 `term_builder.py build-log` 生成。", "",
+             "| 项 | 类型 | 输入编码 | 结局 | HR（95% CI） | 来源 | 等级 | 结论 | 系数 | 理由 |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
+    for sub, verdict in (("terms", "计入"), ("qualitative", "定性")):
+        for p in sorted((root / sub).glob("ext.*.json")):
+            t = json.loads(p.read_text(encoding="utf-8"))
+            ev0 = t.get("evidence") or {}
+            items = list((t.get("effect") or {}).items())
+            if t.get("screening"):
+                items.append(("screening:" + t["screening"]["disease_id"], dict(t["screening"]["mortality_rr"], per=1)))
+            if not items:
+                items = [("—", {})]
+            why = (t.get("why_qualitative_zh") if sub == "qualitative" else (t.get("overlap") or {}).get("rationale_zh")) or ""
+            why = why.replace("|", "／").replace("\n", " ")
+            for i, (oc, e) in enumerate(items):
+                ev = dict(ev0)
+                ev.update(e.get("evidence") or {})
+                src = ev.get("pmid") and f"PMID {ev['pmid']}" or ev.get("source") or ev.get("doi") or ""
+                c = e.get("coef", (t.get("overlap") or {}).get("coef", ""))
+                eff = _fmt_effect(t, oc, e) if e and not oc.startswith("screening") else (
+                    f"RR {e['hr']:g} ({e['lo']:g}–{e['hi']:g})" if e else "—")
+                lines.append("| " + " | ".join([
+                    t["id"] if i == 0 else "″", t.get("kind", "") if i == 0 else "", t["input"]["code"] if i == 0 else "",
+                    oc, eff, src, ev.get("grade", ""), verdict, f"{c}", (why[:140] + ("…" if len(why) > 140 else "")) if i == 0 else ""]) + " |")
+    return "\n".join(lines) + "\n"
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="term_builder")
     sub = ap.add_subparsers(dest="cmd", required=True)
+    bl = sub.add_parser("build-log")
+    bl.add_argument("--out")
     v = sub.add_parser("verify")
     v.add_argument("specs", nargs="+")
     v.add_argument("--offline", action="store_true")
@@ -1128,6 +1201,13 @@ def main(argv=None) -> int:
     ap.add_argument("--root", default=str(RG.REG_DIR))
     args = ap.parse_args(argv)
     root = Path(args.root)
+    if args.cmd == "build-log":
+        txt = build_log(root)
+        if args.out:
+            Path(args.out).write_text(txt, encoding="utf-8")
+        else:
+            print(txt)
+        return 0
     if args.cmd == "verify":
         rc = 0
         out = []

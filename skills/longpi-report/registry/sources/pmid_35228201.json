@@ -1,0 +1,35 @@
+{
+ "key": "pmid:35228201",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35228201/",
+ "fetched_at": "2026-11-18T03:25:53Z",
+ "sha256": "064954d990a83dfd82cfd4864b5675c8b1ed81e419faf6266aa205c5d88ba6f2",
+ "citation": "British journal of sports medicine 2022",
+ "text": "Muscle-strengthening activities are associated with lower risk and mortality in major non-communicable diseases: a systematic review and meta-analysis of cohort studies.\nOBJECTIVE: To quantify the associations between muscle-strengthening activities and the risk of non-communicable diseases and mortality in adults independent of aerobic activities.\nDESIGN: Systematic review and meta-analysis of prospective cohort studies.\nDATA SOURCES: MEDLINE and Embase were searched from inception to June 2021 and the reference lists of all related articles were reviewed.\nELIGIBILITY CRITERIA FOR SELECTING STUDIES: Prospective cohort studies that examined the association between muscle-strengthening activities and health outcomes in adults aged ≥18 years without severe health conditions.\nRESULTS: Sixteen studies met the eligibility criteria. Muscle-strengthening activities were associated with a 10-17% lower risk of all-cause mortality, cardiovascular disease (CVD), total cancer, diabetes and lung cancer. No association was found between muscle-strengthening activities and the risk of some site-specific cancers (colon, kidney, bladder and pancreatic cancers). J-shaped associations with the maximum risk reduction (approximately 10-20%) at approximately 30-60 min/week of muscle-strengthening activities were found for all-cause mortality, CVD and total cancer, whereas an L-shaped association showing a large risk reduction at up to 60 min/week of muscle-strengthening activities was observed for diabetes. Combined muscle-strengthening and aerobic activities (versus none) were associated with a lower risk of all-cause, CVD and total cancer mortality.\nCONCLUSION: Muscle-strengthening activities were inversely associated with the risk of all-cause mortality and major non-communicable diseases including CVD, total cancer, diabetes and lung cancer; however, the influence of a higher volume of muscle-strengthening activities on all-cause mortality, CVD and total cancer is unclear when considering the observed J-shaped associations.\nSYSTEMATIC REVIEW REGISTRATION: PROSPERO CRD42020219808.\n[full text, Europe PMC PMC9209691]\nSeven studies with 42 133 cases of all-cause mortality among 263 058 participants were included in the two-group analysis. Muscle-strengthening activities were associated with a 15% lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2). Although the heterogeneity was high (I2=83.0%; p<0.001), the association was in the same direction, with an RR of <1.00 in all studies. A similar result was obtained when Sheehan’s study,18 which provided ORs, was excluded (RR 0.84; 95% CI 0.76 to 0.92; p<0.001) (see online supplemental figure 1). Moreover, the exclusion of any other individual study did not substantially change this result, and the high heterogeneity was not explained by sex, quality score or exposure assessment (see online supplemental figures 1-4).",
+ "pmcid": "PMC9209691",
+ "doi": "10.1136/bjsports-2021-105061",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.resistance",
+   "number": "all_cause.hr_below.derived.hr",
+   "value": 0.85,
+   "found": true,
+   "context": "associated with a 15% lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2)."
+  },
+  {
+   "term": "ext.resistance",
+   "number": "all_cause.hr_below.derived.lo",
+   "value": 0.79,
+   "found": true,
+   "context": "th a 15% lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2)."
+  },
+  {
+   "term": "ext.resistance",
+   "number": "all_cause.hr_below.derived.hi",
+   "value": 0.93,
+   "found": true,
+   "context": " lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2)."
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+ "key": "pmid:34377388",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/34377388/",
+ "fetched_at": "2026-11-18T03:53:14Z",
+ "sha256": "7f41a2deda5938dbd516e530b8b476100efd15d1e71e0b86ba3996cfa97cc26d",
+ "citation": "Therapeutic advances in chronic disease 2021",
+ "text": "Reference values of glomerular filtration rate for healthy adults in southern China: a cross-sectional survey.\nBACKGROUND: Currently the global data on the glomerular filtration rate of healthy adults are insufficient, with relatively little data for other races and countries. Especially in China, there are no such figures.\nMETHODS: In this cross-sectional study, we included healthy Han adults in southern China. Participants completed a lifestyle and medical history questionnaire and had their blood pressure measured, and blood and urine samples collected. Serum creatinine was measured and used to estimated glomerular filtration rate (eGFR) by the Modification of Diet in Renal Disease (MDRD) and Chronic Kidney Disease Epidemiology Collaboration (CKD-EPI) formulae. The normal range of eGFR is described, and the influence of gender and age on eGFR is analyzed by the statistical method.\nRESULTS: We provided the largest sample size of eGFR research in China at present. The mean age of the 20,930 healthy individuals was 40.9 ± 12.3 years, 58.8% were women. The eGFRMDRD for women and men were 111.3 ± 17.4 mL/min per 1.73 m2 and 103.3 ± 15.9 mL/min per 1.73 m2, respectively. The eGFRCKD-EPI for women and men were 110.3 ± 12.1 mL/min per 1.73 m2 and 103.8 ± 13.3 mL/min per 1.73 m2, respectively. The eGFRMDRD of women and men in all age groups decreased continuously by 7.3 ml/min/1.73 m2/decade and 4.4 ml/min/1.73 m2/decade, respectively. The eGFRCKD-EPI of women and men in all age groups decreased continuously by 8.4 ml/min/1.73 m2/decade and 6.9 ml/min/1.73 m2/decade.\nCONCLUSIONS: The eGFR of women is higher than men and with the increasing age, the eGFR of women declines faster than men.",
+ "pmcid": "PMC8326817",
+ "doi": "10.1177/20406223211035287",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc",
+ "checks": []
+}

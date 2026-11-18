@@ -1,0 +1,34 @@
+{
+ "key": "pmid:40768053",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/40768053/",
+ "fetched_at": "2026-11-18T03:40:54Z",
+ "sha256": "a747ed29e534c91cce4864fbb2403726722c454d9b63d50a956e8da530519db8",
+ "citation": "Diabetes care 2025",
+ "text": "Continuous Glucose Monitoring Metrics Predict All-Cause Mortality in Diabetes: A Real-world Long-term Study.\nOBJECTIVE: Investigate the association between continuous glucose monitoring (CGM)-derived glucose metrics and all-cause mortality in patients with type 1 or type 2 diabetes (T1D or T2D).\nRESEARCH DESIGN AND METHODS: We analyzed data from 2,752 adults (≥21 years old) with diabetes (65% T2D) from the Veterans Affairs Healthcare System who received Dexcom CGM between 2015 and 2020. All participants had ≥10 days of CGM data over landmark (LM) periods (14 days, 3 months, and 6 months) merged with electronic health records. All-cause mortality was assessed over 5 years from CGM initiation. Cox models evaluated associations between mortality and CGM metrics: mean glucose (MG, mg/dL), time in range (TIR, %), time above range (TAR, %), coefficient of variation (CV), and glycemic risk index (GRI, %).\nRESULTS: Mean age at CGM initiation was 64 years, and median CGM use was nearly 3 years. There were 407 deaths. In separate multivariable Cox models (adjusting for mortality-related variables), higher MG, TAR, CV, and GRI and lower TIR during the 6-month LM were associated with 5-year mortality (hazard ratios: MG 1.18, TAR 1.20, GRI 1.23, CV 1.18, and TIR 0.83; all P ≤ 0.01) and those associations remained significant after adjusting for LM HbA1c. Results were similar with shorter CGM LM observation windows. The association between CV and mortality was independent of other CGM metrics and appeared strongest in those with lower HbA1c levels.\nCONCLUSIONS: CGM-derived metrics were associated with all-cause mortality in patients with diabetes and may better capture long-term risk associated with glucose fluctuations and periods of hypo- and hyperglycemia than HbA1c.",
+ "pmcid": "PMC12451845",
+ "doi": "10.2337/dc25-0716",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.cgm_mean",
+   "number": "all_cause.hr",
+   "value": 1.18,
+   "found": true,
+   "context": "LM were associated with 5-year mortality (hazard ratios: MG 1.18, TAR 1.20, GRI 1.23, CV 1.18, and TIR 0.83; all P ≤ 0.01)"
+  },
+  {
+   "term": "ext.cgm_mean",
+   "number": "all_cause.lo",
+   "value": 1.18,
+   "found": true,
+   "context": "LM were associated with 5-year mortality (hazard ratios: MG 1.18, TAR 1.20, GRI 1.23, CV 1.18, and TIR 0.83; all P ≤ 0.01)"
+  },
+  {
+   "term": "ext.cgm_mean",
+   "number": "all_cause.hi",
+   "value": 1.18,
+   "found": true,
+   "context": "LM were associated with 5-year mortality (hazard ratios: MG 1.18, TAR 1.20, GRI 1.23, CV 1.18, and TIR 0.83; all P ≤ 0.01)"
+  }
+ ]
+}

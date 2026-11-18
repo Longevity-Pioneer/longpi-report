@@ -1,0 +1,54 @@
+{
+ "key": "pmid:38231449",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/38231449/",
+ "fetched_at": "2026-11-18T03:22:18Z",
+ "sha256": "1db97c433b31e51225750ff6b44ddbc59c94f125aa0d7e47bfaeecf29956b084",
+ "citation": "Gastric cancer : official journal of the International Gastric Cancer Association and the Japanese Gastric Cancer Association 2024",
+ "text": "Dose-response association between cigarette smoking and gastric cancer risk: a systematic review and meta-analysis.\nThis study aims at providing an accurate and up-to-date quantification of the dose-response association between cigarette smoking and gastric cancer (GC) risk, overall and by subsite. We conducted a systematic review and meta-analysis of case-control and cohort studies on the association between cigarette smoking and GC risk published up to January 2023. We estimated pooled relative risks (RR) of GC and its subsites according to smoking status, intensity, duration, and time since quitting. Among 271 eligible articles, 205 original studies were included in this meta-analysis. Compared with never smokers, the pooled RR for GC was 1.53 (95% confidence interval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) for former smokers. The RR for current compared with never smokers was 2.08 (95% CI 1.66-2.61; n = 21) for gastric cardia and 1.48 (95% CI 1.33-1.66; n = 8) for distal stomach cancer. GC risk nonlinearly increased with smoking intensity up to 20 cigarettes/day (RR:1.69; 95% CI 1.55-1.84) and levelled thereafter. GC risk significantly increased linearly with increasing smoking duration (RR: 1.31; 95% CI 1.25-1.37 for 20 years) and significantly decreased linearly with increasing time since quitting (RR: 0.65; 95% CI 0.44-0.95 for 30 years since cessation). The present meta-analysis confirms that cigarette smoking is an independent risk factor for GC, particularly for gastric cardia. GC risk increases with a low number of cigarettes up to 20 cigarettes/day and increases in a dose-dependent manner with smoking duration.",
+ "doi": "10.1007/s10120-023-01459-1",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.former.hr",
+   "value": 1.3,
+   "found": true,
+   "context": " confidence interval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.former.lo",
+   "value": 1.23,
+   "found": true,
+   "context": "nterval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.former.hi",
+   "value": 1.37,
+   "found": true,
+   "context": "al; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) for former smokers."
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.hr",
+   "value": 1.53,
+   "found": true,
+   "context": "Compared with never smokers, the pooled RR for GC was 1.53 (95% confidence interval; CI 1.44-1.62; n = 92) for current"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.lo",
+   "value": 1.44,
+   "found": true,
+   "context": " the pooled RR for GC was 1.53 (95% confidence interval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 8"
+  },
+  {
+   "term": "ext.smoking",
+   "number": "gastric_ca.current.hi",
+   "value": 1.62,
+   "found": true,
+   "context": "pooled RR for GC was 1.53 (95% confidence interval; CI 1.44-1.62; n = 92) for current and 1.30 (95% CI 1.23-1.37; n = 82) fo"
+  }
+ ]
+}

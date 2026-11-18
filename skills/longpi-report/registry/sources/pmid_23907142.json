@@ -1,0 +1,33 @@
+{
+ "key": "pmid:23907142",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/23907142/",
+ "fetched_at": "2026-11-18T03:25:03Z",
+ "sha256": "c681f856b33257dcaa00a562a83e7a5f1f7ec656ec93edc2adc9dccacc096bee",
+ "citation": "European heart journal 2013",
+ "text": "Adherence to cardiovascular therapy: a meta-analysis of prevalence and clinical consequences.\nAIMS: The aim of this study was to determine the extent to which adherence to individual vascular medications, assessed by different methods, influences the absolute and relative risks (RRs) of cardiovascular disease (CVD) and all-cause mortality.\nMETHODS AND RESULTS: We performed a systematic review and meta-analysis of prospective epidemiological studies (cohort, nested case-control, or clinical trial) identified through electronic searches using MEDLINE, Web of Science, EMBASE, and Cochrane databases, involving adult populations (≥ 18 years old) and reporting risk estimates of cardiovascular medication adherence with any CVD (defined as any fatal or non-fatal coronary heart disease, stroke or sudden cardiac death) and/or all-cause mortality (defined as mortality from any cause) outcomes. Relative risks were combined using random-effects models. Forty-four unique prospective studies comprising 1 978 919 non-overlapping participants, with 135 627 CVD events and 94 126 cases of all-cause mortality. Overall, 60% (95% CI: 52-68%) of included participants had good adherence (adherence ≥ 80%) to cardiovascular medications. The RRs (95% CI) of development of CVD in those with good vs. poor (<80%) adherence were 0.85 (0.81-0.89) and 0.81 (0.76-0.86) for statins and antihypertensive medications, respectively. Corresponding RRs of all-cause mortality were 0.55 (0.46-0.67) and 0.71 (0.64-0.78) for good adherence to statins and antihypertensive agents. These associations remained consistent across subgroups representing different study characteristics. Estimated absolute risk differences for any CVD associated with poor medication adherence were 13 cases for any vascular medication, 9 cases for statins and 13 cases for antihypertensive agents, per 100 000 individuals per year.\nCONCLUSION: A substantial proportion of people do not adhere adequately to cardiovascular medications, and the prevalence of suboptimal adherence is similar across all individual CVD medications. Absolute and relative risk assessments demonstrate that a considerable proportion of all CVD events (~9% in Europe) could be attributed to poor adherence to vascular medications alone, and that the level of optimal adherence confers a significant inverse association with subsequent adverse outcomes. Measures to enhance adherence to help maximize the potentials of effective cardiac therapies in the clinical setting are urgently required.",
+ "doi": "10.1093/eurheartj/eht295",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.med_adherence",
+   "number": "all_cause.hr",
+   "value": 0.71,
+   "found": true,
+   "context": "onding RRs of all-cause mortality were 0.55 (0.46-0.67) and 0.71 (0.64-0.78) for good adherence to statins and antihypertens"
+  },
+  {
+   "term": "ext.med_adherence",
+   "number": "all_cause.lo",
+   "value": 0.64,
+   "found": true,
+   "context": " RRs of all-cause mortality were 0.55 (0.46-0.67) and 0.71 (0.64-0.78) for good adherence to statins and antihypertensive ag"
+  },
+  {
+   "term": "ext.med_adherence",
+   "number": "all_cause.hi",
+   "value": 0.78,
+   "found": true,
+   "context": "of all-cause mortality were 0.55 (0.46-0.67) and 0.71 (0.64-0.78) for good adherence to statins and antihypertensive agents."
+  }
+ ]
+}

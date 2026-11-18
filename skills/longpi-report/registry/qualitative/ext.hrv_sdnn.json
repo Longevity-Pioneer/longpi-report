@@ -1,0 +1,159 @@
+{
+ "id": "ext.hrv_sdnn",
+ "name_zh": "心率变异性 SDNN（可穿戴设备）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "fitness",
+ "input": {
+  "code": "LP:hrv_sdnn",
+  "unit": "ms",
+  "platform": "wearable PPG (watch), 30-day aggregate",
+  "methods": [
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 30,
+  "clip": [
+   5,
+   150
+  ],
+  "note_zh": "仅为保持规格结构：文献为 5 分钟心电 RMSSD 最低四分位对其余四分位的比较，拐点 30 ms 与 per=10 ms 均为约定值，没有文献依据，本项不计入数值"
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "meanlog": 4.007,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "meanlog": 3.871,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "meanlog": 3.738,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "meanlog": 3.611,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "meanlog": 3.497,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "meanlog": 3.401,
+    "sdlog": 0.4
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "meanlog": 3.332,
+    "sdlog": 0.4
+   }
+  ],
+  "source": "构造值：手表 SDNN 中位数按年龄由约 55 ms 降至约 28 ms，未检索到可逐字核对的中国人群可穿戴 SDNN 分布文献，数值未经原文核对"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.56,
+    "lo": 1.32,
+    "hi": 1.85,
+    "per": 10
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.2,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.rhr",
+   "core.crf"
+  ],
+  "rationale_zh": "HRV 与静息心率强负相关，且随心肺适能改善而升高，信息与静息心率、心肺适能领域高度重叠；荟萃中各研究校正不一，按仅校正年龄、性别处理，上限 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational (healthy and patient populations)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "32 项研究与 2 个个体数据集荟萃",
+  "n": 38008,
+  "events": null,
+  "ancestry": "multinational (healthy and patient populations)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "手表 PPG 推算的 SDNN 受测量时段（夜间/间断采样）、运动伪迹与算法影响，与 24 小时动态心电 SDNN 数值不可直接换算；未检索到可核对的一致性文献"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "post_exercise"
+ ],
+ "treated_policy": "use_as_is",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "规律有氧运动、充足睡眠、限酒可提高心率变异性；β 受体阻滞剂等药物会影响读数"
+ },
+ "test": {
+  "label_zh": "手表连续佩戴 30 天读取 HRV",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "36243195",
+  "doi": "10.1016/j.neubiorev.2022.104907",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36243195/",
+  "quote": "Sub-analyses of studies comparing the lowest quartile of 5-min root mean square of successive differences (RMSSD) vs. the other quartiles yielded a combined HR of 1.56 (95% CI: 1.32-1.85).",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "Framingham 老年队列（PMID 8044959，2 小时动态心电，736 人、74 例死亡）SDNN 与全因死亡显著相关，但只给 P 值，逐步模型中仅低频功率保留（每降低 1 SD HR 1.70，1.37–2.09），事件不足 100。未检索到以可穿戴 SDNN 预测全因死亡、事件 ≥100 的前瞻研究，也未检索到东亚一般人群 HRV 与全因死亡的大型队列",
+ "why_qualitative_zh": "平台不一致：现有死亡证据来自 24 小时或短时心电记录，而输入为手表光电容积推算的 SDNN，两者测量时段与算法不同，数值不能换算；荟萃合并的是 RMSSD 而非 SDNN，且混合了健康人群与患者人群，没有每单位的剂量反应估计。故列为定性佐证，与静息心率、心肺适能一并提示自主神经与体能状态，不计入 LongPi Age",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": []
+}

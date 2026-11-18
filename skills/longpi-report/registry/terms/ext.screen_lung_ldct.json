@@ -1,0 +1,152 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.screen_lung_ldct",
+ "name_zh": "低剂量螺旋 CT 筛查肺癌",
+ "system": "whole_body",
+ "group": "screening",
+ "input": {
+  "code": "LP:screen.lung_ldct",
+  "unit": "years since last test",
+  "platform": null,
+  "methods": [
+   "self_report",
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "indicator",
+  "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 29,
+    "prevalence": 0.0
+   },
+   {
+    "sex": "both",
+    "age_lo": 30,
+    "age_hi": 39,
+    "prevalence": 0.01
+   },
+   {
+    "sex": "both",
+    "age_lo": 40,
+    "age_hi": 49,
+    "prevalence": 0.03
+   },
+   {
+    "sex": "both",
+    "age_lo": 50,
+    "age_hi": 59,
+    "prevalence": 0.05
+   },
+   {
+    "sex": "both",
+    "age_lo": 60,
+    "age_hi": 69,
+    "prevalence": 0.05
+   },
+   {
+    "sex": "both",
+    "age_lo": 70,
+    "age_hi": 79,
+    "prevalence": 0.04
+   },
+   {
+    "sex": "both",
+    "age_lo": 80,
+    "age_hi": 99,
+    "prevalence": 0.02
+   }
+  ],
+  "source": "粗略估计，未找到可核对的中国全国按性别年龄筛查率原文；筛查效应经 outcomes/lung_ca.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化"
+ },
+ "effect": {},
+ "screening": {
+  "disease_id": "lung_ca",
+  "mortality_rr": {
+   "hr": 0.76,
+   "lo": 0.61,
+   "hi": 0.94
+  },
+  "eligible": {
+   "age": [
+    50,
+    74
+   ],
+   "sex": "both",
+   "requires": [
+    "LP:smoking_status"
+   ]
+  },
+  "interval_years": 1
+ },
+ "adjusted_for": [],
+ "overlap": {
+  "coef": 1.0,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Netherlands and Belgium",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "NELSON trial, men (primary analysis)",
+  "n": 13195,
+  "ancestry": "Netherlands and Belgium",
+  "age_range": [
+   50,
+   74
+  ],
+  "sex": "M"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述或检查报告日期"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "50–74 岁重度吸烟者（现吸或戒烟不足 15 年、吸烟量达指南阈值）每年做一次低剂量 CT。"
+ },
+ "test": {
+  "label_zh": "低剂量螺旋 CT，每年一次",
+  "cost_level": 2
+ },
+ "evidence": {
+  "grade": "A",
+  "design": "rct",
+  "pmid": "31995683",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/31995683/",
+  "quote": "The cumulative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the control group",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "eligible.requires 的 LP:smoking_status 须为现吸或已戒烟（戒烟不足 15 年），且吸烟量达到筛查指南的重度吸烟阈值；从不吸烟者不适用本项（非吸烟者 LDCT 筛查的死亡获益缺乏随机试验证据）。NELSON 主分析为男性；女性亚组 RR 0.67（0.38–1.14）。NLST（PMID 21714641）肺癌死亡相对下降 20.0%，方向一致。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

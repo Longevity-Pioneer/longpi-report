@@ -1,0 +1,33 @@
+{
+ "key": "pmid:17272484",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/17272484/",
+ "fetched_at": "2026-11-18T03:22:42Z",
+ "sha256": "26f559653e2875a38849b3e658ba8383c8947959b8ed5b24babd902f23a3e9dd",
+ "citation": "Clinical chemistry 2007",
+ "text": "Higher concentrations of alanine aminotransferase within the reference interval predict nonalcoholic fatty liver disease.\nBACKGROUND: In nonalcoholic fatty liver disease (NAFLD), increased alanine aminotransferase (ALT) concentrations are considered to be a consequence of hepatocyte damage. We performed a prospective study to examine the association between ALT within its reference interval and risk for subsequent development of NAFLD.\nMETHODS: The study cohort comprised 5237 healthy men without diagnosed NAFLD and without increases of either ALT (> or =35 U/L) or gamma-glutamyltransferase (GGT; > or =40 U/L) above the reference intervals. We assessed alcohol intake via self-reporting (questionnaire) and performed biochemical tests for liver and metabolic function and abdominal ultrasonography. We used the Cox proportional hazards model to calculate the adjusted hazard ratios (aHRs) in the model for NAFLD.\nRESULTS: During 13 276.6 person-years of follow-up over a 4-year period, 984 new incident cases of NAFLD developed. We adjusted for age, weight change, body mass index, glucose, blood pressure, triglycerides, HDL cholesterol, smoking, alcohol consumption, regular exercise, homeostasis model assessment of insulin resistance, C-reactive protein, and incident diabetes. Compared with an ALT concentration of <16 U/L, aHR values (95% confidence intervals) for ALT concentrations were 1.53 (1.18-1.98), 1.66 (1.29-2.13), 1.62 (1.26-2.08), and 2.21 (1.73-2.81) for ALT concentrations of 16-18, 19-21, 22-25, and 26-34 U/L, respectively. This relationship remained significant even among normal-weight participants who were still within the reference interval of ALT and GGT at all follow-up examinations.\nCONCLUSIONS: In apparently healthy, nondiabetic Korean men, increased ALT concentration, even within the reference interval, was an independent predictor of incident NAFLD.",
+ "doi": "10.1373/clinchem.2006.081257",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.alt",
+   "number": "masld.hr",
+   "value": 2.21,
+   "found": true,
+   "context": "e 1.53 (1.18-1.98), 1.66 (1.29-2.13), 1.62 (1.26-2.08), and 2.21 (1.73-2.81) for ALT concentrations of 16-18, 19-21, 22-25, "
+  },
+  {
+   "term": "ext.alt",
+   "number": "masld.lo",
+   "value": 1.73,
+   "found": true,
+   "context": " (1.18-1.98), 1.66 (1.29-2.13), 1.62 (1.26-2.08), and 2.21 (1.73-2.81) for ALT concentrations of 16-18, 19-21, 22-25, and 26"
+  },
+  {
+   "term": "ext.alt",
+   "number": "masld.hi",
+   "value": 2.81,
+   "found": true,
+   "context": "8-1.98), 1.66 (1.29-2.13), 1.62 (1.26-2.08), and 2.21 (1.73-2.81) for ALT concentrations of 16-18, 19-21, 22-25, and 26-34 U"
+  }
+ ]
+}

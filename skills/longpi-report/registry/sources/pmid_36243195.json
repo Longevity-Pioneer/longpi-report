@@ -1,0 +1,33 @@
+{
+ "key": "pmid:36243195",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36243195/",
+ "fetched_at": "2026-11-18T03:33:36Z",
+ "sha256": "0c1c8862e051f0eb56dcab8cffe29eb81234488fb398dc1d5169abc0038ac2bf",
+ "citation": "Neuroscience and biobehavioral reviews 2022",
+ "text": "Heart rate variability in the prediction of mortality: A systematic review and meta-analysis of healthy and patient populations.\nMeasures of heart rate variability (HRV) as a predictor of risk of disease and mortality have been investigated from various perspectives for more than six decades. The aim of the present comprehensive meta-analysis is to examine eight different HRV parameters to determine their association with all-cause and cardiac mortality. A total of 32 studies and two individual participant datasets (IPD) with 37 samples and 38,008 participants were included. Lower HRV parameter values were significant predictors of higher mortality across different ages, sex, continents, populations and recording lengths. Most of the examined parameters showed comparable hazard ratios (HR). IPD sub-analysis for heart rate corrected HRV parameters confirmed the strong association between HRV and all-cause mortality. Meta-regressions revealed no effect modifier for HRs extracted from covariate-adjusted studies. Sub-analyses of studies comparing the lowest quartile of 5-min root mean square of successive differences (RMSSD) vs. the other quartiles yielded a combined HR of 1.56 (95% CI: 1.32-1.85). The applicability of HRV measurement in preventive settings is discussed.",
+ "doi": "10.1016/j.neubiorev.2022.104907",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.hrv_sdnn",
+   "number": "all_cause.hr_below.hr",
+   "value": 1.56,
+   "found": true,
+   "context": "es (RMSSD) vs. the other quartiles yielded a combined HR of 1.56 (95% CI: 1.32-1.85)."
+  },
+  {
+   "term": "ext.hrv_sdnn",
+   "number": "all_cause.hr_below.lo",
+   "value": 1.32,
+   "found": true,
+   "context": " the other quartiles yielded a combined HR of 1.56 (95% CI: 1.32-1.85)."
+  },
+  {
+   "term": "ext.hrv_sdnn",
+   "number": "all_cause.hr_below.hi",
+   "value": 1.85,
+   "found": true,
+   "context": "other quartiles yielded a combined HR of 1.56 (95% CI: 1.32-1.85)."
+  }
+ ]
+}

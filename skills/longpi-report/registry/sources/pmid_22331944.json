@@ -1,0 +1,34 @@
+{
+ "key": "pmid:22331944",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/22331944/",
+ "fetched_at": "2026-11-18T03:44:04Z",
+ "sha256": "3f7a3c8750e414b04b43a25c598dc042527065b2a5f8e6b46cbc501bc71af9c3",
+ "citation": "Journal of clinical oncology : official journal of the American Society of Clinical Oncology 2012",
+ "text": "Colorectal and other cancer risks for carriers and noncarriers from families with a DNA mismatch repair gene mutation: a prospective cohort study.\nPURPOSE: To determine whether cancer risks for carriers and noncarriers from families with a mismatch repair (MMR) gene mutation are increased above the risks of the general population.\nPATIENTS AND METHODS: We prospectively followed a cohort of 446 unaffected carriers of an MMR gene mutation (MLH1, n = 161; MSH2, n = 222; MSH6, n = 47; and PMS2, n = 16) and 1,029 their unaffected relatives who did not carry a mutation every 5 years at recruitment centers of the Colon Cancer Family Registry. For comparison of cancer risk with the general population, we estimated country-, age-, and sex-specific standardized incidence ratios (SIRs) of cancer for carriers and noncarriers.\nRESULTS: Over a median follow-up of 5 years, mutation carriers had an increased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001), endometrial cancer (SIR, 30.62; 95% CI, 11.24 to 66.64; P < .001), ovarian cancer (SIR, 18.81; 95% CI, 3.88 to 54.95; P < .001), renal cancer (SIR, 11.22; 95% CI, 2.31 to 32.79; P < .001), pancreatic cancer (SIR, 10.68; 95% CI, 2.68 to 47.70; P = .001), gastric cancer (SIR, 9.78; 95% CI, 1.18 to 35.30; P = .009), urinary bladder cancer (SIR, 9.51; 95% CI, 1.15 to 34.37; P = .009), and female breast cancer (SIR, 3.95; 95% CI, 1.59 to 8.13; P = .001). We found no evidence of their noncarrier relatives having an increased risk of any cancer, including CRC (SIR, 1.02; 95% CI, 0.33 to 2.39; P = .97).\nCONCLUSION: We confirmed that carriers of an MMR gene mutation were at increased risk of a wide variety of cancers, including some cancers not previously recognized as being a result of MMR mutations, and found no evidence of an increased risk of cancer for their noncarrier relatives.",
+ "pmcid": "PMC3341109",
+ "doi": "10.1200/jco.2011.39.5590",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.hr",
+   "value": 20.48,
+   "found": true,
+   "context": "riers had an increased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  },
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.lo",
+   "value": 11.71,
+   "found": true,
+   "context": "creased risk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  },
+  {
+   "term": "ext.mono_mlh1",
+   "number": "crc.hi",
+   "value": 33.27,
+   "found": true,
+   "context": "isk of colorectal cancer (CRC; SIR, 20.48; 95% CI, 11.71 to 33.27; P < .001)"
+  }
+ ]
+}

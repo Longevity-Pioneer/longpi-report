@@ -1,0 +1,133 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.sleep_regularity",
+ "name_zh": "睡眠规律指数",
+ "system": "brain_sleep",
+ "group": "sleep",
+ "input": {
+  "code": "LP:sleep_regularity_index",
+  "unit": "SRI 0-100",
+  "platform": null,
+  "methods": [
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 71.6,
+  "clip": [
+   40,
+   100
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 80,
+    "sd": 10
+   }
+  ],
+  "pmid": "37738616",
+  "quote": "The SRI distribution was negatively skewed, had a median (IQR) of 81.0 (73.8–86.3), and ranged from 2.5 to 98.5",
+  "source": "研究人群分布（UK Biobank 腕戴加速度计，中位数 81.0，IQR 73.8–86.3，第 20 百分位 71.6），按正态近似取均值 80、标准差 10（使 SRI<71.6 约占 20%）；无中国人群数据"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.2048,
+    "lo": 1.0417,
+    "hi": 1.4085,
+    "derived": {
+     "from": {
+      "hr": 0.83,
+      "lo": 0.71,
+      "hi": 0.96
+     },
+     "pow": -1
+    },
+    "per": 10,
+    "per_unit": "SRI 分（第 1 与第 2 五分位组中心约相距 10 分，推算值）"
+   },
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.sleep",
+  "core.smoking",
+  "ext.mvpa"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.sleep"
+  ],
+  "rationale_zh": "取同时纳入睡眠时长的完全校正模型（另校正年龄、性别、族裔、身体活动、吸烟、社会经济、倒班、降压降脂用药），与 core.sleep 已互相校正，规则上限 1.0；但为单一队列、暴露仅一周记录，部分校正变量可能是中介，且不规律睡眠可能源于已存在的疾病（反向因果），系数取 0.5。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "UK Biobank, 97.2% white",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "UK Biobank accelerometry sub-study",
+  "n": 60977,
+  "events": 1859,
+  "ancestry": "UK Biobank, 97.2% white",
+  "age_range": [
+   40,
+   79
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "SRI 由至少 5 天 24 小时可穿戴数据计算；不同设备与算法的 SRI 不完全可比"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "固定每日入睡与起床时间、减少作息大幅波动可提高睡眠规律性。"
+ },
+ "test": {
+  "label_zh": "手表连续佩戴 ≥7 天计算睡眠规律指数",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "37738616",
+  "pmcid": "PMC10782501",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/37738616/",
+  "quote": "SRI (20%–40%)296 (0.63)0.83 [0.71 to 0.96]*",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "风险主要集中在最低五分位组（SRI<71.6）：完全校正且含睡眠时长的模型（原文表 4）中，第 2 至第 5 五分位组 HR 为 0.83、0.78、0.75、0.74。故以 71.6 为拐点，只对拐点以下计入风险；取第 2 对第 1 五分位的 HR 0.83（0.71–0.96），组中心间距约 10 分为推算值（原文未给出第 1 五分位中位数）。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

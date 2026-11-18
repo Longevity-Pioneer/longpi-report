@@ -1,0 +1,35 @@
+{
+ "key": "pmid:41357077",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/41357077/",
+ "fetched_at": "2026-11-18T03:11:47Z",
+ "sha256": "56787307584e2040621956f8ad7dd2fd7ff559372179d16f7911f6d34c46c01b",
+ "citation": "Frontiers in cardiovascular medicine 2025",
+ "text": "Effect of high normal body mass index and its trajectory on risk of new-onset hypertension among Chinese adults: a national prospective cohort study.\nBACKGROUND: Obesity or overweight is well known to be a strong risk factor for the development of hypertension. However, the association of body mass index (BMI) within the normal range and its trajectory with new-onset hypertension in adults remains incompletely understood.\nMETHODS: A total of 9,583 participants with normal BMI, who were without hypertension at baseline and underwent at least 2 rounds of visits from 1989 to 2015 in the China Health and Nutrition Survey were enrolled in this study. Multivariate Cox hazard regression models and restricted cubic spline were used to explore the relationship between BMI and new-onset hypertension. The latent class growth mixed model (LCGMM) was used to identify different trajectory patterns of normal BMI, including stable, increasing and fluctuating groups.\nRESULTS: Of 9,583 eligible participants, 3,025 (31.6%) participants developed new-onset hypertension during a median (interquartile range, IQR) follow-up duration of 8.9 (4.1, 15.1) years. After adjusting for confounders, the Cox model showed that high BMI levels in normal range were significantly associated with increased risks of new-onset hypertension [adjusted hazard ratio (aHR), 1.11, 95% confidence interval (CI), 1.01-1.21, tertile 2 (T2)]; aHR, 1.38, 95% CI, 1.26-1.51, tertile 3 [T3]) compared with tertile 1 (T1). As a continuous variable, for per 1.0 kg/m2 increment in BMI, there was a 10% increment in the risk of hypertension (aHR, 1.10; 95% CI, 1.07-1.12). The associations were consistent in various subgroups and sensitivity analyses. Compared to stable group, the increasing and fluctuating trajectories were also significantly associated with hypertension, respectively (aHR, 1.19, 95% CI, 1.03-1.38, the increasing group; aHR, 1.26, 95% CI, 1.07-1.48, the fluctuating group).\nCONCLUSION: The high normal BMI was significantly associated with an increased risk of new-onset hypertension among Chinese adults, whether increasing or fluctuating trajectory. Our findings suggest that maintaining a relatively low BMI level with stable trajectory within the normal range might be effective for the primary prevention of hypertension.",
+ "pmcid": "PMC12679297",
+ "doi": "10.3389/fcvm.2025.1684124",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.bmi",
+   "number": "htn.hr",
+   "value": 1.1,
+   "found": true,
+   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "htn.lo",
+   "value": 1.07,
+   "found": true,
+   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+  },
+  {
+   "term": "ext.bmi",
+   "number": "htn.hi",
+   "value": 1.12,
+   "found": true,
+   "context": "aHR, 1.10; 95% CI, 1.07-1.12"
+  }
+ ]
+}

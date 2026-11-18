@@ -1,0 +1,33 @@
+{
+ "key": "pmid:22112679",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/22112679/",
+ "fetched_at": "2026-11-18T03:29:11Z",
+ "sha256": "e9b24054349dcc693e3c1ce272fd03afed9226cd00b0884ce9a58b5a4f39c7b4",
+ "citation": "International journal of cardiology 2013",
+ "text": "Bone mineral density and all-cause, cardiovascular and stroke mortality: a meta-analysis of prospective cohort studies.\nBACKGROUND: Low bone mineral density (BMD) has been associated with increased mortality in prospective cohort studies of the elderly, but the real relationship is still controversial. We undertook a meta-analysis to evaluate the association of BMD with risk of all-cause, cardiovascular and stroke mortality.\nMETHODS: We performed systematic searches on MEDLINE, EMBASE, OVID, CINAHL, and the Cochrane Library. Data extraction was performed independently by two reviewers. For each study, hazard ratios (HRs) and 95% confidence intervals (CI) per standard deviation (SD) decrease in BMD were extracted. Heterogeneity, publication bias, subgroup, and meta-regression analysis were performed.\nRESULTS: The analysis included 46,182 participants from 10 studies with 3991 all-cause deaths, 1479 cardiovascular deaths and 403 stroke deaths during a median of 7 years follow-up (range 2.8-18.7 years). Lower BMD had a significant inverse relationship with all-cause and cardiovascular mortality, a per SD decrease in BMD at all sites being associated with a 1.17-fold (95% CI: 1.13-1.22) increase in total mortality and a 1.13-fold increase in cardiovascular mortality (95% CI: 1.06-1.20). Lower total hip/femoral neck BMD was also related to all-cause mortality (HR 1.20; 95% CI: 1.09-1.31) and cardiovascular mortality (HR 1.20; 95% CI: 1.04-1.35). BMD was not associated with the risk of stroke mortality (HR 1.08, 95% CI; 0.89-1.28).\nCONCLUSIONS: Lower BMD is associated with significantly increased risk of all-cause and cardiovascular mortality. There is no significant association between lower BMD and the risk of stroke mortality. The relationship between lower BMD and individual mortality should be investigated further in randomized trials.",
+ "doi": "10.1016/j.ijcard.2011.10.114",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.dxa_tscore",
+   "number": "all_cause.derived.from.hr",
+   "value": 1.17,
+   "found": true,
+   "context": "per SD decrease in BMD at all sites being associated with a 1.17-fold (95% CI: 1.13-1.22) increase in total mortality"
+  },
+  {
+   "term": "ext.dxa_tscore",
+   "number": "all_cause.derived.from.lo",
+   "value": 1.13,
+   "found": true,
+   "context": "BMD at all sites being associated with a 1.17-fold (95% CI: 1.13-1.22) increase in total mortality"
+  },
+  {
+   "term": "ext.dxa_tscore",
+   "number": "all_cause.derived.from.hi",
+   "value": 1.22,
+   "found": true,
+   "context": "t all sites being associated with a 1.17-fold (95% CI: 1.13-1.22) increase in total mortality"
+  }
+ ]
+}

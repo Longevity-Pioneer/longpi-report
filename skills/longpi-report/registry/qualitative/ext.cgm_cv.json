@@ -1,0 +1,114 @@
+{
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "transport": {
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "persistence": {
+  "half_life_years": 0.5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_as_is",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "id": "ext.cgm_cv",
+ "name_zh": "CGM 血糖变异系数",
+ "input": {
+  "code": "LP:cgm_cv",
+  "unit": "%",
+  "platform": "CGM (≥10 days)",
+  "methods": [
+   "device"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_hi": 20,
+  "clip": [
+   5,
+   60
+  ],
+  "note_zh": "原文为分组比较（>35% 对 ≤20%）；per=17.5 个百分点为两组间距的约定值，仅为保持规格结构，本项不计入数值"
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 17,
+    "sd": 4
+   }
+  ],
+  "source": "构造值：非糖尿病成人 CGM 变异系数多在 13%–22%，未检索到可逐字核对的中国一般人群分布文献，数值未经原文核对"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_above": {
+    "hr": 2.26,
+    "lo": 1.13,
+    "hi": 4.52,
+    "per": 17.5
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.2,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "血糖变异与平均血糖水平相关，信息部分与血糖领域重叠；摘要未列明校正变量，按仅校正年龄、性别处理，上限 0.3",
+  "mediated_by": {}
+ },
+ "population": {
+  "cohort": "上海单中心 2 型糖尿病队列中血糖控制达标者（TIR>70%、TAR<25%、TBR<4%）",
+  "n": 1839,
+  "events": 165,
+  "ancestry": "Chinese (type 2 diabetes patients)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "变异系数依赖佩戴天数与传感器准确度"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "规律进餐、减少高升糖指数食物、餐后活动可降低血糖波动；本项对非糖尿病者仅作描述"
+ },
+ "test": {
+  "label_zh": "佩戴连续血糖监测 10–14 天",
+  "cost_level": 3
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "35662611",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/35662611/",
+  "quote": "1.33 (95% CI 0.77-2.29) and 2.26 (95% CI 1.13-4.52) for all-cause mortality",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "完整结果：%CV ≤20%、20–25%、25–30%、30–35%、>35% 各组 HR 为 1.00、1.16（0.78–1.73）、1.38（0.89–2.15）、1.33（0.77–2.29）、2.26（1.13–4.52），仅最高组显著。美国退伍军人糖尿病患者研究（PMID 40768053，2,752 人、407 例死亡）报告 CV 的 HR 为 1.18，摘要未给置信区间",
+ "why_qualitative_zh": "现有死亡证据只来自糖尿病患者（单中心或退伍军人医疗系统人群），而本平台使用者多为非糖尿病人群，其 CGM 指标分布（平均血糖约 5–6 mmol/L、3.9–7.8 mmol/L 时间占比多在 85% 以上）远离研究人群的取值范围，不能外推；非糖尿病人群中 CGM 指标与全因死亡、事件 ≥100 的前瞻研究未检索到。此外该指标与已计入的血糖领域（空腹血糖、糖化血红蛋白）信息高度重叠。故列为定性佐证，不计入 LongPi Age；另外仅最高组显著、置信区间宽（1.13–4.52），没有连续剂量反应估计",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": []
+}

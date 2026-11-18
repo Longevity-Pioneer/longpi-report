@@ -1,0 +1,125 @@
+{
+ "id": "ext.fpg",
+ "name_zh": "空腹血糖（连续值）",
+ "kind": "state",
+ "system": "metabolic",
+ "group": "glycemia",
+ "input": {
+  "code": "LOINC:1558-6",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   3.5,
+   6.9
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 4.9,
+    "sd": 0.5
+   }
+  ],
+  "source": "研究人群分布（中日两队列合并的非糖尿病体检人群，平均年龄 41.8 岁，FPG 4.9 ± 0.5 mmol/L，见原文表 1）；未找到可逐句核对的中国分年龄连续 FPG 分布，老年组均值偏低，归一化对老年人略偏高估",
+  "pmid": "36872318",
+  "quote": "FPG (mmol/L)4.9 ± 0.5"
+ },
+ "effect": {
+  "t2d": {
+   "hr": 5.5,
+   "lo": 5.02,
+   "hi": 6.02,
+   "per": 1,
+   "per_unit": "mmol/L",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.adiposity",
+  "core.bp",
+  "core.lipid",
+  "LOINC:2571-8",
+  "LOINC:1742-6",
+  "core.smoking",
+  "core.alcohol"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.glucose"
+  ],
+  "rationale_zh": "仅为 2 型糖尿病建项，不进入 LongPi Age。原文模型已同时校正年龄、性别、BMI、收缩压、舒张压、总胆固醇、甘油三酯、ALT、吸烟与饮酒，但未校正糖尿病家族史，故系数取 0.8 而非 1.0。该队列为体检人群的回顾性队列，关联在 4.5 mmol/L 以上呈 J 形加速，按对数线性外推时截断在 3.5–6.9 mmol/L（≥7.0 即已达诊断标准，按已确诊处理）。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian (Chinese)",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "Rich Healthcare Group health-check cohort, 32 sites in 11 Chinese cities (retrospectively assembled longitudinal cohort; Chinese subgroup estimate)",
+  "n": 204640,
+  "events": 2238,
+  "ancestry": "Chinese",
+  "age_range": [
+   20,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.05,
+  "source": "实验室葡萄糖氧化酶法分析变异约 2%–3%，叠加个体日间生物学变异约 5%（经验值，未逐句核对）"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "non_fasting"
+ ],
+ "treated_policy": "use_pretreatment",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减重、规律运动与控制精制碳水摄入可降低空腹血糖；空腹血糖受损者应进一步做口服葡萄糖耐量试验或糖化血红蛋白检测。"
+ },
+ "test": {
+  "label_zh": "空腹抽血查血糖",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "36872318",
+  "pmcid": "PMC9985867",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36872318/",
+  "quote": "Multivariate-adjusted HRs (95% confidence interval [CI]) of the relationship between FPG and T2D in all populations, Chinese and Japanese, were 5.8 (5.31, 6.33), 5.5 (5.02, 6.02), and 14.57 (10.48, 20.25), respectively.",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

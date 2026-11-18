@@ -1,0 +1,34 @@
+{
+ "key": "pmid:24843720",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/24843720/",
+ "fetched_at": "2026-11-18T03:33:36Z",
+ "sha256": "462aad2d34bdb55f2fc4fbee2898bf2f6da045990c62d575843dd8c51c2fae12",
+ "citation": "Journal of diabetes investigation 2013",
+ "text": "Diabetes mellitus and risk of dementia: A meta-analysis of prospective observational studies.\nAIMS/INTRODUCTION: The aim of the present study was to investigate the association between diabetes and the risk of all type dementia (ATD), Alzheimer's disease (AD) and vascular dementia (VaD).\nMATERIALS AND METHODS: Prospective observational studies describing the incidence of ATD, AD and VaD in patients with diabetes mellitus were extracted from PubMed, EMBASE and other databases up to January 2012. Pooled relative risk (RR) estimates and 95% confidence intervals (CIs) were calculated using the random-effects model. Subgroup analyses and sensitivity analysis were also carried out.\nRESULTS: A total of 28 studies contributed to the analysis. Pooled RR of developing ATD (n = 20) was 1.73 (1.65-1.82, I (2) = 71.2%), AD (n = 20) was 1.56 (1.41-1.73, I (2) = 9.8%) and VaD (n = 13) was 2.27 (1.94-2.66, I (2) = 0%) in patients with diabetes mellitus. Higher and medium quality studies did not show any significant difference for pooled RR for ATD, AD or VaD. Sensitivity analyses showed robustness of pooled RR among ATD, AD and VaD, showing no single study had a major impact on pooled RR.\nCONCLUSIONS: The results showed a 73% increased risk of ATD, 56% increase of AD and 127% increase of VaD in diabetes patients.",
+ "pmcid": "PMC4020261",
+ "doi": "10.1111/jdi.12087",
+ "open_access": "Y",
+ "checks": [
+  {
+   "term": "ext.diabetes",
+   "number": "ad.hr",
+   "value": 1.56,
+   "found": true,
+   "context": "AD (n = 20) was 1.56 (1.41-1.73, I (2) = 9.8%)"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "ad.lo",
+   "value": 1.41,
+   "found": true,
+   "context": "AD (n = 20) was 1.56 (1.41-1.73, I (2) = 9.8%)"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "ad.hi",
+   "value": 1.73,
+   "found": true,
+   "context": "AD (n = 20) was 1.56 (1.41-1.73, I (2) = 9.8%)"
+  }
+ ]
+}

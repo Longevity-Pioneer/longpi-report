@@ -1,0 +1,34 @@
+{
+ "key": "pmid:30699470",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/30699470/",
+ "fetched_at": "2026-11-18T03:24:57Z",
+ "sha256": "6c3c1fa546973fd3ed232bfc708da1940cacce6cfdda289d477a7961ac773580",
+ "citation": "The Cochrane database of systematic reviews 2019",
+ "text": "General health checks in adults for reducing morbidity and mortality from disease.\nBACKGROUND: General health checks are common elements of health care in some countries. They aim to detect disease and risk factors for disease with the purpose of reducing morbidity and mortality. Most of the commonly used individual screening tests offered in general health checks have been incompletely studied. Also, screening leads to increased use of diagnostic and therapeutic interventions, which can be harmful as well as beneficial. It is therefore important to assess whether general health checks do more good than harm. This is the first update of the review published in 2012.\nOBJECTIVES: To quantify the benefits and harms of general health checks.\nSEARCH METHODS: We searched CENTRAL, MEDLINE, Embase, two other databases and two trials registers on 31 January 2018. Two review authors independently screened titles and abstracts, assessed papers for eligibility and read reference lists. One review author used citation tracking (Web of Knowledge) and asked trial authors about additional studies.\nSELECTION CRITERIA: We included randomised trials comparing health checks with no health checks in adults unselected for disease or risk factors. We did not include geriatric trials. We defined health checks as screening for more than one disease or risk factor in more than one organ system.\nDATA COLLECTION AND ANALYSIS: Two review authors independently extracted data and assessed the risk of bias in the trials. We contacted trial authors for additional outcomes or trial details when necessary. When possible, we analysed the results with a random-effects model meta-analysis; otherwise, we did a narrative synthesis.\nMAIN RESULTS: We included 17 trials, 15 of which reported outcome data (251,891 participants). Risk of bias was generally low for our primary outcomes. Health checks have little or no effect on total mortality (risk ratio (RR) 1.00, 95% confidence interval (CI) 0.97 to 1.03; 11 trials; 233,298 participants and 21,535 deaths; high-certainty evidence, I2 = 0%), or cancer mortality (RR 1.01, 95% CI 0.92 to 1.12; 8 trials; 139,290 participants and 3663 deaths; high-certainty evidence, I2 = 33%), and probably have little or no effect on cardiovascular mortality (RR 1.05, 95% CI 0.94 to 1.16; 9 trials; 170,227 participants and 6237 deaths; moderate-certainty evidence; I2 = 65%). Health checks have little or no effect on fatal and non-fatal ischaemic heart disease (RR 0.98, 95% CI 0.94 to 1.03; 4 trials; 164,881 persons, 10,325 events; high-certainty evidence; I2 = 11%), and probably have little or no effect on fatal and non-fatal stroke (RR 1.05 95% CI 0.95 to 1.17; 3 trials; 107,421 persons, 4543 events; moderate-certainty evidence, I2 = 53%).\nAUTHORS' CONCLUSIONS: General health checks are unlikely to be beneficial.",
+ "pmcid": "PMC6353639",
+ "doi": "10.1002/14651858.cd009009.pub3",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.checkup_general",
+   "number": "all_cause.hr",
+   "value": 1.0,
+   "found": true,
+   "context": "ave little or no effect on total mortality (risk ratio (RR) 1.00, 95% confidence interval (CI) 0.97 to 1.03; 11 trials; 233,"
+  },
+  {
+   "term": "ext.checkup_general",
+   "number": "all_cause.lo",
+   "value": 0.97,
+   "found": true,
+   "context": "rtality (risk ratio (RR) 1.00, 95% confidence interval (CI) 0.97 to 1.03; 11 trials; 233,298 participants and 21,535 deaths;"
+  },
+  {
+   "term": "ext.checkup_general",
+   "number": "all_cause.hi",
+   "value": 1.03,
+   "found": true,
+   "context": "(risk ratio (RR) 1.00, 95% confidence interval (CI) 0.97 to 1.03; 11 trials; 233,298 participants and 21,535 deaths; high-ce"
+  }
+ ]
+}

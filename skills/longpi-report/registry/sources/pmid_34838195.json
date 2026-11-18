@@ -1,0 +1,35 @@
+{
+ "key": "pmid:34838195",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/34838195/",
+ "fetched_at": "2026-11-18T03:23:53Z",
+ "sha256": "c3a72283a7d55e9f965e3fc295f278fadbdc9c37c4d68f155255e2ae414f3372",
+ "citation": "The Lancet. Public health 2021",
+ "text": "The relative and attributable risks of cardia and non-cardia gastric cancer associated with Helicobacter pylori infection in China: a case-cohort study.\nBACKGROUND: Helicobacter pylori infection is a major cause of non-cardia gastric cancer (NCGC), but its causal role in cardia gastric cancer (CGC) is unclear. Moreover, the reported magnitude of association with NCGC varies considerably, leading to uncertainty about population-based H pylori screening and eradication strategies in high-risk settings, particularly in China, where approximately half of all global gastric cancer cases occur. Our aim was to assess the associations of H pylori infection, both overall and for individual infection biomarkers, with the risks of NCGC and CGC in Chinese adults.\nMETHODS: A case-cohort study was done in adults from the prospective China Kadoorie Biobank study, aged 30-79 years from ten areas in China (Qingdao, Haikou, Harbin, Suzhou, Liuzhou, Henan, Sichuan, Hunan, Gansu, and Zhejiang), and included 500 incident NCGC cases, 437 incident CGC cases, and 500 subcohort participants who were cancer-free and alive within the first two years since enrolment in 2004-08. H pylori biomarkers were measured in stored baseline plasma samples using a sensitive immunoblot assay (HelicoBlot 2.1), with adapted criteria to define H pylori seropositivity. Cox regression was used to estimate adjusted hazard ratios (HRs) for NCGC and CGC associated with H pylori infection. These values were used to estimate the number of gastric cancer cases attributable to H pylori infection in China.\nFINDINGS: Of the 512 715 adults enrolled in the China Kadoorie Biobank between June, 2004, and July, 2008, 500 incident NCGC cases, 437 incident CGC cases, and 500 subcohort participants were selected for analysis. The seroprevalence of H pylori was 94·4% (95% CI 92·4-96·4) in NGCG, 92·2% (89·7-94·7) in CGC, and 75·6% (71·8-79·4) in subcohort participants. H pylori infection was associated with adjusted HRs of 5·94 (95% CI 3·25-10·86) for NCGC and 3·06 (1·54-6·10) for CGC. Among the seven individual infection biomarkers, cytotoxin-associated antigen had the highest HRs for both NCGC (HR 4·41, 95% CI 2·60-7·50) and CGC (2·94, 1·53-5·68). In this population, 78·5% of NCGC and 62·1% of CGC cases could be attributable to H pylori infection. H pylori infection accounted for an estimated 339 955 cases of gastric cancer in China in 2018.\nINTERPRETATION: Among Chinese adults, H pylori infection is common and is the cause of large numbers of gastric cancer cases. Population-based mass screening and the eradication of H pylori should be considered to reduce the burden of gastric cancer in high-risk settings.\nFUNDING: Cancer Research UK, Wellcome Trust, UK Medical Research Council, British Heart Foundation, Kadoorie Charitable Foundation, National Key Research and Development Program of China, and National Natural Science Foundation of China.",
+ "pmcid": "PMC8646857",
+ "doi": "10.1016/s2468-2667(21)00164-x",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.hpylori",
+   "number": "gastric_ca.hr",
+   "value": 5.94,
+   "found": true,
+   "context": "H pylori infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+  },
+  {
+   "term": "ext.hpylori",
+   "number": "gastric_ca.lo",
+   "value": 3.25,
+   "found": true,
+   "context": " infection was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+  },
+  {
+   "term": "ext.hpylori",
+   "number": "gastric_ca.hi",
+   "value": 10.86,
+   "found": true,
+   "context": "ction was associated with adjusted HRs of 5.94 (95% CI 3.25-10.86) for NCGC and 3.06 (1.54-6.10) for CGC."
+  }
+ ]
+}

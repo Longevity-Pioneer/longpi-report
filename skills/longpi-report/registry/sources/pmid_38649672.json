@@ -1,0 +1,35 @@
+{
+ "key": "pmid:38649672",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/38649672/",
+ "fetched_at": "2026-11-18T03:25:28Z",
+ "sha256": "b0ef88e1bda1ebb46aedd05b0c98036c8fea0c493eeea2b28338cc3381083d83",
+ "citation": "Gastric cancer : official journal of the International Gastric Cancer Association and the Japanese Gastric Cancer Association 2024",
+ "text": "Family history and gastric cancer incidence and mortality in Asia: a pooled analysis of more than half a million participants.\nBACKGROUND: The family history of gastric cancer holds important implications for cancer surveillance and prevention, yet existing evidence predominantly comes from case-control studies. We aimed to investigate the association between family history of gastric cancer and gastric cancer risk overall and by various subtypes in Asians in a prospective study.\nMETHODS: We included 12 prospective cohorts with 550,508 participants in the Asia Cohort Consortium. Cox proportional hazard regression was used to estimate study-specific adjusted hazard ratios (HRs) and 95% confidence intervals (CIs) for the association between family history of gastric cancer and gastric cancer incidence and mortality, then pooled using random-effects meta-analyses. Stratified analyses were performed for the anatomical subsites and histological subtypes.\nRESULTS: During the mean follow-up of 15.6 years, 2258 incident gastric cancers and 5194 gastric cancer deaths occurred. The risk of incident gastric cancer was higher in individuals with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58), similarly in males (1.44, 1.31-1.59) and females (1.45, 1.23-1.70). Family history of gastric cancer was associated with both cardia (HR 1.26, 95% CI 1.00-1.60) and non-cardia subsites (1.49, 1.35-1.65), and with intestinal- (1.48, 1.30-1.70) and diffuse-type (1.59, 1.35-1.87) gastric cancer incidence. Positive associations were also found for gastric cancer mortality (HR 1.30, 95% CI 1.19-1.41).\nCONCLUSIONS: In this largest prospective study to date on family history and gastric cancer, a familial background of gastric cancer increased the risk of gastric cancer in the Asian population. Targeted education, screening, and intervention in these high-risk groups may reduce the burden of gastric cancer.",
+ "pmcid": "PMC11193690",
+ "doi": "10.1007/s10120-024-01499-1",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.fh_gastric_ca",
+   "number": "gastric_ca.hr",
+   "value": 1.44,
+   "found": true,
+   "context": " in individuals with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)"
+  },
+  {
+   "term": "ext.fh_gastric_ca",
+   "number": "gastric_ca.lo",
+   "value": 1.32,
+   "found": true,
+   "context": "ls with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)"
+  },
+  {
+   "term": "ext.fh_gastric_ca",
+   "number": "gastric_ca.hi",
+   "value": 1.58,
+   "found": true,
+   "context": "th a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)"
+  }
+ ]
+}

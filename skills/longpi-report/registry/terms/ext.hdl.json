@@ -1,0 +1,117 @@
+{
+ "id": "ext.hdl",
+ "name_zh": "高密度脂蛋白胆固醇（冠心病风险）",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:2085-9",
+  "unit": "mmol/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.6,
+   2.2
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 1.38,
+    "sd": 0.31
+   }
+  ],
+  "source": "研究人群分布：中国 11 城市体检人群（平均年龄 42.1 岁，HDL-C 1.38 ± 0.31 mmol/L，男女合并）；女性 HDL-C 高于男性，合并分布会使男性风险略被低估",
+  "pmid": "40171237",
+  "quote": "HDL-C(mmol/l)1.38 ± 0.31"
+ },
+ "effect": {
+  "chd": {
+   "hr": 0.78,
+   "lo": 0.74,
+   "hi": 0.82,
+   "per": 0.388,
+   "per_unit": "mmol/L (1 SD = 15 mg/dL)",
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.bp",
+  "core.glucose",
+  "core.adiposity",
+  "core.lipid",
+  "LOINC:2571-8"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "仅为冠心病建项，不写全因死亡。ERFC 的 HR 已校正非 HDL 胆固醇、甘油三酯及常规危险因素，属于互相校正的估计；但孟德尔随机化与升 HDL 药物试验均不支持 HDL-C 的因果作用，HDL-C 更可能是代谢状态的标志，故系数取 0.5。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "mostly European and North American",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Emerging Risk Factors Collaboration, 68 prospective studies",
+  "n": 302430,
+  "events": 12785,
+  "ancestry": "mostly European and North American"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.06,
+  "source": "HDL-C 分析与生物学变异约 6%（经验值）"
+ },
+ "persistence": {
+  "half_life_years": 10
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "规律有氧运动、戒烟、减重可提高 HDL-C；不建议以药物单纯升高 HDL-C。"
+ },
+ "test": {
+  "label_zh": "抽血查血脂四项",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "pooled-cohort",
+  "pmid": "19903920",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/19903920/",
+  "quote": "Adjusted HRs for CHD were 0.99 (95% CI, 0.94-1.05) with triglyceride, 0.78 (95% CI, 0.74-0.82) with HDL-C",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "disclosure": "standard",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

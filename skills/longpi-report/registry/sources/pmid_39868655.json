@@ -1,0 +1,35 @@
+{
+ "key": "pmid:39868655",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/39868655/",
+ "fetched_at": "2026-11-18T03:41:56Z",
+ "sha256": "29534269f668b8626deafbd455681de6f8b7ff9474cfdb9fae6d070a8e960418",
+ "citation": "Diabetes, obesity & metabolism 2025",
+ "text": "Impact of time in tight range on all-cause and cardiovascular mortality in type 2 diabetes: A prospective cohort study.\nAIMS: Currently, there is a lack of evidence regarding time in tight range (TITR) and long-term adverse outcomes. We aimed to investigate the association between TITR and the risk of all-cause and cardiovascular mortality among patients with type 2 diabetes.\nMATERIALS AND METHODS: A total of 6061 patients with type 2 diabetes were prospectively recruited in a single centre. TITR was measured with continuous glucose monitoring (CGM) at baseline and was defined as the percentage of time in the target glucose range of 3.9-7.8 mmol/L (70-140 mg/dL) during a 24-h period. Cox proportion hazard regression models were used to examine the association between TITR and the risk of all-cause and cardiovascular mortality.\nRESULTS: During a median follow-up period of 10.9 years, 1898 (31.3%) death events were confirmed, with 689 (11.4%) due to cardiovascular mortality. The restricted cubic spline revealed significant linear relationships between lower TITR and higher risks of all-cause and cardiovascular mortality (p for linearity <0.01). In the fully adjusted model including glycated haemoglobin A1c, each 10% decrease in TITR was associated with 4% (95% confidence interval, 1.01-1.06) increased risk of all-cause mortality and 4% (95% confidence interval, 1.00-1.08) increased risk of cardiovascular mortality. Subgroup analyses showed that the linear relationship between TITR and all-cause mortality risk was sustained in patients with haemoglobin A1c <7.0% and patients with fasting plasma glucose <7.0 mmol/L.\nCONCLUSIONS: Lower TITR is associated with an increased risk of all-cause and cardiovascular mortality in patients with type 2 diabetes, indicating that tight glycaemic control within the physiological range may be crucial for reducing long-term mortality risk, especially in those with seemingly well-controlled diabetes.",
+ "pmcid": "PMC11885067",
+ "doi": "10.1111/dom.16212",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.cgm_tir",
+   "number": "all_cause.derived.from.hr",
+   "value": 1.04,
+   "found": false,
+   "context": ""
+  },
+  {
+   "term": "ext.cgm_tir",
+   "number": "all_cause.derived.from.lo",
+   "value": 1.01,
+   "found": true,
+   "context": "se in TITR was associated with 4% (95% confidence interval, 1.01-1.06) increased risk of all-cause mortality"
+  },
+  {
+   "term": "ext.cgm_tir",
+   "number": "all_cause.derived.from.hi",
+   "value": 1.06,
+   "found": true,
+   "context": " TITR was associated with 4% (95% confidence interval, 1.01-1.06) increased risk of all-cause mortality"
+  }
+ ]
+}

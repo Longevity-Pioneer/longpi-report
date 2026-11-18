@@ -1,0 +1,34 @@
+{
+ "key": "pmid:20065274",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/20065274/",
+ "fetched_at": "2026-11-18T03:31:25Z",
+ "sha256": "14c4acda39d7e3dda42cc0ae824f0b4e3b1a927d8ecf2dfe397cdde8502de811",
+ "citation": "Annals of family medicine 2010",
+ "text": "Incidence and predictors of hypertension among rural Chinese adults: results from Liaoning province.\nUNLABELLED: OBJECTIVE We wanted to determine the incidence of hypertension and its risk factors among rural Chinese adults.\nMETHODS: A population-based sample of 24,360 rural Chinese adults aged 35 years and older and free from hypertension at baseline was observed from 2004-2006 to 2008. Incident hypertension was defined as a systolic pressure of 140 mm Hg or greater, diastolic pressure of 90 mm Hg or greater, or current use of antihypertensive medication.\nRESULTS: During a mean follow-up period of 28 months, 29.6% of men and 23.4% of women developed hypertension. The age-adjusted incidence was higher in men (12.75 per 100 person-years) than in women (10.04 per 100 person-years). Among men, independent predictors of incident hypertension were baseline age (hazard ratio [HR] = 1.11; 95% confidence interval [CI], 1.10-1.13), Mongolian ethnicity (HR = 1.09; 95% CI, 1.01-1.18), use of alcohol, (HR = 1.14; 95% CI, 1.06-1.23), high income vs low income (HR = 1.11; 95% CI, 1.00-1.22; and HR = 1.11; 95% CI, 1.03-1.20), prehypertension vs normotension (HR = 1.18; 95% CI, 1.08-1.28), overweight and obesity (HR = 1.28; 95% CI, 1.17-1.40), baseline salt intake (HR = 1.00; 95% CI, 1.00-1.01) and family history of hypertension (HR = 1.14; 95% CI, 1.03-1.27). With the exception of use of alcohol and mean income, the results were similar for women, except that low physical activity was shown as a risk factors as well. The awareness, treatment, and control rates for newly developed hypertension were 29.9%, 19.5%, and 1.5%, respectively.\nCONCLUSIONS: These data indicate that the incidence of hypertension is high among these rural Chinese adults and that it is associated with many risk factors. Our findings further suggest that most newly developed hypertension cases are not treated. The increases in hypertension are probably related to rapid social changes in our country and may apply to other areas of the developing world. These findings call for urgent improvements in hypertension prevention and control programs in rural China.",
+ "pmcid": "PMC2807383",
+ "doi": "10.1370/afm.1018",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.fh_htn",
+   "number": "htn.hr",
+   "value": 1.14,
+   "found": true,
+   "context": "family history of hypertension (HR = 1.14; 95% CI, 1.03-1.27)"
+  },
+  {
+   "term": "ext.fh_htn",
+   "number": "htn.lo",
+   "value": 1.03,
+   "found": true,
+   "context": "family history of hypertension (HR = 1.14; 95% CI, 1.03-1.27)"
+  },
+  {
+   "term": "ext.fh_htn",
+   "number": "htn.hi",
+   "value": 1.27,
+   "found": true,
+   "context": "family history of hypertension (HR = 1.14; 95% CI, 1.03-1.27)"
+  }
+ ]
+}

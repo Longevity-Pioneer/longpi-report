@@ -1,0 +1,13 @@
+{
+ "key": "pmid:24344928",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/24344928/",
+ "fetched_at": "2026-11-18T03:29:36Z",
+ "sha256": "c12f3d1105f539e162ee4a20bdce97f8668e48b97e61af2445830c8beee24a46",
+ "citation": "Diabetic medicine : a journal of the British Diabetic Association 2014",
+ "text": "Associations of blood glucose and prevalent diabetes with risk of cardiovascular disease in 500 000 adult Chinese: the China Kadoorie Biobank.\nAIMS: To examine the relationship of self-reported diabetes, and of random blood glucose levels among individuals without known diabetes, with the prevalence of cardiovascular disease in Chinese adults.\nMETHODS: We examined cross-sectional data from the China Kadoorie Biobank of 0.5 million people aged 30-79 years recruited from 10 diverse regions of China in the period 2004-2008. Logistic regression was used to estimate the odds ratios of prevalent cardiovascular disease associated with self-reported diabetes, and with measured random blood glucose levels among participants with no history of diabetes, adjusting simultaneously for age, sex, area, education, smoking, alcohol, blood pressure and physical activity.\nRESULTS: A total of 3.2% of participants had self-reported diabetes (men 2.9%; women 3.3%) and 2.8% had screen-detected diabetes (men 2.6%; women 2.8%), i.e. they had no self-reported history of diabetes but a blood glucose level suggestive of a diagnosis of diabetes. Compared with individuals without a history of diabetes, the odds ratios associated with self-reported diabetes were 2.18 (95% CI 2.06-2.30) and 1.88 (95% CI 1.75-2.01) for prevalent ischaemic heart disease and stroke/transient ischaemic attack, respectively. Among participants without self-reported diabetes there was a positive association between random blood glucose and ischaemic heart disease and stroke/transient ischaemic attack prevalence (P for trend <0.0001). Below the diabetic threshold (<11.1 mmol/l) each additional 1 mmol/l of random blood glucose was associated with 4% (95% CI 2-5%) and 5% (95% CI 3-7%) higher odds of prevalent ischaemic heart disease and stroke/transient ischaemic attack, respectively.\nCONCLUSIONS: In this adult Chinese population, self-reported diabetes was associated with a doubling of the odds of prevalent cardiovascular disease. Below the threshold for diabetes there was still a modest, positive association between random blood glucose and prevalent cardiovascular disease.\n[full text, Europe PMC PMC4114560]\nYes1422510.74.76.12234711.54.76.2",
+ "pmcid": "PMC4114560",
+ "doi": "10.1111/dme.12392",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

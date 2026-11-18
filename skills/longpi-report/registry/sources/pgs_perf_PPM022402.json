@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM022402",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM022402",
+ "fetched_at": "2026-11-18T03:45:41Z",
+ "sha256": "8e08329252075e24d2425adfba4e871609e4bc5ba0c5945a69dc770eb36e3834",
+ "citation": "",
+ "text": "PPM022402 | score PGS005164 | trait Breast Cancer\nancestry: East Asian | cohorts: CKB | n: 57359 | cases: 486\npublication: Zhu M PLoS Med 2025-02-28 PMID 40019942\ncovariates: Age,Sex (if applicable),Region,Top 10 genetic ancestry principal components\nHazard Ratio (HR): 1.42 [1.3, 1.55]\nBeta (β): 0.344 [None, None]\nConcordance Statistic (C-index): 0.596 [None, None]",
+ "pgs_id": "PGS005164",
+ "checks": [
+  {
+   "term": "ext.prs_breast_ca",
+   "number": "breast_ca.hr",
+   "value": 1.42,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.42 [1.3, 1.55]"
+  },
+  {
+   "term": "ext.prs_breast_ca",
+   "number": "breast_ca.lo",
+   "value": 1.3,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.42 [1.3, 1.55]"
+  },
+  {
+   "term": "ext.prs_breast_ca",
+   "number": "breast_ca.hi",
+   "value": 1.55,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.42 [1.3, 1.55]"
+  }
+ ]
+}

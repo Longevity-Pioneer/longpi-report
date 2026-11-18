@@ -1,0 +1,120 @@
+{
+ "id": "ext.clock_dunedinpace",
+ "name_zh": "DunedinPACE 衰老速度",
+ "kind": "state",
+ "system": "whole_body",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:clock.dunedinpace_accel",
+  "unit": "biological years per chronological year, minus same-age reference",
+  "platform": "Illumina HumanMethylation450 / EPIC (blood DNA methylation)",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -0.5,
+   0.8
+  ],
+  "log_x": false
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未取得经核对的重复测量误差；不同预处理流程与芯片版本之间存在系统偏差（见 core.methylation 的 s_lab_source）"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "时钟加速可随戒烟、减重、体力活动等生活方式改变而变化，但干预效果的随机对照证据有限。"
+ },
+ "test": {
+  "label_zh": "血液 DNA 甲基化检测（DunedinPACE）",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "reference": {
+  "kind": "residualized",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 0.15
+   }
+  ],
+  "source": "美国健康与退休研究（HRS 2016，n 3,581）DunedinPACE 均值 1.02、标准差 0.15（Faul 2023 表 1）；输入为减去同龄参考后的差值，均值取 0；非中国人群",
+  "pmid": "36802439",
+  "quote": "DunedinPACE (2022)†1.02 (0.15)"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.65,
+   "lo": 1.51,
+   "hi": 1.79,
+   "per": 0.15,
+   "per_unit": "1 SD of DunedinPACE (SD 0.15 taken from HRS; the Framingham SD is not stated in the text)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.1,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.methylation",
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "主估计只校正年龄与性别；原文在 Framingham 中校正 GrimAge 后死亡关联减弱但仍显著（该处区间数字自相矛盾，不可用），未校正血液 PhenoAge。本仓库 NHANES 分析中其前代 DunedinPoAm 在 LongPi 模型基础上残差每 SD 的 HR 为 1.151，C 指数增益 0.0025，故系数取 0.1。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (United States, Framingham Offspring)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Framingham Heart Study Offspring Cohort (exam 8, 2005-2008)",
+  "n": 2471,
+  "ancestry": "European (United States, Framingham Offspring)",
+  "age_range": [
+   40,
+   90
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "35029144",
+  "pmcid": "PMC8853656",
+  "doi": "10.7554/eLife.73420",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/35029144/",
+  "quote": "Participants with faster DunedinPACE at baseline were at increased risk for CVD, stroke/TIA, and mortality (CVD HR = 1.39 [1.26-1.54]; stroke/TIA HR = 1.37 [1.19-1.58]; mortality HR = 1.65 95% CI [1.51-1.79], Figure 4B)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "why_qualitative_zh": "Framingham 每 SD 死亡 HR 1.65（95% CI 1.51–1.79）经逐字核对，但只校正年龄与性别，约 23% 死亡（正文未给确切例数）。DunedinPACE 与已计入的 GrimAge2 中度相关，原文校正 GrimAge 后关联减弱，并与血液 PhenoAge 共享多系统生理信息。本仓库 NHANES 分析中前代 DunedinPoAm 在 LongPi 模型基础上 C 指数增益仅 0.0025（NHANES 未提供 DunedinPACE 本身），故只作定性佐证。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": []
+}

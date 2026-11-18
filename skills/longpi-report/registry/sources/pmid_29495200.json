@@ -1,0 +1,33 @@
+{
+ "key": "pmid:29495200",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/29495200/",
+ "fetched_at": "2026-11-18T03:30:56Z",
+ "sha256": "9d54bc1af1fba2b1633b5c46745bfb3f8ac8a4fb68356bae42ea00ab848efe6a",
+ "citation": "Zhonghua liu xing bing xue za zhi = Zhonghua liuxingbingxue zazhi 2018",
+ "text": "[Family history and risk of coronary heart disease].\nObjective: To evaluate the association of family history with risk of major coronary events (MCE) and ischemic heart disease (IHD). Methods: After excluding participants with heart disease, stroke or cancer at baseline survey, a total of 485 784 participants from the China Kadoorie Biobank, who had no missing data on critical variables, were included in the analysis. Cox regression analysis was used to estimate the hazard ratios (HR) and 95% CI. Subgroup analyses were performed according to the baseline characteristics. Results: During a median of 7.2 years of follow-up, we documented 3 934 incident cases of MCE and 24 537 cases of IHD. In multivariable-adjusted models, family history was significantly associated with risk of MCE and IHD. The adjusted HRs (95%CI) were 1.41 (1.19-1.65) and 1.25 (1.18-1.33), respectively. History of disease among siblings was more strongly associated with early-onset MCE than parental history (HR=2.97, 95%CI: 1.80-4.88). Moreover, the association of family history with MCE and IHD was stronger in persons who were overweight or obesive, and the association between family history and MEC was stronger in smokers. Conclusion: This large-scale, prospective study indicated that family history was an independent risk factor for MCE and IHD in China. The intervention targeting major known lifestyle risk factors and the management of chronic diseases should be strengthened for Chinese population, especially for the individuals with family history were at high risk.",
+ "doi": "10.3760/cma.j.issn.0254-6450.2018.02.007",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.fh_chd",
+   "number": "chd.hr",
+   "value": 1.25,
+   "found": true,
+   "context": "and IHD. The adjusted HRs (95%CI) were 1.41 (1.19-1.65) and 1.25 (1.18-1.33), respectively."
+  },
+  {
+   "term": "ext.fh_chd",
+   "number": "chd.lo",
+   "value": 1.18,
+   "found": true,
+   "context": "D. The adjusted HRs (95%CI) were 1.41 (1.19-1.65) and 1.25 (1.18-1.33), respectively."
+  },
+  {
+   "term": "ext.fh_chd",
+   "number": "chd.hi",
+   "value": 1.33,
+   "found": true,
+   "context": "e adjusted HRs (95%CI) were 1.41 (1.19-1.65) and 1.25 (1.18-1.33), respectively."
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "key": "pmid:38661292",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/38661292/",
+ "fetched_at": "2026-11-18T03:33:27Z",
+ "sha256": "77bc5302c86d933161e5cbdcaa6a0b2f3743706790b001ff00d7b56f499ea16e",
+ "citation": "International journal of cancer 2024",
+ "text": "Diabetes is associated with increased liver cancer incidence and mortality in adults: A report from Asia Cohort Consortium.\nThere has been growing evidence suggesting that diabetes may be associated with increased liver cancer risk. However, studies conducted in Asian countries are limited. This project considered data of 968,738 adults pooled from 20 cohort studies of Asia Cohort Consortium to examine the association between baseline diabetes and liver cancer incidence and mortality. Cox proportional hazard model and competing risk approach was used for pooled data. Two-stage meta-analysis across studies was also done. There were 839,194 subjects with valid data regarding liver cancer incidence (5654 liver cancer cases [48.29/100,000 person-years]), follow-up time and baseline diabetes (44,781 with diabetes [5.3%]). There were 747,198 subjects with valid data regarding liver cancer mortality (5020 liver cancer deaths [44.03/100,000 person-years]), follow-up time and baseline diabetes (43,243 with diabetes [5.8%]). Hazard ratio (HR) (95% confidence interval [95%CI]) of liver cancer diagnosis in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, gender, body mass index, tobacco smoking, alcohol use, and heterogeneity across studies (n = 586,072; events = 4620). Baseline diabetes was associated with increased cumulative incidence of death due to liver cancer (adjusted HR (95%CI) = 1.97 (1.79, 2.18); p < .0001) (n = 595,193; events = 4110). A two-stage meta-analytic approach showed similar results. This paper adds important population-based evidence to current literature regarding the increased incidence and mortality of liver cancer in adults with diabetes. The analysis of data pooled from 20 studies of different Asian countries and the meta-analysis across studies with large number of subjects makes the results robust.",
+ "doi": "10.1002/ijc.34965",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.diabetes",
+   "number": "liver_ca.hr",
+   "value": 1.97,
+   "found": true,
+   "context": "r diagnosis in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, "
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "liver_ca.lo",
+   "value": 1.79,
+   "found": true,
+   "context": "nosis in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, gender"
+  },
+  {
+   "term": "ext.diabetes",
+   "number": "liver_ca.hi",
+   "value": 2.16,
+   "found": true,
+   "context": "in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, gender, body"
+  }
+ ]
+}

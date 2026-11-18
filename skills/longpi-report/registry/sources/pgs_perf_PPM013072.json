@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM013072",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM013072",
+ "fetched_at": "2026-11-18T03:48:00Z",
+ "sha256": "cf5426e33536aebe6bf108e8c4d6121c42eb35bb977267c9369e80c1ccb388e7",
+ "citation": "",
+ "text": "PPM013072 | score PGS002308 | trait Type 2 diabetes\nancestry: East Asian | cohorts: TWB | n: 54078 | cases: 2806\npublication: Ge T Genome Med 2022-06-29 PMID 35765100\ncovariates: age, sex, top 10 PCs\nOdds Ratio (OR): 2.01 [1.93, 2.1]\nArea Under the Receiver-Operating Characteristic Curve (AUROC): 0.781 [None, None]",
+ "pgs_id": "PGS002308",
+ "checks": [
+  {
+   "term": "ext.prs_t2d",
+   "number": "t2d.hr",
+   "value": 2.01,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.01 [1.93, 2.1]"
+  },
+  {
+   "term": "ext.prs_t2d",
+   "number": "t2d.lo",
+   "value": 1.93,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.01 [1.93, 2.1]"
+  },
+  {
+   "term": "ext.prs_t2d",
+   "number": "t2d.hi",
+   "value": 2.1,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.01 [1.93, 2.1]"
+  }
+ ]
+}

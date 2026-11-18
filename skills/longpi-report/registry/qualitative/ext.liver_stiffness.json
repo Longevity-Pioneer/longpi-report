@@ -1,0 +1,125 @@
+{
+ "id": "ext.liver_stiffness",
+ "name_zh": "肝脏硬度（瞬时弹性成像）",
+ "kind": "state",
+ "system": "liver",
+ "group": null,
+ "input": {
+  "code": "LP:liver_stiffness_kpa",
+  "unit": "kPa",
+  "platform": "vibration-controlled transient elastography (FibroScan)",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_hi": 8.0,
+  "clip": [
+   2.5,
+   40
+  ],
+  "note_zh": "原文只给 ≥8.0 kPa 对 <8.0 kPa 的二分比较；per=4 kPa 是把二分效应摊到拐点以上的约定值，没有文献依据，仅为保持规格结构完整，本项不计入数值"
+ },
+ "reference": {
+  "kind": "lognormal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "meanlog": 1.609,
+    "sdlog": 0.3
+   }
+  ],
+  "source": "近似值：健康成人肝脏硬度中位数约 5 kPa、多数在 3–8 kPa 之间（未检索到可逐字核对的中国一般人群分布文献，数值未经原文核对）"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_above": {
+    "hr": 1.37,
+    "lo": 1.0,
+    "hi": 1.89,
+    "per": 4.0
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.2,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "core.adiposity",
+   "core.glucose",
+   "core.alcohol"
+  ],
+  "rationale_zh": "肝脏硬度升高既反映代谢相关与酒精相关肝纤维化（与体脂、血糖、饮酒重叠），也可由心力衰竭所致肝淤血引起。原文校正变量摘要未列明，按仅校正年龄、性别处理，系数不超过 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (Netherlands)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Rotterdam Study（2009–2014 访视，中位随访 6.0 年）",
+  "n": 4153,
+  "events": null,
+  "ancestry": "European (Netherlands)",
+  "age_range": [
+   45,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未检索到可核对的重复测量变异文献；进食、肝淤血、转氨酶升高均可使读数升高"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy",
+  "non_fasting"
+ ],
+ "treated_policy": "use_as_is",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "减重、控制血糖、戒酒可使代谢相关肝纤维化改善；读数 ≥8 kPa 应排查肝纤维化与心力衰竭"
+ },
+ "test": {
+  "label_zh": "肝脏瞬时弹性成像（FibroScan）",
+  "cost_level": 2
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "36744819",
+  "doi": "10.1111/liv.15538",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/36744819/",
+  "quote": "Liver stiffness ≥8.0 kPa was associated with mortality (aHR: 1.37, 95%CI: 1.00-1.89)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "evidence_notes_zh": "同一研究中，排除心力衰竭和/或冠心病者后 HR 为 1.07（0.70–1.64），作者认为超额死亡主要由心力衰竭（肝淤血）解释。美国 NHANES 2017–2018（PMID 41848734）仅在糖尿病患者中观察到每 kPa HR 1.06（1.04–1.09），随访约 2 年、死亡 59 例。一般人群（尤其东亚）中以肝脏硬度预测全因死亡、事件 ≥100 的前瞻研究未检索到",
+ "why_qualitative_zh": "一般人群证据仅有鹿特丹研究的二分比较，置信区间下限为 1.00，且排除心力衰竭、冠心病后关联消失，提示升高主要反映心源性肝淤血而非独立风险；事件数摘要未报告，校正变量未能核对；没有连续剂量反应估计，也没有东亚人群数据。故列为定性佐证，不计入 LongPi Age",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": [
+  "all_cause.hr_above: 95% CI 1.0–1.89 含 1（无统计学意义）"
+ ]
+}

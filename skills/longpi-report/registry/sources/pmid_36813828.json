@@ -1,0 +1,13 @@
+{
+ "key": "pmid:36813828",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/36813828/",
+ "fetched_at": "2026-11-18T03:24:53Z",
+ "sha256": "5ae7199e8ddd9ab01daca59310fe9a7f572ac9bdb402ba10025c62b1ba2b6d17",
+ "citation": "Scientific reports 2023",
+ "text": "Prevalence of family history of cancer in the NC-CCAPH consortium of Japan.\nThe objective of this study was to identify the prevalence of family history of cancer using cohorts participating in the Japanese National Center Cohort Collaborative for Advancing Population Health (NC-CCAPH). We pooled data from seven eligible cohorts of the Collaborative with available data on family history of cancer. Prevalence of family history of cancer and corresponding 95% confidence intervals are presented for all cancers and selected site-specific cancers for the total population and stratified by sex, age, and birth cohort. Prevalence of family history of cancer increased with age ranging from 10.51% in the 15 to 39 year age category to 47.11% in 70-year-olds. Overall prevalence increased in birth cohorts from ≤ 1929 until 1960 and decreased for the next two decades. Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer. Women consistently had a higher prevalence of family history of cancer (34.32%) versus men (28.75%). Almost one in three participants had a family history of cancer in this Japanese consortium study highlighting the importance of early and targeted cancer screening services.",
+ "pmcid": "PMC9947111",
+ "doi": "10.1038/s41598-023-30048-6",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": []
+}

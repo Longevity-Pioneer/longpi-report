@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM020712",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM020712",
+ "fetched_at": "2026-11-18T03:45:25Z",
+ "sha256": "3485b21390f084c1d587b21aad70d19d489f4fe5affa9c409064159c7c9d1bb0",
+ "citation": "",
+ "text": "PPM020712 | score PGS004589 | trait Alzheimer's disease dementia\nancestry: East Asian | cohorts: BICWALZS; PREMIER | n: 379 | cases: 159\npublication: Jung SH JAMA Netw Open 2022-12-01 PMID 36520433\ncovariates: Sex, age, education year, 4 PCs, APOE ε4 status\nOdds Ratio (OR): 2.09 [1.09, 4.04]",
+ "pgs_id": "PGS004589",
+ "checks": [
+  {
+   "term": "ext.prs_ad",
+   "number": "ad.hr",
+   "value": 2.09,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.09 [1.09, 4.04]"
+  },
+  {
+   "term": "ext.prs_ad",
+   "number": "ad.lo",
+   "value": 1.09,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.09 [1.09, 4.04]"
+  },
+  {
+   "term": "ext.prs_ad",
+   "number": "ad.hi",
+   "value": 4.04,
+   "found": true,
+   "context": "Odds Ratio (OR): 2.09 [1.09, 4.04]"
+  }
+ ]
+}

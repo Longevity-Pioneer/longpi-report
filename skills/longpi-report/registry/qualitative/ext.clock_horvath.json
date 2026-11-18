@@ -1,0 +1,124 @@
+{
+ "id": "ext.clock_horvath",
+ "name_zh": "Horvath 甲基化时钟加速",
+ "kind": "state",
+ "system": "whole_body",
+ "group": "aging_clock",
+ "input": {
+  "code": "LP:clock.horvath_accel",
+  "unit": "years",
+  "platform": "Illumina HumanMethylation450 / EPIC (blood DNA methylation)",
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "residualized",
+  "clip": [
+   -20,
+   20
+  ],
+  "log_x": false
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "未取得经核对的重复测量误差；不同预处理流程与芯片版本之间存在系统偏差（见 core.methylation 的 s_lab_source）"
+ },
+ "persistence": {
+  "half_life_years": 5
+ },
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_current",
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "时钟加速可随戒烟、减重、体力活动等生活方式改变而变化，但干预效果的随机对照证据有限。"
+ },
+ "test": {
+  "label_zh": "血液 DNA 甲基化检测（Horvath 时钟）",
+  "cost_level": 4
+ },
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "reference": {
+  "kind": "residualized",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.0,
+    "sd": 6.22
+   }
+  ],
+  "source": "美国健康与退休研究（HRS 2016，n 3,581）原始 Horvath 时钟年龄加速均值 0.00、标准差 6.22 年（Faul 2023 表 1）；非中国人群，输入已按同龄残差化，均值取 0",
+  "pmid": "36802439",
+  "quote": "Horvath (2013)0.00 (6.22)"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.09,
+   "lo": 1.02,
+   "hi": 1.15,
+   "per": 5,
+   "per_unit": "years of DNAm age acceleration (Δage)",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.bp",
+  "core.glucose"
+ ],
+ "overlap": {
+  "coef": 0.1,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.methylation",
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "研究校正了吸烟、教育、儿童期智商、社会阶层、APOE、心血管病、高血压与糖尿病，未校正 GrimAge2 与血液 PhenoAge。本仓库 NHANES 1999–2002 分析（2,307 人，1,202 例死亡）显示，在 LongPi 模型已计入 GrimAge2 与血液时钟后，Horvath 时钟残差每 SD 的 HR 仅 1.086，C 指数增益 0.0011，故系数取 0.1。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "European (Scotland, United States)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "LBC1921, LBC1936, Framingham Heart Study, Normative Aging Study (meta-analysis)",
+  "n": 4658,
+  "events": 862,
+  "ancestry": "European (Scotland, United States)",
+  "age_range": [
+   50,
+   90
+  ],
+  "sex": "both"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "25633388",
+  "pmcid": "PMC4350614",
+  "doi": "10.1186/s13059-015-0584-6",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/25633388/",
+  "quote": "the meta-analyzed hazards ratio (HR) per 5-year increment was 1.16 (95% CI (1.08, 1.25), P = 6.0x10-9) for the fully adjusted Hannum Δage and 1.09 (95% CI (1.02, 1.15), P = 0.0069) for the fully adjusted Horvath Δage",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "why_qualitative_zh": "原文效应量经逐字核对，但该时钟与已计入的 GrimAge2（core.methylation）及血液 PhenoAge（core.phenoage_clock）信息高度重叠，现有研究均未校正这两项。本仓库 NHANES 分析显示，在 LongPi 模型基础上 Horvath 时钟残差每 SD 的 HR 为 1.086，C 指数增益仅 0.0011，对个人风险几乎不增加信息，故只作定性佐证，不计入 LongPi Age。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-3",
+ "verifier_reasons": []
+}

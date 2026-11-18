@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM012875",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM012875",
+ "fetched_at": "2026-11-18T03:45:55Z",
+ "sha256": "fd70df4099f024cbbe25a1ce70b3fd8bbbda6ec0dbec6bff4294473abd6456fc",
+ "citation": "",
+ "text": "PPM012875 | score PGS002262 | trait Incident coronary artery disease\nancestry: East Asian | cohorts: CIMIC; ChinaMUCA-1998; InterASIA | n: 41271 | cases: 1303\npublication: Lu X Eur Heart J 2022-02-23 PMID 35195259\ncovariates: \nHazard Ratio (HR): 1.44 [1.36, 1.52]\nConcordance Statistic (C-index): 0.615 [0.598, 0.631]",
+ "pgs_id": "PGS002262",
+ "checks": [
+  {
+   "term": "ext.prs_chd",
+   "number": "chd.hr",
+   "value": 1.44,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.44 [1.36, 1.52]"
+  },
+  {
+   "term": "ext.prs_chd",
+   "number": "chd.lo",
+   "value": 1.36,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.44 [1.36, 1.52]"
+  },
+  {
+   "term": "ext.prs_chd",
+   "number": "chd.hi",
+   "value": 1.52,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.44 [1.36, 1.52]"
+  }
+ ]
+}

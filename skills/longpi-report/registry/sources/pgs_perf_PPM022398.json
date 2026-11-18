@@ -1,0 +1,32 @@
+{
+ "key": "pgs_perf:PPM022398",
+ "url": "https://www.pgscatalog.org/rest/performance/PPM022398",
+ "fetched_at": "2026-11-18T03:46:58Z",
+ "sha256": "b231c7e79cef2114cdab1053d37fc40c0cc27dd1e2df2f03dff30ac2a0c64e40",
+ "citation": "",
+ "text": "PPM022398 | score PGS005161 | trait Stomach Cancer\nancestry: East Asian | cohorts: CKB | n: 100219 | cases: 745\npublication: Zhu M PLoS Med 2025-02-28 PMID 40019942\ncovariates: Age,Sex (if applicable),Region,Top 10 genetic ancestry principal components\nHazard Ratio (HR): 1.27 [1.18, 1.38]\nBeta (β): 0.239 [None, None]\nConcordance Statistic (C-index): 0.572 [None, None]",
+ "pgs_id": "PGS005161",
+ "checks": [
+  {
+   "term": "ext.prs_gastric_ca",
+   "number": "gastric_ca.hr",
+   "value": 1.27,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.27 [1.18, 1.38]"
+  },
+  {
+   "term": "ext.prs_gastric_ca",
+   "number": "gastric_ca.lo",
+   "value": 1.18,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.27 [1.18, 1.38]"
+  },
+  {
+   "term": "ext.prs_gastric_ca",
+   "number": "gastric_ca.hi",
+   "value": 1.38,
+   "found": true,
+   "context": "Hazard Ratio (HR): 1.27 [1.18, 1.38]"
+  }
+ ]
+}

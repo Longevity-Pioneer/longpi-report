@@ -1,0 +1,10 @@
+{
+ "key": "pmid:24524609",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/24524609/",
+ "fetched_at": "2026-11-18T03:05:45Z",
+ "sha256": "8d18b2dc6c2ec7735a970a84ee2b5781cd4151aabc3be7a45485eb688f6f84e8",
+ "citation": "Zhonghua xin xue guan bing za zhi 2013",
+ "text": "[Reference value of plasma N-terminal-pro-B-type natriuretic peptide in middle-aged and elderly Chinese].\nOBJECTIVE: To establish the normal ranges for plasma N-terminal-pro-B-type natriuretic peptide (NT-proBNP) of middle-aged and elderly ( ≥ 40 years) healthy subjects in China.\nMETHODS: A total of 5133 subjects (2170 men and 2963 women) from the cohort of Shanghai Heart Health Study (SHHS) were included in this study. Plasma NT-proBNP was measured by electrochemiluminescence immunoassay. The reference values (2.5th- 97.5th quartiles) were determined using both empiric and quantile regression methods.\nRESULTS: Plasma NT-proBNP values were higher in women than in men at all respective age groups (all P < 0.01) , and natural log-transformed NT-proBNP values increased in proportion with age for both genders and there was a lineal correlation between natural log-transformed NT-proBNP values and age (all P < 0.01) . Quantile regression derived normal reference values for NT-proBNP in male were 4.5-86.8 ng/L in the 40-44 years old group, 5.4-108.5 ng/L in the 45-49 years old group, 6.6-135.5 ng/L in the 50-54 years old group, 7.9-169.4 ng/L in the 55-59 years old group, 9.6-211.7 ng/L in the 60-64 years old group, 11.7-264.6 ng/L in the 65-69 years old group, 14.2-330.7 ng/L in the 70-74 years old group, and 18.1-429.2 ng/L in the ≥ 75 years old group. The reference values in female for NT-pro-BNP in respective age group were 8.5-141.8 ng/L, 10.4-166.6 ng/L, 12.8-195.7 ng/L, 15.7-229.9 ng/L, 19.3-270.1 ng/L, 23.7-317.3 ng/L, 29.1-372.8 ng/L, and 35.7-451.9 ng/L.\nCONCLUSION: This study preliminarily establishes the normal ranges of plasma NT-proBNP in middle-aged and elderly ( ≥ 40 years) Chinese.",
+ "open_access": "N",
+ "checks": []
+}

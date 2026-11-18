@@ -1,0 +1,103 @@
+{
+ "id": "ext.mono_msh6",
+ "name_zh": "MSH6 致病变异携带（林奇综合征）",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:monogenic:HGNC:7329",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "tool",
+   "vendor"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.001319
+   }
+  ],
+  "source": "美国、加拿大、澳大利亚人群登记的结直肠癌家系分离分析估计的人群携带率（Win 2017）；中国人群分基因携带率暂缺。",
+  "pmid": "27799157",
+  "quote": "MLH1 = 1 in 1,946, MSH2 = 1 in 2,841, MSH6 = 1 in 758, PMS2 = 1 in 714"
+ },
+ "effect": {
+  "crc": {
+   "hr": 7.6,
+   "lo": 5.4,
+   "hi": 10.8,
+   "direction": "higher_worse",
+   "note": "相对同国一般人群发病率，原文称与性别、年龄无关"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "country"
+ ],
+ "overlap": {
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "overlaps_with": [],
+  "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂；与家族史项的重叠由家族史项处理。系数 0.8 为家系分离分析外推到一般人群的保守折减。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "Australia, North America, Europe (family registries)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "113 MSH6 families from five countries, family cancer clinics and population registries (Baglietto 2010 JNCI)",
+  "n": 3104,
+  "ancestry": "Australia, North America, Europe (family registries)"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+ },
+ "persistence": {
+  "half_life_years": null,
+  "note": "种系变异终身不变"
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "status": "active",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "林奇综合征携带者应接受遗传咨询，按指南自 20–25 岁起每 1–2 年结肠镜检查。"
+ },
+ "test": {
+  "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+  "cost_level": 4
+ },
+ "disclosure": "counsel",
+ "evidence": {
+  "grade": "B",
+  "design": "case-control",
+  "design_note": "家系改良分离分析（经先证者确定、按确定方式条件化），归入病例对照类",
+  "pmid": "20028993",
+  "quote": "Compared with incidence for the general population, MSH6 mutation carriers had an eightfold increased incidence of colorectal cancer (HR = 7.6, 95% CI = 5.4 to 10.8)",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20028993/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "gene": "MSH6",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

@@ -1,0 +1,132 @@
+{
+ "kind": "behavior",
+ "exclude_if_flags": [],
+ "treated_policy": "use_current",
+ "disclosure": "standard",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5
+ },
+ "id": "ext.steps_daily",
+ "name_zh": "日均步数",
+ "system": "musculoskeletal",
+ "group": "physical_activity",
+ "input": {
+  "code": "LP:steps_daily_mean",
+  "unit": "steps/day",
+  "platform": null,
+  "methods": [
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 7000,
+  "clip": [
+   2000,
+   30000
+  ],
+  "log_x": false
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 6800,
+    "sd": 3200
+   }
+  ],
+  "pmid": "35247352",
+  "quote": "Quartile median steps per day were 3553 for quartile 1, 5801 for quartile 2, 7842 for quartile 3, and 10 901 for quartile 4.",
+  "source": "研究人群分布（Paluch 2022，15 个国际队列合并样本，四分位组中位数 3553/5801/7842/10901 步），按正态近似取均值 6800、标准差 3200（第 12.5 与 87.5 百分位相距 2.3 个标准差）；未找到可核对的中国成人按性别年龄的日均步数分布"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.8868,
+    "lo": 1.6667,
+    "hi": 2.1739,
+    "derived": {
+     "from": {
+      "hr": 0.53,
+      "lo": 0.46,
+      "hi": 0.6
+     },
+     "pow": -1
+    },
+    "per": 5000,
+    "per_unit": "steps/day（2000→7000 步对比）"
+   },
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.15,
+  "overlaps_with": [
+   "core.crf"
+  ],
+  "rationale_zh": "步数通过提高心肺适能降低死亡风险，与 core.crf 同一机制；荟萃分析摘要只能核实为校正后的合并估计，纳入研究的校正变量不一，未校正心肺适能，按规则系数不超过 0.3。测得 VO2max 时再按中介比例扣减；中介比例无可核对的文献数值，取默认 0.3。",
+  "mediated_by": {
+   "core.crf": 0.3
+  }
+ },
+ "transport": {
+  "ancestry": "multinational (mostly US, Europe, Australia; some Japan)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "Ding 2025 dose-response meta-analysis (14 studies for all-cause mortality)",
+  "n": null,
+  "ancestry": "multinational (mostly US, Europe, Australia; some Japan)",
+  "age_range": [
+   18,
+   99
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.1,
+  "source": "腕戴设备步数误差约 10%（经验估计，未核对原文）；取近 90 天中位数可减小日间波动"
+ },
+ "persistence": {
+  "half_life_years": 1
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "日均步数低于约 7000 步时，增加步行可降低全因死亡风险；超过该水平后获益趋于平缓。"
+ },
+ "test": {
+  "label_zh": "手机或手表记录近 90 天日均步数",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "40713949",
+  "doi": "10.1016/S2468-2667(25)00164-1",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/40713949/",
+  "quote": "compared with 2000 steps per day, 7000 steps per day was associated with a 47% lower risk of all-cause mortality (HR 0·53 [95% CI 0·46-0·60]; I2=36·3; 14 studies)",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "note_zh": "折线形状：7000 步以下每少 5000 步风险乘 1/0.53，7000 步以上不再计入获益（原文拐点约 5000–7000 步）。下限截断 2000 步，即原文对比的参照水平。Paluch 2022（PMID 35247352）第 3 对第 1 四分位 HR 0.55（0.49–0.62），斜率相近。",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

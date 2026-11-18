@@ -1,0 +1,35 @@
+{
+ "key": "pmid:37291211",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37291211/",
+ "fetched_at": "2026-11-18T03:19:12Z",
+ "sha256": "04fb5b1b1d9ddec20659628fda11f22aa4d1405faf471b2d06052835279bacbe",
+ "citation": "Nature medicine 2023",
+ "text": "Alcohol consumption and risks of more than 200 diseases in Chinese men.\nAlcohol consumption accounts for ~3 million annual deaths worldwide, but uncertainty persists about its relationships with many diseases. We investigated the associations of alcohol consumption with 207 diseases in the 12-year China Kadoorie Biobank of >512,000 adults (41% men), including 168,050 genotyped for ALDH2- rs671 and ADH1B- rs1229984 , with >1.1 million ICD-10 coded hospitalized events. At baseline, 33% of men drank alcohol regularly. Among men, alcohol intake was positively associated with 61 diseases, including 33 not defined by the World Health Organization as alcohol-related, such as cataract (n = 2,028; hazard ratio 1.21; 95% confidence interval 1.09-1.33, per 280 g per week) and gout (n = 402; 1.57, 1.33-1.86). Genotype-predicted mean alcohol intake was positively associated with established (n = 28,564; 1.14, 1.09-1.20) and new alcohol-associated (n = 16,138; 1.06, 1.01-1.12) diseases, and with specific diseases such as liver cirrhosis (n = 499; 2.30, 1.58-3.35), stroke (n = 12,176; 1.38, 1.27-1.49) and gout (n = 338; 2.33, 1.49-3.62), but not ischemic heart disease (n = 8,408; 1.04, 0.94-1.14). Among women, 2% drank alcohol resulting in low power to assess associations of self-reported alcohol intake with disease risks, but genetic findings in women suggested the excess male risks were not due to pleiotropic genotypic effects. Among Chinese men, alcohol consumption increased multiple disease risks, highlighting the need to strengthen preventive measures to reduce alcohol intake.",
+ "pmcid": "PMC10287564",
+ "doi": "10.1038/s41591-023-02383-8",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.alcohol",
+   "number": "stroke.hr",
+   "value": 1.38,
+   "found": true,
+   "context": "r cirrhosis (n = 499; 2.30, 1.58-3.35), stroke (n = 12,176; 1.38, 1.27-1.49)"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "stroke.lo",
+   "value": 1.27,
+   "found": true,
+   "context": "hosis (n = 499; 2.30, 1.58-3.35), stroke (n = 12,176; 1.38, 1.27-1.49)"
+  },
+  {
+   "term": "ext.alcohol",
+   "number": "stroke.hi",
+   "value": 1.49,
+   "found": true,
+   "context": " (n = 499; 2.30, 1.58-3.35), stroke (n = 12,176; 1.38, 1.27-1.49)"
+  }
+ ]
+}

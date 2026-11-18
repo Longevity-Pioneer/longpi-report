@@ -1,0 +1,33 @@
+{
+ "key": "pmid:23117178",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/23117178/",
+ "fetched_at": "2026-11-18T03:28:27Z",
+ "sha256": "14d1cd5ead05ed32d44a91371d35318dccc227313adbc95ebecc3fc2fe42a35f",
+ "citation": "Lancet (London, England) 2012",
+ "text": "The benefits and harms of breast cancer screening: an independent review.\nWhether breast cancer screening does more harm than good has been debated extensively. The main questions are how large the benefit of screening is in terms of reduced breast cancer mortality and how substantial the harm is in terms of overdiagnosis, which is defined as cancers detected at screening that would not have otherwise become clinically apparent in the woman's lifetime. An independent Panel was convened to reach conclusions about the benefits and harms of breast screening on the basis of a review of published work and oral and written evidence presented by experts in the subject. To provide estimates of the level of benefits and harms, the Panel relied mainly on findings from randomised trials of breast cancer screening that compared women invited to screening with controls not invited, but also reviewed evidence from observational studies. The Panel focused on the UK setting, where women aged 50-70 years are invited to screening every 3 years. In this Review, we provide a summary of the full report on the Panel's findings and conclusions. In a meta-analysis of 11 randomised trials, the relative risk of breast cancer mortality for women invited to screening compared with controls was 0·80 (95% CI 0·73-0·89), which is a relative risk reduction of 20%. The Panel considered the internal biases in the trials and whether these trials, which were done a long time ago, were still relevant; they concluded that 20% was still a reasonable estimate of the relative risk reduction. The more reliable and recent observational studies generally produced larger estimates of benefit, but these studies might be biased. The best estimates of overdiagnosis are from three trials in which women in the control group were not invited to be screened at the end of the active trial period. In a meta-analysis, estimates of the excess incidence were 11% (95% CI 9-12) when expressed as a proportion of cancers diagnosed in the invited group in the long term, and 19% (15-23) when expressed as a proportion of the cancers diagnosed during the active screening period. Results from observational studies support the occurrence of overdiagnosis, but estimates of its magnitude are unreliable. The Panel concludes that screening reduces breast cancer mortality but that some overdiagnosis occurs. Since the estimates provided are from studies with many limitations and whose relevance to present-day screening programmes can be questioned, they have substantial uncertainty and should be regarded only as an approximate guide. If these figures are used directly, for every 10,000 UK women aged 50 years invited to screening for the next 20 years, 43 deaths from breast cancer would be prevented and 129 cases of breast cancer, invasive and non-invasive, would be overdiagnosed; that is one breast cancer death prevented for about every three overdiagnosed cases identified and treated. Of the roughly 307,000 women aged 50-52 years who are invited to begin screening every year, just over 1% would have an overdiagnosed cancer in the next 20 years. Evidence from a focus group organised by Cancer Research UK and attended by some members of the Panel showed that many women feel that accepting the offer of breast screening is worthwhile, which agrees with the results of previous similar studies. Information should be made available in a transparent and objective way to women invited to screening so that they can make informed decisions.",
+ "doi": "10.1016/s0140-6736(12)61611-0",
+ "open_access": "N",
+ "checks": [
+  {
+   "term": "ext.screen_mammography",
+   "number": "screening.hr",
+   "value": 0.8,
+   "found": true,
+   "context": "y for women invited to screening compared with controls was 0.80 (95% CI 0.73-0.89), which is a relative risk reduction of 2"
+  },
+  {
+   "term": "ext.screen_mammography",
+   "number": "screening.lo",
+   "value": 0.73,
+   "found": true,
+   "context": "nvited to screening compared with controls was 0.80 (95% CI 0.73-0.89), which is a relative risk reduction of 20%."
+  },
+  {
+   "term": "ext.screen_mammography",
+   "number": "screening.hi",
+   "value": 0.89,
+   "found": true,
+   "context": "d to screening compared with controls was 0.80 (95% CI 0.73-0.89), which is a relative risk reduction of 20%."
+  }
+ ]
+}

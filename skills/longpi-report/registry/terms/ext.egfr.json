@@ -1,0 +1,205 @@
+{
+ "kind": "state",
+ "status": "active",
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "disclosure": "standard",
+ "exclude_if_flags": [
+  "acute_illness",
+  "pregnancy"
+ ],
+ "treated_policy": "use_pretreatment",
+ "persistence": {
+  "half_life_years": 5
+ },
+ "id": "ext.egfr",
+ "name_zh": "估算肾小球滤过率（eGFR）",
+ "system": "kidney",
+ "group": "kidney",
+ "input": {
+  "code": "LP:egfr_ckdepi2021",
+  "unit": "mL/min/1.73m2",
+  "platform": null,
+  "methods": [
+   "lab",
+   "tool"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "knot_lo": 75,
+  "clip": [
+   5,
+   150
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 115.8,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 108.2,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 101.3,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 94.4,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 87.5,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 80.6,
+    "sd": 13.3
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 70.3,
+    "sd": 13.3
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 29,
+    "mean": 124.9,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "mean": 115.7,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "mean": 107.3,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "mean": 98.9,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "mean": 90.5,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 79,
+    "mean": 82.1,
+    "sd": 12.1
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 99,
+    "mean": 69.5,
+    "sd": 12.1
+   }
+  ],
+  "pmid": "34377388",
+  "quote": "The eGFRCKD-EPI for women and men were 110.3 ± 12.1 mL/min per 1.73 m2 and 103.8 ± 13.3 mL/min per 1.73 m2, respectively.",
+  "source": "华南健康汉族成人 CKD-EPI eGFR（PMID 34377388，平均年龄 40.9 岁）：男 103.8±13.3、女 110.3±12.1，按原文每十年下降男 6.9、女 8.4 推算各年龄段均值；参考人群为健康者，老年段均值偏高"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.57,
+    "lo": 1.39,
+    "hi": 1.78,
+    "per": 30,
+    "per_unit": "mL/min/1.73m2（原文为 eGFR 45 对比 95；原文称 75–105 区间风险无变化，故按拐点 75 以下 30 个单位计，近似处理）"
+   },
+   "direction": null
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.15,
+  "overlaps_with": [
+   "core.phenoage_clock"
+  ],
+  "rationale_zh": "eGFR 由肌酐计算，而 PhenoAge 已含肌酐，信息大量重复；摘要仅称校正潜在混杂，未逐项列出，按仅校正年龄性别处理取上限 0.3",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "multinational general-population cohorts (Europe, North America, Asia)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "CKD Prognosis Consortium，14 项含 ACR 的普通人群队列",
+  "n": 105872,
+  "ancestry": "multinational general-population cohorts (Europe, North America, Asia)",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.05,
+  "source": "由肌酐计算，肌酐分析变异约 3–5%；原研究使用 MDRD/CKD-EPI 2009 公式，与本项输入的 CKD-EPI 2021 存在系统差异"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "控制血压、血糖，避免肾毒性药物；肌肉量偏低者以肌酐估算可能高估肾功能，宜加测胱抑素 C"
+ },
+ "test": {
+  "label_zh": "抽血查肌酐并计算 eGFR",
+  "cost_level": 1
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis",
+  "pmid": "20483451",
+  "quote": "Compared with eGFR 95 mL/min/1.73 m(2), adjusted HRs for all-cause mortality were 1.18 (95% CI 1.05-1.32) for eGFR 60 mL/min/1.73 m(2), 1.57 (1.39-1.78) for 45 mL/min/1.73 m(2), and 3.14 (2.39-4.13) for 15 mL/min/1.73 m(2).",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/20483451/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

@@ -1,0 +1,77 @@
+{
+ "key": "pmid:35294538",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/35294538/",
+ "fetched_at": "2026-11-18T03:41:26Z",
+ "sha256": "0aa1848559821b263da775a2a15a7da5a4b44f03533ddbcdf82221706f4476b4",
+ "citation": "JAMA network open 2022",
+ "text": "Association of the Interaction Between Familial Hypercholesterolemia Variants and Adherence to a Healthy Lifestyle With Risk of Coronary Artery Disease.\nIMPORTANCE: Familial hypercholesterolemia variants impair clearance of cholesterol from the circulation and increase risk of coronary artery disease (CAD). The extent to which adherence to a healthy lifestyle is associated with a lower risk of CAD in carriers and noncarriers of variants warrants further study.\nOBJECTIVE: To assess the association of the interaction between familial hypercholesterolemia variants and adherence to a healthy lifestyle with risk of CAD.\nDESIGN, SETTING, AND PARTICIPANTS: This cross-sectional study used 2 independent data sets with gene sequencing and lifestyle data from the UK Biobank: a case-control study of 4896 cases and 5279 controls and a cohort study of 39 920 participants. Participants were recruited from 22 sites across the UK between March 21, 2006, and October 1, 2010. The case-control study included participants with CAD and controls at enrollment. The cohort study used a convenience sample of individuals with available gene sequencing data. Statistical analysis was performed from April 2, 2019, to January 20, 2022.\nEXPOSURES: Pathogenic or likely pathogenic DNA variants classified by a clinical laboratory geneticist and adherence to a healthy lifestyle based on a 4-point scoring system (1 point for each of the following: healthy diet, regular exercise, not smoking, and absence of obesity).\nMAIN OUTCOMES AND MEASURES: Coronary artery disease, defined as myocardial infarction in the case-control study, and myocardial infarction, ischemic heart disease, or coronary revascularization procedure in the cohort study.\nRESULTS: The case-control study included 10 175 participants (6828 men [67.1%]; mean [SD] age, 58.6 [7.2] years), and the cohort study included 39 920 participants (18 802 men [47.1%]; mean [SD] age at the end of follow-up, 66.4 [8.0] years). A variant was identified in 35 of 4896 cases (0.7%) and 12 of 5279 controls (0.2%), corresponding to an odds ratio of 3.0 (95% CI, 1.6-5.9), and a variant was identified in 108 individuals (0.3%) in the cohort study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8). However, this risk appeared to vary according to lifestyle categories in both carriers and noncarriers of familial hypercholesterolemia variants, without a significant interaction between carrier status and lifestyle (odds ratio, 1.2 [95% CI, 0.6-2.5]; P = .62). Among carriers, a favorable lifestyle conferred 86% lower risk of CAD compared with an unfavorable lifestyle (hazard ratio, 0.14 [95% CI, 0.04-0.41]). The estimated risk of CAD by the age of 75 years varied according to lifestyle, ranging from 10.2% among noncarriers with a favorable lifestyle to 24.0% among noncarriers with an unfavorable lifestyle and ranging from 34.5% among carriers with a favorable lifestyle to 66.2% among carriers with an unfavorable lifestyle.\nCONCLUSIONS AND RELEVANCE: This study suggests that, among carriers and noncarriers of a familial hypercholesterolemia variant, significant gradients in risk of CAD are noted according to adherence to a healthy lifestyle pattern. Similar to the general population, individuals who carry familial hypercholesterolemia variants are likely to benefit from lifestyle interventions to reduce their risk of CAD.",
+ "pmcid": "PMC8928007",
+ "doi": "10.1001/jamanetworkopen.2022.2687",
+ "open_access": "Y",
+ "epmc_license": "cc by",
+ "checks": [
+  {
+   "term": "ext.mono_apob",
+   "number": "chd.hr",
+   "value": 3.8,
+   "found": true,
+   "context": " in the cohort study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_apob",
+   "number": "chd.lo",
+   "value": 2.5,
+   "found": true,
+   "context": "t study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_apob",
+   "number": "chd.hi",
+   "value": 5.8,
+   "found": true,
+   "context": "udy, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_ldlr",
+   "number": "chd.hr",
+   "value": 3.8,
+   "found": true,
+   "context": " in the cohort study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_ldlr",
+   "number": "chd.lo",
+   "value": 2.5,
+   "found": true,
+   "context": "t study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_ldlr",
+   "number": "chd.hi",
+   "value": 5.8,
+   "found": true,
+   "context": "udy, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_pcsk9",
+   "number": "chd.hr",
+   "value": 3.8,
+   "found": true,
+   "context": " in the cohort study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_pcsk9",
+   "number": "chd.lo",
+   "value": 2.5,
+   "found": true,
+   "context": "t study, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  },
+  {
+   "term": "ext.mono_pcsk9",
+   "number": "chd.hi",
+   "value": 5.8,
+   "found": true,
+   "context": "udy, in which the hazard ratio for CAD was 3.8 (95% CI, 2.5-5.8)"
+  }
+ ]
+}

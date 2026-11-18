@@ -1,0 +1,102 @@
+{
+ "id": "ext.fh_liver_ca",
+ "name_zh": "一级亲属肝癌家族史",
+ "kind": "genetic",
+ "system": "whole_body",
+ "group": null,
+ "input": {
+  "code": "LP:fh:liver_ca",
+  "unit": "0/1",
+  "platform": null,
+  "methods": [
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "indicator"
+ },
+ "reference": {
+  "kind": "prevalence",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "prevalence": 0.0305
+   }
+  ],
+  "pmid": "36813828",
+  "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+  "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（3.05%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+ },
+ "effect": {
+  "liver_ca": {
+   "hr": 1.69,
+   "lo": 1.1,
+   "hi": 2.61,
+   "coef": 0.5
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.alcohol"
+ ],
+ "overlap": {
+  "coef": 0.5,
+  "coef_sd": 0.2,
+  "overlaps_with": [
+   "ext.hbv"
+  ],
+  "rationale_zh": "本项只计疾病结局。研究校正了生活方式因素，但未校正乙肝、丙肝病毒感染；东亚人群肝癌家族聚集很大部分来自乙肝病毒母婴和家庭内传播，与 ext.hbv 重叠明显，系数取 0.5。原文未给出肝癌事件数，置信区间较宽。",
+  "mediated_by": {}
+ },
+ "transport": {
+  "ancestry": "East Asian",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
+ },
+ "population": {
+  "cohort": "JPHC Study (Japan Public Health Center-based prospective study)",
+  "n": 103707,
+  "ancestry": "Japanese",
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": null,
+  "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+ },
+ "persistence": {
+  "half_life_years": null
+ },
+ "exclude_if_flags": [],
+ "treated_policy": "not_applicable",
+ "interventions": {
+  "modifiable": false,
+  "note_zh": "家族史不可改变；有肝癌家族史者应查乙肝、丙肝标志物，阳性者定期做肝脏超声和甲胎蛋白检查。"
+ },
+ "test": {
+  "label_zh": "询问父母、兄弟姐妹、子女是否患过肝癌",
+  "cost_level": 1
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "31595492",
+  "quote": "liver (1.69 [1.10-2.61])",
+  "url": "https://pubmed.ncbi.nlm.nih.gov/31595492/",
+  "verified_at": "2026-11-18",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder",
+ "registry_version_added": "2026.11.18-2"
+}

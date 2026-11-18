@@ -1,0 +1,35 @@
+{
+ "key": "pmid:37232235",
+ "url": "https://pubmed.ncbi.nlm.nih.gov/37232235/",
+ "fetched_at": "2026-11-18T03:05:14Z",
+ "sha256": "292f4551eb009608299bf20b682bae364a109dcc33621738708cacd3a6c94430",
+ "citation": "Journal of the American Heart Association 2023",
+ "text": "NT-proBNP and All-Cause and Cardiovascular Mortality in US Adults: A Prospective Cohort Study.\nBackground NT-proBNP (N-terminal pro-B-type natriuretic peptide) is strongly associated with mortality in patients with heart failure. Prior studies, primarily in middle-aged and older populations, have suggested that NT-proBNP has prognostic value in ambulatory adults. Methods and Results We conducted a prospective cohort analysis of adults, aged ≥20 years, in the nationally representative 1999 to 2004 National Health and Nutrition Examination Survey, to characterize the association of NT-proBNP with mortality in the general US adult population overall and by age, race and ethnicity, and body mass index. We used Cox regression to characterize associations of NT-proBNP with all-cause and cardiovascular disease (CVD) mortality through 2019, adjusting for demographics and cardiovascular risk factors. We included 10 645 individuals (mean age, 45.7 years; 50.8% women; 72.8% White adults; 8.5% with a self-reported history of CVD). There were 3155 deaths (1009 CVD-related) over a median 17.3 years of follow-up. Among individuals without prior CVD, elevated NT-proBNP (≥75th percentile [81.5 pg/mL] versus <25th percentile [20.5 pg/mL]) was associated with a significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00]) and CVD mortality (HR, 2.87 [95% CI, 1.61-5.11]). Associations of NT-proBNP with all-cause and CVD mortality were generally similar across subgroups defined by age, sex, race and ethnicity, or body mass index (all P interaction >0.05). Conclusions In a representative sample of the US adult population, NT-proBNP was an important independent risk factor for all-cause and CVD mortality. NT-proBNP may be useful for monitoring risk in the general adult population.",
+ "pmcid": "PMC10382006",
+ "doi": "10.1161/jaha.122.029110",
+ "open_access": "Y",
+ "epmc_license": "cc by-nc-nd",
+ "checks": [
+  {
+   "term": "ext.nt_probnp",
+   "number": "all_cause.hr",
+   "value": 1.67,
+   "found": true,
+   "context": " significantly higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+  },
+  {
+   "term": "ext.nt_probnp",
+   "number": "all_cause.lo",
+   "value": 1.39,
+   "found": true,
+   "context": " higher risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+  },
+  {
+   "term": "ext.nt_probnp",
+   "number": "all_cause.hi",
+   "value": 2.0,
+   "found": true,
+   "context": "er risk of all-cause (hazard ratio [HR], 1.67 [95% CI, 1.39-2.00])"
+  }
+ ]
+}
