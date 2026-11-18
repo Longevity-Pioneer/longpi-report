@@ -110,7 +110,7 @@ def _fixture_name(url: str) -> str:
     return hashlib.sha256(url.encode("utf-8")).hexdigest()[:24] + ".txt"
 
 
-def http_get(url: str, accept: str = "application/json", timeout: int = 40) -> str:
+def http_get(url: str, accept: str = "application/json", timeout: int = 20) -> str:
     """The only network function. Host allow-list + every query value must be a fixed keyword or an identifier."""
     u = urllib.parse.urlparse(url)
     if u.scheme != "https" or u.hostname not in ALLOWED_HOSTS:
@@ -154,6 +154,8 @@ def http_get(url: str, accept: str = "application/json", timeout: int = 40) -> s
             raise
         except (urllib.error.URLError, TimeoutError) as e:
             last = e
+            if attempt >= 2:   # connection-level failure (proxy, SSL EOF): give up fast so a fallback host can answer
+                break
             time.sleep(1.5 * (attempt + 1))
     if body is None:
         raise last
@@ -339,10 +341,17 @@ def fetch_source(key: str, root: Path, need: Iterable[str] = (), refresh: bool =
         extra = {"pgs_id": (r.get("associated_pgs_id") or "")}
     else:
         if kind == "pmid":
-            abst, meta = _pubmed_abstract(val)
-            texts.append(abst)
             url = f"https://pubmed.ncbi.nlm.nih.gov/{val}/"
             rec_e = _epmc_record(f"EXT_ID:{val} AND SRC:MED")
+            try:
+                abst, meta = _pubmed_abstract(val)
+            except (urllib.error.URLError, TimeoutError, OSError, LookupError, ET.ParseError):
+                # NCBI unreachable (e.g. a proxy breaking TLS): the same PubMed abstract via Europe PMC
+                if not rec_e.get("abstractText"):
+                    raise
+                abst = (rec_e.get("title") or "") + "\n" + re.sub(r"<[^>]+>", " ", rec_e["abstractText"])
+                meta = f"{rec_e.get('journalTitle', '')} {rec_e.get('pubYear', '')} (abstract via Europe PMC)"
+            texts.append(abst)
         elif kind == "doi":
             rec_e = _epmc_record(f'DOI:"{val}"')
             if rec_e.get("pmid"):
@@ -450,6 +459,36 @@ def _num_positions(x, t: str) -> List[Tuple[int, int]]:
     for v in number_variants(x):
         out += [(m.start(), m.end()) for m in re.finditer(r"(?<![\d.])" + re.escape(v) + r"(?![\d]|\.\d)", t)]
     return sorted(out)
+
+
+OUTCOME_WORDS = {
+    "all_cause": r"mortalit|death|died|dying|surviv|死亡",
+    "t2d": r"diabet|T2D|glyc",
+    "chd": r"coronary|ischa?emic heart|\bCHD\b|\bIHD\b|\bCAD\b|myocardial|heart disease|\bMI\b|cardiovascular",
+    "stroke": r"stroke|cerebrovascular|cerebral",
+    "htn": r"hypertension|blood pressure",
+    "ckd": r"kidney|renal|\bCKD\b|\bESKD\b|\bESRD\b",
+    "masld": r"fatty liver|NAFLD|MAFLD|MASLD|steato",
+    "crc": r"colorectal|colon|rect|\bCRC\b|bowel",
+    "lung_ca": r"lung",
+    "liver_ca": r"liver|hepatocellular|\bHCC\b|hepatic",
+    "gastric_ca": r"gastric|stomach",
+    "breast_ca": r"breast",
+    "prostate_ca": r"prostat",
+    "ad": r"alzheimer|dementia|\bAD\b",
+    "cervical_ca": r"cervical|cervix",
+}
+
+
+def outcome_words_ok(oc: str, text: str, screening: bool = False) -> bool:
+    """The quote must name the outcome its numbers belong to (multi-outcome sentences otherwise bind wrong numbers)."""
+    rx = OUTCOME_WORDS.get(oc)
+    if not rx:
+        return True
+    ok = re.search(rx, text, re.I) is not None
+    if screening:   # a screening RR must be a mortality RR of that disease
+        ok = ok and re.search(OUTCOME_WORDS["all_cause"], text, re.I) is not None
+    return ok
 
 
 def find_triplet(hr, lo, hi, text: str, window: int = 90) -> bool:
@@ -950,6 +989,14 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
     if not spec["effect"] and not scr:
         fail.append("effect 为空且不是筛查项")
     for oc, e, ev in blocks:
+        if oc == "all_cause":
+            # all-cause terms: a pooled analysis (meta-analysis, pooled cohorts, MR, RCT meta-analysis) or >= 1000 deaths
+            popa = dict(spec.get("population") or {})
+            popa.update(e.get("population") or {})
+            pooled = (ev.get("design") or "").lower() in ("meta-analysis", "pooled-cohort", "mendelian-randomization",
+                                                         "meta-analysis-rct")
+            if not pooled and int(popa.get("events") or 0) < 1000:
+                fail.append("all_cause: 全因死亡项须来自荟萃/合并分析/孟德尔随机化，或单一队列死亡 ≥1000 例")
         key = source_key(ev)
         quote = norm_text(ev.get("quote") or "")
         if not key:
@@ -971,6 +1018,10 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         if quote.lower() not in text.lower():
             fail.append(f"{oc}: quote 不是 {key} 原文的子串（空白归一化后）")
             continue
+        words_in = text if key.startswith("pgs_perf:") else quote   # PGS records: the trait line names the outcome
+        if not outcome_words_ok(scr["disease_id"] if oc == "screening" else oc, words_in, screening=(oc == "screening")):
+            fail.append(f"{oc}: quote 未出现该结局的用词（{OUTCOME_WORDS.get(scr['disease_id'] if oc == 'screening' else oc, '')}），"
+                        "数值可能属于另一结局")
         nums = [(f"screening.{k}", e[k]) for k in ("hr", "lo", "hi")] if e.get("_screening") else _effect_numbers(spec, oc, e)
         for label, x in nums:
             ctx = find_number(x, quote)
@@ -986,9 +1037,8 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             if all(k in g for k in ("hr", "lo", "hi")) and not find_triplet(g["hr"], g["lo"], g["hi"], quote):
                 fail.append(f"{pre}: HR {g['hr']} 与 CI {g['lo']}–{g['hi']} 未在 quote 中成组出现（数值与原文结论未绑定）")
             if all(k in g for k in ("hr", "lo", "hi")) and g["lo"] <= 1.0 <= g["hi"]:
-                msg = f"{pre}: 95% CI {g['lo']}–{g['hi']} 含 1（无统计学意义）"
-                # a non-significant level inside a categorical term is acceptable; a main estimate is not
-                (warn if spec["transform"]["shape"] == "categorical" and not e.get("_screening") else fail).append(msg)
+                # also for a categorical level: a non-significant level must be set to hr 1 (no lo/hi) or the term rejected
+                fail.append(f"{pre}: 95% CI {g['lo']}–{g['hi']} 含 1（无统计学意义；分类水平须改为 hr 1 或整项不入库）")
         pop = dict(spec.get("population") or {})
         pop.update(e.get("population") or {})
         if oc == "screening":

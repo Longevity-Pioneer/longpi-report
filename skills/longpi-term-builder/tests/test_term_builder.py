@@ -212,6 +212,36 @@ class Verify(unittest.TestCase):
         t["effect"]["crc"]["coef"] = 0.3
         self.assertFalse(T.overlap_rule_by_outcome(t))
 
+    def test_blind_test_gates(self):
+        # outcome wording: a quote without any mortality wording cannot carry an all-cause HR
+        self.assertFalse(T.outcome_words_ok("all_cause", "HR 1.10 (1.04-1.16) for coronary heart disease"))
+        self.assertTrue(T.outcome_words_ok("chd", "HR 1.10 (1.04-1.16) for coronary heart disease"))
+        self.assertFalse(T.outcome_words_ok("stroke", "HR 1.10 (1.04-1.16) for coronary heart disease"))
+        # single cohort with < 1000 deaths cannot carry an all-cause term
+        s = spec("good_steps.json")
+        s["evidence"]["design"] = "prospective-cohort"
+        s["population"]["events"] = 500
+        r = T.verify(s, self.reg)
+        self.assertTrue(any("≥1000" in f for f in r["fail"]))
+        s["population"]["events"] = 3013                 # >= 1000 deaths in one cohort is enough
+        self.assertFalse(any("≥1000" in f for f in T.verify(s, self.reg)["fail"]))
+
+    def test_europe_pmc_fallback_when_ncbi_blocked(self):
+        fx = Path(tempfile.mkdtemp(prefix="fx_"))
+        for p in (FIX / "http").glob("*.txt"):
+            shutil.copy(p, fx / p.name)
+        efetch = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=35247352&retmode=xml&rettype=abstract"
+        (fx / T._fixture_name(efetch)).unlink()          # NCBI "unreachable"
+        old = T.FIXTURE_DIR
+        T.FIXTURE_DIR = str(fx)
+        try:
+            src = T.fetch_source("pmid:35247352", self.reg, need=[])
+            self.assertIn("Europe PMC", src["citation"])
+            self.assertIn("steps per day", src["text"])
+        finally:
+            T.FIXTURE_DIR = old
+            shutil.rmtree(fx, ignore_errors=True)
+
     def test_dedupe_by_code(self):
         s = spec("good_steps.json")
         other = copy.deepcopy(s)
