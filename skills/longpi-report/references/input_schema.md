@@ -129,5 +129,8 @@ PhenoAge 需要同一次抽血的前 9 项（albumin 到 wbc）。少 hs-CRP 仍
 - **行为**：手表步数由脚本从可穿戴数据算出并判断已持续几周；自述的运动写在 `lifestyle`，带 `since`。持续满 8 周才计入 120 指数，自述的打五折。
 - **筛查**：`screenings[].test` 用 `crc_fit`（粪便免疫化学检测）、`crc_colonoscopy`、`lung_ldct`、`liver_us_afp`、`gastroscopy`、`mammography`；
   有报告的写 `report: true`。
+- **明确阴性**：化验确认没有的情况写进 `negative_findings`，例如 `[{"code": "ICD10:B18.1", "date": "2025-06", "report": true}]`（乙肝表面抗原阴性）。
+  没有写的不会被当成阴性。
+- **输入校验**：`check` 对类型、数值（必须是有限数字）、日期格式、生理范围、ICD-10 编码、`genetic_preferences`（只能是 true/false）做严格检查，有错误时 `compute` 不运行。
 - **遗传结果告知**：`genetic_preferences.show_opt_in`（是否查看 APOE ε4 等不可干预的结果）和 `secondary_findings`（是否接收单基因致病变异等次要发现）
   默认都是 `false`；本人选择后才计入和展示。上传前要问清楚。
