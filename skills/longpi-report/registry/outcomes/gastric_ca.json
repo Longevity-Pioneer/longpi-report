@@ -1,0 +1,368 @@
+{
+ "id": "gastric_ca",
+ "name_zh": "胃癌",
+ "icd10": [
+  "C16"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 1.48
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 2.84
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 7.05
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 15.36
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 28.05
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 56.38
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 91.63
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 126.47
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 159.56
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 181.27
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 184.25
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 144.22
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 2.28
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "rate": 3.33
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "rate": 5.44
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "rate": 8.74
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "rate": 13.36
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "rate": 19.71
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "rate": 31.35
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "rate": 46.11
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "rate": 62.04
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "rate": 78.27
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "rate": 89.33
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "rate": 80.55
+   }
+  ],
+  "source": "Lei Yang, Rongshou Zheng, Ning Wang, et al. Incidence and mortality of stomach cancer in China, 2014. Chinese Journal of Cancer Research. 2018 Jun;30(3):291. doi:10.21147/j.issn.1000-9604.2018.03.01. PMID 30046223. × 2022 年全国水平：Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.",
+  "source_keys": [
+   "pmcid:PMC6037587",
+   "pmcid:PMC11256708"
+  ],
+  "year": 2022,
+  "shape_year": 2014,
+  "region": "China",
+  "derived": true,
+  "quality_zh": "年龄形状取自国家癌症中心2014年全国肿瘤登记地区胃癌分性别 5 岁组年龄别发病率与死亡率（原表逐字核对）；再按性别乘以同一系数，使世标率等于 2022 年全国估计值（Han 等 2024 年《国家癌症中心杂志》表 1、表 2），系数 = 2022 年全国世标率 ÷ 2014年登记地区世标率（男发病×0.697、死亡×0.717；女发病×0.736、死亡×0.700）。假定各年龄组变化幅度相同，登记地区与全国的差别也并入该系数。85 岁及以上组原为开放组，此处截至 89 岁。",
+  "inputs": {
+   "age_table": "evidence/outcomes/gastric_2014_incidence.csv",
+   "asr_source_year": {
+    "M": 27.94,
+    "F": 11.27
+   },
+   "asr_2022": {
+    "M": 19.47,
+    "F": 8.29
+   },
+   "factor": {
+    "M": 0.6969,
+    "F": 0.7356
+   }
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:C16"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：no licence stated on the PMC page (publisher copyright)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Age-specific incidence rates of stomach cancer in China, 2014 (1/105)",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6037587/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ },
+ "mortality_share": {
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "share": 0.00843
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 39,
+    "share": 0.01209
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 44,
+    "share": 0.01889
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 49,
+    "share": 0.02638
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 54,
+    "share": 0.02765
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 59,
+    "share": 0.03833
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 64,
+    "share": 0.03809
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 69,
+    "share": 0.03713
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 74,
+    "share": 0.03384
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 79,
+    "share": 0.02891
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 84,
+    "share": 0.01918
+   },
+   {
+    "sex": "M",
+    "age_lo": 85,
+    "age_hi": 89,
+    "share": 0.01019
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "share": 0.01612
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 39,
+    "share": 0.02025
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 44,
+    "share": 0.02759
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 49,
+    "share": 0.02862
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 54,
+    "share": 0.02616
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 59,
+    "share": 0.026
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 64,
+    "share": 0.02602
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 69,
+    "share": 0.02526
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 74,
+    "share": 0.0225
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 79,
+    "share": 0.01864
+   },
+   {
+    "sex": "F",
+    "age_lo": 80,
+    "age_hi": 84,
+    "share": 0.01275
+   },
+   {
+    "sex": "F",
+    "age_lo": 85,
+    "age_hi": 89,
+    "share": 0.00749
+   }
+  ],
+  "source": "Lei Yang, Rongshou Zheng, Ning Wang, et al. Incidence and mortality of stomach cancer in China, 2014. Chinese Journal of Cancer Research. 2018 Jun;30(3):291. doi:10.21147/j.issn.1000-9604.2018.03.01. PMID 30046223.（年龄别死亡率）× 2022 年全国死亡世标率（Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.）；全因死亡率：WPP 2024 中国生命表 2022 年各单岁 mx 在年龄组内平均",
+  "year": 2022,
+  "derived": true,
+  "source_keys": [
+   "pmcid:PMC6037587",
+   "pmcid:PMC11256708",
+   "data/lifetable_china_wpp2024.json"
+  ],
+  "method_zh": "死因占比 = 该癌种年龄别死亡率（按 2022 年全国死亡世标率校准）÷ 同性别同年龄组全因死亡率",
+  "inputs": {
+   "asmr_source_year": {
+    "M": 19.21,
+    "F": 7.63
+   },
+   "asmr_2022": {
+    "M": 13.77,
+    "F": 5.34
+   },
+   "factor": {
+    "M": 0.7168,
+    "F": 0.6999
+   }
+  }
+ }
+}

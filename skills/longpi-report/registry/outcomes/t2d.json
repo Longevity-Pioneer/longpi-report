@@ -1,0 +1,102 @@
+{
+ "id": "t2d",
+ "name_zh": "2 型糖尿病",
+ "icd10": [
+  "E11"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 39,
+    "rate": 208.68
+   },
+   {
+    "sex": "F",
+    "age_lo": 40,
+    "age_hi": 49,
+    "rate": 521.71
+   },
+   {
+    "sex": "F",
+    "age_lo": 50,
+    "age_hi": 59,
+    "rate": 1196.58
+   },
+   {
+    "sex": "F",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 1685.74
+   },
+   {
+    "sex": "F",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 2143.32
+   },
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 39,
+    "rate": 227.32
+   },
+   {
+    "sex": "M",
+    "age_lo": 40,
+    "age_hi": 49,
+    "rate": 568.29
+   },
+   {
+    "sex": "M",
+    "age_lo": 50,
+    "age_hi": 59,
+    "rate": 1303.42
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 1836.26
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 89,
+    "rate": 2334.68
+   }
+  ],
+  "source": "年龄别：Ying Chen, Xiao-Ping Zhang, Jie Yuan, et al. Association of body mass index and age with incident diabetes in Chinese adults: a population-based cohort study. BMJ Open. 2018 Sep 28;8(9):e021768. doi:10.1136/bmjopen-2018-021768. PMID 30269064.；性别比：Shujuan Li, Tingfang Ai, Run Zhang, et al. The incidence and influencing factors of type 2 diabetes mellitus in Chinese adults in 10 provinces: a prospective cohort study. BMC Public Health. 2025 Jul 4;25():2384. doi:10.1186/s12889-025-22584-9. PMID 40615994.",
+  "source_keys": [
+   "pmcid:PMC6169758",
+   "pmcid:PMC12226831"
+  ],
+  "year": 2016,
+  "region": "China (32 health check-up centres in 11 cities; sex ratio from 10-province surveillance cohort)",
+  "derived": true,
+  "quality_zh": "年龄别发病率取自中国 11 个城市 32 家体检中心队列（2010–2016 年，21.2 万人，4174 例；空腹血糖 ≥7.0 mmol/L 或自报诊断，含体检发现的未诊断病例），仅分年龄不分性别；按 2010 年中国慢性病及危险因素监测 10 省随访队列的男女发病率之比（18.3/16.8 = 1.089）拆分男女，假定各年龄组男女人时相等。体检人群偏城市、偏健康，且未做 OGTT/HbA1c，可能低估；≥70 岁为一个开放组，用于 70–89 岁。来源未区分 1 型与 2 型；成人新发糖尿病绝大多数为 2 型。",
+  "inputs": {
+   "sex_ratio_M_over_F": 1.0893,
+   "unit_conversion": "per 1000 PY × 100"
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:E11",
+  "ICD10:E14"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Association between age and body mass index with risk of incident diabetes in Chinese adults",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6169758/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

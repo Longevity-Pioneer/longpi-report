@@ -1,0 +1,121 @@
+{
+ "id": "chd",
+ "name_zh": "冠心病",
+ "icd10": [
+  "I20",
+  "I21",
+  "I22",
+  "I23",
+  "I24",
+  "I25"
+ ],
+ "sex": "both",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 6.03
+   },
+   {
+    "sex": "M",
+    "age_lo": 35,
+    "age_hi": 44,
+    "rate": 39.22
+   },
+   {
+    "sex": "M",
+    "age_lo": 45,
+    "age_hi": 54,
+    "rate": 94.02
+   },
+   {
+    "sex": "M",
+    "age_lo": 55,
+    "age_hi": 64,
+    "rate": 218.33
+   },
+   {
+    "sex": "M",
+    "age_lo": 65,
+    "age_hi": 74,
+    "rate": 381.91
+   },
+   {
+    "sex": "M",
+    "age_lo": 75,
+    "age_hi": 89,
+    "rate": 730.83
+   },
+   {
+    "sex": "F",
+    "age_lo": 30,
+    "age_hi": 34,
+    "rate": 0.58
+   },
+   {
+    "sex": "F",
+    "age_lo": 35,
+    "age_hi": 44,
+    "rate": 3.58
+   },
+   {
+    "sex": "F",
+    "age_lo": 45,
+    "age_hi": 54,
+    "rate": 15.58
+   },
+   {
+    "sex": "F",
+    "age_lo": 55,
+    "age_hi": 64,
+    "rate": 71.18
+   },
+   {
+    "sex": "F",
+    "age_lo": 65,
+    "age_hi": 74,
+    "rate": 207.97
+   },
+   {
+    "sex": "F",
+    "age_lo": 75,
+    "age_hi": 89,
+    "rate": 579.8
+   }
+  ],
+  "source": "Zheng C, Wang X, Gu R, et al. The Burden of Cardiovascular Disease in China: Incidence Estimates From National Surveillance (2023). JACC. 2026;87(12):1453-1465. doi:10.1016/j.jacc.2025.08.060.",
+  "source_keys": [
+   "doi:10.1016/j.jacc.2025.08.060"
+  ],
+  "year": 2023,
+  "region": "China (national CVD surveillance, 262 sites, 30 provinces)",
+  "derived": true,
+  "quality_zh": "2023 年国家心血管病事件监测（262 个监测点，覆盖约 2.4 亿人）分性别年龄组发病率（论文图 1 的数值标签，PDF 文字层）。冠心病事件口径为急性心肌梗死（I21–I22）、需血运重建的心绞痛（I20）与心脏性猝死（I46.1），不含仅门诊诊断的稳定型冠心病，因此低于“任何冠心病诊断”的发病率；监测事件含复发，按全部心血管事件中首发的比例（518.38/620.33 = 0.836）折算为首发率，假定各病种、各年龄组首发比例相同。25–34 岁组用于 30–34 岁，≥75 岁组用于 75–89 岁（开放组，85 岁以上可能低估）。出版方网站拒绝脚本下载，原文摘录经网页阅读服务取得并保存在 evidence/outcomes/excerpts/。",
+  "inputs": {
+   "first_onset_share": 0.8357
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:I20",
+  "ICD10:I21",
+  "ICD10:I22",
+  "ICD10:I23",
+  "ICD10:I24",
+  "ICD10:I25"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY-NC-ND 4.0 (article)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and Age Groups Across 262 Surveillance Sites in China, 2023",
+  "url": "https://www.jacc.org/doi/pdf/10.1016/j.jacc.2025.08.060",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

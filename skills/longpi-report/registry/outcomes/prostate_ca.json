@@ -1,0 +1,73 @@
+{
+ "id": "prostate_ca",
+ "name_zh": "前列腺癌",
+ "icd10": [
+  "C61"
+ ],
+ "sex": "M",
+ "incidence": {
+  "unit": "per_100k_py",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 30,
+    "age_hi": 59,
+    "rate": 1.04
+   },
+   {
+    "sex": "M",
+    "age_lo": 60,
+    "age_hi": 69,
+    "rate": 39.17
+   },
+   {
+    "sex": "M",
+    "age_lo": 70,
+    "age_hi": 79,
+    "rate": 150.18
+   },
+   {
+    "sex": "M",
+    "age_lo": 80,
+    "age_hi": 89,
+    "rate": 215.19
+   }
+  ],
+  "source": "Hairong Zhou, Xin Hong, Weigang Miao, et al. Exploring Prostate Cancer Incidence Trends and Age Change in Cancer Registration Areas of Jiangsu Province, China, 2009 to 2019. Current Oncology. 2024 Sep 14;31(9):5516. doi:10.3390/curroncol31090408. PMID 39330036. × 2022 年全国水平：Bingfeng Han, Rongshou Zheng, Hongmei Zeng, et al. Cancer incidence and mortality in China, 2022. Journal of the National Cancer Center. 2024 Feb 2;4(1):47. doi:10.1016/j.jncc.2024.01.006. PMID 39036382.",
+  "source_keys": [
+   "pmcid:PMC11431764",
+   "pmcid:PMC11256708"
+  ],
+  "year": 2022,
+  "shape_year": 2019,
+  "region": "China (age shape: Jiangsu Province)",
+  "derived": true,
+  "quality_zh": "未找到可逐字核对的全国前列腺癌分年龄发病表；年龄形状取江苏省肿瘤登记地区 2019 年 4 个年龄组发病率（0–59、60–69、70–79、≥80 岁，原表逐字核对），乘以系数 1.155 = 2022 年全国世标率 ÷ 江苏 2019 年世标率。0–59 岁只有一个合并率，用于 30–59 岁全段，会低估 55–59 岁、高估 30–49 岁；对终身风险影响很小。江苏与全国的地区差别与 PSA 筛查普及度差别都并入系数。",
+  "inputs": {
+   "asr_source_year": {
+    "M": 8.38
+   },
+   "asr_2022": {
+    "M": 9.68
+   },
+   "factor": {
+    "M": 1.1551
+   }
+  }
+ },
+ "diagnosed_codes": [
+  "ICD10:C61"
+ ],
+ "horizon_lifetime_age": 90,
+ "license": {
+  "commercial_use": true,
+  "note": "所用数字为已发表论文表格中的统计事实，按出处引用；registry/sources 只保存核对所需的表格单元格（数字与行列名），不保存论文正文。论文本身的许可：CC BY 4.0 (stated on article page)。该许可约束论文文本与图表的再发布，不约束对统计事实的引用；如需更保守的口径，可只保留出处与派生结果。"
+ },
+ "evidence": {
+  "quote": "Trend of age-specific incidence rate of prostate cancer in Jiangsu Province, 2009–2019.",
+  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11431764/",
+  "verified_at": "2026-11-18",
+  "verifier": "evidence/scripts/build_outcomes.py",
+  "numbers_verified": true
+ }
+}

@@ -1,0 +1,3 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+doi:10.1016/j.jacc.2025.08.060,"Results, first-onset vs recurrent",scalar,first_onset,,,,"([\d.]+)/100,000 for first-onset CVD events",,518.38,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Abstract, RESULTS",scalar,all_events,,,,"crude CVD incidence rate was ([\d.]+) per 100,000",,620.33,per_100k

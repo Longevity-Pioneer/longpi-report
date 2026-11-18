@@ -1,0 +1,5 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC11431764,table block 3,age_rate,,M,30,59,2019,1,0.90,per_100k
+pmcid:PMC11431764,table block 3,age_rate,,M,60,69,2019,4,33.91,per_100k
+pmcid:PMC11431764,table block 3,age_rate,,M,70,79,2019,7,130.01,per_100k
+pmcid:PMC11431764,table block 3,age_rate,,M,80,89,2019,10,186.29,per_100k

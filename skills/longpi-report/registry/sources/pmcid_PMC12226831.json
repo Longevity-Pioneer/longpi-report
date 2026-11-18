@@ -1,0 +1,26 @@
+{
+ "key": "pmcid:PMC12226831",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12226831/",
+ "fetched_at": "2026-11-18T03:26:09+00:00",
+ "sha256": "b516b72c709b2732e5017525d1e9c3419798dc64a6be697cefd1c5c4c4c2119f",
+ "bytes": 255456,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Shujuan Li, Tingfang Ai, Run Zhang, et al. The incidence and influencing factors of type 2 diabetes mellitus in Chinese adults in 10 provinces: a prospective cohort study. BMC Public Health. 2025 Jul 4;25():2384. doi:10.1186/s12889-025-22584-9. PMID 40615994.",
+ "licence": "CC BY 4.0 (stated on article page)",
+ "data_year": 2020,
+ "text": "The incidence and influencing factors of type 2 diabetes mellitus in Chinese adults in 10 provinces: a prospective cohort study - PMC\n[Table block 2] The incidence of DM according to different characteristics\nCharacteristics | Number of DM | Follow-up person years | Incidence (/1000 person years) | P\nAll | 699 | 40022.82 | 17.5 | \nSex |  |  |  | 0.28\nMale | 313 | 17091.75 | 18.3 | \nFemale | 386 | 22931.07 | 16.8 | \nAge, y |  |  |  | < 0.001\n18 ~ 44 | 236 | 18049.02 | 13.1 | \n45 ~ 59 | 297 | 14907.27 | 19.9 | \n≥ 60 | 166 | 7066.53 | 23.5 | \nMarital status |  |  | < 0.001\nMarried | 578 | 34180.55 | 16.9 | \nUnmarried | 28 | 2277.51 | 12.3 | \nDivorce/Widow | 93 | 3564.76 | 26.1 | \nEducation level |  |  | 0.147\n≤Primary school | 307 | 17295.81 | 17.7 | \nSecondary school | 229 | 13707.02 | 16.7 | \nHigh school | 120 | 5953.31 | 20.2 | \n≥College or above | 43 | 3066.68 | 14 | \nRegions |  |  |  | 0.01\nEast | 142 | 6694.46 | 21.2 | \nMiddle | 346 | 19540.3 | 17.7 | \nWest | 211 | 13788.06 | 15.3 | \nUrban/rural |  |  | 0.833\nUrban | 313 | 18060.98 | 17.3 | \nRural | 386 | 21961.84 | 17.6 | \nBMI |  |  |  | < 0.001\n< 18.5 | 18 | 1608.36 | 11.2 | \n18.5 ~ 23.9 | 253 | 19483.35 | 13 | \n24 ~ 27.9 | 249 | 13181.9 | 18.9 | \n28.0~ | 179 | 5749.22 | 31.1 | \nCentral obesity |  |  | < 0.001\nYes | 429 | 30015.67 | 14.3 | \nNo | 270 | 10007.15 | 27 | \nHypertension |  |  | < 0.001\nNo | 327 | 24692.5 | 13.2 | \nYes | 372 | 15330.32 | 24.3 | \nHypertriglyceridemia |  |  |  | < 0.001\nYes | 141 | 4512.96 | 31.2 | \nNo | 558 | 35509.87 | 15.7 | \nHypercholesterolemia |  |  |  | 0.022\nYes | 31 | 1182.25 | 26.2 | \nNo | 668 | 38840.57 | 17.2 | \nHigh LDL-C |  |  |  | 0.017\nYes | 23 | 804.1717194 | 28.6 | \nNo | 676 | 39218.65 | 17.2 | \nLow HDL-C |  |  |  | < 0.001\nYes | 340 | 16656.64 | 20.4 | \nNo | 359 | 23366.18 | 15.4 | \nRed meat intake |  | 0.054\n> 100 g/day | 208 | 13268.94 | 15.7 | \n≤ 100 g/day | 491 | 26753.88 | 18.4 | \nVegetables and fruits intake | 0.412\n< 400 g/day | 350 | 19438.28 | 18 | \n≥ 400 g/day | 349 | 20584.54 | 17 | \nFried food intake |  | 0.759\n< 100 g/week | 567 | 32296.12 | 17.6 | \n≥ 100 g/week | 132 | 7726.7 | 17.1 | \nSugar containing beverage intake | 0.233\n< 300 ml/week | 593 | 33292.33 | 17.8 | \n≥ 300 ml/week | 106 | 6730.49 | 15.7 | \nSmoking |  |  |  | 0.795\nYes | 234 | 13562.99 | 17.3 | \nNo | 465 | 26459.84 | 17.6 | \nDrinking |  |  |  | 0.36\nYes | 259 | 15483.42 | 16.7 | \nNo | 440 | 24539.41 | 17.9 | \nSleep time, hours |  |  | 0.266\n< 7 | 142 | 7315.6 | 19.4 | \n7 ~ 9 | 432 | 24866.49 | 17.4 | \n> 9 | 125 | 7840.74 | 15.9 | \nSitting time, hours |  |  | 0.783\n≤ 3 | 266 | 7198.59 | 37 | \n3.1 ~ 4 | 133 | 15825.49 | 8.4 | \n4.1 ~ 6 | 166 | 9866.18 | 16.8 | \n>6 | 136 | 7132.56 | 19.1 | \nFamily history |  |  | < 0.001\nNo | 643 | 37928.37 | 17 | \nYes | 56 | 2094.45 | 26.7 | ",
+ "checks": [
+  {
+   "term": "outcome:t2d",
+   "number": "16.8",
+   "found": true,
+   "context": "Female | 386 | 22931.07 | 16.8 | "
+  },
+  {
+   "term": "outcome:t2d",
+   "number": "18.3",
+   "found": true,
+   "context": "Male | 313 | 17091.75 | 18.3 | "
+  }
+ ]
+}

@@ -1,0 +1,25 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC4718125,table block 4,age_rate,,M,30,34,30–,2,1.68,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,35,39,35–,2,4.12,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,40,44,40–,2,10.13,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,45,49,45–,2,25.50,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,50,54,50–,2,50.13,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,55,59,55–,2,94.05,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,60,64,60–,2,152.00,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,65,69,65–,2,232.67,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,70,74,70–,2,358.92,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,75,79,75–,2,492.96,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,80,84,80–,2,578.54,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,M,85,89,85+,2,543.01,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,30,34,30–,3,1.15,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,35,39,35–,3,2.62,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,40,44,40–,3,6.92,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,45,49,45–,3,12.93,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,50,54,50–,3,21.93,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,55,59,55–,3,37.34,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,60,64,60–,3,57.92,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,65,69,65–,3,88.45,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,70,74,70–,3,145.23,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,75,79,75–,3,207.79,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,80,84,80–,3,247.79,per_100k
+pmcid:PMC4718125,table block 4,age_rate,,F,85,89,85+,3,228.54,per_100k

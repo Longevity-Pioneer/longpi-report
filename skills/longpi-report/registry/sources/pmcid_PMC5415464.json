@@ -1,0 +1,176 @@
+{
+ "key": "pmcid:PMC5415464",
+ "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5415464/",
+ "fetched_at": "2026-11-18T03:25:19+00:00",
+ "sha256": "9348afd1ce25763d32b7fd91b7396914b625208435e51a4f9eaa087b4e723f67",
+ "bytes": 151398,
+ "retrieval": "HTTP GET of the PMC article page; text = title + cells of the listed table blocks",
+ "citation": "Ting‐Ting Zuo, Rong‐Shou Zheng, Hong‐Mei Zeng, et al. Female breast cancer incidence and mortality in China, 2013. Thoracic Cancer. 2017 Mar 13;8(3):214. doi:10.1111/1759-7714.12426. PMID 28296260.",
+ "licence": "CC BY-NC 4.0 (stated on article page)",
+ "data_year": 2013,
+ "text": "Female breast cancer incidence and mortality in China, 2013 - PMC\n[Table block 1] Breast cancer incidence in China in 2013\nAreas | Cases (n ×104) | Crude rate | Ratio | ASRIC | ASRIW | Cumulative rate | TASR | Rank\n(1/105) | (%) | (1/105) | (1/105) | 0–74 (%) | 35–64 (1/105)\nAll | 27.88 | 42.02 | 17.07 | 30.41 | 28.42 | 3.07 | 71.42 | 1\nUrban areas | 18.49 | 51.65 | 19.32 | 35.55 | 33.36 | 3.64 | 82.60 | 1\nRural areas | 9.39 | 30.73 | 13.88 | 23.72 | 22.07 | 2.36 | 56.75 | 2\n[Table block 2] Age specific incidence rate of breast cancer in China in 2013(1/100 000)\nAge group | All areas | Urban areas | Rural areas\nAll | 42.02 | 51.65 | 30.73\n0 | 0.00 | 0.00 | 0.00\n1 | 0.00 | 0.00 | 0.00\n5 | 0.02 | 0.00 | 0.03\n10 | 0.08 | 0.05 | 0.10\n15 | 0.25 | 0.25 | 0.26\n20 | 1.19 | 0.89 | 1.43\n25 | 4.97 | 5.28 | 4.70\n30 | 15.77 | 17.73 | 12.48\n35 | 31.03 | 34.73 | 25.57\n40 | 60.69 | 68.60 | 49.74\n45 | 82.02 | 91.12 | 70.72\n50 | 87.91 | 104.04 | 65.12\n55 | 94.70 | 111.75 | 72.35\n60 | 88.32 | 106.71 | 67.03\n65 | 76.26 | 93.46 | 56.97\n70 | 71.73 | 93.95 | 44.53\n75 | 63.56 | 86.43 | 34.31\n80 | 53.69 | 72.27 | 31.48\n85 | 36.99 | 51.25 | 20.11\n[Table block 3] Breast cancer mortality in China in 2013\nAreas | Cases (n ×104) | Crude rate | Ratio | ASRMC | ASRMW | Cumulative rate | TASR | Rank\n(1/105) | (%) | (1/105) | (1/105) | 0–74(%) | 35–64(1/105)\nAll | 6.46 | 9.74 | 7.85 | 6.54 | 6.34 | 0.70 | 13.29 | 5\nUrban areas | 4.01 | 11.19 | 9.00 | 7.14 | 6.96 | 0.76 | 13.89 | 4\nRural areas | 2.46 | 8.05 | 6.50 | 5.80 | 5.59 | 0.63 | 12.54 | 6\n[Table block 4] Age specific mortality of breast cancer in China in 2013 (1/100 000)\nAge group | All areas | Urban areas | Rural areas\nALL | 9.74 | 11.19 | 8.05\n0 | 0.00 | 0.00 | 0.00\n1 | 0.03 | 0.05 | 0.00\n5 | 0.02 | 0.00 | 0.03\n10 | 0.00 | 0.00 | 0.00\n15 | 0.03 | 0.00 | 0.06\n20 | 0.13 | 0.16 | 0.11\n25 | 0.61 | 0.58 | 0.64\n30 | 1.87 | 1.81 | 1.95\n35 | 4.64 | 4.77 | 4.45\n40 | 7.99 | 7.86 | 8.17\n45 | 12.41 | 12.53 | 12.26\n50 | 16.76 | 17.68 | 15.47\n55 | 21.69 | 22.54 | 20.59\n60 | 22.83 | 25.31 | 19.95\n65 | 23.13 | 25.15 | 20.87\n70 | 27.81 | 33.60 | 20.72\n75 | 31.85 | 39.96 | 21.48\n80 | 40.05 | 52.61 | 25.04\n85 | 54.64 | 78.15 | 26.81",
+ "checks": [
+  {
+   "term": "outcome:breast_ca",
+   "number": "1.87",
+   "found": true,
+   "context": "30 | 1.87 | 1.81 | 1.95"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "15.77",
+   "found": true,
+   "context": "30 | 15.77 | 17.73 | 12.48"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "31.03",
+   "found": true,
+   "context": "35 | 31.03 | 34.73 | 25.57"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "4.64",
+   "found": true,
+   "context": "35 | 4.64 | 4.77 | 4.45"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "60.69",
+   "found": true,
+   "context": "40 | 60.69 | 68.60 | 49.74"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "7.99",
+   "found": true,
+   "context": "40 | 7.99 | 7.86 | 8.17"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "12.41",
+   "found": true,
+   "context": "45 | 12.41 | 12.53 | 12.26"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "82.02",
+   "found": true,
+   "context": "45 | 82.02 | 91.12 | 70.72"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "16.76",
+   "found": true,
+   "context": "50 | 16.76 | 17.68 | 15.47"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "87.91",
+   "found": true,
+   "context": "50 | 87.91 | 104.04 | 65.12"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "21.69",
+   "found": true,
+   "context": "55 | 21.69 | 22.54 | 20.59"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "94.70",
+   "found": true,
+   "context": "55 | 94.70 | 111.75 | 72.35"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "22.83",
+   "found": true,
+   "context": "60 | 22.83 | 25.31 | 19.95"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "88.32",
+   "found": true,
+   "context": "60 | 88.32 | 106.71 | 67.03"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "23.13",
+   "found": true,
+   "context": "65 | 23.13 | 25.15 | 20.87"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "76.26",
+   "found": true,
+   "context": "65 | 76.26 | 93.46 | 56.97"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "27.81",
+   "found": true,
+   "context": "70 | 27.81 | 33.60 | 20.72"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "71.73",
+   "found": true,
+   "context": "70 | 71.73 | 93.95 | 44.53"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "31.85",
+   "found": true,
+   "context": "75 | 31.85 | 39.96 | 21.48"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "63.56",
+   "found": true,
+   "context": "75 | 63.56 | 86.43 | 34.31"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "40.05",
+   "found": true,
+   "context": "80 | 40.05 | 52.61 | 25.04"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "53.69",
+   "found": true,
+   "context": "80 | 53.69 | 72.27 | 31.48"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "36.99",
+   "found": true,
+   "context": "85 | 36.99 | 51.25 | 20.11"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "54.64",
+   "found": true,
+   "context": "85 | 54.64 | 78.15 | 26.81"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "28.42",
+   "found": true,
+   "context": "All | 27.88 | 42.02 | 17.07 | 30.41 | 28.42 | 3.07 | 71.42 | 1"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "3.07",
+   "found": true,
+   "context": "All | 27.88 | 42.02 | 17.07 | 30.41 | 28.42 | 3.07 | 71.42 | 1"
+  },
+  {
+   "term": "outcome:breast_ca",
+   "number": "6.34",
+   "found": true,
+   "context": "All | 6.46 | 9.74 | 7.85 | 6.54 | 6.34 | 0.70 | 13.29 | 5"
+  }
+ ]
+}

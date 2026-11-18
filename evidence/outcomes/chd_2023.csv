@@ -1,0 +1,13 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,30,34,25-34,1,7.22,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,35,44,35-44,1,46.93,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,45,54,45-54,1,112.51,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,55,64,55-64,1,261.27,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,65,74,65-74,1,457.02,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,M,75,89,≥75,1,874.56,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,30,34,25-34,2,0.70,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,35,44,35-44,2,4.28,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,45,54,45-54,2,18.64,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,55,64,55-64,2,85.18,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,65,74,65-74,2,248.87,per_100k
+doi:10.1016/j.jacc.2025.08.060,"Figure 1 Incidence Rates of CVD, CHD, and Stroke by Sex and ",age_rate,,F,75,89,≥75,2,693.83,per_100k

@@ -1,0 +1,6 @@
+source_key,locator,kind,name,sex,age_lo,age_hi,row_label,column,value,unit
+pmcid:PMC6169758,table block 1,age_rate,,both,30,39,30 to <40,3,2.18,per_1000_py
+pmcid:PMC6169758,table block 1,age_rate,,both,40,49,40 to <50,3,5.45,per_1000_py
+pmcid:PMC6169758,table block 1,age_rate,,both,50,59,50 to <60,3,12.50,per_1000_py
+pmcid:PMC6169758,table block 1,age_rate,,both,60,69,60 to <70,3,17.61,per_1000_py
+pmcid:PMC6169758,table block 1,age_rate,,both,70,89,≥70,3,22.39,per_1000_py
