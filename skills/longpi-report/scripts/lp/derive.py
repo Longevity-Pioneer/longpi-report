@@ -49,16 +49,25 @@ def wearable_daily(person: dict, base: Path) -> Optional[WR.Daily]:
 
 
 def sustained_weeks(series: Dict[date, float], as_of: date, level: float, frac: float = 0.8, min_days: int = 4) -> int:
-    """Consecutive weeks, counting back from as_of, whose mean is at least `frac` of the current level
-    (weeks with fewer than `min_days` recorded days end the run). Used to decide whether a behaviour is sustained."""
-    n, end = 0, as_of
+    """Weeks, counting back from as_of, that the behaviour has been kept at >= `frac` of its current level.
+
+    A single low week (illness, travel) does not end the run; two low weeks in a row, or a week with fewer than
+    `min_days` recorded days, do. Used to decide whether a behaviour counts as sustained (min 8 weeks)."""
+    n, low_run, end = 0, 0, as_of
     while n < 520:
-        days = [series[end - timedelta(days=i)] for i in range(7) if (end - timedelta(days=i)) in series]
-        if len(days) < min_days or statistics.fmean(days) < frac * level:
+        vals = [series[end - timedelta(days=i)] for i in range(7) if (end - timedelta(days=i)) in series]
+        if len(vals) < min_days:
             break
+        if statistics.fmean(vals) < frac * level:
+            low_run += 1
+            if low_run >= 2:
+                n -= 1          # the first low week of the pair is not part of the run either
+                break
+        else:
+            low_run = 0
         n += 1
         end -= timedelta(days=7)
-    return n
+    return max(0, n - low_run)
 
 
 def derive(person: dict, base: Path) -> dict:

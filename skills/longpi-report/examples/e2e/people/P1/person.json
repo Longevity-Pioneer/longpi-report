@@ -1,0 +1,603 @@
+{
+ "schema": "longpi.person/1",
+ "synthetic": true,
+ "as_of": "2026-11-10",
+ "person": {
+  "code": "P1",
+  "label": "P1（合成）",
+  "sex": "M",
+  "birth": "1978-06",
+  "region": {
+   "north": true,
+   "urban": true
+  }
+ },
+ "labs": [
+  {
+   "date": "2022-05-10",
+   "source": "年度体检（合成）",
+   "items": {
+    "albumin": [
+     46.5,
+     "g/L"
+    ],
+    "creatinine": [
+     82,
+     "umol/L"
+    ],
+    "glucose": [
+     5.4,
+     "mmol/L"
+    ],
+    "glucose_fasting": [
+     5.4,
+     "mmol/L"
+    ],
+    "crp": [
+     1.4,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     31.0,
+     "%"
+    ],
+    "mcv": [
+     90.5,
+     "fL"
+    ],
+    "rdw": [
+     12.6,
+     "%"
+    ],
+    "alp": [
+     72,
+     "U/L"
+    ],
+    "wbc": [
+     6.1,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.4,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.08,
+     "mmol/L"
+    ],
+    "tc": [
+     5.1,
+     "mmol/L"
+    ],
+    "tg": [
+     1.7,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.6,
+     "%"
+    ],
+    "apob": [
+     0.95,
+     "g/L"
+    ],
+    "lpa": [
+     180,
+     "mg/L"
+    ],
+    "alt": [
+     28,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     410,
+     "umol/L"
+    ],
+    "platelets": [
+     230,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2023-05-11",
+   "source": "年度体检（合成）",
+   "items": {
+    "albumin": [
+     46.3,
+     "g/L"
+    ],
+    "creatinine": [
+     83,
+     "umol/L"
+    ],
+    "glucose": [
+     5.5200000000000005,
+     "mmol/L"
+    ],
+    "glucose_fasting": [
+     5.5200000000000005,
+     "mmol/L"
+    ],
+    "crp": [
+     1.5,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     30.6,
+     "%"
+    ],
+    "mcv": [
+     90.5,
+     "fL"
+    ],
+    "rdw": [
+     12.65,
+     "%"
+    ],
+    "alp": [
+     73,
+     "U/L"
+    ],
+    "wbc": [
+     6.199999999999999,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.58,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.08,
+     "mmol/L"
+    ],
+    "tc": [
+     5.28,
+     "mmol/L"
+    ],
+    "tg": [
+     1.78,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.68,
+     "%"
+    ],
+    "apob": [
+     1.01,
+     "g/L"
+    ],
+    "lpa": [
+     180,
+     "mg/L"
+    ],
+    "alt": [
+     29,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     415,
+     "umol/L"
+    ],
+    "platelets": [
+     230,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2024-05-12",
+   "source": "年度体检（合成）",
+   "items": {
+    "albumin": [
+     46.1,
+     "g/L"
+    ],
+    "creatinine": [
+     84,
+     "umol/L"
+    ],
+    "glucose": [
+     5.640000000000001,
+     "mmol/L"
+    ],
+    "glucose_fasting": [
+     5.640000000000001,
+     "mmol/L"
+    ],
+    "crp": [
+     1.5999999999999999,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     30.2,
+     "%"
+    ],
+    "mcv": [
+     90.5,
+     "fL"
+    ],
+    "rdw": [
+     12.7,
+     "%"
+    ],
+    "alp": [
+     74,
+     "U/L"
+    ],
+    "wbc": [
+     6.3,
+     "10^9/L"
+    ],
+    "ldl": [
+     3.76,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.08,
+     "mmol/L"
+    ],
+    "tc": [
+     5.46,
+     "mmol/L"
+    ],
+    "tg": [
+     1.8599999999999999,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.76,
+     "%"
+    ],
+    "apob": [
+     1.07,
+     "g/L"
+    ],
+    "lpa": [
+     180,
+     "mg/L"
+    ],
+    "alt": [
+     30,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     420,
+     "umol/L"
+    ],
+    "platelets": [
+     230,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2025-05-13",
+   "source": "年度体检（合成）",
+   "items": {
+    "albumin": [
+     45.9,
+     "g/L"
+    ],
+    "creatinine": [
+     85,
+     "umol/L"
+    ],
+    "glucose": [
+     5.760000000000001,
+     "mmol/L"
+    ],
+    "glucose_fasting": [
+     5.760000000000001,
+     "mmol/L"
+    ],
+    "crp": [
+     1.7,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     29.8,
+     "%"
+    ],
+    "mcv": [
+     90.5,
+     "fL"
+    ],
+    "rdw": [
+     12.75,
+     "%"
+    ],
+    "alp": [
+     75,
+     "U/L"
+    ],
+    "wbc": [
+     6.3999999999999995,
+     "10^9/L"
+    ],
+    "ldl": [
+     2.4,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.08,
+     "mmol/L"
+    ],
+    "tc": [
+     4.1,
+     "mmol/L"
+    ],
+    "tg": [
+     1.94,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.84,
+     "%"
+    ],
+    "apob": [
+     0.8,
+     "g/L"
+    ],
+    "lpa": [
+     180,
+     "mg/L"
+    ],
+    "alt": [
+     31,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     425,
+     "umol/L"
+    ],
+    "platelets": [
+     230,
+     "10^9/L"
+    ]
+   }
+  },
+  {
+   "date": "2026-05-14",
+   "source": "年度体检（合成）",
+   "items": {
+    "albumin": [
+     45.7,
+     "g/L"
+    ],
+    "creatinine": [
+     86,
+     "umol/L"
+    ],
+    "glucose": [
+     5.880000000000001,
+     "mmol/L"
+    ],
+    "glucose_fasting": [
+     5.880000000000001,
+     "mmol/L"
+    ],
+    "crp": [
+     1.7999999999999998,
+     "mg/L"
+    ],
+    "lymph_pct": [
+     29.4,
+     "%"
+    ],
+    "mcv": [
+     90.5,
+     "fL"
+    ],
+    "rdw": [
+     12.799999999999999,
+     "%"
+    ],
+    "alp": [
+     76,
+     "U/L"
+    ],
+    "wbc": [
+     6.5,
+     "10^9/L"
+    ],
+    "ldl": [
+     2.45,
+     "mmol/L"
+    ],
+    "hdl": [
+     1.08,
+     "mmol/L"
+    ],
+    "tc": [
+     4.15,
+     "mmol/L"
+    ],
+    "tg": [
+     2.02,
+     "mmol/L"
+    ],
+    "hba1c": [
+     5.92,
+     "%"
+    ],
+    "apob": [
+     0.8,
+     "g/L"
+    ],
+    "lpa": [
+     180,
+     "mg/L"
+    ],
+    "alt": [
+     32,
+     "U/L"
+    ],
+    "ast": [
+     24,
+     "U/L"
+    ],
+    "uric_acid": [
+     430,
+     "umol/L"
+    ],
+    "platelets": [
+     230,
+     "10^9/L"
+    ]
+   }
+  }
+ ],
+ "vitals": [
+  {
+   "date": "2022-05-10",
+   "sbp": 128,
+   "dbp": 82,
+   "pulse": 72,
+   "setting": "office"
+  },
+  {
+   "date": "2023-05-11",
+   "sbp": 130,
+   "dbp": 83,
+   "pulse": 72,
+   "setting": "office"
+  },
+  {
+   "date": "2024-05-12",
+   "sbp": 132,
+   "dbp": 84,
+   "pulse": 72,
+   "setting": "office"
+  },
+  {
+   "date": "2025-05-13",
+   "sbp": 134,
+   "dbp": 85,
+   "pulse": 72,
+   "setting": "office"
+  },
+  {
+   "date": "2026-05-14",
+   "sbp": 136,
+   "dbp": 86,
+   "pulse": 72,
+   "setting": "office"
+  }
+ ],
+ "anthropometrics": [
+  {
+   "date": "2022-05-10",
+   "height_cm": 173,
+   "weight_kg": 79.0,
+   "waist_cm": 92
+  },
+  {
+   "date": "2023-05-11",
+   "height_cm": 173,
+   "weight_kg": 79.6,
+   "waist_cm": 93
+  },
+  {
+   "date": "2024-05-12",
+   "height_cm": 173,
+   "weight_kg": 80.2,
+   "waist_cm": 94
+  },
+  {
+   "date": "2025-05-13",
+   "height_cm": 173,
+   "weight_kg": 80.8,
+   "waist_cm": 95
+  },
+  {
+   "date": "2026-05-14",
+   "height_cm": 173,
+   "weight_kg": 81.4,
+   "waist_cm": 96
+  }
+ ],
+ "fitness": [
+  {
+   "date": "2026-09-20",
+   "grip_kg": 41
+  }
+ ],
+ "lifestyle": {
+  "smoking": {
+   "status": "former",
+   "quit_year": 2017
+  },
+  "alcohol": {
+   "grams_per_week": 80
+  },
+  "sleep_h": 6.5,
+  "resistance_sessions_week": {
+   "value": 2,
+   "since": "2026-07"
+  }
+ },
+ "conditions": [
+  {
+   "name": "高脂血症",
+   "icd10": "E78.5",
+   "diagnosed": "2025"
+  }
+ ],
+ "medications": [
+  {
+   "name": "阿托伐他汀",
+   "dose": "20 mg qn",
+   "since": "2025-03",
+   "class": "statin"
+  }
+ ],
+ "family_history": [
+  {
+   "relation": "father",
+   "condition": "冠心病",
+   "disease_id": "chd",
+   "age_at_dx": 52
+  }
+ ],
+ "screenings": [
+  {
+   "test": "crc_fit",
+   "date": "2026-02",
+   "result": "阴性",
+   "report": true
+  }
+ ],
+ "imaging": [
+  {
+   "date": "2026-05-14",
+   "type": "腹部超声",
+   "finding": "轻度脂肪肝"
+  }
+ ],
+ "wearables": {
+  "device": "Apple Watch",
+  "daily_csv": "daily.csv"
+ },
+ "genetic_preferences": {
+  "show_opt_in": false,
+  "secondary_findings": true
+ },
+ "observations_file": "observations.json"
+}
