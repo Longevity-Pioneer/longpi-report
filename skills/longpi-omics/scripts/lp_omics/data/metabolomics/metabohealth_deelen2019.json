@@ -1,0 +1,40 @@
+{
+ "score": "MetaboHealth (Deelen J et al. A metabolic profile of all-cause mortality risk identified in an observational study of 44,168 individuals. Nat Commun 2019;10:3346; open access CC BY 4.0)",
+ "formula": "score = sum_i beta_i * (ln(x_i) - logMEAN_i) / logSD_i  (x in Nightingale 2016-platform units; xxl_vldl_l uses ln(x + 1), see note)",
+ "betas_source": "Deelen 2019 multivariate model coefficients, as tabulated in MiMIR 1.5 data/mort_betas.rda (values transcribed; numbers are published results)",
+ "reference_source": "BBMRI-NL Nightingale metabolomics summary statistics shipped with MiMIR 1.5 (Bizzarri D et al.): data/PARAM_metaboAge.rda logMEAN/logSD for 13 markers; xxl_vldl_l is absent there and was derived from data/BBMRI_hist.rda (31,056 samples) as mean/SD of ln(x+1) over histogram mid-points (approximation)",
+ "note_zh": "Deelen 2019 在每个队列内部做 log 后标准化，存在 0 值的指标先整体加 1。单人无法做队列内标准化，故用 BBMRI-NL（荷兰）人群的 log 均值与标准差代替；这是近似，人群差异会带来系统偏移。",
+ "markers": {
+  "pufa_fa":    {"beta": -0.251264056, "logMEAN": 3.61193799032188,    "logSD": 0.106497777637256,  "unit": "%",       "label": "PUFA / total fatty acids"},
+  "gp":         {"beta":  0.280179378, "logMEAN": 0.299271223693097,   "logSD": 0.150779865790082,  "unit": "mmol/L",  "label": "Glycoprotein acetyls"},
+  "glc":        {"beta":  0.148392648, "logMEAN": 1.49263490230633,    "logSD": 0.557502409233269,  "unit": "mmol/L",  "label": "Glucose"},
+  "s_hdl_l":    {"beta": -0.141912413, "logMEAN": -0.00156490724128116, "logSD": 0.100907904294915, "unit": "mmol/L",  "label": "Total lipids in small HDL"},
+  "xxl_vldl_l": {"beta": -0.223685945, "logMEAN": 0.03359093,           "logSD": 0.03077704,        "unit": "mmol/L",  "label": "Total lipids in chylomicrons and XXL-VLDL", "plus_one": true},
+  "alb":        {"beta": -0.113290967, "logMEAN": -2.43702711867367,   "logSD": 0.0839873330246517, "unit": "signal (2016 platform)", "label": "Albumin"},
+  "phe":        {"beta":  0.124227231, "logMEAN": -3.15340879727258,   "logSD": 0.188630381436053,  "unit": "mmol/L",  "label": "Phenylalanine"},
+  "acace":      {"beta":  0.078704926, "logMEAN": -3.37002234885743,   "logSD": 0.746676001450626,  "unit": "mmol/L",  "label": "Acetoacetate"},
+  "ile":        {"beta":  0.205706859, "logMEAN": -3.00474721448955,   "logSD": 0.381271602819723,  "unit": "mmol/L",  "label": "Isoleucine"},
+  "vldl_d":     {"beta": -0.160137595, "logMEAN": 3.60541191369235,    "logSD": 0.0380049630155612, "unit": "nm",      "label": "Mean diameter for VLDL particles"},
+  "leu":        {"beta": -0.195741112, "logMEAN": -2.81600695898741,   "logSD": 0.25583234931485,   "unit": "mmol/L",  "label": "Leucine"},
+  "val":        {"beta": -0.143698197, "logMEAN": -1.88055332677431,   "logSD": 0.251651242507008,  "unit": "mmol/L",  "label": "Valine"},
+  "his":        {"beta": -0.069223326, "logMEAN": -2.86168923848896,   "logSD": 0.272017827903555,  "unit": "mmol/L",  "label": "Histidine"},
+  "lac":        {"beta":  0.062262328, "logMEAN": 0.0584297016438592,  "logSD": 0.511242519561174,  "unit": "mmol/L",  "label": "Lactate"}
+ },
+ "aliases": {
+  "pufa_fa": ["pufa_fa", "pufa_pct", "pufa_%", "pufa/fa"],
+  "gp": ["gp", "glyca", "glycoprotein_acetyls"],
+  "glc": ["glc", "glucose"],
+  "s_hdl_l": ["s_hdl_l"],
+  "xxl_vldl_l": ["xxl_vldl_l"],
+  "alb": ["alb", "albumin"],
+  "phe": ["phe", "phenylalanine"],
+  "acace": ["acace", "acetoacetate"],
+  "ile": ["ile", "isoleucine"],
+  "vldl_d": ["vldl_d", "vldl_size"],
+  "leu": ["leu", "leucine"],
+  "val": ["val", "valine"],
+  "his": ["his", "histidine"],
+  "lac": ["lac", "lactate"]
+ },
+ "licence": "Coefficients: published results (CC BY 4.0 article). Reference means/SDs: numerical summaries taken from MiMIR (GPL-3) data objects; no MiMIR code is included."
+}

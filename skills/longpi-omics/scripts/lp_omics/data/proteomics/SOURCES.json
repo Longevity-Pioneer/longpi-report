@@ -1,0 +1,22 @@
+{
+ "organage_somascan.json": {
+  "clock": "organage organ aging models (11 organs + organismal + conventional), SomaScan",
+  "source": "Oh HS-H, Rutledge J et al. Organ aging signatures in the plasma proteome track health and disease. Nature 2023;624:164-172; package organage (main branch, Copyright (c) 2023 Hamilton Oh)",
+  "licence": "MIT (LICENSE file of the organage repository)",
+  "commercial_use": true,
+  "derivation": "validation/build_organage_coefs.py: the 500 bootstrap Lasso models per organ are averaged into one linear model (exact for linear models); protein z-score scalers, age-gap scaler and the training-cohort lowess (interp1d, linear, extrapolate) are copied as numbers. Pickles were read with a restricted unpickler that executes no code. Coefficients with zero bootstrap mean are dropped (no effect on predictions).",
+  "inputs": "SomaScan ANML-normalised RFU; v4.1 native; v4 and v5 rescaled to v4.1 with the package's per-SeqId factors; log10; z-score with the KADRC healthy-control scaler; Sex_F as first feature",
+  "outputs": "LP:prot.organage_<organ>_gap = predicted organ age - lowess(chronological age) of the training cohort (years); agegap_z = gap / SD(gap) in training cohort"
+ },
+ "not_implemented": {
+  "ProtAge (Argentieri MA et al. Nat Med 2024, Olink Explore 3072, UK Biobank)": "Olink-only; coefficients are in the article's supplementary tables, whose licence could not be checked from this machine (network ~10 KB/s on 2026-11-18). Not implemented until the licence of the supplementary coefficient table is confirmed to allow commercial use.",
+  "Olink organ clocks (Oh HS-H et al. Nat Med 2025; redistributed in biolearn 0.9.1 as OrganAge*)": "Licence of the original coefficient release not verified; biolearn's BSD licence covers biolearn's code, not necessarily third-party coefficient tables. Not implemented.",
+  "SomaScan cross-version bridging other than organage's factors": "Not implemented; v4/v5 are rescaled only with the factors shipped by organage."
+ },
+ "passthrough": {
+  "proteins": {"P16860": "NT-proBNP (SomaScan 7655-11)", "Q99988": "GDF15 (4374-45)", "P01034": "Cystatin C (2609-59)",
+               "P02741": "CRP (4337-49)", "P05231": "IL-6 (4673-13)", "P41159": "Leptin (8484-24)"},
+  "seqid_source": "SomaScan_V4.0_5K_Annotated_Content_20210616.csv as shipped in the organage repository",
+  "units": "SomaScan RFU or Olink NPX as supplied (not converted to clinical units)"
+ }
+}

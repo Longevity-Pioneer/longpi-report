@@ -1,0 +1,19 @@
+{
+ "tool_id": "metab_metabohealth2019",
+ "version": "0.1.0",
+ "dataset": "MiMIR 1.5 synthetic_metabolic_dataset (500 synthetic Nightingale profiles); reference = MiMIR comp.mort_score run in R",
+ "metric": "max |within-dataset MetaboHealth ours - MiMIR|",
+ "value": 4.218847493575595e-15,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "n_scored": 490,
+  "na_pattern_identical": true,
+  "single_sample_reference_vs_within_dataset": {
+   "n": 490,
+   "pearson": 0.9636400134187764,
+   "mean_shift": -0.1050392061302899,
+   "note": "the shipped single-sample path uses BBMRI-NL log mean/SD; agreement with within-dataset scaling is data dependent"
+  }
+ }
+}
