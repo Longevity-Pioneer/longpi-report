@@ -58,6 +58,29 @@ def ref_moments(t: dict, sex: str, age: float) -> Optional[Tuple[float, float]]:
     return None
 
 
+def _is_lognormal(t: dict, sex: str, age: float) -> bool:
+    ref = t["reference"]
+    if ref.get("kind") == "lognormal" or "meanlog" in ref:
+        return True
+    b = _band(ref.get("by_sex_age") or [], sex, age) if ref.get("by_sex_age") else None
+    return bool(b and "meanlog" in b)
+
+
+def curve_moments(t: dict, sex: str, age: float) -> Optional[Tuple[float, float]]:
+    """(mean, sd) of the variable the log-HR curve is applied to: ln x when log_x, x otherwise.
+    A lognormal reference without log_x is converted to raw-scale moments."""
+    mo = ref_moments(t, sex, age)
+    if mo is None:
+        if t["reference"].get("kind") == "categorical_mid":
+            return _mid_moments(t, sex, age)
+        return None
+    if _is_lognormal(t, sex, age) and not t["transform"].get("log_x"):
+        m, s = mo
+        mean = math.exp(m + s * s / 2)
+        return mean, mean * math.sqrt(math.exp(s * s) - 1)
+    return mo
+
+
 def _eff(e: dict) -> dict:
     """An effect block, with `derived` (hr = from.hr ** pow; bounds swap when pow < 0) resolved."""
     if "hr" in e or not e.get("derived"):
@@ -74,8 +97,9 @@ def _se(e: dict, inflate: float) -> float:
 
 
 def _draw_log(e: dict, rng: Optional[random.Random], shrink: float, inflate: float) -> float:
+    """Transport from a non-East-Asian cohort: the log HR is shrunk toward 0 and its SE inflated (not shrunk back)."""
     m = math.log(e["hr"]) * shrink
-    return m if rng is None else rng.gauss(m, _se(e, inflate) * shrink)
+    return m if rng is None else rng.gauss(m, _se(e, inflate))
 
 
 def draw_effect(t: dict, oc: str, rng: Optional[random.Random]) -> dict:
@@ -90,7 +114,7 @@ def draw_effect(t: dict, oc: str, rng: Optional[random.Random]) -> dict:
         side = lambda k: (_draw_log(_eff(e[k]), rng, shrink, infl) / _eff(e[k])["per"]) if e.get(k) else 0.0
         return {"b_lo": side("hr_below"), "b_hi": side("hr_above")}
     if shape == "categorical":
-        return {"log_rr": {lvl: (0.0 if (v in (1, 1.0) or (isinstance(v, dict) and v.get("hr") == 1 and "lo" not in v))
+        return {"log_rr": {level_key(lvl): (0.0 if (v in (1, 1.0) or (isinstance(v, dict) and v.get("hr") == 1 and "lo" not in v))
                                  else _draw_log(_eff(v), rng, shrink, infl))
                            for lvl, v in e["levels"].items()}}
     if shape == "indicator":
@@ -98,10 +122,19 @@ def draw_effect(t: dict, oc: str, rng: Optional[random.Random]) -> dict:
     raise ValueError(shape)
 
 
+def level_key(x) -> str:
+    """Categorical values compare as strings; 2, 2.0 and "2" are the same level."""
+    if isinstance(x, bool):
+        return str(int(x))
+    if isinstance(x, (int, float)) and math.isfinite(x) and float(x).is_integer():
+        return str(int(x))
+    return str(x).strip()
+
+
 def f_raw(t: dict, p: dict, x) -> float:
     shape, tf = t["transform"]["shape"], t["transform"]
     if shape == "categorical":
-        return p["log_rr"].get(x, 0.0)
+        return p["log_rr"][level_key(x)]
     if shape == "indicator":
         return p["log_rr"] * (1.0 if x else 0.0)
     x = float(x)
@@ -137,7 +170,8 @@ def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float, scale: float = 1.0)
     shape, ref = t["transform"]["shape"], t["reference"]
     if shape == "categorical":
         probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
-        return math.log(sum(pr * math.exp(scale * p["log_rr"].get(lvl, 0.0)) for lvl, pr in probs.items()))
+        tot = sum(pr * math.exp(scale * p["log_rr"].get(level_key(lvl), 0.0)) for lvl, pr in probs.items())
+        return math.log(tot) if tot > 0 else 0.0
     if ref.get("kind") == "categorical_mid":
         probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
         mids = ref["mids"]
@@ -152,6 +186,9 @@ def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float, scale: float = 1.0)
         return math.log(1 - prev + prev * math.exp(scale * p["log_rr"]))
     mu, sd = ref_moments(t, sex, age)
     tf = t["transform"]
+    if _is_lognormal(t, sex, age) and not tf.get("log_x"):
+        # reference given as ln x ~ N(meanlog, sdlog) but the curve takes x itself: integrate over x = exp(z)
+        return math.log(_expect(lambda z: math.exp(scale * f_raw(t, p, math.exp(z))), mu, sd))
     tt = dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf)))   # mean/sd are of ln x when log_x
     if shape in ("loglinear", "residualized"):
         lo, hi = (tt["transform"].get("clip") or [None, None])
@@ -296,11 +333,23 @@ def match(model, reg: Optional[dict] = None) -> List[Term]:
         elif shape in ("categorical", "indicator"):
             T.value = rows[-1]["value"]
             if shape == "indicator":
-                T.value = 1 if float(T.value) >= 0.5 else 0
+                try:
+                    T.value = 1 if float(T.value) >= 0.5 else 0
+                except (TypeError, ValueError):
+                    T.status, T.reasons = "not_counted", [f"取值 {T.value!r} 不是 0/1"]
+                    out.append(T)
+                    continue
+            else:
+                levels = set()
+                for e in spec["effect"].values():
+                    levels |= {level_key(k) for k in (e.get("levels") or {})}
+                if level_key(T.value) not in levels:
+                    T.status, T.reasons = "not_counted", [f"取值 {T.value!r} 不在研究的分组 {sorted(levels)} 内"]
+                    out.append(T)
+                    continue
+                T.value = level_key(T.value)
         else:
-            mo = ref_moments(spec, model.sex, model.age)
-            if mo is None and spec["reference"].get("kind") == "categorical_mid":
-                mo = _mid_moments(spec, model.sex, model.age)
+            mo = curve_moments(spec, model.sex, model.age)
             if mo is None:
                 T.status, T.reasons = "not_counted", ["该性别年龄没有参考分布"]
                 out.append(T)
@@ -465,7 +514,7 @@ def _info(T: Term, oc: str, model) -> float:
         return 0.5
     shape = T.spec["transform"]["shape"]
     if shape in ("loglinear", "residualized"):
-        mo = ref_moments(T.spec, model.sex, model.age)
+        mo = curve_moments(T.spec, model.sex, model.age)
         return abs(math.log(e["hr"]) / e["per"]) * (mo[1] if mo else 1.0)
     if shape == "indicator":
         return abs(math.log(e["hr"]))
@@ -625,7 +674,7 @@ def spread_years(spec: dict, sex: str, age: float, b: float) -> Optional[float]:
     e = _eff(e)
     if "hr" not in e:
         return None
-    mo = ref_moments(spec, sex, age)
+    mo = curve_moments(spec, sex, age)
     if not mo:
         return None
     sh = float((spec.get("transport") or {}).get("shrink", 1.0))

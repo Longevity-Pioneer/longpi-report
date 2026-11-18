@@ -76,15 +76,22 @@
    "name_zh": "癌症筛查",
    "cap": 10.0,
    "members_core": []
+  },
+  "genetic": {
+   "name_zh": "先天因素（家族史、多基因评分、致病变异）",
+   "cap": 1.6,
+   "rule": "cap_only",
+   "note_zh": "同一疾病的家族史、多基因评分与致病变异部分重叠但各有独立信息：不按排名剔除，只把组内系数合计压到上限以内"
   }
  },
  "guardrails": {
   "ext_total_abs_log_hr": 0.3,
   "ext_single_abs_log_hr": 0.15,
   "population_neutral_tol": 0.02,
-  "note_zh": "LongPi Age：新增项单项 ±0.15、合计 ±0.30（约 ±3 岁）；120 指数行为部分：单项 ±0.35、合计 ±0.50；疾病风险：除携带致病变异类（indicator）外单项 ±1.1（HR 约 3）；发布前人群平均风险偏差须 <2%",
+  "note_zh": "LongPi Age：新增项单项 ±0.15、合计 ±0.30（约 ±3 岁）；120 指数行为部分：单项 ±0.35、合计 ±0.50；疾病风险：除携带致病变异类（indicator）外单项 ±1.1（HR 约 3）；发布前人群平均风险偏差须 <2%；疾病风险除致病变异携带项外各项合计 ±2.5（HR 约 12）",
   "behavior_single_abs_log_hr": 0.35,
   "behavior_total_abs_log_hr": 0.5,
-  "disease_single_abs_log_hr": 1.1
+  "disease_single_abs_log_hr": 1.1,
+  "disease_total_abs_log_hr": 2.5
  }
 }

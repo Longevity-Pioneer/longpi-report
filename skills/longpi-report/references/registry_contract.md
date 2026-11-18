@@ -111,6 +111,10 @@
 - `group`：`registry/groups.json` 里的重叠组；不属于任何组写 `null`。
 - `adjusted_for` 用词：`age`、`sex`、核心项 id（`core.lipid`、`core.bp`、`core.adiposity`、`core.glucose`、`core.smoking`、`core.alcohol`、
   `core.crf`、`core.muscle`、`core.rhr`、`core.sleep`、`core.phenoage_clock`、`core.methylation`）、其他 ext 项 id，或标准编码。
+- `effect.<oc>.applies_age = [lo, hi]`、`effect.<oc>.applies_sex = "M"|"F"`：硬性适用条件（例如 BMI→乳腺癌只用于 ≥50 岁女性，近似绝经后）；范围外该结局不计入。
+  与之区别：`population.age_range` 是研究人群年龄，范围外只打 0.7 折。
+- `group: "genetic"`：家族史、多基因评分、致病变异等先天项都归此组（规则 `cap_only`：不按排名剔除，只限制组内系数合计）。
+- `behavior.target`：行为项的推荐目标值（指南值），用于"还能加分"的计算；写明 `behavior.target_source`。
 - `behavior`（仅 behavior 项）：`{"min_weeks": 8, "self_report_discount": 0.5}`。
 - `screening`（仅筛查行为项）：`{"disease_id": "crc", "mortality_rr": {"hr": 0.78, "lo": 0.7, "hi": 0.87}, "eligible": {"age": [50, 75], "sex": "both", "requires": []}, "interval_years": 1}`；
   其 `effect` 可为空，指数贡献 = ln(1 − 死因占比 × (1 − RR))，死因占比取 `outcomes/<disease>.json: mortality_share`。

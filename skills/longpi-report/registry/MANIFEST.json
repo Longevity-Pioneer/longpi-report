@@ -1,8 +1,8 @@
 {
- "digest": "76e364c775552baf11c6ed39fd7b7b148ca458e96251e6fae748cc2246e914f1",
+ "digest": "64be490c168c3c9849cd3cb0d011504bdf49d0f8cdb417fbcf8d934b0f85f407",
  "files": {
-  "VERSION": "ef0c520de6b1399e749a778830d7871c64a3490d5109c5470289a2a22d7463a9",
-  "groups.json": "fca2a0065c845e12df9b0f3f6802fc2f1059ba7d4d1a5df5e38764b7a871b94a",
+  "VERSION": "679485bff4bfde1a0fafa646cbf8900575790faa4d2c1789c275d9868c1c33e7",
+  "groups.json": "04fc16916d5a4a75d5b4bb9819d4ac5be6ac4960a72f791f2a89519cb0c2279e",
   "outcomes/ad.json": "0f0eed316625bcd7f574a9485459e5b8e99cab45619815ef66eb7099ea007613",
   "outcomes/breast_ca.json": "60d7666a9cd22b59831f2cd16e3bc70799b3ab924d9db7a419482ca396d4b6bb",
   "outcomes/chd.json": "9f1e57eedcde695464a3e207d4a39ea93349923de17e7975ff3be6d2eae9cb01",
@@ -216,5 +216,5 @@
   "terms/ext.uacr.json": "145388e363cdc6189f0e2be7c76b83159ad050611c000709f28d16827c7fcf73",
   "terms/ext.waist.json": "750d9122900d3e9d74ba896c8570ae83ea27f79999fdf7fabd4d133f5f89a374"
  },
- "version": "2026.11.18-7"
+ "version": "2026.11.18-8"
 }

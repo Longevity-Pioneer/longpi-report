@@ -78,12 +78,16 @@ ALLOWED_HOSTS = {
 _ID_RE = re.compile(
     r"^(?:\d{1,9}"                        # PMID, taxonomy id, HGNC number
     r"|PMC\d{1,9}"                        # PMCID
-    r"|10\.\d{4,9}/[^\s\"<>]{1,200}"      # DOI
+    r"|10\.\d{4,9}/[A-Za-z0-9.()_;:/\-]{1,80}"   # DOI (registrant/suffix characters only, bounded)
     r"|PGS\d{6}|PPM\d{6}|PSS\d{6}"        # PGS Catalog ids
     r"|\d{1,7}-\d"                        # LOINC
     r"|[A-Z]\d{2}(?:\.[0-9A-Z]{1,4})?"    # ICD-10
     r"|[OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9](?:[A-Z][A-Z0-9]{2}[0-9]){1,2}"  # UniProt accession
     r")$")
+# fixed path words of the allowed APIs; anything else in a path must be an identifier
+_STATIC_SEGMENTS = {"entrez", "eutils", "efetch.fcgi", "esummary.fcgi", "esearch.fcgi", "europepmc", "webservices", "rest",
+                    "search", "fullTextXML", "api", "loinc_items", "icd10cm", "v3", "uniprotkb", "fetch", "hgnc_id",
+                    "score", "performance", "publication", "uniprot", "taxonomy", "efetch", "elink.fcgi", "info"}
 _FIXED_PARAMS = {"db", "retmode", "rettype", "format", "resultType", "df", "sf", "maxList", "terms_type", "fields",
                  "pageSize", "limit", "tool"}
 
@@ -125,8 +129,10 @@ def http_get(url: str, accept: str = "application/json", timeout: int = 40) -> s
             else:
                 raise PrivacyError(f"query parameter not allowed: {k}")
     for seg in u.path.split("/"):
-        if seg and re.search(r"\d", seg) and seg not in ("v3", "icd10cm"):
-            assert_public_identifier(urllib.parse.unquote(seg).replace(".json", ""))
+        if not seg or seg in _STATIC_SEGMENTS:
+            continue
+        # every other path segment must be a public identifier (not only the ones with digits)
+        assert_public_identifier(urllib.parse.unquote(seg).replace(".json", ""))
     REQUEST_LOG.append(url)
     if FIXTURE_DIR:
         p = Path(FIXTURE_DIR) / _fixture_name(url)
@@ -1091,6 +1097,24 @@ def add(specs: List[dict], root: Path = RG.REG_DIR, qualitative: bool = False, w
     pc = check_population(list(cur.values()), n=n_pop)
     if not pc["ok"]:
         return {"ok": False, "error": "人群中性检查未通过，不冻结：" + "；".join(pc["fails"][:12])}
+    import shutil
+    import tempfile
+    backup = Path(tempfile.mkdtemp(prefix="longpi-reg-backup-")) / "registry"
+    shutil.copytree(root, backup)
+    try:
+        result = _write_plans(plans, root, version)
+    except BaseException:
+        # restore the frozen registry exactly as it was, so a failure never leaves a half-written, unfrozen state
+        shutil.rmtree(root)
+        shutil.copytree(backup, root)
+        raise
+    finally:
+        shutil.rmtree(backup.parent, ignore_errors=True)
+    return result
+
+
+def _write_plans(plans, root, version):
+    msgs = []
     for sub, t, res in plans:
         for other in ("terms", "qualitative"):
             q = root / other / f"{t['id']}.json"

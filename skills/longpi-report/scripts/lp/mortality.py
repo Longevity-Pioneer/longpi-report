@@ -48,6 +48,9 @@ def _sex(sex: str) -> str:
     return s
 
 
+_OLD_FIT_CACHE: Dict[tuple, tuple] = {}   # (sex, year, plateau, fit_ages) -> (a, b, s2); a pure function of the bundled table
+
+
 class Reference:
     """Reference (population) hazards mu(age, year) for one sex."""
 
@@ -74,6 +77,10 @@ class Reference:
         Returns (a, b, s2).
         """
         if year in self._old:
+            return self._old[year]
+        key = (self.sex, year, self.plateau, self.fit_ages)
+        if key in _OLD_FIT_CACHE:
+            self._old[year] = _OLD_FIT_CACHE[key]
             return self._old[year]
         mx = self._mx[year]
         ages = range(self.fit_ages[0], self.fit_ages[1] + 1)
@@ -112,7 +119,7 @@ class Reference:
                 step_a *= 0.5
                 step_b *= 0.5
         res = (a, b, b / L)
-        self._old[year] = res
+        self._old[year] = _OLD_FIT_CACHE[key] = res
         return res
 
     def old_age_s2(self, year: Optional[int] = None) -> float:

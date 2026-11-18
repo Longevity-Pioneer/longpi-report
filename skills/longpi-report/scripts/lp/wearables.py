@@ -96,6 +96,11 @@ def _numeric_date_order(stamps: Iterable[str], where: object = "") -> Optional[s
                      "rewrite the time column as YYYY-MM-DD HH:MM")
 
 
+# physiologically possible daily values; anything outside is a device or export error
+PLAUSIBLE = {"steps": (0, 100000), "sleep_h": (0, 20), "rhr": (25, 150), "hrv": (2, 400), "vo2max": (10, 90),
+             "spo2": (50, 100), "breathing_dist": (0, 100), "weight": (20, 400), "body_fat": (2, 75), "walking_speed": (0.05, 3.0)}
+
+
 class Daily:
     """metric -> {date: value}; sums for steps, medians for the rest."""
 
@@ -103,9 +108,19 @@ class Daily:
         self.raw: Dict[str, Dict[date, Dict[str, List[float]]]] = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
         self.sleep_intervals: Dict[str, List[Tuple[datetime, datetime]]] = defaultdict(list)
         self.workouts: List[Tuple[date, str, float, str]] = []   # (day, activity, minutes, source)
+        self.dropped: Dict[str, int] = {}
 
     def add(self, metric: str, day: date, value: float, source: str = "") -> None:
-        self.raw[metric][day][source].append(value)
+        """Values outside a physiologically possible range (or not finite) are dropped and counted in `dropped`."""
+        lo, hi = PLAUSIBLE.get(metric, (-math.inf, math.inf))
+        try:
+            v = float(value)
+        except (TypeError, ValueError):
+            v = math.nan
+        if not math.isfinite(v) or not (lo <= v <= hi):
+            self.dropped[metric] = self.dropped.get(metric, 0) + 1
+            return
+        self.raw[metric][day][source].append(v)
 
     def series(self, metric: str) -> Dict[date, float]:
         out = {}
