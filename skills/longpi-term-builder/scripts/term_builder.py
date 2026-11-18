@@ -278,7 +278,10 @@ def _epmc_fulltext_paragraphs(pmcid: str) -> List[str]:
     out = []
     for tag in ("p", "tr", "caption", "title"):
         for el in root.iter(tag):
-            txt = _strip_xml(el)
+            if tag == "tr":   # keep cell boundaries, otherwise adjacent numbers fuse ("1.0751.114")
+                txt = " | ".join(_strip_xml(c) for c in el if c.tag in ("td", "th"))
+            else:
+                txt = _strip_xml(el)
             if len(txt) > 20:
                 out.append(txt)
     return out
@@ -924,7 +927,8 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         rf = expanded.get("reference") or {}
         if not rf.get("source"):
             fail.append("reference.source 缺失")
-        rkey = source_key(rf) if (rf.get("pmid") or rf.get("doi") or rf.get("pmcid")) else None
+        rkey = source_key({k: rf[k] for k in ("pmid", "doi", "pmcid") if rf.get(k)}) \
+            if (rf.get("pmid") or rf.get("doi") or rf.get("pmcid")) else None
         if rkey and rf.get("quote"):
             rq = norm_text(rf["quote"])
             rsrc = fetch_source(rkey, root, need=[rq], refresh=refresh, offline=offline)
@@ -1005,6 +1009,7 @@ def add(specs: List[dict], root: Path = RG.REG_DIR, qualitative: bool = False, w
         if sub == "qualitative" and not qualitative:
             return {"ok": False, "error": f"{spec['id']}: 未通过自动入库标准，须加 --qualitative：" + "；".join(res["fail"])}
         t = expand_reference(spec)
+        t.pop("verdict_intended", None)       # drafting note, not part of the contract
         ev = t["evidence"]
         ev["verified_at"] = (today or _dt.date.today()).isoformat()
         ev["verifier"] = VERIFIER
