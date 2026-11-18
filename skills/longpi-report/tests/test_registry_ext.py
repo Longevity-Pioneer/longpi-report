@@ -125,8 +125,9 @@ class Ext(unittest.TestCase):
                     continue
                 p = TM.draw_effect(t, oc, None)
                 mu, sd = TM.ref_moments(t, "M", 50)
-                vals = [math.exp(TM.normalised(t, p, rng.gauss(mu, sd), "M", 50)) for _ in range(40000)]
-                self.assertAlmostEqual(sum(vals) / len(vals), 1.0, delta=0.02, msg=(t["id"], oc))
+                for c in (1.0, 0.4):   # coefficient applied before normalising: neutral for any coefficient
+                    vals = [math.exp(TM.normalised(t, p, rng.gauss(mu, sd), "M", 50, c)) for _ in range(40000)]
+                    self.assertAlmostEqual(sum(vals) / len(vals), 1.0, delta=0.02, msg=(t["id"], oc, c))
 
     def test_guardrail_caps_a_wild_term(self):
         from lp import terms as TM

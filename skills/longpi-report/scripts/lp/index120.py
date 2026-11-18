@@ -75,7 +75,7 @@ def compute(m, draws: List[dict], res: dict, n_max: int = 300) -> dict:
             p = TM.draw_effect(sp, "all_cause", None) if "all_cause" in sp.get("effect", {}) else None
             if p is None:
                 continue
-            l = TM.normalised(sp, p, tgt, m.sex, m.age) * float((sp.get("overlap") or {}).get("coef", 1.0))
+            l = TM.normalised(sp, p, tgt, m.sex, m.age, float((sp.get("overlap") or {}).get("coef", 1.0)))
             cur = T0.level if (T0 is not None and T0.level is not None) else None
             if cur is not None:   # measured but not yet counted (not sustained): gain is target relative to now
                 pass

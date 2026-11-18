@@ -119,28 +119,46 @@ def f_raw(t: dict, p: dict, x) -> float:
     return (p["b_lo"] * max(0.0, klo - x) if klo is not None else 0.0) + (p["b_hi"] * max(0.0, x - khi) if khi is not None else 0.0)
 
 
-def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float) -> float:
+def _expect(g, mu: float, sd: float, n: int = 240) -> float:
+    """E[g(X)], X ~ N(mu, sd^2), composite Simpson on mu +- 8 sd (robust to clipping kinks, unlike Gauss-Hermite)."""
+    if sd <= 0:
+        return g(mu)
+    a, h = -8.0, 16.0 / n
+    tot = 0.0
+    for i in range(n + 1):
+        z = a + i * h
+        w = 1 if i in (0, n) else (4 if i % 2 else 2)
+        tot += w * g(mu + sd * z) * math.exp(-0.5 * z * z)
+    return tot * h / 3 / math.sqrt(2 * math.pi)
+
+
+def log_mean_exp_ref(t: dict, p: dict, sex: str, age: float, scale: float = 1.0) -> float:
+    """ln E_ref[exp(scale * f(X))]; with scale = the overlap coefficient this keeps E_ref[exp(l)] = 1 exactly."""
     shape, ref = t["transform"]["shape"], t["reference"]
     if shape == "categorical":
         probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
-        return math.log(sum(pr * math.exp(p["log_rr"].get(lvl, 0.0)) for lvl, pr in probs.items()))
+        return math.log(sum(pr * math.exp(scale * p["log_rr"].get(lvl, 0.0)) for lvl, pr in probs.items()))
     if ref.get("kind") == "categorical_mid":
         probs = ref["p"] if "p" in ref else (_band(ref["by_sex_age"], sex, age) or {}).get("p", {})
         mids = ref["mids"]
         if isinstance(next(iter(mids.values())), dict):
             mids = mids.get(sex, next(iter(mids.values())))
-        return math.log(sum(pr * math.exp(f_raw(t, p, mids[lvl])) for lvl, pr in probs.items()))
+        return math.log(sum(pr * math.exp(scale * f_raw(t, p, mids[lvl])) for lvl, pr in probs.items()))
     if shape == "indicator":
         prev = ref.get("prevalence")
         if prev is None and ref.get("by_sex_age"):
             prev = (_band(ref["by_sex_age"], sex, age) or {}).get("prevalence", 0.0)
         prev = float(prev or 0.0)
-        return math.log(1 - prev + prev * math.exp(p["log_rr"]))
-    mo = ref_moments(t, sex, age)
-    mu, sd = mo
+        return math.log(1 - prev + prev * math.exp(scale * p["log_rr"]))
+    mu, sd = ref_moments(t, sex, age)
     tf = t["transform"]
-    # mean/sd are of ln x when log_x; the reference is normal on that scale
-    return math.log(DM.expect_normal(lambda z: math.exp(f_raw(dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf))), p, z)), mu, sd))
+    tt = dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf)))   # mean/sd are of ln x when log_x
+    if shape in ("loglinear", "residualized"):
+        lo, hi = (tt["transform"].get("clip") or [None, None])
+        if (lo is None or mu - 6 * sd > lo) and (hi is None or mu + 6 * sd < hi):
+            b = scale * p["beta"]
+            return b * mu + 0.5 * (b * sd) ** 2                       # closed form when clipping cannot bind
+    return math.log(_expect(lambda z: math.exp(scale * f_raw(tt, p, z)), mu, sd))
 
 
 def _clip_scale(tf: dict):
@@ -150,15 +168,16 @@ def _clip_scale(tf: dict):
     return [math.log(max(c[0], 1e-9)) if c[0] is not None else None, math.log(max(c[1], 1e-9)) if c[1] is not None else None]
 
 
-def normalised(t: dict, p: dict, x, sex: str, age: float) -> float:
+def normalised(t: dict, p: dict, x, sex: str, age: float, scale: float = 1.0) -> float:
+    """scale * f(x) - ln E_ref[exp(scale * f(X))]: coefficient applied before normalising, so peers average R = 1."""
     if t["reference"].get("kind") == "categorical_mid":
-        return f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age)
+        return scale * f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age, scale)
     if t["transform"].get("log_x") and t["transform"]["shape"] not in ("categorical", "indicator"):
         xx = math.log(max(float(x), 1e-9))
         tf = t["transform"]
         tt = dict(t, transform=dict(tf, log_x=False, clip=_clip_scale(tf)))
-        return f_raw(tt, p, xx) - log_mean_exp_ref(t, p, sex, age)
-    return f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age)
+        return scale * f_raw(tt, p, xx) - log_mean_exp_ref(t, p, sex, age, scale)
+    return scale * f_raw(t, p, x) - log_mean_exp_ref(t, p, sex, age, scale)
 
 
 # ----------------------------------------------------------------------------- matching
@@ -488,7 +507,7 @@ class ExtModel:
 
     def contribution(self, T: Term, th: dict, oc: str) -> float:
         d = th[T.id]
-        return d["c"][oc] * normalised(T.spec, d["eff"][oc], d["x"], self.m.sex, self.m.age)
+        return normalised(T.spec, d["eff"][oc], d["x"], self.m.sex, self.m.age, d["c"][oc])
 
     def life_parts(self, th: dict) -> Tuple[Dict[str, float], bool]:
         raw = {T.id: self.contribution(T, th, "all_cause") for T in self.life_terms()}
