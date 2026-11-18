@@ -498,7 +498,8 @@
      "GRCh37": 80,
      "GRCh38": 0
     }
-   }
+   },
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "qc",
@@ -506,7 +507,8 @@
    "version": "0.1.0",
    "params": {
     "pass_only": true
-   }
+   },
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "ancestry",
@@ -515,7 +517,8 @@
    "ref_data": {
     "panel": "Kidd 55 AISNPs (Kidd et al. 2014 FSI Genet 10:23); frequencies 1000G NYGC 30x, 2504 unrelated",
     "frequencies": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; superpopulation labels from integrated_call_samples_v3.20130502.ALL.panel"
-   }
+   },
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
@@ -527,7 +530,8 @@
     "scoring_file_sha256": "bdd30a32440a21d3798deeb01a53699e729383b4d2e08ddad978386d20b2d6b5",
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
-   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
@@ -539,7 +543,8 @@
     "scoring_file_sha256": "50637e2bf32de529dba8efa530e9ac3e73ecffa6e54905090dcd4fc4b9e0ce70",
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
-   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
@@ -551,7 +556,8 @@
     "scoring_file_sha256": "5b283435803b2600c509439adbfd43da591fe17cefc8444798fa45b5d376ef7d",
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
-   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
@@ -563,7 +569,8 @@
     "scoring_file_sha256": "ac5e055361277d19bfa99e7f42ee534fe18235fa02a3d4f73d5417264bba00ac",
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
-   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
@@ -575,54 +582,62 @@
     "scoring_file_sha256": "10b51527588dfe1350cc57c0e2695c430b1e820db980dce2ea78094bd86590fc",
     "reference_panel": "1000 Genomes NYGC 30x phased panel GRCh38 (20220422), 2504 unrelated samples; EAS n=504"
    },
-   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details."
+   "license": "PGS obtained from the Catalog should be cited appropriately, and used in accordance with any licensing restrictions set by the authors. See EBI Terms of Use (https://www.ebi.ac.uk/about/terms-of-use/) for additional details.",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS002241",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS002308",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS005161",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS005162",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS005163",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "prs",
    "tool": "prs_score",
    "version": "0.1.0",
    "pgs_id": "PGS005164",
-   "skipped": "scoring file not available"
+   "skipped": "scoring file not available",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "apoe",
    "tool": "apoe_genotype",
-   "version": "0.1.0"
+   "version": "0.1.0",
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "clinvar",
@@ -634,7 +649,8 @@
     "clinvar_sha256": "b42ec8b7ddc0de4af9de0494dd80324e3f7e523d1c85de3ed3ed64a59de994ee",
     "clinvar_subset": "ACMG SF v3.2 gene regions +-5 kb (tabix range reads)",
     "gene_list": "ACMG SF v3.2 (Miller et al. 2023 Genet Med 25:100866)"
-   }
+   },
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "pgx",
@@ -642,7 +658,8 @@
    "version": "0.1.0",
    "ref_data": {
     "rules": "CPIC allele definition and allele functionality tables (cpicpgx.org), SNP-definable alleles only; variant alleles are given on the GRCh38/GRCh37 + strand"
-   }
+   },
+   "source_file": "P2_chip_23andme_GRCh37.txt"
   },
   {
    "step": "clinvar_supplement",
@@ -786,6 +803,7 @@
   }
  ],
  "genetics": {
+  "source_file": "P2_chip_23andme_GRCh37.txt",
   "build": "GRCh37",
   "source_type": "chip",
   "qc": {
@@ -800,7 +818,6 @@
    "declared_sex": "F",
    "sex_check": "ok",
    "notes": [
-    "PGS002241: Catalog metadata unavailable (PrivacyError)",
     "PGS002308: Catalog metadata unavailable (PrivacyError)",
     "PGS005161: Catalog metadata unavailable (PrivacyError)",
     "PGS005162: Catalog metadata unavailable (PrivacyError)",

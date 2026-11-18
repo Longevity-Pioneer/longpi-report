@@ -277,13 +277,14 @@ function renderOverview() {
     const btn = document.createElement('button'); btn.textContent = n; btn.className = SC === k ? 'on' : '';
     btn.onclick = () => { SC = k; renderOverview(); }; seg.appendChild(btn); });
   const cur = SC === 'W' ? null : scen[SC];
-  const idx = SC === 'W' ? R.index120.weighted_index.median : cur.index.median;
+  const BH = R.index120.behavior;
+  const idx = SC === 'W' ? (BH ? BH.total_index.median : R.index120.weighted_index.median) : cur.index.median;
   $('#ixVal').innerHTML = `${idx.toFixed(1)}<small>分</small>`;
   const ratio = 10 ** ((idx - 100) / 10);
   const sx = cur || scen[central];
   const wts = R.index120.weights; const wtxt = Object.keys(wts).map(k => `${scen[k].name} ${wts[k]}`).join(' / ');
   $('#ixText').innerHTML = SC === 'W'
-    ? `三种情景加权（${esc(wtxt)}）。活到 120 岁的可能性约为同龄人的 <b>${ratio.toFixed(2)} 倍</b>。里程碑按"${esc(scen[central].name)}"显示。`
+    ? `身体状态（三种情景加权：${esc(wtxt)}）${BH ? `加持续行为 ${BH.behavior_points >= 0 ? '+' : ''}${BH.behavior_points.toFixed(1)} 分` : ''}。活到 120 岁的可能性约为同龄人的 <b>${ratio.toFixed(2)} 倍</b>。里程碑按"${esc(scen[central].name)}"显示；切换到单个情景时只显示身体状态。`
     : `${esc(cur.desc)}。80% 区间 ${cur.index.p10}–${cur.index.p90} 分；P(活到 120) ≈ <b>${pexp(cur.p120.median)}</b>，约为同龄人的 <b>${ratio.toFixed(2)} 倍</b>；期望寿命 ${cur.life_exp.median} 岁（人群 ${cur.ref_life_exp}）。`;
   $('#ixMs').innerHTML = ['80', '90', '100', '110', '120'].map(k => `<div><b>${pexp(sx.milestones[k].median)}</b><span>${k} 岁（${pexp(sx.ref_milestones[k])}）</span></div>`).join('');
   const ivs = R.interventions.filter(i => !i.medical && i.id !== 'core' && i.quantified && !i.small_effect).sort((a, b) => a.d_longpi_age.median - b.d_longpi_age.median).slice(0, 3);
@@ -482,7 +483,7 @@ function renderData() {
 
 /* ---------- 风险 ---------- */
 const LV = {'关注': ['--serious', '▲'], '留意': ['--warning', '●'], '一般': ['--good', '✓']};
-function pct(x) { return x == null ? '—' : (x < 0.001 ? '<0.1%' : (100 * x).toFixed(x < 0.1 ? 1 : 0) + '%'); }
+function pct(x) { return x == null ? '—' : (x < 0.001 ? '<0.1%' : (100 * x).toFixed(1) + '%'); }
 function renderDiseases() {
   const D = R.diseases; show('#dzCard', !!(D && D.diseases && D.diseases.length));
   if (!D || !D.diseases) return;

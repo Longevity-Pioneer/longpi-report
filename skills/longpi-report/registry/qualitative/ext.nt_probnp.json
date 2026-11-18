@@ -10,6 +10,9 @@
   "platform": null,
   "methods": [
    "lab"
+  ],
+  "alt_codes": [
+   "UNIPROT:P16860"
   ]
  },
  "transform": {

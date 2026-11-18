@@ -50,7 +50,9 @@ def cmd_compute(a) -> int:
     Path(a.output).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     la = res["longpi_age"]
     print(f"LongPi Age {la['value']['median']} (80% {la['value']['p10']}-{la['value']['p90']}), "
-          f"chrono {la['chrono']}; 120 Index (weighted) {res['index120']['weighted_index']['median']}")
+          f"chrono {la['chrono']}; 120 Index {(res['index120'].get('behavior') or {}).get('total_index', res['index120']['weighted_index'])['median']} "
+          f"(body state {res['index120']['weighted_index']['median']}"
+          f"{' + behaviour ' + format(res['index120']['behavior']['behavior_points'], '+') if res['index120'].get('behavior') else ''})")
     print(f"wrote {a.output}")
     return 0
 

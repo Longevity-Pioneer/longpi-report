@@ -158,8 +158,9 @@ def from_person(person: dict, derived: Optional[dict] = None) -> List[dict]:
     return obs
 
 
-CORE_INPUT_KEYS = {"labs": ("albumin", "creatinine", "glucose", "glucose_fasting", "crp", "lymph_pct", "mcv", "rdw", "alp", "wbc", "ldl", "hba1c"),
-                   "vitals": ("sbp", "pulse"), "anthropometrics": ("height_cm", "weight_kg", "bmi"), "fitness": ("vo2max", "grip_kg"),
+CORE_INPUT_KEYS = {"labs": ("albumin", "creatinine", "glucose", "glucose_fasting", "crp", "lymph_pct", "mcv", "rdw", "alp", "wbc", "ldl", "hba1c",
+                            "tc", "hdl", "ast", "alt", "platelets", "uric_acid"),   # also read by the clinical calculators
+                   "vitals": ("sbp", "dbp", "pulse"), "anthropometrics": ("height_cm", "weight_kg", "bmi"), "fitness": ("vo2max", "grip_kg"),
                    "wearables": ("rhr_30d", "sleep_h_median", "vo2max_recent")}
 
 

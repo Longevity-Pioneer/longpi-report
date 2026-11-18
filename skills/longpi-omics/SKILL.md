@@ -66,3 +66,15 @@ python3 $S metagenome   <species.tsv> --out obs.json
 python3 -m unittest discover -s skills/longpi-omics/tests        # 离线快速测试
 LONGPI_OMICS_SLOW=1 python3 -m unittest discover -s skills/longpi-omics/tests   # 含联网验证
 ```
+
+## 同一个人有两份基因数据
+
+例如消费级芯片 + 临床 WGS/WES：两个文件都用 `genotype` 跑，写进同一个 `observations.json`，顺序不限。
+位点更多的一份作为主数据（多基因评分、APOE、药物基因组、族裔），另一份作为补充（只加入它的致病变异）；
+一个文件重跑只替换它自己上次的结果。只含少数基因区域的小文件（如 LDLR 区段）建议加 `--monogenic-only`。
+每次都写 `--sex`（与 person.json 一致），小文件没有足够的 X 染色体位点时无法自行判断性别。
+
+## 离线运行
+
+`--offline` 只用 `~/longpi/omics-ref` 里已缓存的参考数据。没缓存的评分文件或东亚参考分布会标为"未计算"并写明原因，其余步骤照常完成。
+缓存的压缩文件在第一次使用时做完整性检查，下载中断留下的残缺文件会被删除并重新下载。

@@ -194,3 +194,22 @@ class Validation(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class E2EFixes(unittest.TestCase):
+    """From the Sonnet end-to-end run."""
+
+    def test_past_due_date_flagged(self):
+        from lp import schema
+        out = {"results": {"as_of": "2026-11-10", "longpi_age": {"value": {"median": 40.0}}}}
+        probs = schema.check_narrative({"clinical": [{"action": "复查", "due": "2026-10"}]}, out)
+        self.assertTrue(any("早于数据截至日期" in p for p in probs))
+
+    def test_no_none_half_life_and_no_absent_drivers(self):
+        RG.use(MAIN)
+        r = run(person_p1())
+        blob = json.dumps(r["diseases"], ensure_ascii=False)
+        self.assertNotIn("None 年", blob)
+        for d in r["diseases"]["diseases"]:
+            for x in d.get("drivers", []):
+                self.assertNotIn("已确诊 2 型糖尿病", x["name"])   # P1 has no diabetes: not a driver

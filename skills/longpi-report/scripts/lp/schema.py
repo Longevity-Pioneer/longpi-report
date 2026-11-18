@@ -157,7 +157,9 @@ def fact_sheet(out: dict) -> str:
     for p in la["clock"]["phenoage_points"]:
         lines.append(f"- {p['date']}：PhenoAge {p['phenoage']}，参考 {p['ref_phenoage']}，差值 {p['gap']:+}（单次噪声 ±{p['noise_sd']}"
                      + ("，CRP 补入" if p["crp_imputed"] else "") + "）")
-    lines += ["", f"## 120 指数（加权 {ix['weighted_index']['median']}，权重 {ix['weights']}）"]
+    tot = (ix.get("behavior") or {}).get("total_index")
+    lines += ["", f"## 120 指数：总分 {tot['median'] if tot else ix['weighted_index']['median']}（身体状态加权 {ix['weighted_index']['median']}"
+                  + (f" + 持续行为 {ix['behavior']['behavior_points']:+}" if tot else "") + f"；情景权重 {ix['weights']}；下列各情景只含身体状态）"]
     for k, s in ix["scenarios"].items():
         lines.append(f"- {k} {s['name']}：指数 {s['index']['median']}（{s['index']['p10']}–{s['index']['p90']}）；期望寿命 {s['life_exp']['median']}（人群 {s['ref_life_exp']}）；"
                      f"P(90) {s['milestones']['90']['median']:.3f}（人群 {s['ref_milestones']['90']:.3f}）；P(100) {s['milestones']['100']['median']:.4f}（人群 {s['ref_milestones']['100']:.4f}）")
@@ -174,7 +176,8 @@ def fact_sheet(out: dict) -> str:
         lines.append(f"- {mt['clock']} {mt['value']}（{mt['date']}，采样时 {mt['age_at_test']} 岁）；相对 NHANES 参考的加速 {mt['accel']:+} 年；"
                      f"按其他指标预期 {mt['expected_accel']:+} 年；超出预期 {mt['resid']:+} 年 → 计入 {la['methylation_delta']['median']:+} 年")
     else:
-        lines.append(f"- 未计入：{'现有报告是 ' + '、'.join(x['clock_type'] or '未注明' for x in mt['provided_not_counted']) + '，不是 GrimAge2 / GrimAge' if mt.get('provided_not_counted') else '没有甲基化检测'}；"
+        omics_clocks = [r["name"] for r in ((r.get("extension") or {}).get("omics_results") or []) if r["code"].startswith("LP:clock.")]
+        lines.append(f"- 未计入：{'现有报告是 ' + '、'.join(x['clock_type'] or '未注明' for x in mt['provided_not_counted']) + '，不是 GrimAge2 / GrimAge' if mt.get('provided_not_counted') else ('没有 GrimAge2 / GrimAge（已有 ' + '、'.join(omics_clocks) + '，见组学结果与定性佐证）' if omics_clocks else '没有甲基化检测')}；"
                      f"没测时这一块相当于 LongPi Age ±{mt['unmeasured_sd_years']} 年（1 个标准差）的不确定")
     lines.append(f"- NHANES：GrimAge2 在 LongPi 之外每 1 个标准差 HR {mt['nhanes']['hr_per_sd_resid']}，C 指数 +{mt['nhanes']['c_gain']}；"
                  "其他时钟：" + "；".join(f"{k} {v['hr_per_sd_resid']}" for k, v in mt["not_counted"].items()))
@@ -222,7 +225,13 @@ def fact_sheet(out: dict) -> str:
 
 
 def _pc(x):
-    return "—" if x is None else f"{100 * x:.1f}%"
+    """Same rounding as the report page (renderDiseases.pct)."""
+    if x is None:
+        return "—"
+    return "<0.1%" if x < 0.001 else f"{100 * x:.1f}%"
+
+
+STATUS_ZH = {"diagnosed": "已确诊，不再预测", "not_applicable": "不适用", "no_baseline": "暂无可用的基线数据"}
 
 
 def _facts_112(r: dict) -> List[str]:
@@ -246,6 +255,10 @@ def _facts_112(r: dict) -> List[str]:
             out.append("- ⚠ 本次使用的不是技能自带的项目库（LONGPI_REGISTRY_DIR 或测试替换），结果不能作为正式报告")
         if ex.get("dropped_observations"):
             out.append("- 未采用的观测：" + "；".join(f"{d['code']}（{d['why']}）" for d in ex["dropped_observations"][:10]))
+        if ex.get("omics_results"):
+            out += ["", "## 本人组学与厂商结果（叙述引用组学数值从这里抄；是否计入见上一节与定性佐证）"]
+            out += [f"- {r['name']}（{r['code']}）：{r['value']} {r['unit']}（{r.get('date') or '日期未知'}，{'本地计算' if r['method'] == 'tool' else '厂商报告'}）"
+                    for r in ex["omics_results"]]
         if ex.get("qualitative"):
             out += ["", "## 定性佐证（不折成岁数）"]
             out += [f"- {q['name']}：{q.get('why')}" for q in ex["qualitative"]]
@@ -262,7 +275,7 @@ def _facts_112(r: dict) -> List[str]:
         out += ["", "## 疾病风险（10 年 / 终身，括号内同龄人群；风险卡里的数字从这里抄）"]
         for d in dz["diseases"]:
             if d["status"] != "estimated":
-                out.append(f"- {d['name']}：{d['status']}" + (f"（{'；'.join(d['notes'])}）" if d.get("notes") else ""))
+                out.append(f"- {d['name']}：{STATUS_ZH.get(d['status'], d['status'])}" + (f"（{'；'.join(d['notes'])}）" if d.get("notes") else ""))
                 continue
             drv = "；".join(f"{x['name']} ×{x['hr']}" for x in d["drivers"][:4]) or "无个人因素"
             out.append(f"- {d['name']}：10 年 {_pc(d['risk10']['mean'])}（{_pc(d['risk10']['p10'])}–{_pc(d['risk10']['p90'])}；人群 {_pc(d['peer10'])}）；"
@@ -273,9 +286,9 @@ def _facts_112(r: dict) -> List[str]:
     b = (r.get("index120") or {}).get("behavior")
     if b:
         out += ["", f"## 120 指数：身体状态 {b['state_index']} + 持续行为 {b['behavior_points']:+} = {b['total_index']['median']}（{b['total_index']['p10']}–{b['total_index']['p90']}）"]
-        out += [f"- 已计分：{x['name']} {x['points']:+} 分（风险 ×{x['hr']}）" + (f"；{'；'.join(x['notes'])}" if x.get("notes") else "") for x in b["behaviors"]]
+        out += [f"- 已计分：{x['name']} {x['points']:+.1f} 分（风险 ×{x['hr']}）" + (f"；{'；'.join(x['notes'])}" if x.get("notes") else "") for x in b["behaviors"]]
         out += [f"- 可加分：{g['name']}" + (f"（目标 {g['target']}）坚持 {g['min_weeks']} 周后" if g.get("target") is not None else "：按指南按期完成后")
-                + f"约 +{g['points_if_adopted']} 分"
+                + f"约 +{g['points_if_adopted']:.1f} 分"
                 + (f"；现在未计入：{'；'.join(g['why_not_now'])}" if g.get("why_not_now") else "") for g in b["how_to_gain"]]
     return out
 
@@ -338,6 +351,11 @@ def check_narrative(n: dict, out: dict) -> List[str]:
         txt = json.dumps(rk, ensure_ascii=False)
         if re.search(r"确诊为|诊断为", txt):
             probs.append(f"risks[{i}] 不要写诊断结论（用“风险/提示/建议就医评估”）")
+    as_of = (out.get("results") or {}).get("as_of")
+    for i, c in enumerate(n.get("clinical", []) or []):
+        due = str(c.get("due") or "")
+        if as_of and re.match(r"^\d{4}-\d{2}", due) and due[:7] < as_of[:7]:
+            probs.append(f"clinical[{i}].due {due} 早于数据截至日期 {as_of}，请改为“尽快”或之后的月份")
     for i, f in enumerate(n.get("frontier", [])):
         for k in ("title", "grade", "body", "next"):
             if not f.get(k):

@@ -244,7 +244,9 @@ def run(args):
     provenance.append({"step": "pgx", "tool": "pgx_cpic", "version": TOOLS["pgx_cpic"],
                        "ref_data": {"rules": pgx.load_defs()["source"]}})
 
-    genetics = {"build": build, "source_type": src, "qc": q, "ancestry": anc, "prs": prs_out, "apoe": ap,
+    for pv in provenance:
+        pv.setdefault("source_file", common_obs["source_file"])
+    genetics = {"source_file": common_obs["source_file"], "build": build, "source_type": src, "qc": q, "ancestry": anc, "prs": prs_out, "apoe": ap,
                 "monogenic": mono, "pgx": px, "pgx_caveat_zh": pgx.load_defs()["caveat_zh"]}
     summary = [f"build {build} ({bmeta['method']}); source {src}; call rate {q['call_rate']}; sex {q['inferred_sex']}",
                "ancestry " + ", ".join(f"{k} {anc.get(k)}" for k in core.SUPERPOPS),

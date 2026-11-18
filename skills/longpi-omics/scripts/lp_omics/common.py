@@ -66,16 +66,51 @@ def download(url: str, dest: Path, *, force: bool = False) -> Path:
     """GET a public resource into the cache (atomic). Never sends a body."""
     check_public_url(url)
     dest = Path(dest)
-    if dest.exists() and dest.stat().st_size > 0 and not force:
+    if dest.exists() and dest.stat().st_size > 0 and not force and cached_ok(dest):
         return dest
     offline_guard(url)
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
     req = urllib.request.Request(url, method="GET", headers={"User-Agent": "longpi-omics/" + OMICS_VERSION})
     with urllib.request.urlopen(req, timeout=120) as r, open(tmp, "wb") as fh:
+        expected = getattr(r, "headers", {}).get("Content-Length") if hasattr(getattr(r, "headers", None), "get") else None
         shutil.copyfileobj(r, fh)
+    got = tmp.stat().st_size
+    if expected is not None and got != int(expected):
+        tmp.unlink(missing_ok=True)
+        raise OSError(f"download truncated: {got} of {expected} bytes from {url}")
+    if not _integrity_ok(tmp):
+        tmp.unlink(missing_ok=True)
+        raise OSError(f"downloaded file is corrupt (gzip test failed): {url}")
     os.replace(tmp, dest)
     return dest
+
+
+def _integrity_ok(path: Path) -> bool:
+    """A .gz file must decompress to its end (a cut-off download fails here, before it reaches the cache)."""
+    if not str(path).endswith(".gz"):
+        return True
+    import gzip
+    try:
+        with gzip.open(path, "rb") as fh:
+            while fh.read(1 << 20):
+                pass
+        return True
+    except (OSError, EOFError):
+        return False
+
+
+def cached_ok(dest: Path) -> bool:
+    """A cached file is reused only if it passes the integrity test once (marker file next to it)."""
+    dest = Path(dest)
+    mark = dest.with_name(dest.name + ".ok")
+    if mark.exists() and mark.stat().st_mtime >= dest.stat().st_mtime:
+        return True
+    if _integrity_ok(dest):
+        mark.write_text("ok\n")
+        return True
+    dest.unlink()
+    return False
 
 
 def download_ranged(url: str, dest: Path, *, connections: int = 8, force: bool = False) -> Path:
@@ -203,16 +238,39 @@ def merge(doc: dict, *, tool_ids: Iterable[str], observations: list[dict], prove
     Re-running a subcommand is idempotent: its old observations and provenance are dropped.
     """
     tool_ids = set(tool_ids)
-    keep = [o for o in doc["observations"] if o.get("tool") not in tool_ids]
+    sources = {o.get("source_file") for o in observations} | {p.get("source_file") for p in provenance}
+    sources.discard(None)
+
+    def replaced(x: dict) -> bool:
+        # a re-run replaces only what the same tools wrote from the same input file; another file's results stay
+        tid = (x.get("tool") or {}).get("id") if isinstance(x.get("tool"), dict) else x.get("tool")
+        return tid in tool_ids and (not sources or x.get("source_file") in sources or x.get("source_file") is None)
+    keep = [o for o in doc["observations"] if not replaced(o)]
     doc["observations"] = keep + observations
-    doc["provenance"] = [p for p in doc["provenance"] if p.get("tool") not in tool_ids] + provenance
+    doc["provenance"] = [p for p in doc["provenance"] if not replaced(p)] + provenance
     if genetics is not None:
         g = doc.get("genetics") or {}
         old_mono = g.get("monogenic") or []
         supplement = genetics.pop("_monogenic_supplement", False)
+        old_src, new_src = g.get("source_file"), genetics.get("source_file")
+        if not supplement and g and old_src and new_src and old_src != new_src:
+            # a second genotype file: the one with more called variants stays primary; the other is kept as a
+            # supplement (its monogenic findings are added; its PRS/APOE/PGx do not overwrite the primary's)
+            n_old = ((g.get("qc") or {}).get("n_variants") or 0)
+            n_new = ((genetics.get("qc") or {}).get("n_variants") or 0)
+            if n_new <= n_old:
+                genetics = {"monogenic": [dict(m, supplement=True, source_file=new_src) for m in genetics.get("monogenic", [])],
+                            "supplements": (g.get("supplements") or []) + [{k: genetics.get(k) for k in ("source_file", "build", "source_type", "qc")}]}
+                supplement = True
+            else:
+                genetics["supplements"] = (g.get("supplements") or []) + [{k: g.get(k) for k in ("source_file", "build", "source_type", "qc")}]
+                old_mono = [dict(m, supplement=True) for m in old_mono]
         if supplement:
             # a clinical WGS/WES file adds monogenic findings without replacing the main genotype run
-            g["monogenic"] = [m for m in old_mono if not m.get("supplement")] + genetics.get("monogenic", [])
+            g["monogenic"] = [m for m in old_mono if not (m.get("supplement") and m.get("source_file") in
+                                                          {x.get("source_file") for x in genetics.get("monogenic", [])})] + genetics.get("monogenic", [])
+            if genetics.get("supplements"):
+                g["supplements"] = genetics["supplements"]
         else:
             g.update(genetics)
             g["monogenic"] = genetics.get("monogenic", []) + [m for m in old_mono if m.get("supplement")]

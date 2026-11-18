@@ -67,6 +67,15 @@ def _risk(oc: dict, sex: str, age0: float, surv_ages: List[float], surv: List[fl
     return acc
 
 
+def _persistence_label(T) -> str:
+    hl = (T.spec.get("persistence") or {}).get("half_life_years")
+    if T.kind == "genetic" or (T.kind == "exposure" and hl is None):
+        return "整个余生"
+    if T.spec["transform"]["shape"] == "indicator":
+        return "持续存在" if hl is None else f"半衰期约 {hl:g} 年"
+    return f"半衰期约 {(hl if hl is not None else 10):g} 年"
+
+
 def _summ(vals: List[float], point: float, nd: int = 4) -> dict:
     """median / p10 / p90 of the draws; `mean` is the expected risk (the number a probability statement should use)."""
     from .engine import q
@@ -144,10 +153,11 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
             v = parts_acc[T.id]
             if not v:
                 continue
+            if T.spec["transform"]["shape"] == "indicator" and T.value == 0:
+                continue          # "does not have it" only re-centres against peers; not shown as a factor
             lv = math.log(statistics.fmean(math.exp(x) for x in v))
             drivers.append({"id": T.id, "name": T.spec["name_zh"], "kind": T.kind, "hr": round(math.exp(lv), 2),
-                            "persistence": "整个余生" if T.kind in ("genetic", "exposure") else
-                            f"半衰期约 {(T.spec.get('persistence') or {}).get('half_life_years', 10)} 年",
+                            "persistence": _persistence_label(T),
                             "evidence": {"pmid": (T.spec.get("evidence") or {}).get("pmid"), "grade": (T.spec.get("evidence") or {}).get("grade")},
                             "disclosure": T.spec.get("disclosure", "standard"), "notes": T.notes})
         drivers.sort(key=lambda r: -abs(math.log(r["hr"])))
@@ -162,6 +172,13 @@ def compute(m, draws: List[dict], n_max: int = 300) -> dict:
                     continue
                 missing.append({"id": sp["id"], "name": sp["name_zh"], "kind": sp["kind"], "test": sp.get("test")})
         row["missing_inputs"] = missing
+        if m.ext.prefs.get("secondary_findings"):
+            for q in reg["qualitative"].values():
+                qc = (q.get("input") or {}).get("code", "")
+                if qc.startswith("LP:monogenic:") and did in (q.get("effect") or {}) and any(
+                        (o.get("value") == 1) for o in m.obs.rows(qc)):
+                    row["notes"].append(f"本人携带{q.get('name_zh', qc).replace('携带', '')}：现有证据不足以折算成数值，未计入上面的风险，"
+                                        "实际风险可能明显更高，建议遗传咨询与专科评估")
         chip = [v for v in genetics.get("monogenic") or [] if isinstance(v, dict) and did in (v.get("disease_ids") or [])
                 and v.get("source_type") == "chip" and not v.get("confirmed_clinical")]
         if chip and m.ext.prefs.get("secondary_findings"):

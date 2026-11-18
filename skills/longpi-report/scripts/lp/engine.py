@@ -819,6 +819,26 @@ def _evidence_brief(spec: dict) -> dict:
             "design": ev.get("design")}
 
 
+def _omics_results(m: Model, sensitive, names: dict) -> List[dict]:
+    """The person's own results from the omics layer / vendor reports (latest per code), for the fact sheet."""
+    lp = OB.codes().get("lp_codes", {})
+    latest: Dict[str, dict] = {}
+    for o in m.obs.items:
+        if o.get("method") not in ("tool", "vendor") or sensitive(o["code"]):
+            continue
+        if o["code"] not in latest or (o.get("datetime") or "") >= (latest[o["code"]].get("datetime") or ""):
+            latest[o["code"]] = o
+    out = []
+    for c, o in sorted(latest.items()):
+        label = names.get(c) or lp.get(c)
+        if not label:
+            pat = next(((k, v) for k, v in lp.items() if "<" in k and c.startswith(k.split("<")[0])), None)
+            label = (pat[1].split("（")[0] + "：" + c[len(pat[0].split("<")[0]):]) if pat else c
+        out.append({"code": c, "name": label, "value": o["value"], "unit": o.get("unit") or "", "date": o.get("datetime"),
+                    "method": o.get("method"), "tool": (o.get("tool") or {}).get("id") if isinstance(o.get("tool"), dict) else o.get("tool")})
+    return out
+
+
 def _genetics_public(g: dict) -> dict:
     """Only numeric QC and ancestry fields leave the engine; free text (notes, file names) never does."""
     out = {}
@@ -913,13 +933,23 @@ def ext_summary(m: Model, draws: List[dict]) -> dict:
             if c:
                 conflicts.append(c)
     core_codes = set(OB.core_codes())
-    known = {t["input"]["code"] for t in reg["terms"].values() if not t.get("core")} | \
-            {q.get("input", {}).get("code") for q in reg["qualitative"].values()}
+    known = set()
+    names = {}
+    for t in list(reg["terms"].values()) + list(reg["qualitative"].values()):
+        if t.get("core"):
+            continue
+        for c in [(t.get("input") or {}).get("code")] + list((t.get("input") or {}).get("alt_codes") or []):
+            if c:
+                known.add(c)
+                names.setdefault(c, t.get("name_zh"))
+    # a clock value whose acceleration/gap has a term (LP:clock.horvath vs LP:clock.horvath_accel) is covered too
+    known |= {k.rsplit("_", 1)[0] for k in list(known) if k.endswith(("_accel", "_gap"))}
     unbuilt = sorted(c for c in observed if c not in known and c not in core_codes and not sensitive(c)
                      and not c.startswith(("LP:monogenic:", "LP:fh:")) and not (c.startswith("ICD10:") and any(
                          c in (o.get("diagnosed_codes") or []) for o in reg["outcomes"].values())))
     return {"registry": {"version": reg["version"], "digest": reg["digest"]},
             "unbuilt_codes": unbuilt,
+            "omics_results": _omics_results(m, sensitive, names),
             "terms": rows, "qualitative": qual, "could_move": unmeasured[:10],
             "guardrail": {"single_cap_log_hr": m.ext.cap_single, "total_cap_log_hr": m.ext.cap_total,
                           "recentre_offset_log_hr": round(m.ext.life_offset, 4),

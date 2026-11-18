@@ -85,3 +85,16 @@ python3 -m unittest discover -s tests     # 离线，用录制的响应
 ```
 
 归一化与引擎一致：先乘系数再归一化，`l = c·f(x) − ln E_ref[exp(c·f(X))]`（各形状的 f 见脚本文件头）。`check-population` 逐段与引擎的 `lp.terms.log_mean_exp_ref` 比对。
+
+## 在项目库副本上试建
+
+正式项目库在 `longpi-report/registry/`。想先在副本上试（不影响正式库）：
+
+```bash
+cp -R <skills>/longpi-report/registry /tmp/reg-copy
+export LONGPI_REGISTRY_DIR=/tmp/reg-copy      # verify / add / compute 都读写这个目录
+# ……建项、重新 compute……
+unset LONGPI_REGISTRY_DIR
+```
+
+用副本算出的事实表会提示"不是技能自带的项目库"，不能作为正式报告。
