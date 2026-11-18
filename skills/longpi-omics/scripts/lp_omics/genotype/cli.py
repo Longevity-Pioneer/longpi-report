@@ -73,7 +73,8 @@ def run(args):
         os.environ["LONGPI_OMICS_OFFLINE"] = "1"
     path = Path(args.input)
     panel = core.load_panel()
-    freqs = common.load_json(common.data_file("aisnp_1kg_freqs.json"))
+    ff = common.data_file("aisnp_1kg_freqs.json")
+    freqs = common.load_json(ff) if ff.exists() else {"snps": {}, "source": None}
     reg = registry_pgs(args.registry)
     pgs_ids = sorted(set(args.pgs) | set(reg))
     for pid in pgs_ids:

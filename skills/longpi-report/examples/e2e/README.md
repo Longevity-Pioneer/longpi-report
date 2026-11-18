@@ -19,3 +19,22 @@
 - 文件中的样本列名（如 `SYNTH_P1`）只用于标识合成数据，组学层输出的 observations.json 不写入样本列名。
 - 运行示例：`python3 skills/longpi-omics/scripts/omics.py methylation skills/longpi-report/examples/e2e/P1_methylation_beta.csv --age 48 --sex M --person-code P1 --out P1.observations.json`；蛋白组需 `--age 61 --sex F`。
 - 这些数值只用于检验流程是否走通与输出是否可复现，不代表任何健康结论。
+
+## 基因组（派生自 1000 Genomes 公开样本）
+
+以下文件由 `skills/longpi-omics/validation/build_e2e_genotypes.py` 从 1000 Genomes 高深度（NYGC 30x，GRCh38）公开、开放授权的东亚样本派生，样本编号已改为 P1、P2，只保留检验所需的区域。
+
+| 文件 | 对象 | 内容 |
+|---|---|---|
+| `P1_genotypes_GRCh38.vcf` | P1（男，汉族北京样本） | 单样本 VCF，带 contig 头部。保留：祖源信息位点、APOE、药物基因组位点、7 个测试评分的全部位点（含纯合参考的调用）；BRCA1、BRCA2、LDLR、MLH1、PCSK9、TP53 基因区与 X 染色体一段（150 kb）只保留非参考调用，与真实全基因组 VCF 一致 |
+| `P2_chip_23andme_GRCh37.txt` | P2（女，汉族南方样本） | 23andMe 格式的芯片文本（GRCh37 坐标，经 UCSC 链文件转换），只含单核苷酸位点 |
+| `P2_wgs_LDLR_GRCh38.vcf` | P2 | 小型"全基因组来源"VCF：LDLR 区域的真实调用，另**人为加入**一个 ClinVar 致病（审核 ≥2 星）的 LDLR 杂合单核苷酸变异，用于检验单基因致病变异路径；该变异为合成，不属于原始样本 |
+| `genotype_sources.json` | — | 派生说明：来源人群、加入变异的 ClinVar 编号与坐标、测试评分清单 |
+| `expected/` | — | 组学层在这些输入上的输出（`validation/validate_e2e.py` 生成），用于回归比对 |
+
+说明：
+
+- 测试评分：PGS002262（冠心病）、PGS002259（卒中）、PGS003353（2 型糖尿病）、PGS000050（乳腺癌）、PGS000070（肺癌）、PGS000662（前列腺癌）、PGS003850（结直肠癌）。
+- 同一 P1 调用转换到 GRCh37 的版本（无 contig 头部，用于检验按标记位点识别版本）放在 `skills/longpi-omics/tests/fixtures/genotype/`。
+- 运行示例：`python3 skills/longpi-omics/scripts/omics.py genotype skills/longpi-report/examples/e2e/P1_genotypes_GRCh38.vcf --sex M --person-code P1 --pgs PGS002262 --out P1.observations.json`；
+  `P2_wgs_LDLR_GRCh38.vcf` 需加 `--source-type wgs`。

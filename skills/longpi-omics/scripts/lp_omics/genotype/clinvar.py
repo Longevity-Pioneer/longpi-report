@@ -75,11 +75,13 @@ def full_vcf(build: str, *, connections: int = 8) -> Path:
     return common.download_ranged(CLINVAR_URL.format(build=build), dest, connections=connections)
 
 
-def subset_vcf(build: str, *, pad: int = 5000) -> Path:
-    """ACMG SF gene regions of the official ClinVar VCF, fetched by tabix range reads (bcftools).
+def subset_vcf(build: str, *, pad: int = 5000, workers: int = 4) -> Path:
+    """ACMG SF gene regions of the official ClinVar VCF, fetched by tabix range reads (bcftools),
+    one gene per request with per-gene caching so an interrupted fetch resumes.
 
-    Only public gene coordinates are sent; the result is cached with the ClinVar ##fileDate header.
+    Only public gene coordinates are sent; the result keeps the ClinVar ##fileDate header.
     """
+    import concurrent.futures as cf
     import shutil
     import subprocess
     d = common.ref_dir("clinvar", build)
@@ -89,20 +91,48 @@ def subset_vcf(build: str, *, pad: int = 5000) -> Path:
     url = CLINVAR_URL.format(build=build)
     common.check_public_url(url)
     common.offline_guard(url)
-    reg = d / "acmg_regions.tsv"
-    rows = sorted({(v[f"region_{build}"][0], max(1, v[f"region_{build}"][1] - pad), v[f"region_{build}"][2] + pad)
-                   for v in load_genes()["genes"].values()}, key=lambda r: (r[0].zfill(2), r[1]))
-    reg.write_text("".join(f"{c}\t{a}\t{b}\n" for c, a, b in rows))
-    bcf = shutil.which("bcftools") or "/opt/homebrew/bin/bcftools"
-    tmp = d / "clinvar_acmg_regions.part.vcf.gz"
     common.drop_bad_index(d, url)
-    for _ in range(3):
-        r = subprocess.run([bcf, "view", "-R", str(reg), "-Oz", "-o", str(tmp), url], cwd=d,
-                           capture_output=True, text=True)
-        if r.returncode == 0:
-            break
-    else:
-        raise RuntimeError(f"ClinVar region fetch failed: {r.stderr[-500:]}")
+    bcf = shutil.which("bcftools") or "/opt/homebrew/bin/bcftools"
+    gdir = d / "genes"
+    gdir.mkdir(exist_ok=True)
+
+    def fetch(args, out):
+        if out.exists():
+            return
+        err = ""
+        for _ in range(4):
+            try:
+                r = subprocess.run([bcf, "view", *args, url], cwd=d, capture_output=True, text=True,
+                                   encoding="utf-8", errors="replace", timeout=1800)
+            except subprocess.TimeoutExpired:
+                err = "timeout"
+                continue
+            if r.returncode == 0:
+                tmp = out.with_suffix(".tmp")
+                tmp.write_text(r.stdout)
+                tmp.replace(out)
+                return
+            err = r.stderr[-400:]
+        raise RuntimeError(f"ClinVar fetch failed ({out.name}): {err}")
+
+    fetch(["-h"], gdir / "_header.vcf")
+    jobs = []
+    for g, v in sorted(load_genes()["genes"].items()):
+        c, a, b = v[f"region_{build}"]
+        jobs.append((["-H", "-r", f"{c}:{max(1, a - pad)}-{b + pad}"], gdir / f"{g}.vcf"))
+    with cf.ThreadPoolExecutor(workers) as ex:
+        list(ex.map(lambda j: fetch(*j), jobs))
+    seen = set()
+    tmp = d / "clinvar_acmg_regions.part.vcf.gz"
+    with gzip.open(tmp, "wt") as fh:
+        fh.write((gdir / "_header.vcf").read_text())
+        for _, f in jobs:
+            for line in open(f):
+                key = line.split("\t", 3)[:3]
+                k = tuple(key)
+                if k not in seen:
+                    seen.add(k)
+                    fh.write(line)
     tmp.replace(dest)
     return dest
 
