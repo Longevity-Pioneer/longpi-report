@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import os
 import sys
 from pathlib import Path
 
@@ -44,10 +45,13 @@ def main(argv=None) -> int:
         p.add_argument("--out", required=True, help="observations.json to create or merge into")
         p.add_argument("--person-code", default=None, help="person code written to observations.json (no names)")
         p.add_argument("--date", default=None, help="sample date YYYY-MM-DD for the observations")
+        p.add_argument("--offline", action="store_true", help="never download; use cached reference data only")
         mod.add_arguments(p)
         mods[name] = mod
     args = ap.parse_args(argv)
     mod = mods[args.cmd]
+    if args.offline:
+        os.environ["LONGPI_OMICS_OFFLINE"] = "1"
     doc = common.load_doc(Path(args.out), args.person_code)
     res = mod.run(args)
     common.merge(doc, tool_ids=res["tool_ids"], observations=res["observations"],

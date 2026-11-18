@@ -208,7 +208,14 @@ def merge(doc: dict, *, tool_ids: Iterable[str], observations: list[dict], prove
     doc["provenance"] = [p for p in doc["provenance"] if p.get("tool") not in tool_ids] + provenance
     if genetics is not None:
         g = doc.get("genetics") or {}
-        g.update(genetics)
+        old_mono = g.get("monogenic") or []
+        supplement = genetics.pop("_monogenic_supplement", False)
+        if supplement:
+            # a clinical WGS/WES file adds monogenic findings without replacing the main genotype run
+            g["monogenic"] = [m for m in old_mono if not m.get("supplement")] + genetics.get("monogenic", [])
+        else:
+            g.update(genetics)
+            g["monogenic"] = genetics.get("monogenic", []) + [m for m in old_mono if m.get("supplement")]
         doc["genetics"] = g
     for k, v in (extra_blocks or {}).items():
         doc[k] = v

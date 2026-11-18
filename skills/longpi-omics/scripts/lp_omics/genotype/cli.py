@@ -31,7 +31,9 @@ def add_arguments(p):
     p.add_argument("--include-filtered", action="store_true", help="also use non-PASS VCF records")
     p.add_argument("--impute", action="store_true", help="impute with Beagle before scoring (needs --panel)")
     p.add_argument("--panel", default=None, help="directory of per-chromosome reference panels (bref3 or vcf.gz)")
-    p.add_argument("--offline", action="store_true", help="never download; fail if reference data is not cached")
+    p.add_argument("--monogenic-only", action="store_true",
+                   help="only ClinVar ACMG SF on this file (e.g. a clinical WGS VCF); its findings are added to an "
+                        "existing observations.json without replacing the main genotype results")
 
 
 def registry_pgs(terms_dir: str) -> dict:
@@ -104,6 +106,9 @@ def run(args):
             build = bmeta["build"]
     provenance.append({"step": "build", "tool": "geno_build", "version": TOOLS["geno_build"],
                        "params": {"method": bmeta["method"], "votes": bmeta["votes"]}})
+
+    if args.monogenic_only:
+        return _monogenic_only(args, path, src, build, bmeta)
 
     # ---- scores and licences
     refused = []
@@ -241,3 +246,34 @@ def _safe_name(path: Path, sample: str | None) -> str:
     if sample:
         name = name.replace(sample, "<sample>")
     return re.sub(r"\s+", "_", name)
+
+
+def _monogenic_only(args, path, src, build, bmeta):
+    cpath = Path(args.clinvar_cache) if args.clinvar_cache else clinvar.cache_path(build)
+    if not cpath.exists():
+        if os.environ.get("LONGPI_OMICS_OFFLINE"):
+            raise RuntimeError(f"ClinVar cache for {build} not found ({cpath})")
+        clinvar.build_cache(build)
+    cv = clinvar.load_cache(build, cpath)
+    it = gtio.Interest()
+    for c, p in clinvar.interest_positions(cv):
+        it.add_pos(c, p)
+    g = gtio.read(path, it.finalize(), source_type=src, sample=args.sample, pass_only=not args.include_filtered)
+    mono = clinvar.annotate(g, build, cv, confirmed=args.confirmed)
+    sf = _safe_name(path, args.sample or getattr(g, "sample_name", None))
+    for m in mono:
+        m.update({"supplement": True, "build": build, "source_file": sf})
+    obs, seen = [], set()
+    for m in mono:
+        if m["counts_in_engine"] and m["hgnc"] not in seen:
+            seen.add(m["hgnc"])
+            obs.append(common.make_obs(f"LP:monogenic:{m['hgnc']}", 1, unit="carrier", tool="clinvar_acmg_supplement",
+                                       method="tool", platform=src, specimen=None, source_file=sf,
+                                       source_locator=m["spdi"], datetime=args.date))
+    prov = [{"step": "clinvar_supplement", "tool": "clinvar_acmg_supplement", "version": TOOLS["clinvar_acmg"],
+             "params": {"build": build, "build_method": bmeta["method"], "source_type": src},
+             "ref_data": {"clinvar_release": cv.get("release"), "clinvar_subset": cv.get("source_subset"),
+                          "clinvar_sha256": cv.get("sha256_source_vcf")}}]
+    summary = [f"monogenic-only ({build}, {src}): {len(mono)} listed, {len(obs)} counted"]
+    return {"tool_ids": ["clinvar_acmg_supplement"], "observations": obs, "provenance": prov,
+            "genetics": {"monogenic": mono, "_monogenic_supplement": True}, "summary": summary}

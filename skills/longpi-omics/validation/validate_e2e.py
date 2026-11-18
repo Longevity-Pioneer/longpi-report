@@ -26,23 +26,9 @@ def run(args):
 
 
 def person_runs(out, who):
-    pg = sum((["--pgs", p] for p in PGS), [])
-    if who == "P1":
-        run(["genotype", str(E2E / "P1_genotypes_GRCh38.vcf"), "--out", str(out), "--person-code", "P1",
-             "--sex", "M", "--date", "2026-05-18", *pg])
-        run(["methylation", str(E2E / "P1_methylation_beta.csv"), "--out", str(out), "--person-code", "P1",
-             "--age", "48", "--date", "2026-05-18"])
-        run(["metabolomics", str(E2E / "P1_nightingale.csv"), "--out", str(out), "--person-code", "P1",
-             "--date", "2026-05-18"])
-    else:
-        run(["genotype", str(E2E / "P2_chip_23andme_GRCh37.txt"), "--out", str(out), "--person-code", "P2",
-             "--sex", "F", *pg])
-        # the WGS-derived LDLR VCF is run separately (P2_wgs_observations.json): a second genotype run
-        # into the same file would replace the chip results
-        run(["proteomics", str(E2E / "P2_somascan.csv"), "--out", str(out), "--person-code", "P2",
-             "--age", "61", "--sex", "F", "--date", "2026-06-02"])
-        run(["metagenome", str(E2E / "P2_species_abundance.tsv"), "--out", str(out), "--person-code", "P2",
-             "--date", "2026-06-02"])
+    sys.path.insert(0, str(SK / "scripts"))
+    import run_e2e
+    run_e2e.build(who, out)
 
 
 def main():
@@ -60,13 +46,6 @@ def main():
             exp = E2E / "expected"
             exp.mkdir(exist_ok=True)
             (exp / f"{who}_observations.json").write_bytes(a.read_bytes())
-        w1, w2 = td / "w1.json", td / "w2.json"
-        for w in (w1, w2):
-            run(["genotype", str(E2E / "P2_wgs_LDLR_GRCh38.vcf"), "--out", str(w), "--person-code", "P2",
-                 "--source-type", "wgs"])
-        res["files"]["P2_wgs"] = {"identical": w1.read_bytes() == w2.read_bytes()}
-        ok &= res["files"]["P2_wgs"]["identical"]
-        (E2E / "expected" / "P2_wgs_observations.json").write_bytes(w1.read_bytes())
         # build detection and GRCh37/38 consistency
         b38, b37 = td / "b38.json", td / "b37.json"
         pg = sum((["--pgs", p] for p in PGS), [])
