@@ -1,0 +1,628 @@
+{
+ "version": "ACMG SF v3.2 (Miller et al. 2023 Genet Med 25:100866)",
+ "source": "Gene list checked against https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/ on 2026-11-18; HGNC ids from rest.genenames.org",
+ "disease_id_note": "disease_ids map genes to LongPi disease-risk outcomes (registry/outcomes ids); genes without a LongPi outcome have []",
+ "genes": {
+  "ACTA2": {
+   "hgnc": "HGNC:130",
+   "entrez": "59",
+   "location": "10q23.31",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "ACTC1": {
+   "hgnc": "HGNC:143",
+   "entrez": "70",
+   "location": "15q14",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "ACVRL1": {
+   "hgnc": "HGNC:175",
+   "entrez": "94",
+   "location": "12q13.13",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "APC": {
+   "hgnc": "HGNC:583",
+   "entrez": "324",
+   "location": "5q22.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "APOB": {
+   "hgnc": "HGNC:603",
+   "entrez": "338",
+   "location": "2p24.1",
+   "inheritance": "AD",
+   "disease_ids": [
+    "cad"
+   ]
+  },
+  "ATP7B": {
+   "hgnc": "HGNC:870",
+   "entrez": "540",
+   "location": "13q14.3",
+   "inheritance": "AR",
+   "disease_ids": []
+  },
+  "BAG3": {
+   "hgnc": "HGNC:939",
+   "entrez": "9531",
+   "location": "10q26.11",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "BMPR1A": {
+   "hgnc": "HGNC:1076",
+   "entrez": "657",
+   "location": "10q23.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "BRCA1": {
+   "hgnc": "HGNC:1100",
+   "entrez": "672",
+   "location": "17q21.31",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca"
+   ]
+  },
+  "BRCA2": {
+   "hgnc": "HGNC:1101",
+   "entrez": "675",
+   "location": "13q13.1",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca",
+    "prostate_ca"
+   ]
+  },
+  "BTD": {
+   "hgnc": "HGNC:1122",
+   "entrez": "686",
+   "location": "3p25.1",
+   "inheritance": "AR",
+   "disease_ids": []
+  },
+  "CACNA1S": {
+   "hgnc": "HGNC:1397",
+   "entrez": "779",
+   "location": "1q32.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "CALM1": {
+   "hgnc": "HGNC:1442",
+   "entrez": "801",
+   "location": "14q32.11",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "CALM2": {
+   "hgnc": "HGNC:1445",
+   "entrez": "805",
+   "location": "2p21",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "CALM3": {
+   "hgnc": "HGNC:1449",
+   "entrez": "808",
+   "location": "19q13.32",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "CASQ2": {
+   "hgnc": "HGNC:1513",
+   "entrez": "845",
+   "location": "1p13.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "COL3A1": {
+   "hgnc": "HGNC:2201",
+   "entrez": "1281",
+   "location": "2q32.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "DES": {
+   "hgnc": "HGNC:2770",
+   "entrez": "1674",
+   "location": "2q35",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "DSC2": {
+   "hgnc": "HGNC:3036",
+   "entrez": "1824",
+   "location": "18q12.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "DSG2": {
+   "hgnc": "HGNC:3049",
+   "entrez": "1829",
+   "location": "18q12.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "DSP": {
+   "hgnc": "HGNC:3052",
+   "entrez": "1832",
+   "location": "6p24.3",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "ENG": {
+   "hgnc": "HGNC:3349",
+   "entrez": "2022",
+   "location": "9q34.11",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "FBN1": {
+   "hgnc": "HGNC:3603",
+   "entrez": "2200",
+   "location": "15q21.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "FLNC": {
+   "hgnc": "HGNC:3756",
+   "entrez": "2318",
+   "location": "7q32.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "GAA": {
+   "hgnc": "HGNC:4065",
+   "entrez": "2548",
+   "location": "17q25.3",
+   "inheritance": "AR",
+   "disease_ids": []
+  },
+  "GLA": {
+   "hgnc": "HGNC:4296",
+   "entrez": "2717",
+   "location": "Xq22.1",
+   "inheritance": "XL",
+   "disease_ids": []
+  },
+  "HFE": {
+   "hgnc": "HGNC:4886",
+   "entrez": "3077",
+   "location": "6p22.2",
+   "inheritance": "AR",
+   "disease_ids": [],
+   "only_c282y_homozygous": {
+    "GRCh38": [
+     6,
+     26092913,
+     "G",
+     "A"
+    ],
+    "GRCh37": [
+     6,
+     26093141,
+     "G",
+     "A"
+    ]
+   }
+  },
+  "HNF1A": {
+   "hgnc": "HGNC:11621",
+   "entrez": "6927",
+   "location": "12q24.31",
+   "inheritance": "AD",
+   "disease_ids": [
+    "t2d"
+   ]
+  },
+  "KCNH2": {
+   "hgnc": "HGNC:6251",
+   "entrez": "3757",
+   "location": "7q36.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "KCNQ1": {
+   "hgnc": "HGNC:6294",
+   "entrez": "3784",
+   "location": "11p15.5-p15.4",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "LDLR": {
+   "hgnc": "HGNC:6547",
+   "entrez": "3949",
+   "location": "19p13.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "cad"
+   ]
+  },
+  "LMNA": {
+   "hgnc": "HGNC:6636",
+   "entrez": "4000",
+   "location": "1q22",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MAX": {
+   "hgnc": "HGNC:6913",
+   "entrez": "4149",
+   "location": "14q23.3",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MEN1": {
+   "hgnc": "HGNC:7010",
+   "entrez": "4221",
+   "location": "11q13.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MLH1": {
+   "hgnc": "HGNC:7127",
+   "entrez": "4292",
+   "location": "3p22.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc",
+    "gastric_ca"
+   ]
+  },
+  "MSH2": {
+   "hgnc": "HGNC:7325",
+   "entrez": "4436",
+   "location": "2p21-p16.3",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc",
+    "gastric_ca"
+   ]
+  },
+  "MSH6": {
+   "hgnc": "HGNC:7329",
+   "entrez": "2956",
+   "location": "2p16.3",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "MUTYH": {
+   "hgnc": "HGNC:7527",
+   "entrez": "4595",
+   "location": "1p34.1",
+   "inheritance": "AR",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "MYBPC3": {
+   "hgnc": "HGNC:7551",
+   "entrez": "4607",
+   "location": "11p11.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MYH11": {
+   "hgnc": "HGNC:7569",
+   "entrez": "4629",
+   "location": "16p13.11",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MYH7": {
+   "hgnc": "HGNC:7577",
+   "entrez": "4625",
+   "location": "14q11.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MYL2": {
+   "hgnc": "HGNC:7583",
+   "entrez": "4633",
+   "location": "12q24.11",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "MYL3": {
+   "hgnc": "HGNC:7584",
+   "entrez": "4634",
+   "location": "3p21.31",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "NF2": {
+   "hgnc": "HGNC:7773",
+   "entrez": "4771",
+   "location": "22q12.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "OTC": {
+   "hgnc": "HGNC:8512",
+   "entrez": "5009",
+   "location": "Xp11.4",
+   "inheritance": "XL",
+   "disease_ids": []
+  },
+  "PALB2": {
+   "hgnc": "HGNC:26144",
+   "entrez": "79728",
+   "location": "16p12.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca"
+   ]
+  },
+  "PCSK9": {
+   "hgnc": "HGNC:20001",
+   "entrez": "255738",
+   "location": "1p32.3",
+   "inheritance": "AD",
+   "disease_ids": [
+    "cad"
+   ]
+  },
+  "PKP2": {
+   "hgnc": "HGNC:9024",
+   "entrez": "5318",
+   "location": "12p11.21",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "PMS2": {
+   "hgnc": "HGNC:9122",
+   "entrez": "5395",
+   "location": "7p22.1",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "PRKAG2": {
+   "hgnc": "HGNC:9386",
+   "entrez": "51422",
+   "location": "7q36.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "PTEN": {
+   "hgnc": "HGNC:9588",
+   "entrez": "5728",
+   "location": "10q23.31",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca"
+   ]
+  },
+  "RB1": {
+   "hgnc": "HGNC:9884",
+   "entrez": "5925",
+   "location": "13q14.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "RBM20": {
+   "hgnc": "HGNC:27424",
+   "entrez": "282996",
+   "location": "10q25.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "RET": {
+   "hgnc": "HGNC:9967",
+   "entrez": "5979",
+   "location": "10q11.21",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "RPE65": {
+   "hgnc": "HGNC:10294",
+   "entrez": "6121",
+   "location": "1p31.3",
+   "inheritance": "AR",
+   "disease_ids": []
+  },
+  "RYR1": {
+   "hgnc": "HGNC:10483",
+   "entrez": "6261",
+   "location": "19q13.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "RYR2": {
+   "hgnc": "HGNC:10484",
+   "entrez": "6262",
+   "location": "1q43",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SCN5A": {
+   "hgnc": "HGNC:10593",
+   "entrez": "6331",
+   "location": "3p22.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SDHAF2": {
+   "hgnc": "HGNC:26034",
+   "entrez": "54949",
+   "location": "11q12.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SDHB": {
+   "hgnc": "HGNC:10681",
+   "entrez": "6390",
+   "location": "1p36.13",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SDHC": {
+   "hgnc": "HGNC:10682",
+   "entrez": "6391",
+   "location": "1q23.3",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SDHD": {
+   "hgnc": "HGNC:10683",
+   "entrez": "6392",
+   "location": "11q23.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SMAD3": {
+   "hgnc": "HGNC:6769",
+   "entrez": "4088",
+   "location": "15q22.33",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "SMAD4": {
+   "hgnc": "HGNC:6770",
+   "entrez": "4089",
+   "location": "18q21.2",
+   "inheritance": "AD",
+   "disease_ids": [
+    "crc"
+   ]
+  },
+  "STK11": {
+   "hgnc": "HGNC:11389",
+   "entrez": "6794",
+   "location": "19p13.3",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca",
+    "crc"
+   ]
+  },
+  "TGFBR1": {
+   "hgnc": "HGNC:11772",
+   "entrez": "7046",
+   "location": "9q22.33",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TGFBR2": {
+   "hgnc": "HGNC:11773",
+   "entrez": "7048",
+   "location": "3p24.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TMEM127": {
+   "hgnc": "HGNC:26038",
+   "entrez": "55654",
+   "location": "2q11.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TMEM43": {
+   "hgnc": "HGNC:28472",
+   "entrez": "79188",
+   "location": "3p25.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TNNC1": {
+   "hgnc": "HGNC:11943",
+   "entrez": "7134",
+   "location": "3p21.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TNNI3": {
+   "hgnc": "HGNC:11947",
+   "entrez": "7137",
+   "location": "19q13.42",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TNNT2": {
+   "hgnc": "HGNC:11949",
+   "entrez": "7139",
+   "location": "1q32.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TP53": {
+   "hgnc": "HGNC:11998",
+   "entrez": "7157",
+   "location": "17p13.1",
+   "inheritance": "AD",
+   "disease_ids": [
+    "breast_ca"
+   ]
+  },
+  "TPM1": {
+   "hgnc": "HGNC:12010",
+   "entrez": "7168",
+   "location": "15q22.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TRDN": {
+   "hgnc": "HGNC:12261",
+   "entrez": "10345",
+   "location": "6q22.31",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TSC1": {
+   "hgnc": "HGNC:12362",
+   "entrez": "7248",
+   "location": "9q34.13",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TSC2": {
+   "hgnc": "HGNC:12363",
+   "entrez": "7249",
+   "location": "16p13.3",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TTN": {
+   "hgnc": "HGNC:12403",
+   "entrez": "7273",
+   "location": "2q31.2",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "TTR": {
+   "hgnc": "HGNC:12405",
+   "entrez": "7276",
+   "location": "18q12.1",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "VHL": {
+   "hgnc": "HGNC:12687",
+   "entrez": "7428",
+   "location": "3p25.3",
+   "inheritance": "AD",
+   "disease_ids": []
+  },
+  "WT1": {
+   "hgnc": "HGNC:12796",
+   "entrez": "7490",
+   "location": "11p13",
+   "inheritance": "AD",
+   "disease_ids": []
+  }
+ }
+}

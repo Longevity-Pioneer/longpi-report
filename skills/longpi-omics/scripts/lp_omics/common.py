@@ -57,18 +57,70 @@ def check_public_url(url: str) -> None:
         raise PrivacyError(f"refusing url with query string: {url}")
 
 
+def offline_guard(url: str) -> None:
+    if os.environ.get("LONGPI_OMICS_OFFLINE"):
+        raise PrivacyError(f"offline mode: {url} is not cached")
+
+
 def download(url: str, dest: Path, *, force: bool = False) -> Path:
     """GET a public resource into the cache (atomic). Never sends a body."""
     check_public_url(url)
     dest = Path(dest)
     if dest.exists() and dest.stat().st_size > 0 and not force:
         return dest
+    offline_guard(url)
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_suffix(dest.suffix + ".part")
     req = urllib.request.Request(url, method="GET", headers={"User-Agent": "longpi-omics/" + OMICS_VERSION})
     with urllib.request.urlopen(req, timeout=120) as r, open(tmp, "wb") as fh:
         shutil.copyfileobj(r, fh)
     os.replace(tmp, dest)
+    return dest
+
+
+def download_ranged(url: str, dest: Path, *, connections: int = 8, force: bool = False) -> Path:
+    """Parallel HTTP range download with resume (for large public files on throttled links)."""
+    import concurrent.futures as cf
+    check_public_url(url)
+    dest = Path(dest)
+    if dest.exists() and dest.stat().st_size > 0 and not force:
+        return dest
+    offline_guard(url)
+    head = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "longpi-omics/" + OMICS_VERSION})
+    size = int(urllib.request.urlopen(head, timeout=120).headers["Content-Length"])
+    chunk = 1 << 20
+    parts = [(a, min(a + chunk, size) - 1) for a in range(0, size, chunk)]
+    pdir = Path(str(dest) + ".parts")
+    pdir.mkdir(parents=True, exist_ok=True)
+
+    def get(rg):
+        a, b = rg
+        p = pdir / f"{a:012d}"
+        if p.exists() and p.stat().st_size == b - a + 1:
+            return
+        last = None
+        for _ in range(6):
+            try:
+                req = urllib.request.Request(url, headers={"Range": f"bytes={a}-{b}",
+                                                           "User-Agent": "longpi-omics/" + OMICS_VERSION})
+                data = urllib.request.urlopen(req, timeout=600).read()
+                if len(data) == b - a + 1:
+                    tmp = p.with_suffix(".tmp")
+                    tmp.write_bytes(data)
+                    os.replace(tmp, p)
+                    return
+            except Exception as e:  # retry on network errors
+                last = e
+        raise RuntimeError(f"range {a}-{b} of {url} failed: {last}")
+
+    with cf.ThreadPoolExecutor(connections) as ex:
+        list(ex.map(get, parts))
+    tmp = Path(str(dest) + ".tmp")
+    with open(tmp, "wb") as out:
+        for a, _ in parts:
+            out.write((pdir / f"{a:012d}").read_bytes())
+    os.replace(tmp, dest)
+    shutil.rmtree(pdir, ignore_errors=True)
     return dest
 
 

@@ -1,0 +1,13 @@
+{
+ "tool_id": "micro_shannon",
+ "version": "0.1.0",
+ "dataset": "Gupta 2020 example profile (25 MetaPhlAn2 samples)",
+ "metric": "max |Shannon ours - scipy.stats.entropy| (nats)",
+ "value": 1.7763568394002505e-15,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "n": 25,
+  "reference_impl": "scipy 1.16.3"
+ }
+}

@@ -1,0 +1,82 @@
+{
+ "source": "CPIC allele definition and allele functionality tables (cpicpgx.org), SNP-definable alleles only; variant alleles are given on the GRCh38/GRCh37 + strand",
+ "caveat_zh": "芯片与短读长数据未分相：两个不同变异默认位于不同染色体（反式）；未检测的稀有等位基因按 *1 处理，结果可能高估功能。仅作用药前参考，临床用药以有资质实验室的药物基因组检测为准。",
+ "genes": {
+  "CYP2C19": {
+   "model": "function",
+   "alleles": {
+    "*2": {"rsid": "rs4244285", "alt": "A", "function": "no"},
+    "*3": {"rsid": "rs4986893", "alt": "A", "function": "no"},
+    "*4": {"rsid": "rs28399504", "alt": "G", "function": "no"},
+    "*17": {"rsid": "rs12248560", "alt": "T", "function": "increased"}
+   },
+   "drugs_zh": "氯吡格雷、部分质子泵抑制剂、伏立康唑、SSRI 等"
+  },
+  "CYP2C9": {
+   "model": "activity",
+   "alleles": {
+    "*2": {"rsid": "rs1799853", "alt": "T", "value": 0.5},
+    "*3": {"rsid": "rs1057910", "alt": "C", "value": 0.0},
+    "*5": {"rsid": "rs28371686", "alt": "G", "value": 0.5},
+    "*8": {"rsid": "rs7900194", "alt": "A", "value": 0.5},
+    "*11": {"rsid": "rs28371685", "alt": "T", "value": 0.5}
+   },
+   "thresholds": [[2.0, "正常代谢型"], [1.0, "中间代谢型"], [0.0, "慢代谢型"]],
+   "drugs_zh": "华法林、苯妥英、部分非甾体抗炎药、塞来昔布"
+  },
+  "VKORC1": {
+   "model": "genotype",
+   "rsid": "rs9923231",
+   "alt": "T",
+   "labels": {"0": "-1639GG：华法林敏感性一般", "1": "-1639GA：华法林敏感性增加", "2": "-1639AA：华法林敏感性明显增加"},
+   "allele_names": {"ref": "-1639G", "alt": "-1639A"},
+   "drugs_zh": "华法林"
+  },
+  "SLCO1B1": {
+   "model": "genotype",
+   "rsid": "rs4149056",
+   "alt": "C",
+   "labels": {"0": "c.521TT：转运功能正常", "1": "c.521TC：转运功能降低", "2": "c.521CC：转运功能低下"},
+   "allele_names": {"ref": "c.521T", "alt": "c.521C"},
+   "drugs_zh": "辛伐他汀等他汀类"
+  },
+  "TPMT": {
+   "model": "function",
+   "alleles": {
+    "*2": {"rsid": "rs1800462", "alt": "G", "function": "no"},
+    "*3B": {"rsid": "rs1800460", "alt": "T", "function": "no"},
+    "*3C": {"rsid": "rs1142345", "alt": "C", "function": "no"}
+   },
+   "combine": {"*3B+*3C": "*3A"},
+   "drugs_zh": "硫唑嘌呤、巯嘌呤、硫鸟嘌呤"
+  },
+  "NUDT15": {
+   "model": "function",
+   "alleles": {
+    "*3": {"rsid": "rs116855232", "alt": "T", "function": "no"}
+   },
+   "drugs_zh": "硫唑嘌呤、巯嘌呤、硫鸟嘌呤"
+  },
+  "DPYD": {
+   "model": "activity",
+   "alleles": {
+    "*2A (c.1905+1G>A)": {"rsid": "rs3918290", "alt": "T", "value": 0.0},
+    "*13 (c.1679T>G)": {"rsid": "rs55886062", "alt": "C", "value": 0.0},
+    "c.2846A>T": {"rsid": "rs67376798", "alt": "A", "value": 0.5},
+    "HapB3 (c.1129-5923C>G)": {"rsid": "rs75017182", "alt": "C", "value": 0.5}
+   },
+   "thresholds": [[2.0, "正常代谢型"], [1.0, "中间代谢型"], [0.0, "慢代谢型"]],
+   "drugs_zh": "氟尿嘧啶、卡培他滨"
+  },
+  "CYP3A5": {
+   "model": "function",
+   "alleles": {
+    "*3": {"rsid": "rs776746", "alt": "C", "function": "no"},
+    "*6": {"rsid": "rs10264272", "alt": "T", "function": "no"},
+    "*7": {"rsid": "rs41303343", "alt": "AA", "function": "no"}
+   },
+   "phenotypes": {"0": "正常代谢型（表达者）", "1": "中间代谢型", "2": "慢代谢型（非表达者）"},
+   "drugs_zh": "他克莫司"
+  }
+ }
+}

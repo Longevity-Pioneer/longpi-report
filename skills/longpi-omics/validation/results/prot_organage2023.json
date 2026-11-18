@@ -1,0 +1,113 @@
+{
+ "tool_id": "prot_organage2023",
+ "version": "0.1.0",
+ "dataset": "organage example data (tests/df_prot.csv, 200 samples x SomaScan v4.1) and the notebook's printed outputs",
+ "metric": "max |age gap ours - organage package| over 13 models x 200 samples (years)",
+ "value": 6.536993168992922e-13,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "max_abs_diff_predicted_age": 6.536993168992922e-13,
+  "pearson_gap": 1.0000000000000009,
+  "n_comparisons": 2600,
+  "per_organ": {
+   "Adipose": {
+    "n": 200,
+    "max_abs_diff_gap": 1.1368683772161603e-13
+   },
+   "Artery": {
+    "n": 200,
+    "max_abs_diff_gap": 1.4210854715202004e-13
+   },
+   "Brain": {
+    "n": 200,
+    "max_abs_diff_gap": 2.1316282072803006e-13
+   },
+   "Conventional": {
+    "n": 200,
+    "max_abs_diff_gap": 6.394884621840902e-13
+   },
+   "Heart": {
+    "n": 200,
+    "max_abs_diff_gap": 1.2789769243681803e-13
+   },
+   "Immune": {
+    "n": 200,
+    "max_abs_diff_gap": 2.1316282072803006e-13
+   },
+   "Intestine": {
+    "n": 200,
+    "max_abs_diff_gap": 1.5631940186722204e-13
+   },
+   "Kidney": {
+    "n": 200,
+    "max_abs_diff_gap": 1.2789769243681803e-13
+   },
+   "Liver": {
+    "n": 200,
+    "max_abs_diff_gap": 1.9895196601282805e-13
+   },
+   "Lung": {
+    "n": 200,
+    "max_abs_diff_gap": 1.5631940186722204e-13
+   },
+   "Muscle": {
+    "n": 200,
+    "max_abs_diff_gap": 1.5631940186722204e-13
+   },
+   "Organismal": {
+    "n": 200,
+    "max_abs_diff_gap": 6.536993168992922e-13
+   },
+   "Pancreas": {
+    "n": 200,
+    "max_abs_diff_gap": 1.4210854715202004e-13
+   }
+  },
+  "notebook_rows_checked": 5,
+  "notebook_max_abs_diff_gap": 0.0,
+  "notebook_rows": [
+   {
+    "id": 0,
+    "organ": "Adipose",
+    "published_pred": 72.364923,
+    "ours_pred": 72.364923,
+    "published_gap": 0.319324,
+    "ours_gap": 0.319324
+   },
+   {
+    "id": 1,
+    "organ": "Adipose",
+    "published_pred": 75.981304,
+    "ours_pred": 75.981304,
+    "published_gap": 6.589467,
+    "ours_gap": 6.589467
+   },
+   {
+    "id": 2,
+    "organ": "Adipose",
+    "published_pred": 63.126192,
+    "ours_pred": 63.126192,
+    "published_gap": -8.274911,
+    "ours_gap": -8.274911
+   },
+   {
+    "id": 3,
+    "organ": "Adipose",
+    "published_pred": 80.169014,
+    "ours_pred": 80.169014,
+    "published_gap": 7.28468,
+    "ours_gap": 7.28468
+   },
+   {
+    "id": 4,
+    "organ": "Adipose",
+    "published_pred": 74.192142,
+    "ours_pred": 74.192142,
+    "published_gap": 2.146543,
+    "ours_gap": 2.146543
+   }
+  ],
+  "reference_impl": "organage main (MIT), sklearn 1.5.2"
+ }
+}

@@ -1,0 +1,114 @@
+{
+ "tool_id": "micro_gmhi2020",
+ "version": "0.1.0",
+ "dataset": "Gupta 2020 example profile (25 MetaPhlAn2 samples) and the authors' GMHI_output.csv",
+ "metric": "max |GMHI ours - published|",
+ "value": 4.884981308350689e-15,
+ "passed": true,
+ "date": "2026-11-18",
+ "details": {
+  "n": 25,
+  "per_sample": {
+   "Sample1": {
+    "ours": -0.6313637624859358,
+    "published": -0.631363762485936
+   },
+   "Sample2": {
+    "ours": -2.3458994528925268,
+    "published": -2.34589945289253
+   },
+   "Sample3": {
+    "ours": -2.7055207980139286,
+    "published": -2.70552079801393
+   },
+   "Sample4": {
+    "ours": -1.2174235131584117,
+    "published": -1.21742351315841
+   },
+   "Sample5": {
+    "ours": 1.7431472195227287,
+    "published": 1.74314721952273
+   },
+   "Sample6": {
+    "ours": -0.29405683318845727,
+    "published": -0.294056833188457
+   },
+   "Sample7": {
+    "ours": -3.740412863210229,
+    "published": -3.74041286321023
+   },
+   "Sample8": {
+    "ours": 0.45478785050626386,
+    "published": 0.454787850506264
+   },
+   "Sample9": {
+    "ours": -2.8889725510721966,
+    "published": -2.8889725510722
+   },
+   "Sample10": {
+    "ours": -0.6383899510195891,
+    "published": -0.638389951019589
+   },
+   "Sample11": {
+    "ours": 0.713582219846563,
+    "published": 0.713582219846563
+   },
+   "Sample12": {
+    "ours": 4.0648676154716785,
+    "published": 4.06486761547168
+   },
+   "Sample13": {
+    "ours": 1.9072177187300967,
+    "published": 1.9072177187301
+   },
+   "Sample14": {
+    "ours": -0.6474424300751593,
+    "published": -0.647442430075159
+   },
+   "Sample15": {
+    "ours": -0.7944344431860061,
+    "published": -0.794434443186006
+   },
+   "Sample16": {
+    "ours": 0.8406846132059861,
+    "published": 0.840684613205986
+   },
+   "Sample17": {
+    "ours": 0.3251473751712365,
+    "published": 0.325147375171236
+   },
+   "Sample18": {
+    "ours": 3.141411797454259,
+    "published": 3.14141179745426
+   },
+   "Sample19": {
+    "ours": 0.0,
+    "published": 0.0
+   },
+   "Sample20": {
+    "ours": 0.0,
+    "published": 0.0
+   },
+   "Sample21": {
+    "ours": 1.803763948688034,
+    "published": 1.80376394868803
+   },
+   "Sample22": {
+    "ours": -2.1363637562077353,
+    "published": -2.13636375620774
+   },
+   "Sample23": {
+    "ours": 3.092581846136189,
+    "published": 3.09258184613619
+   },
+   "Sample24": {
+    "ours": 0.021594323318348756,
+    "published": 0.0215943233183488
+   },
+   "Sample25": {
+    "ours": -0.10052485556492297,
+    "published": -0.100524855564923
+   }
+  }
+ }
+}
