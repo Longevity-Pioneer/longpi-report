@@ -1,0 +1,72 @@
+{
+ "id": "ext.test_apob",
+ "name_zh": "测试项",
+ "kind": "state",
+ "system": "cardiovascular",
+ "group": "lipids",
+ "input": {
+  "code": "LOINC:1884-6",
+  "unit": "g/L",
+  "platform": null,
+  "methods": [
+   "lab"
+  ]
+ },
+ "transform": {
+  "shape": "loglinear",
+  "clip": [
+   0.3,
+   2.5
+  ]
+ },
+ "reference": {
+  "kind": "normal",
+  "by_sex_age": [
+   {
+    "sex": "both",
+    "age_lo": 18,
+    "age_hi": 99,
+    "mean": 0.95,
+    "sd": 0.25
+   }
+  ],
+  "source": "fixture"
+ },
+ "effect": {
+  "all_cause": {
+   "hr": 1.1,
+   "lo": 1.04,
+   "hi": 1.16,
+   "per": 0.25,
+   "per_unit": "g/L",
+   "direction": "higher_worse"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex"
+ ],
+ "overlap": {
+  "coef": 0.3,
+  "coef_sd": 0.1,
+  "overlaps_with": [
+   "core.lipid"
+  ],
+  "rationale_zh": "测试"
+ },
+ "transport": {
+  "ancestry": "European",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "ancestry": "European"
+ },
+ "evidence": {
+  "grade": "B",
+  "design": "meta-analysis"
+ },
+ "license": {
+  "commercial_use": true
+ }
+}

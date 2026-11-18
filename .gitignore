@@ -7,3 +7,4 @@ __pycache__/
 *.longpi-cache.json
 .claude/
 .pytest_cache/
+skills/longpi-term-builder/.cache/

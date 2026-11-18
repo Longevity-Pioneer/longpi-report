@@ -59,6 +59,12 @@ SEX_SPECIFIC = {"breast_ca": "F", "prostate_ca": "M", "cervical_ca": "F"}
 ACCEPT_DESIGNS = ("meta-analysis", "pooled-cohort", "prospective-cohort", "mendelian-randomization", "rct",
                   "meta-analysis-rct", "pgs-catalog-evaluation")
 EAST_ASIAN_RE = re.compile(r"east asian|chinese|china|japan|korea|taiwan|hong kong|singapore chinese|\bEAS\b", re.I)
+NON_EAST_ASIAN_RE = re.compile(r"europe|\bUS\b|united states|americ|australia|multinational|international|mixed|"
+                               r"white|\bUK\b|british|african|hispanic|global|worldwide|western", re.I)
+
+
+def is_east_asian(ancestry: str) -> bool:
+    return bool(EAST_ASIAN_RE.search(ancestry or "")) and not NON_EAST_ASIAN_RE.search(ancestry or "")
 CORE_IDS = ("core.lipid", "core.bp", "core.adiposity", "core.glucose", "core.smoking", "core.alcohol", "core.crf",
             "core.muscle", "core.rhr", "core.sleep", "core.phenoage_clock", "core.methylation")
 AGE_BANDS = [(18, 29), (30, 39), (40, 49), (50, 59), (60, 69), (70, 79), (80, 99)]
@@ -294,11 +300,19 @@ def _src_path(root: Path, key: str) -> Path:
     return root / "sources" / (RG.safe_key(key) + ".json")
 
 
+def _cache_path(key: str) -> Path:
+    """Fetched sources live in a cache until `add` copies them into the frozen registry (verify never touches it)."""
+    base = Path(os.environ.get("LONGPI_TB_CACHE") or (BUILDER_DIR / ".cache"))
+    return base / "sources" / (RG.safe_key(key) + ".json")
+
+
 def fetch_source(key: str, root: Path, need: Iterable[str] = (), refresh: bool = False, offline: bool = False) -> dict:
     """Fetch (or reuse) a source record. `need` are normalised strings (quotes) the text should contain: when the
     abstract lacks one, open-access full-text paragraphs containing it are added."""
-    p = _src_path(root, key)
-    rec = json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+    p = _cache_path(key)
+    rp = _src_path(root, key)
+    rec = json.loads(p.read_text(encoding="utf-8")) if p.exists() else (
+        json.loads(rp.read_text(encoding="utf-8")) if rp.exists() else None)
     need = [n for n in need if n]
     if rec and not refresh and all(n.lower() in norm_text(rec["text"]).lower() for n in need):
         return rec
@@ -750,6 +764,7 @@ def overlap_rule(t: dict) -> Optional[str]:
 def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: bool = False) -> dict:
     """Run every gate on a term spec. verdict: auto_accept | qualitative | invalid."""
     fail, warn, invalid, checks, info = [], [], [], [], []
+    used: set = set()
     st = RG.validate_term(spec)
     if st:
         invalid += st
@@ -828,6 +843,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
             continue
         try:
             src = fetch_source(key, root, need=[quote], refresh=refresh, offline=offline)
+            used.add(key)
         except PrivacyError:
             raise
         except Exception as ex:
@@ -857,7 +873,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         anc = pop.get("ancestry") or ""
         tp = dict(spec.get("transport") or {})
         tp.update(e.get("transport") or {})
-        if anc and not EAST_ASIAN_RE.search(anc):
+        if anc and not is_east_asian(anc):
             if tp.get("shrink", 1.0) > 0.8 + 1e-9 or tp.get("sd_inflate", 1.0) < 1.25 - 1e-9:
                 fail.append(f"{oc}: 非东亚人群（{anc}）须 transport.shrink ≤0.8、sd_inflate ≥1.25")
         elif not anc:
@@ -886,6 +902,7 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
         if rkey and rf.get("quote"):
             rq = norm_text(rf["quote"])
             rsrc = fetch_source(rkey, root, need=[rq], refresh=refresh, offline=offline)
+            used.add(rkey)
             if rq.lower() not in norm_text(rsrc["text"]).lower():
                 fail.append(f"reference.quote 不是 {rkey} 原文的子串")
             else:
@@ -899,7 +916,8 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
                 or re.match(r"^[a-z_]+$", k)):
             warn.append(f"adjusted_for/mediated_by 用词 {k} 不在约定词表")
     verdict = "invalid" if invalid else ("qualitative" if fail else "auto_accept")
-    return {"id": tid, "verdict": verdict, "invalid": invalid, "fail": fail, "warn": warn, "info": info, "checks": checks}
+    return {"id": tid, "verdict": verdict, "invalid": invalid, "fail": fail, "warn": warn, "info": info, "checks": checks,
+            "sources": sorted(used)}
 
 
 # ----------------------------------------------------------------------------- reference expansion
@@ -995,15 +1013,20 @@ def add(specs: List[dict], root: Path = RG.REG_DIR, qualitative: bool = False, w
         d = root / sub
         d.mkdir(parents=True, exist_ok=True)
         (d / f"{t['id']}.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        by_src: Dict[str, list] = {}
+        by_src: Dict[str, list] = {k: [] for k in res.get("sources", [])}
         for c in res["checks"]:
             by_src.setdefault(c["source"], []).append({k: c[k] for k in ("term", "number", "value", "found", "context")})
         for key, cs in by_src.items():
-            sp = _src_path(root, key)
-            if sp.exists():
-                s = json.loads(sp.read_text(encoding="utf-8"))
-                s["checks"] = [c for c in s.get("checks", []) if c["term"] != t["id"]] + cs
-                sp.write_text(json.dumps(s, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+            sp, cp = _src_path(root, key), _cache_path(key)
+            s = json.loads(sp.read_text(encoding="utf-8")) if sp.exists() else {}
+            if cp.exists():   # newest fetched text; keep the registry's check history
+                c_rec = json.loads(cp.read_text(encoding="utf-8"))
+                s = {**c_rec, "checks": s.get("checks", [])}
+            if not s:
+                continue
+            s["checks"] = [c for c in s.get("checks", []) if c["term"] != t["id"]] + cs
+            sp.parent.mkdir(parents=True, exist_ok=True)
+            sp.write_text(json.dumps(s, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         msgs.append(f"{t['id']} → {sub}/")
     man = RG.freeze(root, version)
     return {"ok": True, "version": version, "digest": man["digest"], "written": msgs}

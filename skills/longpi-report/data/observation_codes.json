@@ -205,7 +205,9 @@
   "LP:metab.<score>": "代谢组评分（如 metab.metabohealth）",
   "LP:micro.<index>": "宏基因组指标（如 micro.gmhi、micro.shannon）",
   "LP:screen.<test>": "按指南完成的筛查（值=最近一次距今年数；如 screen.crc_fit、screen.crc_colonoscopy、screen.lung_ldct、screen.liver_us_afp、screen.gastroscopy、screen.mammography、screen.cervical）",
-  "LP:fh:<disease_id>": "一级亲属患病（0/1）"
+  "LP:fh:<disease_id>": "一级亲属患病（0/1）",
+  "LP:hpylori_positive": "幽门螺杆菌感染（尿素呼气试验、粪便抗原或血清抗体阳性，0/1）",
+  "LP:checkup_general": "定期一般健康体检（近 2 年内做过，0/1；不含针对性筛查）"
  },
  "conditions": {
   "field": "icd10",
