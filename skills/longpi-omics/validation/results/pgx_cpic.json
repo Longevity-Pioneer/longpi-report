@@ -1,0 +1,68 @@
+{
+ "dataset": "1000 Genomes NYGC 30x, 504 EAS; CPIC/gnomAD East Asian allele frequencies",
+ "date": "2026-11-18",
+ "details": {
+  "alleles": {
+   "APOE e2": {
+    "observed_1000G_EAS": 0.0992,
+    "published_EAS": 0.08
+   },
+   "APOE e4": {
+    "observed_1000G_EAS": 0.0863,
+    "published_EAS": 0.09
+   },
+   "CYP2C19 *17": {
+    "observed_1000G_EAS": 0.0149,
+    "published_EAS": 0.02
+   },
+   "CYP2C19 *2": {
+    "observed_1000G_EAS": 0.3125,
+    "published_EAS": 0.29
+   },
+   "CYP2C19 *3": {
+    "observed_1000G_EAS": 0.0556,
+    "published_EAS": 0.07
+   },
+   "CYP2C9 *3": {
+    "observed_1000G_EAS": 0.0327,
+    "published_EAS": 0.034
+   },
+   "CYP3A5 *3": {
+    "observed_1000G_EAS": 0.7133,
+    "published_EAS": 0.71
+   },
+   "NUDT15 *3": {
+    "observed_1000G_EAS": 0.0952,
+    "published_EAS": 0.09
+   },
+   "SLCO1B1 alt": {
+    "observed_1000G_EAS": 0.123,
+    "published_EAS": 0.12
+   },
+   "TPMT *3C": {
+    "observed_1000G_EAS": 0.0218,
+    "published_EAS": 0.016
+   },
+   "VKORC1 alt": {
+    "observed_1000G_EAS": 0.8849,
+    "published_EAS": 0.89
+   }
+  },
+  "n_called": {
+   "CYP2C19": 504,
+   "CYP2C9": 504,
+   "CYP3A5": 504,
+   "DPYD": 504,
+   "NUDT15": 504,
+   "SLCO1B1": 504,
+   "TPMT": 504,
+   "VKORC1": 504
+  },
+  "note": "frequency agreement checks allele orientation and the caller; it is not a per-sample truth set"
+ },
+ "metric": "max |observed - published| allele frequency",
+ "passed": true,
+ "tool_id": "pgx_cpic",
+ "value": 0.0225,
+ "version": "0.1.0"
+}

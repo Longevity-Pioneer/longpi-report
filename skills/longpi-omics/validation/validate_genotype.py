@@ -93,7 +93,7 @@ def v_prs(pgs_ids):
                 for i, c, p, e, o, w in var:
                     if str(i) not in ref["rows"]:
                         continue
-                    for ref_, alt, _ in recs.get((c, p), []):
+                    for ref_, alt, _ in sorted(recs.get((c, p), []), key=lambda r: not (o and {e, o} == {r[0], r[1]})):
                         if e in (ref_, alt):
                             fh.write(f"{c}:{p}:{ref_}:{alt}\t{e}\t{w!r}\n")
                             n_rows += 1
@@ -190,7 +190,8 @@ def v_pgx():
     for s in panel.values():
         if s["group"] in ("pgx", "apoe"):
             sites.add((s["chrom"], s["pos_GRCh38"]))
-            sites.add((s["chrom"], s["pos_GRCh38"] - 1))
+            if any(len(a) != 1 for a in s["alleles_GRCh38"]):
+                sites.add((s["chrom"], s["pos_GRCh38"] - 1))
     recs = kg.query_sites(sorted(sites), eas)
     defs = pgx.load_defs()["genes"]
     counts = {}

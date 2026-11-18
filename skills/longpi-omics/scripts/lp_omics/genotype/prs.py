@@ -140,9 +140,8 @@ def build_reference(pgs_id: str, *, max_variants: int = MAX_REF_VARIANTS) -> Pat
     for i, c, p, e, o, w in var:
         cand = recs.get((c, p), [])
         d = None
-        for ref, alt, gts in cand:
-            s = {ref, alt}
-            if e in s:
+        for ref, alt, gts in sorted(cand, key=lambda r: not (o and {e, o} == {r[0], r[1]})):
+            if e in (ref, alt):  # the record carrying both score alleles first (split multi-allelics)
                 d = _dosages(gts, ref, alt, e)
                 break
         if d is None and not (o and gtio.comp(e) == o):

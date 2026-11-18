@@ -24,6 +24,7 @@ OUT = HERE.parents[1] / "longpi-report" / "examples" / "e2e"
 PGS = ["PGS002262", "PGS003353", "PGS000050", "PGS000070"]
 GENES = ["LDLR"]
 XREGION = ("X", 20_000_000, 20_040_000)
+XREGION2 = ("X", 30_000_000, 30_080_000)
 X_MIN_AF = 0.05
 GRCH38_LEN = {"1": 248956422, "2": 242193529, "3": 198295559, "4": 190214555, "5": 181538259, "6": 170805979,
               "7": 159345973, "8": 145138636, "9": 138394717, "10": 133797422, "11": 135086622, "12": 133275309,
@@ -67,7 +68,7 @@ def main():
             if c:
                 sites.add((c, p))
     cv38 = clinvar.load_cache("GRCh38")
-    regions = gene_regions(cv38) + [XREGION]
+    regions = gene_regions(cv38) + [XREGION, XREGION2]
     allsamp = kg.unrelated_samples()
     i1, i2 = allsamp.index(s1), allsamp.index(s2)
     full = kg.query_sites(sorted(sites), allsamp, regions=regions)
@@ -169,7 +170,7 @@ def main():
             "planted_P2": {"gene": "LDLR", "clinvar_id": plant["id"], "clnsig": plant["clnsig"],
                            "review_status": plant["revstat"], "GRCh38": f"chr{plant['chrom']}:{plant['pos']} {plant['ref']}>{plant['alt']}",
                            "note": "synthetic heterozygous call added to a WGS-style VCF"},
-            "pgs_ids": PGS, "acmg_regions": GENES, "x_region": list(XREGION)}
+            "pgs_ids": PGS, "acmg_regions": GENES, "x_regions": [list(XREGION), list(XREGION2)]}
     (OUT / "genotype_sources.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False) + "\n")
     print(json.dumps(meta["planted_P2"]))
 

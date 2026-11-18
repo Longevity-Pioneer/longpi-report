@@ -279,13 +279,21 @@ def dosage(g: Genotypes, chrom: str, pos: int, effect: str, other: str | None):
     if not recs:
         return None, "absent"
     pal = other is not None and comp(effect) == other
-    for c in recs:
-        if c.ref is not None:  # VCF: alleles are on the + strand of the reference
+    vcf = [c for c in recs if c.ref is not None]
+    if vcf:  # VCF: alleles are on the + strand; prefer the record carrying both score alleles
+        best, rank = None, 0
+        for c in vcf:
             s = {c.ref, *c.alts}
-            if effect in s or (other and other in s):
-                if c.alleles is None:
-                    return None, "missing"
-                return sum(a == effect for a in c.alleles), "ok"
+            r = 3 if (effect in s and other in s) else 2 if effect in s else 1 if (other and other in s) else 0
+            if r > rank:
+                best, rank = c, r
+        if best is not None:
+            if best.alleles is None:
+                return None, "missing"
+            return sum(a == effect for a in best.alleles), "ok"
+    for c in recs:
+        if c.ref is not None:
+            continue
         else:  # chip letters
             if c.alleles is None:
                 return None, "missing"

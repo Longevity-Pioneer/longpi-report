@@ -1,0 +1,145 @@
+##fileformat=VCFv4.2
+##source=LongPi synthetic E2E person; genotypes derived from a public 1000 Genomes sample (renamed)
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr2,length=242193529>
+##contig=<ID=chr3,length=198295559>
+##contig=<ID=chr4,length=190214555>
+##contig=<ID=chr5,length=181538259>
+##contig=<ID=chr6,length=170805979>
+##contig=<ID=chr7,length=159345973>
+##contig=<ID=chr8,length=145138636>
+##contig=<ID=chr9,length=138394717>
+##contig=<ID=chr10,length=133797422>
+##contig=<ID=chr11,length=135086622>
+##contig=<ID=chr12,length=133275309>
+##contig=<ID=chr13,length=114364328>
+##contig=<ID=chr14,length=107043718>
+##contig=<ID=chr15,length=101991189>
+##contig=<ID=chr16,length=90338345>
+##contig=<ID=chr17,length=83257441>
+##contig=<ID=chr18,length=80373285>
+##contig=<ID=chr19,length=58617616>
+##contig=<ID=chr20,length=64444167>
+##contig=<ID=chr21,length=46709983>
+##contig=<ID=chr22,length=50818468>
+##contig=<ID=chrX,length=156040895>
+##contig=<ID=chrY,length=57227415>
+##FILTER=<ID=PASS,Description="All filters passed">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	P2
+chr19	11090453	.	C	CG	.	PASS	.	GT	1|1
+chr19	11092202	.	T	TTTA	.	PASS	.	GT	0|1
+chr19	11093886	.	C	T	.	PASS	.	GT	0|1
+chr19	11095405	.	C	CT	.	PASS	.	GT	0|1
+chr19	11095854	.	T	A	.	PASS	.	GT	0|1
+chr19	11095899	.	G	A	.	PASS	.	GT	1|1
+chr19	11096010	.	C	T	.	PASS	.	GT	0|1
+chr19	11096426	.	T	C	.	PASS	.	GT	0|1
+chr19	11096995	.	T	A	.	PASS	.	GT	0|1
+chr19	11097068	.	C	CT	.	PASS	.	GT	0|1
+chr19	11097306	.	T	C	.	PASS	.	GT	0|1
+chr19	11097404	.	T	A	.	PASS	.	GT	0|1
+chr19	11101613	.	C	T	.	PASS	.	GT	1|0
+chr19	11101794	.	T	A	.	PASS	.	GT	0|1
+chr19	11103857	.	T	G	.	PASS	.	GT	0|1
+chr19	11104275	.	CA	C	.	PASS	.	GT	1|1
+chr19	11104550	.	G	A	.	PASS	.	GT	0|1
+chr19	11106024	.	A	G	.	PASS	.	GT	0|1
+chr19	11106092	.	T	C	.	PASS	.	GT	0|1
+chr19	11106322	.	G	A	.	PASS	.	GT	1|0
+chr19	11106373	.	C	A	.	PASS	.	GT	1|0
+chr19	11107296	.	G	A	.	PASS	.	GT	1|0
+chr19	11107550	.	G	A	.	PASS	.	GT	0|1
+chr19	11107685	.	G	A	.	PASS	.	GT	0|1
+chr19	11108298	.	T	TTTG	.	PASS	.	GT	1|1
+chr19	11109688	.	CT	C	.	PASS	.	GT	1|1
+chr19	11110196	.	G	A	.	PASS	.	GT	1|0
+chr19	11110504	.	A	G	.	PASS	.	GT	1|1
+chr19	11111270	.	G	GA	.	PASS	.	GT	0|1
+chr19	11112987	.	C	CT	.	PASS	.	GT	0|1
+chr19	11113537	.	C	A	.	PASS	.	GT	0/1
+chr19	11113589	.	A	G	.	PASS	.	GT	1|1
+chr19	11113815	.	A	G	.	PASS	.	GT	1|0
+chr19	11114105	.	CAA	C	.	PASS	.	GT	1|0
+chr19	11114255	.	C	T	.	PASS	.	GT	0|1
+chr19	11114256	.	G	A	.	PASS	.	GT	1|0
+chr19	11114478	.	G	A	.	PASS	.	GT	1|0
+chr19	11114716	.	G	A	.	PASS	.	GT	1|0
+chr19	11115150	.	C	T	.	PASS	.	GT	1|0
+chr19	11115925	.	CA	C	.	PASS	.	GT	0|1
+chr19	11115925	.	C	CA	.	PASS	.	GT	1|0
+chr19	11116268	.	C	T	.	PASS	.	GT	0|1
+chr19	11116394	.	C	T	.	PASS	.	GT	1|1
+chr19	11116421	.	C	T	.	PASS	.	GT	0|1
+chr19	11116790	.	G	T	.	PASS	.	GT	0|1
+chr19	11116804	.	A	C	.	PASS	.	GT	1|1
+chr19	11117138	.	CT	C	.	PASS	.	GT	0|1
+chr19	11117463	.	C	A	.	PASS	.	GT	0|1
+chr19	11117469	.	C	CT	.	PASS	.	GT	1|1
+chr19	11117483	.	A	G	.	PASS	.	GT	0|1
+chr19	11117512	.	C	G	.	PASS	.	GT	1|0
+chr19	11118069	.	T	C	.	PASS	.	GT	1|1
+chr19	11118189	.	G	A	.	PASS	.	GT	0|1
+chr19	11118404	.	T	C	.	PASS	.	GT	1|0
+chr19	11118966	.	G	A	.	PASS	.	GT	1|0
+chr19	11119023	.	C	A	.	PASS	.	GT	1|0
+chr19	11119686	.	A	C	.	PASS	.	GT	1|0
+chr19	11120808	.	A	AT	.	PASS	.	GT	1|0
+chr19	11121423	.	CTT	C	.	PASS	.	GT	1|0
+chr19	11122070	.	T	C	.	PASS	.	GT	1|0
+chr19	11122093	.	C	CTT	.	PASS	.	GT	1|0
+chr19	11122929	.	G	A	.	PASS	.	GT	0|1
+chr19	11122977	.	AT	A	.	PASS	.	GT	1|1
+chr19	11123265	.	A	G	.	PASS	.	GT	1|1
+chr19	11123915	.	G	A	.	PASS	.	GT	0|1
+chr19	11124401	.	T	G	.	PASS	.	GT	0|1
+chr19	11124747	.	T	C	.	PASS	.	GT	1|1
+chr19	11125179	.	A	T	.	PASS	.	GT	0|1
+chr19	11125258	.	A	G	.	PASS	.	GT	0|1
+chr19	11125445	.	C	G	.	PASS	.	GT	1|1
+chr19	11125480	.	GT	G	.	PASS	.	GT	1|0
+chr19	11125480	.	GTT	G	.	PASS	.	GT	0|1
+chr19	11125702	.	G	A	.	PASS	.	GT	0|1
+chr19	11125735	.	C	T	.	PASS	.	GT	0|1
+chr19	11126128	.	T	C	.	PASS	.	GT	0|1
+chr19	11126380	.	C	CTTTTTTT	.	PASS	.	GT	0|1
+chr19	11126620	.	T	C	.	PASS	.	GT	0|1
+chr19	11126648	.	T	A	.	PASS	.	GT	0|1
+chr19	11126934	.	C	CT	.	PASS	.	GT	1|0
+chr19	11126934	.	CTTTTT	C	.	PASS	.	GT	0|1
+chr19	11127096	.	A	G	.	PASS	.	GT	0|1
+chr19	11127238	.	CTTTTTT	C	.	PASS	.	GT	0|1
+chr19	11127238	.	CT	C	.	PASS	.	GT	1|0
+chr19	11127563	.	C	G	.	PASS	.	GT	0|1
+chr19	11127797	.	A	C	.	PASS	.	GT	1|1
+chr19	11127872	.	A	G	.	PASS	.	GT	1|1
+chr19	11128132	.	G	A	.	PASS	.	GT	0|1
+chr19	11128201	.	G	A	.	PASS	.	GT	0|1
+chr19	11128299	.	C	T	.	PASS	.	GT	0|1
+chr19	11128503	.	AC	A	.	PASS	.	GT	0|1
+chr19	11128942	.	G	A	.	PASS	.	GT	0|1
+chr19	11129025	.	C	CA	.	PASS	.	GT	0|1
+chr19	11129236	.	G	A	.	PASS	.	GT	1|0
+chr19	11129436	.	G	A	.	PASS	.	GT	1|0
+chr19	11130384	.	G	A	.	PASS	.	GT	1|0
+chr19	11131228	.	G	A	.	PASS	.	GT	1|0
+chr19	11131239	.	A	G	.	PASS	.	GT	0|1
+chr19	11131457	.	G	A	.	PASS	.	GT	0|1
+chr19	11131631	.	G	C	.	PASS	.	GT	1|1
+chr19	11131820	.	G	A	.	PASS	.	GT	0|1
+chr19	11131982	.	T	C	.	PASS	.	GT	0|1
+chr19	11132531	.	C	CA	.	PASS	.	GT	0|1
+chr19	11132533	.	C	G	.	PASS	.	GT	0|1
+chr19	11132578	.	T	C	.	PASS	.	GT	1|1
+chr19	11132584	.	C	T	.	PASS	.	GT	0|1
+chr19	11132670	.	T	C	.	PASS	.	GT	1|0
+chr19	11133511	.	TTA	T	.	PASS	.	GT	0|1
+chr19	11133931	.	A	ATC	.	PASS	.	GT	0|1
+chr19	11134106	.	C	T	.	PASS	.	GT	0|1
+chr19	11134216	.	A	ACTT	.	PASS	.	GT	1|0
+chr19	11134796	.	T	C	.	PASS	.	GT	1|1
+chr19	11134898	.	A	C	.	PASS	.	GT	0|1
+chr19	11135032	.	G	A	.	PASS	.	GT	1|0
+chr19	11135163	.	C	G	.	PASS	.	GT	1|0
+chr19	11135367	.	CA	C	.	PASS	.	GT	1|1
+chr19	11136405	.	T	C	.	PASS	.	GT	1|1

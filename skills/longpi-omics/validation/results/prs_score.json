@@ -1,0 +1,63 @@
+{
+ "dataset": "1000 Genomes NYGC 30x GRCh38, 504 EAS unrelated; scores PGS002262, PGS003353, PGS000050, PGS000070",
+ "date": "2026-11-18",
+ "details": {
+  "af_approximation_note": "the tool uses the empirical 504-sample distribution; AF-only mean/SD reported for comparison",
+  "per_score": {
+   "PGS000050": {
+    "af_mean": 3.384276,
+    "af_sd": 0.379937,
+    "emp_mean": 3.384276,
+    "emp_sd": 0.405116,
+    "max_abs_diff": 0.0,
+    "n_in_panel": 44,
+    "n_weight_variants": 44,
+    "pearson": 1.0,
+    "plink2_rows": 44,
+    "sd_ratio_af_over_emp": 0.9378
+   },
+   "PGS000070": {
+    "af_mean": 1.344623,
+    "af_sd": 0.308463,
+    "emp_mean": 1.344623,
+    "emp_sd": 0.336439,
+    "max_abs_diff": 0.0,
+    "n_in_panel": 15,
+    "n_weight_variants": 19,
+    "pearson": 1.0,
+    "plink2_rows": 15,
+    "sd_ratio_af_over_emp": 0.9168
+   },
+   "PGS002262": {
+    "af_mean": 0.149623,
+    "af_sd": 0.488197,
+    "emp_mean": 0.149623,
+    "emp_sd": 0.513711,
+    "max_abs_diff": 0.0,
+    "n_in_panel": 540,
+    "n_weight_variants": 540,
+    "pearson": 1.0,
+    "plink2_rows": 540,
+    "sd_ratio_af_over_emp": 0.9503
+   },
+   "PGS003353": {
+    "af_mean": 13.890451,
+    "af_sd": 0.584617,
+    "emp_mean": 13.890451,
+    "emp_sd": 0.648299,
+    "max_abs_diff": 0.0,
+    "n_in_panel": 265,
+    "n_weight_variants": 287,
+    "pearson": 1.0,
+    "plink2_rows": 265,
+    "sd_ratio_af_over_emp": 0.9018
+   }
+  },
+  "plink2": "PLINK v2.0.0-b.1.3 M1 (31 Oct 2026)"
+ },
+ "metric": "min Pearson vs plink2 --score (sums, no-mean-imputation)",
+ "passed": true,
+ "tool_id": "prs_score",
+ "value": 1.0,
+ "version": "0.1.0"
+}

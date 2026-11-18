@@ -65,16 +65,19 @@ def qc(g: gtio.Genotypes, build: str, declared_sex: str | None) -> dict:
     if g.fmt == "vcf":
         # heterozygosity among non-reference chrX calls: ~0 in males (haploid / hemizygous), ~0.5+ in females
         nr = [(h, pl) for h, pl, n in xs if n]
-        if len(nr) >= 30:
+        if len(xs) >= 20 and sum(pl == 1 for _, pl, _ in xs) >= 0.9 * len(xs):
+            xhet, inferred = 0.0, "M"  # the caller emitted haploid chrX genotypes: hemizygous male
+        elif len(nr) >= 30:
             xhet = sum(h for h, _ in nr) / len(nr)
             haploid = sum(pl == 1 for _, pl in nr) / len(nr)
             inferred = "M" if (haploid > 0.5 or xhet < 0.05) else ("F" if xhet > 0.2 else "unknown")
         else:
             xhet, inferred = None, "unknown"
             notes.append(f"only {len(nr)} non-reference non-PAR chrX calls; sex check not possible")
-    elif len(xs) >= 50:
+    elif len(xs) >= 20:
+        # arrays genotype common chrX SNPs: females are heterozygous at a sizeable fraction, males ~never
         xhet = sum(h for h, _, _ in xs) / len(xs)
-        inferred = "M" if xhet < 0.01 else ("F" if xhet > 0.03 else "unknown")
+        inferred = "M" if xhet < 0.02 else ("F" if xhet > 0.08 else "unknown")
     else:
         xhet, inferred = None, "unknown"
         notes.append(f"only {len(xs)} non-PAR chrX calls; sex check not possible")
