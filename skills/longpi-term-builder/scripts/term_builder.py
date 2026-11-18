@@ -436,6 +436,25 @@ def find_number(x, text: str) -> Optional[str]:
     return None
 
 
+def _num_positions(x, t: str) -> List[Tuple[int, int]]:
+    out = []
+    for v in number_variants(x):
+        out += [(m.start(), m.end()) for m in re.finditer(r"(?<![\d.])" + re.escape(v) + r"(?![\d]|\.\d)", t)]
+    return sorted(out)
+
+
+def find_triplet(hr, lo, hi, text: str, window: int = 90) -> bool:
+    """hr followed (within `window` characters) by lo and then hi: the three numbers belong to one estimate."""
+    t = norm_text(text)
+    los, his = _num_positions(lo, t), _num_positions(hi, t)
+    for s, e in _num_positions(hr, t):
+        for ls, le in los:
+            if e <= ls <= e + window:
+                if any(le <= hs <= le + 25 for hs, _ in his):
+                    return True
+    return False
+
+
 def _effect_numbers(term: dict, oc: str, e: dict) -> List[Tuple[str, float]]:
     """(label, number) pairs that must appear verbatim in the quote."""
     if e.get("derived"):
@@ -860,6 +879,13 @@ def verify(spec: dict, root: Path = RG.REG_DIR, offline: bool = False, refresh: 
                            "context": ctx or ""})
             if not ctx:
                 fail.append(f"{oc}: {label}={x} 未在 quote 中逐字出现")
+        groups3: Dict[str, dict] = {}
+        for label, x in nums:
+            pre, _, k = label.rpartition(".")
+            groups3.setdefault(pre, {})[k] = x
+        for pre, g in groups3.items():
+            if all(k in g for k in ("hr", "lo", "hi")) and not find_triplet(g["hr"], g["lo"], g["hi"], quote):
+                fail.append(f"{pre}: HR {g['hr']} 与 CI {g['lo']}–{g['hi']} 未在 quote 中成组出现（数值与原文结论未绑定）")
         pop = dict(spec.get("population") or {})
         pop.update(e.get("population") or {})
         if pop.get("events") is not None and oc != "screening":

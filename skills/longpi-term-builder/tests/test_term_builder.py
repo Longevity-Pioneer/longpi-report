@@ -132,6 +132,16 @@ class Verify(unittest.TestCase):
         self.assertEqual(r["verdict"], "qualitative")
         self.assertTrue(any("未在 quote" in f for f in r["fail"]))
 
+    def test_numbers_from_different_estimates_rejected(self):
+        s = spec("good_steps.json")
+        d = s["effect"]["all_cause"]["hr_below"]
+        d["derived"]["from"] = {"hr": 0.55, "lo": 0.51, "hi": 0.71}     # quartile-3 HR with quartile-2 CI
+        d["hr"], d["lo"], d["hi"] = round(0.55 ** -0.23316, 4), round(0.71 ** -0.23316, 4), round(0.51 ** -0.23316, 4)
+        r = T.verify(s, self.reg)
+        self.assertTrue(all(c["found"] for c in r["checks"]))         # each number is in the quote ...
+        self.assertTrue(any("成组" in f for f in r["fail"]), r["fail"])  # ... but not as one estimate
+        self.assertTrue(T.find_triplet(1.1, 1.04, 1.16, "HR 1.10 (95% CI 1.04-1.16)"))
+
     def test_quote_not_in_source(self):
         s = spec("good_steps.json")
         s["evidence"]["quote"] = "the adjusted HR for all-cause mortality was 0.55 (0.49-0.62) in everybody"
