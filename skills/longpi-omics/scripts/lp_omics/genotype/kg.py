@@ -53,6 +53,7 @@ def unrelated_samples() -> list[str]:
 
 
 def _run_query(c, cdir, sfile, lines):
+    common.drop_bad_index(cdir, vcf_url(c))
     reg = cdir / f"regions_{os.getpid()}_{abs(hash(sfile)) % 1000}.txt"
     reg.write_text("".join(lines))
     cmd = [bcftools(), "query", "-R", str(reg), "-S", str(sfile), "--force-samples",

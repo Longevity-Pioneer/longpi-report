@@ -74,10 +74,17 @@ class TestGenotypeE2E(unittest.TestCase):
             self.assertTrue(-6 < r["z"] < 6)
 
     def test_no_sample_id_or_paths(self):
-        text = self.p1.read_text()
+        secret = "SECRETSAMPLE_8841"
+        src = (E2E / "P1_genotypes_GRCh38.vcf").read_text().replace("\tP1\n", f"\t{secret}\n")
+        inp = self.td / f"{secret}_genome.vcf"
+        inp.write_text(src)
+        out = self.td / "secret.json"
+        genotype(inp, out, "--person-code", "P1")
+        text = out.read_text()
+        self.assertNotIn(secret, text)
         self.assertNotIn(str(Path.home()), text)
-        for sid in json.loads((FIX / "genotype" / "forbidden_strings.json").read_text()):
-            self.assertNotIn(sid, text)
+        self.assertNotIn(str(self.td), text)
+        self.assertNotIn(str(Path.home()), self.p1.read_text())
 
     def test_determinism(self):
         out2 = self.td / "p1b.json"

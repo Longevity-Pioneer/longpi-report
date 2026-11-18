@@ -75,12 +75,44 @@ def full_vcf(build: str, *, connections: int = 8) -> Path:
     return common.download_ranged(CLINVAR_URL.format(build=build), dest, connections=connections)
 
 
-def build_cache(build: str, vcf: Path | None = None) -> Path:
-    """Extract ACMG SF gene records from the full ClinVar VCF into a small keyed cache."""
+def subset_vcf(build: str, *, pad: int = 5000) -> Path:
+    """ACMG SF gene regions of the official ClinVar VCF, fetched by tabix range reads (bcftools).
+
+    Only public gene coordinates are sent; the result is cached with the ClinVar ##fileDate header.
+    """
+    import shutil
+    import subprocess
+    d = common.ref_dir("clinvar", build)
+    dest = d / "clinvar_acmg_regions.vcf.gz"
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    url = CLINVAR_URL.format(build=build)
+    common.check_public_url(url)
+    common.offline_guard(url)
+    reg = d / "acmg_regions.tsv"
+    rows = sorted({(v[f"region_{build}"][0], max(1, v[f"region_{build}"][1] - pad), v[f"region_{build}"][2] + pad)
+                   for v in load_genes()["genes"].values()}, key=lambda r: (r[0].zfill(2), r[1]))
+    reg.write_text("".join(f"{c}\t{a}\t{b}\n" for c, a, b in rows))
+    bcf = shutil.which("bcftools") or "/opt/homebrew/bin/bcftools"
+    tmp = d / "clinvar_acmg_regions.part.vcf.gz"
+    common.drop_bad_index(d, url)
+    for _ in range(3):
+        r = subprocess.run([bcf, "view", "-R", str(reg), "-Oz", "-o", str(tmp), url], cwd=d,
+                           capture_output=True, text=True)
+        if r.returncode == 0:
+            break
+    else:
+        raise RuntimeError(f"ClinVar region fetch failed: {r.stderr[-500:]}")
+    tmp.replace(dest)
+    return dest
+
+
+def build_cache(build: str, vcf: Path | None = None, *, full: bool = False) -> Path:
+    """Extract ACMG SF gene records from ClinVar (region subset by default, or the full VCF)."""
     out = cache_path(build)
     if out.exists():
         return out
-    vcf = Path(vcf) if vcf else full_vcf(build)
+    vcf = Path(vcf) if vcf else (full_vcf(build) if full else subset_vcf(build))
     genes = load_genes()["genes"]
     entrez = {v["entrez"]: k for k, v in genes.items()}
     release, recs = None, {}
@@ -110,7 +142,8 @@ def build_cache(build: str, vcf: Path | None = None) -> Path:
                          "clnsig": _info(info, "CLNSIG"), "revstat": _info(info, "CLNREVSTAT"),
                          "condition": (_info(info, "CLNDN") or "").replace("_", " ").split("|")[0]}
     doc = {"build": build, "release": release, "source": CLINVAR_URL.format(build=build),
-           "sha256_full_vcf": common.sha256_file(vcf), "n": len(recs), "records": recs}
+           "source_subset": "ACMG SF v3.2 gene regions +-5 kb (tabix range reads)" if not full and vcf.name.startswith("clinvar_acmg") else "full VCF",
+           "sha256_source_vcf": common.sha256_file(vcf), "n": len(recs), "records": recs}
     with gzip.open(out, "wt", encoding="utf-8") as fh:
         json.dump(doc, fh, sort_keys=True)
     return out

@@ -213,7 +213,7 @@ def run(args):
                                                     source_locator=m["spdi"], **common_obs))
         provenance.append({"step": "clinvar", "tool": "clinvar_acmg", "version": TOOLS["clinvar_acmg"],
                            "ref_data": {"clinvar_release": cv.get("release"), "clinvar_source": cv.get("source"),
-                                        "clinvar_sha256": cv.get("sha256_full_vcf"),
+                                        "clinvar_sha256": cv.get("sha256_source_vcf"), "clinvar_subset": cv.get("source_subset"),
                                         "gene_list": clinvar.load_genes()["version"]}})
 
     # ---- PGx

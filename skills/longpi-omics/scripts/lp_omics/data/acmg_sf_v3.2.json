@@ -8,21 +8,51 @@
    "entrez": "59",
    "location": "10q23.31",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "10",
+    88934815,
+    88991339
+   ],
+   "region_GRCh37": [
+    "10",
+    90694831,
+    90751147
+   ]
   },
   "ACTC1": {
    "hgnc": "HGNC:143",
    "entrez": "70",
    "location": "15q14",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "15",
+    34790107,
+    34795912
+   ],
+   "region_GRCh37": [
+    "15",
+    35080297,
+    35088340
+   ]
   },
   "ACVRL1": {
    "hgnc": "HGNC:175",
    "entrez": "94",
    "location": "12q13.13",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "12",
+    51906908,
+    51923361
+   ],
+   "region_GRCh37": [
+    "12",
+    52300692,
+    52317145
+   ]
   },
   "APC": {
    "hgnc": "HGNC:583",
@@ -31,6 +61,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "5",
+    112707452,
+    112846239
+   ],
+   "region_GRCh37": [
+    "5",
+    112043195,
+    112181936
    ]
   },
   "APOB": {
@@ -40,6 +80,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "cad"
+   ],
+   "region_GRCh38": [
+    "2",
+    21001305,
+    21044075
+   ],
+   "region_GRCh37": [
+    "2",
+    21224301,
+    21266945
    ]
   },
   "ATP7B": {
@@ -47,14 +97,34 @@
    "entrez": "540",
    "location": "13q14.3",
    "inheritance": "AR",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "13",
+    51930436,
+    52012198
+   ],
+   "region_GRCh37": [
+    "13",
+    52506809,
+    52585630
+   ]
   },
   "BAG3": {
    "hgnc": "HGNC:939",
    "entrez": "9531",
    "location": "10q26.11",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "10",
+    119650879,
+    119677913
+   ],
+   "region_GRCh37": [
+    "10",
+    121410882,
+    121437331
+   ]
   },
   "BMPR1A": {
    "hgnc": "HGNC:1076",
@@ -63,6 +133,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "10",
+    86755751,
+    86932825
+   ],
+   "region_GRCh37": [
+    "10",
+    88516407,
+    88692595
    ]
   },
   "BRCA1": {
@@ -72,6 +152,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "breast_ca"
+   ],
+   "region_GRCh38": [
+    "17",
+    43044292,
+    43170245
+   ],
+   "region_GRCh37": [
+    "17",
+    41196312,
+    41277500
    ]
   },
   "BRCA2": {
@@ -82,6 +172,16 @@
    "disease_ids": [
     "breast_ca",
     "prostate_ca"
+   ],
+   "region_GRCh38": [
+    "13",
+    32315086,
+    32400268
+   ],
+   "region_GRCh37": [
+    "13",
+    32889611,
+    32973805
    ]
   },
   "BTD": {
@@ -89,112 +189,272 @@
    "entrez": "686",
    "location": "3p25.1",
    "inheritance": "AR",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    15601341,
+    15722522
+   ],
+   "region_GRCh37": [
+    "3",
+    15642848,
+    15687329
+   ]
   },
   "CACNA1S": {
    "hgnc": "HGNC:1397",
    "entrez": "779",
    "location": "1q32.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    201039512,
+    201112464
+   ],
+   "region_GRCh37": [
+    "1",
+    201008642,
+    201081694
+   ]
   },
   "CALM1": {
    "hgnc": "HGNC:1442",
    "entrez": "801",
    "location": "14q32.11",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "14",
+    90396502,
+    90408268
+   ],
+   "region_GRCh37": [
+    "14",
+    90862846,
+    90874605
+   ]
   },
   "CALM2": {
    "hgnc": "HGNC:1445",
    "entrez": "805",
    "location": "2p21",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "2",
+    47160084,
+    47176921
+   ],
+   "region_GRCh37": [
+    "2",
+    47387221,
+    47403740
+   ]
   },
   "CALM3": {
    "hgnc": "HGNC:1449",
    "entrez": "808",
    "location": "19q13.32",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "19",
+    46601074,
+    46610795
+   ],
+   "region_GRCh37": [
+    "19",
+    47104331,
+    47114050
+   ]
   },
   "CASQ2": {
    "hgnc": "HGNC:1513",
    "entrez": "845",
    "location": "1p13.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    115697988,
+    115837921
+   ],
+   "region_GRCh37": [
+    "1",
+    116242628,
+    116311402
+   ]
   },
   "COL3A1": {
    "hgnc": "HGNC:2201",
    "entrez": "1281",
    "location": "2q32.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "2",
+    188974371,
+    189012746
+   ],
+   "region_GRCh37": [
+    "2",
+    189839046,
+    189877472
+   ]
   },
   "DES": {
    "hgnc": "HGNC:2770",
    "entrez": "1674",
    "location": "2q35",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "2",
+    219417474,
+    219426740
+   ],
+   "region_GRCh37": [
+    "2",
+    220283099,
+    220291461
+   ]
   },
   "DSC2": {
    "hgnc": "HGNC:3036",
    "entrez": "1824",
    "location": "18q12.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "18",
+    31058545,
+    31102600
+   ],
+   "region_GRCh37": [
+    "18",
+    28645940,
+    28682378
+   ]
   },
   "DSG2": {
    "hgnc": "HGNC:3049",
    "entrez": "1829",
    "location": "18q12.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "18",
+    31497624,
+    31551351
+   ],
+   "region_GRCh37": [
+    "18",
+    29078006,
+    29128971
+   ]
   },
   "DSP": {
    "hgnc": "HGNC:3052",
    "entrez": "1832",
    "location": "6p24.3",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "6",
+    7541320,
+    7586717
+   ],
+   "region_GRCh37": [
+    "6",
+    7541808,
+    7586950
+   ]
   },
   "ENG": {
    "hgnc": "HGNC:3349",
    "entrez": "2022",
    "location": "9q34.11",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "9",
+    127811130,
+    127855232
+   ],
+   "region_GRCh37": [
+    "9",
+    130577291,
+    130617035
+   ]
   },
   "FBN1": {
    "hgnc": "HGNC:3603",
    "entrez": "2200",
    "location": "15q21.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "15",
+    48408016,
+    48645791
+   ],
+   "region_GRCh37": [
+    "15",
+    48700503,
+    48938046
+   ]
   },
   "FLNC": {
    "hgnc": "HGNC:3756",
    "entrez": "2318",
    "location": "7q32.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "7",
+    128830292,
+    128859275
+   ],
+   "region_GRCh37": [
+    "7",
+    128470431,
+    128499328
+   ]
   },
   "GAA": {
    "hgnc": "HGNC:4065",
    "entrez": "2548",
    "location": "17q25.3",
    "inheritance": "AR",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "17",
+    80101526,
+    80119881
+   ],
+   "region_GRCh37": [
+    "17",
+    78075355,
+    78093678
+   ]
   },
   "GLA": {
    "hgnc": "HGNC:4296",
    "entrez": "2717",
    "location": "Xq22.1",
    "inheritance": "XL",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "X",
+    101393273,
+    101408012
+   ],
+   "region_GRCh37": [
+    "X",
+    100652791,
+    100662913
+   ]
   },
   "HFE": {
    "hgnc": "HGNC:4886",
@@ -215,7 +475,17 @@
      "G",
      "A"
     ]
-   }
+   },
+   "region_GRCh38": [
+    "6",
+    26087226,
+    26098343
+   ],
+   "region_GRCh37": [
+    "6",
+    26087509,
+    26098571
+   ]
   },
   "HNF1A": {
    "hgnc": "HGNC:11621",
@@ -224,6 +494,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "t2d"
+   ],
+   "region_GRCh38": [
+    "12",
+    120978543,
+    121002512
+   ],
+   "region_GRCh37": [
+    "12",
+    121416346,
+    121440315
    ]
   },
   "KCNH2": {
@@ -231,14 +511,34 @@
    "entrez": "3757",
    "location": "7q36.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "7",
+    150944064,
+    150978394
+   ],
+   "region_GRCh37": [
+    "7",
+    150642049,
+    150675403
+   ]
   },
   "KCNQ1": {
    "hgnc": "HGNC:6294",
    "entrez": "3784",
    "location": "11p15.5-p15.4",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    2444654,
+    2849105
+   ],
+   "region_GRCh37": [
+    "11",
+    2465914,
+    2870339
+   ]
   },
   "LDLR": {
    "hgnc": "HGNC:6547",
@@ -247,6 +547,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "cad"
+   ],
+   "region_GRCh38": [
+    "19",
+    11089418,
+    11133830
+   ],
+   "region_GRCh37": [
+    "19",
+    11200038,
+    11244492
    ]
   },
   "LMNA": {
@@ -254,21 +564,51 @@
    "entrez": "4000",
    "location": "1q22",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    156082572,
+    156140085
+   ],
+   "region_GRCh37": [
+    "1",
+    156052364,
+    156109880
+   ]
   },
   "MAX": {
    "hgnc": "HGNC:6913",
    "entrez": "4149",
    "location": "14q23.3",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "14",
+    65005398,
+    65102695
+   ],
+   "region_GRCh37": [
+    "14",
+    65472892,
+    65569413
+   ]
   },
   "MEN1": {
    "hgnc": "HGNC:7010",
    "entrez": "4221",
    "location": "11q13.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    64803500,
+    64811294
+   ],
+   "region_GRCh37": [
+    "11",
+    64570982,
+    64578766
+   ]
   },
   "MLH1": {
    "hgnc": "HGNC:7127",
@@ -278,6 +618,16 @@
    "disease_ids": [
     "crc",
     "gastric_ca"
+   ],
+   "region_GRCh38": [
+    "3",
+    36992834,
+    37051505
+   ],
+   "region_GRCh37": [
+    "3",
+    37034823,
+    37107380
    ]
   },
   "MSH2": {
@@ -288,6 +638,16 @@
    "disease_ids": [
     "crc",
     "gastric_ca"
+   ],
+   "region_GRCh38": [
+    "2",
+    47403067,
+    47663146
+   ],
+   "region_GRCh37": [
+    "2",
+    47630108,
+    47789450
    ]
   },
   "MSH6": {
@@ -297,6 +657,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "2",
+    47695530,
+    47810109
+   ],
+   "region_GRCh37": [
+    "2",
+    47922669,
+    48037240
    ]
   },
   "MUTYH": {
@@ -306,6 +676,16 @@
    "inheritance": "AR",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "1",
+    45329163,
+    45340893
+   ],
+   "region_GRCh37": [
+    "1",
+    45794835,
+    45806142
    ]
   },
   "MYBPC3": {
@@ -313,49 +693,119 @@
    "entrez": "4607",
    "location": "11p11.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    47331406,
+    47352702
+   ],
+   "region_GRCh37": [
+    "11",
+    47352957,
+    47374253
+   ]
   },
   "MYH11": {
    "hgnc": "HGNC:7569",
    "entrez": "4629",
    "location": "16p13.11",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "16",
+    15703135,
+    15858438
+   ],
+   "region_GRCh37": [
+    "16",
+    15797029,
+    15950890
+   ]
   },
   "MYH7": {
    "hgnc": "HGNC:7577",
    "entrez": "4625",
    "location": "14q11.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "14",
+    23412732,
+    23436137
+   ],
+   "region_GRCh37": [
+    "14",
+    23881947,
+    23904927
+   ]
   },
   "MYL2": {
    "hgnc": "HGNC:7583",
    "entrez": "4633",
    "location": "12q24.11",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "12",
+    110909996,
+    110921443
+   ],
+   "region_GRCh37": [
+    "12",
+    111348623,
+    111358526
+   ]
   },
   "MYL3": {
    "hgnc": "HGNC:7584",
    "entrez": "4634",
    "location": "3p21.31",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    46835109,
+    46885911
+   ],
+   "region_GRCh37": [
+    "3",
+    46899362,
+    46923659
+   ]
   },
   "NF2": {
    "hgnc": "HGNC:7773",
    "entrez": "4771",
    "location": "22q12.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "22",
+    29603520,
+    29698598
+   ],
+   "region_GRCh37": [
+    "22",
+    29999545,
+    30094587
+   ]
   },
   "OTC": {
    "hgnc": "HGNC:8512",
    "entrez": "5009",
    "location": "Xp11.4",
    "inheritance": "XL",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "X",
+    38327598,
+    38424632
+   ],
+   "region_GRCh37": [
+    "X",
+    38211798,
+    38280703
+   ]
   },
   "PALB2": {
    "hgnc": "HGNC:26144",
@@ -364,6 +814,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "breast_ca"
+   ],
+   "region_GRCh38": [
+    "16",
+    23603158,
+    23641342
+   ],
+   "region_GRCh37": [
+    "16",
+    23614488,
+    23652631
    ]
   },
   "PCSK9": {
@@ -373,6 +833,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "cad"
+   ],
+   "region_GRCh38": [
+    "1",
+    55039445,
+    55064852
+   ],
+   "region_GRCh37": [
+    "1",
+    55505221,
+    55530525
    ]
   },
   "PKP2": {
@@ -380,7 +850,17 @@
    "entrez": "5318",
    "location": "12p11.21",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "12",
+    32790745,
+    32896819
+   ],
+   "region_GRCh37": [
+    "12",
+    32943679,
+    33049774
+   ]
   },
   "PMS2": {
    "hgnc": "HGNC:9122",
@@ -389,6 +869,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "7",
+    5970925,
+    6009130
+   ],
+   "region_GRCh37": [
+    "7",
+    6012870,
+    6048756
    ]
   },
   "PRKAG2": {
@@ -396,7 +886,17 @@
    "entrez": "51422",
    "location": "7q36.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "7",
+    151556010,
+    151877563
+   ],
+   "region_GRCh37": [
+    "7",
+    151253197,
+    151574210
+   ]
   },
   "PTEN": {
    "hgnc": "HGNC:9588",
@@ -405,6 +905,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "breast_ca"
+   ],
+   "region_GRCh38": [
+    "10",
+    87862638,
+    87971930
+   ],
+   "region_GRCh37": [
+    "10",
+    89622870,
+    89731687
    ]
   },
   "RB1": {
@@ -412,84 +922,204 @@
    "entrez": "5925",
    "location": "13q14.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "13",
+    48303710,
+    48599436
+   ],
+   "region_GRCh37": [
+    "13",
+    48877887,
+    49056122
+   ]
   },
   "RBM20": {
    "hgnc": "HGNC:27424",
    "entrez": "282996",
    "location": "10q25.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "10",
+    110643874,
+    110839471
+   ],
+   "region_GRCh37": [
+    "10",
+    112404155,
+    112599227
+   ]
   },
   "RET": {
    "hgnc": "HGNC:9967",
    "entrez": "5979",
    "location": "10q11.21",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "10",
+    43077026,
+    43130351
+   ],
+   "region_GRCh37": [
+    "10",
+    43572475,
+    43625799
+   ]
   },
   "RPE65": {
    "hgnc": "HGNC:10294",
    "entrez": "6121",
    "location": "1p31.3",
    "inheritance": "AR",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    68428822,
+    68451103
+   ],
+   "region_GRCh37": [
+    "1",
+    68894505,
+    68915642
+   ]
   },
   "RYR1": {
    "hgnc": "HGNC:10483",
    "entrez": "6261",
    "location": "19q13.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "19",
+    38433691,
+    38595273
+   ],
+   "region_GRCh37": [
+    "19",
+    38924339,
+    39078204
+   ]
   },
   "RYR2": {
    "hgnc": "HGNC:10484",
    "entrez": "6262",
    "location": "1q43",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    237042184,
+    237833988
+   ],
+   "region_GRCh37": [
+    "1",
+    237205505,
+    237997288
+   ]
   },
   "SCN5A": {
    "hgnc": "HGNC:10593",
    "entrez": "6331",
    "location": "3p22.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    38548057,
+    38649743
+   ],
+   "region_GRCh37": [
+    "3",
+    38589548,
+    38691164
+   ]
   },
   "SDHAF2": {
    "hgnc": "HGNC:26034",
    "entrez": "54949",
    "location": "11q12.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    61430032,
+    61473614
+   ],
+   "region_GRCh37": [
+    "11",
+    61197514,
+    61215001
+   ]
   },
   "SDHB": {
    "hgnc": "HGNC:10681",
    "entrez": "6390",
    "location": "1p36.13",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    17018664,
+    17054210
+   ],
+   "region_GRCh37": [
+    "1",
+    17345217,
+    17380665
+   ]
   },
   "SDHC": {
    "hgnc": "HGNC:10682",
    "entrez": "6391",
    "location": "1q23.3",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    161314352,
+    161363774
+   ],
+   "region_GRCh37": [
+    "1",
+    161284047,
+    161332984
+   ]
   },
   "SDHD": {
    "hgnc": "HGNC:10683",
    "entrez": "6392",
    "location": "11q23.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    112086361,
+    112120016
+   ],
+   "region_GRCh37": [
+    "11",
+    111957497,
+    111990353
+   ]
   },
   "SMAD3": {
    "hgnc": "HGNC:6769",
    "entrez": "4088",
    "location": "15q22.33",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "15",
+    67063763,
+    67195173
+   ],
+   "region_GRCh37": [
+    "15",
+    67356101,
+    67487533
+   ]
   },
   "SMAD4": {
    "hgnc": "HGNC:6770",
@@ -498,6 +1128,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "crc"
+   ],
+   "region_GRCh38": [
+    "18",
+    51028528,
+    51085045
+   ],
+   "region_GRCh37": [
+    "18",
+    48494410,
+    48611415
    ]
   },
   "STK11": {
@@ -508,6 +1148,16 @@
    "disease_ids": [
     "breast_ca",
     "crc"
+   ],
+   "region_GRCh38": [
+    "19",
+    1177558,
+    1228431
+   ],
+   "region_GRCh37": [
+    "19",
+    1189406,
+    1228428
    ]
   },
   "TGFBR1": {
@@ -515,49 +1165,119 @@
    "entrez": "7046",
    "location": "9q22.33",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "9",
+    99104038,
+    99154395
+   ],
+   "region_GRCh37": [
+    "9",
+    101866320,
+    101916474
+   ]
   },
   "TGFBR2": {
    "hgnc": "HGNC:11773",
    "entrez": "7048",
    "location": "3p24.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    30606478,
+    30694249
+   ],
+   "region_GRCh37": [
+    "3",
+    30647994,
+    30735634
+   ]
   },
   "TMEM127": {
    "hgnc": "HGNC:26038",
    "entrez": "55654",
    "location": "2q11.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "2",
+    96248500,
+    96266082
+   ],
+   "region_GRCh37": [
+    "2",
+    96914254,
+    96931732
+   ]
   },
   "TMEM43": {
    "hgnc": "HGNC:28472",
    "entrez": "79188",
    "location": "3p25.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    14124998,
+    14143681
+   ],
+   "region_GRCh37": [
+    "3",
+    14166440,
+    14185179
+   ]
   },
   "TNNC1": {
    "hgnc": "HGNC:11943",
    "entrez": "7134",
    "location": "3p21.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    52451082,
+    52454071
+   ],
+   "region_GRCh37": [
+    "3",
+    52485118,
+    52488086
+   ]
   },
   "TNNI3": {
    "hgnc": "HGNC:11947",
    "entrez": "7137",
    "location": "19q13.42",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "19",
+    55151763,
+    55157774
+   ],
+   "region_GRCh37": [
+    "19",
+    55663137,
+    55669141
+   ]
   },
   "TNNT2": {
    "hgnc": "HGNC:11949",
    "entrez": "7139",
    "location": "1q32.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "1",
+    201356606,
+    201379773
+   ],
+   "region_GRCh37": [
+    "1",
+    201328136,
+    201346890
+   ]
   },
   "TP53": {
    "hgnc": "HGNC:11998",
@@ -566,6 +1286,16 @@
    "inheritance": "AD",
    "disease_ids": [
     "breast_ca"
+   ],
+   "region_GRCh38": [
+    "17",
+    7661779,
+    7687546
+   ],
+   "region_GRCh37": [
+    "17",
+    7565097,
+    7590856
    ]
   },
   "TPM1": {
@@ -573,56 +1303,137 @@
    "entrez": "7168",
    "location": "15q22.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "15",
+    63042130,
+    63071915
+   ],
+   "region_GRCh37": [
+    "15",
+    63334831,
+    63364114
+   ]
   },
   "TRDN": {
    "hgnc": "HGNC:12261",
    "entrez": "10345",
    "location": "6q22.31",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "6",
+    123215088,
+    123637316
+   ],
+   "region_GRCh37": [
+    "6",
+    123537483,
+    123958238
+   ]
   },
   "TSC1": {
    "hgnc": "HGNC:12362",
    "entrez": "7248",
    "location": "9q34.13",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "9",
+    132891348,
+    132946874
+   ],
+   "region_GRCh37": [
+    "9",
+    135766735,
+    135820020
+   ]
   },
   "TSC2": {
    "hgnc": "HGNC:12363",
    "entrez": "7249",
    "location": "16p13.3",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "16",
+    2047345,
+    2089491
+   ],
+   "region_GRCh37": [
+    "16",
+    2097466,
+    2138716
+   ]
   },
   "TTN": {
    "hgnc": "HGNC:12403",
    "entrez": "7273",
    "location": "2q31.2",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "2",
+    178525989,
+    178830802
+   ],
+   "region_GRCh37": [
+    "2",
+    179390716,
+    179695529
+   ]
   },
   "TTR": {
    "hgnc": "HGNC:12405",
    "entrez": "7276",
    "location": "18q12.1",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "18",
+    31557008,
+    31606585
+   ],
+   "region_GRCh37": [
+    "18",
+    29171689,
+    29178974
+   ]
   },
   "VHL": {
    "hgnc": "HGNC:12687",
    "entrez": "7428",
    "location": "3p25.3",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "3",
+    10141764,
+    10153676
+   ],
+   "region_GRCh37": [
+    "3",
+    10182692,
+    10193904
+   ]
   },
   "WT1": {
    "hgnc": "HGNC:12796",
    "entrez": "7490",
    "location": "11p13",
    "inheritance": "AD",
-   "disease_ids": []
+   "disease_ids": [],
+   "region_GRCh38": [
+    "11",
+    32387775,
+    32435885
+   ],
+   "region_GRCh37": [
+    "11",
+    32409321,
+    32457176
+   ]
   }
- }
+ },
+ "regions_source": "Ensembl REST lookup/symbol (GRCh38 and GRCh37 servers), 2026-11-18; gene start-end"
 }

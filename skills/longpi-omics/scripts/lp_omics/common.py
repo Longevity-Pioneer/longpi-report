@@ -124,6 +124,16 @@ def download_ranged(url: str, dest: Path, *, connections: int = 8, force: bool =
     return dest
 
 
+def drop_bad_index(directory: Path, url: str) -> None:
+    """htslib caches remote indexes in the working directory; remove a cached .tbi that is not BGZF
+    (e.g. an HTML error page saved by an earlier failed download)."""
+    p = Path(directory) / (url.rsplit("/", 1)[-1] + ".tbi")
+    if p.exists():
+        with open(p, "rb") as fh:
+            if fh.read(4) != b"\x1f\x8b\x08\x04":
+                p.unlink()
+
+
 def sha256_file(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as fh:
