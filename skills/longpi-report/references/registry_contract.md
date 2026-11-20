@@ -129,6 +129,7 @@
   - `population.sex_scope`：`M`/`F` 只适用于单一性别（乳腺癌、前列腺癌项自动按结局限定）。
   - 来源 `evidence.source = "pgs_perf:PPMxxxxxx"`：PGS Catalog 的表现记录（文本由代码按固定格式生成）。
   - 遗传项（`kind: genetic`）的研究设计另允许大型病例对照（胚系变异先于发病，无反向因果）。
+- **双次独立建项一致**（2026-11-20 起）：计入数值的项须由两次互不知情的建项产生，`add-consensus` 比对一致的结局才计入；不一致的写成定性佐证，两份规格存 `registry/candidates/`。
 - 自动入库标准（方案 A）：人体前瞻队列/荟萃/孟德尔随机化；结局事件 ≥100；HR 与 95% CI；数值与原文逐字核对通过；等级 ≥B；平台一致或有换算；参考分布可得；
   许可允许商业使用；方向与原文一致。任何一条不满足 → 写进 `registry/qualitative/`（字段相同，另加 `why_qualitative_zh`）。
 

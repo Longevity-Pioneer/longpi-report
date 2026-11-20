@@ -1293,6 +1293,40 @@ def _write_plans(plans, root, version):
     return {"ok": True, "version": version, "digest": man["digest"], "written": msgs}
 
 
+def add_consensus(a: dict, b: dict, root: Path = RG.REG_DIR, offline: bool = False, replace: bool = False,
+                  today: Optional[_dt.date] = None) -> dict:
+    """Two independent builds of the same term. Both must pass verify; outcomes where their effects agree are
+    counted (the build with more events, the other recorded as replication); if none agree, the term is written as
+    qualitative and both specs are kept in registry/candidates/ for review."""
+    import consensus as CN
+    if a.get("id") != b.get("id") or (a.get("input") or {}).get("code") != (b.get("input") or {}).get("code"):
+        return {"ok": False, "error": "两份规格的 id 或输入编码不同，不是同一个项"}
+    ra, rb = verify(a, root, offline=offline), verify(b, root, offline=offline)
+    for r, tag in ((ra, "A"), (rb, "B")):
+        if r.get("retry"):
+            return {"ok": False, "error": f"{tag} 联网核对未完成，请重试"}
+    cmp = CN.compare(a, b)
+    both_ok = ra["verdict"] == "auto_accept" and rb["verdict"] == "auto_accept"
+    merged, dropped = CN.merge(a, b, cmp) if both_ok else (None, [])
+    cand = root / "candidates"
+    cand.mkdir(parents=True, exist_ok=True)
+    rec = {"id": a["id"], "a": a, "b": b, "verify": {"a": ra["verdict"], "b": rb["verdict"]}, "comparison": cmp,
+           "decided": (today or _dt.date.today()).isoformat()}
+    if merged is not None:
+        res = add([merged], root, replace=replace, offline=offline, today=today)
+        if res.get("ok") and dropped:
+            (cand / f"{a['id']}.json").write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+            RG.freeze(root)
+        return dict(res, consensus="agree", dropped=dropped)
+    why = "两次独立建项" + ("一致性不足：" + "；".join(sum((v.get("why", []) for v in cmp["outcomes"].values()), [])[:3])
+                         if both_ok else f"核对未全部通过（A：{ra['verdict']}，B：{rb['verdict']}）") + "；两份规格在候选区待审核"
+    q = dict(a if CN.events(a) >= CN.events(b) else b)
+    res = add([q], root, qualitative=True, why=why, replace=replace, offline=offline, today=today)
+    (cand / f"{a['id']}.json").write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    RG.freeze(root)
+    return dict(res, consensus="disagree", why=why)
+
+
 # ----------------------------------------------------------------------------- CLI
 
 def _load_spec(p: str) -> dict:
@@ -1360,6 +1394,11 @@ def main(argv=None) -> int:
     v.add_argument("--offline", action="store_true")
     v.add_argument("--refresh", action="store_true")
     v.add_argument("--json", action="store_true")
+    ac = sub.add_parser("add-consensus", help="two independent builds of one term; counts only where they agree")
+    ac.add_argument("spec_a")
+    ac.add_argument("spec_b")
+    ac.add_argument("--offline", action="store_true")
+    ac.add_argument("--replace", action="store_true")
     a = sub.add_parser("add")
     a.add_argument("specs", nargs="+")
     a.add_argument("--qualitative", action="store_true")
@@ -1395,6 +1434,13 @@ def main(argv=None) -> int:
         if args.json:
             print(json.dumps(out, ensure_ascii=False, indent=1))
         return rc
+    if args.cmd == "add-consensus":
+        res = add_consensus(_load_spec(args.spec_a), _load_spec(args.spec_b), root, offline=args.offline, replace=args.replace)
+        print(json.dumps(res, ensure_ascii=False, indent=1))
+        return 0 if res.get("ok") else 1
+    if args.cmd == "add" and not args.qualitative and not os.environ.get("LONGPI_TB_SINGLE_BUILD_OK"):
+        print("计入数值须两次独立建项一致：用 add-consensus <A.json> <B.json>；只作定性佐证时用 add --qualitative", file=sys.stderr)
+        return 2
     if args.cmd == "add":
         res = add([_load_spec(p) for p in args.specs], root, qualitative=args.qualitative, why=args.why,
                   replace=args.replace, offline=args.offline)

@@ -52,7 +52,7 @@ def _files(root: Path) -> List[Path]:
     for name in DATA_FILES:
         if (data / name).exists():
             out.append(data / name)
-    for sub in ("terms", "qualitative", "outcomes", "sources"):
+    for sub in ("terms", "qualitative", "outcomes", "sources", "candidates"):
         d = root / sub
         if d.is_dir():
             out += sorted(x for x in d.glob("*.json"))
