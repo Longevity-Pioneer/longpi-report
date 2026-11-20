@@ -75,7 +75,7 @@ python3 scripts/longpi_report.py check   person.json                  # 检查�
 python3 scripts/longpi_report.py compute person.json -o results.json  # 计算
 python3 scripts/longpi_report.py facts   results.json                 # 撰写叙述用的事实表
 python3 scripts/longpi_report.py render  results.json narrative.json -o report.html
-python3 -m unittest discover -s tests                                 # 68 项测试
+python3 -m unittest discover -s tests                                 # 70 项测试
 ```
 
 合成演示报告见 `skills/longpi-report/examples/output/report.html`。
@@ -86,7 +86,7 @@ python3 -m unittest discover -s tests                                 # 68 项�
 |---|---|
 | `skills/longpi-report` | 出报告（离线，仅需 Python 标准库） |
 | `skills/longpi-omics` | 组学二级数据 → 标准观测（可联网下载参考数据，需要 numpy 等） |
-| `skills/longpi-term-builder` | 联网检索文献 → 项规格 → 数值与原文逐字核对 → 入库（项目库 `skills/longpi-report/registry/`） |
+| `skills/longpi-term-builder` | 联网检索文献 → 项规格 → 数值与原文逐字核对 → 两次独立建项一致才计入（项目库 `skills/longpi-report/registry/`） |
 
 设计见 `docs/PRD-可扩展评估架构.md`，接口见 `skills/longpi-report/references/registry_contract.md`。
 

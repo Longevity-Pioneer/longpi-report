@@ -1,0 +1,190 @@
+{
+ "id": "ext.resistance",
+ "name_zh": "每周抗阻训练次数",
+ "kind": "behavior",
+ "system": "musculoskeletal",
+ "group": "muscle_strengthening",
+ "input": {
+  "code": "LP:resistance_sessions_week",
+  "unit": "sessions/week",
+  "platform": null,
+  "methods": [
+   "device",
+   "self_report"
+  ]
+ },
+ "transform": {
+  "shape": "hinge",
+  "clip": [
+   0,
+   14
+  ],
+  "log_x": false,
+  "knot_lo": 1,
+  "knot_hi": 1
+ },
+ "reference": {
+  "kind": "categorical_mid",
+  "by_sex_age": [
+   {
+    "sex": "M",
+    "age_lo": 18,
+    "age_hi": 99,
+    "p": {
+     "lt2": 0.715,
+     "ge2": 0.285
+    }
+   },
+   {
+    "sex": "F",
+    "age_lo": 18,
+    "age_hi": 99,
+    "p": {
+     "lt2": 0.715,
+     "ge2": 0.285
+    }
+   }
+  ],
+  "mids": {
+   "lt2": 0.5,
+   "ge2": 2
+  },
+  "pmid": "32230937",
+  "quote": "The prevalence of MS activities among participants was 28.5%.",
+  "source": "3,073 adults from 13 cities in Hubei Province, China (PMID 32230937): 28.5% undertook muscle-strengthening activities at least two days per week (WHO guideline). Applied to all ages and both sexes.",
+  "estimated": true,
+  "estimated_reason_zh": "来源只给每周≥2 天抗阻活动的比例（28.5%，仅湖北省 13 个城市），不分年龄，摘要也未给男女各自的比例；不足 2 天一组的代表值取 0.5 次/周为假设值（来源未给出 0 次与 1 次的构成）。"
+ },
+ "effect": {
+  "all_cause": {
+   "hr_below": {
+    "hr": 1.1236,
+    "lo": 1.0309,
+    "hi": 1.2346,
+    "per": 1,
+    "per_unit": "sessions/week",
+    "derived": {
+     "from": {
+      "hr": 0.89,
+      "lo": 0.81,
+      "hi": 0.97
+     },
+     "pow": -1
+    }
+   },
+   "direction": "higher_better"
+  }
+ },
+ "adjusted_for": [
+  "age",
+  "sex",
+  "core.smoking",
+  "core.adiposity",
+  "core.crf"
+ ],
+ "overlap": {
+  "coef": 0.6,
+  "coef_sd": 0.2,
+  "rationale_zh": "模型校正了中等与高强度有氧活动、BMI、吸烟、慢性病，但未校正握力等肌肉指标（core.muscle）；与已计入的肌肉、心肺、体脂领域为部分校正，系数不超过 0.6。",
+  "overlaps_with": [
+   "core.crf",
+   "core.muscle",
+   "core.adiposity"
+  ],
+  "mediated_by": {
+   "core.muscle": 0.3
+  }
+ },
+ "transport": {
+  "ancestry": "United States (nationally representative, multiethnic)",
+  "shrink": 0.8,
+  "sd_inflate": 1.25
+ },
+ "population": {
+  "cohort": "US National Health Interview Survey 1997-2014 linked to National Death Index (n=416,420)",
+  "n": 416420,
+  "events": 45344,
+  "events_source_zh": "全文结果部分写明：全队列 416 420 人中观察到 45 344 例死亡（PMC10064988，Results 第一段；摘要未给出）。",
+  "ancestry": "United States (nationally representative, multiethnic)",
+  "age_range": [
+   18,
+   84
+  ],
+  "sex": "both"
+ },
+ "measurement": {
+  "sd_abs": null,
+  "cv": 0.3,
+  "source": "estimated"
+ },
+ "persistence": {
+  "half_life_years": 3
+ },
+ "exclude_if_flags": [
+  "acute_illness"
+ ],
+ "treated_policy": "use_pretreatment",
+ "behavior": {
+  "min_weeks": 8,
+  "self_report_discount": 0.5,
+  "target": 2,
+  "target_source": "WHO physical activity guidelines: muscle-strengthening activities at least 2 days per week (as cited in PMID 32230937 and PMID 35953241); minimum effective dose 1-2 times/week (PMID 35953241)"
+ },
+ "interventions": {
+  "modifiable": true,
+  "note_zh": "每周至少 2 天针对主要肌群的抗阻训练（哑铃、弹力带、自重或器械）。"
+ },
+ "test": {
+  "label_zh": "自述或运动记录每周抗阻训练次数",
+  "cost_level": 0
+ },
+ "disclosure": "standard",
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "35953241",
+  "quote": "MSE conferred additional mortality risk reduction at 1 time/week (0.89, 0.81 to 0.97) and appeared no longer beneficial at 7 times/week (0.99, 0.94 to 1.04)",
+  "estimand_zh": "观察性估计：同时校正中等强度与高强度有氧活动后，每周 1 次肌肉强化运动相对 0 次的全因死亡风险比；7 次/周时 95% CI 含 1，不再获益，故折线拐点取 1 次/周、拐点以上不计入；拐点以下（0 到 1 次）按 1 次的风险比取倒数（pow −1）折为每少 1 次/周的风险比，0 到 1 之间为线性内插假设。",
+  "alternatives_considered": [
+   {
+    "pmid": "35599175",
+    "estimate": "Shailendra 2022 meta-analysis: any resistance training vs none all-cause RR 0.85 (0.77-0.93); about 60 min/week RR 0.74 (0.64-0.86)",
+    "why_not_chosen": "荟萃分析排序更高，但暴露单位为有无或分钟/周，换算成次/周需自设每次时长（铁律 2），有无比较也不能折成斜率。"
+   },
+   {
+    "pmid": "35228201",
+    "estimate": "Momma 2022 BJSM meta-analysis: 10-17% lower all-cause mortality, maximum at 30-60 min/week",
+    "why_not_chosen": "摘要未给出可逐字核对的 HR 与 CI，且单位为分钟/周。"
+   },
+   {
+    "pmid": "31104484",
+    "estimate": "Saeidifard 2019 meta-analysis: RT vs none HR 0.79 (0.69-0.91)",
+    "why_not_chosen": "有无比较，不能折成次/周斜率。"
+   },
+   {
+    "pmid": "37548973",
+    "estimate": "Patel 2023 JAMA IM NHIS 500,705 adults, combined categories",
+    "why_not_chosen": "48 个有氧×肌肉强化组合分类，摘要无单独的肌肉强化次数效应。"
+   }
+  ],
+  "replication": {
+   "pmid": "35228201",
+   "doi": null,
+   "design": "meta-analysis",
+   "effects": {
+    "all_cause": {}
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  },
+  "numbers_verified": true,
+  "verified_at": "2026-11-20",
+  "verifier": "longpi-term-builder 0.1.0 (add-consensus)"
+ },
+ "license": {
+  "commercial_use": true,
+  "note": "效应量为文献数据"
+ },
+ "status": "active",
+ "added_by": "longpi-term-builder"
+}

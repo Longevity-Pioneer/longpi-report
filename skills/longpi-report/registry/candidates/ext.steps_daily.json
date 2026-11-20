@@ -161,13 +161,13 @@
   },
   "transform": {
    "shape": "hinge",
-   "knot_lo": 7000,
-   "knot_hi": 7000,
    "clip": [
-    0,
-    20000
+    2000,
+    40000
    ],
-   "log_x": false
+   "log_x": false,
+   "knot_lo": 7000,
+   "knot_hi": 7000
   },
   "reference": {
    "kind": "lognormal",
@@ -176,55 +176,43 @@
      "sex": "M",
      "age_lo": 18,
      "age_hi": 99,
-     "meanlog": 8.825,
-     "sdlog": 0.487
+     "meanlog": 8.9333,
+     "sdlog": 0.5649
     },
     {
      "sex": "F",
      "age_lo": 18,
      "age_hi": 99,
-     "meanlog": 8.825,
-     "sdlog": 0.487
+     "meanlog": 8.9333,
+     "sdlog": 0.5649
     }
    ],
-   "pmid": "35247352",
-   "quote": "Quartile median steps per day were 3553 for quartile 1, 5801 for quartile 2, 7842 for quartile 3, and 10 901 for quartile 4.",
+   "pmid": "39141900",
+   "quote": "Participants walked a median of 7580 (IQR 4972-10,653) steps and 5523 (IQR 3590-7820) meters per day",
+   "source": "Chinese community-dwelling older adults (n=3070, median age 72, wearable via mHealth app; PMID 39141900). Lognormal: meanlog = ln(median 7580); sdlog = ln(Q3/Q1)/1.349 from IQR 4972-10,653. Applied to all ages and both sexes.",
    "estimated": true,
-   "estimated_reason_zh": "无可核对的中国人群步数分布；以 15 国际队列四分位中位步数 3553/5801/7842/10 901 推算：总体中位数约取 q2、q3 中位数中点 6800（ln=8.825），sdlog=ln(10901/3553)/2.30=0.487；不分性别年龄",
-   "source": "PMID 35247352"
+   "estimated_reason_zh": "找不到按性别、年龄分层且可核对的中国成人步数分布；此处借用一个中国社区老年人（中位年龄 72 岁，女性占 71%）的可穿戴步数中位数与四分位距，拟合对数正态，用于所有年龄与性别，可能低估年轻成人的步数。"
   },
   "effect": {
    "all_cause": {
     "hr_below": {
+     "hr": 1.8868,
+     "lo": 1.6667,
+     "hi": 2.1739,
+     "per": 5000,
+     "per_unit": "steps/day",
      "derived": {
       "from": {
-       "hr": 0.85,
-       "lo": 0.81,
-       "hi": 0.91
+       "hr": 0.53,
+       "lo": 0.46,
+       "hi": 0.6
       },
       "pow": -1
-     },
-     "hr": 1.176471,
-     "lo": 1.098901,
-     "hi": 1.234568,
-     "per": 1000,
-     "per_unit": "steps/day 低于拐点每降低 1000"
+     }
     },
-    "direction": "higher_better",
-    "overlaps_with": [
-     "core.crf",
-     "core.muscle"
-    ],
-    "coef": 0.3,
-    "evidence": {
-     "pmid": "37555441",
-     "grade": "B",
-     "design": "meta-analysis",
-     "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]"
-    }
+    "direction": "higher_better"
    }
   },
-  "estimand_zh": "17 项队列荟萃（226,889 人）：日均步数每增加 1000 步的全因死亡合并 HR=0.85（0.81-0.91），以 pow −1 折为每降低 1000 步；拐点（平台）取 7000 步/天（PMID 40713949：拐点约 5000-7000），高于拐点不再计入风险；斜率与拐点来自不同文献，且原文为非线性（高步数端斜率更小）",
   "adjusted_for": [
    "age",
    "sex"
@@ -232,38 +220,39 @@
   "overlap": {
    "coef": 0.3,
    "coef_sd": 0.1,
+   "rationale_zh": "荟萃分析纳入各研究的校正集不一致，无法确认已校正心肺耐力、肌肉与静息心率等已计入领域；按只校正年龄、性别处理，系数不超过 0.3。",
    "overlaps_with": [
     "core.crf",
-    "core.muscle"
+    "core.muscle",
+    "core.rhr"
    ],
-   "rationale_zh": "步数与心肺适能、肌肉力量机制重叠；汇总研究校正不一致，按仅年龄性别 ≤0.3",
    "mediated_by": {
     "core.crf": 0.3
    }
   },
   "transport": {
-   "ancestry": "mixed",
+   "ancestry": "multinational (USA, UK, Japan and others)",
    "shrink": 0.8,
    "sd_inflate": 1.25
   },
   "population": {
-   "cohort": "17 cohort studies (meta-analysis)",
-   "n": 226889,
-   "events": null,
-   "ancestry": "mixed",
+   "cohort": "Dose-response meta-analysis of 14 prospective cohorts (161,176 unique participants in all-cause mortality analysis)",
+   "n": 161176,
+   "events_source_zh": "全文给出全因死亡荟萃分析样本为 161 176 名参与者，摘要及可抓取文本未给出死亡事件数；合并分析 n≥1 万，按规则豁免事件数。",
+   "ancestry": "multinational (USA, UK, Japan and others)",
    "age_range": [
     18,
-    90
+    99
    ],
    "sex": "both"
   },
   "measurement": {
    "sd_abs": null,
-   "cv": 0.15,
-   "source": "估计"
+   "cv": 0.1,
+   "source": "estimated"
   },
   "persistence": {
-   "half_life_years": 2
+   "half_life_years": 3
   },
   "exclude_if_flags": [
    "acute_illness"
@@ -273,42 +262,38 @@
    "min_weeks": 8,
    "self_report_discount": 0.5,
    "target": 7000,
-   "target_source": "PMID 40713949 Lancet Public Health 2025：全因死亡非线性剂量反应拐点约 5000-7000 步/天"
+   "target_source": "Ding D et al., Lancet Public Health 2025 (PMID 40713949): 7000 steps per day associated with clinically meaningful improvement; 5000-7000 inflection"
   },
   "interventions": {
    "modifiable": true,
-   "note_zh": "增加日常步行"
+   "note_zh": "可通过日常步行、通勤步行、分段步行逐步增加；以每周增加 500-1000 步为宜。"
   },
   "test": {
-   "label_zh": "手表/手机计步",
+   "label_zh": "手机或手环步数（近 90 天中位）",
    "cost_level": 0
   },
   "disclosure": "standard",
   "evidence": {
-   "grade": "B",
+   "grade": "A",
    "design": "meta-analysis",
-   "pmid": "37555441",
-   "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
+   "pmid": "40713949",
+   "quote": "compared with 2000 steps per day, 7000 steps per day was associated with a 47% lower risk of all-cause mortality (HR 0·53 [95% CI 0·46-0·60]; I2=36·3; 14 studies)",
+   "estimand_zh": "观察性剂量-反应荟萃估计：与每日 2000 步相比，每日 7000 步的全因死亡风险比；折线拐点取 7000 步（摘要写明拐点约 5000-7000 步），拐点以上不计入额外获益（摘要未给出可核对的 7000 步以上估计），拐点以下按 2000→7000 的风险比线性折算为每少 5000 步的风险比（原文 pow −1）。",
    "alternatives_considered": [
     {
-     "pmid": "34417979",
-     "estimate": "7 cohorts, 2310 deaths: HR 0.88 (0.83-0.93) per 1000 steps",
-     "reason": "人数与死亡数均较少（n=7 队列）；该文称 2700-17000 步线性下降，与平台假设不一致"
+     "pmid": "35247352",
+     "estimate": "Paluch 2022, 15 cohorts, 47,471 adults, 3013 deaths: quartile 4 vs 1 HR 0.47 (0.39-0.57)",
+     "why_not_chosen": "分位数比较（各研究分位切点不同），不能折成每步斜率；样本小于 2025 年荟萃分析。"
     },
     {
      "pmid": "38901742",
-     "estimate": "14 cohorts: HR 0.91 (0.87-0.95) per 1000 steps, threshold 3143",
-     "reason": "摘要无人数/事件数，无法满足事件门槛"
+     "estimate": "umbrella review: HR 0.91 (0.87-0.95) per 1000 steps, threshold 3143",
+     "why_not_chosen": "伞形综述加更新荟萃，摘要未给样本量与事件数，无法核对 n；拐点 3143 步低于 2025 年估计。"
     },
     {
-     "pmid": "35247352",
-     "estimate": "IPD 15 cohorts, 47,471 adults, 3013 deaths: Q2 0.60, Q3 0.55, Q4 0.47 vs Q1",
-     "reason": "仅四分位分组，折成斜率须自设间距（铁律 2）"
-    },
-    {
-     "pmid": "40713949",
-     "estimate": "57 studies; 7000 vs 2000 steps HR 0.53 (0.46-0.60)",
-     "reason": "两点比较，无每单位估计；用作拐点来源"
+     "pmid": "34808011",
+     "estimate": "J Intern Med 2022 dose-response meta-analysis",
+     "why_not_chosen": "摘要不可得，无法逐字核对数字。"
     }
    ]
   },
@@ -316,7 +301,8 @@
    "commercial_use": true,
    "note": "效应量为文献数据"
   },
-  "status": "active"
+  "status": "active",
+  "added_by": "longpi-term-builder"
  },
  "verify_b": "auto_accept",
  "verify_b_fail": [],
@@ -325,11 +311,11 @@
    "all_cause": {
     "agree": false,
     "why": [
-     "拐点不同：knot_lo 8000 对 7000"
+     "拐点不同：8000 对 7000"
     ]
    }
   },
   "agree_any": false
  },
- "why": "两次独立建项不一致：拐点不同：knot_lo 8000 对 7000"
+ "why": "两次独立建项不一致：拐点不同：8000 对 7000"
 }

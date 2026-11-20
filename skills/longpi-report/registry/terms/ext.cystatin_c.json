@@ -150,12 +150,25 @@
     "why_not": "分组比较，无法换算为连续斜率"
    }
   ],
-  "verified_at": "2026-11-18",
-  "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "verified_at": "2026-11-20",
+  "verifier": "longpi-term-builder 0.1.0 (add-consensus)",
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "36564420",
+   "doi": null,
+   "design": "prospective-cohort",
+   "effects": {
+    "all_cause": {
+     "hr": 1.51,
+     "lo": 1.44,
+     "hi": 1.58,
+     "per": 1.0
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9",
- "why_qualitative_zh": "第二次建项未通过核对：参考分布不可用：'<=' not supported between instances of 'NoneType' and 'int'",
- "demoted_from_counted": "2026-11-20 双次独立建项规则"
+ "registry_version_added": "2026.11.18-9"
 }

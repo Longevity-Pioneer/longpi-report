@@ -100,10 +100,21 @@ def compare(a: dict, b: dict) -> dict:
         return {"outcomes": {oc: {"agree": False, "why": ["输入尺度不同（一次按对数、一次按原值），无法直接比较"]}
                              for oc in set(a.get("effect") or {}) | set(b.get("effect") or {})}, "agree_any": False}
     if a["transform"]["shape"] == "hinge":
-        for k in ("knot", "knot_lo", "knot_hi"):
-            ka, kb = a["transform"].get(k), b["transform"].get(k)
-            if (ka is None) != (kb is None) or (ka is not None and abs(ka - kb) > 0.1 * max(abs(ka), abs(kb), 1e-9)):
-                return {"outcomes": {oc: {"agree": False, "why": [f"拐点不同：{k} {ka} 对 {kb}"]} for oc in set(a["effect"]) | set(b["effect"])},
+        # compare the knots that actually act: the lower knot when either build has a below-knot slope, the upper
+        # knot when either has an above-knot slope ("knot" stands for both)
+        def eff_knots(sp):
+            tf = sp["transform"]
+            return tf.get("knot_lo", tf.get("knot")), tf.get("knot_hi", tf.get("knot"))
+        sides = set()
+        for sp in (a, b):
+            for e in (sp.get("effect") or {}).values():
+                sides |= {k for k in ("hr_below", "hr_above") if e.get(k)}
+        (alo, ahi), (blo, bhi) = eff_knots(a), eff_knots(b)
+        for side, ka, kb in (("hr_below", alo, blo), ("hr_above", ahi, bhi)):
+            if side not in sides:
+                continue
+            if ka is None or kb is None or abs(ka - kb) > 0.1 * max(abs(ka), abs(kb), 1e-9):
+                return {"outcomes": {oc: {"agree": False, "why": [f"拐点不同：{ka} 对 {kb}"]} for oc in set(a["effect"]) | set(b["effect"])},
                         "agree_any": False}
     ocs = set(a.get("effect") or {}) | set(b.get("effect") or {})
     if a.get("screening") or b.get("screening"):

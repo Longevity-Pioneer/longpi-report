@@ -2027,29 +2027,12 @@
    "behavior": {
     "state_index": 105.6,
     "total_index": {
-     "median": 106.4,
-     "p10": 98.0,
-     "p90": 116.7
+     "median": 105.6,
+     "p10": 97.2,
+     "p90": 115.8
     },
-    "behavior_points": 0.8,
-    "behaviors": [
-     {
-      "id": "ext.steps_daily",
-      "name": "日均步数",
-      "points": 0.84,
-      "hr": 0.96,
-      "level": 8094.0,
-      "value": null,
-      "notes": [
-       "中介指标已测，按 0.70 计"
-      ],
-      "screening": null,
-      "evidence": {
-       "pmid": "37555441",
-       "grade": "B"
-      }
-     }
-    ],
+    "behavior_points": 0.0,
+    "behaviors": [],
     "how_to_gain": [
      {
       "id": "ext.mvpa",
@@ -2057,7 +2040,7 @@
       "target": 150,
       "target_source": "WHO 身体活动和久坐行为指南（2020）与中国人群身体活动指南（2021）：成人每周 150–300 分钟中等强度或 75–150 分钟高强度有氧活动；目标取下限 150 分钟/周，与折线拐点一致",
       "current": null,
-      "points_if_adopted": 0.88,
+      "points_if_adopted": 0.89,
       "screening": false,
       "status": null,
       "why_not_now": null,
@@ -2068,9 +2051,9 @@
       "id": "ext.resistance",
       "name": "每周抗阻训练次数",
       "target": 2,
-      "target_source": "WHO 身体活动和久坐行为指南（2020）与中国人群身体活动指南（2021）：成人每周至少 2 天进行涉及主要肌群的肌肉力量练习",
+      "target_source": "WHO physical activity guidelines: muscle-strengthening activities at least 2 days per week (as cited in PMID 32230937 and PMID 35953241); minimum effective dose 1-2 times/week (PMID 35953241)",
       "current": null,
-      "points_if_adopted": 0.82,
+      "points_if_adopted": 0.41,
       "screening": false,
       "status": null,
       "why_not_now": null,
@@ -2476,8 +2459,8 @@
   },
   "extension": {
    "registry": {
-    "version": "2026.11.18-14",
-    "digest": "8570fd0b05e2174171b0338b65013bbb4663e4af6fc9055cd2ddf698ac07ccb3"
+    "version": "2026.11.20-2",
+    "digest": "87022625391ed4d541c91def0379641f68a632c32cfc5172ad322d1cbd322b69"
    },
    "unbuilt_codes": [
     "LOINC:1989-3"
@@ -2492,7 +2475,9 @@
      "group": null,
      "status": "counted",
      "reasons": [],
-     "notes": [],
+     "notes": [
+      "中介指标已测，按 0.70 计"
+     ],
      "input_code": "LP:alcohol_g_week",
      "level": 50.0,
      "level_sd": 2.5,
@@ -2513,89 +2498,24 @@
      ],
      "n_observations": 1,
      "coef": {
-      "liver_ca": 0.6,
-      "stroke": 0.6
+      "liver_ca": 0.56,
+      "stroke": 0.21
      },
      "outcomes": [
       "liver_ca",
       "stroke"
      ],
      "evidence": {
-      "grade": "B",
-      "quote": "Among male current regular drinkers, alcohol intake showed positive dose-response associations with risks of cancers in the oesophagus (655 events; HR = 1.98 [95%CI 1.79-2.18], per 280 g/wk), mouth and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43])",
-      "pmid": "33634874",
+      "grade": "A",
+      "quote": "or total stroke (1·38, 1·26–1·51)",
+      "pmid": "30955975",
       "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/33634874/",
-      "design": "prospective-cohort"
+      "url": null,
+      "design": "mendelian-randomization"
      },
      "interventions": {
       "modifiable": true,
-      "note_zh": "减少饮酒量可降低肝癌、结直肠癌、乳腺癌和卒中风险；携带 ALDH2 低活性变异（饮酒后脸红）者危害更大。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.bmi",
-     "name": "体重指数（疾病风险）",
-     "kind": "state",
-     "system": "metabolic",
-     "group": "adiposity",
-     "status": "counted",
-     "reasons": [],
-     "notes": [],
-     "input_code": "LOINC:39156-5",
-     "level": 24.867,
-     "level_sd": 0.565,
-     "value": null,
-     "unit": "kg/m2",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LOINC:39156-5",
-       "value": 25.306122448979593,
-       "unit": "kg/m2",
-       "datetime": "2024-05-12",
-       "method": "lab",
-       "source_file": "体格测量（身高体重计算）",
-       "flags": []
-      },
-      {
-       "code": "LOINC:39156-5",
-       "value": 24.816326530612244,
-       "unit": "kg/m2",
-       "datetime": "2026-05-18",
-       "method": "lab",
-       "source_file": "体格测量（身高体重计算）",
-       "flags": []
-      }
-     ],
-     "n_observations": 2,
-     "coef": {
-      "t2d": 0.5,
-      "htn": 0.6,
-      "masld": 0.6,
-      "crc": 0.8
-     },
-     "outcomes": [
-      "t2d",
-      "htn",
-      "masld",
-      "crc"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)",
-      "pmid": "29298802",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29298802/",
-      "design": "prospective-cohort"
-     },
-     "interventions": {
-      "modifiable": true,
-      "note_zh": "通过控制总能量摄入与增加体力活动减重；中国成人 BMI 宜保持在 18.5–23.9 kg/m2。"
+      "note_zh": "减少饮酒"
      },
      "disclosure": "standard",
      "new_term": true,
@@ -2629,122 +2549,22 @@
      ],
      "n_observations": 1,
      "coef": {
-      "chd": 0.6,
-      "stroke": 0.8,
-      "liver_ca": 0.6
+      "stroke": 0.8
      },
      "outcomes": [
-      "chd",
-      "stroke",
-      "liver_ca"
+      "stroke"
      ],
      "evidence": {
-      "grade": "B",
-      "quote": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke",
-      "pmid": "20609967",
+      "grade": "A",
+      "quote": "There were significant excess risks of major coronary event (2.44, 95% CI 2.18-2.73), ischaemic stroke (1.68, 95% CI 1.60-1.77), and intracerebral haemorrhage (1.24, 95% CI 1.07-1.44).",
+      "pmid": "27379518",
       "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/20609967/",
-      "design": "meta-analysis"
-     },
-     "interventions": {
-      "modifiable": true,
-      "note_zh": "确诊后规范控制血糖、血压、血脂并戒烟，可降低心脑血管并发症风险；部分新型降糖药有心血管获益证据，用药遵医嘱。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.fh_breast_ca",
-     "name": "一级亲属乳腺癌家族史",
-     "kind": "genetic",
-     "system": "whole_body",
-     "group": "genetic",
-     "status": "not_counted",
-     "reasons": [
-      "研究只适用于另一性别或另一年龄段"
-     ],
-     "notes": [
-      "资料中未列出，按“没有”计"
-     ],
-     "input_code": "LP:fh:breast_ca",
-     "level": null,
-     "level_sd": null,
-     "value": 0,
-     "unit": "0/1",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:fh:breast_ca",
-       "value": 0,
-       "method": "self_report",
-       "source_file": "问卷（未列出）"
-      }
-     ],
-     "n_observations": 1,
-     "coef": {},
-     "outcomes": [],
-     "evidence": {
-      "grade": "B",
-      "quote": "The pooled OR for women who have a first-degree relative with breast cancer was 2.46 (95% confidence interval [CI]: 2.03, 2.97).",
-      "pmid": "37400822",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37400822/",
-      "design": "meta-analysis"
-     },
-     "interventions": {
-      "modifiable": false,
-      "note_zh": "家族史不可改变；有乳腺癌家族史者可考虑遗传咨询，并按指南提前做乳腺影像筛查。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.fh_chd",
-     "name": "冠心病家族史",
-     "kind": "genetic",
-     "system": "cardiovascular",
-     "group": "genetic",
-     "status": "counted",
-     "reasons": [],
-     "notes": [
-      "资料中未列出，按“没有”计"
-     ],
-     "input_code": "LP:fh:chd",
-     "level": null,
-     "level_sd": null,
-     "value": 0,
-     "unit": "0/1",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:fh:chd",
-       "value": 0,
-       "method": "self_report",
-       "source_file": "问卷（未列出）"
-      }
-     ],
-     "n_observations": 1,
-     "coef": {
-      "chd": 0.6
-     },
-     "outcomes": [
-      "chd"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "In multivariable-adjusted models, family history was significantly associated with risk of MCE and IHD. The adjusted HRs (95%CI) were 1.41 (1.19-1.65) and 1.25 (1.18-1.33), respectively.",
-      "pmid": "29495200",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29495200/",
+      "url": null,
       "design": "prospective-cohort"
      },
      "interventions": {
-      "modifiable": false,
-      "note_zh": "家族史不可改变；有早发冠心病家族史者应更早、更严格地管理血脂、血压与吸烟。"
+      "modifiable": true,
+      "note_zh": "血糖控制、体重管理"
      },
      "disclosure": "standard",
      "new_term": true,
@@ -2800,55 +2620,6 @@
      "screening": null
     },
     {
-     "id": "ext.fh_gastric_ca",
-     "name": "一级亲属胃癌家族史",
-     "kind": "genetic",
-     "system": "whole_body",
-     "group": "genetic",
-     "status": "counted",
-     "reasons": [],
-     "notes": [
-      "资料中未列出，按“没有”计"
-     ],
-     "input_code": "LP:fh:gastric_ca",
-     "level": null,
-     "level_sd": null,
-     "value": 0,
-     "unit": "0/1",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:fh:gastric_ca",
-       "value": 0,
-       "method": "self_report",
-       "source_file": "问卷（未列出）"
-      }
-     ],
-     "n_observations": 1,
-     "coef": {
-      "gastric_ca": 0.6
-     },
-     "outcomes": [
-      "gastric_ca"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "The risk of incident gastric cancer was higher in individuals with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)",
-      "pmid": "38649672",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/38649672/",
-      "design": "pooled-cohort"
-     },
-     "interventions": {
-      "modifiable": false,
-      "note_zh": "家族史不可改变；有胃癌家族史者宜检测并根除幽门螺杆菌，按指南做胃镜筛查。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
      "id": "ext.fh_lung_ca",
      "name": "一级亲属肺癌家族史",
      "kind": "genetic",
@@ -2898,116 +2669,14 @@
      "screening": null
     },
     {
-     "id": "ext.fh_prostate_ca",
-     "name": "一级亲属前列腺癌家族史",
-     "kind": "genetic",
-     "system": "whole_body",
-     "group": "genetic",
-     "status": "counted",
-     "reasons": [],
-     "notes": [
-      "资料中未列出，按“没有”计"
-     ],
-     "input_code": "LP:fh:prostate_ca",
-     "level": null,
-     "level_sd": null,
-     "value": 0,
-     "unit": "0/1",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:fh:prostate_ca",
-       "value": 0,
-       "method": "self_report",
-       "source_file": "问卷（未列出）"
-      }
-     ],
-     "n_observations": 1,
-     "coef": {
-      "prostate_ca": 0.3
-     },
-     "outcomes": [
-      "prostate_ca"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "We performed a meta-analysis on familial clustering of prostate cancer. Out of 74 studies reporting data on familial aggregation of prostate cancer in unselected populations retrieved by a Pubmed search and browsing references, 33 independent studies meeting the inclusion criteria were used in the analysis performed with the random effects model. The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74).",
-      "pmid": "22073129",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/22073129/",
-      "design": "meta-analysis"
-     },
-     "interventions": {
-      "modifiable": false,
-      "note_zh": "家族史不可改变；有前列腺癌家族史者可与医生讨论提前做 PSA 检查。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.fh_t2d",
-     "name": "糖尿病家族史",
-     "kind": "genetic",
-     "system": "metabolic",
-     "group": "genetic",
-     "status": "counted",
-     "reasons": [],
-     "notes": [
-      "资料中未列出，按“没有”计"
-     ],
-     "input_code": "LP:fh:t2d",
-     "level": null,
-     "level_sd": null,
-     "value": 0,
-     "unit": "0/1",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:fh:t2d",
-       "value": 0,
-       "method": "self_report",
-       "source_file": "问卷（未列出）"
-      }
-     ],
-     "n_observations": 1,
-     "coef": {
-      "t2d": 0.6
-     },
-     "outcomes": [
-      "t2d"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "Compared to those without diabetic family history, participants with family history of diabetes showed a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29)",
-      "pmid": "32842310",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/32842310/",
-      "design": "prospective-cohort"
-     },
-     "interventions": {
-      "modifiable": false,
-      "note_zh": "家族史不可改变；有糖尿病家族史者更应控制体重、规律运动并定期查空腹血糖或糖化血红蛋白。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
      "id": "ext.hdl",
      "name": "高密度脂蛋白胆固醇（冠心病风险）",
      "kind": "state",
      "system": "cardiovascular",
      "group": "lipids",
-     "status": "overlap",
-     "reasons": [
-      "与已计入的项重叠，只作佐证"
-     ],
-     "notes": [
-      "与已计入的低密度脂蛋白胆固醇（冠心病风险）同属一组，研究未校正它，此结局只作佐证"
-     ],
+     "status": "counted",
+     "reasons": [],
+     "notes": [],
      "input_code": "LOINC:2085-9",
      "level": 1.181,
      "level_sd": 0.065,
@@ -3054,8 +2723,12 @@
       }
      ],
      "n_observations": 4,
-     "coef": {},
-     "outcomes": [],
+     "coef": {
+      "chd": 0.5
+     },
+     "outcomes": [
+      "chd"
+     ],
      "evidence": {
       "grade": "B",
       "quote": "Adjusted HRs for CHD were 0.99 (95% CI, 0.94-1.05) with triglyceride, 0.78 (95% CI, 0.74-0.82) with HDL-C",
@@ -3073,133 +2746,6 @@
      "screening": null
     },
     {
-     "id": "ext.ldl",
-     "name": "低密度脂蛋白胆固醇（冠心病风险）",
-     "kind": "state",
-     "system": "cardiovascular",
-     "group": "lipids",
-     "status": "counted",
-     "reasons": [],
-     "notes": [],
-     "input_code": "LOINC:13457-7",
-     "level": 3.718,
-     "level_sd": 0.184,
-     "value": null,
-     "unit": "mmol/L",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LOINC:13457-7",
-       "value": 3.21,
-       "unit": "mmol/L",
-       "datetime": "2023-04-16",
-       "method": "lab",
-       "source_file": "年度体检",
-       "flags": []
-      },
-      {
-       "code": "LOINC:13457-7",
-       "value": 3.58,
-       "unit": "mmol/L",
-       "datetime": "2024-05-12",
-       "method": "lab",
-       "source_file": "年度体检",
-       "flags": []
-      },
-      {
-       "code": "LOINC:13457-7",
-       "value": 3.92,
-       "unit": "mmol/L",
-       "datetime": "2025-05-20",
-       "method": "lab",
-       "source_file": "年度体检",
-       "flags": []
-      },
-      {
-       "code": "LOINC:13457-7",
-       "value": 3.64,
-       "unit": "mmol/L",
-       "datetime": "2026-05-18",
-       "method": "lab",
-       "source_file": "年度体检",
-       "flags": []
-      }
-     ],
-     "n_observations": 4,
-     "coef": {
-      "chd": 1.0
-     },
-     "outcomes": [
-      "chd"
-     ],
-     "evidence": {
-      "grade": "A",
-      "quote": "consisting of separately significant reductions in coronary death or non-fatal myocardial infarction of 13% (95% CI 7-19; p<0·0001), in coronary revascularisation of 19% (95% CI 15-24; p<0·0001), and in ischaemic stroke of 16% (95% CI 5-26; p=0·005). Per 1·0 mmol/L reduction in LDL cholesterol, these further reductions in risk were similar to the proportional reductions in the trials of statin versus control. When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
-      "pmid": "21067804",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
-      "design": "meta-analysis-rct"
-     },
-     "interventions": {
-      "modifiable": true,
-      "note_zh": "减少饱和脂肪摄入；风险较高者在医生指导下使用他汀等降脂药物。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.lpa",
-     "name": "脂蛋白(a)",
-     "kind": "state",
-     "system": "cardiovascular",
-     "group": "lipids",
-     "status": "overlap",
-     "reasons": [
-      "与已计入的项重叠，只作佐证"
-     ],
-     "notes": [
-      "与已计入的低密度脂蛋白胆固醇（冠心病风险）同属一组，研究未校正它，此结局只作佐证"
-     ],
-     "input_code": "LOINC:10835-7",
-     "level": 18.0,
-     "level_sd": 1.44,
-     "value": null,
-     "unit": "mg/L",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LOINC:10835-7",
-       "value": 18.0,
-       "unit": "mg/L",
-       "datetime": "2026-05-18",
-       "method": "lab",
-       "source_file": "年度体检",
-       "flags": []
-      }
-     ],
-     "n_observations": 1,
-     "coef": {},
-     "outcomes": [],
-     "evidence": {
-      "grade": "A",
-      "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
-      "pmid": "40297899",
-      "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/40297899/",
-      "design": "mendelian-randomization"
-     },
-     "interventions": {
-      "modifiable": false,
-      "note_zh": "Lp(a) 水平主要由遗传决定，生活方式影响很小；目前尚无获批的特异性降 Lp(a) 药物，升高者宜更严格控制其他危险因素"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
      "id": "ext.sbp",
      "name": "收缩压（疾病风险）",
      "kind": "state",
@@ -3207,10 +2753,12 @@
      "group": "blood_pressure",
      "status": "counted",
      "reasons": [],
-     "notes": [],
+     "notes": [
+      "年龄不在研究范围 40–79 岁，按 0.7 计"
+     ],
      "input_code": "LOINC:8480-6",
-     "level": 131.555,
-     "level_sd": 6.319,
+     "level": 132.483,
+     "level_sd": 4.608,
      "value": null,
      "unit": "mmHg",
      "slope_per_year": null,
@@ -3255,26 +2803,22 @@
      ],
      "n_observations": 4,
      "coef": {
-      "chd": 0.6,
-      "stroke": 0.6,
-      "ckd": 0.6
+      "chd": 0.56
      },
      "outcomes": [
-      "chd",
-      "stroke",
-      "ckd"
+      "chd"
      ],
      "evidence": {
-      "grade": "B",
-      "quote": "each 10 mm Hg higher usual systolic blood pressure was associated with an approximately 30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])",
-      "pmid": "29773120",
-      "doi": "10.1016/S2214-109X(18)30184-7",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/29773120/",
-      "design": "prospective-cohort"
+      "grade": "A",
+      "quote": "the hazard ratios per 10 mm Hg higher genetically predicted SBP were 2-fold greater for intracerebral hemorrhage (1.71 [95% CI, 1.58-1.87]) than for ischemic stroke (1.37 [1.30-1.45]) or major coronary event (1.29 [1.18-1.42]).",
+      "pmid": "36601918",
+      "doi": null,
+      "url": null,
+      "design": "mendelian-randomization"
      },
      "interventions": {
       "modifiable": true,
-      "note_zh": "限盐、减重、规律运动、限酒；达到用药指征时遵医嘱降压。"
+      "note_zh": "减盐、减重、运动、降压药"
      },
      "disclosure": "standard",
      "new_term": true,
@@ -3288,10 +2832,7 @@
      "group": "lifestyle",
      "status": "counted",
      "reasons": [],
-     "notes": [
-      "年龄不在研究范围 60–99 岁，按 0.7 计",
-      "年龄不在研究范围 40–79 岁，按 0.7 计"
-     ],
+     "notes": [],
      "input_code": "LP:smoking_status",
      "level": null,
      "level_sd": null,
@@ -3312,82 +2853,24 @@
      ],
      "n_observations": 1,
      "coef": {
-      "chd": 0.56,
-      "stroke": 0.56,
-      "gastric_ca": 0.42,
-      "liver_ca": 0.8,
-      "lung_ca": 0.42
+      "gastric_ca": 0.8,
+      "liver_ca": 0.6
      },
      "outcomes": [
-      "chd",
-      "stroke",
       "gastric_ca",
-      "liver_ca",
-      "lung_ca"
+      "liver_ca"
      ],
      "evidence": {
       "grade": "B",
-      "quote": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers.",
-      "pmid": "25896935",
+      "quote": "liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)",
+      "pmid": "26331816",
       "doi": null,
-      "url": "https://pubmed.ncbi.nlm.nih.gov/25896935/",
-      "design": "meta-analysis"
+      "url": null,
+      "design": "prospective-cohort"
      },
      "interventions": {
       "modifiable": true,
-      "note_zh": "戒烟可降低上述疾病风险，戒烟越早获益越大；可使用戒烟门诊、药物辅助与行为支持。"
-     },
-     "disclosure": "standard",
-     "new_term": true,
-     "screening": null
-    },
-    {
-     "id": "ext.steps_daily",
-     "name": "日均步数",
-     "kind": "behavior",
-     "system": "musculoskeletal",
-     "group": "physical_activity",
-     "status": "counted",
-     "reasons": [],
-     "notes": [
-      "中介指标已测，按 0.70 计"
-     ],
-     "input_code": "LP:steps_daily_mean",
-     "level": 8094.0,
-     "level_sd": 809.4,
-     "value": null,
-     "unit": "steps/day",
-     "slope_per_year": null,
-     "slope_sd": null,
-     "observations": [
-      {
-       "code": "LP:steps_daily_mean",
-       "value": 8094.0,
-       "unit": "steps/day",
-       "datetime": "2026-10-20",
-       "method": "device",
-       "source_file": "可穿戴设备",
-       "flags": []
-      }
-     ],
-     "n_observations": 1,
-     "coef": {
-      "all_cause": 0.21
-     },
-     "outcomes": [
-      "all_cause"
-     ],
-     "evidence": {
-      "grade": "B",
-      "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
-      "pmid": "37555441",
-      "doi": "10.1093/eurjpc/zwad229",
-      "url": "https://pubmed.ncbi.nlm.nih.gov/37555441/",
-      "design": "meta-analysis"
-     },
-     "interventions": {
-      "modifiable": true,
-      "note_zh": "日均步数低于约 8000 步时，增加步行可降低全因死亡风险；超过该水平后获益趋于平缓（60 岁以下者可至 8000–10 000 步）。"
+      "note_zh": "戒烟"
      },
      "disclosure": "standard",
      "new_term": true,
@@ -3402,8 +2885,7 @@
      "status": "counted",
      "reasons": [],
      "notes": [
-      "研究未校正已计入的体重（BMI），系数不超过它（0.03）",
-      "与已计入的体重指数（疾病风险）同属一组，研究未校正它，此结局只作佐证"
+      "研究未校正已计入的体重（BMI），系数不超过它（0.03）"
      ],
      "input_code": "LOINC:8280-0",
      "level": 92.211,
@@ -3476,6 +2958,19 @@
      }
     },
     {
+     "id": "ext.bmi",
+     "name": "体重指数（疾病风险）",
+     "why": "两次独立建项不一致：只有一次建项给出了这个结局；只有一次建项给出了这个结局；只有一次建项给出了这个结局",
+     "evidence": {
+      "grade": "B",
+      "quote": "BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81)",
+      "pmid": "29298802",
+      "doi": null,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29298802/",
+      "design": "prospective-cohort"
+     }
+    },
+    {
      "id": "ext.fpg",
      "name": "空腹血糖（连续值）",
      "why": "唯一给出中国人群连续斜率的研究（PMID 36872318）为体检机构回顾性纵向数据，研究设计不在入库范围；其拐点以上斜率 HR 7.3（6.53–8.17）每 mmol/L，数据限于正常空腹血糖范围，且结局定义本身含空腹血糖 ≥7.0 mmol/L，存在测量重合与回归均值问题，数值偏大。检索中国慢性病前瞻性研究、开滦、大庆、上海及日韩前瞻队列，未找到可逐字核对、给出连续或分段斜率的前瞻性估计，故作定性佐证。",
@@ -3528,6 +3023,45 @@
      }
     },
     {
+     "id": "ext.ldl",
+     "name": "低密度脂蛋白胆固醇（冠心病风险）",
+     "why": "两次独立建项不一致：slope：每 1 单位 1.28 与 1.49，不在彼此的 95% 置信区间内",
+     "evidence": {
+      "grade": "A",
+      "quote": "consisting of separately significant reductions in coronary death or non-fatal myocardial infarction of 13% (95% CI 7-19; p<0·0001), in coronary revascularisation of 19% (95% CI 15-24; p<0·0001), and in ischaemic stroke of 16% (95% CI 5-26; p=0·005). Per 1·0 mmol/L reduction in LDL cholesterol, these further reductions in risk were similar to the proportional reductions in the trials of statin versus control. When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
+      "pmid": "21067804",
+      "doi": null,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
+      "design": "meta-analysis-rct"
+     }
+    },
+    {
+     "id": "ext.lpa",
+     "name": "脂蛋白(a)",
+     "why": "两次独立建项不一致：输入尺度不同（一次按对数、一次按原值），无法直接比较",
+     "evidence": {
+      "grade": "A",
+      "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
+      "pmid": "40297899",
+      "doi": null,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40297899/",
+      "design": "mendelian-randomization"
+     }
+    },
+    {
+     "id": "ext.steps_daily",
+     "name": "日均步数",
+     "why": "两次独立建项不一致：拐点不同：8000 对 7000",
+     "evidence": {
+      "grade": "B",
+      "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
+      "pmid": "37555441",
+      "doi": "10.1093/eurjpc/zwad229",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37555441/",
+      "design": "meta-analysis"
+     }
+    },
+    {
      "id": "ext.tg",
      "name": "甘油三酯（糖尿病风险）",
      "why": "现有连续估计（PMID 40171237，HR 1.25，1.21–1.30 每 mmol/L）来自体检机构回顾性纵向数据的二次分析，研究设计不在入库范围，摘要亦未给出事件数；关联呈非线性（1.27 mmol/L 以下更陡）。前瞻性中国队列只报告分位比较，不能换算为连续斜率，故作定性佐证。",
@@ -3542,15 +3076,6 @@
     }
    ],
    "could_move": [
-    {
-     "id": "ext.uacr",
-     "name": "尿白蛋白/肌酐比值（UACR）",
-     "spread_years": 1.58,
-     "test": {
-      "label_zh": "晨尿查尿白蛋白/肌酐比值",
-      "cost_level": 1
-     }
-    },
     {
      "id": "ext.apob",
      "name": "载脂蛋白 B",
@@ -4447,64 +3972,50 @@
       "quality": "2023 年国家心血管病事件监测（262 个监测点，覆盖约 2.4 亿人）分性别年龄组发病率（论文图 1 的数值标签，PDF 文字层）。冠心病事件口径为急性心肌梗死（I21–I22）、需血运重建的心绞痛（I20）与心脏性猝死（I46.1），不含仅门诊诊断的稳定型冠心病，因此低于“任何冠心病诊断”的发病率；监测事件含复发，按全部心血管事件中首发的比例（518.38/620.33 = 0.836）折算为首发率，假定各病种、各年龄组首发比例相同。25–34 岁组用于 30–34 岁，≥75 岁组用于 75–89 岁（开放组，85 岁以上可能低估）。出版方网站拒绝脚本下载，原文摘录经网页阅读服务取得并保存在 evidence/outcomes/excerpts/。"
      },
      "risk10": {
-      "median": 0.0056,
-      "mean": 0.0056,
-      "p10": 0.0052,
-      "p90": 0.006
+      "median": 0.0058,
+      "mean": 0.0058,
+      "p10": 0.0054,
+      "p90": 0.0062
      },
      "lifetime": {
-      "median": 0.1329,
-      "mean": 0.1323,
-      "p10": 0.1201,
-      "p90": 0.144
+      "median": 0.1354,
+      "mean": 0.1342,
+      "p10": 0.1212,
+      "p90": 0.1465
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0055,
      "peer_lifetime": 0.1246,
      "rr_now": {
-      "median": 1.03,
-      "mean": 1.03,
-      "p10": 0.89,
-      "p90": 1.19
+      "median": 1.08,
+      "mean": 1.08,
+      "p10": 0.98,
+      "p90": 1.18
      },
      "drivers": [
-      {
-       "id": "ext.ldl",
-       "name": "低密度脂蛋白胆固醇（冠心病风险）",
-       "kind": "state",
-       "hr": 1.19,
-       "persistence": "半衰期约 10 年",
-       "evidence": {
-        "pmid": "21067804",
-        "grade": "A"
-       },
-       "disclosure": "standard",
-       "notes": []
-      },
-      {
-       "id": "ext.smoking",
-       "name": "吸烟状态（疾病风险）",
-       "kind": "exposure",
-       "hr": 0.85,
-       "persistence": "半衰期约 10 年",
-       "evidence": {
-        "pmid": "25896935",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": [
-        "年龄不在研究范围 60–99 岁，按 0.7 计",
-        "年龄不在研究范围 40–79 岁，按 0.7 计"
-       ]
-      },
       {
        "id": "ext.sbp",
        "name": "收缩压（疾病风险）",
        "kind": "state",
-       "hr": 1.04,
-       "persistence": "半衰期约 5 年",
+       "hr": 1.05,
+       "persistence": "半衰期约 10 年",
        "evidence": {
-        "pmid": "29773120",
+        "pmid": "36601918",
+        "grade": "A"
+       },
+       "disclosure": "standard",
+       "notes": [
+        "年龄不在研究范围 40–79 岁，按 0.7 计"
+       ]
+      },
+      {
+       "id": "ext.hdl",
+       "name": "高密度脂蛋白胆固醇（冠心病风险）",
+       "kind": "state",
+       "hr": 1.03,
+       "persistence": "半衰期约 10 年",
+       "evidence": {
+        "pmid": "19903920",
         "grade": "B"
        },
        "disclosure": "standard",
@@ -4543,52 +4054,28 @@
       "quality": "中国慢性病前瞻性研究（CKB，50 万人，30–79 岁入组，2009–2018 年，5662 例）中经住院与医保记录确认、以 ICD-10 编码的慢性肾脏病（糖尿病肾病、高血压肾病、肾小球肾炎、慢性小管间质性肾炎、梗阻性肾病、N18 等）。原文（含补充材料）只给出 <60、60–69、≥70 岁三组及男女两组发病率，没有更细的年龄组或年龄×性别交叉。30–59 岁按 5 岁组外推：假定发病率随年龄按常数指数斜率上升，斜率取 60–69 岁与 ≥70 岁两组之比（219.2/139.8，按相隔 10 岁计，0.0450/岁），以 60–69 岁组为锚；据此 <60 岁组平均率 78.9 对应的平均年龄为 52.3 岁，与 CKB 60 岁以下随访人群的年龄分布相符，作为一致性检查。性别按 年龄组率 × 性别率 ÷ 总体粗率（119.9）合成。口径：“临床诊断并留下住院或医保记录”的慢性肾病，远低于按 eGFR<60 或蛋白尿筛查定义的发病率（约低一个数量级），对应的风险项必须用同一口径（例如以 CKB 等就医记录结局估计的效应量），不能直接套用 eGFR 定义的效应量；≥70 岁组用于 70–89 岁（入组最高 79 岁，高龄外推）。"
      },
      "risk10": {
-      "median": 0.0057,
-      "mean": 0.0057,
-      "p10": 0.0052,
-      "p90": 0.0063
+      "median": 0.0056,
+      "mean": 0.0056,
+      "p10": 0.0056,
+      "p90": 0.0056
      },
      "lifetime": {
       "median": 0.0637,
-      "mean": 0.0634,
-      "p10": 0.0585,
-      "p90": 0.068
+      "mean": 0.0632,
+      "p10": 0.0584,
+      "p90": 0.0677
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0056,
      "peer_lifetime": 0.06,
      "rr_now": {
-      "median": 1.03,
-      "mean": 1.04,
-      "p10": 0.88,
-      "p90": 1.23
+      "median": 1.0,
+      "mean": 1.0,
+      "p10": 1.0,
+      "p90": 1.0
      },
-     "drivers": [
-      {
-       "id": "ext.sbp",
-       "name": "收缩压（疾病风险）",
-       "kind": "state",
-       "hr": 1.04,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29773120",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
-      }
-     ],
-     "missing_inputs": [
-      {
-       "id": "ext.uacr",
-       "name": "尿白蛋白/肌酐比值（UACR）",
-       "kind": "state",
-       "test": {
-        "label_zh": "晨尿查尿白蛋白/肌酐比值",
-        "cost_level": 1
-       }
-      }
-     ]
+     "drivers": [],
+     "missing_inputs": []
     },
     {
      "id": "crc",
@@ -4607,7 +4094,7 @@
       "p90": 0.0016
      },
      "lifetime": {
-      "median": 0.0505,
+      "median": 0.0504,
       "mean": 0.05,
       "p10": 0.0455,
       "p90": 0.0542
@@ -4616,26 +4103,12 @@
      "peer10": 0.0016,
      "peer_lifetime": 0.0473,
      "rr_now": {
-      "median": 1.01,
-      "mean": 1.01,
-      "p10": 0.99,
-      "p90": 1.03
+      "median": 0.99,
+      "mean": 0.99,
+      "p10": 0.98,
+      "p90": 1.0
      },
-     "drivers": [
-      {
-       "id": "ext.bmi",
-       "name": "体重指数（疾病风险）",
-       "kind": "state",
-       "hr": 1.01,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29298802",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
-      }
-     ],
+     "drivers": [],
      "missing_inputs": [
       {
        "id": "ext.prs_crc",
@@ -4665,36 +4138,33 @@
       "p90": 0.0008
      },
      "lifetime": {
-      "median": 0.0385,
-      "mean": 0.0382,
-      "p10": 0.0349,
-      "p90": 0.0415
+      "median": 0.0393,
+      "mean": 0.039,
+      "p10": 0.0356,
+      "p90": 0.0422
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0009,
      "peer_lifetime": 0.0373,
      "rr_now": {
-      "median": 0.92,
-      "mean": 0.91,
-      "p10": 0.88,
-      "p90": 0.95
+      "median": 0.89,
+      "mean": 0.89,
+      "p10": 0.83,
+      "p90": 0.94
      },
      "drivers": [
       {
        "id": "ext.smoking",
        "name": "吸烟状态（疾病风险）",
        "kind": "exposure",
-       "hr": 0.94,
+       "hr": 0.89,
        "persistence": "半衰期约 10 年",
        "evidence": {
-        "pmid": "25896935",
+        "pmid": "26331816",
         "grade": "B"
        },
        "disclosure": "standard",
-       "notes": [
-        "年龄不在研究范围 60–99 岁，按 0.7 计",
-        "年龄不在研究范围 40–79 岁，按 0.7 计"
-       ]
+       "notes": []
       }
      ],
      "missing_inputs": [
@@ -4702,19 +4172,7 @@
        "id": "ext.hbv",
        "name": "慢性乙型肝炎病毒感染（HBsAg 阳性）",
        "kind": "state",
-       "test": {
-        "label_zh": "抽血查乙肝表面抗原（HBsAg）",
-        "cost_level": 1
-       }
-      },
-      {
-       "id": "ext.hpylori",
-       "name": "幽门螺杆菌感染",
-       "kind": "state",
-       "test": {
-        "label_zh": "碳13/碳14 尿素呼气试验或幽门螺杆菌血清抗体",
-        "cost_level": 1
-       }
+       "test": null
       },
       {
        "id": "ext.prs_gastric_ca",
@@ -4738,41 +4196,27 @@
       "quality": "中国健康与营养调查 1989–2011 年队列（5.3 万人，11.9 万人年，5208 例；血压 ≥140/90 mmHg 或服降压药）的年龄组发病率，按同表男女发病率之比（5.0/3.9 = 1.282）拆分男女，假定男女人时相等。年龄组较宽：18–34 岁组用于 30–34 岁，≥65 岁组用于 65–89 岁；队列跨 22 年，早期随访的诊断阈值与测量方法与现在不同。"
      },
      "risk10": {
-      "median": 0.3489,
-      "mean": 0.3492,
-      "p10": 0.3429,
-      "p90": 0.3558
+      "median": 0.346,
+      "mean": 0.3459,
+      "p10": 0.3451,
+      "p90": 0.3466
      },
      "lifetime": {
-      "median": 0.957,
-      "mean": 0.9549,
-      "p10": 0.9388,
-      "p90": 0.97
+      "median": 0.9567,
+      "mean": 0.9546,
+      "p10": 0.9382,
+      "p90": 0.9699
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.3454,
      "peer_lifetime": 0.9439,
      "rr_now": {
-      "median": 1.02,
-      "mean": 1.02,
-      "p10": 0.98,
-      "p90": 1.06
+      "median": 1.0,
+      "mean": 1.0,
+      "p10": 1.0,
+      "p90": 1.0
      },
-     "drivers": [
-      {
-       "id": "ext.bmi",
-       "name": "体重指数（疾病风险）",
-       "kind": "state",
-       "hr": 1.02,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29298802",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
-      }
-     ],
+     "drivers": [],
      "missing_inputs": []
     },
     {
@@ -4792,7 +4236,7 @@
       "p90": 0.0027
      },
      "lifetime": {
-      "median": 0.0359,
+      "median": 0.0358,
       "mean": 0.0356,
       "p10": 0.0328,
       "p90": 0.0382
@@ -4801,40 +4245,39 @@
      "peer10": 0.0029,
      "peer_lifetime": 0.0347,
      "rr_now": {
-      "median": 0.84,
-      "mean": 0.84,
-      "p10": 0.79,
-      "p90": 0.88
+      "median": 0.88,
+      "mean": 0.87,
+      "p10": 0.82,
+      "p90": 0.93
      },
      "drivers": [
       {
        "id": "ext.smoking",
        "name": "吸烟状态（疾病风险）",
        "kind": "exposure",
-       "hr": 0.9,
+       "hr": 0.92,
        "persistence": "半衰期约 10 年",
        "evidence": {
-        "pmid": "25896935",
+        "pmid": "26331816",
         "grade": "B"
        },
        "disclosure": "standard",
-       "notes": [
-        "年龄不在研究范围 60–99 岁，按 0.7 计",
-        "年龄不在研究范围 40–79 岁，按 0.7 计"
-       ]
+       "notes": []
       },
       {
        "id": "ext.alcohol",
        "name": "饮酒量（疾病风险）",
        "kind": "exposure",
-       "hr": 0.94,
-       "persistence": "半衰期约 5 年",
+       "hr": 0.95,
+       "persistence": "半衰期约 10 年",
        "evidence": {
-        "pmid": "33634874",
-        "grade": "B"
+        "pmid": "30955975",
+        "grade": "A"
        },
        "disclosure": "standard",
-       "notes": []
+       "notes": [
+        "中介指标已测，按 0.70 计"
+       ]
       }
      ],
      "missing_inputs": [
@@ -4842,10 +4285,7 @@
        "id": "ext.hbv",
        "name": "慢性乙型肝炎病毒感染（HBsAg 阳性）",
        "kind": "state",
-       "test": {
-        "label_zh": "抽血查乙肝表面抗原（HBsAg）",
-        "cost_level": 1
-       }
+       "test": null
       }
      ]
     },
@@ -4860,44 +4300,27 @@
       "quality": "年龄形状取自国家癌症中心2011年全国肿瘤登记地区肺癌分性别 5 岁组年龄别发病率与死亡率（原表逐字核对）；再按性别乘以同一系数，使世标率等于 2022 年全国估计值（Han 等 2024 年《国家癌症中心杂志》表 1、表 2），系数 = 2022 年全国世标率 ÷ 2011年登记地区世标率（男发病×1.076、死亡×0.996；女发病×1.399、死亡×0.896）。假定各年龄组变化幅度相同，登记地区与全国的差别也并入该系数。85 岁及以上组原为开放组，此处截至 89 岁。"
      },
      "risk10": {
-      "median": 0.0019,
-      "mean": 0.0019,
-      "p10": 0.0018,
-      "p90": 0.002
+      "median": 0.0022,
+      "mean": 0.0022,
+      "p10": 0.0021,
+      "p90": 0.0022
      },
      "lifetime": {
-      "median": 0.1049,
-      "mean": 0.1042,
-      "p10": 0.0943,
-      "p90": 0.1131
+      "median": 0.1076,
+      "mean": 0.1067,
+      "p10": 0.0968,
+      "p90": 0.116
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0022,
      "peer_lifetime": 0.1014,
      "rr_now": {
-      "median": 0.8,
-      "mean": 0.8,
-      "p10": 0.73,
-      "p90": 0.88
+      "median": 0.99,
+      "mean": 0.99,
+      "p10": 0.98,
+      "p90": 0.99
      },
-     "drivers": [
-      {
-       "id": "ext.smoking",
-       "name": "吸烟状态（疾病风险）",
-       "kind": "exposure",
-       "hr": 0.81,
-       "persistence": "半衰期约 10 年",
-       "evidence": {
-        "pmid": "25896935",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": [
-        "年龄不在研究范围 60–99 岁，按 0.7 计",
-        "年龄不在研究范围 40–79 岁，按 0.7 计"
-       ]
-      }
-     ],
+     "drivers": [],
      "missing_inputs": [
       {
        "id": "ext.prs_lung_ca",
@@ -4923,36 +4346,22 @@
       "quality": "上海松江社区成人队列（基线 2016–2017 年，随访至 2023 年，13052 名基线无 MASLD 者，约 5.7 万人年）超声脂肪肝 + 至少一项心血管代谢危险因素定义的 MASLD 发病密度（每 100 人年，×1000 换算为每 10 万人年，数值未改）。单一城市郊区队列；18–39 岁组用于 30–39 岁，≥70 岁组用于 70–89 岁。MASLD 可逆，同一研究报告了较高的恢复率，因此按发病率积分的“终身风险”会远高于横断面患病率，宜作为“10 年内出现”的风险解读。"
      },
      "risk10": {
-      "median": 0.5752,
-      "mean": 0.5732,
-      "p10": 0.552,
-      "p90": 0.5914
+      "median": 0.5771,
+      "mean": 0.577,
+      "p10": 0.5759,
+      "p90": 0.578
      },
      "lifetime": null,
      "horizon_lifetime_age": 90,
      "peer10": 0.5763,
      "peer_lifetime": null,
      "rr_now": {
-      "median": 0.99,
-      "mean": 0.99,
-      "p10": 0.89,
-      "p90": 1.07
+      "median": 1.0,
+      "mean": 1.0,
+      "p10": 1.0,
+      "p90": 1.0
      },
-     "drivers": [
-      {
-       "id": "ext.bmi",
-       "name": "体重指数（疾病风险）",
-       "kind": "state",
-       "hr": 0.99,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29298802",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
-      }
-     ],
+     "drivers": [],
      "missing_inputs": []
     },
     {
@@ -4972,18 +4381,18 @@
       "p90": 0.0
      },
      "lifetime": {
-      "median": 0.0305,
-      "mean": 0.0302,
-      "p10": 0.0267,
-      "p90": 0.0337
+      "median": 0.0308,
+      "mean": 0.0305,
+      "p10": 0.0269,
+      "p90": 0.034
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0,
      "peer_lifetime": 0.028,
      "rr_now": {
-      "median": 0.99,
-      "mean": 0.99,
-      "p10": 0.98,
+      "median": 1.0,
+      "mean": 1.0,
+      "p10": 1.0,
       "p90": 1.0
      },
      "drivers": [],
@@ -5010,68 +4419,41 @@
       "quality": "2023 年国家心血管病事件监测（262 个监测点，覆盖约 2.4 亿人）分性别年龄组发病率（论文图 1 的数值标签，PDF 文字层）。卒中口径为 I60、I61、I63、I64；监测事件含复发，按全部心血管事件中首发的比例（518.38/620.33 = 0.836）折算为首发率，假定各病种、各年龄组首发比例相同。25–34 岁组用于 30–34 岁，≥75 岁组用于 75–89 岁（开放组，85 岁以上可能低估）。出版方网站拒绝脚本下载，原文摘录经网页阅读服务取得并保存在 evidence/outcomes/excerpts/。"
      },
      "risk10": {
-      "median": 0.0105,
-      "mean": 0.0105,
-      "p10": 0.0099,
-      "p90": 0.0112
+      "median": 0.0113,
+      "mean": 0.0113,
+      "p10": 0.0111,
+      "p90": 0.0114
      },
      "lifetime": {
-      "median": 0.3947,
-      "mean": 0.3911,
-      "p10": 0.3556,
-      "p90": 0.4252
+      "median": 0.3976,
+      "mean": 0.3942,
+      "p10": 0.3587,
+      "p90": 0.428
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0115,
      "peer_lifetime": 0.371,
      "rr_now": {
-      "median": 0.88,
-      "mean": 0.88,
-      "p10": 0.77,
-      "p90": 1.0
+      "median": 0.97,
+      "mean": 0.97,
+      "p10": 0.96,
+      "p90": 0.98
      },
      "drivers": [
-      {
-       "id": "ext.smoking",
-       "name": "吸烟状态（疾病风险）",
-       "kind": "exposure",
-       "hr": 0.9,
-       "persistence": "半衰期约 10 年",
-       "evidence": {
-        "pmid": "25896935",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": [
-        "年龄不在研究范围 60–99 岁，按 0.7 计",
-        "年龄不在研究范围 40–79 岁，按 0.7 计"
-       ]
-      },
       {
        "id": "ext.alcohol",
        "name": "饮酒量（疾病风险）",
        "kind": "exposure",
-       "hr": 0.95,
-       "persistence": "半衰期约 5 年",
+       "hr": 0.98,
+       "persistence": "半衰期约 10 年",
        "evidence": {
-        "pmid": "33634874",
-        "grade": "B"
+        "pmid": "30955975",
+        "grade": "A"
        },
        "disclosure": "standard",
-       "notes": []
-      },
-      {
-       "id": "ext.sbp",
-       "name": "收缩压（疾病风险）",
-       "kind": "state",
-       "hr": 1.04,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29773120",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
+       "notes": [
+        "中介指标已测，按 0.70 计"
+       ]
       }
      ],
      "missing_inputs": [
@@ -5097,41 +4479,27 @@
       "quality": "浙江省糖尿病监测系统 2007–2017 年登记的、由有资质的医生在当地医院与卫生服务中心诊断的 2 型糖尿病新发病例，分性别 10 岁组平均发病率（每 10 万人年，原表逐字采用）；≥80 岁组用于 80–89 岁。选择理由：引擎只在观测中出现诊断编码时判定“已发生”，基线应是“被诊断”的发病率；登记系统的分母是全体常住居民，未诊断者留在分母中，与引擎口径一致。对照：按 OGTT 主动检测的 10 省随访队列为 13.1/19.9/23.5 每千人年（18–44/45–59/≥60 岁），按空腹血糖的体检队列为 2.18/5.45/12.50/17.61/22.39 每千人年（30–39 至 ≥70 岁），30–49 岁比本表高 3–6 倍以上，差额主要是未诊断的糖尿病（我国约一半糖尿病人未被诊断），且 10 省队列的基线与随访检测方法不同。若引擎日后把化验达标（HbA1c ≥6.5% 或空腹血糖 ≥7.0 mmol/L）也判为“已发生”，应改用 OGTT 口径。局限：单一省份、经济较发达；登记覆盖在 2015 年扩大，年度发病率有波动；风险项效应量多来自生化定义的队列，与“被诊断”口径存在差别。"
      },
      "risk10": {
-      "median": 0.029,
-      "mean": 0.029,
-      "p10": 0.028,
-      "p90": 0.03
+      "median": 0.0298,
+      "mean": 0.0298,
+      "p10": 0.0298,
+      "p90": 0.0299
      },
      "lifetime": {
-      "median": 0.265,
-      "mean": 0.2637,
-      "p10": 0.2465,
-      "p90": 0.279
+      "median": 0.2728,
+      "mean": 0.2712,
+      "p10": 0.2545,
+      "p90": 0.2869
      },
      "horizon_lifetime_age": 90,
      "peer10": 0.0298,
      "peer_lifetime": 0.26,
      "rr_now": {
-      "median": 0.98,
-      "mean": 0.98,
-      "p10": 0.92,
-      "p90": 1.03
+      "median": 1.0,
+      "mean": 1.0,
+      "p10": 1.0,
+      "p90": 1.0
      },
-     "drivers": [
-      {
-       "id": "ext.bmi",
-       "name": "体重指数（疾病风险）",
-       "kind": "state",
-       "hr": 1.01,
-       "persistence": "半衰期约 5 年",
-       "evidence": {
-        "pmid": "29298802",
-        "grade": "B"
-       },
-       "disclosure": "standard",
-       "notes": []
-      }
-     ],
+     "drivers": [],
      "missing_inputs": [
       {
        "id": "ext.prs_t2d",

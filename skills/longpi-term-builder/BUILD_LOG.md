@@ -1,4 +1,4 @@
-项目库版本 2026.11.20-1（MANIFEST 0d77720ad8a3），由 `term_builder.py build-log` 生成。
+项目库版本 2026.11.20-2（MANIFEST 87022625391e），由 `term_builder.py build-log` 生成。
 
 | 项 | 类型 | 输入编码 | 结局 | HR（95% CI） | 来源 | 等级 | 结论 | 系数 | 理由 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -6,6 +6,7 @@
 | ″ |  |  | stroke | 1.38 (1.26–1.51)/280 g/week | PMID 30955975 | A | 计入 | 0.3 |  |
 | ext.apob | state | LOINC:1884-6 | all_cause | 1.11 (1.06–1.16)/0.238 g/L（遗传预测 ApoB 每 1 SD，约 23.8 mg/dL） | PMID 38241044 | A | 计入 | 0.2 | 孟德尔随机化估计未校正 LDL-C；原文指出 ApoB 与 LDL-C 相关 r²=0.96、结果与 LDL-C 相似，而 core.lipid 已按因果效应计入，ApoB 仅补充两者不一致部分的信息，故全因死亡取 0.2、冠心病取 0.3 |
 | ″ |  |  | chd | 1.65 (1.57–1.73)/0.238 g/L（每 1 SD；原文为冠心病 OR） | PMID 38241044 | A | 计入 | 0.3 |  |
+| ext.cystatin_c | state | LOINC:33863-2 | all_cause | 1.51 (1.44–1.58)/1 mg/L（原文每增加 1 mg/L） | PMID 36564420 | B | 计入 | 0.4 | 胱抑素 C 与 PhenoAge 中的肌酐同反映肾小球滤过，但受肌肉量影响小。原文模型 2 校正了年龄、性别、种族、教育、收入、吸烟、饮酒、运动、体重指数、总胆固醇、高密度脂蛋白胆固醇、超敏 C 反应蛋白、糖化血红蛋白及高血压、心脏病、卒中、癌症、糖尿病等病史，覆盖 PhenoA… |
 | ext.diabetes | state | ICD10:E11 | stroke | 1.68 (1.6–1.77) | PMID 27379518 | A | 计入 | 0.8 | 仅为疾病结局，不进全因死亡；已计入同病种项在本批外，无重叠 |
 | ext.dxa_tscore | state | LP:dxa_tscore_min | all_cause | 0.855 (0.82–0.885)/1 T 值每升高 1 SD | PMID 22112679 | B | 计入 | 0.2 | 低骨密度与肌少、低体重、吸烟、衰弱同源，信息与握力和体脂领域重叠；荟萃纳入研究的校正程度不一，按仅校正年龄、性别处理，规则上限 0.3，取 0.2。低骨密度对死亡的作用部分经由髋部骨折，但骨折未作为已计入项 |
 | ext.fh_crc | genetic | LP:fh:crc | crc | 1.76 (1.57–1.97) | PMID 29867176 | B | 计入 | 0.3 | 本项只计疾病结局。荟萃分析合并 63 项病例对照与队列研究的 RR，各研究校正程度不一，按仅校正年龄、性别处理；未校正多基因评分、错配修复基因致病变异与 BMI。家族史部分由这些已计入项解释，按规则系数上限 0.3，取 0.3；研究人群以欧美为主，另按非东亚人群收缩。 |
@@ -15,6 +16,7 @@
 | ext.hdl | state | LOINC:2085-9 | chd | 0.78 (0.74–0.82)/0.388 mmol/L (1 SD = 15 mg/dL) | PMID 19903920 | B | 计入 | 0.5 | 仅为冠心病建项，不写全因死亡。ERFC 的 HR 已校正非 HDL 胆固醇、甘油三酯及常规危险因素，属于互相校正的估计；但孟德尔随机化与升 HDL 药物试验均不支持 HDL-C 的因果作用，HDL-C 更可能是代谢状态的标志，故系数取 0.5。与 LDL-C、ApoB、Lp(a)… |
 | ext.mono_brca1 | genetic | LP:monogenic:HGNC:1100 | breast_ca | 7.62 (5.33–11.27) | PMID 33471974 | B | 计入 | 0.6 | 种系致病变异不受生活方式混杂，BMI、饮酒不是其混杂因素；常见变异多基因评分与罕见致病变异信息基本独立。携带状态可解释部分家族史，与 ext.fh_breast_ca 重叠，CARRIERS 模型校正年龄、种族与研究来源，未校正家族史，按规则（校正了其他混杂、未校正重叠项）系数上… |
 | ext.mono_brca2 | genetic | LP:monogenic:HGNC:1101 | breast_ca | 5.23 (4.09–6.77) | PMID 33471974 | B | 计入 | 0.6 | 种系致病变异不受生活方式混杂，BMI、饮酒不是其混杂因素；常见变异多基因评分与罕见致病变异信息基本独立。携带状态可解释部分家族史，与 ext.fh_breast_ca 重叠，CARRIERS 模型校正年龄、种族与研究来源，未校正家族史，按规则（校正了其他混杂、未校正重叠项）系数上… |
+| ext.mvpa | behavior | LP:mvpa_min_week | all_cause | below 1.4493 (1.3699–1.5385)/150 | PMID 36854652 | B | 计入 | 0.3 | 队列层面剂量反应荟萃分析，采用各研究最充分校正模型，但校正变量不一，原文说明无法控制原始研究的混杂处理，按仅校正年龄、性别处理，系数不超过 0.3；中高强度运动主要通过心肺适能起作用，测得 VO2max 时再按中介比例（默认 0.3）扣减。 |
 | ext.prs_breast_ca | genetic | PGS:PGS005164 | breast_ca | 1.42 (1.3–1.55)/1 1 SD of PRS (z) | PMID 40019942 | B | 计入 | 0.6 | 中国嘉道理生物库前瞻发病 HR，校正年龄、性别、地区与前 10 个遗传主成分，未校正家族史。家族史与多基因评分共享部分遗传信息（英国生物库分析显示二者正相关但各自独立，PMID 39291673），研究未校正家族史，按规则（校正了主成分等其他混杂、未校正重叠项）系数上限 0.6，… |
 | ext.prs_chd | genetic | PGS:PGS002262 | chd | 1.44 (1.36–1.52)/1 1 SD of PRS (z) | PMID 35195259 | B | 计入 | 0.3 | 中国前瞻队列（China-PAR）的发病 HR。PGS Catalog 记录未列协变量，按仅校正年龄、性别处理。该 metaPRS 由冠心病及其相关性状（血脂、血压等）的东亚 GWAS 结果合成，与家族史及 LDL-C、收缩压共享信息，研究均未校正，按规则系数上限 0.3，取 0… |
 | ext.prs_crc | genetic | PGS:PGS005162 | crc | 1.54 (1.43–1.66)/1 1 SD of PRS (z) | PMID 40019942 | B | 计入 | 0.6 | 中国嘉道理生物库前瞻发病 HR，校正年龄、性别、地区与前 10 个遗传主成分，未校正家族史。家族史与多基因评分共享部分遗传信息（英国生物库分析显示二者正相关但各自独立，PMID 39291673），研究未校正家族史，按规则（校正了主成分等其他混杂、未校正重叠项）系数上限 0.6，… |
@@ -23,6 +25,7 @@
 | ext.prs_prostate_ca | genetic | PGS:PGS002241 | prostate_ca | 1.69 (1.64–1.74)/1 1 SD of PRS (z) | PMID 35591975 | B | 计入 | 0.6 | 日本生物银行评估（全基因组评分，GBMI 留一法训练），校正年龄与前 10 个主成分。病例为生物银行登记时已患或随访中确诊的前列腺癌（病例对照式比较，非前瞻发病），每 SD 的 OR 按 HR 近似；前列腺癌在人群中少见，OR 与 RR 接近。家族史与多基因评分共享部分遗传信息（… |
 | ext.prs_stroke | genetic | PGS:PGS002259 | stroke | 1.28 (1.21–1.36)/1 1 SD of PRS (z) | PMID 34031205 | B | 计入 | 0.3 | 中国前瞻队列（China-PAR）的发病 HR（全部卒中，80 岁前），PGS Catalog 记录协变量仅为性别。该 metaPRS 由卒中及其相关性状（血压、血糖等）的东亚 GWAS 结果合成，与 ext.sbp、ext.diabetes 共享信息，研究未校正，按规则系数上限… |
 | ext.prs_t2d | genetic | PGS:PGS002308 | t2d | 2.01 (1.93–2.1)/1 1 SD of PRS (z) | PMID 35765100 | B | 计入 | 0.5 | 台湾生物库评估校正年龄、性别与前 10 个主成分，未校正家族史；家族史与评分共享遗传信息，上限 0.6。病例为横断面已患 2 型糖尿病（患病率约 5%），每 SD 的 OR 按 HR 近似可能略高估，系数再降至 0.5。评分部分经血糖与体重指数起作用，按约定默认中介合计 0.5（… |
+| ext.resistance | behavior | LP:resistance_sessions_week | all_cause | below 1.1236 (1.0309–1.2346)/1 | PMID 35953241 | B | 计入 | 0.6 | 模型校正了中等与高强度有氧活动、BMI、吸烟、慢性病，但未校正握力等肌肉指标（core.muscle）；与已计入的肌肉、心肺、体脂领域为部分校正，系数不超过 0.6。 |
 | ext.sbp | state | LOINC:8480-6 | chd | 1.29 (1.18–1.42)/10 mmHg | PMID 36601918 | A | 计入 | 0.8 | 仅疾病结局，不进全因死亡；孟德尔随机化估计不受其他危险因素混杂 |
 | ext.screen_crc_fit | behavior | LP:screen.crc_fit | screening:crc | RR 0.86 (0.8–0.92) | PMID 24085634 | A | 计入 | 1.0 | 筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。 |
 | ext.screen_mammography | behavior | LP:screen.mammography | screening:breast_ca | RR 0.8 (0.73–0.89) | PMID 23117178 | A | 计入 | 1.0 | 筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。 |
@@ -45,7 +48,6 @@
 | ext.clock_dunedinpace | state | LP:clock.dunedinpace_accel | all_cause | 1.65 (1.51–1.79)/0.15 1 SD of DunedinPACE (SD 0.15 taken from HRS; the Framingham SD is not stated in the text) | PMID 35029144 | C | 定性 | 0.1 | 按统一规则（规则 3：B 级须为大型前瞻队列、荟萃或孟德尔随机化的主分析，事件 ≥100；全因死亡项另须合并分析或单一队列死亡 ≥1000 例），Framingham 每 SD 死亡 HR 1.65（95% CI 1.51–1.79）经逐字核对，但只校正年龄与性别，约 23% 死… |
 | ext.clock_hannum | state | LP:clock.hannum_accel | all_cause | 1.16 (1.08–1.25)/5 years of DNAm age acceleration (Δage) | PMID 25633388 | B | 定性 | 0.1 | 原文效应量经逐字核对，但该时钟与已计入的 GrimAge2 及血液 PhenoAge 信息高度重叠，现有研究均未校正这两项。本仓库 NHANES 分析显示，在 LongPi 模型基础上 Hannum 时钟残差每 SD 的 HR 为 1.084，C 指数增益仅 0.0009，故只作… |
 | ext.clock_horvath | state | LP:clock.horvath_accel | all_cause | 1.09 (1.02–1.15)/5 years of DNAm age acceleration (Δage) | PMID 25633388 | B | 定性 | 0.1 | 原文效应量经逐字核对，但该时钟与已计入的 GrimAge2（core.methylation）及血液 PhenoAge（core.phenoage_clock）信息高度重叠，现有研究均未校正这两项。本仓库 NHANES 分析显示，在 LongPi 模型基础上 Horvath 时钟… |
-| ext.cystatin_c | state | LOINC:33863-2 | all_cause | 1.51 (1.44–1.58)/1 mg/L（原文每增加 1 mg/L） | PMID 36564420 | B | 定性 | 0.4 | 第二次建项未通过核对：参考分布不可用：'<=' not supported between instances of 'NoneType' and 'int' |
 | ext.egfr | state | LP:egfr_ckdepi2021 | all_cause | below 1.57 (1.39–1.78)/30 | PMID 20483451 | B | 定性 | 0.3 | 原文只给分组比较（eGFR 45 对 95 的 HR），换算为每 30 单位的斜率需自行设定间距，不符合“不自造换算”的规则；且 eGFR 由肌酐计算，与 PhenoAge 中的肌酐信息大量重复。待有原文给出的连续剂量反应估计后再计入，本版只作定性佐证。 |
 | ext.fh_breast_ca | genetic | LP:fh:breast_ca | breast_ca | 2.46 (2.03–2.97) | PMID 37400822 | B | 定性 | 0.3 | 两次独立建项不一致：indicator：每 1 单位 2.46 与 1.8，不在彼此的 95% 置信区间内 |
 | ext.fh_chd | genetic | LP:fh:chd | chd | 1.25 (1.18–1.33) | PMID 29495200 | B | 定性 | 0.6 | 两次独立建项不一致：indicator：每 1 单位 1.25 与 1.46，不在彼此的 95% 置信区间内 |
@@ -72,18 +74,16 @@
 | ext.mono_msh6 | genetic | LP:monogenic:HGNC:7329 | crc | 5.46 (4.1–7.27) | PMID 40601893 | B | 定性 | 0.6 | 第二次建项未通过核对：crc: HR 7.2 与 CI 7.2–7.2 未在 quote 中成组出现（数值与原文结论未绑定）；crc: 未写结局事件数 |
 | ext.mono_pcsk9 | genetic | LP:monogenic:HGNC:20001 | chd | 3.8 (2.5–5.8) | PMID 35294538 | C | 定性 | 0.5 | 本项按遗传项统一门槛（单基因须有该基因自身的 RR/HR/OR 及 95% 置信区间，分析中结局事件 ≥100，来自前瞻队列或大型病例对照）复核后未能通过。现用来源 PMID 35294538 原文自述为横断面研究：所谓队列分析以年龄为时间轴，纳入入组前已诊断与随访新发的全部冠心… |
 | ext.mono_pms2 | genetic | LP:monogenic:HGNC:9122 | crc | 1.7 (1.25–2.32) | PMID 40601893 | B | 定性 | 0.6 | 第二次建项未通过核对：crc: 结局事件 40 < 100 |
-| ext.mvpa | behavior | LP:mvpa_min_week | all_cause | below 1.4493 (1.3699–1.5385)/150 | PMID 36854652 | B | 定性 | 0.3 | 第二次建项未通过核对：参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float' |
 | ext.nt_probnp | state | LOINC:33762-6 | all_cause | 1.67 (1.39–2)/126.2 pg/mL（原文第 4 四分位组中位数 138.6 与第 1 四分位组中位数 12.4 之差） | PMID 37232235 | B | 定性 | 0.6 | 原文只给四分位比较（Q4 对 Q1 的 HR），换算为斜率需以两组中位数之差作间距，不符合“不自造换算”的规则；且来源为美国 NHANES 单一队列。待有原文给出的连续（每 SD 或每翻倍）估计后再计入，本版只作定性佐证。 |
 | ext.prot_protage_gap | state | LP:prot.protage_gap | ad | 1.16 (1.12–1.2)/1 year of ProtAgeGap | PMID 39117878 | B | 定性 | 0.5 | 阿尔茨海默病 HR 1.16（1.12–1.20）、慢性肾病 HR 1.10（1.08–1.11）经逐字核对，但两结局的事件数只在补充材料中，正文与摘要均未给出，无法核对是否达到 100 例；研究人群为英国生物银行（白人占 93%），慢性肾病结局为医院记录定义，校正项未含 APO… |
 | ″ |  |  | ckd | 1.1 (1.08–1.11)/1 year of ProtAgeGap | PMID 39117878 | B | 定性 | 0.5 |  |
 | ext.prs_ad | genetic | PGS:PGS004589 | ad | 2.09 (1.09–4.04)/1 1 SD of PRS (z) | PMID 36520433 | C | 定性 | 0.8 | PGS Catalog 中阿尔茨海默病评分的东亚评估仅有韩国记忆门诊小样本病例对照（379 人、159 例，OR 2.09，95% CI 1.09–4.04），置信区间过宽，证据等级低于 B，暂作定性佐证。 |
-| ext.resistance | behavior | LP:resistance_sessions_week | all_cause | below 1.1765 (1.0753–1.2658)/1 | PMID 35228201 | B | 定性 | 0.5 | 第二次建项未通过核对：参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float' |
 | ext.screen_crc_colonoscopy | behavior | LP:screen.crc_colonoscopy | screening:crc | RR 0.88 (0.68–1.08) | PMID 42102826 | A | 定性 | 1.0 | 唯一的随机对照试验（NordICC）13 年意向筛查分析中结直肠癌死亡 RR 为 0.88（0.68–1.08），置信区间含 1，未证明降低死亡；受邀者实际接受肠镜者仅约四成，按方案分析亦不显著。本版只作定性佐证，不计入指数。 |
 | ext.screen_gastroscopy | behavior | LP:screen.gastroscopy | screening:gastric_ca | RR 0.6 (0.49–0.73) | PMID 29723507 | B | 定性 | 1.0 | 按筛查项统一规则，须有随机对照试验（或其荟萃分析）的意向筛查疾病死亡 RR、置信区间不含 1 且疾病死亡 ≥100 例。胃镜筛查目前没有报告胃癌死亡结局的随机对照试验；现有荟萃分析（PMID 29723507）全部为观察性研究，合并 RR 0.60（0.49–0.73），但同一摘… |
 | ext.screen_liver_us_afp | behavior | LP:screen.liver_us_afp | screening:liver_ca | RR 0.63 (0.41–0.98) | PMID 15042359 | B | 定性 | 1.0 | 唯一的随机对照试验（上海，Zhang 2004）意向筛查肝癌死亡 RR 0.63（0.41–0.98），但肝癌死亡仅 86 例（筛查组 32 例、对照组 54 例），低于筛查项统一规则要求的 100 例；筛查组完成率 58.2%，置信区间上限接近 1。本版只作定性佐证，不计入指数… |
 | ext.screen_lung_ldct | behavior | LP:screen.lung_ldct | screening:lung_ca | RR 0.79 (0.72–0.87) | PMID 35921047 | A | 定性 | 1.0 | 第二次建项未通过核对：screening: 未写结局事件数 |
 | ext.sleep_regularity | behavior | LP:sleep_regularity_index | all_cause | below 1.2048 (1.0417–1.4085)/10 | PMID 37738616 | B | 定性 | 0.5 | 唯一可用证据为 UK Biobank 单一队列（死亡 1859 例），只给出五分位组对比，摘要未给置信区间，全文表格行未写明结局；原文没有每单位或趋势估计，原先把第 2 对第 1 五分位的 HR 摊到 10 分跨度上属推算，不符合入库规则。睡眠规律指数暂无指南推荐值，本版只作定性… |
-| ext.steps_daily | behavior | LP:steps_daily_mean | all_cause | below 1.1765 (1.0989–1.2346)/1000 | PMID 37555441 | B | 定性 | 0.3 | 两次独立建项不一致：拐点不同：knot_lo 8000 对 7000 |
+| ext.steps_daily | behavior | LP:steps_daily_mean | all_cause | below 1.1765 (1.0989–1.2346)/1000 | PMID 37555441 | B | 定性 | 0.3 | 两次独立建项不一致：拐点不同：8000 对 7000 |
 | ext.tg | state | LOINC:2571-8 | t2d | 1.25 (1.21–1.3)/1 mmol/L | PMID 40171237 | C | 定性 | 0.6 | 现有连续估计（PMID 40171237，HR 1.25，1.21–1.30 每 mmol/L）来自体检机构回顾性纵向数据的二次分析，研究设计不在入库范围，摘要亦未给出事件数；关联呈非线性（1.27 mmol/L 以下更陡）。前瞻性中国队列只报告分位比较，不能换算为连续斜率，故作… |
 | ext.uacr | state | LOINC:9318-7 | all_cause | 1.63 (1.5–1.77)/1.7346 ln(ACR) 单位（ACR 3.4 对 0.6 mg/mmol，即约 30 对 5 mg/g） | PMID 20483451 | B | 定性 | 0.5 | 两次独立建项不一致：slope：每 1.7346 单位 1.63 与 1.41，不在彼此的 95% 置信区间内；只有一次建项给出了这个结局 |
 | ″ |  |  | ckd | 1.33 (1.19–1.48)/1.683 ln(ACR) 单位：原文 UACR 10–<30 对 <10 mg/g；两组中位数（约 15.8 与 2.9 mg/g）由上述 4C 构成比拟合的对数正态分布推算，原文未给组中位数 | PMID 42584389 | B | 定性 | 0.5 |  |
