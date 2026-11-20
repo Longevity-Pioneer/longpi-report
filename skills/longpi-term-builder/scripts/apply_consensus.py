@@ -38,6 +38,8 @@ def main(argv=None) -> int:
     ap.add_argument("--cache", action="append", default=[])
     ap.add_argument("--root", default=str(RG.REG_DIR))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--from-candidates", action="store_true",
+                    help="re-decide terms now in candidates/ (build A taken from there) against new second builds")
     a = ap.parse_args(argv)
     root = Path(a.root)
     cache_dst = HERE.parent / ".cache"
@@ -49,8 +51,12 @@ def main(argv=None) -> int:
         for p in Path(d).glob("ext.*.json"):
             seconds[p.stem] = json.loads(p.read_text(encoding="utf-8"))
     report, new_terms, to_qual, cands = [], {}, {}, {}
-    for tp in sorted((root / "terms").glob("ext.*.json")):
-        A = json.loads(tp.read_text(encoding="utf-8"))
+    if a.from_candidates:
+        pool = [(json.loads(p.read_text(encoding="utf-8"))["a"], p) for p in sorted((root / "candidates").glob("ext.*.json"))
+                if p.stem in seconds and json.loads(p.read_text(encoding="utf-8")).get("a")]
+    else:
+        pool = [(json.loads(tp.read_text(encoding="utf-8")), tp) for tp in sorted((root / "terms").glob("ext.*.json"))]
+    for A, tp in pool:
         B = seconds.get(A["id"])
         if B is None:
             why = "第二次独立建项未产出规格"
@@ -80,6 +86,7 @@ def main(argv=None) -> int:
             report.append((A["id"], "未计入", why))
     # population check on the would-be registry
     cur = {t["id"]: t for t in TB._all_terms(root) if t["id"] not in to_qual}
+    cur = {k: v for k, v in cur.items() if (root / "terms" / f"{k}.json").exists() or k in new_terms}
     cur.update(new_terms)
     pc = TB.check_population(list(cur.values()), n=20000)
     for r in report:
@@ -93,10 +100,18 @@ def main(argv=None) -> int:
     (root / "candidates").mkdir(exist_ok=True)
     for tid, t in new_terms.items():
         (root / "terms" / f"{tid}.json").write_text(json.dumps(t, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        qf = root / "qualitative" / f"{tid}.json"
+        if a.from_candidates and qf.exists():
+            qf.unlink()                     # restored to counted
+        cf = root / "candidates" / f"{tid}.json"
+        if a.from_candidates and cf.exists() and tid not in cands:
+            cf.unlink()
     for tid, (A, why) in to_qual.items():
         q = dict(A, why_qualitative_zh=why, demoted_from_counted="2026-11-20 双次独立建项规则")
         (root / "qualitative" / f"{tid}.json").write_text(json.dumps(q, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        (root / "terms" / f"{tid}.json").unlink()
+        tf = root / "terms" / f"{tid}.json"
+        if tf.exists():
+            tf.unlink()
     for tid, rec in cands.items():
         (root / "candidates" / f"{tid}.json").write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     man = RG.freeze(root, TB.bump_version(root))
