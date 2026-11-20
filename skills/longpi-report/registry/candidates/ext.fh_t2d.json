@@ -1,0 +1,268 @@
+{
+ "id": "ext.fh_t2d",
+ "a": {
+  "id": "ext.fh_t2d",
+  "name_zh": "糖尿病家族史",
+  "kind": "genetic",
+  "system": "metabolic",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:t2d",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.075
+    }
+   ],
+   "source": "CKB 基线（30–79 岁）一级亲属糖尿病家族史：男性 14225/197211（7.2%），女性 22347/290857（7.7%），合并取 0.075；见原文表 1 家族史行",
+   "pmid": "24344928",
+   "quote": "Yes1422510.74.76.12234711.54.76.2"
+  },
+  "effect": {
+   "t2d": {
+    "hr": 1.9,
+    "lo": 1.57,
+    "hi": 2.29,
+    "overlaps_with": [
+     "ext.prs_t2d",
+     "ext.bmi",
+     "ext.waist",
+     "ext.fpg",
+     "ext.hba1c"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "multivariable_unspecified"
+    ],
+    "coef": 0.6
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "multivariable_unspecified"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "仅为 2 型糖尿病建项，属先天项。摘要只写校正后的 HR，并报告吸烟、饮酒、BMI 与体力活动对关联无修饰作用，但未列模型协变量，全文为中文期刊且无法取得，故不把 ext.bmi 等记为已校正，按部分校正处理。家族史与 2 型糖尿病多基因评分、BMI、腰围、血糖共享信息，系数上限 0.6，取 0.6。证据来自 CKB 苏州吴中单一地区，地区代表性有限。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "Chinese",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "China Kadoorie Biobank, Wuzhong district of Suzhou",
+   "n": 49266,
+   "events": 1214,
+   "ancestry": "Chinese",
+   "age_range": [
+    30,
+    79
+   ],
+   "sex": "both",
+   "events_source_zh": "摘要：a total of 423 men and 791 women were diagnosed as having diabetes，合计 1214 例"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "自报一级亲属病史，存在回忆与知晓偏差"
+  },
+  "persistence": {
+   "half_life_years": null
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "家族史不可改变；有糖尿病家族史者更应控制体重、规律运动并定期查空腹血糖或糖化血红蛋白。"
+  },
+  "test": {
+   "label_zh": "询问父母与兄弟姐妹是否患糖尿病",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "32842310",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32842310/",
+   "quote": "Compared to those without diabetic family history, participants with family history of diabetes showed a higher risk of diabetes, with a HR (95%CI) of 1.90 (1.57-2.29)",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.fh_t2d",
+  "name_zh": "糖尿病家族史",
+  "kind": "genetic",
+  "system": "metabolic",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:t2d",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.155
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.155
+    }
+   ],
+   "prevalence": 0.155,
+   "pmid": "25664814",
+   "quote": "the proportion of first-degree relatives with a positive family history of diabetes was up to 15.5% in the Chinese population.",
+   "source": "PMID 25664814 全国代表性横断面（2007-2008 中国糖尿病和代谢紊乱研究，n=46,239，≥20 岁）；不分性别年龄",
+   "estimated": true,
+   "estimated_reason_zh": "来源给出全人群患病率，未分性别年龄"
+  },
+  "effect": {
+   "t2d": {
+    "hr": 2.72,
+    "lo": 2.48,
+    "hi": 2.99,
+    "per": 1,
+    "per_unit": "有 vs 无糖尿病家族史（父母/同胞）",
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "coef": 0.8,
+    "evidence": {
+     "pmid": "23052052",
+     "grade": "B",
+     "design": "prospective-cohort",
+     "quote": "A family history of type 2 diabetes was associated with a higher incidence of the condition (HR 2.72, 95% CI 2.48, 2.99)."
+    }
+   }
+  },
+  "estimand_zh": "EPIC-InterAct 病例-队列（8 国欧洲，6,168 例 2 型糖尿病）：有糖尿病家族史 vs 无的国家分层 Prentice-加权 Cox HR，随机效应合并；校正 BMI/腰围等后为 2.44 (2.03, 2.95)",
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "同病种无其他已计入 ext 项；主估计未校正 BMI 等，但这些由 core 项另行处理，家族史仍保留 0.8（与 core.adiposity 重叠通过 mediated_by 记录）",
+   "mediated_by": {
+    "core.adiposity": 0.1
+   }
+  },
+  "transport": {
+   "ancestry": "European",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "EPIC-InterAct case-cohort",
+   "n": 13869,
+   "events": 6168,
+   "ancestry": "European",
+   "age_range": [
+    35,
+    80
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.0,
+   "source": "自报"
+  },
+  "persistence": {
+   "half_life_years": 100
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "use_pretreatment",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "先天，但生活方式干预有效"
+  },
+  "test": {
+   "label_zh": "询问父母/同胞糖尿病史",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "23052052",
+   "quote": "A family history of type 2 diabetes was associated with a higher incidence of the condition (HR 2.72, 95% CI 2.48, 2.99).",
+   "alternatives_considered": [
+    {
+     "pmid": "19020459",
+     "estimate": "Chin-Shan Chinese cohort: sibling RR 2.08 (1.42-3.06), paternal 1.62, maternal 1.36 (0.98-1.89); 548 cases",
+     "reason": "东亚人群但病例数小、父母母不显著，排序低于大型合并分析"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "t2d": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 1.9 与 2.72，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 1.9,
+      "b": 2.72,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：indicator：每 1 单位 1.9 与 2.72，不在彼此的 95% 置信区间内"
+}

@@ -1,0 +1,275 @@
+{
+ "id": "ext.fh_gastric_ca",
+ "a": {
+  "id": "ext.fh_gastric_ca",
+  "name_zh": "一级亲属胃癌家族史",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:gastric_ca",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.1197
+    }
+   ],
+   "pmid": "36813828",
+   "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+   "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（11.97%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+  },
+  "effect": {
+   "gastric_ca": {
+    "hr": 1.44,
+    "lo": 1.32,
+    "hi": 1.58,
+    "coef": 0.6,
+    "overlaps_with": [
+     "ext.prs_gastric_ca",
+     "ext.hpylori",
+     "ext.smoking"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "ext.smoking",
+     "core.alcohol",
+     "ext.bmi",
+     "education"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "ext.smoking",
+   "core.alcohol",
+   "ext.bmi",
+   "education"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "本项只计疾病结局。亚洲队列联盟合并分析校正年龄、性别、吸烟、饮酒、教育与 BMI（ext.smoking 已校正），未校正幽门螺杆菌感染与多基因评分；家族聚集部分来自家庭内幽门螺杆菌传播与共享遗传。按规则（部分重叠项已校正）系数上限 0.6，取 0.6。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "East Asian",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "Asia Cohort Consortium (12 prospective cohorts)",
+   "n": 550508,
+   "events": 2258,
+   "ancestry": "East Asian (Chinese, Japanese, Korean)",
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+  },
+  "persistence": {
+   "half_life_years": null
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "家族史不可改变；有胃癌家族史者宜检测并根除幽门螺杆菌，按指南做胃镜筛查。"
+  },
+  "test": {
+   "label_zh": "询问父母、兄弟姐妹、子女是否患过胃癌",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "pooled-cohort",
+   "pmid": "38649672",
+   "quote": "The risk of incident gastric cancer was higher in individuals with a family history of gastric cancer (HR 1.44, 95% CI 1.32-1.58)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/38649672/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.fh_gastric_ca",
+  "name_zh": "一级亲属胃癌家族史",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:gastric_ca",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.109
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.109
+    }
+   ],
+   "prevalence": 0.109,
+   "pmid": "28428723",
+   "quote": "19.0% of the patients and 10.9% of the controls had at least one relative with gastric cancer",
+   "estimated": true,
+   "estimated_reason_zh": "10.9% 为 32 项病例对照研究（含亚洲研究）对照组至少一名亲属胃癌史的比例，非一级亲属且非中国人群专门数据",
+   "source": "PMID 28428723"
+  },
+  "effect": {
+   "gastric_ca": {
+    "hr": 1.84,
+    "lo": 1.64,
+    "hi": 2.04,
+    "per": 1,
+    "per_unit": "有 vs 无一级亲属胃癌史",
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "coef": 0.8,
+    "evidence": {
+     "pmid": "34359744",
+     "grade": "B",
+     "design": "case-control",
+     "quote": "This investigation includes 5946 cases and 12,776 controls from 17 studies of the Stomach Cancer Pooling (StoP) Project consortium. Summary odds ratios (OR) and the corresponding 95% confidence intervals (CIs) were calculated by pooling study-specific ORs using fixed-effect model meta-analysis techniques. Stratified analyses were carried out by sex, age, tumor location and histological type, smoking habit, socioeconomic status, alcohol intake and fruit consumption. The pooled OR for GC was 1.84 (95% CI: 1.64-2.04; I2 = 6.1%, P heterogeneity = 0.383) in subjects with vs. those without first-degree relatives with GC"
+    }
+   }
+  },
+  "estimand_zh": "胃癌联合分析 StoP（17 项病例对照，5946 例）：一级亲属有胃癌史 vs 无的合并比值比（OR，非 HR；固定效应；多为欧洲、亚洲、美洲混合）",
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "与幽门螺杆菌项相互独立，但家族史部分经由共同感染；该合并值未校正 H. pylori，系数仍取 0.8 因同病种已计入项无直接校正关系",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "mixed",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "StoP consortium, 17 case-control studies",
+   "n": 18722,
+   "events": 5946,
+   "ancestry": "mixed",
+   "age_range": [
+    30,
+    90
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.0,
+   "source": "自报"
+  },
+  "persistence": {
+   "half_life_years": 100
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "use_pretreatment",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "先天；可提前检测幽门螺杆菌并内镜筛查"
+  },
+  "test": {
+   "label_zh": "询问一级亲属病史",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "case-control",
+   "pmid": "34359744",
+   "quote": "This investigation includes 5946 cases and 12,776 controls from 17 studies of the Stomach Cancer Pooling (StoP) Project consortium. Summary odds ratios (OR) and the corresponding 95% confidence intervals (CIs) were calculated by pooling study-specific ORs using fixed-effect model meta-analysis techniques. Stratified analyses were carried out by sex, age, tumor location and histological type, smoking habit, socioeconomic status, alcohol intake and fruit consumption. The pooled OR for GC was 1.84 (95% CI: 1.64-2.04; I2 = 6.1%, P heterogeneity = 0.383) in subjects with vs. those without first-degree relatives with GC",
+   "alternatives_considered": [
+    {
+     "pmid": "28428723",
+     "estimate": "32 case-control, n=80,690, RR 2.35 (1.96-2.81); first-degree only 2.71 (2.08-3.53)",
+     "reason": "异质性 I2 92%，汇总已发表研究，无个体数据校正；用作患病率来源"
+    },
+    {
+     "pmid": "38197125",
+     "estimate": "21 case-control studies OR 2.92 (2.402-3.552)",
+     "reason": "异质性 82%，病例对照荟萃，估计偏高"
+    },
+    {
+     "pmid": "11807799",
+     "estimate": "JACC prospective, 662 stomach cancer deaths, RR 1.60 (men) / 2.47 (women)",
+     "reason": "结局为死亡，分性别、单一日本队列；唯一前瞻性设计但事件数小于 StoP"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "gastric_ca": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 1.44 与 1.84，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 1.44,
+      "b": 1.84,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：indicator：每 1 单位 1.44 与 1.84，不在彼此的 95% 置信区间内"
+}

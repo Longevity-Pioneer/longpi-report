@@ -99,7 +99,21 @@
   "url": "https://pubmed.ncbi.nlm.nih.gov/39361428/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "39361428",
+   "doi": null,
+   "design": "pooled-cohort",
+   "effects": {
+    "lung_ca": {
+     "hr": 1.45,
+     "lo": 1.3,
+     "hi": 1.63
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "license": {
   "commercial_use": true,

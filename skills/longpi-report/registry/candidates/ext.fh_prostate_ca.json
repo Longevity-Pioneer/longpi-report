@@ -1,0 +1,301 @@
+{
+ "id": "ext.fh_prostate_ca",
+ "a": {
+  "id": "ext.fh_prostate_ca",
+  "name_zh": "一级亲属前列腺癌家族史",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:prostate_ca",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.0437
+    }
+   ],
+   "pmid": "36813828",
+   "quote": "Gastric cancer (11.97%) was the most common site recorded for family members, followed by colorectal and lung (5.75%), prostate (4.37%), breast (3.43%) and liver (3.05%) cancer.",
+   "source": "日本 NC-CCAPH 七个队列合并的一级亲属该部位癌症家族史比例（4.37，男女合计%）；缺中国人群同口径数据，暂用日本人群，未分性别年龄，所有性别年龄段共用一行"
+  },
+  "effect": {
+   "prostate_ca": {
+    "hr": 2.48,
+    "lo": 2.25,
+    "hi": 2.74,
+    "coef": 0.3,
+    "overlaps_with": [
+     "ext.prs_prostate_ca",
+     "ext.mono_brca2"
+    ],
+    "adjusted_for": [
+     "age"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age"
+  ],
+  "overlap": {
+   "coef": 0.3,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "本项只计疾病结局。荟萃分析只纳入按年龄校正或年龄匹配的研究，未校正多基因评分与 BRCA2 致病变异；家族史阳性者更常接受 PSA 筛查，存在检出偏倚。按规则（仅校正年龄）系数上限 0.3，取 0.3；研究人群以欧美为主，另按非东亚人群收缩。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "multinational (mainly European and North American)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "33 independent studies in unselected populations (meta-analysis)",
+   "ancestry": "multinational (mainly European and North American)",
+   "sex": "M",
+   "sex_scope": "M",
+   "events": 11572,
+   "events_source_zh": "原文未汇总合并病例数；全文表 1 所列纳入研究之一（Kerber，美国犹他人群数据库巢式病例对照）即含 11572 例前列腺癌，合并分析病例数不少于此数"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "自述一级亲属（父母、兄弟姐妹、子女）患病史，存在回忆误差"
+  },
+  "persistence": {
+   "half_life_years": null
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "家族史不可改变；有前列腺癌家族史者可与医生讨论提前做 PSA 检查。"
+  },
+  "test": {
+   "label_zh": "询问父母、兄弟姐妹、子女是否患过前列腺癌",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "22073129",
+   "quote": "We performed a meta-analysis on familial clustering of prostate cancer. Out of 74 studies reporting data on familial aggregation of prostate cancer in unselected populations retrieved by a Pubmed search and browsing references, 33 independent studies meeting the inclusion criteria were used in the analysis performed with the random effects model. The pooled rate ratio (RR) for first-degree family history, i.e. affected father or brother, is 2.48 (95% confidence interval: 2.25-2.74).",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/22073129/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.fh_prostate_ca",
+  "name_zh": "一级亲属前列腺癌家族史",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:fh:prostate_ca",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "prevalence": 0.05
+    }
+   ],
+   "pmid": "7535977",
+   "quote": "5% of controls and 13% of cases reported a father, brother, or son with prostate cancer",
+   "source": "美国/加拿大黑人、白人、亚裔病例对照研究的对照组：5% 报告父亲、兄弟或儿子患前列腺癌（亚裔低于该均值）",
+   "estimated": true,
+   "estimated_reason_zh": "无中国人群自述一级亲属前列腺癌史比例；借用北美多族裔对照组 5%（亚裔更低，可能高估），各年龄段同值"
+  },
+  "effect": {
+   "prostate_ca": {
+    "hr": 1.94,
+    "lo": 1.77,
+    "hi": 2.13,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "coef": 0.6,
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "applies_sex": "M",
+    "evidence": {
+     "pmid": "28910820",
+     "design": "prospective-cohort",
+     "grade": "B",
+     "quote": "having a family history of prostate cancer (1.94, 1.77–2.13)"
+    },
+    "population": {
+     "cohort": "UK Biobank 男性",
+     "n": 219335,
+     "events": 4575,
+     "ancestry": "European",
+     "age_range": [
+      40,
+      70
+     ],
+     "sex": "M",
+     "sex_scope": "M"
+    }
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "28910820",
+   "quote": "having a family history of prostate cancer (1.94, 1.77–2.13)",
+   "estimand_zh": "UK Biobank 男性（随访 5.6 年）有一级亲属前列腺癌史对比无者的观察性 HR，多因素校正；非东亚，已收缩；家族史阳性者更常做 PSA 检测（检出偏倚）可能高估",
+   "alternatives_considered": [
+    {
+     "pmid": "22073129",
+     "estimate": "33 项荟萃：一级亲属 RR 2.48 (2.25–2.74)",
+     "reason": "层级更高但摘要未给总病例数/总人数，无法满足事件数门槛（n≥1 万须写明）"
+    },
+    {
+     "pmid": "7535977",
+     "estimate": "北美多族裔病例对照 OR 2.5 (1.9–3.3)",
+     "reason": "病例对照，等级低于前瞻队列"
+    }
+   ],
+   "verified_at": "2026-11-20",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "UK Biobank 多因素 Cox 模型已校正年龄、族裔等；与已计入的前列腺癌项无共同机制记录，取 0.6"
+  },
+  "transport": {
+   "ancestry": "European",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "UK Biobank 男性",
+   "n": 219335,
+   "events": 4575,
+   "ancestry": "European",
+   "age_range": [
+    40,
+    70
+   ],
+   "sex": "M",
+   "sex_scope": "M"
+  },
+  "persistence": {
+   "half_life_years": 50
+  },
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "提示提前、加密筛查"
+  },
+  "test": {
+   "label_zh": "询问一级亲属患病史",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "prostate_ca": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 2.48 与 1.94，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 2.48,
+      "b": 1.94,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：indicator：每 1 单位 2.48 与 1.94，不在彼此的 95% 置信区间内"
+}

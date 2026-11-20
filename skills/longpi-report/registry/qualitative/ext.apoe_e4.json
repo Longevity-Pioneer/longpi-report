@@ -138,5 +138,7 @@
   "note": "效应量为文献数据"
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "两次独立建项不一致：level:1：每 1 单位 3.08 与 5.6，不在彼此的 95% 置信区间内；level:2：每 1 单位 11.8 与 33.1，不在彼此的 95% 置信区间内",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

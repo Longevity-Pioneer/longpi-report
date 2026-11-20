@@ -120,5 +120,7 @@
  "registry_version_added": "2026.11.18-9",
  "verifier_reasons": [
   "crc: 证据等级 C 低于 B"
- ]
+ ],
+ "why_qualitative_zh": "第二次建项未通过核对：crc: 结局事件 38 < 100",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

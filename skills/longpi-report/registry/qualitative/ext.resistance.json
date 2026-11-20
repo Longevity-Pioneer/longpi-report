@@ -153,5 +153,7 @@
  "registry_version_added": "2026.11.18-9",
  "notes_zh": [
   "2026-11-18 主线：原文为\"独立于有氧活动\"的关联（已校正有氧活动），机制为肌肉力量而非有氧量，单列为肌肉力量训练组，不与步数、中高强度运动按排名互斥；与握力的重叠由中介规则处理"
- ]
+ ],
+ "why_qualitative_zh": "第二次建项未通过核对：参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float'",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

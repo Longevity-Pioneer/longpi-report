@@ -1,0 +1,345 @@
+{
+ "id": "ext.resistance",
+ "a": {
+  "kind": "behavior",
+  "exclude_if_flags": [],
+  "treated_policy": "use_current",
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "behavior": {
+   "min_weeks": 8,
+   "self_report_discount": 0.5,
+   "target": 2,
+   "target_source": "WHO 身体活动和久坐行为指南（2020）与中国人群身体活动指南（2021）：成人每周至少 2 天进行涉及主要肌群的肌肉力量练习"
+  },
+  "id": "ext.resistance",
+  "name_zh": "每周抗阻训练次数",
+  "system": "musculoskeletal",
+  "group": "muscle_strengthening",
+  "input": {
+   "code": "LP:resistance_sessions_week",
+   "unit": "sessions/week",
+   "platform": null,
+   "methods": [
+    "device",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "hinge",
+   "knot_lo": 1,
+   "clip": [
+    0,
+    7
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "categorical_mid",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "p": {
+      "none": 0.615,
+      "one": 0.1,
+      "two_plus": 0.285
+     }
+    }
+   ],
+   "mids": {
+    "none": 0,
+    "one": 1,
+    "two_plus": 2.5
+   },
+   "pmid": "32230937",
+   "quote": "The prevalence of MS activities among participants was 28.5%.",
+   "source": "湖北 13 个城市 3073 名成人自报调查（Lin 2020），按 WHO 标准（每周 ≥2 天）达标率 28.5%，取 two_plus 0.285；全球系统综述合并达标率 22.8%（PMID 39040428），量级一致。每周 1 次者比例无原文数据，取 0.10 为估计值；城市方便样本可能高估全国水平。原 12% 为无来源估计，已弃用。",
+   "estimated": true,
+   "estimated_reason_zh": "每周 ≥2 次的比例来自湖北城市样本（非全国代表性，可能偏高），每周 1 次的比例无可核对数据，未分性别年龄；未找到全国代表性的中国成人肌力练习分布"
+  },
+  "effect": {
+   "all_cause": {
+    "hr_below": {
+     "hr": 1.1765,
+     "lo": 1.0753,
+     "hi": 1.2658,
+     "derived": {
+      "from": {
+       "hr": 0.85,
+       "lo": 0.79,
+       "hi": 0.93
+      },
+      "pow": -1
+     },
+     "per": 1,
+     "per_unit": "sessions/week（输入为整数次数：0 次对 ≥1 次，即原文“有对无”的二分类对比）"
+    },
+    "direction": "higher_better"
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "core.adiposity",
+   "core.alcohol",
+   "core.smoking"
+  ],
+  "overlap": {
+   "coef": 0.5,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "core.muscle"
+   ],
+   "rationale_zh": "全文说明纳入研究多数校正了年龄、体重指数、饮酒和吸烟，部分校正性别、种族、饮食、病史与社会经济状况，均考虑了有氧活动，但未校正握力；抗阻训练主要通过肌肉力量起作用，属部分校正，系数取 0.5。测得握力时再按中介比例 0.3（默认值）扣减。",
+   "mediated_by": {
+    "core.muscle": 0.3
+   }
+  },
+  "transport": {
+   "ancestry": "mostly US, Europe and Japan cohorts",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Momma 2022 meta-analysis, two-group analysis 7 studies",
+   "n": 263058,
+   "events": 42133,
+   "ancestry": "mostly US, Europe and Japan cohorts",
+   "age_range": [
+    18,
+    99
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "多为自述；原文按分钟/周，本项以次/周输入，每次约 30 分钟"
+  },
+  "persistence": {
+   "half_life_years": 1
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "每周 2 次、累计 30–60 分钟的肌力训练获益最大；更大运动量的获益不确定。"
+  },
+  "test": {
+   "label_zh": "问卷或训练记录：每周抗阻训练次数",
+   "cost_level": 1
+  },
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "35228201",
+   "pmcid": "PMC9209691",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35228201/",
+   "quote": "Muscle-strengthening activities were associated with a 15% lower risk of all-cause mortality (RR 0.85; 95% CI 0.79 to 0.93; p<0.001) (figure 2).",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true,
+   "alternatives_considered": [
+    {
+     "pmid": "35228201",
+     "why_not_zh": "同一文献的剂量反应分析（J 形，30–60 分钟/周风险最低）未给每单位估计；原先把有对无的 RR 0.85 摊到 0→2 次的跨度上属推算，已改为 0 次对 ≥1 次的阶跃"
+    }
+   ]
+  },
+  "note_zh": "原文为任何肌力练习对无（two-group）RR 0.85。输入为每周整数次数，折线拐点取 1、跨度 1，相当于 0 次时风险乘 1/0.85、≥1 次不再变化，与原文的二分类对比一致；不对更多次数追加获益，也不惩罚高剂量（原文 J 形关系高剂量段不确定）。指南目标为每周 ≥2 次。",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9",
+  "notes_zh": [
+   "2026-11-18 主线：原文为\"独立于有氧活动\"的关联（已校正有氧活动），机制为肌肉力量而非有氧量，单列为肌肉力量训练组，不与步数、中高强度运动按排名互斥；与握力的重叠由中介规则处理"
+  ]
+ },
+ "b": {
+  "id": "ext.resistance",
+  "name_zh": "每周抗阻训练次数",
+  "kind": "behavior",
+  "system": "musculoskeletal",
+  "group": "muscle_strengthening",
+  "input": {
+   "code": "LP:resistance_sessions_week",
+   "unit": "sessions/week",
+   "platform": null,
+   "methods": [
+    "device",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "hinge",
+   "knot_lo": 2,
+   "knot_hi": 2,
+   "clip": [
+    0,
+    7
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "lognormal",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "meanlog": null,
+     "sdlog": null
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "meanlog": null,
+     "sdlog": null
+    }
+   ],
+   "estimated": true,
+   "estimated_reason_zh": "仅找到湖北 3,073 名成人每周≥2 天肌肉力量活动者占 28.5%（PMID 32230937），无完整分布；不虚构数值",
+   "source": "none"
+  },
+  "effect": {
+   "all_cause": {
+    "hr_below": {
+     "derived": {
+      "from": {
+       "hr": 0.89,
+       "lo": 0.85,
+       "hi": 0.94
+      },
+      "pow": -1
+     },
+     "hr": 1.123596,
+     "lo": 1.06383,
+     "hi": 1.176471,
+     "per": 2,
+     "per_unit": "sessions/week（低于 2 次/周的缺口，从 2 降到 0；原文为达标 vs 不达标二分类）"
+    },
+    "direction": "higher_better",
+    "overlaps_with": [
+     "core.muscle",
+     "core.crf"
+    ],
+    "coef": 0.6,
+    "evidence": {
+     "pmid": "32611588",
+     "grade": "B",
+     "design": "prospective-cohort",
+     "quote": "Compared with those who did not meet the physical activity guidelines (n=268 193), those who engaged in recommended muscle strengthening activity (n=21 428; hazard ratio 0.89, 95% confidence interval 0.85 to 0.94) or aerobic activity (n=113 851; 0.71, 0.69 to 0.72) were found to be at reduced risk of all cause mortality"
+    }
+   }
+  },
+  "estimand_zh": "美国 NHIS 479,856 成人前瞻队列（59,819 例死亡）：达到指南的肌肉力量活动（每周≥2 天，仅此项）相对未达标者的全因死亡 HR=0.89（0.85-0.94）；以 pow −1 折为 2 次/周缺口 HR（二分类，缺口内线性为近似）；拐点 2 次/周，高于不计入；校正年龄、性别、种族、教育、收入、吸烟、BMI 等",
+  "adjusted_for": [
+   "age",
+   "sex",
+   "core.smoking",
+   "core.adiposity"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "core.muscle",
+    "core.crf"
+   ],
+   "rationale_zh": "校正了年龄性别、种族、收入、教育、吸烟、BMI、慢性病、有氧活动，但未校正握力与心肺适能；部分校正 ≤0.6",
+   "mediated_by": {
+    "core.muscle": 0.3
+   }
+  },
+  "transport": {
+   "ancestry": "US mixed",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "US National Health Interview Survey 1997-2014 (linked NDI)",
+   "n": 479856,
+   "events": 59819,
+   "ancestry": "US mixed",
+   "age_range": [
+    18,
+    90
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.3,
+   "source": "估计"
+  },
+  "persistence": {
+   "half_life_years": 2
+  },
+  "exclude_if_flags": [
+   "acute_illness"
+  ],
+  "treated_policy": "use_pretreatment",
+  "behavior": {
+   "min_weeks": 8,
+   "self_report_discount": 0.5,
+   "target": 2,
+   "target_source": "WHO 指南每周至少 2 天肌肉力量活动；PMID 32611588 以此为达标线，PMID 35953241 称最小有效剂量 1-2 次/周"
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "每周 1-2 次抗阻训练"
+  },
+  "test": {
+   "label_zh": "训练记录或问卷",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "32611588",
+   "quote": "Compared with those who did not meet the physical activity guidelines (n=268 193), those who engaged in recommended muscle strengthening activity (n=21 428; hazard ratio 0.89, 95% confidence interval 0.85 to 0.94) or aerobic activity (n=113 851; 0.71, 0.69 to 0.72) were found to be at reduced risk of all cause mortality",
+   "alternatives_considered": [
+    {
+     "pmid": "35953241",
+     "estimate": "NHIS 416,420: 1 time/week HR 0.89 (0.81-0.97), 7/week 0.99 (0.94-1.04)",
+     "reason": "有剂量曲线，但摘要无死亡数（全因死亡门槛须单队列≥1000 例或合并分析），无法满足"
+    },
+    {
+     "pmid": "35599175",
+     "estimate": "10 studies, any vs no RT RR 0.85 (0.77-0.93)",
+     "reason": "按分钟而非次数，摘要无人数/事件数"
+    },
+    {
+     "pmid": "35228201",
+     "estimate": "16 cohorts, 10-17% lower",
+     "reason": "摘要无具体 HR 与 CI"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "qualitative",
+ "verify_b_fail": [
+  "参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float'"
+ ],
+ "comparison": {
+  "outcomes": {
+   "all_cause": {
+    "agree": false,
+    "why": [
+     "拐点不同：knot_lo 1 对 2"
+    ]
+   }
+  },
+  "agree_any": false
+ },
+ "why": "第二次建项未通过核对：参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float'"
+}

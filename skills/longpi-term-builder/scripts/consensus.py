@@ -22,10 +22,14 @@ def _eff(e: dict) -> dict:
     return dict(e, hr=f["hr"] ** k, lo=min(lo, hi), hi=max(lo, hi))
 
 
+def _num_ok(e: dict) -> bool:
+    return all(isinstance(e.get(k), (int, float)) and e.get(k) > 0 for k in ("hr", "lo", "hi"))
+
+
 def _per_unit(e: dict) -> Optional[Tuple[float, float, float]]:
-    """(log HR, log lo, log hi) per one unit of the input (None if not a per-unit effect)."""
+    """(log HR, log lo, log hi) per one unit of the input (None if not a per-unit effect or numbers are missing)."""
     e = _eff(e)
-    if not all(k in e for k in ("hr", "lo", "hi")):
+    if not _num_ok(e) or not isinstance(e.get("per") or 1.0, (int, float)):
         return None
     per = float(e.get("per") or 1.0)
     return math.log(e["hr"]) / per, math.log(e["lo"]) / per, math.log(e["hi"]) / per
@@ -33,7 +37,7 @@ def _per_unit(e: dict) -> Optional[Tuple[float, float, float]]:
 
 def _point(e: dict) -> Optional[Tuple[float, float, float]]:
     e = _eff(e)
-    if not all(k in e for k in ("hr", "lo", "hi")):
+    if not _num_ok(e):
         return None
     return math.log(e["hr"]), math.log(e["lo"]), math.log(e["hi"])
 
@@ -91,6 +95,9 @@ def compare(a: dict, b: dict) -> dict:
     res: Dict[str, dict] = {}
     if a["transform"]["shape"] != b["transform"]["shape"]:
         return {"outcomes": {oc: {"agree": False, "why": [f"形状不同：{a['transform']['shape']} 对 {b['transform']['shape']}"]}
+                             for oc in set(a.get("effect") or {}) | set(b.get("effect") or {})}, "agree_any": False}
+    if bool(a["transform"].get("log_x")) != bool(b["transform"].get("log_x")):
+        return {"outcomes": {oc: {"agree": False, "why": ["输入尺度不同（一次按对数、一次按原值），无法直接比较"]}
                              for oc in set(a.get("effect") or {}) | set(b.get("effect") or {})}, "agree_any": False}
     if a["transform"]["shape"] == "hinge":
         for k in ("knot", "knot_lo", "knot_hi"):

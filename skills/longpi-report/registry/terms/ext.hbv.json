@@ -22,74 +22,61 @@
    {
     "sex": "both",
     "age_lo": 18,
-    "age_hi": 59,
-    "prevalence": 0.047
-   },
-   {
-    "sex": "both",
-    "age_lo": 60,
     "age_hi": 99,
-    "prevalence": 0.056
+    "prevalence": 0.031
    }
   ],
-  "pmid": "37798085",
-  "pmcid": "PMC10715530",
-  "quote": "An estimated 43.3 million (95% uncertainty interval 30.7-55.9) persons remained infected with HBV in China in 2021 (3.0%)",
-  "source": "全国 HBsAg 血清流行率系统综述与荟萃分析（Liu Z 等，Gut 2023，3740 项研究、2.31 亿人），2021 年估计：19–59 岁 4.7%、≥60 岁 5.6%（同一摘要句）；未分性别（男性高于女性）。效应量来自中国慢性病前瞻性研究现场快速试纸检测（阳性率 3.1%，灵敏度偏低），与血清实验室检测口径不完全一致",
-  "previous_source_zh": "原用中国慢性病前瞻性研究基线快速试纸阳性率 3.1%（PMID 31199446），为单一队列试纸口径，已替换"
+  "pmid": "31199446",
+  "quote": "The prevalence of HBsAg positivity was 3.1% (n = 15 355).",
+  "source": "中国慢性病前瞻性研究基线（30–79 岁，试纸条检测）HBsAg 阳性率 3.1%；未分年龄性别"
  },
  "effect": {
-  "liver_ca": {
-   "hr": 15.77,
-   "lo": 14.15,
-   "hi": 17.57,
-   "coef": 0.8,
-   "overlaps_with": [
-    "ext.fh_liver_ca",
-    "ext.alcohol",
-    "ext.smoking"
-   ],
-   "population": {
-    "events": 1775,
-    "events_source_zh": "全文表 1：肝细胞癌 1775 例（HBsAg 阳性 514、阴性 1261）"
-   }
-  },
   "gastric_ca": {
    "hr": 1.41,
    "lo": 1.11,
    "hi": 1.8,
-   "coef": 0.6,
-   "overlaps_with": [
-    "ext.hpylori",
-    "ext.smoking"
+   "direction": "higher_worse",
+   "overlaps_with": [],
+   "adjusted_for": [
+    "age",
+    "sex"
    ],
    "population": {
+    "cohort": "China Kadoorie Biobank",
+    "n": 496732,
     "events": 2157,
-    "events_source_zh": "全文表 1：胃癌 2157 例（HBsAg 阳性 78、阴性 2079）"
+    "ancestry": "Chinese",
+    "events_source_zh": "表 1：HBsAg 阳性 78 例 + 阴性 2079 例 = 2157（相加得出）"
+   }
+  },
+  "liver_ca": {
+   "hr": 15.77,
+   "lo": 14.15,
+   "hi": 17.57,
+   "direction": "higher_worse",
+   "overlaps_with": [],
+   "adjusted_for": [
+    "age",
+    "sex"
+   ],
+   "population": {
+    "cohort": "China Kadoorie Biobank",
+    "n": 496732,
+    "events": 1775,
+    "ancestry": "Chinese",
+    "events_source_zh": "表 1：HBsAg 阳性 514 例 + 阴性 1261 例 = 1775（相加得出）"
    }
   }
  },
  "adjusted_for": [
   "age",
-  "sex",
-  "region",
-  "education",
-  "income",
-  "marital_status",
-  "core.smoking",
-  "ext.smoking",
-  "core.alcohol",
-  "ext.alcohol",
-  "family_cancer_history",
-  "ext.fh_liver_ca",
-  "core.adiposity",
-  "ext.bmi"
+  "sex"
  ],
  "overlap": {
-  "coef": 1.0,
-  "coef_sd": 0.1,
+  "coef": 0.8,
+  "coef_sd": 0.2,
+  "rationale_zh": "仅疾病结局，无已计入的重叠项",
   "overlaps_with": [],
-  "rationale_zh": "本项只计疾病结局。原文 Cox 模型校正了年龄、性别、地区、教育、家庭收入、婚姻、吸烟、饮酒、癌症家族史和体重指数，与肝癌的已计入重叠项（肝癌家族史、饮酒、吸烟）均已互相校正，按规则取 0.8（丙肝病毒未校正，但在中国人群中流行率低；结局为肝细胞癌，约占原发性肝癌的八至九成）。胃癌关联较弱（HR 1.41，暴露组仅 78 例），未校正幽门螺杆菌感染，属部分校正，系数取 0.6。",
   "mediated_by": {}
  },
  "transport": {
@@ -100,47 +87,68 @@
  "population": {
   "cohort": "China Kadoorie Biobank",
   "n": 496732,
+  "events": 1775,
   "ancestry": "Chinese",
   "age_range": [
    30,
    79
   ],
-  "sex": "both"
+  "sex": "both",
+  "events_source_zh": "见各结局"
  },
- "measurement": {
-  "sd_abs": null,
-  "cv": null,
-  "source": "HBsAg 定性检测；CKB 用现场快速试纸，灵敏度低于实验室化学发光法，可能使 HR 偏向无效"
- },
- "persistence": {
-  "half_life_years": 30
- },
- "exclude_if_flags": [],
- "treated_policy": "use_current",
  "interventions": {
   "modifiable": true,
-  "note_zh": "规范抗病毒治疗可降低肝癌风险；HBsAg 阳性者应每 6 个月做肝脏超声和甲胎蛋白检查。本项 HR 来自未区分治疗状态的人群。"
- },
- "test": {
-  "label_zh": "抽血查乙肝表面抗原（HBsAg）",
-  "cost_level": 1
+  "note_zh": "抗病毒治疗、定期肝癌筛查、疫苗（对未感染者）"
  },
  "disclosure": "standard",
  "evidence": {
-  "grade": "B",
-  "design": "prospective-cohort",
   "pmid": "31199446",
-  "quote": "participants who were HBsAg seropositive (n = 15 355) had a higher risk of hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/31199446/",
-  "verified_at": "2026-11-18",
-  "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "grade": "A",
+  "design": "prospective-cohort",
+  "verified_at": "2026-11-20",
+  "quote": "had a higher risk of hepatocellular carcinoma (hazard ratio [HR], 15.77; 95% CI, 14.15-17.57), stomach cancer (HR, 1.41; 95% CI, 1.11-1.80)",
+  "alternatives_considered": [
+   {
+    "pmid": "34855203",
+    "estimate": "开滦队列 HBsAg 阳性肝癌 HR 21.56 (17.32-26.85)",
+    "reason": "摘要只给胃肠癌合计 1791 例，肝癌分结局事件数无法核对；CKB 样本更大"
+   },
+   {
+    "pmid": "12124405",
+    "estimate": "台湾男性 仅 HBsAg 阳性 RR 9.6 (6.0-15.2)，111 例",
+    "reason": "仅男性、事件少"
+   },
+   {
+    "pmid": "30967410",
+    "estimate": "CKB 肝癌死亡 HR 13.95 (12.46-15.62)，1339 例",
+    "reason": "结局为死亡而非发病"
+   }
+  ],
+  "estimand_zh": "HBsAg 阳性（试纸条）相对阴性者的肝细胞癌、胃癌发病 HR（CKB 多变量校正 Cox）；摘要未列校正变量",
+  "replication": {
+   "pmid": "31199446",
+   "doi": null,
+   "design": "prospective-cohort",
+   "effects": {
+    "gastric_ca": {
+     "hr": 1.41,
+     "lo": 1.11,
+     "hi": 1.8
+    },
+    "liver_ca": {
+     "hr": 15.77,
+     "lo": 14.15,
+     "hi": 17.57
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  },
+  "numbers_verified": true,
+  "verifier": "longpi-term-builder add-consensus"
  },
  "license": {
   "commercial_use": true,
   "note": "效应量为文献数据"
- },
- "status": "active",
- "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ }
 }

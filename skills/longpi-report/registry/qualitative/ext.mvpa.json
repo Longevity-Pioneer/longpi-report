@@ -155,5 +155,7 @@
  },
  "note_zh": "折线形状：每周 150 分钟以下，每少 150 分钟风险乘 1/0.69（原文 0 对 8.75 mMET-h/wk，原文注明 8.75 mMET-h/wk 相当于每周 150 分钟中高强度活动）；150 分钟以上原文显示增益变小且不确定，不计入。原文为业余（非职业）身体活动。",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "第二次建项未通过核对：参考分布不可用：unsupported operand type(s) for *: 'NoneType' and 'float'",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

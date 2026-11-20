@@ -1,0 +1,254 @@
+{
+ "id": "ext.mono_msh6",
+ "a": {
+  "id": "ext.mono_msh6",
+  "name_zh": "MSH6 致病变异携带（林奇综合征）",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:monogenic:HGNC:7329",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.001319
+    }
+   ],
+   "source": "美国、加拿大、澳大利亚人群登记的结直肠癌家系分离分析估计的人群携带率（Win 2017）；中国人群分基因携带率暂缺。",
+   "pmid": "27799157",
+   "quote": "MLH1 = 1 in 1,946, MSH2 = 1 in 2,841, MSH6 = 1 in 758, PMS2 = 1 in 714"
+  },
+  "effect": {
+   "crc": {
+    "hr": 5.46,
+    "lo": 4.1,
+    "hi": 7.27,
+    "direction": "higher_worse",
+    "note": "英国生物库全外显子测序，MSH6 致病/可能致病变异携带者对非携带者的结直肠癌 HR（原文表 2，按出生日期、性别与前 10 个遗传主成分校正）",
+    "overlaps_with": [
+     "ext.fh_crc"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "genetic_pcs"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "genetic_pcs"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂，与 ext.bmi、ext.smoking 不共享信息；同文显示致病变异与高多基因评分的分布相互独立（χ2 检验 P = 0.22），故不列 ext.prs_crc。携带致病变异可解释部分结直肠癌家族史，与 ext.fh_crc 重叠；表 2 的分基因 HR 只校正出生日期、性别与遗传主成分，未校正家族史，按规则系数上限 0.6，取 0.6。同文表 3 四基因合并的致病变异 HR 在同时校正家族史与多基因评分后由 4.29 降至 3.51，对数尺度约减少 14%，说明与家族史的重叠有限，系数 0.6 偏保守。东亚方向一致性：日本人群病例对照（Fujita 2022）OR 4.9。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "European (UK Biobank, 91% European)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "UK Biobank whole-exome sequenced participants (Helfand 2025 JCO Precis Oncol)",
+   "n": 443107,
+   "events": 9488,
+   "events_source_zh": "全文表 1、表 2：分析纳入 443107 人，结直肠癌 9488 例；其中 MSH6 携带者 436 人，携带者中结直肠癌 47 例（分基因估计所依据的携带者病例不足 100 例，置信区间据此给出）",
+   "ancestry": "European (UK Biobank, 91% European)",
+   "age_range": [
+    40,
+    69
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+  },
+  "persistence": {
+   "half_life_years": null,
+   "note": "种系变异终身不变"
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "status": "active",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "林奇综合征携带者应接受遗传咨询，按指南自 20–25 岁起每 1–2 年结肠镜检查。"
+  },
+  "test": {
+   "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+   "cost_level": 4
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "grade": "B",
+   "design": "case-control",
+   "design_note": "英国生物库全队列 Cox 回归，时间尺度自出生起至首次诊断或末次随访，含入组前已诊断病例（终生风险分析，非纯前瞻）；种系变异先于发病，按遗传项归入病例对照类",
+   "pmid": "40601893",
+   "pmcid": "PMC12233176",
+   "quote": "MSH6 | 436 (0.1) | 47 (10.78) | 5.46 (4.10 to 7.27)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40601893/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true,
+   "table_caption": "Genetic Risk of CRC in the UKB",
+   "outcome_binding_note_zh": "数值取自全文表 2 的基因行，表题为“Genetic Risk of CRC in the UKB”，结局为结直肠癌；表格行本身不含结局名称。"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "gene": "MSH6",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.mono_msh6",
+  "name_zh": "MSH6 致病变异携带（林奇综合征）",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "verdict_intended": "qualitative",
+  "input": {
+   "code": "LP:monogenic:HGNC:7329",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.0005
+    }
+   ],
+   "estimated": true,
+   "estimated_reason_zh": "未检索到可核对的中国人群 MSH6 致病变异携带率；估计值",
+   "source": "估计值"
+  },
+  "effect": {
+   "crc": {
+    "hr": 7.2,
+    "lo": 7.2,
+    "hi": 7.2,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": [
+     "sex"
+    ],
+    "population": {
+     "cohort": "UK Biobank 外显子队列",
+     "n": 454712,
+     "ancestry": "European"
+    }
+   }
+  },
+  "adjusted_for": [
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.3,
+   "coef_sd": 0.15,
+   "rationale_zh": "先天因素；摘要未给置信区间，仅作定性佐证",
+   "overlaps_with": [],
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "European",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "UK Biobank 外显子队列",
+   "n": 454712,
+   "ancestry": "European",
+   "age_range": [
+    40,
+    70
+   ],
+   "sex": "both"
+  },
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "遗传咨询；结肠镜监测"
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "pmid": "37936660",
+   "grade": "B",
+   "design": "prospective-cohort",
+   "verified_at": "2026-11-20",
+   "quote": "individuals with a pathogenic MLH1, MSH2 or MSH6 variant had an increased risk of colorectal cancer that was significantly higher in those with a family history (relative hazard 35.6, 48.0 and 9.9) than those without (13.0, 15.4 and 7.2)",
+   "alternatives_considered": [
+    {
+     "pmid": "21642682",
+     "estimate": "法国 ERISCAM：MSH6 携带者 70 岁累积结直肠癌风险 12% (8%-22%)",
+     "reason": "为累积风险而非相对风险，不能折算 HR"
+    },
+    {
+     "pmid": "28754778",
+     "estimate": "前瞻性林奇数据库：MSH6 75 岁累积结直肠癌发病 15%",
+     "reason": "累积发病率，无对照人群相对风险"
+    }
+   ],
+   "estimand_zh": "无一级亲属结直肠癌家族史的 MSH6 致病变异携带者相对非携带者的结直肠癌相对危险（UK Biobank，按性别、筛查等控制）。原文只给点估计 7.2（无家族史）与 9.9（有家族史），未给 95% CI；本规格中的 lo、hi 只是占位（等于 hr），不是原文数字，故只能作定性佐证，不可计入数值"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  }
+ },
+ "verify_b": "qualitative",
+ "verify_b_fail": [
+  "crc: HR 7.2 与 CI 7.2–7.2 未在 quote 中成组出现（数值与原文结论未绑定）",
+  "crc: 未写结局事件数"
+ ],
+ "comparison": {
+  "outcomes": {
+   "crc": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 5.46 与 7.2，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 5.46,
+      "b": 7.2,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "第二次建项未通过核对：crc: HR 7.2 与 CI 7.2–7.2 未在 quote 中成组出现（数值与原文结论未绑定）；crc: 未写结局事件数"
+}

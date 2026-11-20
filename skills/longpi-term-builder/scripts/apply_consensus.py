@@ -27,6 +27,11 @@ import term_builder as TB  # noqa: E402
 RG = TB.RG
 
 
+def _date() -> str:
+    import datetime as _dt
+    return _dt.date.today().isoformat()
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--second", action="append", required=True)
@@ -52,11 +57,17 @@ def main(argv=None) -> int:
             to_qual[A["id"]], cands[A["id"]] = (A, why), {"id": A["id"], "a": A, "b": None, "why": why}
             report.append((A["id"], "未计入", why))
             continue
-        rb = TB.verify(B, root, offline=True)
+        try:
+            rb = TB.verify(B, root, offline=True)
+        except Exception as e:  # noqa: BLE001 - a malformed second build is a failed second build
+            rb = {"verdict": "invalid", "fail": [f"核对出错：{type(e).__name__}: {e}"]}
         cmp = CN.compare(A, B)
         merged, dropped = CN.merge(A, B, cmp) if rb["verdict"] == "auto_accept" else (None, [])
         rec = {"id": A["id"], "a": A, "b": B, "verify_b": rb["verdict"], "verify_b_fail": rb.get("fail", []), "comparison": cmp}
         if merged is not None:
+            merged = TB.expand_reference(merged)      # a reference given as population norms is expanded, as add() does
+            merged.setdefault("evidence", {}).update({"numbers_verified": True, "verified_at": _date(), "verifier": TB.VERIFIER + " (add-consensus)"})
+            merged["status"] = "active"
             new_terms[A["id"]] = merged
             if dropped:
                 cands[A["id"]] = rec

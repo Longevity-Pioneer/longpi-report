@@ -377,5 +377,7 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "两次独立建项不一致：只有一次建项给出了这个结局；只有一次建项给出了这个结局；只有一次建项给出了这个结局",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

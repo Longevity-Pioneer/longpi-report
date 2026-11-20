@@ -155,5 +155,7 @@
   "numbers_verified": true
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "第二次建项未通过核对：参考分布不可用：'<=' not supported between instances of 'NoneType' and 'int'",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

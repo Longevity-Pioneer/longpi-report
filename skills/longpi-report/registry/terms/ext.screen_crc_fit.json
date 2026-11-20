@@ -142,7 +142,19 @@
   "quote": "When compared with no screening, colorectal cancer mortality was lower with flexible sigmoidoscopy (relative risk 0.72; 95% CI 0.65 to 0.79, high quality evidence) and FOBT (relative risk 0.86; 95% CI 0.80 to 0.92, high quality evidence).",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "17253456",
+   "doi": null,
+   "design": "meta-analysis-rct",
+   "effects": {},
+   "screening_mortality_rr": {
+    "hr": 0.84,
+    "lo": 0.78,
+    "hi": 0.9
+   },
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "note_zh": "RR 0.86 为愈创木脂法潜血（gFOBT）随机试验的意向筛查合并估计；FIT 灵敏度高于 gFOBT，按此估计偏保守。中国嘉善、海宁等社区试验方向一致，未纳入数值。",
  "added_by": "longpi-term-builder",

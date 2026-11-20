@@ -1,0 +1,319 @@
+{
+ "id": "ext.ldl",
+ "a": {
+  "id": "ext.ldl",
+  "name_zh": "低密度脂蛋白胆固醇（冠心病风险）",
+  "kind": "state",
+  "system": "cardiovascular",
+  "group": "lipids",
+  "input": {
+   "code": "LOINC:13457-7",
+   "unit": "mmol/L",
+   "platform": null,
+   "methods": [
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    1.0,
+    6.5
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "source": "中国成人 LDL-C 分性别年龄分布；data/population_norms_china.json markers.ldl（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 2.745,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 2.745,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 2.905,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 3.115,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 3.145,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 3.105,
+     "sd": 0.86
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "mean": 3.075,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 29,
+     "mean": 2.675,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 30,
+     "age_hi": 39,
+     "mean": 2.675,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 40,
+     "age_hi": 49,
+     "mean": 2.835,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 50,
+     "age_hi": 59,
+     "mean": 3.045,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 60,
+     "age_hi": 69,
+     "mean": 3.075,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 70,
+     "age_hi": 79,
+     "mean": 3.035,
+     "sd": 0.86
+    },
+    {
+     "sex": "F",
+     "age_lo": 80,
+     "age_hi": 99,
+     "mean": 3.005,
+     "sd": 0.86
+    }
+   ],
+   "kind": "normal",
+   "norms_marker": "ldl"
+  },
+  "effect": {
+   "chd": {
+    "hr": 1.2821,
+    "lo": 1.25,
+    "hi": 1.3158,
+    "per": 1,
+    "per_unit": "mmol/L",
+    "direction": "higher_worse",
+    "derived": {
+     "from": {
+      "hr": 0.78,
+      "lo": 0.76,
+      "hi": 0.8
+     },
+     "pow": -1
+    },
+    "overlaps_with": []
+   }
+  },
+  "adjusted_for": [
+   "randomised"
+  ],
+  "overlap": {
+   "coef": 1.0,
+   "coef_sd": 0.1,
+   "overlaps_with": [
+    "core.lipid"
+   ],
+   "rationale_zh": "仅为冠心病建项，不写全因死亡，避免与 core.lipid 重复。效应来自他汀随机对照试验的个体数据荟萃分析（每降低 1 mmol/L 的率比取倒数），随机化排除了混杂，属于因果效应，系数取 1.0。终点为主要血管事件（冠心病死亡、非致死性心肌梗死、冠脉血运重建与缺血性卒中），以冠脉事件为主，用作冠心病的近似；试验期约 5 年，终生暴露的效应应更大，此处偏保守。卒中未纳入：CKB 显示 LDL-C 与缺血性卒中正相关、与脑出血负相关，摘要未给可核对的数值。冠心病 overlaps_with 写空：LDL-C 的随机对照试验估计是脂蛋白组内因果性最强、排名首位的项；ApoB、HDL-C、多基因评分、致病变异与 LDL-C 的信息重叠由这些后加项各自的 overlaps_with 打折以及 lipids 重叠组的排名规则处理，不在本项重复打折。引文同时列出主要血管事件的组成（冠心病死亡或非致死性心肌梗死、冠脉血运重建、缺血性卒中），所用数值 0.78（0.76–0.80）属于主要血管事件合计，不是单独的冠脉事件；全文单列的主要冠脉事件每 1 mmol/L 降低 24%（22%–27%）只以百分比给出，与此相近。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "multinational trial participants (mostly European)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Cholesterol Treatment Trialists' (CTT) Collaboration, 26 randomised trials",
+   "n": 169138,
+   "ancestry": "multinational (mostly European)"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.06,
+   "source": "Friedewald 计算或直接测定 LDL-C 的分析与生物学变异约 6%（经验值）"
+  },
+  "persistence": {
+   "half_life_years": 10
+  },
+  "exclude_if_flags": [
+   "acute_illness",
+   "pregnancy"
+  ],
+  "treated_policy": "use_pretreatment",
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "减少饱和脂肪摄入；风险较高者在医生指导下使用他汀等降脂药物。"
+  },
+  "test": {
+   "label_zh": "抽血查血脂四项",
+   "cost_level": 1
+  },
+  "evidence": {
+   "grade": "A",
+   "design": "meta-analysis-rct",
+   "pmid": "21067804",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/21067804/",
+   "quote": "consisting of separately significant reductions in coronary death or non-fatal myocardial infarction of 13% (95% CI 7-19; p<0·0001), in coronary revascularisation of 19% (95% CI 15-24; p<0·0001), and in ischaemic stroke of 16% (95% CI 5-26; p=0·005). Per 1·0 mmol/L reduction in LDL cholesterol, these further reductions in risk were similar to the proportional reductions in the trials of statin versus control. When both types of trial were combined, similar proportional reductions in major vascular events per 1·0 mmol/L LDL cholesterol reduction were found in all types of patient studied (rate ratio [RR] 0·78, 95% CI 0·76-0·80; p<0·0001)",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "disclosure": "standard",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.ldl",
+  "name_zh": "低密度脂蛋白胆固醇（冠心病风险）",
+  "kind": "state",
+  "system": "cardiovascular",
+  "group": "lipids",
+  "input": {
+   "code": "LOINC:13457-7",
+   "unit": "mmol/L",
+   "platform": null,
+   "methods": [
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    0.5,
+    8.0
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "from_norms": "ldl"
+  },
+  "effect": {
+   "chd": {
+    "hr": 1.49,
+    "lo": 1.32,
+    "hi": 1.68,
+    "per": 1.0,
+    "per_unit": "mmol/L",
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": []
+   }
+  },
+  "adjusted_for": [],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "rationale_zh": "仅疾病结局，不进全因死亡；孟德尔随机化估计不受其他危险因素混杂",
+   "overlaps_with": [],
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "European",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "CARDIoGRAMplusC4D 汇总数据，62 个 LDL-C 遗传变异",
+   "n": 60801,
+   "events": 60801,
+   "ancestry": "European",
+   "age_range": [
+    30,
+    90
+   ],
+   "sex": "both"
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "他汀、依折麦布、饮食与体重管理"
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "pmid": "30787162",
+   "grade": "A",
+   "design": "mendelian-randomization",
+   "verified_at": "2026-11-20",
+   "quote": "A 1 mmol/L higher genetically determined LDL-C was associated with a 50% higher risk of CHD (odds ratio [OR] 1.49, 95% confidence interval [CI] 1.32-1.68, p = 1.1 × 10-8).",
+   "alternatives_considered": [
+    {
+     "pmid": "21067804",
+     "estimate": "CTT 26 项随机试验：每降低 1.0 mmol/L LDL-C，主要血管事件 RR 0.78 (0.76-0.80)；冠心病死亡 RR 0.80 (99% CI 0.74-0.87)",
+     "reason": "结局为主要血管事件，冠心病死亡为 99% CI，不是 95% CI，不能逐字入库；本项取冠心病专用 MR"
+    }
+   ],
+   "estimand_zh": "遗传预测的终生 LDL-C 每高 1 mmol/L 的冠心病比值比（两样本孟德尔随机化，欧洲人群汇总数据）；是终生暴露的因果估计，药物短期降低的获益较小"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  }
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "chd": {
+    "agree": false,
+    "why": [
+     "slope：每 1 单位 1.28 与 1.49，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "slope": {
+      "a": 1.2821,
+      "b": 1.49,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：slope：每 1 单位 1.28 与 1.49，不在彼此的 95% 置信区间内"
+}

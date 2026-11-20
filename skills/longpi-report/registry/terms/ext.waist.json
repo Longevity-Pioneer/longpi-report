@@ -155,49 +155,6 @@
     "design": "meta-analysis",
     "quote": "The pooled analysis indicated that each 10 cm (3.94 inch) increment in waist circumference was associated with an 11% higher risk of all cause mortality: hazard ratio 1.11 (95% confidence interval 1.08 to 1.13)"
    }
-  },
-  "t2d": {
-   "hr": 1.91,
-   "lo": 1.87,
-   "hi": 1.95,
-   "per": 9.5,
-   "per_unit": "cm（女性每 1 SD；CKB 女性腰围 SD 9.5 cm 见 PMID 30665257；男性 HR 2.13 更大，统一取女性值以保守）",
-   "direction": "higher_worse",
-   "coef": 0.3,
-   "evidence": {
-    "pmid": "29298802",
-    "quote": "Throughout the range examined (19-32 kg/m2), BMI showed a positive log-linear relationship with diabetes, with adjusted HRs per SD higher usual BMI greater in men (1.98; 95% CI 1.93-2.04) than in women (1.77; 1.73-1.81) (P for heterogeneity <0.001). For WC, HRs per SD were 2.13 (95% CI 2.07-2.19) in men and 1.91 (1.87-1.95) in women",
-    "grade": "B",
-    "design": "prospective-cohort"
-   },
-   "population": {
-    "cohort": "China Kadoorie Biobank",
-    "n": 482589,
-    "events": 13416,
-    "ancestry": "Chinese"
-   },
-   "transport": {
-    "ancestry": "Chinese",
-    "shrink": 1.0,
-    "sd_inflate": 1.0
-   },
-   "overlaps_with": [
-    "ext.fpg",
-    "ext.hba1c",
-    "ext.tg",
-    "ext.bmi",
-    "ext.fh_t2d",
-    "ext.prs_t2d"
-   ],
-   "adjusted_for": [
-    "age",
-    "sex",
-    "region",
-    "education",
-    "core.smoking",
-    "core.alcohol",
-    "LP:mvpa_min_week"
-   ]
   }
  },
  "adjusted_for": [
@@ -247,8 +204,26 @@
   "url": "https://pubmed.ncbi.nlm.nih.gov/32967840/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "32967840",
+   "doi": null,
+   "design": "meta-analysis",
+   "effects": {
+    "all_cause": {
+     "hr": 1.11,
+     "lo": 1.08,
+     "hi": 1.13,
+     "per": 10
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "notes_zh": [
+  "两次建项不一致、未计入的结局：t2d：slope：每 9.5 单位 1.91 与 2.1，不在彼此的 95% 置信区间内"
+ ]
 }

@@ -129,5 +129,7 @@
   ]
  },
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "两次独立建项不一致：输入尺度不同（一次按对数、一次按原值），无法直接比较",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

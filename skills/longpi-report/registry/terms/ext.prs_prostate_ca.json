@@ -107,7 +107,22 @@
     "estimate": "中国嘉道理生物库 PGS005167 前瞻发病 HR",
     "why_not": "前列腺癌事件仅 95 例，低于 100 例门槛"
    }
-  ]
+  ],
+  "replication": {
+   "pmid": null,
+   "doi": null,
+   "design": "pgs-catalog-evaluation",
+   "effects": {
+    "prostate_ca": {
+     "hr": 1.69,
+     "lo": 1.64,
+     "hi": 1.74,
+     "per": 1.0
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "license": {
   "commercial_use": true,

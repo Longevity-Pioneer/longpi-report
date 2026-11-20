@@ -1,0 +1,755 @@
+{
+ "id": "ext.alcohol",
+ "a": {
+  "id": "ext.alcohol",
+  "name_zh": "饮酒量（疾病风险）",
+  "kind": "exposure",
+  "system": "whole_body",
+  "group": null,
+  "input": {
+   "code": "LP:alcohol_g_week",
+   "unit": "g/week",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    0,
+    700
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "categorical_mid",
+   "mids": {
+    "M": {
+     "none": 0,
+     "moderate": 140,
+     "hazardous": 350,
+     "harmful": 560
+    },
+    "F": {
+     "none": 0,
+     "moderate": 70,
+     "hazardous": 210,
+     "harmful": 385
+    }
+   },
+   "source": "各档比例取 data/population_norms_china.json markers.alcohol（CCDRFS 2018，WHO 克/日分档）；各档代表值（克/周）与 core.alcohol 相同：男性 不饮 0、中度（≤40 g/日）140、危险（41–60 g/日）350、有害（>60 g/日）560；女性 不饮 0、中度（≤20 g/日）70、危险（21–40 g/日）210、有害（>40 g/日）385，中度、危险档取区间中点，有害档男性取 80 g/日、女性取 55 g/日（开放区间，取值为约定，未经文献核对）；data/population_norms_china.json markers.alcohol（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.3675,
+      "moderate": 0.471,
+      "hazardous": 0.0625,
+      "harmful": 0.099
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.8115,
+      "moderate": 0.18,
+      "hazardous": 0.004,
+      "harmful": 0.0045
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 80,
+     "age_hi": 99,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    }
+   ],
+   "norms_marker": "alcohol",
+   "mids_estimated": true,
+   "mids_estimated_reason_zh": "各档比例来自全国监测（norms_marker alcohol）；各档代表值为约定：中度、危险档取区间中点，有害档为开放区间，男性取 80 g/日、女性取 55 g/日，未经文献核对。"
+  },
+  "effect": {
+   "liver_ca": {
+    "hr": 1.52,
+    "lo": 1.31,
+    "hi": 1.76,
+    "per": 280,
+    "per_unit": "g/week（男性规律饮酒者中每多 280 g/周常规饮酒量）",
+    "direction": "higher_worse",
+    "coef": 0.6,
+    "population": {
+     "cohort": "China Kadoorie Biobank (male current regular drinkers)",
+     "n": 512000,
+     "events": 573,
+     "ancestry": "Chinese",
+     "sex": "M"
+    },
+    "applies_sex": "M",
+    "overlaps_with": [
+     "ext.smoking",
+     "ext.hbv"
+    ],
+    "adjusted_for": [
+     "age",
+     "region",
+     "education",
+     "core.smoking",
+     "ext.smoking"
+    ],
+    "evidence": {
+     "estimand_zh": "男性规律饮酒者中常规饮酒量每多 280 g/周的肝癌发病 HR（常规观察性估计，非遗传学估计）",
+     "alternatives_considered": [
+      {
+       "pmid": "37291211",
+       "estimate": "孟德尔随机化：肝硬化 2.30（1.58–3.35）",
+       "why_not": "摘要未给肝癌的遗传学估计"
+      }
+     ]
+    }
+   },
+   "stroke": {
+    "hr": 1.38,
+    "lo": 1.27,
+    "hi": 1.49,
+    "per": 280,
+    "per_unit": "g/week（基因型预测的男性平均饮酒量每高 280 g/周；孟德尔随机化）",
+    "direction": "higher_worse",
+    "coef": 0.6,
+    "evidence": {
+     "pmid": "37291211",
+     "grade": "A",
+     "design": "mendelian-randomization",
+     "quote": "Genotype-predicted mean alcohol intake was positively associated with established (n = 28,564; 1.14, 1.09-1.20) and new alcohol-associated (n = 16,138; 1.06, 1.01-1.12) diseases, and with specific diseases such as liver cirrhosis (n = 499; 2.30, 1.58-3.35), stroke (n = 12,176; 1.38, 1.27-1.49)",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/37291211/",
+     "estimand_zh": "ALDH2-rs671、ADH1B-rs1229984 基因型预测的男性平均饮酒量每高 280 g/周的卒中 HR（孟德尔随机化，含经血压介导的部分）"
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank genotyped men (ALDH2-rs671, ADH1B-rs1229984)",
+     "n": 168050,
+     "events": 12176,
+     "ancestry": "Chinese",
+     "sex": "M"
+    },
+    "applies_sex": "M",
+    "overlaps_with": [
+     "ext.sbp",
+     "ext.smoking"
+    ],
+    "adjusted_for": [
+     "age",
+     "region",
+     "genotype_based"
+    ]
+   },
+   "breast_ca": {
+    "hr": 1.1,
+    "lo": 1.08,
+    "hi": 1.13,
+    "per": 70,
+    "per_unit": "g/week（每多 10 g/日乙醇 = 70 g/周）",
+    "direction": "higher_worse",
+    "coef": 0.8,
+    "evidence": {
+     "pmid": "32090238",
+     "grade": "B",
+     "design": "meta-analysis",
+     "quote": "there was a statistically significant linear trend with breast cancer risk increasing gradually by total alcohol and wine dose: when adding 10 g per day, the risk increased by 10.5% (RR = 1.10, 95%CI = 1.08-1.13) in total alcohol",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/32090238/",
+     "estimand_zh": "女性总饮酒量每增加 10 g/日的乳腺癌 RR（前瞻队列剂量反应荟萃）"
+    },
+    "population": {
+     "cohort": "22 prospective cohort studies (dose-response meta-analysis)",
+     "events": 45350,
+     "ancestry": "multinational (Europe, North America, Asia)",
+     "sex": "F"
+    },
+    "transport": {
+     "ancestry": "multinational (Europe, North America, Asia)",
+     "shrink": 0.8,
+     "sd_inflate": 1.25
+    },
+    "overlaps_with": []
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "core.smoking"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "core.alcohol"
+   ],
+   "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.alcohol（全因）不重复计入 LongPi Age。肝癌取中国慢性病前瞻性研究男性规律饮酒者的常规队列剂量反应估计，模型按年龄、地区分层并校正教育、吸烟，未校正乙肝表面抗原，与乙肝项未互相校正，属部分校正，系数由 0.8 降至 0.6。卒中取同一队列男性的孟德尔随机化估计，受混杂影响小，但其中一部分经血压升高介导，与收缩压项同时计入会重复，系数由 0.7 降至 0.6。肝癌、卒中估计只来自男性（女性规律饮酒者仅约 2%），两结局限定男性（applies_sex M）。乳腺癌取多国前瞻队列剂量反应荟萃分析，已计入的乳腺癌项（体重指数、家族史、多基因评分、致病变异）与饮酒不共享信息，系数 0.8，按非东亚人群收缩。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "Chinese",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "China Kadoorie Biobank",
+   "n": 512000,
+   "ancestry": "Chinese",
+   "age_range": [
+    30,
+    79
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "自述饮酒量，问卷换算为纯酒精克/周；测量误差未量化"
+  },
+  "persistence": {
+   "half_life_years": 5
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "use_current",
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "减少饮酒量可降低肝癌、结直肠癌、乳腺癌和卒中风险；携带 ALDH2 低活性变异（饮酒后脸红）者危害更大。"
+  },
+  "test": {
+   "label_zh": "饮酒频率与每次饮酒量问卷",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "33634874",
+   "quote": "Among male current regular drinkers, alcohol intake showed positive dose-response associations with risks of cancers in the oesophagus (655 events; HR = 1.98 [95%CI 1.79-2.18], per 280 g/wk), mouth and throat (236; 1.74 [1.48-2.05]), liver (573; 1.52 [1.31-1.76]), colon-rectum (575; 1.19 [1.00-1.43])",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33634874/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "excluded_outcomes": {
+   "crc": {
+    "reason_zh": "CKB 男性结直肠癌 HR 的 95% 置信区间下限为 1.00，未达统计学显著，本版不计入；待有东亚荟萃或更大样本后补入",
+    "hr": 1.19,
+    "lo": 1.0,
+    "hi": 1.43,
+    "pmid": "33634874"
+   }
+  },
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.alcohol",
+  "name_zh": "饮酒量（疾病风险）",
+  "kind": "exposure",
+  "system": "whole_body",
+  "group": null,
+  "input": {
+   "code": "LP:alcohol_g_week",
+   "unit": "g/week",
+   "platform": null,
+   "methods": [
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    0,
+    700
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "categorical_mid",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.3797,
+      "moderate": 0.5483,
+      "hazardous": 0.029,
+      "harmful": 0.043
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.3675,
+      "moderate": 0.471,
+      "hazardous": 0.0625,
+      "harmful": 0.099
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "p": {
+      "none": 0.5,
+      "moderate": 0.3585,
+      "hazardous": 0.053,
+      "harmful": 0.0885
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 29,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 30,
+     "age_hi": 39,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 40,
+     "age_hi": 49,
+     "p": {
+      "none": 0.7925,
+      "moderate": 0.2025,
+      "hazardous": 0.0035,
+      "harmful": 0.0015
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 50,
+     "age_hi": 59,
+     "p": {
+      "none": 0.8115,
+      "moderate": 0.18,
+      "hazardous": 0.004,
+      "harmful": 0.0045
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 60,
+     "age_hi": 69,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 70,
+     "age_hi": 79,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    },
+    {
+     "sex": "F",
+     "age_lo": 80,
+     "age_hi": 99,
+     "p": {
+      "none": 0.8674,
+      "moderate": 0.1216,
+      "hazardous": 0.005,
+      "harmful": 0.006
+     }
+    }
+   ],
+   "mids": {
+    "M": {
+     "none": 0,
+     "moderate": 140,
+     "hazardous": 350,
+     "harmful": 560
+    },
+    "F": {
+     "none": 0,
+     "moderate": 70,
+     "hazardous": 210,
+     "harmful": 350
+    }
+   },
+   "source": "中国居民饮酒分级比例取自 data/population_norms_china.json（CCDRFS 2018, WHO 克/日分级）；各级代表值为按 WHO 分级界限取的中点（估计）",
+   "estimated": true,
+   "estimated_reason_zh": "分级代表值（克/周）按 WHO 克/日分级界限折算为估计中点，无原文给出各级平均摄入量"
+  },
+  "effect": {
+   "stroke": {
+    "hr": 1.38,
+    "lo": 1.26,
+    "hi": 1.51,
+    "per": 280,
+    "per_unit": "g/week",
+    "direction": "higher_worse",
+    "applies_sex": "M",
+    "overlaps_with": [
+     "core.bp"
+    ],
+    "coef": 0.3,
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "evidence": {
+     "pmid": "30955975",
+     "design": "mendelian-randomization",
+     "grade": "A",
+     "quote": "or total stroke (1·38, 1·26–1·51)"
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank，男性，ALDH2-rs671 与 ADH1B-rs1229984 基因预测饮酒量",
+     "n": 161498,
+     "events": 18426,
+     "events_source_zh": "缺血性卒中 14 930 例 + 脑出血 3 496 例，见摘要结果",
+     "ancestry": "Chinese",
+     "age_range": [
+      30,
+      79
+     ],
+     "sex": "M"
+    }
+   },
+   "liver_ca": {
+    "hr": 1.44,
+    "lo": 1.23,
+    "hi": 1.69,
+    "per": 280,
+    "per_unit": "g/week",
+    "direction": "higher_worse",
+    "applies_sex": "M",
+    "overlaps_with": [],
+    "coef": 0.8,
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "evidence": {
+     "pmid": "34530818",
+     "design": "prospective-cohort",
+     "grade": "B",
+     "quote": "HRs per 280 g/week (i.e. around four drinks/day) higher usual alcohol intake of 1.44 (95% CI 1.23-1.69) for liver cancer (n = 547)"
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank，男性现饮酒者",
+     "n": 492643,
+     "events": 547,
+     "ancestry": "Chinese",
+     "age_range": [
+      30,
+      79
+     ],
+     "sex": "M"
+    }
+   }
+  },
+  "evidence": {
+   "grade": "A",
+   "design": "mendelian-randomization",
+   "pmid": "30955975",
+   "quote": "or total stroke (1·38, 1·26–1·51)",
+   "estimand_zh": "脑卒中：基因预测的男性平均饮酒量每增加 280 g/周的因果相对风险（孟德尔随机化，CKB）；肝癌：男性现饮酒者自述日常饮酒量每增加 280 g/周的观察性 HR（无 MR 估计，肝癌亦受乙肝等混杂，已按 0.8 系数折扣）",
+   "alternatives_considered": [
+    {
+     "pmid": "37291211",
+     "estimate": "CKB 基因预测饮酒量→肝癌仅为'提示性阳性'，摘要无逐字 HR",
+     "reason": "无可核对数字"
+    },
+    {
+     "pmid": "37291211",
+     "estimate": "全因/多病种 CKB 男性 MR：脑卒中 HR 1.38 (1.27–1.49) per 280 g/周",
+     "reason": "与 30955975 同队列，30955975 为专文且给出总卒中 RR"
+    },
+    {
+     "pmid": "12439712",
+     "estimate": "乳腺癌：每 10 g/日 RR 增 7.1%（5.5–8.7%）；35–44 g/日 RR 1.32 (1.19–1.45)",
+     "reason": "摘要仅给百分比增幅与分档，且含病例对照研究、非东亚；分档不能折成斜率（铁律2），故乳腺癌不入项"
+    }
+   ],
+   "verified_at": "2026-11-20",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "只为疾病建项，不含全因死亡；卒中与已计入的血压领域部分重叠，已在该结局单独设系数 0.3",
+   "mediated_by": {
+    "core.bp": 0.3
+   }
+  },
+  "transport": {
+   "ancestry": "Chinese",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "China Kadoorie Biobank",
+   "n": 512715,
+   "events": 547,
+   "ancestry": "Chinese",
+   "age_range": [
+    30,
+    79
+   ],
+   "sex": "M"
+  },
+  "persistence": {
+   "half_life_years": 10
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "减少饮酒"
+  },
+  "test": {
+   "label_zh": "自述饮酒量",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据；原文 CC BY"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "breast_ca": {
+    "agree": false,
+    "why": [
+     "只有一次建项给出了这个结局"
+    ]
+   },
+   "liver_ca": {
+    "agree": true,
+    "why": [],
+    "components": {
+     "slope": {
+      "a": 1.52,
+      "b": 1.44,
+      "per": 280.0,
+      "agree": true
+     }
+    }
+   },
+   "stroke": {
+    "agree": true,
+    "why": [],
+    "components": {
+     "slope": {
+      "a": 1.38,
+      "b": 1.38,
+      "per": 280.0,
+      "agree": true
+     }
+    }
+   }
+  },
+  "agree_any": true
+ }
+}

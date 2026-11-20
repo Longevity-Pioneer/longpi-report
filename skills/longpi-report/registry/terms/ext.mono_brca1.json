@@ -110,7 +110,22 @@
     "estimate": "日本生物银行 7051 例乳腺癌、11,241 名对照的分基因 OR",
     "why_not": "摘要未给 OR 与 CI，分基因数值只在全文表格行中，表格行不含结局名称，过不了结局用词门槛"
    }
-  ]
+  ],
+  "replication": {
+   "pmid": "33471974",
+   "doi": null,
+   "design": "case-control",
+   "effects": {
+    "breast_ca": {
+     "hr": 7.62,
+     "lo": 5.33,
+     "hi": 11.27,
+     "per": 1
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "license": {
   "commercial_use": true,

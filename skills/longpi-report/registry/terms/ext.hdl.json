@@ -202,7 +202,22 @@
   "quote": "Adjusted HRs for CHD were 0.99 (95% CI, 0.94-1.05) with triglyceride, 0.78 (95% CI, 0.74-0.82) with HDL-C",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "19903920",
+   "doi": null,
+   "design": "pooled-cohort",
+   "effects": {
+    "chd": {
+     "hr": 0.78,
+     "lo": 0.74,
+     "hi": 0.82,
+     "per": 0.388
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "license": {
   "commercial_use": true,

@@ -142,7 +142,19 @@
   "quote": "In a meta-analysis of 11 randomised trials, the relative risk of breast cancer mortality for women invited to screening compared with controls was 0·80 (95% CI 0·73-0·89), which is a relative risk reduction of 20%.",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "23737396",
+   "doi": null,
+   "design": "meta-analysis-rct",
+   "effects": {},
+   "screening_mortality_rr": {
+    "hr": 0.81,
+    "lo": 0.74,
+    "hi": 0.87
+   },
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "note_zh": "意向筛查估计（受邀对比未受邀）；中国女性乳腺致密比例较高，国内常联合超声，X 线单独的效果可能低于西方试验。",
  "added_by": "longpi-term-builder",

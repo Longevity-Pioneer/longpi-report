@@ -1,0 +1,336 @@
+{
+ "id": "ext.screen_lung_ldct",
+ "a": {
+  "kind": "behavior",
+  "exclude_if_flags": [],
+  "treated_policy": "use_current",
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "behavior": {
+   "min_weeks": 8,
+   "self_report_discount": 0.5
+  },
+  "id": "ext.screen_lung_ldct",
+  "name_zh": "低剂量螺旋 CT 筛查肺癌",
+  "system": "whole_body",
+  "group": "screening",
+  "input": {
+   "code": "LP:screen.lung_ldct",
+   "unit": "years since last test",
+   "platform": null,
+   "methods": [
+    "self_report",
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "indicator",
+   "note": "值为距最近一次检查的年数；不超过 interval_years 视为按期完成"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 29,
+     "prevalence": 0.0
+    },
+    {
+     "sex": "both",
+     "age_lo": 30,
+     "age_hi": 39,
+     "prevalence": 0.01
+    },
+    {
+     "sex": "both",
+     "age_lo": 40,
+     "age_hi": 49,
+     "prevalence": 0.03
+    },
+    {
+     "sex": "both",
+     "age_lo": 50,
+     "age_hi": 59,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "both",
+     "age_lo": 60,
+     "age_hi": 69,
+     "prevalence": 0.05
+    },
+    {
+     "sex": "both",
+     "age_lo": 70,
+     "age_hi": 79,
+     "prevalence": 0.04
+    },
+    {
+     "sex": "both",
+     "age_lo": 80,
+     "age_hi": 99,
+     "prevalence": 0.02
+    }
+   ],
+   "source": "估计值（见 estimated_reason_zh）；筛查效应经 outcomes/<病种>.json 的 mortality_share 作用（ln(1 − 死因占比 × (1 − RR))），不经本分布归一化，本分布只用于人群模拟",
+   "estimated": true,
+   "estimated_reason_zh": "未找到可核对的中国全国按性别年龄低剂量 CT 筛查率；按年龄分组数值为估计"
+  },
+  "effect": {},
+  "screening": {
+   "disease_id": "lung_ca",
+   "mortality_rr": {
+    "hr": 0.79,
+    "lo": 0.72,
+    "hi": 0.87
+   },
+   "eligible": {
+    "age": [
+     50,
+     74
+    ],
+    "sex": "both",
+    "requires": [
+     "LP:smoking_status=current|former"
+    ],
+    "requires_zh": "只适用于吸烟或戒烟不满 15 年、吸烟量较大的人（中国肺癌筛查指南 2021：≥30 包年）"
+   },
+   "interval_years": 1
+  },
+  "adjusted_for": [],
+  "overlap": {
+   "coef": 1.0,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "筛查项按病种死因占比计入，不与 1.1.1 已计入的生理领域共享信息。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "Europe and USA",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Cochrane review (Bonney 2022), 8 LDCT RCTs reporting lung cancer mortality, control = no screening or chest X-ray",
+   "n": 91122,
+   "ancestry": "Europe and USA",
+   "age_range": [
+    40,
+    80
+   ],
+   "sex": "both",
+   "events_source_zh": "摘要未给肺癌死亡例数；8 项试验共 91 122 人，按大型 RCT 荟萃分析豁免"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "自述或检查报告日期"
+  },
+  "persistence": {
+   "half_life_years": 1
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "50–74 岁重度吸烟者（现吸或戒烟不足 15 年、吸烟量达指南阈值）每年做一次低剂量 CT。"
+  },
+  "test": {
+   "label_zh": "低剂量螺旋 CT，每年一次",
+   "cost_level": 2
+  },
+  "evidence": {
+   "grade": "A",
+   "design": "meta-analysis-rct",
+   "pmid": "35921047",
+   "pmcid": "PMC9347663",
+   "doi": "10.1002/14651858.CD013829.pub2",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/35921047/",
+   "quote": "In the meta-analysis of trials assessing lung cancer-related mortality, we included eight trials (91,122 participants), and there was a reduction in mortality of 21% with LDCT screening compared to control groups of no screening or CXR screening (RR 0.79, 95% CI 0.72 to 0.87; 8 trials, 91,122 participants; moderate-certainty evidence).",
+   "alternatives_considered": [
+    {
+     "pmid": "31995683",
+     "why_not_zh": "NELSON 主分析仅男性（RR 0.76，0.61–0.94），摘要只给死亡率不给死亡例数，全文非开放获取；女性亚组 RR 0.67（0.38–1.14）不显著。改用两性合并的随机试验荟萃分析"
+    }
+   ],
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "note_zh": "RR 0.79 为 8 项随机试验意向筛查合并估计，对照组为不筛查或胸片（胸片筛查本身未降低肺癌死亡，故近似不筛查）；亚组分析未见性别差异。eligible.requires 的 LP:smoking_status 须为现吸或已戒烟（戒烟不足 15 年），且吸烟量达到筛查指南的重度吸烟阈值；从不吸烟者不适用本项。",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9",
+  "notes_zh": [
+   "2026-11-18 主线：适用条件由“有吸烟状态记录”改为“目前吸烟或已戒烟”；包年数暂未进入数据，报告中提示按指南核对"
+  ]
+ },
+ "b": {
+  "id": "ext.screen_lung_ldct",
+  "name_zh": "低剂量螺旋 CT 筛查肺癌",
+  "kind": "behavior",
+  "system": "whole_body",
+  "group": "screening",
+  "input": {
+   "code": "LP:screen.lung_ldct",
+   "unit": "years since last test",
+   "platform": null,
+   "methods": [
+    "self_report",
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": null
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": null
+    }
+   ],
+   "estimated": true,
+   "estimated_reason_zh": "筛查项的指数贡献由死因占比与 RR 给出，不依赖参考分布；未找到中国人群 LDCT 参与率",
+   "source": "none"
+  },
+  "effect": {},
+  "screening": {
+   "disease_id": "lung_ca",
+   "mortality_rr": {
+    "hr": 0.76,
+    "lo": 0.61,
+    "hi": 0.94
+   },
+   "eligible": {
+    "age": [
+     50,
+     74
+    ],
+    "sex": "both",
+    "requires": [
+     "LP:smoking_status=current|former"
+    ],
+    "requires_zh": "只适用于吸烟或戒烟不满 15 年、吸烟量较大的人（中国肺癌筛查指南 2021：≥30 包年）"
+   },
+   "interval_years": 1,
+   "evidence": {
+    "pmid": "31995683",
+    "grade": "A",
+    "design": "rct",
+    "quote": "The cumulative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the control group"
+   }
+  },
+  "estimand_zh": "NELSON 随机对照试验（荷兰-比利时，13,195 名男性，50-74 岁现/既往吸烟者）意向筛查：容积 CT 筛查（基线、第 1、3、5.5 年）vs 不筛查，10 年随访肺癌死亡累计率比 RR=0.76（0.61-0.94）；仅男性主分析，女性 0.67（0.38-1.14）；非中国人群",
+  "adjusted_for": [],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "随机对照，无混杂；与吸烟项（暴露）互不重叠，筛查的死因占比规则单独计算",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "European (Netherlands, Belgium)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "NELSON RCT",
+   "n": 15789,
+   "events": null,
+   "ancestry": "European",
+   "age_range": [
+    50,
+    74
+   ],
+   "sex": "M"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.0,
+   "source": "二值"
+  },
+  "persistence": {
+   "half_life_years": 1
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "use_pretreatment",
+  "behavior": {
+   "min_weeks": 0,
+   "self_report_discount": 0.5,
+   "target": 1,
+   "target_source": "中国肺癌筛查指南 2021：高危人群每年 1 次低剂量 CT（requires_zh 来源）"
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "高危人群每年低剂量 CT"
+  },
+  "test": {
+   "label_zh": "低剂量螺旋 CT",
+   "cost_level": 2
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "A",
+   "design": "rct",
+   "pmid": "31995683",
+   "quote": "The cumulative rate ratio for death from lung cancer at 10 years was 0.76 (95% confidence interval [CI], 0.61 to 0.94; P = 0.01) in the screening group as compared with the control group",
+   "alternatives_considered": [
+    {
+     "pmid": "21714641",
+     "estimate": "NLST 53,454 high-risk, vs chest radiograph: lung cancer mortality reduction 20.0% (95% CI 6.8-26.7)",
+     "reason": "摘要只给相对下降百分比，不是 RR 数字（不得自行换算）；对照为胸片而非不筛查"
+    },
+    {
+     "pmid": "31260833",
+     "estimate": "NLST extended: RR 0.92 (0.85-1.00), 1147 vs 1236 lung cancer deaths; dilution-adjusted 0.89 (0.80-0.997)",
+     "reason": "主分析 CI 上限 1.00 含 1；稀释校正为事后分析"
+    },
+    {
+     "pmid": "33687468",
+     "estimate": "USPSTF review: NLST IRR 0.85 (0.75-0.96); NELSON IRR 0.75 (0.61-0.90)",
+     "reason": "系统综述未合并，无单一合并估计"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "qualitative",
+ "verify_b_fail": [
+  "screening: 未写结局事件数"
+ ],
+ "comparison": {
+  "outcomes": {
+   "screening": {
+    "agree": true,
+    "why": [],
+    "components": {
+     "mortality_rr": {
+      "a": 0.79,
+      "b": 0.76,
+      "per": 1.0,
+      "agree": true
+     }
+    }
+   }
+  },
+  "agree_any": true
+ },
+ "why": "第二次建项未通过核对：screening: 未写结局事件数"
+}

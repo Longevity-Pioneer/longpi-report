@@ -17,14 +17,13 @@
  "transform": {
   "shape": "loglinear",
   "clip": [
-   100,
+   90,
    200
   ],
   "log_x": false
  },
  "reference": {
-  "kind": "normal",
-  "source": "中国成人慢性病与营养监测 2018 收缩压分性别年龄分布；data/population_norms_china.json markers.sbp（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "norms_marker": "sbp",
   "by_sex_age": [
    {
     "sex": "M",
@@ -125,86 +124,33 @@
     "sd": 22.4
    }
   ],
-  "norms_marker": "sbp"
+  "kind": "normal",
+  "source": "data/population_norms_china.json markers.sbp（see evidence/literature/D_china_population_norms.md for tables and quotes）"
  },
  "effect": {
   "chd": {
-   "hr": 1.31,
-   "lo": 1.28,
-   "hi": 1.34,
+   "hr": 1.29,
+   "lo": 1.18,
+   "hi": 1.42,
    "per": 10,
-   "per_unit": "mmHg (usual SBP)",
+   "per_unit": "mmHg",
    "direction": "higher_worse",
-   "coef": 0.6,
+   "overlaps_with": [],
+   "adjusted_for": [],
    "population": {
-    "events": 4450,
-    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病"
-   },
-   "overlaps_with": [
-    "ext.diabetes",
-    "ext.smoking"
-   ]
-  },
-  "stroke": {
-   "hr": 1.3,
-   "lo": 1.29,
-   "hi": 1.31,
-   "per": 10,
-   "per_unit": "mmHg (usual SBP)",
-   "direction": "higher_worse",
-   "coef": 0.6,
-   "population": {
-    "events": 29343,
-    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病（此处事件数为缺血性卒中；全部卒中合计 36 926 例）"
-   },
-   "overlaps_with": [
-    "ext.diabetes",
-    "ext.smoking",
-    "ext.alcohol"
-   ]
-  },
-  "ckd": {
-   "hr": 1.4,
-   "lo": 1.35,
-   "hi": 1.44,
-   "per": 10,
-   "per_unit": "mmHg (usual SBP)",
-   "direction": "higher_worse",
-   "coef": 0.6,
-   "population": {
-    "events": 1940,
-    "events_source_zh": "全文结果部分（PMC5960069）：随访期间 4450 例缺血性心脏病、29 343 例缺血性卒中、6011 例脑出血、1572 例其他卒中；另有 1940 例慢性肾病"
-   },
-   "evidence": {
-    "pmid": "29773120",
-    "grade": "B",
-    "design": "prospective-cohort",
-    "quote": "Usual systolic blood pressure was also positively associated with incident chronic kidney disease (1.40 [1.35-1.44])"
-   },
-   "overlaps_with": [
-    "ext.uacr"
-   ]
+    "cohort": "China Kadoorie Biobank 遗传分析",
+    "n": 86060,
+    "events": 4187,
+    "ancestry": "Chinese"
+   }
   }
  },
- "adjusted_for": [
-  "age",
-  "sex",
-  "region",
-  "education",
-  "core.smoking",
-  "ext.smoking",
-  "core.alcohol",
-  "ext.alcohol",
-  "core.adiposity",
-  "ext.bmi"
- ],
+ "adjusted_for": [],
  "overlap": {
   "coef": 0.8,
   "coef_sd": 0.2,
-  "overlaps_with": [
-   "core.bp"
-  ],
-  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.bp（只计全因死亡）不重复计数。原研究主模型校正年龄、性别、地区、教育、吸烟、饮酒和体重指数，未校正血脂（基线未测）；糖尿病只在敏感性分析中加入（结果基本不变），按主模型计，与糖尿病项未互相校正，属部分校正，冠心病、卒中系数由 0.8 降至 0.6。慢性肾病的关联原作者认为可能部分来自反向因果或残余混杂，且与白蛋白尿项共享信息、未互相校正，取 0.6。卒中采用缺血性卒中的 HR（1.30，占全部卒中的 79%）用于全部卒中；脑出血关联更强（1.68），原文未给全部卒中合并估计，此处为保守值，会低估全部卒中风险。HR 已做回归稀释校正（对应长期平均收缩压），单次测量值代入可能略高估；40–49 岁的 HR 约为 70–79 岁的两倍，本项未按年龄分层。",
+  "rationale_zh": "仅疾病结局，不进全因死亡；孟德尔随机化估计不受其他危险因素混杂",
+  "overlaps_with": [],
   "mediated_by": {}
  },
  "transport": {
@@ -213,59 +159,63 @@
   "sd_inflate": 1.0
  },
  "population": {
-  "cohort": "China Kadoorie Biobank",
-  "n": 512891,
+  "cohort": "China Kadoorie Biobank 遗传分析",
+  "n": 86060,
+  "events": 12043,
   "ancestry": "Chinese",
   "age_range": [
-   30,
+   40,
    79
   ],
   "sex": "both"
  },
- "measurement": {
-  "sd_abs": null,
-  "cv": 0.08,
-  "source": "诊室单次收缩压测量的个体内变异约 8%（一般估计，未逐字核对）"
- },
- "persistence": {
-  "half_life_years": 5
- },
- "exclude_if_flags": [
-  "acute_illness",
-  "pregnancy",
-  "post_exercise"
- ],
- "treated_policy": "use_pretreatment",
  "interventions": {
   "modifiable": true,
-  "note_zh": "限盐、减重、规律运动、限酒；达到用药指征时遵医嘱降压。"
- },
- "test": {
-  "label_zh": "测量诊室或家庭收缩压",
-  "cost_level": 1
+  "note_zh": "减盐、减重、运动、降压药"
  },
  "disclosure": "standard",
  "evidence": {
-  "grade": "B",
-  "design": "prospective-cohort",
-  "pmid": "29773120",
-  "doi": "10.1016/S2214-109X(18)30184-7",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/29773120/",
-  "quote": "each 10 mm Hg higher usual systolic blood pressure was associated with an approximately 30% higher risk of ischaemic heart disease (HR 1.31 [95% CI 1.28-1.34]) and ischaemic stroke (1.30 [1.29-1.31])",
-  "verified_at": "2026-11-18",
-  "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "pmid": "36601918",
+  "grade": "A",
+  "design": "mendelian-randomization",
+  "verified_at": "2026-11-20",
+  "quote": "the hazard ratios per 10 mm Hg higher genetically predicted SBP were 2-fold greater for intracerebral hemorrhage (1.71 [95% CI, 1.58-1.87]) than for ischemic stroke (1.37 [1.30-1.45]) or major coronary event (1.29 [1.18-1.42]).",
+  "alternatives_considered": [
+   {
+    "pmid": "12658016",
+    "estimate": "亚太队列协作组 37 个队列：每低 10 mmHg 缺血性心脏病风险低 46%（<60 岁）等，按年龄段给出百分数",
+    "reason": "只给分年龄段的百分比降幅，不是可逐字核对的 HR 与 CI"
+   },
+   {
+    "pmid": "17475822",
+    "estimate": "中国 15.8 万人 ESRD：高血压 1 期 1.47 (1.06-2.06)，2 期 2.60 (1.89-3.57)",
+    "reason": "分类水平且结局为终末期肾病，不对应 CKD，不折算为斜率"
+   }
+  ],
+  "estimand_zh": "遗传预测的 SBP 每高 10 mmHg 的主要冠脉事件与缺血性卒中 HR（CKB 孟德尔随机化，Cox）；卒中取缺血性卒中（脑出血 1.71，未计入）；CKD 未找到合格的每单位估计，未建",
+  "replication": {
+   "pmid": "29773120",
+   "doi": "10.1016/S2214-109X(18)30184-7",
+   "design": "prospective-cohort",
+   "effects": {
+    "chd": {
+     "hr": 1.31,
+     "lo": 1.28,
+     "hi": 1.34,
+     "per": 10
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  },
+  "numbers_verified": true,
+  "verifier": "longpi-term-builder add-consensus"
  },
  "license": {
   "commercial_use": true,
   "note": "效应量为文献数据"
  },
- "status": "active",
- "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9",
- "adjusted_for_sensitivity": [
-  "physical_activity",
-  "fruit_vegetables",
-  "ext.diabetes"
+ "notes_zh": [
+  "两次建项不一致、未计入的结局：ckd：只有一次建项给出了这个结局；stroke：slope：每 10 单位 1.3 与 1.37，不在彼此的 95% 置信区间内"
  ]
 }

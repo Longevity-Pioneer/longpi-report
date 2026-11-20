@@ -1,11 +1,11 @@
 {
- "id": "ext.mono_msh2",
- "name_zh": "MSH2 致病变异携带（林奇综合征）",
+ "id": "ext.mono_pms2",
+ "name_zh": "PMS2 致病变异携带（林奇综合征）",
  "kind": "genetic",
  "system": "whole_body",
  "group": "genetic",
  "input": {
-  "code": "LP:monogenic:HGNC:7325",
+  "code": "LP:monogenic:HGNC:9122",
   "unit": "0/1",
   "platform": null,
   "methods": [
@@ -23,7 +23,7 @@
     "sex": "both",
     "age_lo": 18,
     "age_hi": 99,
-    "prevalence": 0.000352
+    "prevalence": 0.001401
    }
   ],
   "source": "美国、加拿大、澳大利亚人群登记的结直肠癌家系分离分析估计的人群携带率（Win 2017）；中国人群分基因携带率暂缺。",
@@ -32,11 +32,11 @@
  },
  "effect": {
   "crc": {
-   "hr": 32.57,
-   "lo": 23.01,
-   "hi": 46.11,
+   "hr": 1.7,
+   "lo": 1.25,
+   "hi": 2.32,
    "direction": "higher_worse",
-   "note": "英国生物库全外显子测序，MSH2 致病/可能致病变异携带者对非携带者的结直肠癌 HR（原文表 2，按出生日期、性别与前 10 个遗传主成分校正）",
+   "note": "英国生物库全外显子测序，PMS2 致病/可能致病变异携带者对非携带者的结直肠癌 HR（原文表 2，按出生日期、性别与前 10 个遗传主成分校正）",
    "overlaps_with": [
     "ext.fh_crc"
    ],
@@ -56,7 +56,7 @@
   "coef": 0.6,
   "coef_sd": 0.2,
   "overlaps_with": [],
-  "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂，与 ext.bmi、ext.smoking 不共享信息；同文显示致病变异与高多基因评分的分布相互独立（χ2 检验 P = 0.22），故不列 ext.prs_crc。携带致病变异可解释部分结直肠癌家族史，与 ext.fh_crc 重叠；表 2 的分基因 HR 只校正出生日期、性别与遗传主成分，未校正家族史，按规则系数上限 0.6，取 0.6。同文表 3 四基因合并的致病变异 HR 在同时校正家族史与多基因评分后由 4.29 降至 3.51，对数尺度约减少 14%，说明与家族史的重叠有限，系数 0.6 偏保守。东亚方向一致性：日本人群病例对照（Fujita 2022）OR 18.1。",
+  "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂，与 ext.bmi、ext.smoking 不共享信息；同文显示致病变异与高多基因评分的分布相互独立（χ2 检验 P = 0.22），故不列 ext.prs_crc。携带致病变异可解释部分结直肠癌家族史，与 ext.fh_crc 重叠；表 2 的分基因 HR 只校正出生日期、性别与遗传主成分，未校正家族史，按规则系数上限 0.6，取 0.6。同文表 3 四基因合并的致病变异 HR 在同时校正家族史与多基因评分后由 4.29 降至 3.51，对数尺度约减少 14%，说明与家族史的重叠有限，系数 0.6 偏保守。东亚方向一致性：日本人群病例对照（Fujita 2022）中 PMS2 未达显著（摘要所列显著基因不含 PMS2）。",
   "mediated_by": {}
  },
  "transport": {
@@ -68,7 +68,7 @@
   "cohort": "UK Biobank whole-exome sequenced participants (Helfand 2025 JCO Precis Oncol)",
   "n": 443107,
   "events": 9488,
-  "events_source_zh": "全文表 1、表 2：分析纳入 443107 人，结直肠癌 9488 例；其中 MSH2 携带者 81 人，携带者中结直肠癌 32 例（分基因估计所依据的携带者病例不足 100 例，置信区间据此给出）",
+  "events_source_zh": "全文表 1、表 2：分析纳入 443107 人，结直肠癌 9488 例；其中 PMS2 携带者 1123 人，携带者中结直肠癌 40 例（分基因估计所依据的携带者病例不足 100 例，置信区间据此给出）",
   "ancestry": "European (UK Biobank, 91% European)",
   "age_range": [
    40,
@@ -90,7 +90,7 @@
  "status": "active",
  "interventions": {
   "modifiable": false,
-  "note_zh": "林奇综合征携带者应接受遗传咨询，按指南自 20–25 岁起每 1–2 年结肠镜检查。"
+  "note_zh": "PMS2 携带者结直肠癌风险仅轻度升高，按指南自 30–35 岁起结肠镜监测。"
  },
  "test": {
   "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
@@ -103,7 +103,7 @@
   "design_note": "英国生物库全队列 Cox 回归，时间尺度自出生起至首次诊断或末次随访，含入组前已诊断病例（终生风险分析，非纯前瞻）；种系变异先于发病，按遗传项归入病例对照类",
   "pmid": "40601893",
   "pmcid": "PMC12233176",
-  "quote": "MSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11)",
+  "quote": "PMS2 | 1,123 (0.25) | 40 (3.56) | 1.70 (1.25 to 2.32)",
   "url": "https://pubmed.ncbi.nlm.nih.gov/40601893/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
@@ -115,10 +115,13 @@
   "commercial_use": true,
   "note": "效应量为文献数据"
  },
- "gene": "MSH2",
+ "gene": "PMS2",
+ "effect_note_zh": "摘要只报累积风险（80 岁男 13%、女 12%，一般人群 6.6%），无可核对的 HR，effect 留空。",
  "added_by": "longpi-term-builder",
  "registry_version_added": "2026.11.18-9",
  "verifier_reasons": [
-  "crc: 证据等级 C 低于 B"
- ]
+  "effect 为空且不是筛查项"
+ ],
+ "why_qualitative_zh": "第二次建项未通过核对：crc: 结局事件 40 < 100",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

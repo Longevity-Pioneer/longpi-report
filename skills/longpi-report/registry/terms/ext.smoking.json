@@ -16,8 +16,7 @@
   "shape": "categorical"
  },
  "reference": {
-  "kind": "categorical",
-  "source": "中国成人慢性病与营养监测 2018 吸烟状态分性别年龄构成；data/population_norms_china.json markers.smoking（see evidence/literature/D_china_population_norms.md for tables and quotes）",
+  "norms_marker": "smoking",
   "by_sex_age": [
    {
     "sex": "M",
@@ -160,79 +159,10 @@
     }
    }
   ],
-  "norms_marker": "smoking"
+  "kind": "categorical",
+  "source": "data/population_norms_china.json markers.smoking（see evidence/literature/D_china_population_norms.md for tables and quotes）"
  },
  "effect": {
-  "chd": {
-   "levels": {
-    "never": {
-     "hr": 1
-    },
-    "former": {
-     "hr": 1.18,
-     "lo": 1.06,
-     "hi": 1.32
-    },
-    "current": {
-     "hr": 1.98,
-     "lo": 1.75,
-     "hi": 2.25
-    }
-   },
-   "coef": 0.8,
-   "evidence": {
-    "pmid": "25896935",
-    "grade": "B",
-    "design": "meta-analysis",
-    "quote": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers."
-   },
-   "population": {
-    "cohort": "CHANCES consortium, 25 cohorts, age >=60",
-    "n": 503905,
-    "ancestry": "European and US (multinational)",
-    "age_range": [
-     60,
-     99
-    ],
-    "sex": "both"
-   },
-   "overlaps_with": []
-  },
-  "stroke": {
-   "levels": {
-    "never": {
-     "hr": 1
-    },
-    "former": {
-     "hr": 1.17,
-     "lo": 1.07,
-     "hi": 1.26
-    },
-    "current": {
-     "hr": 1.58,
-     "lo": 1.4,
-     "hi": 1.78
-    }
-   },
-   "coef": 0.8,
-   "evidence": {
-    "pmid": "25896935",
-    "grade": "B",
-    "design": "meta-analysis",
-    "quote": "The respective hazard ratios for stroke were 1.58 (1.40 to 1.78) and 1.17 (1.07 to 1.26)."
-   },
-   "population": {
-    "cohort": "CHANCES consortium, 25 cohorts, age >=60",
-    "n": 503905,
-    "ancestry": "European and US (multinational)",
-    "age_range": [
-     60,
-     99
-    ],
-    "sex": "both"
-   },
-   "overlaps_with": []
-  },
   "gastric_ca": {
    "levels": {
     "never": {
@@ -247,44 +177,29 @@
      "hi": 1.55
     }
    },
-   "coef": 0.6,
+   "direction": "higher_worse",
    "applies_sex": "M",
-   "overlaps_with": [
-    "ext.alcohol",
-    "ext.hpylori"
-   ],
+   "overlaps_with": [],
+   "coef": 0.8,
    "adjusted_for": [
     "age",
-    "region",
-    "education",
-    "core.alcohol",
-    "ext.alcohol"
+    "sex",
+    "region"
    ],
    "evidence": {
     "pmid": "26331816",
-    "pmcid": "PMC4584499",
-    "grade": "B",
     "design": "prospective-cohort",
-    "quote": "This excess accounted for 23% of all cancers between the ages of 40 and 79 years, with significantly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/26331816/",
-    "estimand_zh": "男性吸烟者（含因病戒烟者）对从不吸烟者的胃癌发病 RR",
-    "alternatives_considered": [
-     {
-      "pmid": "38231449",
-      "estimate": "现在 1.53（1.44–1.62），既往 1.30（1.23–1.37）",
-      "why_not": "荟萃分析合并病例对照与队列研究，未报告人数与事件数，无法满足事件数门槛"
-     }
-    ]
+    "grade": "B",
+    "quote": "liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)"
    },
-   "former_note_zh": "原文未单独给既往吸烟者胃癌估计（例数过少），既往吸烟档按 1 计。",
    "population": {
-    "cohort": "China Kadoorie Biobank men",
+    "cohort": "China Kadoorie Biobank 男性，随访 7 年",
     "n": 210259,
     "events": 1202,
-    "events_source_zh": "全文表 1：男性胃癌 1202 例（从不吸烟 250、吸烟 952）",
+    "events_source_zh": "原文表 1：男性胃癌 never 250 + smokers 952 例",
     "ancestry": "Chinese",
     "age_range": [
-     40,
+     30,
      79
     ],
     "sex": "M"
@@ -304,126 +219,36 @@
      "hr": 1
     },
     "current": {
-     "hr": 1.28,
-     "lo": 1.15,
-     "hi": 1.42
+     "hr": 1.32,
+     "lo": 1.12,
+     "hi": 1.54
     }
    },
-   "coef": 0.8,
+   "direction": "higher_worse",
+   "applies_sex": "M",
    "overlaps_with": [
-    "ext.hbv",
-    "ext.alcohol",
-    "ext.diabetes",
-    "ext.fh_liver_ca"
+    "ext.alcohol"
    ],
+   "coef": 0.6,
    "adjusted_for": [
     "age",
     "sex",
-    "region",
-    "education",
-    "income",
-    "core.alcohol",
-    "ext.alcohol",
-    "physical_activity",
-    "core.adiposity",
-    "ext.bmi",
-    "diet",
-    "solid_fuel",
-    "ext.hbv",
-    "ext.fh_liver_ca",
-    "cirrhosis_history",
-    "ext.diabetes"
-   ],
-   "evidence": {
-    "pmid": "35199334",
-    "pmcid": "PMC7612779",
-    "grade": "B",
-    "design": "prospective-cohort",
-    "quote": "Tobacco smoking and solid fuel use for cooking were independently associated with increased risks of liver cancer, with hazard ratios (95% confidence intervals [CIs]) of 1.28 (1.15-1.42) and 1.25 (1.03-1.52), respectively.",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/35199334/",
-    "estimand_zh": "现在吸烟对从不吸烟的肝癌发病 HR（模型 3：另校正乙肝表面抗原、癌症家族史、肝硬化史与糖尿病）",
-    "alternatives_considered": [
-     {
-      "pmid": "19720726",
-      "estimate": "现在 1.51（1.37–1.67），既往 1.12（0.78–1.60）",
-      "why_not": "荟萃分析含 58 项病例对照研究，未报告人数与事件数；既往吸烟区间含 1"
-     }
-    ]
-   },
-   "former_note_zh": "同一研究全文表 2：既往吸烟 1.13（0.94–1.36），区间含 1，按 1 计。",
-   "population": {
-    "cohort": "China Kadoorie Biobank",
-    "n": 512891,
-    "events": 2997,
-    "ancestry": "Chinese",
-    "age_range": [
-     30,
-     79
-    ],
-    "sex": "both"
-   },
-   "transport": {
-    "ancestry": "Chinese",
-    "shrink": 1.0,
-    "sd_inflate": 1.0
-   }
-  },
-  "lung_ca": {
-   "levels": {
-    "never": {
-     "hr": 1
-    },
-    "former": {
-     "hr": 1
-    },
-    "current": {
-     "hr": 2.51,
-     "lo": 2.18,
-     "hi": 2.9
-    }
-   },
-   "coef": 0.6,
-   "applies_sex": "M",
-   "overlaps_with": [
-    "ext.fh_lung_ca"
-   ],
-   "adjusted_for": [
-    "age",
-    "region",
-    "education",
-    "core.alcohol",
-    "ext.alcohol"
+    "region"
    ],
    "evidence": {
     "pmid": "26331816",
-    "pmcid": "PMC4584499",
-    "grade": "B",
     "design": "prospective-cohort",
-    "quote": "This excess accounted for 23% of all cancers between the ages of 40 and 79 years, with significantly elevated risks of lung cancer (RR, 2.51; 95% CI, 2.18-2.90), liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/26331816/",
-    "estimand_zh": "男性吸烟者（含因病戒烟者）对从不吸烟者的肺癌发病 RR；按年龄、地区分层，校正教育与饮酒",
-    "alternatives_considered": [
-     {
-      "pmid": "33396462",
-      "estimate": "韩国体检队列男性：既往 1.27（1.23–1.33），现在 2.71（2.63–2.79）",
-      "why_not": "原文自述为回顾性队列研究，且所用为男性估计"
-     },
-     {
-      "pmid": "30924901",
-      "estimate": "亚洲队列联盟男性肺癌死亡 HR 3.38–4.80（按出生队列）",
-      "why_not": "结局为死亡且按出生队列分层，无合并发病估计"
-     }
-    ]
+    "grade": "B",
+    "quote": "liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)"
    },
-   "former_note_zh": "既往吸烟（主动戒烟）男性肺癌 RR 1.53（1.28–1.81），戒烟 <5 年 2.55、5–14 年 1.55、≥15 年 1.11（全文同一研究另一段，无法与现在吸烟估计在同一原句中核对），本版既往吸烟档按 1 计，会低估近期戒烟者风险。",
    "population": {
-    "cohort": "China Kadoorie Biobank men",
+    "cohort": "China Kadoorie Biobank 男性，随访 7 年",
     "n": 210259,
-    "events": 1713,
-    "events_source_zh": "全文表 1：男性肺癌 1713 例（从不吸烟 232、吸烟 1481）",
+    "events": 981,
+    "events_source_zh": "原文表 1：男性肝癌 never 207 + smokers 774 例",
     "ancestry": "Chinese",
     "age_range": [
-     40,
+     30,
      79
     ],
     "sex": "M"
@@ -437,70 +262,85 @@
  },
  "adjusted_for": [
   "age",
-  "sex"
+  "sex",
+  "region"
  ],
+ "evidence": {
+  "grade": "B",
+  "design": "prospective-cohort",
+  "pmid": "26331816",
+  "quote": "liver cancer (RR, 1.32; 95% CI, 1.12-1.54), stomach cancer (RR, 1.34; 95% CI, 1.16-1.55)",
+  "estimand_zh": "CKB 男性：吸烟者（含因病戒烟者，不含主动戒烟者）对比从不吸烟者的观察性 RR；主动戒烟者（former）肝癌 1.11 (0.88–1.39)、胃癌 1.04 (0.84–1.27) 均含 1，按规则记 hr 1（数字来自原文表 2，不在摘要，代码未核对）。肺癌（吸烟 2.51；主动戒烟 1.53 显著）因主动戒烟水平数字不在同一段落、无法同引一句原文而未入；冠心病、脑卒中、肺癌见 alternatives_considered",
+  "alternatives_considered": [
+   {
+    "pmid": "30800285",
+    "estimate": "日本系统综述：现吸烟者 缺血性心脏病 RR 2.21 (1.96–2.50)，卒中 1.40 (1.25–1.57)，肺癌 3.59 (3.25–3.96)",
+    "reason": "摘要无研究数、事件数，且戒烟者 RR 不在摘要，不满足事件数/成组原文门槛，冠心病、卒中未入项"
+   },
+   {
+    "pmc": "PMC7613927",
+    "estimate": "CKB 470 种疾病：男性城市/农村分开给出缺血性心脏病、缺血性卒中、肺癌 HR",
+    "reason": "城乡分列无合并估计，且为表格行，结局词不在同一行；未入"
+   }
+  ],
+  "verified_at": "2026-11-20",
+  "verifier": "longpi-term-builder 0.1.0",
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "25896935",
+   "doi": null,
+   "design": "meta-analysis",
+   "effects": {
+    "gastric_ca": {},
+    "liver_ca": {}
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
+ },
  "overlap": {
   "coef": 0.8,
   "coef_sd": 0.2,
-  "overlaps_with": [
-   "core.smoking"
-  ],
-  "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.smoking（只计全因死亡）不重复计数。肺癌、胃癌改用中国慢性病前瞻性研究男性估计（PMID 26331816，吸烟者含因病戒烟者，对照为从不吸烟者；按年龄、地区分层，校正教育与饮酒），原用韩国体检队列原文自述为回顾性研究且为男性估计，已弃用；该研究女性肺癌 RR 2.28（1.84–2.81）与男性接近，但只见于表格，且中国女性吸烟率约 3%，故两结局限定男性（applies_sex M）。肺癌与肺癌家族史项、胃癌与幽门螺杆菌项未互相校正，属部分校正，系数取 0.6。肝癌改用同一队列的专题分析（PMID 35199334，2997 例，男女合并），已校正乙肝表面抗原、饮酒、体重指数、糖尿病与癌症家族史，与重叠项均已互相校正，系数取 0.8。三种癌的既往吸烟档：原文无可与现在吸烟同句核对的估计或区间含 1，按 1 计，可能低估近期戒烟者风险。冠心病与卒中缺少同时给出既往与当前吸烟估计的东亚发病研究，沿用欧美 60 岁以上人群 CHANCES 个体数据荟萃分析并按非东亚人群收缩，系数 0.8；其他已计入的冠心病、卒中项（血压、血脂、血糖）为不同暴露，不与吸烟共享信息，overlaps_with 记为空。结直肠癌移出计入结局（见 excluded_outcomes）。",
+  "overlaps_with": [],
+  "rationale_zh": "只为疾病建项，不含全因死亡；肝癌与 ext.alcohol 同病种，该结局单设系数 0.6",
   "mediated_by": {}
  },
  "transport": {
-  "ancestry": "multinational (mostly European/US)",
-  "shrink": 0.8,
-  "sd_inflate": 1.25
+  "ancestry": "Chinese",
+  "shrink": 1.0,
+  "sd_inflate": 1.0
  },
  "population": {
-  "cohort": "见各结局",
-  "ancestry": "multinational (mostly European/US)",
-  "sex": "both"
- },
- "measurement": {
-  "sd_abs": null,
-  "cv": null,
-  "source": "自述吸烟状态，无连续测量误差；中国慢性病前瞻性研究以呼出气一氧化碳验证自述吸烟"
+  "cohort": "China Kadoorie Biobank 男性，随访 7 年",
+  "n": 210259,
+  "events": 1202,
+  "events_source_zh": "原文表 1：男性胃癌 never 250 + smokers 952 例",
+  "ancestry": "Chinese",
+  "age_range": [
+   30,
+   79
+  ],
+  "sex": "M"
  },
  "persistence": {
   "half_life_years": 10
  },
- "exclude_if_flags": [],
- "treated_policy": "ignore",
  "interventions": {
   "modifiable": true,
-  "note_zh": "戒烟可降低上述疾病风险，戒烟越早获益越大；可使用戒烟门诊、药物辅助与行为支持。"
+  "note_zh": "戒烟"
  },
  "test": {
-  "label_zh": "问卷：吸烟状态（从不、已戒、当前）",
-  "cost_level": 1
+  "label_zh": "自述吸烟史",
+  "cost_level": 0
  },
  "disclosure": "standard",
- "evidence": {
-  "grade": "B",
-  "design": "meta-analysis",
-  "pmid": "25896935",
-  "url": "https://pubmed.ncbi.nlm.nih.gov/25896935/",
-  "quote": "Hazard ratios for acute coronary events were 1.98 (1.75 to 2.25) for current smokers and 1.18 (1.06 to 1.32) for former smokers.",
-  "verified_at": "2026-11-18",
-  "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
- },
  "license": {
   "commercial_use": true,
   "note": "效应量为文献数据"
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9",
- "excluded_outcomes": {
-  "crc": {
-   "reason_zh": "中国慢性病前瞻性研究男性结直肠癌（583 例）与吸烟无显著关联（RR 1.08，95% CI 0.99–1.18，PMID 26331816）；原用荟萃分析（PMID 32773458，188 项研究，含病例对照）未报告人数与事件数，无法满足事件数门槛。本版不计入。",
-   "hr": 1.14,
-   "lo": 1.1,
-   "hi": 1.18,
-   "pmid": "32773458"
-  }
- }
+ "notes_zh": [
+  "两次建项不一致、未计入的结局：chd：只有一次建项给出了这个结局；lung_ca：只有一次建项给出了这个结局；stroke：只有一次建项给出了这个结局"
+ ]
 }

@@ -1,0 +1,276 @@
+{
+ "id": "ext.hpylori",
+ "a": {
+  "id": "ext.hpylori",
+  "name_zh": "幽门螺杆菌感染",
+  "kind": "state",
+  "system": "immune",
+  "group": null,
+  "input": {
+   "code": "LP:hpylori_positive",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "lab",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.756
+    }
+   ],
+   "pmid": "34838195",
+   "quote": "75·6% (71·8-79·4) in subcohort participants",
+   "source": "中国慢性病前瞻性研究随机子队列（30–79 岁，n=500）免疫印迹法血清幽门螺杆菌阳性率 75.6%；与效应量出自同一检测方法与人群。血清学含既往感染，现症感染（呼气试验）率较低；未分性别年龄，所有性别年龄段共用一行"
+  },
+  "effect": {
+   "gastric_ca": {
+    "hr": 5.94,
+    "lo": 3.25,
+    "hi": 10.86,
+    "coef": 0.6,
+    "overlaps_with": [
+     "ext.fh_gastric_ca"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "region",
+   "education"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "ext.fh_gastric_ca"
+   ],
+   "rationale_zh": "本项只计疾病结局。HR 取非贲门胃癌（5.94），而 gastric_ca 包含贲门胃癌（同研究 HR 3.06，95% CI 1.54–6.10）；原文只校正年龄、性别、地区和教育，未校正吸烟、饮酒、高盐饮食和胃癌家族史（幽门螺杆菌感染有家庭聚集，与胃癌家族史项共享信息），属部分校正，规则上限 0.6，系数取 0.6（相当于全胃癌 HR 约 2.9，与贲门胃癌估计接近）。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "Chinese",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "China Kadoorie Biobank case-cohort (500 non-cardia cases, 437 cardia cases, 500 subcohort)",
+   "n": 1437,
+   "events": 500,
+   "ancestry": "Chinese",
+   "age_range": [
+    30,
+    79
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "CKB 用基线血浆免疫印迹（HelicoBlot 2.1）定义血清阳性；呼气试验、粪便抗原只反映现症感染，与本研究暴露定义不完全一致"
+  },
+  "persistence": {
+   "half_life_years": 20
+  },
+  "exclude_if_flags": [
+   "antibiotics_3m"
+  ],
+  "treated_policy": "use_current",
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "根除治疗可降低胃癌风险，根除后应复查呼气试验确认；本项 HR 来自未经根除治疗的基线人群。"
+  },
+  "test": {
+   "label_zh": "碳13/碳14 尿素呼气试验或幽门螺杆菌血清抗体",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "prospective-cohort",
+   "pmid": "34838195",
+   "quote": "H pylori infection was associated with adjusted HRs of 5·94 (95% CI 3·25-10·86) for NCGC and 3·06 (1·54-6·10) for CGC. Among the seven individual infection biomarkers, cytotoxin-associated antigen had the highest HRs for both NCGC (HR 4·41, 95% CI 2·60-7·50) and CGC (2·94, 1·53-5·68). In this population, 78·5% of NCGC and 62·1% of CGC cases could be attributable to H pylori infection. H pylori infection accounted for an estimated 339 955 cases of gastric cancer in China in 2018.",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/34838195/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.hpylori",
+  "name_zh": "幽门螺杆菌感染",
+  "kind": "state",
+  "system": "immune",
+  "group": null,
+  "input": {
+   "code": "LP:hpylori_positive",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "lab",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.756
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.756
+    }
+   ],
+   "prevalence": 0.756,
+   "pmid": "34838195",
+   "quote": "The seroprevalence of H pylori was 94·4% (95% CI 92·4-96·4) in NGCG, 92·2% (89·7-94·7) in CGC, and 75·6% (71·8-79·4) in subcohort participants.",
+   "source": "PMID 34838195 中国慢性病前瞻性研究子队列（30-79 岁，免疫印迹法）",
+   "estimated": true,
+   "estimated_reason_zh": "单一子队列（n=500）血清阳性率，不分性别年龄，且为 30-79 岁，仅作为人群感染率"
+  },
+  "effect": {
+   "gastric_ca": {
+    "hr": 3.2,
+    "lo": 2.0,
+    "hi": 5.2,
+    "per": 1,
+    "per_unit": "H. pylori 抗体阳性 vs 阴性",
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "coef": 0.8,
+    "evidence": {
+     "pmid": "25314140",
+     "grade": "B",
+     "design": "meta-analysis",
+     "quote": "For discriminating between asymptomatic adults at high and low risk of gastric cancer, the pepsinogen test (summary hazard ratio [HR], 3.5; 95% confidence interval [CI], 2.7-4.7; I2 = 0%) and H. pylori antibodies (summary HR, 3.2; 95% CI, 2.0-5.2; I2 = 0%) were statistically significant predictors as standalone tests."
+    }
+   }
+  },
+  "estimand_zh": "东亚 9 项前瞻队列荟萃（33,741 名胃癌筛查人群）：H. pylori 抗体阳性 vs 阴性的胃癌发病汇总 HR；不区分贲门与非贲门",
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "同病种已计入项（家族史）与感染不同；无重叠",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "East Asian",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "9 East Asian prospective cohorts",
+   "n": 33741,
+   "events": null,
+   "events_source_zh": "摘要仅给出 33,741 人（≥1 万，合并分析豁免）",
+   "ancestry": "East Asian",
+   "age_range": [
+    40,
+    75
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.0,
+   "source": "二值，检测假阴性见文献"
+  },
+  "persistence": {
+   "half_life_years": 20
+  },
+  "exclude_if_flags": [
+   "antibiotics_3m"
+  ],
+  "treated_policy": "use_pretreatment",
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "根除治疗可降低胃癌风险"
+  },
+  "test": {
+   "label_zh": "碳 13 呼气试验或血清抗体",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "25314140",
+   "quote": "For discriminating between asymptomatic adults at high and low risk of gastric cancer, the pepsinogen test (summary hazard ratio [HR], 3.5; 95% confidence interval [CI], 2.7-4.7; I2 = 0%) and H. pylori antibodies (summary HR, 3.2; 95% CI, 2.0-5.2; I2 = 0%) were statistically significant predictors as standalone tests.",
+   "alternatives_considered": [
+    {
+     "pmid": "34838195",
+     "estimate": "China Kadoorie Biobank case-cohort: NCGC HR 5.94 (3.25-10.86), CGC 3.06 (1.54-6.10), 937 cases",
+     "reason": "同为东亚，但单一队列且分贲门/非贲门，无总体胃癌估计"
+    },
+    {
+     "pmid": "11511555",
+     "estimate": "12 nested case-control, 1228 cases: non-cardia OR 3.0 (2.3-3.8)",
+     "reason": "欧美为主，且仅非贲门"
+    },
+    {
+     "pmid": "9609753",
+     "estimate": "19 studies OR 1.92 (1.32-2.78)",
+     "reason": "含医院对照，异质性高；排序较低"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "gastric_ca": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 5.94 与 3.2，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 5.94,
+      "b": 3.2,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：indicator：每 1 单位 5.94 与 3.2，不在彼此的 95% 置信区间内"
+}

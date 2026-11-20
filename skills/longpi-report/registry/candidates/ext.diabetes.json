@@ -1,0 +1,519 @@
+{
+ "id": "ext.diabetes",
+ "a": {
+  "id": "ext.diabetes",
+  "name_zh": "已确诊 2 型糖尿病（疾病风险）",
+  "kind": "state",
+  "system": "metabolic",
+  "group": "glycemia",
+  "input": {
+   "code": "ICD10:E11",
+   "unit": "indicator",
+   "platform": null,
+   "methods": [
+    "self_report",
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "prevalence": 0.0197
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "prevalence": 0.0256
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "prevalence": 0.0437
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "prevalence": 0.076
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "prevalence": 0.0941
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "prevalence": 0.1075
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "prevalence": 0.1075
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 29,
+     "prevalence": 0.017
+    },
+    {
+     "sex": "F",
+     "age_lo": 30,
+     "age_hi": 39,
+     "prevalence": 0.0221
+    },
+    {
+     "sex": "F",
+     "age_lo": 40,
+     "age_hi": 49,
+     "prevalence": 0.0378
+    },
+    {
+     "sex": "F",
+     "age_lo": 50,
+     "age_hi": 59,
+     "prevalence": 0.0657
+    },
+    {
+     "sex": "F",
+     "age_lo": 60,
+     "age_hi": 69,
+     "prevalence": 0.0814
+    },
+    {
+     "sex": "F",
+     "age_lo": 70,
+     "age_hi": 79,
+     "prevalence": 0.0929
+    },
+    {
+     "sex": "F",
+     "age_lo": 80,
+     "age_hi": 99,
+     "prevalence": 0.0929
+    }
+   ],
+   "pmid": "34962526",
+   "quote": "In 2018, among adults with diabetes, 36.7% (95% CI, 34.7%-38.6%) reported being aware of their condition",
+   "source": "派生值：已确诊患病率 = 中国成人慢性病与营养监测 2018 分性别年龄糖尿病总患病率（data/population_norms_china.json markers.glycemic 的 diabetes 比例，ADA 标准）× 全国知晓率 36.7%（Wang L, JAMA 2021, PMID 34962526）。假定各年龄段知晓率相同（实际老年人知晓率较高、青年较低），80 岁以上沿用 70–79 岁数值。",
+   "norms_marker": "glycemic"
+  },
+  "effect": {
+   "chd": {
+    "hr": 2.0,
+    "lo": 1.83,
+    "hi": 2.19,
+    "coef": 0.6,
+    "overlaps_with": [
+     "ext.sbp",
+     "ext.hdl",
+     "ext.smoking"
+    ],
+    "population": {
+     "cohort": "Emerging Risk Factors Collaboration, 102 prospective studies",
+     "n": 698782,
+     "ancestry": "multinational (mostly European/US)"
+    }
+   },
+   "stroke": {
+    "hr": 1.61,
+    "lo": 1.54,
+    "hi": 1.69,
+    "coef": 0.8,
+    "overlaps_with": [
+     "ext.sbp",
+     "ext.smoking",
+     "ext.alcohol"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "region",
+     "education",
+     "core.smoking",
+     "ext.smoking",
+     "core.alcohol",
+     "ext.alcohol",
+     "physical_activity",
+     "core.bp",
+     "ext.sbp"
+    ],
+    "evidence": {
+     "pmid": "27379518",
+     "pmcid": "PMC4933372",
+     "grade": "B",
+     "design": "prospective-cohort",
+     "quote": "For total stroke, self-reported diabetes was associated with an adjusted HR of 1.61 (95% CI 1.54–1.69",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/27379518/",
+     "alternatives_considered": [
+      {
+       "pmid": "20609967",
+       "estimate": "缺血性卒中 HR 2.27（1.95–2.65）；出血性卒中 1.56（1.19–2.05）",
+       "why_not": "只给卒中亚型，缺血性卒中 HR 用于全部卒中会高估；人群以欧美为主"
+      },
+      {
+       "pmid": "27379518",
+       "estimate": "缺血性卒中 1.68（1.60–1.77）；脑出血 1.24（1.07–1.44）",
+       "why_not": "亚型估计；同文给出全部卒中（I60、I61、I63、I64）估计，与本库 stroke 定义一致，故用后者"
+      }
+     ]
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank (participants without prior CVD)",
+     "n": 488760,
+     "events": 1917,
+     "events_source_zh": "全文表 2：自述糖尿病者全部卒中 1917 例（对照组 23 732 例），模型 B",
+     "ancestry": "Chinese",
+     "age_range": [
+      30,
+      79
+     ]
+    },
+    "transport": {
+     "ancestry": "Chinese",
+     "shrink": 1.0,
+     "sd_inflate": 1.0
+    }
+   },
+   "liver_ca": {
+    "hr": 1.97,
+    "lo": 1.79,
+    "hi": 2.16,
+    "coef": 0.6,
+    "evidence": {
+     "pmid": "38661292",
+     "grade": "B",
+     "design": "pooled-cohort",
+     "quote": "Hazard ratio (HR) (95% confidence interval [95%CI]) of liver cancer diagnosis in those with vs. without baseline diabetes was 1.97 (1.79, 2.16) (p < .0001) after adjusting for baseline age, gender, body mass index, tobacco smoking, alcohol use, and heterogeneity across studies (n = 586,072; events = 4620)."
+    },
+    "population": {
+     "cohort": "Asia Cohort Consortium, 20 cohorts",
+     "n": 586072,
+     "events": 4620,
+     "ancestry": "East Asian (China, Japan, Korea, Taiwan, Singapore)"
+    },
+    "transport": {
+     "ancestry": "East Asian",
+     "shrink": 1.0,
+     "sd_inflate": 1.0
+    },
+    "overlaps_with": [
+     "ext.hbv",
+     "ext.alcohol",
+     "ext.smoking"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "core.adiposity",
+     "ext.bmi",
+     "core.smoking",
+     "ext.smoking",
+     "core.alcohol",
+     "ext.alcohol"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "core.smoking",
+   "ext.smoking",
+   "core.bp",
+   "ext.sbp",
+   "core.adiposity",
+   "ext.bmi"
+  ],
+  "overlap": {
+   "coef": 1.0,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "core.glucose"
+   ],
+   "rationale_zh": "本项只计疾病结局，不含全因死亡，与 core.glucose（只计全因死亡）不重复计数；与同组的血糖类疾病项（糖化血红蛋白、空腹血糖）由 glycemia 组规则排序打折。冠心病取新兴危险因素协作组 102 项前瞻研究个体数据荟萃分析（HR 2.00），主模型校正年龄、性别、吸烟、收缩压和体重指数；血脂仅在敏感性分析中校正（结果基本不变），按主模型计，与高密度脂蛋白胆固醇项未互相校正，属部分校正，系数取 0.6，并按非东亚人群收缩。卒中改用中国慢性病前瞻性研究全部卒中（I60、I61、I63、I64，与本库卒中定义一致）的估计 HR 1.61（1.54–1.69，1917 例），原用的缺血性卒中 HR 2.27 用于全部卒中会高估；该模型校正年龄、性别、地区、教育、吸烟、饮酒、体力活动与收缩压，与收缩压、吸烟、饮酒项均已互相校正，系数取 0.8。肝癌取亚洲队列联盟 20 个东亚队列合并分析，校正年龄、性别、体重指数、吸烟和饮酒，未校正乙肝病毒感染，属部分校正，系数取 0.6。阿尔茨海默病移出计入结局（见 excluded_outcomes）。慢性肾病、代谢相关脂肪性肝病未找到合格的东亚发病研究，本项暂不计。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "multinational (mostly European/US)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Emerging Risk Factors Collaboration, 102 prospective studies (52 765 vascular outcomes in total; outcome-specific counts not in abstract)",
+   "n": 698782,
+   "events": null,
+   "ancestry": "multinational (mostly European/US)",
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "已确诊状态（0/1），以病历诊断或自述医生诊断为准"
+  },
+  "persistence": {
+   "half_life_years": null
+  },
+  "exclude_if_flags": [
+   "pregnancy"
+  ],
+  "treated_policy": "ignore",
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "确诊后规范控制血糖、血压、血脂并戒烟，可降低心脑血管并发症风险；部分新型降糖药有心血管获益证据，用药遵医嘱。"
+  },
+  "test": {
+   "label_zh": "病历：是否已确诊 2 型糖尿病",
+   "cost_level": 1
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "20609967",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20609967/",
+   "quote": "Adjusted HRs with diabetes were: 2.00 (95% CI 1.83-2.19) for coronary heart disease; 2.27 (1.95-2.65) for ischaemic stroke",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9",
+  "excluded_outcomes": {
+   "ad": {
+    "reason_zh": "荟萃分析（PMID 24843720，20 项研究）未报告人数与阿尔茨海默病事件数，各研究校正项不一；中国慢性病前瞻性研究（PMID 41341656，344 例阿尔茨海默病）中糖尿病与阿尔茨海默病无关联（HR 0.92，95% CI 0.62–1.36），与全因痴呆的关联主要来自血管性痴呆。东亚证据与荟萃结果不一致且事件数无法核对，本版不计入。",
+    "hr": 1.56,
+    "lo": 1.41,
+    "hi": 1.73,
+    "pmid": "24843720"
+   }
+  },
+  "evidence_notes_zh": "中国佐证：中国慢性病前瞻性研究（PMID 27379518）自述糖尿病主要冠脉事件 HR 2.44（2.18–2.73），方向与协作组估计一致。"
+ },
+ "b": {
+  "id": "ext.diabetes",
+  "name_zh": "已确诊 2 型糖尿病（疾病风险）",
+  "kind": "state",
+  "system": "metabolic",
+  "group": "glycemia",
+  "input": {
+   "code": "ICD10:E11",
+   "unit": "indicator",
+   "platform": null,
+   "methods": [
+    "self_report",
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.027
+    }
+   ],
+   "pmid": "27379518",
+   "quote": "Overall, 5.4% (n = 26,335) of participants had self-reported (2.7%) or screen-detected (2.7%) diabetes.",
+   "source": "中国慢性病前瞻性研究基线（30–79 岁）自述糖尿病 2.7%；未分年龄性别，对 ≥60 岁偏低"
+  },
+  "effect": {
+   "chd": {
+    "hr": 2.44,
+    "lo": 2.18,
+    "hi": 2.73,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "evidence": {
+     "pmid": "27379518",
+     "grade": "A",
+     "design": "prospective-cohort",
+     "quote": "There were significant excess risks of major coronary event (2.44, 95% CI 2.18-2.73), ischaemic stroke (1.68, 95% CI 1.60-1.77), and intracerebral haemorrhage (1.24, 95% CI 1.07-1.44)."
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank",
+     "n": 488760,
+     "events": 25451,
+     "ancestry": "Chinese",
+     "events_source_zh": "25,451 为全部非致死主要心血管事件，分结局事件数在全文表格"
+    }
+   },
+   "stroke": {
+    "hr": 1.68,
+    "lo": 1.6,
+    "hi": 1.77,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "evidence": {
+     "pmid": "27379518",
+     "grade": "A",
+     "design": "prospective-cohort",
+     "quote": "There were significant excess risks of major coronary event (2.44, 95% CI 2.18-2.73), ischaemic stroke (1.68, 95% CI 1.60-1.77), and intracerebral haemorrhage (1.24, 95% CI 1.07-1.44)."
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank",
+     "n": 488760,
+     "events": 25451,
+     "ancestry": "Chinese",
+     "events_source_zh": "同上；估计目标为缺血性卒中"
+    }
+   },
+   "liver_ca": {
+    "hr": 1.49,
+    "lo": 1.3,
+    "hi": 1.7,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": [
+     "age",
+     "sex"
+    ],
+    "evidence": {
+     "pmid": "29734463",
+     "grade": "A",
+     "design": "prospective-cohort",
+     "quote": "individuals with diabetes had adjusted HRs of 1.49 (95% confidence interval 1.30-1.70) for liver cancer, 1.81 (1.57-2.09) for cirrhosis, 1.76 (1.47-2.16) for NAFLD, and 2.24 (1.42-3.54) for ALD."
+    },
+    "population": {
+     "cohort": "China Kadoorie Biobank",
+     "n": 503993,
+     "events": 2568,
+     "ancestry": "Chinese"
+    }
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "rationale_zh": "仅为疾病结局，不进全因死亡；已计入同病种项在本批外，无重叠",
+   "overlaps_with": [],
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "Chinese",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "China Kadoorie Biobank",
+   "n": 488760,
+   "events": 25451,
+   "ancestry": "Chinese",
+   "age_range": [
+    30,
+    79
+   ],
+   "sex": "both"
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "血糖控制、体重管理"
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "pmid": "27379518",
+   "grade": "A",
+   "design": "prospective-cohort",
+   "verified_at": "2026-11-20",
+   "quote": "There were significant excess risks of major coronary event (2.44, 95% CI 2.18-2.73), ischaemic stroke (1.68, 95% CI 1.60-1.77), and intracerebral haemorrhage (1.24, 95% CI 1.07-1.44).",
+   "alternatives_considered": [
+    {
+     "pmid": "20609967",
+     "estimate": "ERFC 102 prospective studies, 欧美为主: CHD 2.00 (1.83-2.19), 缺血性卒中 2.27 (1.95-2.65)",
+     "reason": "非东亚；CKB 为中国 ~50 万人，优先"
+    },
+    {
+     "pmid": "21544812",
+     "estimate": "肝癌 SRR 2.01 (1.61-2.51)，25 队列荟萃",
+     "reason": "摘要未给事件数/样本量，且 CKB 为中国前瞻队列 2568 例"
+    }
+   ],
+   "estimand_zh": "自述已确诊糖尿病（相对无糖尿病）的相对风险，按年龄、性别、地区校正的观察性 HR；不含筛查发现者"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  }
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "chd": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 2 与 2.44，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 2.0,
+      "b": 2.44,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   },
+   "liver_ca": {
+    "agree": false,
+    "why": [
+     "indicator：每 1 单位 1.97 与 1.49，不在彼此的 95% 置信区间内"
+    ],
+    "components": {
+     "indicator": {
+      "a": 1.97,
+      "b": 1.49,
+      "per": 1.0,
+      "agree": false
+     }
+    }
+   },
+   "stroke": {
+    "agree": true,
+    "why": [],
+    "components": {
+     "indicator": {
+      "a": 1.61,
+      "b": 1.68,
+      "per": 1.0,
+      "agree": true
+     }
+    }
+   }
+  },
+  "agree_any": true
+ }
+}

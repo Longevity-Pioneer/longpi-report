@@ -205,7 +205,22 @@
   "quote": "a per SD decrease in BMD at all sites being associated with a 1.17-fold (95% CI: 1.13-1.22) increase in total mortality",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "22112679",
+   "doi": null,
+   "design": "meta-analysis",
+   "effects": {
+    "all_cause": {
+     "hr": 0.8547,
+     "lo": 0.8197,
+     "hi": 0.885,
+     "per": 1
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "evidence_notes_zh": "同一荟萃中全髋/股骨颈每降低 1 SD 的全因死亡 HR 为 1.20（1.09–1.31）。未检索到东亚一般人群 DXA 骨密度与全因死亡、事件 ≥100 的前瞻研究",
  "license": {

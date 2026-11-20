@@ -99,19 +99,25 @@ class Math(unittest.TestCase):
         self.assertTrue(any(x["why"] == "数值无效" for x in r["extension"]["dropped_observations"]))
         self.assertNotIn("ext.cystatin_c", [t["id"] for t in r["extension"]["terms"] if t["status"] == "counted"])
 
-    def test_apoe_integer_count(self):
-        p = person_p1(genetic_preferences={"show_opt_in": True, "secondary_findings": True})
-        r = run(p, obs=[o("LP:apoe_e4_count", 2)])
-        ad = next(d for d in r["diseases"]["diseases"] if d["id"] == "ad")
-        drv = {x["id"]: x["hr"] for x in ad["drivers"]}
-        self.assertGreater(drv.get("ext.apoe_e4", 0), 1.5)
+    def test_categorical_levels_accept_integers(self):
+        """An APOE-like count given as 2 (int) must hit level "2", not silently fall back to 0."""
+        from lp import terms as TM
+        t = {"id": "ext.x", "transform": {"shape": "categorical"},
+             "reference": {"kind": "categorical", "p": {"0": 0.8, "1": 0.18, "2": 0.02}},
+             "effect": {"ad": {"levels": {"0": {"hr": 1}, "1": {"hr": 3.0, "lo": 2.5, "hi": 3.6}, "2": {"hr": 11.0, "lo": 6.0, "hi": 21.0}}}}}
+        p = TM.draw_effect(t, "ad", None)
+        self.assertEqual(TM.level_key(2), "2")
+        self.assertGreater(TM.normalised(t, p, 2, "M", 60), 1.5)
+        self.assertGreater(TM.normalised(t, p, 2, "M", 60), TM.normalised(t, p, 1, "M", 60))
 
     def test_adding_unmeasured_term_changes_nothing(self):
         tmp = Path(tempfile.mkdtemp())
         self.addCleanup(shutil.rmtree, tmp)
         shutil.copytree(MAIN, tmp / "registry")
         shutil.copytree(SKILL / "data", tmp / "data")
-        t = json.loads((MAIN / "terms" / "ext.cystatin_c.json").read_text(encoding="utf-8"))
+        src = sorted(p for p in (MAIN / "terms").glob("ext.*.json")
+                     if "all_cause" in json.loads(p.read_text(encoding="utf-8")).get("effect", {}))[0]
+        t = json.loads(src.read_text(encoding="utf-8"))
         t["id"], t["input"]["code"] = "ext.zz_unmeasured", "LOINC:2532-0"
         (tmp / "registry" / "terms" / "ext.zz_unmeasured.json").write_text(json.dumps(t), encoding="utf-8")
         RG.freeze(tmp / "registry")
@@ -122,7 +128,9 @@ class Math(unittest.TestCase):
         finally:
             RG.use(MAIN)
         self.assertEqual(a["longpi_age"]["value"], b["longpi_age"]["value"])
-        self.assertEqual(json.dumps(a["diseases"], sort_keys=True), json.dumps(b["diseases"], sort_keys=True))
+        num = lambda r: [(d["id"], d.get("risk10"), d.get("lifetime"), d.get("drivers")) for d in r["diseases"]["diseases"]]
+        self.assertEqual(json.dumps(num(a), sort_keys=True), json.dumps(num(b), sort_keys=True))   # the new term only
+        # appears in "missing_inputs" (what could be added), never in the numbers
 
 
 class Privacy(unittest.TestCase):

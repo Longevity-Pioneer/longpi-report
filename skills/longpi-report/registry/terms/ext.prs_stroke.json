@@ -100,7 +100,22 @@
   "url": "https://www.pgscatalog.org/performance/PPM012867/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": null,
+   "doi": null,
+   "design": "pgs-catalog-evaluation",
+   "effects": {
+    "stroke": {
+     "hr": 1.28,
+     "lo": 1.21,
+     "hi": 1.36,
+     "per": 1.0
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "license": {
   "commercial_use": true,

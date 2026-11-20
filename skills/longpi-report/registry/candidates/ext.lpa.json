@@ -1,0 +1,392 @@
+{
+ "id": "ext.lpa",
+ "a": {
+  "kind": "state",
+  "status": "active",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "disclosure": "standard",
+  "exclude_if_flags": [
+   "acute_illness",
+   "pregnancy"
+  ],
+  "treated_policy": "use_pretreatment",
+  "persistence": {
+   "half_life_years": 50
+  },
+  "id": "ext.lpa",
+  "name_zh": "脂蛋白(a)",
+  "system": "cardiovascular",
+  "group": "lipids",
+  "input": {
+   "code": "LOINC:10835-7",
+   "unit": "mg/L",
+   "platform": null,
+   "methods": [
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    0,
+    3000
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "lognormal",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "meanlog": 4.517,
+     "sdlog": 1.173
+    }
+   ],
+   "pmid": "40297899",
+   "quote": "only 8% of controls had Lp(a) levels ≥100 nmol/L and 4% Lp(a) levels ≥150 nmol/L",
+   "source": "CKB 对照组 Lp(a) 分布（PMID 40297899）：≥100 nmol/L 占 8%、≥150 nmol/L 占 4%，据此拟合对数正态（中位数约 19.2 nmol/L）；按 Copenhagen 研究原文 50 mg/dL≈105 nmol/L 换算为质量单位（中位数约 92 mg/L）。检测方法与 apo(a) 异构体会使换算存在误差"
+  },
+  "effect": {
+   "chd": {
+    "hr": 1.2821,
+    "lo": 1.1905,
+    "hi": 1.3889,
+    "per": 476,
+    "per_unit": "mg/L（原文为每降低 100 nmol/L，按 105 nmol/L≈50 mg/dL 折算约 476 mg/L；原文结局为心肌梗死）",
+    "direction": "higher_worse",
+    "derived": {
+     "from": {
+      "hr": 0.78,
+      "lo": 0.72,
+      "hi": 0.84
+     },
+     "pow": -1
+    },
+    "overlaps_with": []
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.15,
+   "overlaps_with": [],
+   "mediated_by": {},
+   "rationale_zh": "只为冠心病建项，不再写全因死亡（见 evidence.alternatives_considered：全因死亡的单一研究死亡人数无法核对，荟萃分析未给连续估计）。冠心病为东亚孟德尔随机化估计，工具变量位于 LPA 基因座，效应与 LDL-C、ApoB 的人群变异基本独立；Lp(a) 与 LDL-C 人群相关很弱，常规 LDL-C 测定所含 Lp(a) 胆固醇的重叠量小，故 overlaps_with 写空，系数取 0.8。原文结局为心肌梗死，作为冠心病的近似。"
+  },
+  "transport": {
+   "ancestry": "East Asian",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "东亚两样本孟德尔随机化（CKB 嵌套病例对照 18174 人的 GWAS 工具变量；结局数据来自 CKB 与 BioBank Japan 等）",
+   "n": 18174,
+   "events": 17091,
+   "ancestry": "East Asian (CKB, BioBank Japan)",
+   "sex": "both",
+   "events_source_zh": "摘要：心肌梗死 n=17 091"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.08,
+   "source": "免疫比浊法受 apo(a) 异构体影响，方法间差异较大（一般实验室质量数据，未经文献核对）"
+  },
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "Lp(a) 水平主要由遗传决定，生活方式影响很小；目前尚无获批的特异性降 Lp(a) 药物，升高者宜更严格控制其他危险因素"
+  },
+  "test": {
+   "label_zh": "抽血查脂蛋白(a)（一生至少一次）",
+   "cost_level": 1
+  },
+  "evidence": {
+   "pmid": "40297899",
+   "quote": "there were concordant RRs per 100 nmol/L lower Lp(a) in East Asian individuals and European individuals for risk of MI (0.78 [95% CI, 0.72–0.84] versus 0.78 [0.76–0.81], respectively)",
+   "grade": "A",
+   "design": "mendelian-randomization",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40297899/",
+   "pmcid": "PMC12165552",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true,
+   "alternatives_considered": [
+    {
+     "pmid": "30608559",
+     "estimate": "全因死亡每 50 mg/dL HR 1.05（1.01–1.09），哥本哈根两队列",
+     "why_not": "单一丹麦研究，死亡人数不在摘要且全文非开放获取，无法核对 ≥1000 例死亡；遗传估计 rs10455872 为 0.97（0.92–1.02）不一致"
+    },
+    {
+     "pmid": "36708412",
+     "estimate": "全因死亡最高 vs 最低三分位 HR 1.09（1.01–1.18），一般人群 19 项研究",
+     "why_not": "只有三分位比较；线性剂量反应只对心血管死亡报告（每 50 mg/dL 增 31%），未给全因死亡的连续估计"
+    }
+   ]
+  },
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.lpa",
+  "name_zh": "脂蛋白(a)",
+  "kind": "state",
+  "system": "cardiovascular",
+  "group": "lipids",
+  "input": {
+   "code": "LOINC:10835-7",
+   "unit": "mg/L",
+   "platform": null,
+   "methods": [
+    "lab"
+   ]
+  },
+  "transform": {
+   "shape": "loglinear",
+   "clip": [
+    5,
+    3000
+   ],
+   "log_x": true
+  },
+  "reference": {
+   "kind": "lognormal",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 29,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 30,
+     "age_hi": 39,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 40,
+     "age_hi": 49,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 50,
+     "age_hi": 59,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 60,
+     "age_hi": 69,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 70,
+     "age_hi": 79,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "M",
+     "age_lo": 80,
+     "age_hi": 99,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 29,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 30,
+     "age_hi": 39,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 40,
+     "age_hi": 49,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 50,
+     "age_hi": 59,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 60,
+     "age_hi": 69,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 70,
+     "age_hi": 79,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    },
+    {
+     "sex": "F",
+     "age_lo": 80,
+     "age_hi": 99,
+     "meanlog": 4.7005,
+     "sdlog": 1.2637
+    }
+   ],
+   "pmid": "20965889",
+   "quote": "Chinese (11, 4–22)",
+   "source": "中国人 Lp(a) 中位数 11 mg/dL、四分位 4–22 mg/dL（欧洲心脏杂志综述，PMID 20965889）；换算：中位数×10 得 110 mg/L，meanlog=ln110，sdlog=(ln22−ln4)/(2×0.6745)；男女、各年龄同值"
+  },
+  "effect": {
+   "chd": {
+    "hr": 1.13,
+    "lo": 1.09,
+    "hi": 1.18,
+    "per": 1.2528,
+    "per_unit": "ln 单位（原文 3.5 倍 = 1 SD，ln3.5=1.2528）",
+    "direction": "higher_worse",
+    "overlaps_with": [
+     "core.lipid",
+     "ext.hdl"
+    ],
+    "coef": 0.6,
+    "adjusted_for": [
+     "age",
+     "sex",
+     "core.bp",
+     "core.smoking",
+     "core.glucose",
+     "core.lipid"
+    ],
+    "evidence": {
+     "pmid": "19622820",
+     "design": "pooled-cohort",
+     "grade": "A",
+     "quote": "The risk ratio for CHD, adjusted for age and sex only, was 1.16 (95% CI, 1.11-1.22) per 3.5-fold higher usual Lp(a) concentration (ie, per 1 SD), and it was 1.13 (95% CI, 1.09-1.18) following further adjustment for lipids and other conventional risk factors"
+    },
+    "population": {
+     "cohort": "Emerging Risk Factors Collaboration，36 项前瞻研究个体数据合并",
+     "n": 126634,
+     "events": 9336,
+     "ancestry": "Mixed (>90% European)",
+     "age_range": [
+      40,
+      80
+     ],
+     "sex": "both"
+    },
+    "transport": {
+     "ancestry": "Mixed (>90% European)",
+     "shrink": 0.8,
+     "sd_inflate": 1.25
+    }
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "core.bp",
+   "core.smoking",
+   "core.glucose",
+   "core.lipid"
+  ],
+  "evidence": {
+   "grade": "A",
+   "design": "pooled-cohort",
+   "pmid": "19622820",
+   "quote": "The risk ratio for CHD, adjusted for age and sex only, was 1.16 (95% CI, 1.11-1.22) per 3.5-fold higher usual Lp(a) concentration (ie, per 1 SD), and it was 1.13 (95% CI, 1.09-1.18) following further adjustment for lipids and other conventional risk factors",
+   "estimand_zh": "观察性 RR：日常 Lp(a) 每高 3.5 倍（1 SD）的冠心病风险，已校正血脂（总胆固醇）与常规危险因素；原文数据 >90% 欧洲人，东亚数据不足",
+   "alternatives_considered": [
+    {
+     "pmid": "20965889",
+     "estimate": "综述转引同一 ERFC 估计",
+     "reason": "二手来源，不选"
+    }
+   ],
+   "verified_at": "2026-11-20",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [
+    "core.lipid",
+    "ext.hdl"
+   ],
+   "rationale_zh": "原文校正了总胆固醇等，但未校正 HDL-C（同组已计入 ext.hdl），属部分校正，取 0.6"
+  },
+  "transport": {
+   "ancestry": "Mixed (>90% European)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Emerging Risk Factors Collaboration",
+   "n": 126634,
+   "events": 9336,
+   "ancestry": "Mixed (>90% European)",
+   "age_range": [
+    40,
+    80
+   ],
+   "sex": "both"
+  },
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "主要由遗传决定；提示更积极控制其他危险因素"
+  },
+  "test": {
+   "label_zh": "抽血查脂蛋白(a)（一生测一次）",
+   "cost_level": 1
+  },
+  "persistence": {
+   "half_life_years": 10
+  },
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "added_by": "longpi-term-builder"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "chd": {
+    "agree": false,
+    "why": [
+     "输入尺度不同（一次按对数、一次按原值），无法直接比较"
+    ]
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：输入尺度不同（一次按对数、一次按原值），无法直接比较"
+}

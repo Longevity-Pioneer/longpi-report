@@ -1,0 +1,275 @@
+{
+ "id": "ext.mono_msh2",
+ "a": {
+  "id": "ext.mono_msh2",
+  "name_zh": "MSH2 致病变异携带（林奇综合征）",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:monogenic:HGNC:7325",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.000352
+    }
+   ],
+   "source": "美国、加拿大、澳大利亚人群登记的结直肠癌家系分离分析估计的人群携带率（Win 2017）；中国人群分基因携带率暂缺。",
+   "pmid": "27799157",
+   "quote": "MLH1 = 1 in 1,946, MSH2 = 1 in 2,841, MSH6 = 1 in 758, PMS2 = 1 in 714"
+  },
+  "effect": {
+   "crc": {
+    "hr": 32.57,
+    "lo": 23.01,
+    "hi": 46.11,
+    "direction": "higher_worse",
+    "note": "英国生物库全外显子测序，MSH2 致病/可能致病变异携带者对非携带者的结直肠癌 HR（原文表 2，按出生日期、性别与前 10 个遗传主成分校正）",
+    "overlaps_with": [
+     "ext.fh_crc"
+    ],
+    "adjusted_for": [
+     "age",
+     "sex",
+     "genetic_pcs"
+    ]
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex",
+   "genetic_pcs"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "种系错配修复基因致病变异不受生活方式混杂，与 ext.bmi、ext.smoking 不共享信息；同文显示致病变异与高多基因评分的分布相互独立（χ2 检验 P = 0.22），故不列 ext.prs_crc。携带致病变异可解释部分结直肠癌家族史，与 ext.fh_crc 重叠；表 2 的分基因 HR 只校正出生日期、性别与遗传主成分，未校正家族史，按规则系数上限 0.6，取 0.6。同文表 3 四基因合并的致病变异 HR 在同时校正家族史与多基因评分后由 4.29 降至 3.51，对数尺度约减少 14%，说明与家族史的重叠有限，系数 0.6 偏保守。东亚方向一致性：日本人群病例对照（Fujita 2022）OR 18.1。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "European (UK Biobank, 91% European)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "UK Biobank whole-exome sequenced participants (Helfand 2025 JCO Precis Oncol)",
+   "n": 443107,
+   "events": 9488,
+   "events_source_zh": "全文表 1、表 2：分析纳入 443107 人，结直肠癌 9488 例；其中 MSH2 携带者 81 人，携带者中结直肠癌 32 例（分基因估计所依据的携带者病例不足 100 例，置信区间据此给出）",
+   "ancestry": "European (UK Biobank, 91% European)",
+   "age_range": [
+    40,
+    69
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+  },
+  "persistence": {
+   "half_life_years": null,
+   "note": "种系变异终身不变"
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "status": "active",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "林奇综合征携带者应接受遗传咨询，按指南自 20–25 岁起每 1–2 年结肠镜检查。"
+  },
+  "test": {
+   "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+   "cost_level": 4
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "grade": "B",
+   "design": "case-control",
+   "design_note": "英国生物库全队列 Cox 回归，时间尺度自出生起至首次诊断或末次随访，含入组前已诊断病例（终生风险分析，非纯前瞻）；种系变异先于发病，按遗传项归入病例对照类",
+   "pmid": "40601893",
+   "pmcid": "PMC12233176",
+   "quote": "MSH2 | 81 (0.02) | 32 (39.51) | 32.57 (23.01 to 46.11)",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40601893/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true,
+   "table_caption": "Genetic Risk of CRC in the UKB",
+   "outcome_binding_note_zh": "数值取自全文表 2 的基因行，表题为“Genetic Risk of CRC in the UKB”，结局为结直肠癌；表格行本身不含结局名称。"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "gene": "MSH2",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9",
+  "verifier_reasons": [
+   "crc: 证据等级 C 低于 B"
+  ]
+ },
+ "b": {
+  "id": "ext.mono_msh2",
+  "name_zh": "MSH2 致病变异携带（林奇综合征）",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:monogenic:HGNC:7325",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": null
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": null
+    }
+   ],
+   "prevalence": null,
+   "estimated": true,
+   "estimated_reason_zh": "未取得 MSH2 单基因的人群携带率（日本研究对照组 1.5% 为 27 个基因合计）",
+   "source": "none"
+  },
+  "effect": {
+   "crc": {
+    "hr": 18.1,
+    "lo": null,
+    "hi": null,
+    "per": 1,
+    "per_unit": "携带致病变异 vs 不携带",
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "coef": 0.8,
+    "evidence": {
+     "pmid": "33309985",
+     "grade": "B",
+     "design": "case-control",
+     "quote": "The pathogenic variants of MSH2 (odds ratio (OR) = 18.1), MLH1 (OR = 8.6), MSH6 (OR = 4.9), APC (OR = 49.4), BRIP1 (OR=3.6), BRCA1 (OR = 2.6), BRCA2 (OR = 1.9), and TP53 (OR = 1.7) were significantly associated with CRC development in the Japanese population"
+    }
+   }
+  },
+  "estimand_zh": "日本人群大型病例对照（12,503 例结直肠癌、23,705 对照）：MSH2 致病变异携带 vs 不携带的结直肠癌比值比 OR=18.1；摘要未给出 95% CI，全文非开放获取，故无法逐字核对 CI",
+  "adjusted_for": [
+   "age"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "同病种无其他 ext 项",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "East Asian (Japanese)",
+   "shrink": 1.0,
+   "sd_inflate": 1.0
+  },
+  "population": {
+   "cohort": "Japanese biobank case-control",
+   "n": 36208,
+   "events": 12503,
+   "ancestry": "East Asian (Japanese)",
+   "age_range": [
+    20,
+    90
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.0,
+   "source": "测序"
+  },
+  "persistence": {
+   "half_life_years": 100
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "use_pretreatment",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "先天；结肠镜监测可降低结直肠癌风险"
+  },
+  "test": {
+   "label_zh": "胚系 MSH2 检测",
+   "cost_level": 2
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "grade": "B",
+   "design": "case-control",
+   "pmid": "33309985",
+   "quote": "The pathogenic variants of MSH2 (odds ratio (OR) = 18.1), MLH1 (OR = 8.6), MSH6 (OR = 4.9), APC (OR = 49.4), BRIP1 (OR=3.6), BRCA1 (OR = 2.6), BRCA2 (OR = 1.9), and TP53 (OR = 1.7) were significantly associated with CRC development in the Japanese population",
+   "alternatives_considered": [
+    {
+     "pmid": "37936660",
+     "estimate": "UK Biobank exome, MSH2 relative hazard 15.4 (no family history) / 48.0 (family history), 454,712 participants",
+     "reason": "摘要无置信区间，无法核对；欧洲人群"
+    },
+    {
+     "pmid": "22331944",
+     "estimate": "CCFR prospective, MMR carriers CRC SIR 20.48 (11.71-33.27)",
+     "reason": "MLH1/MSH2/MSH6/PMS2 合并而非 MSH2 单列，事件数少"
+    },
+    {
+     "pmid": "31337882",
+     "estimate": "Prospective Lynch Syndrome Database 6350 carriers, cumulative incidence",
+     "reason": "摘要无数值；累积发病率非相对风险"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "invalid",
+ "verify_b_fail": [
+  "核对出错：TypeError: '<' not supported between instances of 'int' and 'NoneType'"
+ ],
+ "comparison": {
+  "outcomes": {
+   "crc": {
+    "agree": false,
+    "why": [
+     "只有一次建项给出了这个结局"
+    ]
+   }
+  },
+  "agree_any": false
+ },
+ "why": "第二次建项未通过核对：核对出错：TypeError: '<' not supported between instances of 'int' and 'NoneType'"
+}

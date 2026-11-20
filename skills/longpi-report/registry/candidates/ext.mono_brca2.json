@@ -1,0 +1,296 @@
+{
+ "id": "ext.mono_brca2",
+ "a": {
+  "id": "ext.mono_brca2",
+  "name_zh": "BRCA2 致病变异携带",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:monogenic:HGNC:1101",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.0053
+    }
+   ],
+   "source": "上海地区 2,080 名健康汉族人 BRCA1/2 致病/可能致病变异合并携带率 0.53%（1/189）。原文未分基因，此处两基因各取合并值，属上限；对归一化的影响约 0.03 对数单位。",
+   "pmid": "38566028",
+   "quote": "with a 0.53% (1 in 189) prevalence of pathogenic/likely pathogenic (PLP) variant"
+  },
+  "effect": {
+   "breast_ca": {
+    "hr": 5.23,
+    "lo": 4.09,
+    "hi": 6.77,
+    "direction": "higher_worse",
+    "note": "OR 按 HR 近似",
+    "population": {
+     "sex": "F"
+    },
+    "overlaps_with": [
+     "ext.fh_breast_ca"
+    ],
+    "adjusted_for": [
+     "age",
+     "race",
+     "study"
+    ],
+    "coef": 0.6,
+    "applies_sex": "F"
+   },
+   "prostate_ca": {
+    "hr": 5.65,
+    "lo": 3.55,
+    "hi": 9.32,
+    "direction": "higher_worse",
+    "note": "日本前列腺癌病例对照 OR，按 HR 近似；摘要未说明 OR 的校正变量，按仅校正年龄处理，系数按规则上限 0.3（与 ext.fh_prostate_ca 重叠且未校正）",
+    "evidence": {
+     "grade": "B",
+     "design": "case-control",
+     "pmid": "31214711",
+     "quote": "Germline Pathogenic Variants in 7636 Japanese Patients With Prostate Cancer and 12 366 Controls. BACKGROUND: Genetic testing has been conducted in patients with prostate cancer (PCa) using multigene panels, but no centralized guidelines for genetic testing exist. To overcome this limitation, we investigated the demographic and clinical characteristics of patients with pathogenic variants. METHODS: We sequenced eight genes associated with hereditary PCa in 7636 unselected Japanese patients with PCa and 12 366 male, cancer-free control individuals. We assigned clinical significance for all 1456 variants using the American College of Medical Genetics and Genomics guidelines and ClinVar. We compared the frequency of carriers bearing pathogenic variants between cases and control participants with calculated PCa risk in each gene and documented the demographic and clinical characteristics of patients bearing pathogenic variants. All statistical tests were two-sided. RESULTS: We identified 136 pathogenic variants, and 2.9% of patients and 0.8% of control individuals had a pathogenic variant. Association with PCa risk was statistically significant for variants in BRCA2 (P < .001, odds ratio [OR] = 5.65, 95% confidence interval [CI] = 3.55 to 9.32)"
+    },
+    "population": {
+     "cohort": "BioBank Japan case-control (Momozawa 2020 JNCI)",
+     "n": 20002,
+     "events": 7636,
+     "ancestry": "Japanese",
+     "sex": "M"
+    },
+    "transport": {
+     "ancestry": "Japanese",
+     "shrink": 1.0,
+     "sd_inflate": 1.0
+    },
+    "overlaps_with": [
+     "ext.fh_prostate_ca"
+    ],
+    "adjusted_for": [
+     "age"
+    ],
+    "coef": 0.3,
+    "applies_sex": "M"
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "race",
+   "study"
+  ],
+  "overlap": {
+   "coef": 0.6,
+   "coef_sd": 0.2,
+   "overlaps_with": [],
+   "rationale_zh": "种系致病变异不受生活方式混杂，BMI、饮酒不是其混杂因素；常见变异多基因评分与罕见致病变异信息基本独立。携带状态可解释部分家族史，与 ext.fh_breast_ca 重叠，CARRIERS 模型校正年龄、种族与研究来源，未校正家族史，按规则（校正了其他混杂、未校正重叠项）系数上限 0.6，取 0.6。",
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "United States (population-based, mostly European)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "CARRIERS consortium population-based case-control (Hu 2021 NEJM)",
+   "n": 64791,
+   "events": 32247,
+   "ancestry": "United States (population-based, mostly European)",
+   "events_source_zh": "摘要：32,247 women with breast cancer (case patients)"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": null,
+   "source": "种系基因型不随时间变化；误差主要来自芯片分型与插补覆盖率，组学层输出 coverage 并按 min_coverage 判定是否计分"
+  },
+  "persistence": {
+   "half_life_years": null,
+   "note": "种系变异终身不变"
+  },
+  "exclude_if_flags": [],
+  "treated_policy": "not_applicable",
+  "status": "active",
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "携带者应接受遗传咨询，女性按指南加强乳腺筛查，男性可提前讨论前列腺癌筛查。"
+  },
+  "test": {
+   "label_zh": "胚系基因检测（全外显子/全基因组或遗传性肿瘤多基因包）",
+   "cost_level": 4
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "grade": "B",
+   "design": "case-control",
+   "pmid": "33471974",
+   "quote": "Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33471974/",
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true,
+   "alternatives_considered": [
+    {
+     "pmid": "30287823",
+     "estimate": "日本生物银行 7051 例乳腺癌、11,241 名对照的分基因 OR",
+     "why_not": "摘要未给 OR 与 CI，分基因数值只在全文表格行中，表格行不含结局名称，过不了结局用词门槛"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "gene": "BRCA2",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.mono_brca2",
+  "name_zh": "BRCA2 致病变异携带",
+  "kind": "genetic",
+  "system": "whole_body",
+  "group": "genetic",
+  "input": {
+   "code": "LP:monogenic:HGNC:1101",
+   "unit": "0/1",
+   "platform": null,
+   "methods": [
+    "tool",
+    "vendor"
+   ]
+  },
+  "transform": {
+   "shape": "indicator"
+  },
+  "reference": {
+   "kind": "prevalence",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "prevalence": 0.003
+    }
+   ],
+   "estimated": true,
+   "estimated_reason_zh": "未检索到可逐字核对的中国人群 BRCA2 致病变异携带率；0.3% 为估计值，报告须标明",
+   "source": "估计值，待补中国人群来源"
+  },
+  "effect": {
+   "breast_ca": {
+    "hr": 5.23,
+    "lo": 4.09,
+    "hi": 6.77,
+    "direction": "higher_worse",
+    "overlaps_with": [],
+    "adjusted_for": [
+     "age"
+    ],
+    "population": {
+     "cohort": "CARRIERS 联盟，美国人群为基础的病例对照",
+     "n": 64791,
+     "events": 32247,
+     "ancestry": "US population-based (multi-ethnic)"
+    }
+   }
+  },
+  "adjusted_for": [
+   "age"
+  ],
+  "overlap": {
+   "coef": 0.8,
+   "coef_sd": 0.2,
+   "rationale_zh": "致病变异为先天因素，与已计入项无重叠",
+   "overlaps_with": [],
+   "mediated_by": {}
+  },
+  "transport": {
+   "ancestry": "US population-based (multi-ethnic)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "CARRIERS 联盟",
+   "n": 64791,
+   "events": 32247,
+   "ancestry": "US population-based (multi-ethnic)",
+   "age_range": [
+    20,
+    90
+   ],
+   "sex": "F"
+  },
+  "interventions": {
+   "modifiable": false,
+   "note_zh": "遗传咨询，加强乳腺筛查（MRI）与风险降低手术评估"
+  },
+  "disclosure": "counsel",
+  "evidence": {
+   "pmid": "33471974",
+   "grade": "A",
+   "design": "case-control",
+   "verified_at": "2026-11-20",
+   "quote": "Pathogenic variants in BRCA1 and BRCA2 were associated with a high risk of breast cancer, with odds ratios of 7.62 (95% confidence interval [CI], 5.33 to 11.27) and 5.23 (95% CI, 4.09 to 6.77), respectively.",
+   "alternatives_considered": [
+    {
+     "pmid": "33471991",
+     "estimate": "BCAC 60,466 例乳腺癌 vs 53,461 对照，BRCA2 截短变异",
+     "reason": "摘要不含 OR 数值，无法逐字核对"
+    },
+    {
+     "pmid": "34963702",
+     "estimate": "前列腺癌：非阿什肯纳兹欧洲 BRCA2 携带者 RR 4.35 (3.50-5.41)",
+     "reason": "荟萃分析摘要与全文均无事件数/样本量，无法满足事件门槛"
+    },
+    {
+     "pmid": "31495749",
+     "estimate": "前列腺癌：英国前瞻队列 BRCA2 SIR 4.45 (2.99-6.61)",
+     "reason": "BRCA2 仅 26 例发病，事件 <100；SIR 非 HR"
+    }
+   ],
+   "estimand_zh": "BRCA2 致病/可能致病变异携带者相对非携带者的乳腺癌比值比（人群为基础病例对照，已按年龄、种族校正）；前列腺癌未找到合格来源，未建"
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  }
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "breast_ca": {
+    "agree": true,
+    "why": [],
+    "components": {
+     "indicator": {
+      "a": 5.23,
+      "b": 5.23,
+      "per": 1.0,
+      "agree": true
+     }
+    }
+   },
+   "prostate_ca": {
+    "agree": false,
+    "why": [
+     "只有一次建项给出了这个结局"
+    ]
+   }
+  },
+  "agree_any": true
+ }
+}

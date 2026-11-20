@@ -112,5 +112,7 @@
  },
  "status": "active",
  "added_by": "longpi-term-builder",
- "registry_version_added": "2026.11.18-9"
+ "registry_version_added": "2026.11.18-9",
+ "why_qualitative_zh": "两次独立建项不一致：indicator：每 1 单位 1.44 与 1.84，不在彼此的 95% 置信区间内",
+ "demoted_from_counted": "2026-11-20 双次独立建项规则"
 }

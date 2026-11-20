@@ -1,0 +1,335 @@
+{
+ "id": "ext.steps_daily",
+ "a": {
+  "kind": "behavior",
+  "exclude_if_flags": [],
+  "treated_policy": "use_current",
+  "disclosure": "standard",
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active",
+  "behavior": {
+   "min_weeks": 8,
+   "self_report_discount": 0.5,
+   "target": 8000,
+   "target_source": "Paluch 2022（PMID 35247352）样条分析：≥60 岁在每日 6000–8000 步、<60 岁在 8000–10 000 步以前死亡风险持续下降；Ding 2025（PMID 40713949）拐点约 5000–7000 步。目标取 8000 步/日（中国居民膳食指南 2022 建议每日主动身体活动 6000 步，为下限）"
+  },
+  "id": "ext.steps_daily",
+  "name_zh": "日均步数",
+  "system": "musculoskeletal",
+  "group": "physical_activity",
+  "input": {
+   "code": "LP:steps_daily_mean",
+   "unit": "steps/day",
+   "platform": null,
+   "methods": [
+    "device",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "hinge",
+   "knot_lo": 8000,
+   "clip": [
+    3000,
+    30000
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "normal",
+   "by_sex_age": [
+    {
+     "sex": "both",
+     "age_lo": 18,
+     "age_hi": 99,
+     "mean": 6800,
+     "sd": 3200
+    }
+   ],
+   "pmid": "35247352",
+   "quote": "Quartile median steps per day were 3553 for quartile 1, 5801 for quartile 2, 7842 for quartile 3, and 10 901 for quartile 4.",
+   "source": "研究人群分布（Paluch 2022，15 个国际队列合并样本，四分位组中位数 3553/5801/7842/10901 步），按正态近似取均值 6800、标准差 3200（第 12.5 与 87.5 百分位相距 2.3 个标准差）；未找到可核对的中国成人按性别年龄的日均步数分布"
+  },
+  "effect": {
+   "all_cause": {
+    "hr_below": {
+     "hr": 1.1765,
+     "lo": 1.0989,
+     "hi": 1.2346,
+     "derived": {
+      "from": {
+       "hr": 0.85,
+       "lo": 0.81,
+       "hi": 0.91
+      },
+      "pow": -1
+     },
+     "per": 1000,
+     "per_unit": "steps/day（原文每增加 1000 步的估计）"
+    },
+    "direction": "higher_better"
+   }
+  },
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.3,
+   "coef_sd": 0.15,
+   "overlaps_with": [
+    "core.crf"
+   ],
+   "rationale_zh": "队列层面荟萃分析，摘要与方法只说明采用各研究的估计，校正变量不一且无法逐项核对，按仅校正年龄、性别处理，系数不超过 0.3；步数主要通过心肺适能起作用，测得 VO2max 时再按中介比例（默认 0.3，无可核对文献）扣减。",
+   "mediated_by": {
+    "core.crf": 0.3
+   }
+  },
+  "transport": {
+   "ancestry": "multinational (17 cohorts: US, Europe, Asia, Australia)",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "Banach 2023 meta-analysis of 17 cohort studies",
+   "n": 226889,
+   "ancestry": "multinational (17 cohorts: US, Europe, Asia, Australia)",
+   "age_range": [
+    18,
+    99
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.1,
+   "source": "腕戴设备步数误差约 10%（经验估计，未核对原文）；取近 90 天中位数可减小日间波动"
+  },
+  "persistence": {
+   "half_life_years": 1
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "日均步数低于约 8000 步时，增加步行可降低全因死亡风险；超过该水平后获益趋于平缓（60 岁以下者可至 8000–10 000 步）。"
+  },
+  "test": {
+   "label_zh": "手机或手表记录近 90 天日均步数",
+   "cost_level": 1
+  },
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "37555441",
+   "doi": "10.1093/eurjpc/zwad229",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/37555441/",
+   "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
+   "alternatives_considered": [
+    {
+     "pmid": "35247352",
+     "why_not_zh": "Paluch 2022 个体数据荟萃分析（3013 例死亡）只给四分位对比（第 3 对第 1 四分位 HR 0.55，0.49–0.62），换算为每步斜率须用四分位中位数之差作跨度，属推算，不采用；其四分位中位数仍用作参考分布"
+    },
+    {
+     "pmid": "40713949",
+     "why_not_zh": "Ding 2025 给出 7000 对 2000 步 HR 0.53（0.46–0.60），但摘要未给人数与事件数，全文非开放获取，无法核对"
+    }
+   ],
+   "verified_at": "2026-11-18",
+   "verifier": "longpi-term-builder 0.1.0",
+   "numbers_verified": true
+  },
+  "note_zh": "折线形状：8000 步以下每少 1000 步风险乘 1/0.85，8000 步以上不计入获益（原文样条曲线非线性、高步数段增益递减；Paluch 2022 样条显示 60 岁以上在 6000–8000 步趋平）。下限截断 3000 步（原文全因死亡的获益起点约 3867 步）。原文按每 1000 步线性汇总，低步数段与 Paluch 2022 四分位结果（3553→7842 步 HR 0.55）量级相近。",
+  "added_by": "longpi-term-builder",
+  "registry_version_added": "2026.11.18-9"
+ },
+ "b": {
+  "id": "ext.steps_daily",
+  "name_zh": "日均步数",
+  "kind": "behavior",
+  "system": "musculoskeletal",
+  "group": "physical_activity",
+  "input": {
+   "code": "LP:steps_daily_mean",
+   "unit": "steps/day",
+   "platform": null,
+   "methods": [
+    "device",
+    "self_report"
+   ]
+  },
+  "transform": {
+   "shape": "hinge",
+   "knot_lo": 7000,
+   "knot_hi": 7000,
+   "clip": [
+    0,
+    20000
+   ],
+   "log_x": false
+  },
+  "reference": {
+   "kind": "lognormal",
+   "by_sex_age": [
+    {
+     "sex": "M",
+     "age_lo": 18,
+     "age_hi": 99,
+     "meanlog": 8.825,
+     "sdlog": 0.487
+    },
+    {
+     "sex": "F",
+     "age_lo": 18,
+     "age_hi": 99,
+     "meanlog": 8.825,
+     "sdlog": 0.487
+    }
+   ],
+   "pmid": "35247352",
+   "quote": "Quartile median steps per day were 3553 for quartile 1, 5801 for quartile 2, 7842 for quartile 3, and 10 901 for quartile 4.",
+   "estimated": true,
+   "estimated_reason_zh": "无可核对的中国人群步数分布；以 15 国际队列四分位中位步数 3553/5801/7842/10 901 推算：总体中位数约取 q2、q3 中位数中点 6800（ln=8.825），sdlog=ln(10901/3553)/2.30=0.487；不分性别年龄",
+   "source": "PMID 35247352"
+  },
+  "effect": {
+   "all_cause": {
+    "hr_below": {
+     "derived": {
+      "from": {
+       "hr": 0.85,
+       "lo": 0.81,
+       "hi": 0.91
+      },
+      "pow": -1
+     },
+     "hr": 1.176471,
+     "lo": 1.098901,
+     "hi": 1.234568,
+     "per": 1000,
+     "per_unit": "steps/day 低于拐点每降低 1000"
+    },
+    "direction": "higher_better",
+    "overlaps_with": [
+     "core.crf",
+     "core.muscle"
+    ],
+    "coef": 0.3,
+    "evidence": {
+     "pmid": "37555441",
+     "grade": "B",
+     "design": "meta-analysis",
+     "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]"
+    }
+   }
+  },
+  "estimand_zh": "17 项队列荟萃（226,889 人）：日均步数每增加 1000 步的全因死亡合并 HR=0.85（0.81-0.91），以 pow −1 折为每降低 1000 步；拐点（平台）取 7000 步/天（PMID 40713949：拐点约 5000-7000），高于拐点不再计入风险；斜率与拐点来自不同文献，且原文为非线性（高步数端斜率更小）",
+  "adjusted_for": [
+   "age",
+   "sex"
+  ],
+  "overlap": {
+   "coef": 0.3,
+   "coef_sd": 0.1,
+   "overlaps_with": [
+    "core.crf",
+    "core.muscle"
+   ],
+   "rationale_zh": "步数与心肺适能、肌肉力量机制重叠；汇总研究校正不一致，按仅年龄性别 ≤0.3",
+   "mediated_by": {
+    "core.crf": 0.3
+   }
+  },
+  "transport": {
+   "ancestry": "mixed",
+   "shrink": 0.8,
+   "sd_inflate": 1.25
+  },
+  "population": {
+   "cohort": "17 cohort studies (meta-analysis)",
+   "n": 226889,
+   "events": null,
+   "ancestry": "mixed",
+   "age_range": [
+    18,
+    90
+   ],
+   "sex": "both"
+  },
+  "measurement": {
+   "sd_abs": null,
+   "cv": 0.15,
+   "source": "估计"
+  },
+  "persistence": {
+   "half_life_years": 2
+  },
+  "exclude_if_flags": [
+   "acute_illness"
+  ],
+  "treated_policy": "use_pretreatment",
+  "behavior": {
+   "min_weeks": 8,
+   "self_report_discount": 0.5,
+   "target": 7000,
+   "target_source": "PMID 40713949 Lancet Public Health 2025：全因死亡非线性剂量反应拐点约 5000-7000 步/天"
+  },
+  "interventions": {
+   "modifiable": true,
+   "note_zh": "增加日常步行"
+  },
+  "test": {
+   "label_zh": "手表/手机计步",
+   "cost_level": 0
+  },
+  "disclosure": "standard",
+  "evidence": {
+   "grade": "B",
+   "design": "meta-analysis",
+   "pmid": "37555441",
+   "quote": "A 1000-step increment was associated with a 15% decreased risk of all-cause mortality [hazard ratio (HR) 0.85; 95% confidence interval (CI) 0.81-0.91; P < 0.001]",
+   "alternatives_considered": [
+    {
+     "pmid": "34417979",
+     "estimate": "7 cohorts, 2310 deaths: HR 0.88 (0.83-0.93) per 1000 steps",
+     "reason": "人数与死亡数均较少（n=7 队列）；该文称 2700-17000 步线性下降，与平台假设不一致"
+    },
+    {
+     "pmid": "38901742",
+     "estimate": "14 cohorts: HR 0.91 (0.87-0.95) per 1000 steps, threshold 3143",
+     "reason": "摘要无人数/事件数，无法满足事件门槛"
+    },
+    {
+     "pmid": "35247352",
+     "estimate": "IPD 15 cohorts, 47,471 adults, 3013 deaths: Q2 0.60, Q3 0.55, Q4 0.47 vs Q1",
+     "reason": "仅四分位分组，折成斜率须自设间距（铁律 2）"
+    },
+    {
+     "pmid": "40713949",
+     "estimate": "57 studies; 7000 vs 2000 steps HR 0.53 (0.46-0.60)",
+     "reason": "两点比较，无每单位估计；用作拐点来源"
+    }
+   ]
+  },
+  "license": {
+   "commercial_use": true,
+   "note": "效应量为文献数据"
+  },
+  "status": "active"
+ },
+ "verify_b": "auto_accept",
+ "verify_b_fail": [],
+ "comparison": {
+  "outcomes": {
+   "all_cause": {
+    "agree": false,
+    "why": [
+     "拐点不同：knot_lo 8000 对 7000"
+    ]
+   }
+  },
+  "agree_any": false
+ },
+ "why": "两次独立建项不一致：拐点不同：knot_lo 8000 对 7000"
+}

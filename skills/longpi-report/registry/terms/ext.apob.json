@@ -217,7 +217,28 @@
   "url": "https://pubmed.ncbi.nlm.nih.gov/38241044/",
   "verified_at": "2026-11-18",
   "verifier": "longpi-term-builder 0.1.0",
-  "numbers_verified": true
+  "numbers_verified": true,
+  "replication": {
+   "pmid": "38241044",
+   "doi": null,
+   "design": "mendelian-randomization",
+   "effects": {
+    "all_cause": {
+     "hr": 1.11,
+     "lo": 1.06,
+     "hi": 1.16,
+     "per": 0.238
+    },
+    "chd": {
+     "hr": 1.65,
+     "lo": 1.57,
+     "hi": 1.73,
+     "per": 0.238
+    }
+   },
+   "screening_mortality_rr": null,
+   "rule_zh": "两次独立建项一致（点估计互在对方 95% 置信区间内）"
+  }
  },
  "added_by": "longpi-term-builder",
  "registry_version_added": "2026.11.18-9"
